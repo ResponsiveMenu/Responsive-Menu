@@ -1,0 +1,61 @@
+.tab_container
+{
+	display: none;
+}
+
+.tab_container_1
+{
+	display: block;
+}
+
+.tab
+{
+	display: inline-block;
+	padding: 5px;
+	text-align: center;
+	border: 1px solid #CCC;
+	border-radius: 2px;
+	cursor: pointer;
+	background: white;
+}
+
+.option_holder
+{
+	display: inline-block;
+	width: 49%;
+}
+
+.option_holder.has_label h4
+{
+	margin-bottom: 0;
+}
+
+.option_holder h5
+{
+	margin: 5px 0;
+}
+
+.options_container
+{
+	background: white;
+	border: 1px solid #CCC;
+	border-radius: 2px;
+	padding: 0 15px 15px 15px;
+}
+
+.options_container input,
+.options_container textarea,
+.options_container select
+{
+	width: 90%;
+	border: 1px solid #CCC;
+	border-radius: 2px;
+	padding: 5px;
+	background: white;
+}
+
+ul#adminmenu a.wp-has-current-submenu::after,
+ul#adminmenu > li.current > a.current::after
+{
+	border-color: transparent #DE4B42 transparent transparent;
+}
