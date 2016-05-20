@@ -13,12 +13,16 @@ class OptionHelper
 
 	public function getFilter($option_name)
 	{
-		return isset($this->mapping[$option_name]['filter']) ? new $this->mapping[$option_name]['filter'] : null;
+		return isset($this->mapping[$option_name]['filter']) ?
+    new $this->mapping[$option_name]['filter'] :
+    new \ResponsiveMenu\Filters\HtmlFilter;
 	}
 
 	public function getType($option_name)
 	{
-		return isset($this->mapping[$option_name]['type']) ? $this->mapping[$option_name]['type'] : null;
+		return isset($this->mapping[$option_name]['type']) ?
+    $this->mapping[$option_name]['type'] :
+    'ResponsiveMenu\Form\Text';
 	}
 
 	public function getLabel($option_name)

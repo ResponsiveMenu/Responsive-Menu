@@ -9,7 +9,7 @@ class Colour
 	public function render(Option $option)
 	{
 		echo "<input type='text'
-				class='colour'
+				class='colour wp-color-picker'
 				id='{$option->getName()}'
 				name='menu[{$option->getName()}]'
 				value='{$option->getValue()}' />";

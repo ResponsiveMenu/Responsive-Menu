@@ -3,6 +3,31 @@
 	display: none;
 }
 
+#all_options_container,
+#banner_area
+{
+  vertical-align: top;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+#all_options_container
+{
+  width: 70%;
+}
+
+#banner_area
+{
+  width: 24%;
+  margin-top: 53px;
+  margin-left: 2%;
+  padding: 15px 2%;
+  background: #DE4B42;
+  color: #fff;
+  border: 1px solid #D33C34;
+  border-radius: 2px;
+}
+
 .tab_container_1
 {
 	display: block;
@@ -22,10 +47,11 @@
 .option_holder
 {
 	display: inline-block;
-	width: 49%;
+	width: 33%;
+  vertical-align: top;
 }
 
-.option_holder.has_label h4
+.option_holder h4
 {
 	margin-bottom: 0;
 }
@@ -33,6 +59,7 @@
 .option_holder h5
 {
 	margin: 5px 0;
+  font-weight: normal;
 }
 
 .options_container
@@ -59,3 +86,86 @@ ul#adminmenu > li.current > a.current::after
 {
 	border-color: transparent #DE4B42 transparent transparent;
 }
+
+/* On-Off Buttons */
+
+.onoffswitch {
+    position: relative; width: 90px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #DE4B42; border-radius: 20px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+
+.onoffswitch-inner:before {
+    content: "ON";
+    padding-left: 10px;
+    background-color: #DE4B42; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+    content: "OFF";
+    padding-right: 10px;
+    background-color: #EEEEEE; color: #999999;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; width: 18px; margin: 6px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 56px;
+    border: 2px solid #999999; border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px;
+}
+
+input[type="checkbox"]
+{
+  display: none;
+}
+
+/* End On-Off Buttons */
+
+/* Nice Select Button Styling */
+
+.select-style {
+    border: 1px solid #ccc;
+    width: 100%;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #fafafa url("data:image/png;base64,R0lGODlhDwAUAIABAAAAAP///yH5BAEAAAEALAAAAAAPABQAAAIXjI+py+0Po5wH2HsXzmw//lHiSJZmUAAAOw==")no-repeat 95% 50%;
+}
+
+.select-style select {
+    padding: 5px 8px;
+    width: 130%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+    height: auto;
+}
+
+.select-style select:focus {
+    outline: none;
+}
+
+/* End Select Button Styling */

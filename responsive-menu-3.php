@@ -10,10 +10,9 @@ Text Domain: responsive-menu
 Author URI: http://responsive.menu
 License: GPL2
 Tags: responsive, menu, responsive menu
+*/
 
-/* Only required includes in system */
-
-if(is_admin()):
+  /* Required includes for plugin to function */
   include dirname(__FILE__) . '/autoload.php';
   include dirname(__FILE__) . '/app/config/default_options.php';
   include dirname(__FILE__) . '/app/config/route_dependencies.php';
@@ -24,6 +23,8 @@ if(is_admin()):
 
   /* Load Database and Setup */
   $database = new ResponsiveMenu\Database\WpDatabase();
+
+if(is_admin()):
   $migration = new ResponsiveMenu\Database\Migration($database);
   $migration->setup($default_options);
   $migration->migrate();
