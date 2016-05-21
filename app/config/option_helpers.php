@@ -23,19 +23,92 @@ $option_helpers = array(
 
 	'theme_location_menu' => array(
     'type' => 'ResponsiveMenu\Form\Select',
-		'position' => 'advanced.menu',
+		'position' => 'menu.advanced',
     'custom' => array('select'=> $location_menus )
 	),
 
 	'depth' => array(
 		'type' => 'ResponsiveMenu\Form\Select',
-		'position' => 'menu.general',
+		'position' => 'menu.advanced',
     'custom' => array('select' => array_combine(range(1,5),range(1,5)))
+	),
+
+	'menu_minimum_width' => array(
+		'position' => 'menu.advanced',
+	),
+
+	'menu_maximum_width' => array(
+		'position' => 'menu.advanced',
+	),
+
+	'menu_auto_height' => array(
+    'type' => 'ResponsiveMenu\Form\Checkbox',
+		'position' => 'menu.advanced',
+	),
+
+	'menu_additional_content' => array(
+    'type' => 'ResponsiveMenu\Form\Textarea',
+		'position' => 'menu.advanced',
+	),
+
+	'menu_additional_content_position' => array(
+    'type' => 'ResponsiveMenu\Form\Select',
+		'position' => 'menu.advanced',
+    'custom' => array('select' => array('below' => 'Below Menu Links', 'above' => ' Above Menu Links'))
+	),
+
+	'menu_title' => array(
+		'position' => 'menu.general'
+	),
+
+	'menu_title_image' => array(
+    'type' => 'ResponsiveMenu\Form\Image',
+		'position' => 'menu.general'
+	),
+
+	'menu_slide_side' => array(
+    'type' => 'ResponsiveMenu\Form\Select',
+		'position' => 'menu.general',
+    'custom' => array('select' => array('left' => 'Left', 'right' => 'Right'))
+	),
+
+	'menu_title_link' => array(
+		'position' => 'menu.general'
+	),
+
+	'menu_title_link_location' => array(
+    'type' => 'ResponsiveMenu\Form\Select',
+		'position' => 'menu.general',
+    'custom' => array('select' => array('_blank' => 'New Tab', '_self' => 'Same Page', '_parent' => 'Parent Page', '_top' => 'Full Window Body'))
+	),
+
+	'menu_width' => array(
+		'position' => 'menu.general'
+	),
+
+  'minify_scripts' => array(
+    'type' => 'ResponsiveMenu\Form\Checkbox',
+		'position' => 'technical.scripts',
+	),
+
+  'scripts_in_footer' => array(
+    'type' => 'ResponsiveMenu\Form\Checkbox',
+		'position' => 'technical.scripts',
+	),
+
+  'external_files' => array(
+    'type' => 'ResponsiveMenu\Form\Checkbox',
+		'position' => 'technical.scripts',
+	),
+
+  'remove_important_tags' => array(
+    'type' => 'ResponsiveMenu\Form\Checkbox',
+		'position' => 'technical.scripts',
 	),
 
 	'transient_caching' => array(
 		'type' => 'ResponsiveMenu\Form\Checkbox',
-		'position' => 'advanced.caching'
+		'position' => 'technical.caching'
 	),
 
   /*
