@@ -1,15 +1,35 @@
 <?php
 
+// Ugly - is there a functional way?
+foreach(get_terms('nav_menu') as $menu) $available_menus[$menu->slug] = $menu->name;
+$location_menus = get_registered_nav_menus();
+$location_menus[''] = 'None';
+
 $option_helpers = array(
 
 	'breakpoint' => array(
-		'position' => 'look_and_feel.initial',
-		'label' => 'Breakpoint Width'
+		'position' => 'initial_setup.initial',
+	),
+
+	'menu_to_hide' => array(
+		'position' => 'initial_setup.initial',
+	),
+
+	'menu_to_use' => array(
+    'type' => 'ResponsiveMenu\Form\Select',
+		'position' => 'initial_setup.initial',
+    'custom' => array('select'=> $available_menus)
+	),
+
+	'theme_location_menu' => array(
+    'type' => 'ResponsiveMenu\Form\Select',
+		'position' => 'advanced.menu',
+    'custom' => array('select'=> $location_menus )
 	),
 
 	'depth' => array(
 		'type' => 'ResponsiveMenu\Form\Select',
-		'position' => 'look_and_feel.menu',
+		'position' => 'menu.general',
     'custom' => array('select' => array_combine(range(1,5),range(1,5)))
 	),
 
@@ -103,10 +123,138 @@ $option_helpers = array(
     'custom' => array('select' => array('left' => 'Left', 'right' => 'Right'))
 	),
 
+  'button_push_with_animation' => array(
+    'type' => 'ResponsiveMenu\Form\Checkbox',
+		'position' => 'button.main'
+	),
+
+  'button_font_size' => array(
+		'position' => 'button.sizing'
+	),
+
+  /* Animation Settings */
 	'animation_type' => array(
 		'type' => 'ResponsiveMenu\Form\Select',
 		'position' => 'animation.menu',
     'custom' => array('select' => array('overlay' => 'Overlay', 'push' => 'Push'))
+	),
+
+	'page_wrapper' => array(
+		'position' => 'animation.menu'
+	),
+
+  'animation_speed' => array(
+		'position' => 'animation.menu'
+	),
+
+  'transition_speed' => array(
+		'position' => 'animation.menu'
+	),
+
+  /* Menu Settings */
+  'accordion_animation' => array(
+    'type' => 'ResponsiveMenu\Form\Checkbox',
+		'position' => 'menu.submenus'
+	),
+
+  'active_arrow_shape' => array(
+		'position' => 'menu.submenus'
+	),
+
+  'inactive_arrow_shape' => array(
+		'position' => 'menu.submenus'
+	),
+
+  'active_arrow_image' => array(
+    'type' => 'ResponsiveMenu\Form\Image',
+		'position' => 'menu.submenus'
+	),
+
+  'inactive_arrow_image' => array(
+    'type' => 'ResponsiveMenu\Form\Image',
+		'position' => 'menu.submenus'
+	),
+
+  'menu_item_background_colour' => array(
+    'type' => 'ResponsiveMenu\Form\Colour',
+		'position' => 'menu.background_colours'
+	),
+
+  'menu_item_background_hover_colour' => array(
+    'type' => 'ResponsiveMenu\Form\Colour',
+		'position' => 'menu.background_colours'
+	),
+
+  'menu_item_border_colour' => array(
+    'type' => 'ResponsiveMenu\Form\Colour',
+		'position' => 'menu.background_colours'
+	),
+
+  'menu_title_background_colour' => array(
+    'type' => 'ResponsiveMenu\Form\Colour',
+		'position' => 'menu.background_colours'
+	),
+
+  'menu_current_item_background_colour' => array(
+    'type' => 'ResponsiveMenu\Form\Colour',
+		'position' => 'menu.background_colours'
+	),
+
+  'menu_current_item_background_hover_colour' => array(
+    'type' => 'ResponsiveMenu\Form\Colour',
+		'position' => 'menu.background_colours'
+	),
+
+  'menu_title_colour' => array(
+    'type' => 'ResponsiveMenu\Form\Colour',
+		'position' => 'menu.text_colours'
+	),
+
+  'menu_title_hover_colour' => array(
+    'type' => 'ResponsiveMenu\Form\Colour',
+		'position' => 'menu.text_colours'
+	),
+
+  'menu_link_colour' => array(
+    'type' => 'ResponsiveMenu\Form\Colour',
+		'position' => 'menu.text_colours'
+	),
+
+  'menu_link_hover_colour' => array(
+    'type' => 'ResponsiveMenu\Form\Colour',
+		'position' => 'menu.text_colours'
+	),
+
+  'menu_current_link_colour' => array(
+    'type' => 'ResponsiveMenu\Form\Colour',
+		'position' => 'menu.text_colours'
+	),
+
+  'menu_current_link_hover_colour' => array(
+    'type' => 'ResponsiveMenu\Form\Colour',
+		'position' => 'menu.text_colours'
+	),
+
+  'menu_font' => array(
+		'position' => 'menu.style'
+	),
+
+  'menu_font_size' => array(
+		'position' => 'menu.style'
+	),
+
+  'menu_title_font_size' => array(
+		'position' => 'menu.style'
+	),
+
+  'menu_text_alignment' => array(
+    'type' => 'ResponsiveMenu\Form\Select',
+		'position' => 'menu.style',
+    'custom' => array('select' => array('left' => 'Left', 'right' => 'Right'))
+	),
+
+  'menu_links_height' => array(
+		'position' => 'menu.style'
 	),
 
 	'shortcode' => array(
