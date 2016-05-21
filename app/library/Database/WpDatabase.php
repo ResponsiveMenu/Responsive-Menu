@@ -50,4 +50,11 @@ class WpDatabase implements Database
 	{
 		return $this->db->get_charset_collate();
 	}
+
+  public function getVersion()
+  {
+    $plugin_data = get_plugin_data(dirname(dirname(dirname(dirname(__FILE__)))) . '/responsive-menu-3.php', false, false);
+    return $plugin_data['Version'];
+  }
+
 }

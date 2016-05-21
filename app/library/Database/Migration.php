@@ -12,7 +12,6 @@ class Migration
 
   const TABLE_NAME = 'responsive_menu';
   const VERSION_VAR = 'RMVer';
-  const VERSION = '3.0.0';
 
 	public function __construct(Database $db)
 	{
@@ -68,7 +67,7 @@ class Migration
 	{
 		$this->addNewOptions();
     $this->tidyUpOptions();
-		if($this->needsUpdate()) :
+		if($this->needsUpdate()):
 			$this->migrations();
 			$this->updateVersion();
 		endif;
@@ -76,7 +75,7 @@ class Migration
 
 	protected function needsUpdate()
 	{
-		return $this->getVersion() < self::VERSION;
+		return version_compare($this->getVersion(), $this->db->getVersion(), '<');
 	}
 
 	protected function getVersion()
@@ -86,13 +85,14 @@ class Migration
 
 	protected function updateVersion()
 	{
-		update_option(self::VERSION_VAR, self::VERSION);
+		update_option(self::VERSION_VAR, $this->db->getVersion());
 	}
 
   protected function isVersion3()
   {
-    return substr($this->GetVersion(), 1, 1) == 3;
+    return substr($this->getVersion(), 1, 1) == 3;
   }
+
 	protected function migrations()
 	{
 

@@ -1,10 +1,11 @@
 jQuery(function($) {
 
   $('.wp-color-picker').wpColorPicker();
+  $('#banner_area').stick_in_parent();
 
   var custom_uploader;
 
-  $('.RMImageButton').click(function (e) {
+  $('.image_button').click(function (e) {
 
       e.preventDefault();
       window.imgFor = $(this).attr('for');

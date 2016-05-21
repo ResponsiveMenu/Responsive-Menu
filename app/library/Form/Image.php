@@ -8,11 +8,18 @@ class Image
 
 	public function render(Option $option)
 	{
-		echo "<input type='text'
+		echo "<input
+        type='text'
 				class='image'
 				id='{$option->getName()}'
 				name='menu[{$option->getName()}]'
-				value='{$option->getValue()}' />";
+				value='{$option->getValue()}' />
+        <input
+            type='button'
+            value='Upload Image'
+            class='button image_button'
+            for='{$option->getName()}'
+          />";
 	}
 
 }

@@ -90,7 +90,7 @@ ul#adminmenu > li.current > a.current::after
 /* On-Off Buttons */
 
 .onoffswitch {
-    position: relative; width: 90px;
+    position: relative; width: 74px;
     -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
 }
 .onoffswitch-checkbox {
@@ -98,18 +98,17 @@ ul#adminmenu > li.current > a.current::after
 }
 .onoffswitch-label {
     display: block; overflow: hidden; cursor: pointer;
-    border: 2px solid #DE4B42; border-radius: 20px;
+    border: 2px solid #DE4B42; border-radius: 12px;
 }
 .onoffswitch-inner {
     display: block; width: 200%; margin-left: -100%;
     transition: margin 0.3s ease-in 0s;
 }
 .onoffswitch-inner:before, .onoffswitch-inner:after {
-    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    display: block; float: left; width: 50%; height: 23px; padding: 0; line-height: 23px;
     font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
     box-sizing: border-box;
 }
-
 .onoffswitch-inner:before {
     content: "ON";
     padding-left: 10px;
@@ -122,11 +121,11 @@ ul#adminmenu > li.current > a.current::after
     text-align: right;
 }
 .onoffswitch-switch {
-    display: block; width: 18px; margin: 6px;
+    display: block; width: 13px; margin: 5px;
     background: #FFFFFF;
     position: absolute; top: 0; bottom: 0;
-    right: 56px;
-    border: 2px solid #999999; border-radius: 20px;
+    right: 47px;
+    border: 2px solid #999999; border-radius: 12px;
     transition: all 0.3s ease-in 0s;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
@@ -147,16 +146,18 @@ input[type="checkbox"]
 
 .select-style {
     border: 1px solid #ccc;
-    width: 100%;
+    width: 90%;
     border-radius: 3px;
+    cursor: pointer;
     overflow: hidden;
     background: #fafafa url("data:image/png;base64,R0lGODlhDwAUAIABAAAAAP///yH5BAEAAAEALAAAAAAPABQAAAIXjI+py+0Po5wH2HsXzmw//lHiSJZmUAAAOw==")no-repeat 95% 50%;
 }
 
 .select-style select {
-    padding: 5px 8px;
-    width: 130%;
+    padding: 9px 5%;
+    width: 115%;
     border: none;
+    cursor: pointer;
     box-shadow: none;
     background: transparent;
     background-image: none;
@@ -169,3 +170,41 @@ input[type="checkbox"]
 }
 
 /* End Select Button Styling */
+
+/* Text Box Styling */
+
+input[type="text"].text,
+input[type="text"].image
+{
+  padding: 10px 5%;
+  border: 1px solid #c9c9c9;
+  border-bottom: solid 2px #c9c9c9;
+  transition: border 0.3s;
+}
+
+input[type="text"].text:focus,
+input[type="text"].text.focus,
+input[type="text"].image:focus,
+input[type="text"].image.focus,
+{
+  border-bottom: solid 2px #969696;
+}
+
+input[type="text"].image
+{
+  width: 74%;
+}
+
+input[type="button"].image_button
+{
+  width: 15%;
+  height: 42px;
+}
+
+input[type="text"].image,
+input[type="button"].image_button
+{
+  display: inline-block;
+}
+
+/* End Text Box Styling */
