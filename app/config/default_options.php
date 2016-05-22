@@ -28,7 +28,7 @@ $default_options = array(
   'button_top' => 10,
   'button_distance_from_side' => 5,
   'button_left_or_right' => 'left',
-  'button_positon_type',
+  'button_positon_type' => 'static',
   'button_push_with_animation' => 'off',
   'button_font_size' => 13,
 
@@ -70,7 +70,7 @@ $default_options = array(
   'menu_title_image' => null,
   'menu_slide_side' => 'left',
   'menu_title_link' => null,
-  'menu_title_link_location',
+  'menu_title_link_location' => '_self',
   'menu_width' => 75,
 
   'minify_scripts' => 'off',

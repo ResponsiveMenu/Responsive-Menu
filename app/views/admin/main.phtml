@@ -10,6 +10,18 @@ use ResponsiveMenu\Formatters\Text as Text;
 	<div class="tabs_container">
 		<?php Tabs::render($this->options); ?>
 	</div>
+  <?php if(isset($this->messages['success'])): ?>
+    <div id="success_message" class="flash_messages"><?php echo $this->messages['success']; ?></div>
+  <?php endif; ?>
+  <?php if(isset($this->messages['errors'])): ?>
+    <div id="error_messages" class="flash_messages">
+      <ul>
+      <?php foreach($this->messages['errors'] as $error): ?>
+        <li><?php echo $error; ?></li>
+      <?php endforeach; ?>
+      </ul>
+    </div>
+  <?php endif; ?>
   <div id="all_options_container">
   	<form action="" method="post">
   		<?php $t=1; foreach(Tabs::getTabs($this->options) as $key => $val) : ?>

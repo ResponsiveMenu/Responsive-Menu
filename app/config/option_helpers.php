@@ -196,9 +196,15 @@ $option_helpers = array(
     'custom' => array('select' => array('left' => 'Left', 'right' => 'Right'))
 	),
 
+  'button_positon_type' => array(
+    'type' => 'ResponsiveMenu\Form\Select',
+    'position' => 'button.advanced',
+    'custom' => array('select' => array('static' => 'Static', 'fixed' => 'Fixed'))
+  ),
+
   'button_push_with_animation' => array(
     'type' => 'ResponsiveMenu\Form\Checkbox',
-		'position' => 'button.main'
+		'position' => 'button.advanced'
 	),
 
   'button_font_size' => array(

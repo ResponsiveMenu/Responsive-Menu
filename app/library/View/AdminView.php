@@ -25,9 +25,10 @@ class AdminView implements View
     endif;
   }
 
-	public function render($location, $data = array())
+	public function render($location, $data = array(), $flash = array())
 	{
 		$this->options = $data;
+    $this->messages = $flash;
 		include dirname(dirname(dirname(__FILE__))) . '/views/admin/' . $location . '.phtml';
 	}
 
