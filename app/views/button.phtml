@@ -1,0 +1,24 @@
+<?php
+$button_title =
+  $this->options['button_title'] != ''
+  ? "<div id='responsive-menu-button-title' class='{$this->options['button_title_position']}'>{$this->options['button_title']}</div>"
+  : '';
+
+$has_title_class = $this->options['button_title'] != ''
+  ? 'has-title has-title-' . $this->options['button_title_position'] : '';
+
+   ?>
+
+
+
+<section id="responsive-menu-button-holder">
+  <?php echo $this->options['button_title_position'] == 'left' ? $button_title : ''; ?>
+  <nav id="responsive-menu-button" class="<?php echo $has_title_class; ?>">
+    <?php echo $this->options['button_title_position'] == 'top' ? $button_title : ''; ?>
+    <a class="navicon-button <?php echo $this->options['button_click_animation']; ?>">
+      <div class="navicon"></div>
+    </a>
+    <?php echo $this->options['button_title_position'] == 'bottom' ? $button_title : ''; ?>
+  </nav>
+  <?php echo $this->options['button_title_position'] == 'right' ? $button_title : ''; ?>
+</section>

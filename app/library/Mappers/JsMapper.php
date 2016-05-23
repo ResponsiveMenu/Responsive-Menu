@@ -11,7 +11,16 @@ class JsMapper
 
   public function map()
   {
-    return "mapped";
+$js = <<<JS
+  jQuery(document).ready(function($) {
+    $('#responsive-menu-button-holder').click(function(){
+      $('#responsive-menu-button-holder a.navicon-button').toggleClass('open');
+    });
+  });
+JS;
+
+  return $js;
+
   }
-  
+
 }

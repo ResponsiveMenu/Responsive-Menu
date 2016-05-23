@@ -139,11 +139,17 @@ $option_helpers = array(
   'button_title_position' => array(
     'type' => 'ResponsiveMenu\Form\Select',
     'position' => 'button.general',
-    'custom' => array('select' => array('left' => 'Left', 'right' => 'Right'))
+    'custom' => array('select' => array('left' => 'Left', 'right' => 'Right', 'top' => 'Top', 'bottom' => 'Bottom'))
   ),
 
-  'button_title_height' => array(
+  'button_title_line_height' => array(
     'position' => 'button.general'
+  ),
+
+  'button_click_animation' => array(
+    'position' => 'button.general',
+    'type' => 'ResponsiveMenu\Form\Select',
+    'custom' => array('select' => array('x' => 'Fold to X', 'larr' => 'Left Arrow', 'rarr' => 'Right Arrow', 'uarr' => 'Up Arrow', 'plus' => 'Plus', 'line' => 'Line'))
   ),
 
 	'button_background_colour' => array(
@@ -182,6 +188,10 @@ $option_helpers = array(
 		'position' => 'button.sizing'
 	),
 
+  'button_line_width' => array(
+		'position' => 'button.sizing'
+	),
+
   'button_top' => array(
 		'position' => 'button.location'
 	),
@@ -196,10 +206,10 @@ $option_helpers = array(
     'custom' => array('select' => array('left' => 'Left', 'right' => 'Right'))
 	),
 
-  'button_positon_type' => array(
+  'button_position_type' => array(
     'type' => 'ResponsiveMenu\Form\Select',
     'position' => 'button.advanced',
-    'custom' => array('select' => array('static' => 'Static', 'fixed' => 'Fixed'))
+    'custom' => array('select' => array('absolute' => 'Static', 'fixed' => 'Fixed'))
   ),
 
   'button_push_with_animation' => array(

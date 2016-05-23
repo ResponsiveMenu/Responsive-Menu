@@ -14,8 +14,13 @@ class WpRouting implements Routing
 
 	public function route()
 	{
-		if(is_admin())
+		if(is_admin()):
 			add_action( 'admin_menu', array( $this, 'adminPage' ));
+    else:
+      $controller = $this->getController('front.main');
+      $controller->index();
+    endif;
+
 	}
 
 	public function adminPage()

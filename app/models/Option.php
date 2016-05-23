@@ -70,7 +70,7 @@ class Option
 
 	public function __toString()
 	{
-		return $this->value;
+		return isset($this->value) ? $this->value : '';
 	}
 
 	public function getBasePosition()
