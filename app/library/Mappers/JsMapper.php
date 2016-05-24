@@ -11,12 +11,12 @@ class JsMapper
 
   public function map()
   {
-$js = <<<JS
-  jQuery(document).ready(function($) {
-    $('#responsive-menu-button-holder').click(function(){
-      $('#responsive-menu-button-holder a.navicon-button').toggleClass('open');
-    });
-  });
+    $js = <<<JS
+      jQuery(document).ready(function($) {
+        $('.hamburger').click(function(){
+          $(this).toggleClass('is-active');
+        });
+      });
 JS;
 
   return $js;

@@ -149,7 +149,34 @@ $option_helpers = array(
   'button_click_animation' => array(
     'position' => 'button.general',
     'type' => 'ResponsiveMenu\Form\Select',
-    'custom' => array('select' => array('x' => 'Fold to X', 'larr' => 'Left Arrow', 'rarr' => 'Right Arrow', 'uarr' => 'Up Arrow', 'plus' => 'Plus', 'line' => 'Line'))
+    'custom' => array('select' => array(
+      '3dx' => '3DX',
+      '3dx-r' => '3DX Reverse',
+      '3dy' => '3DY',
+      '3dy-r' => '3DY Reverse',
+      'arrow' => 'Arrow',
+      'arrow-r' => 'Arrow Reverse',
+      'arrowalt' => 'Arrow Alt',
+      'arrowalt-r' => 'Arrow Alt Reverse',
+      'boring' => 'Boring',
+      'collapse' => 'Collapse',
+      'collapse-r' => 'Collapse Reverse',
+      'elastic' => 'Elastic',
+      'elastic-r' => 'Elastic Reverse',
+      'emphatic' => 'Emphatic',
+      'emphatic-r' => 'Emphatic Reverse',
+      'slider' => 'Slider',
+      'slider-r' => 'Slider Reverse',
+      'spin' => 'Spin',
+      'spin-r' => 'Spin Reverse',
+      'spring' => 'Spring',
+      'spring-r' => 'Spring Reverse',
+      'stand' => 'Stand',
+      'stand-r' => 'Stand Reverse',
+      'squeeze' => 'Squeeze',
+      'vortex' => 'Vortex',
+      'vortex-r' => 'Vortex Reverse'
+    ))
   ),
 
 	'button_background_colour' => array(

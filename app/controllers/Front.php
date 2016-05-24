@@ -2,7 +2,7 @@
 
 namespace ResponsiveMenu\Controllers;
 use ResponsiveMenu\Controllers\Base as Base;
-use ResponsiveMenu\Mappers\CssMapper as CssMapper;
+use ResponsiveMenu\Mappers\ScssButtonMapper as ScssButtonMapper;
 use ResponsiveMenu\Mappers\JsMapper as JsMapper;
 
 class Front extends Base
@@ -11,14 +11,15 @@ class Front extends Base
 	{
     $options = $this->repository->all();
 
-    $css_mapper = new CssMapper($options);
+    $css_mapper = new ScssButtonMapper($options);
     $css = $css_mapper->map();
 
     $js_mapper = new JsMapper($options);
     $js = $js_mapper->map();
 
     add_action('wp_head', function() use ($css, $js) {
-      echo '<style>' . $css . '</style>';
+      $base_css = file_get_contents(dirname(dirname(__FILE__)) . '/public/css/test.css');
+      echo '<style>' . $base_css . $css . '</style>';
       echo '<script>' . $js . '</script>';
     });
 

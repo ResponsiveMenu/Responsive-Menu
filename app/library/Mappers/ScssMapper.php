@@ -2,18 +2,15 @@
 
 namespace ResponsiveMenu\Mappers;
 
-class CssMapper
+class ScssMapper
 {
 
   public function __construct(array $options)
   {
     $this->options = $options;
-  }
-
-  public function map()
-  {
-
-
+    #Ugly
+    require "scssphp/scss.inc.php";
+    $this->compiler = new \scssc();
   }
 
 }

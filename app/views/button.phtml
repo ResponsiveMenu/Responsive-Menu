@@ -1,24 +1,17 @@
-<?php
-$button_title =
-  $this->options['button_title'] != ''
-  ? "<div id='responsive-menu-button-title' class='{$this->options['button_title_position']}'>{$this->options['button_title']}</div>"
-  : '';
+<?php $button_title = $this->options['button_title']; ?>
+<?php $button_title_pos = $this->options['button_title_position']; ?>
+<?php $button_title_html = $button_title != '' ? '<span class="hamburger-label hamburger-label-'.$button_title_pos.'">'.$button_title.'</span>' : ''; ?>
+<?php $accessible = $button_title_pos == 'left' || $button_title_pos == 'right' ? 'hamburger--accessible' : ''; ?>
 
-$has_title_class = $this->options['button_title'] != ''
-  ? 'has-title has-title-' . $this->options['button_title_position'] : '';
-
-   ?>
-
-
-
-<section id="responsive-menu-button-holder">
-  <?php echo $this->options['button_title_position'] == 'left' ? $button_title : ''; ?>
-  <nav id="responsive-menu-button" class="<?php echo $has_title_class; ?>">
-    <?php echo $this->options['button_title_position'] == 'top' ? $button_title : ''; ?>
-    <a class="navicon-button <?php echo $this->options['button_click_animation']; ?>">
-      <div class="navicon"></div>
-    </a>
-    <?php echo $this->options['button_title_position'] == 'bottom' ? $button_title : ''; ?>
-  </nav>
-  <?php echo $this->options['button_title_position'] == 'right' ? $button_title : ''; ?>
-</section>
+<button class="hamburger
+        <?php echo $accessible; ?>
+        hamburger--<?php echo $this->options['button_click_animation']; ?>"
+        type="button"
+        aria-label="Menu"
+        aria-controls="navigation">
+  <?php echo $button_title_pos == 'top' || $button_title_pos == 'left' ? $button_title_html : ''; ?>
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
+  <?php echo $button_title_pos == 'bottom' || $button_title_pos == 'right' ? $button_title_html : ''; ?>
+</button>
