@@ -123,10 +123,6 @@ $option_helpers = array(
 		'position' => 'button.general'
 	),
 
-  'button_x_on_click' => array(
-		'position' => 'button.general'
-	),
-
   'button_image_when_clicked' => array(
     'type' => 'ResponsiveMenu\Form\Image',
     'position' => 'button.general'
@@ -150,6 +146,7 @@ $option_helpers = array(
     'position' => 'button.general',
     'type' => 'ResponsiveMenu\Form\Select',
     'custom' => array('select' => array(
+      'off' => 'Off',
       '3dx' => '3DX',
       '3dx-r' => '3DX Reverse',
       '3dy' => '3DY',

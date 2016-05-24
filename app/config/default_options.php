@@ -12,7 +12,6 @@ $default_options = array(
   // Button Settings
   'button_title' => null,
   'button_image' => null,
-  'button_x_on_click' => 'off',
   'button_image_when_clicked' => null,
   'button_click_trigger' => '#responsive_menu_button',
   'button_title_position' => 'left',
@@ -32,7 +31,7 @@ $default_options = array(
   'button_left_or_right' => 'right',
   'button_position_type' => 'absolute',
   'button_push_with_animation' => 'off',
-  'button_font_size' => 13,
+  'button_font_size' => 14,
 
   // Animation Settings
   'animation_type' => 'slide',

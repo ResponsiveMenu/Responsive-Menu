@@ -9,12 +9,13 @@ class ScssButtonMapper extends ScssMapper
   {
     $hamburger_css_dir = dirname(dirname(dirname(__FILE__))) . '/public/scss/hamburgers/hamburgers.scss';
     $button_background_colour = $this->options['button_transparent_background'] == 'on' ? 'none' : $this->options['button_background_colour'];
-
+    $no_animation = $this->options['button_click_animation'] == 'off' ? '$hamburger-types: ();' : '';
     $css = <<<CSS
       \$hamburger-layer-height: {$this->options['button_line_height']}px;
       \$hamburger-layer-spacing: {$this->options['button_line_margin']}px;
       \$hamburger-layer-color: {$this->options['button_line_colour']};
       \$hamburger-layer-width: {$this->options['button_line_width']}px;
+      {$no_animation}
       @import "{$hamburger_css_dir}";
       .hamburger {
         width: {$this->options['button_width']}px;
@@ -31,6 +32,7 @@ class ScssButtonMapper extends ScssMapper
         margin: 0 5px;
         vertical-align: middle;
         color: {$this->options['button_text_colour']};
+        font-size: {$this->options['button_font_size']}px;
       }
       .hamburger--accessible {
         display: inline-block;
