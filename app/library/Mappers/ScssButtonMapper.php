@@ -10,13 +10,16 @@ class ScssButtonMapper extends ScssMapper
     $hamburger_css_dir = dirname(dirname(dirname(__FILE__))) . '/public/scss/hamburgers/hamburgers.scss';
     $button_background_colour = $this->options['button_transparent_background'] == 'on' ? 'none' : $this->options['button_background_colour'];
     $no_animation = $this->options['button_click_animation'] == 'off' ? '$hamburger-types: ();' : '';
+
     $css = <<<CSS
+
       \$hamburger-layer-height: {$this->options['button_line_height']}px;
       \$hamburger-layer-spacing: {$this->options['button_line_margin']}px;
       \$hamburger-layer-color: {$this->options['button_line_colour']};
       \$hamburger-layer-width: {$this->options['button_line_width']}px;
       {$no_animation}
       @import "{$hamburger_css_dir}";
+
       .hamburger {
         width: {$this->options['button_width']}px;
         height: {$this->options['button_height']}px;
@@ -26,6 +29,12 @@ class ScssButtonMapper extends ScssMapper
         {$this->options['button_left_or_right']}: {$this->options['button_distance_from_side']}%;
         padding: 0;
       }
+
+      .hamburger:hover
+      {
+        opacity: 1;
+      }
+
       .hamburger-label {
         display: inline-block;
         font-weight: 600;
@@ -34,9 +43,11 @@ class ScssButtonMapper extends ScssMapper
         color: {$this->options['button_text_colour']};
         font-size: {$this->options['button_font_size']}px;
       }
+
       .hamburger--accessible {
         display: inline-block;
       }
+
       .hamburger--accessible .hamburger-box {
         display: inline-block;
         vertical-align: middle;

@@ -1,7 +1,7 @@
 <?php $button_title = $this->options['button_title']; ?>
 <?php $button_title_pos = $this->options['button_title_position']; ?>
 <?php $button_title_html = $button_title != '' ? '<span class="hamburger-label hamburger-label-'.$button_title_pos.'">'.$button_title.'</span>' : ''; ?>
-<?php $accessible = $button_title_pos == 'left' || $button_title_pos == 'right' ? 'hamburger--accessible' : ''; ?>
+<?php $accessible = in_array($button_title_pos, array('left', 'right')) ? 'hamburger--accessible' : ''; ?>
 
 <button class="hamburger
         <?php echo $accessible; ?>
@@ -9,9 +9,9 @@
         type="button"
         aria-label="Menu"
         aria-controls="navigation">
-  <?php echo $button_title_pos == 'top' || $button_title_pos == 'left' ? $button_title_html : ''; ?>
+  <?php echo in_array($button_title_pos, array('top', 'left')) ? $button_title_html : ''; ?>
   <span class="hamburger-box">
     <span class="hamburger-inner"></span>
   </span>
-  <?php echo $button_title_pos == 'bottom' || $button_title_pos == 'right' ? $button_title_html : ''; ?>
+  <?php echo in_array($button_title_pos, array('bottom', 'right')) ? $button_title_html : ''; ?>
 </button>
