@@ -8,8 +8,12 @@ class ScssButtonMapper extends ScssMapper
   public function map()
   {
     $hamburger_css_dir = dirname(dirname(dirname(__FILE__))) . '/public/scss/hamburgers/hamburgers.scss';
-    $button_background_colour = $this->options['button_transparent_background'] == 'on' ? 'none' : $this->options['button_background_colour'];
     $no_animation = $this->options['button_click_animation'] == 'off' ? '$hamburger-types: ();' : '';
+
+    $button_background_colour =
+      $this->options['button_transparent_background'] == 'on'
+      ? 'none'
+      : $this->options['button_background_colour'];
 
     $css = <<<CSS
 
@@ -17,7 +21,9 @@ class ScssButtonMapper extends ScssMapper
       \$hamburger-layer-spacing: {$this->options['button_line_margin']}px;
       \$hamburger-layer-color: {$this->options['button_line_colour']};
       \$hamburger-layer-width: {$this->options['button_line_width']}px;
+      \$hamburger-hover-opacity: 1;
       {$no_animation}
+
       @import "{$hamburger_css_dir}";
 
       .hamburger {
@@ -28,11 +34,6 @@ class ScssButtonMapper extends ScssMapper
         top: {$this->options['button_top']}px;
         {$this->options['button_left_or_right']}: {$this->options['button_distance_from_side']}%;
         padding: 0;
-      }
-
-      .hamburger:hover
-      {
-        opacity: 1;
       }
 
       .hamburger-label {

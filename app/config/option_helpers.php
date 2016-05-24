@@ -54,7 +54,10 @@ $option_helpers = array(
 	'menu_additional_content_position' => array(
     'type' => 'ResponsiveMenu\Form\Select',
 		'position' => 'menu.advanced',
-    'custom' => array('select' => array('below' => 'Below Menu Links', 'above' => ' Above Menu Links'))
+    'custom' => array('select' => array(
+      'below' => 'Below Menu Links',
+      'above' => ' Above Menu Links')
+    )
 	),
 
 	'menu_title' => array(
@@ -69,7 +72,10 @@ $option_helpers = array(
 	'menu_slide_side' => array(
     'type' => 'ResponsiveMenu\Form\Select',
 		'position' => 'menu.general',
-    'custom' => array('select' => array('left' => 'Left', 'right' => 'Right'))
+    'custom' => array('select' => array(
+      'left' => 'Left',
+      'right' => 'Right')
+    )
 	),
 
 	'menu_title_link' => array(
@@ -79,7 +85,12 @@ $option_helpers = array(
 	'menu_title_link_location' => array(
     'type' => 'ResponsiveMenu\Form\Select',
 		'position' => 'menu.general',
-    'custom' => array('select' => array('_blank' => 'New Tab', '_self' => 'Same Page', '_parent' => 'Parent Page', '_top' => 'Full Window Body'))
+    'custom' => array('select' => array(
+      '_blank' => 'New Tab',
+      '_self' => 'Same Page',
+      '_parent' => 'Parent Page',
+      '_top' => 'Full Window Body')
+    )
 	),
 
 	'menu_width' => array(
@@ -135,7 +146,12 @@ $option_helpers = array(
   'button_title_position' => array(
     'type' => 'ResponsiveMenu\Form\Select',
     'position' => 'button.general',
-    'custom' => array('select' => array('left' => 'Left', 'right' => 'Right', 'top' => 'Top', 'bottom' => 'Bottom'))
+    'custom' => array('select' => array(
+      'left' => 'Left',
+      'right' => 'Right',
+      'top' => 'Top',
+      'bottom' => 'Bottom')
+    )
   ),
 
   'button_title_line_height' => array(
@@ -227,13 +243,19 @@ $option_helpers = array(
   'button_left_or_right' => array(
     'type' => 'ResponsiveMenu\Form\Select',
 		'position' => 'button.location',
-    'custom' => array('select' => array('left' => 'Left', 'right' => 'Right'))
+    'custom' => array('select' => array(
+      'left' => 'Left',
+      'right' => 'Right')
+    )
 	),
 
   'button_position_type' => array(
     'type' => 'ResponsiveMenu\Form\Select',
     'position' => 'button.advanced',
-    'custom' => array('select' => array('absolute' => 'Static', 'fixed' => 'Fixed'))
+    'custom' => array('select' => array(
+      'absolute' => 'Static',
+      'fixed' => 'Fixed')
+    )
   ),
 
   'button_push_with_animation' => array(
@@ -249,7 +271,10 @@ $option_helpers = array(
 	'animation_type' => array(
 		'type' => 'ResponsiveMenu\Form\Select',
 		'position' => 'animation.menu',
-    'custom' => array('select' => array('overlay' => 'Overlay', 'push' => 'Push'))
+    'custom' => array('select' => array(
+      'overlay' => 'Overlay',
+      'push' => 'Push')
+    )
 	),
 
 	'page_wrapper' => array(
@@ -363,7 +388,10 @@ $option_helpers = array(
   'menu_text_alignment' => array(
     'type' => 'ResponsiveMenu\Form\Select',
 		'position' => 'menu.style',
-    'custom' => array('select' => array('left' => 'Left', 'right' => 'Right'))
+    'custom' => array('select' => array(
+      'left' => 'Left',
+      'right' => 'Right')
+    )
 	),
 
   'menu_links_height' => array(
