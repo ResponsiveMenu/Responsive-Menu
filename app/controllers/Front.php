@@ -18,8 +18,7 @@ class Front extends Base
     $js = $js_mapper->map();
 
     add_action('wp_head', function() use ($css, $js) {
-      $base_css = file_get_contents(dirname(dirname(__FILE__)) . '/public/css/test.css');
-      echo '<style>' . $base_css . $css . '</style>';
+      echo '<style>' . $css . '</style>';
       echo '<script>' . $js . '</script>';
     });
 

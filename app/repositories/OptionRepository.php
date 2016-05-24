@@ -9,11 +9,12 @@ class OptionRepository implements Repository
 
 	private $db;
 	private $table;
+  const TABLE = 'responsive_menu';
 
 	public function __construct(Database $db)
 	{
 		$this->db = $db;
-		$this->table = $this->db->getPrefix() . "responsive_menu";
+		$this->table = $this->db->getPrefix() . self::TABLE;
 	}
 
 	public function update($name, $value)
