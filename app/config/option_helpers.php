@@ -27,7 +27,7 @@ $option_helpers = array(
     'custom' => array('select'=> $location_menus )
 	),
 
-	'depth' => array(
+	'menu_depth' => array(
 		'type' => 'ResponsiveMenu\Form\Select',
 		'position' => 'menu.advanced',
     'custom' => array('select' => array_combine(range(1,5),range(1,5)))
@@ -400,13 +400,17 @@ $option_helpers = array(
 
 	'shortcode' => array(
 		'type' => 'ResponsiveMenu\Form\Checkbox',
-		'position' => 'advanced.shortcode'
+		'position' => 'advanced'
 	),
 
 	'mobile_only' => array(
 		'type' => 'ResponsiveMenu\Form\Checkbox',
-		'position' => 'advanced.mobile_only',
+		'position' => 'advanced',
     'custom' => array('pro' => true)
 	),
+
+	'custom_walker' => array(
+		'position' => 'advanced'
+	)
 
 );

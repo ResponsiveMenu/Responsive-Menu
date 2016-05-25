@@ -15,7 +15,7 @@ class OptionHelper
 	{
 		return isset($this->mapping[$option_name]['filter']) ?
     new $this->mapping[$option_name]['filter'] :
-    new \ResponsiveMenu\Filters\HtmlFilter;
+    new \ResponsiveMenu\Filters\TextFilter;
 	}
 
 	public function getType($option_name)

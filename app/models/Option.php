@@ -23,11 +23,6 @@ class Option
 		return $this->name;
 	}
 
-	public function setName($name)
-	{
-		$this->name = $name;
-	}
-
 	public function getValue()
 	{
 		return $this->value;
@@ -41,16 +36,6 @@ class Option
 	public function getOption()
 	{
 		return $this->value;
-	}
-
-	public function setOption($value)
-	{
-		$this->value = $value;
-	}
-
-	public function setFilter($filter)
-	{
-		$this->filter = $filter;
 	}
 
 	public function getType()
@@ -87,7 +72,7 @@ class Option
 
 	public function hasLabel()
 	{
-		return $this->getLabel();
+		return $this->getLabel() ? true : false;
 	}
 
 	public function getLabel()

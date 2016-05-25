@@ -4,7 +4,7 @@ $default_options = array(
 
 	'breakpoint' => 800,
 	'menu_to_hide' => '',
-	'depth' => 2,
+	'menu_depth' => 2,
 	'transient_caching' => 'off',
 	'menu_to_use' => '',
   'theme_location_menu' => '',
@@ -80,5 +80,7 @@ $default_options = array(
   'remove_important_tags' => 'off',
 
   'shortcode' => 'off',
-  'mobile_only' => 'off'
+  'mobile_only' => 'off',
+  'custom_walker' => null
+
 );
