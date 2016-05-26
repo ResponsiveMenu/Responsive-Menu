@@ -18,7 +18,7 @@ class WpRouting implements Routing
 			add_action( 'admin_menu', [$this, 'adminPage']);
     else:
       $controller = $this->getController('front.main');
-      add_action('init', [$controller, 'index']);
+      add_action('template_redirect', [$controller, 'index']);
     endif;
 	}
 

@@ -373,6 +373,36 @@ $option_helpers = array(
 		'position' => 'menu.text_colours'
 	),
 
+  'menu_sub_arrow_border_colour' => array(
+    'type' => 'ResponsiveMenu\Form\Colour',
+		'position' => 'menu.sub_arrow_colours'
+	),
+
+  'menu_sub_arrow_border_hover_colour' => array(
+    'type' => 'ResponsiveMenu\Form\Colour',
+		'position' => 'menu.sub_arrow_colours'
+	),
+
+  'menu_sub_arrow_background_colour' => array(
+    'type' => 'ResponsiveMenu\Form\Colour',
+		'position' => 'menu.sub_arrow_colours'
+	),
+
+  'menu_sub_arrow_background_hover_colour' => array(
+    'type' => 'ResponsiveMenu\Form\Colour',
+		'position' => 'menu.sub_arrow_colours'
+	),
+
+  'menu_sub_arrow_shape_colour' => array(
+    'type' => 'ResponsiveMenu\Form\Colour',
+		'position' => 'menu.sub_arrow_colours'
+	),
+
+  'menu_sub_arrow_shape_hover_colour' => array(
+    'type' => 'ResponsiveMenu\Form\Colour',
+		'position' => 'menu.sub_arrow_colours'
+	),
+
   'menu_font' => array(
 		'position' => 'menu.style'
 	),
@@ -400,17 +430,17 @@ $option_helpers = array(
 
 	'shortcode' => array(
 		'type' => 'ResponsiveMenu\Form\Checkbox',
-		'position' => 'advanced'
+		'position' => 'advanced.main'
 	),
 
 	'mobile_only' => array(
 		'type' => 'ResponsiveMenu\Form\Checkbox',
-		'position' => 'advanced',
+		'position' => 'advanced,main',
     'custom' => array('pro' => true)
 	),
 
 	'custom_walker' => array(
-		'position' => 'advanced'
+		'position' => 'advanced.main'
 	)
 
 );
