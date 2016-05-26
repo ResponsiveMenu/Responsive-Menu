@@ -34,6 +34,11 @@ class ScssButtonMapper extends ScssMapper
         top: {$this->options['button_top']}px;
         {$this->options['button_left_or_right']}: {$this->options['button_distance_from_side']}%;
         padding: 0;
+
+        .admin-bar & {
+          margin-top: 32px;
+        }
+
       }
 
       .hamburger-label {
@@ -59,6 +64,12 @@ class ScssButtonMapper extends ScssMapper
       {
         display: block;
         margin: 10px auto;
+      }
+
+      @media screen and ( max-width: 782px ) {
+        .admin-bar .hamburger {
+            margin-top: 46px;
+        }
       }
 CSS;
 

@@ -21,7 +21,7 @@ class Main extends Base
       # Again there must be a better way
       $null_to_defaults = [];
       foreach($combined_options as $key => $val)
-        $null_to_defaults[$key] = $val ? $val : $default_options[$key];
+        $null_to_defaults[$key] = $val || $val === '0' ? $val : $default_options[$key];
 
       # Update All Options
 			$this->repository->updateMany($null_to_defaults);
@@ -49,7 +49,7 @@ class Main extends Base
 
         # Create CSS and Javascript files
         $file_creator = new FileCreator;
-        
+
         if(!$file_creator->createCssFile($css_folder, 'responsive-menu-' . get_current_blog_id(), $css))
           $flash['errors'][] = 'Unable to create CSS file';
 

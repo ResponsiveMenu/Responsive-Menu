@@ -333,6 +333,11 @@ $option_helpers = array(
 		'position' => 'menu.background_colours'
 	),
 
+  'menu_title_background_hover_colour' => array(
+    'type' => 'ResponsiveMenu\Form\Colour',
+		'position' => 'menu.background_colours'
+	),
+
   'menu_current_item_background_colour' => array(
     'type' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'menu.background_colours'

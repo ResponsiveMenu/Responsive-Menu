@@ -11,6 +11,11 @@ class ScssMenuMapper extends ScssMapper
     $css = <<<CSS
 
       #responsive-menu-container {
+
+        .admin-bar & {
+          margin-top: 32px;
+        }
+
         position: fixed;
         top: 0;
         bottom: 0;
@@ -18,28 +23,32 @@ class ScssMenuMapper extends ScssMapper
         left: 0;
         background: {$this->options['menu_item_background_colour']};
 
-        box-sizing: border-box;
-
-          * {
-            box-sizing: border-box;
-            :before, :after {
+          // Reset Styles for all our elements
+          &, &:before, &:after, & *, & *:before, & *:after {
               box-sizing: border-box;
+              margin: 0;
+              padding: 0;
             }
-        }
 
         #responsive-menu {
-          margin: 0;
-          width: 100%;
-          ul {
-            margin: 0;
+          &, ul {
             width: 100%;
           }
         }
 
-        .responsive-menu-item {
+        #responsive-menu-title {
+          background-color: {$this->options['menu_title_background_colour']};
+          color: {$this->options['menu_title_colour']};
+
+          &:hover {
+            background-color: {$this->options['menu_title_background_hover_colour']};
+            color: {$this->options['menu_title_hover_colour']};
+          }
+        }
+
+        li.responsive-menu-item {
 
           width: 100%;
-          background: {$this->options['menu_item_background_colour']};
           list-style: none;
 
           a {
@@ -51,9 +60,11 @@ class ScssMenuMapper extends ScssMapper
             margin-top: -1px; // Fix double borders with menu link above
             text-decoration: none;
             color: {$this->options['menu_link_colour']};
+            background-color: {$this->options['menu_item_background_colour']};
 
             &:hover {
               color: {$this->options['menu_link_hover_colour']};
+              background-color: {$this->options['menu_item_background_hover_colour']};
             }
 
             .responsive-menu-subarrow {
@@ -75,7 +86,12 @@ class ScssMenuMapper extends ScssMapper
             }
           }
         }
+      }
 
+      @media screen and ( max-width: 782px ) {
+        .admin-bar #responsive-menu-container {
+            margin-top: 46px;
+        }
       }
 CSS;
 
