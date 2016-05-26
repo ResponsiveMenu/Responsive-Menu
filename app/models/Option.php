@@ -38,6 +38,11 @@ class Option
 		return $this->value;
 	}
 
+  public function isPro()
+  {
+    return $this->helper->isPro($this->name);
+  }
+
 	public function getType()
 	{
 		return $this->helper->getType($this->name);

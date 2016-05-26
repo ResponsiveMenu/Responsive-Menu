@@ -47,10 +47,23 @@
 .option_holder
 {
 	display: inline-block;
-	width: 33%;
-  vertical-align: top;
+	width: 31%;
+  vertical-align: middle;
+  position: relative;
+  text-align: center;
+  margin-right: 2%;
+  padding: 5px 2% 25px 2%;
+  margin-top: 15px;
+  border: 1px dashed #DADADA;
+  border-radius: 5px;
+  transition: 0.4s all;
+  box-sizing: border-box;
 }
 
+.option_holder:hover
+{
+  background: #F7F2F2;
+}
 .option_holder h4
 {
 	margin-bottom: 0;
@@ -60,6 +73,35 @@
 {
 	margin: 5px 0;
   font-weight: normal;
+}
+
+.option_holder.pro_option
+{
+  border-color: #ED655E;
+}
+
+.option_holder.pro_option:hover
+{
+  background-color: #ED655E;
+}
+
+.option_holder.pro_option:after
+{
+  content: 'PRO';
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  background: #ED655E;
+  border-radius: 0 2px 0 2px;
+}
+
+.option_holder.pro_option:hover:after
+{
+  background-color: white;
+  color: #ED655E;
 }
 
 .options_container
@@ -92,6 +134,7 @@ ul#adminmenu > li.current > a.current::after
 .onoffswitch {
     position: relative; width: 74px;
     -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+    margin: auto;
 }
 .onoffswitch-checkbox {
     display: none;
@@ -99,6 +142,7 @@ ul#adminmenu > li.current > a.current::after
 .onoffswitch-label {
     display: block; overflow: hidden; cursor: pointer;
     border: 2px solid #DE4B42; border-radius: 12px;
+    text-align: left;
 }
 .onoffswitch-inner {
     display: block; width: 200%; margin-left: -100%;
@@ -151,6 +195,7 @@ input[type="checkbox"]
     cursor: pointer;
     overflow: hidden;
     background: #fafafa url("data:image/png;base64,R0lGODlhDwAUAIABAAAAAP///yH5BAEAAAEALAAAAAAPABQAAAIXjI+py+0Po5wH2HsXzmw//lHiSJZmUAAAOw==")no-repeat 95% 50%;
+    margin: auto;
 }
 
 .select-style select {

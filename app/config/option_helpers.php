@@ -139,8 +139,14 @@ $option_helpers = array(
     'position' => 'button.general'
   ),
 
-  'button_click_trigger' => array(
-    'position' => 'button.general'
+  'button_font_icon' => array(
+    'position' => 'button.general',
+    'pro' => true
+  ),
+
+  'button_font_icon_when_clicked' => array(
+    'position' => 'button.general',
+    'pro' => true
   ),
 
   'button_title_position' => array(
@@ -441,7 +447,7 @@ $option_helpers = array(
 	'mobile_only' => array(
 		'type' => 'ResponsiveMenu\Form\Checkbox',
 		'position' => 'advanced,main',
-    'custom' => array('pro' => true)
+    'pro' => true
 	),
 
 	'custom_walker' => array(

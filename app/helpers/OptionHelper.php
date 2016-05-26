@@ -30,6 +30,11 @@ class OptionHelper
 		return isset($this->mapping[$option_name]['label']) ? $this->mapping[$option_name]['label'] : null;
 	}
 
+	public function isPro($option_name)
+	{
+		return isset($this->mapping[$option_name]['pro']) ? true : false;
+	}
+
 	public function getPosition($option_name)
 	{
 		return isset($this->mapping[$option_name]['position']) ? $this->mapping[$option_name]['position'] : null;
