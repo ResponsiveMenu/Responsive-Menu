@@ -446,7 +446,7 @@ $option_helpers = array(
 
 	'mobile_only' => array(
 		'type' => 'ResponsiveMenu\Form\Checkbox',
-		'position' => 'advanced,main',
+		'position' => 'advanced.main',
     'pro' => true
 	),
 
