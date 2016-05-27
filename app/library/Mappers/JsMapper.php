@@ -18,27 +18,31 @@ class JsMapper
       var ResponsiveMenu = {
         trigger: '{$this->options['button_click_trigger']}',
         animationSpeed: {$this->options['animation_speed']},
-        breakpoint: '{$this->options['breakpoint']}',
+        breakpoint: {$this->options['breakpoint']},
         pushButton: '{$this->options['button_push_with_animation']}',
         animationType: '{$this->options['animation_type']}',
         pageWrapper: '{$this->options['page_wrapper']}',
         isOpen: false,
+        triggerTypes: 'click',
         openMenu: function() {
-          $('.hamburger').addClass('is-active');
+          $(this.trigger).addClass('is-active');
           this.isOpen = true;
         },
         closeMenu: function() {
-          $('.hamburger').removeClass('is-active');
+          $(this.trigger).removeClass('is-active');
           this.isOpen = false;
+        },
+        triggerMenu: function() {
+          if(!this.isOpen) {
+            this.openMenu();
+          } else {
+            this.closeMenu();
+          }
         }
       };
 
-      $('.hamburger').on('click', function(){
-        if(!ResponsiveMenu.isOpen) {
-          ResponsiveMenu.openMenu();
-        } else {
-          ResponsiveMenu.closeMenu();
-        }
+      $(ResponsiveMenu.trigger).on(ResponsiveMenu.triggerTypes, function(){
+        ResponsiveMenu.triggerMenu();
       });
 
     });

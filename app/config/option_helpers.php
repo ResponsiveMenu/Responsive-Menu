@@ -269,6 +269,10 @@ $option_helpers = array(
 		'position' => 'button.advanced'
 	),
 
+  'button_click_trigger' => array(
+		'position' => 'button.advanced'
+	),
+
   'button_font_size' => array(
 		'position' => 'button.sizing'
 	),

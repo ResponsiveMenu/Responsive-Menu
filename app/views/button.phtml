@@ -3,7 +3,8 @@
 <?php $button_title_html = $button_title != '' ? '<span class="hamburger-label hamburger-label-'.$button_title_pos.'">'.$button_title.'</span>' : ''; ?>
 <?php $accessible = in_array($button_title_pos, array('left', 'right')) ? 'hamburger--accessible' : ''; ?>
 
-<button class="hamburger
+<button id="responsive-menu-button"
+        class="hamburger
         <?php echo $accessible; ?>
         hamburger--<?php echo $this->options['button_click_animation']; ?>"
         type="button"
