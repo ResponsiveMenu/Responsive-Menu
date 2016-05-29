@@ -12,6 +12,14 @@ class ScssMenuMapper extends ScssMapper
       ? $this->options['menu_appear_from'] == 'bottom' ? 'top: auto;' : 'bottom: auto;'
       : '';
 
+    $max_width = $this->options['menu_maximum_width']
+      ? 'max-width: ' . $this->options['menu_maximum_width'] . 'px;'
+      : '';
+
+    $min_width = $this->options['menu_minimum_width']
+      ? 'min-width: ' . $this->options['menu_minimum_width'] . 'px;'
+      : '';
+
     $css = <<<CSS
 
       {$this->options['page_wrapper']} {
@@ -20,22 +28,6 @@ class ScssMenuMapper extends ScssMapper
 
       body.responsive-menu-open {
         overflow: hidden;
-
-        &.responsive-menu-push-left {$this->options['page_wrapper']} {
-          transform: translateX({$this->options['menu_width']}%);
-        }
-
-        &.responsive-menu-push-top {$this->options['page_wrapper']} {
-          transform: translateY(100%);
-        }
-
-        &.responsive-menu-push-right {$this->options['page_wrapper']} {
-          transform: translateX(-{$this->options['menu_width']}%);
-        }
-
-        &.responsive-menu-push-bottom {$this->options['page_wrapper']} {
-          transform: translateY(-100%);
-        }
       }
 
       #responsive-menu-mask {
@@ -68,6 +60,8 @@ class ScssMenuMapper extends ScssMapper
         transition: transform {$this->options['animation_speed']}s;
         overflow-y: auto;
         {$auto_height}
+        {$max_width}
+        {$min_width}
 
         .admin-bar & {
           margin-top: 32px;
