@@ -8,19 +8,23 @@ class ScssMenuMapper extends ScssMapper
   public function map()
   {
 
-    $auto_height = $this->options['menu_auto_height'] == 'on'
-      ? $this->options['menu_appear_from'] == 'bottom' ? 'top: auto;' : 'bottom: auto;'
-      : '';
-
-    $max_width = $this->options['menu_maximum_width']
-      ? 'max-width: ' . $this->options['menu_maximum_width'] . 'px;'
-      : '';
-
-    $min_width = $this->options['menu_minimum_width']
-      ? 'min-width: ' . $this->options['menu_minimum_width'] . 'px;'
-      : '';
-
     $css = <<<CSS
+
+      @if {$this->options['menu_disable_scrolling']} == 'on' {
+        body.responsive-menu-open {
+          overflow: hidden;
+        }
+      }
+
+      #responsive-menu-mask {
+        transition: background-color {$this->options['animation_speed']}s,
+        width 0s {$this->options['animation_speed']}s,
+        height 0s{$this->options['animation_speed']}s;
+        .responsive-menu-open & {
+          background-color: {$this->options['menu_overlay_colour']};
+          transition: background-color {$this->options['animation_speed']}s;
+        }
+      }
 
       {$this->options['page_wrapper']} {
         transition: transform {$this->options['animation_speed']}s;
@@ -31,9 +35,30 @@ class ScssMenuMapper extends ScssMapper
         {$this->options['menu_appear_from']}: 0;
         background: {$this->options['menu_item_background_colour']};
         transition: transform {$this->options['animation_speed']}s;
-        {$auto_height}
-        {$max_width}
-        {$min_width}
+        text-align: {$this->options['menu_text_alignment']};
+
+        @if {$this->options['menu_auto_height']} == 'on' {
+          @if {$this->options['menu_appear_from']} == 'bottom' {
+            top: auto;
+          } @else {
+            bottom: auto;
+          }
+        }
+
+        @if {$this->options['menu_maximum_width']} {
+          max-width: {$this->options['menu_maximum_width']}px;
+        }
+        @if {$this->options['menu_minimum_width']} {
+          min-width: {$this->options['menu_minimum_width']}px;
+        }
+
+        @if {$this->options['menu_font']}  != '' {
+          font-family: '{$this->options['menu_font']}';
+        }
+
+        & * {
+          transition: all {$this->options['transition_speed']}s;
+        }
 
         #responsive-menu-title {
           background-color: {$this->options['menu_title_background_colour']};
@@ -45,36 +70,46 @@ class ScssMenuMapper extends ScssMapper
           }
         }
 
-        li.responsive-menu-item {
-          a {
-            height: {$this->options['menu_links_height']}px;
-            line-height: {$this->options['menu_links_height']}px;
-            border: 1px solid {$this->options['menu_item_border_colour']};
-            color: {$this->options['menu_link_colour']};
-            background-color: {$this->options['menu_item_background_colour']};
+        #responsive-menu {
 
-            &:hover {
-              color: {$this->options['menu_link_hover_colour']};
-              background-color: {$this->options['menu_item_background_hover_colour']};
-            }
-
-            .responsive-menu-subarrow {
+          li.responsive-menu-item {
+            a {
               height: {$this->options['menu_links_height']}px;
               line-height: {$this->options['menu_links_height']}px;
-              color: {$this->options['menu_sub_arrow_shape_colour']};
-              border: 1px solid {$this->options['menu_sub_arrow_border_colour']};
-              background-color: {$this->options['menu_sub_arrow_background_colour']};
+              border: 1px solid {$this->options['menu_item_border_colour']};
+              color: {$this->options['menu_link_colour']};
+              background-color: {$this->options['menu_item_background_colour']};
 
-                &:hover {
-                  color: {$this->options['menu_sub_arrow_shape_hover_colour']};
-                  border-color: {$this->options['menu_sub_arrow_border_hover_colour']};
-                  background-color: {$this->options['menu_sub_arrow_background_hover_colour']};
-                }
+              &:hover {
+                color: {$this->options['menu_link_hover_colour']};
+                background-color: {$this->options['menu_item_background_hover_colour']};
+              }
 
+              .responsive-menu-subarrow {
+                height: {$this->options['menu_links_height']}px;
+                line-height: {$this->options['menu_links_height']}px;
+                color: {$this->options['menu_sub_arrow_shape_colour']};
+                border: 1px solid {$this->options['menu_sub_arrow_border_colour']};
+                background-color: {$this->options['menu_sub_arrow_background_colour']};
+
+                  &:hover {
+                    color: {$this->options['menu_sub_arrow_shape_hover_colour']};
+                    border-color: {$this->options['menu_sub_arrow_border_hover_colour']};
+                    background-color: {$this->options['menu_sub_arrow_background_hover_colour']};
+                  }
+              }
             }
           }
         }
       }
+      @media screen and ( max-width: {$this->options['breakpoint']}px ) {
+        @if {$this->options['menu_to_hide']} != '' {
+          {$this->options['menu_to_hide']} {
+            display: none;
+          };
+        }
+      }
+
 CSS;
 
     return $this->compiler->compile($css);

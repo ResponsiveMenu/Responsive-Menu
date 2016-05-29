@@ -39,9 +39,16 @@ class ScssButtonMapper extends ScssMapper
         color: {$this->options['button_text_colour']};
         font-size: {$this->options['button_font_size']}px;
       }
+
+      @media screen and ( max-width: {$this->options['breakpoint']}px ) {
+        #responsive-menu-button {
+          display: inline-block;
+        }
+      }
 CSS;
 
     return $this->compiler->compile($css);
+
   }
 
 }

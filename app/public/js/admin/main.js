@@ -1,7 +1,15 @@
 jQuery(function($) {
 
-  $('.wp-color-picker').wpColorPicker();
+  //$('.wp-color-picker').wpColorPicker();
+  $.minicolors.defaults = $.extend($.minicolors.defaults, {
+      format: 'rgb',
+      opacity: true
+  });
+  $('.wp-color-picker').minicolors();
+
   $('#banner_area').stick_in_parent();
+  $.minicolors.defaults.changeFormat = 'rgb';
+  $.minicolors.defaults.changeOpacity = true;
 
   var custom_uploader;
 

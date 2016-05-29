@@ -10,10 +10,6 @@ class ScssBaseMapper extends ScssMapper
 
     $css = <<<CSS
 
-      body.responsive-menu-open {
-        overflow: hidden;
-      }
-
       #responsive-menu-mask {
         position: fixed;
         z-index: 9998;
@@ -22,14 +18,10 @@ class ScssBaseMapper extends ScssMapper
         overflow: hidden;
         width: 0;
         height: 0;
-        background-color: #000;
-        opacity: 0;
-        transition: opacity 0.3s, width 0s 0.3s, height 0s 0.3s;
+        background-color: rgba(0,0,0,0);
         .responsive-menu-open & {
           width: 100%;
           height: 100%;
-          opacity: 0.7;
-          transition: opacity 0.3s;
         }
       }
 
@@ -83,10 +75,24 @@ class ScssBaseMapper extends ScssMapper
             padding: 0;
           }
 
+        #responsive-menu-title {
+          padding: 15px 5%;
+        }
+
         #responsive-menu {
           &, ul {
             width: 100%;
           }
+          & ul.responsive-menu-submenu {
+            display: none;
+          }
+          @for \$i from 1 through 4 {
+            & ul.responsive-menu-submenu-depth-#{\$i}
+            a.responsive-menu-item-link {
+                padding-left: 5% * \$i;
+            }
+          }
+
         }
 
         li.responsive-menu-item {
@@ -97,9 +103,13 @@ class ScssBaseMapper extends ScssMapper
             display: block;
             margin-top: -1px; // Fix double borders with menu link above
             text-decoration: none;
-
+            padding: 0 5%;
+            position: relative;
             .responsive-menu-subarrow {
-              float: right;
+              position: absolute;
+              right: 0;
+              top: 0;
+              bottom: 0;
               padding: 0 10px;
               margin: -1px; // Fix double borders with menu link
             }
@@ -124,6 +134,7 @@ class ScssBaseMapper extends ScssMapper
 
       #responsive-menu-button {
         z-index: 9999;
+        display: none;
       }
 
       .hamburger-label {

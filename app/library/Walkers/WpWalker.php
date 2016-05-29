@@ -12,7 +12,7 @@ class WpWalker extends \Walker_Nav_Menu
 
   	public function start_lvl( &$output, $depth = 0, $args = array() )
     {
-  		$output .= "<ul class='responsive-menu-submenu'>";
+  		$output .= "<ul class='responsive-menu-submenu responsive-menu-submenu-depth-" . ($depth + 1) . "'>";
   	}
 
   	public function end_lvl( &$output, $depth = 0, $args = array() )
@@ -51,6 +51,7 @@ class WpWalker extends \Walker_Nav_Menu
   		$atts['target'] = ! empty( $item->target )     ? $item->target     : '';
   		$atts['rel']    = ! empty( $item->xfn )        ? $item->xfn        : '';
   		$atts['href']   = ! empty( $item->url )        ? $item->url        : '';
+  		$atts['class']   = 'responsive-menu-item-link';
 
 
   		$atts = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args, $depth );
