@@ -8,27 +8,109 @@ class ScssMenuMapper extends ScssMapper
   public function map()
   {
 
+    $auto_height = $this->options['menu_auto_height'] == 'on'
+      ? $this->options['menu_appear_from'] == 'bottom' ? 'top: auto;' : 'bottom: auto;'
+      : '';
+
     $css = <<<CSS
 
+      {$this->options['page_wrapper']} {
+        transition: transform {$this->options['animation_speed']}s;
+      }
+
+      body.responsive-menu-open {
+        overflow: hidden;
+
+        &.responsive-menu-push-left {$this->options['page_wrapper']} {
+          transform: translateX({$this->options['menu_width']}%);
+        }
+
+        &.responsive-menu-push-top {$this->options['page_wrapper']} {
+          transform: translateY(100%);
+        }
+
+        &.responsive-menu-push-right {$this->options['page_wrapper']} {
+          transform: translateX(-{$this->options['menu_width']}%);
+        }
+
+        &.responsive-menu-push-bottom {$this->options['page_wrapper']} {
+          transform: translateY(-100%);
+        }
+      }
+
+      #responsive-menu-mask {
+        position: fixed;
+        z-index: 9998;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        width: 0;
+        height: 0;
+        background-color: #000;
+        opacity: 0;
+        transition: opacity 0.3s, width 0s 0.3s, height 0s 0.3s;
+        .responsive-menu-open & {
+          width: 100%;
+          height: 100%;
+          opacity: 0.7;
+          transition: opacity 0.3s;
+        }
+      }
+
       #responsive-menu-container {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        z-index: 9999;
+        width: {$this->options['menu_width']}%;
+        {$this->options['menu_appear_from']}: 0;
+        background: {$this->options['menu_item_background_colour']};
+        transition: transform {$this->options['animation_speed']}s;
+        overflow-y: auto;
+        {$auto_height}
 
         .admin-bar & {
           margin-top: 32px;
         }
 
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        width: {$this->options['menu_width']}%;
-        left: 0;
-        background: {$this->options['menu_item_background_colour']};
+        &.push-left,
+        &.slide-left {
+          transform: translateX(-100%);
+          .responsive-menu-open & {
+            transform: translateX(0);
+          }
+        }
 
-          // Reset Styles for all our elements
-          &, &:before, &:after, & *, & *:before, & *:after {
-              box-sizing: border-box;
-              margin: 0;
-              padding: 0;
-            }
+        &.push-top,
+        &.slide-top {
+          transform: translateY(-100%);
+          .responsive-menu-open & {
+            transform: translateY(0);
+          }
+        }
+
+        &.push-right,
+        &.slide-right {
+          transform: translateX(100%);
+          .responsive-menu-open & {
+            transform: translateX(0);
+          }
+        }
+
+        &.push-bottom,
+        &.slide-bottom {
+          transform: translateY(100%);
+          .responsive-menu-open & {
+            transform: translateY(0);
+          }
+        }
+
+        // Reset Styles for all our elements
+        &, &:before, &:after, & *, & *:before, & *:after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+          }
 
         #responsive-menu {
           &, ul {
@@ -47,10 +129,8 @@ class ScssMenuMapper extends ScssMapper
         }
 
         li.responsive-menu-item {
-
           width: 100%;
           list-style: none;
-
           a {
             width: 100%;
             display: block;

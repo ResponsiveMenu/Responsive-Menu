@@ -24,20 +24,19 @@ class JsMapper
         pageWrapper: '{$this->options['page_wrapper']}',
         isOpen: false,
         triggerTypes: 'click',
+        activeClass: 'is-active',
         openMenu: function() {
-          $(this.trigger).addClass('is-active');
+          $(this.trigger).addClass(this.activeClass);
+          $('body').addClass('responsive-menu-open');
           this.isOpen = true;
         },
         closeMenu: function() {
-          $(this.trigger).removeClass('is-active');
+          $(this.trigger).removeClass(this.activeClass);
+          $('body').removeClass('responsive-menu-open');
           this.isOpen = false;
         },
         triggerMenu: function() {
-          if(!this.isOpen) {
-            this.openMenu();
-          } else {
-            this.closeMenu();
-          }
+          this.isOpen ? this.closeMenu() : this.openMenu();
         }
       };
 

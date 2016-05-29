@@ -69,12 +69,15 @@ $option_helpers = array(
 		'position' => 'menu.general'
 	),
 
-	'menu_slide_side' => array(
+	'menu_appear_from' => array(
     'type' => 'ResponsiveMenu\Form\Select',
 		'position' => 'menu.general',
     'custom' => array('select' => array(
       'left' => 'Left',
-      'right' => 'Right')
+      'right' => 'Right',
+      'top' => 'Top',
+      'bottom' => 'Bottom'
+    )
     )
 	),
 
@@ -282,7 +285,7 @@ $option_helpers = array(
 		'type' => 'ResponsiveMenu\Form\Select',
 		'position' => 'animation.menu',
     'custom' => array('select' => array(
-      'overlay' => 'Overlay',
+      'slide' => 'Slide',
       'push' => 'Push')
     )
 	),

@@ -41,6 +41,11 @@ class ScssButtonMapper extends ScssMapper
 
       }
 
+      #responsive-menu-button {
+        z-index: 9999;
+      }
+
+
       .hamburger-label {
         display: inline-block;
         font-weight: 600;

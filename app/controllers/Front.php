@@ -31,6 +31,11 @@ class Front extends Base
       $options['inactive_arrow_shape']->getValue()
     );
 
+    add_filter('body_class', function($classes) use($options) {
+      $classes[] = 'responsive-menu-' . $options['animation_type'] . '-' . $options['menu_appear_from'];
+      return $classes;
+    });
+
     add_action('wp_head', function() use ($css_button, $css_menu, $js) {
       echo '<style>' . $css_button . $css_menu . '</style>';
       echo '<script>' . $js . '</script>';
