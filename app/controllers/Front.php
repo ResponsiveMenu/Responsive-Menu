@@ -2,6 +2,7 @@
 
 namespace ResponsiveMenu\Controllers;
 use ResponsiveMenu\Controllers\Base as Base;
+use ResponsiveMenu\Mappers\ScssBaseMapper as ScssBaseMapper;
 use ResponsiveMenu\Mappers\ScssButtonMapper as ScssButtonMapper;
 use ResponsiveMenu\Mappers\ScssMenuMapper as ScssMenuMapper;
 use ResponsiveMenu\Mappers\WpMenuMapper as MenuMapper;
@@ -12,6 +13,9 @@ class Front extends Base
 	public function index()
 	{
     $options = $this->repository->all();
+
+    $css_base_mapper = new ScssBaseMapper($options);
+    $css_base = $css_base_mapper->map();
 
     $css_button_mapper = new ScssButtonMapper($options);
     $css_button = $css_button_mapper->map();
@@ -36,8 +40,8 @@ class Front extends Base
       return $classes;
     });
 
-    add_action('wp_head', function() use ($css_button, $css_menu, $js) {
-      echo '<style>' . $css_button . $css_menu . '</style>';
+    add_action('wp_head', function() use ($css_base, $css_button, $css_menu, $js) {
+      echo '<style>' . $css_base . $css_button . $css_menu . '</style>';
       echo '<script>' . $js . '</script>';
     });
 

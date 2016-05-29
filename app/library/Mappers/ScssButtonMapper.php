@@ -33,48 +33,11 @@ class ScssButtonMapper extends ScssMapper
         position: {$this->options['button_position_type']};
         top: {$this->options['button_top']}px;
         {$this->options['button_left_or_right']}: {$this->options['button_distance_from_side']}%;
-        padding: 0;
-
-        .admin-bar & {
-          margin-top: 32px;
-        }
-
       }
-
-      #responsive-menu-button {
-        z-index: 9999;
-      }
-
 
       .hamburger-label {
-        display: inline-block;
-        font-weight: 600;
-        margin: 0 5px;
-        vertical-align: middle;
         color: {$this->options['button_text_colour']};
         font-size: {$this->options['button_font_size']}px;
-      }
-
-      .hamburger--accessible {
-        display: inline-block;
-      }
-
-      .hamburger--accessible .hamburger-box {
-        display: inline-block;
-        vertical-align: middle;
-      }
-
-      .hamburger-label.hamburger-label-top,
-      .hamburger-label.hamburger-label-bottom
-      {
-        display: block;
-        margin: 10px auto;
-      }
-
-      @media screen and ( max-width: 782px ) {
-        .admin-bar .hamburger {
-            margin-top: 46px;
-        }
       }
 CSS;
 
