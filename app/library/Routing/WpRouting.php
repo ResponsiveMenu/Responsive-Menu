@@ -38,7 +38,9 @@ class WpRouting implements Routing
 	{
 		$view = $this->getView($key);
 		$repo = $this->getRepository($key);
-		return new $this->dependencies[$key]['controller']($repo,$view);
+		$css_factory = $this->getCssFactory($key);
+		$js_factory = $this->getJsFactory($key);
+		return new $this->dependencies[$key]['controller']($repo, $view, $css_factory, $js_factory);
 	}
 
 	protected function getView($key)
@@ -49,6 +51,16 @@ class WpRouting implements Routing
 	protected function getRepository($key)
 	{
 		return new $this->dependencies[$key]['repository']($this->getDatabase($key));
+	}
+
+	protected function getCssFactory($key)
+	{
+		return new $this->dependencies[$key]['css_factory'];
+	}
+
+	protected function getJsFactory($key)
+	{
+		return new $this->dependencies[$key]['js_factory'];
 	}
 
 	protected function getDatabase($key)

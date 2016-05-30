@@ -2,11 +2,7 @@
 
 namespace ResponsiveMenu\Controllers;
 use ResponsiveMenu\Controllers\Base as Base;
-use ResponsiveMenu\Mappers\ScssBaseMapper as ScssBaseMapper;
-use ResponsiveMenu\Mappers\ScssButtonMapper as ScssButtonMapper;
-use ResponsiveMenu\Mappers\ScssMenuMapper as ScssMenuMapper;
 use ResponsiveMenu\Mappers\WpMenuMapper as MenuMapper;
-use ResponsiveMenu\Mappers\JsMapper as JsMapper;
 
 class Front extends Base
 {
@@ -14,17 +10,8 @@ class Front extends Base
 	{
     $options = $this->repository->all();
 
-    $css_base_mapper = new ScssBaseMapper($options);
-    $css_base = $css_base_mapper->map();
-
-    $css_button_mapper = new ScssButtonMapper($options);
-    $css_button = $css_button_mapper->map();
-
-    $css_menu_mapper = new ScssMenuMapper($options);
-    $css_menu = $css_menu_mapper->map();
-
-    $js_mapper = new JsMapper($options);
-    $js = $js_mapper->map();
+    $css = $this->css_factory->build($options);
+    $js = $this->js_factory->build($options);
 
     $menu_mapper = new MenuMapper(
       $options['menu_to_use']->getValue(),
@@ -40,10 +27,20 @@ class Front extends Base
       return $classes;
     });
 
-    add_action('wp_head', function() use ($css_base, $css_button, $css_menu, $js) {
-      echo '<style>' . $css_base . $css_button . $css_menu . '</style>';
-      echo '<script>' . $js . '</script>';
-    });
+    if($options['external_files'] == 'on') :
+      $data_folder_dir = plugins_url(). '/responsive-menu-3-data';
+      $css_file = $data_folder_dir . '/css/responsive-menu-' . get_current_blog_id() . '.css';
+      $js_file = $data_folder_dir . '/js/responsive-menu-' . get_current_blog_id() . '.js';
+      wp_enqueue_style('responsive-menu', $css_file, null, null);
+      wp_enqueue_script('responsive-menu', $js_file, ['jquery'], null, $options['scripts_in_footer'] == 'on' ? true : false);
+    else :
+      add_action('wp_head', function() use ($css) {
+        echo '<style>' . $css . '</style>';
+      });
+      add_action($options['scripts_in_footer'] == 'on' ? 'wp_footer' : 'wp_head', function() use ($js) {
+        echo '<script>' . $js . '</script>';
+      });
+    endif;
 
 		$this->view->render('menu', $options, ['menu' => $menu_mapper->map()]);
 		$this->view->render('button', $options);

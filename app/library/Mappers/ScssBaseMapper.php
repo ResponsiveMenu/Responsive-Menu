@@ -76,17 +76,21 @@ class ScssBaseMapper extends ScssMapper
           }
 
         #responsive-menu-title {
-          padding: 15px 5%;
+          padding: 25px 5%;
         }
 
         #responsive-menu {
+          margin-bottom: 15px;
           &, ul {
             width: 100%;
           }
           & ul.responsive-menu-submenu {
             display: none;
+            &.responsive-menu-submenu-open {
+              display: block;
+            }
           }
-          @for \$i from 1 through 4 {
+          @for \$i from 1 through 6 {
             & ul.responsive-menu-submenu-depth-#{\$i}
             a.responsive-menu-item-link {
                 padding-left: 5% * \$i;

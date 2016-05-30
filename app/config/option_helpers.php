@@ -47,6 +47,11 @@ $option_helpers = array(
     'pro' => true
 	),
 
+	'menu_remove_search_bar' => array(
+    'type' => 'ResponsiveMenu\Form\Checkbox',
+		'position' => 'menu.general',
+	),
+
 	'menu_disable_scrolling' => array(
     'type' => 'ResponsiveMenu\Form\Checkbox',
 		'position' => 'menu.advanced',
@@ -206,7 +211,8 @@ $option_helpers = array(
       'squeeze' => 'Squeeze',
       'vortex' => 'Vortex',
       'vortex-r' => 'Vortex Reverse'
-    ))
+    )),
+    'pro' => true
   ),
 
 	'button_background_colour' => array(
@@ -311,11 +317,6 @@ $option_helpers = array(
 	),
 
   /* Menu Settings */
-  'accordion_animation' => array(
-    'type' => 'ResponsiveMenu\Form\Checkbox',
-		'position' => 'menu.submenus'
-	),
-
   'active_arrow_shape' => array(
 		'position' => 'menu.submenus'
 	),
@@ -326,12 +327,14 @@ $option_helpers = array(
 
   'active_arrow_image' => array(
     'type' => 'ResponsiveMenu\Form\Image',
-		'position' => 'menu.submenus'
+		'position' => 'menu.submenus',
+    'pro' => true
 	),
 
   'inactive_arrow_image' => array(
     'type' => 'ResponsiveMenu\Form\Image',
-		'position' => 'menu.submenus'
+		'position' => 'menu.submenus',
+    'pro' => true
 	),
 
   'active_arrow_font_icon' => array(
@@ -340,6 +343,12 @@ $option_helpers = array(
 	),
 
   'inactive_arrow_font_icon' => array(
+		'position' => 'menu.submenus',
+    'pro' => true
+	),
+
+  'accordion_animation' => array(
+    'type' => 'ResponsiveMenu\Form\Checkbox',
 		'position' => 'menu.submenus',
     'pro' => true
 	),
@@ -466,17 +475,18 @@ $option_helpers = array(
 
 	'shortcode' => array(
 		'type' => 'ResponsiveMenu\Form\Checkbox',
-		'position' => 'advanced.main'
+		'position' => 'technical.menu'
 	),
 
 	'mobile_only' => array(
 		'type' => 'ResponsiveMenu\Form\Checkbox',
-		'position' => 'advanced.main',
+		'position' => 'technical.menu',
     'pro' => true
 	),
 
 	'custom_walker' => array(
-		'position' => 'advanced.main'
+		'position' => 'technical.menu',
+    'pro' => true
 	)
 
 );

@@ -26,26 +26,46 @@ class JsMapper
         isOpen: false,
         triggerTypes: 'click',
         activeClass: 'is-active',
+        container: '#responsive-menu-container',
+        openClass: 'responsive-menu-open',
+        accordion: '{$this->options['accordion_animation']}',
+        activeArrow: '{$this->options['active_arrow_shape']}',
+        inactiveArrow: '{$this->options['inactive_arrow_shape']}',
         openMenu: function() {
           $(this.trigger).addClass(this.activeClass);
-          $('body').addClass('responsive-menu-open');
+          $('body').addClass(this.openClass);
           this.setWrapperTranslate();
           this.isOpen = true;
         },
         closeMenu: function() {
           $(this.trigger).removeClass(this.activeClass);
-          $('body').removeClass('responsive-menu-open');
+          $('body').removeClass(this.openClass);
           this.clearWrapperTranslate();
           this.isOpen = false;
         },
         triggerMenu: function() {
           this.isOpen ? this.closeMenu() : this.openMenu();
         },
+        triggerSubArrow: function(subarrow) {
+          if(this.accordion == 'on') {
+            $('.responsive-menu-submenu').slideUp(200, 'linear');
+            $('.responsive-menu-submenu').removeClass('responsive-menu-submenu-open');
+            $('.responsive-menu-subarrow').html(this.inactiveArrow);
+          }
+          var sub_menu = $(subarrow).parent().parent().children('.responsive-menu-submenu');
+          if(sub_menu.hasClass('responsive-menu-submenu-open')) {
+            sub_menu.slideUp(200, 'linear').removeClass('responsive-menu-submenu-open');
+            $(subarrow).html(this.inactiveArrow);
+          } else {
+            sub_menu.slideDown(200, 'linear').addClass('responsive-menu-submenu-open');
+            $(subarrow).html(this.activeArrow);
+          }
+        },
         menuHeight: function() {
-          return $('#responsive-menu-container').height();
+          return $(this.container).height();
         },
         menuWidth: function() {
-          return $('#responsive-menu-container').width();
+          return $(this.container).width();
         },
         setWrapperTranslate: function() {
           var translate = '';
@@ -71,12 +91,20 @@ class JsMapper
             case 'pushbottom':
               $(this.pageWrapper).css({'transform':''}); break;
           }
+        },
+        init: function() {
+          var self = this;
+          $(this.trigger).on(this.triggerTypes, function(){
+            self.triggerMenu();
+          });
+          $('.responsive-menu-subarrow').on('click', function(e) {
+            e.preventDefault();
+            self.triggerSubArrow(this);
+          });
         }
       };
 
-      $(ResponsiveMenu.trigger).on(ResponsiveMenu.triggerTypes, function(){
-        ResponsiveMenu.triggerMenu();
-      });
+      ResponsiveMenu.init();
 
     });
 

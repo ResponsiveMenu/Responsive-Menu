@@ -18,7 +18,7 @@ $default_options = array(
   'button_title_position' => 'left',
   'button_title_line_height' => '13',
   'button_background_colour' => '#000',
-  'button_click_animation' => 'elastic',
+  'button_click_animation' => 'boring',
   'button_line_colour' => '#fff',
   'button_text_colour' => '#fff',
   'button_transparent_background' => 'off',
@@ -41,13 +41,13 @@ $default_options = array(
   'transition_speed' => 1,
 
   // Menu Settings
-  'accordion_animation' => 'off',
   'active_arrow_shape' => '▲',
   'inactive_arrow_shape' => '▼',
   'active_arrow_image' => '',
   'inactive_arrow_image' => '',
   'active_arrow_font_icon' => '',
   'inactive_arrow_font_icon' => '',
+  'accordion_animation' => 'off',
   'menu_item_background_colour' => '#fff',
   'menu_item_background_hover_colour' => '#fff',
   'menu_item_border_colour' => '#fff',
@@ -86,6 +86,7 @@ $default_options = array(
   'menu_width' => 75,
   'menu_disable_scrolling' => 'off',
   'menu_overlay_colour' => 'rgba(0,0,0,0.7)',
+  'menu_remove_search_bar' => 'off',
 
   'minify_scripts' => 'off',
   'scripts_in_footer' => 'off',

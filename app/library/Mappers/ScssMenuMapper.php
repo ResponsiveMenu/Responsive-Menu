@@ -10,7 +10,7 @@ class ScssMenuMapper extends ScssMapper
 
     $css = <<<CSS
 
-      @if {$this->options['menu_disable_scrolling']} == 'on' {
+      @if '{$this->options['menu_disable_scrolling']}' == 'on' {
         body.responsive-menu-open {
           overflow: hidden;
         }
@@ -37,26 +37,26 @@ class ScssMenuMapper extends ScssMapper
         transition: transform {$this->options['animation_speed']}s;
         text-align: {$this->options['menu_text_alignment']};
 
-        @if {$this->options['menu_auto_height']} == 'on' {
-          @if {$this->options['menu_appear_from']} == 'bottom' {
+        @if '{$this->options['menu_auto_height']}' == 'on' {
+          @if '{$this->options['menu_appear_from']}' == 'bottom' {
             top: auto;
           } @else {
             bottom: auto;
           }
         }
 
-        @if {$this->options['menu_maximum_width']} {
+        @if '{$this->options['menu_maximum_width']}' != '' {
           max-width: {$this->options['menu_maximum_width']}px;
         }
-        @if {$this->options['menu_minimum_width']} {
+        @if '{$this->options['menu_minimum_width']}' != '' {
           min-width: {$this->options['menu_minimum_width']}px;
         }
 
-        @if {$this->options['menu_font']}  != '' {
+        @if '{$this->options['menu_font']}' != '' {
           font-family: '{$this->options['menu_font']}';
         }
 
-        & * {
+        & a, & #responsive-menu-title, & .responsive-menu-subarrow {
           transition: all {$this->options['transition_speed']}s;
         }
 
@@ -103,7 +103,7 @@ class ScssMenuMapper extends ScssMapper
         }
       }
       @media screen and ( max-width: {$this->options['breakpoint']}px ) {
-        @if {$this->options['menu_to_hide']} != '' {
+        @if '{$this->options['menu_to_hide']}' != '' {
           {$this->options['menu_to_hide']} {
             display: none;
           };
