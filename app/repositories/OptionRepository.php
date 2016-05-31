@@ -19,9 +19,8 @@ class OptionRepository implements Repository
 
 	public function update($name, $value)
 	{
-		$this->db->update($this->table, array( 'value' => $value ), array( 'name' => $name ) );
+		$this->db->update($this->table, array('value' => $value ), array('name' => $name));
 	}
-
 
 	public function updateMany(array $options)
 	{
@@ -31,9 +30,8 @@ class OptionRepository implements Repository
 
 	public function all()
 	{
-		foreach($this->db->all($this->table) as $key)
-      $saved[$key->name] = Factory::build($key);
-		return $saved;
+    $options = $this->db->all($this->table);
+    return Factory::buildMany($options);
 	}
 
 }

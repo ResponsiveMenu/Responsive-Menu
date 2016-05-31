@@ -13,36 +13,32 @@ class OptionHelper
 
 	public function getFilter($option_name)
 	{
-		return isset($this->mapping[$option_name]['filter']) ?
-    new $this->mapping[$option_name]['filter'] :
-    new \ResponsiveMenu\Filters\TextFilter;
+		return isset($this->mapping['filter']) ? new $this->mapping['filter'] : new \ResponsiveMenu\Filters\TextFilter;
 	}
 
 	public function getType($option_name)
 	{
-		return isset($this->mapping[$option_name]['type']) ?
-    $this->mapping[$option_name]['type'] :
-    'ResponsiveMenu\Form\Text';
+		return isset($this->mapping['type']) ? $this->mapping['type'] : 'ResponsiveMenu\Form\Text';
 	}
 
 	public function getLabel($option_name)
 	{
-		return isset($this->mapping[$option_name]['label']) ? $this->mapping[$option_name]['label'] : null;
+		return isset($this->mapping['label']) ? $this->mapping['label'] : null;
 	}
 
 	public function isPro($option_name)
 	{
-		return isset($this->mapping[$option_name]['pro']) ? true : false;
+		return isset($this->mapping['pro']) ? true : false;
 	}
 
 	public function getPosition($option_name)
 	{
-		return isset($this->mapping[$option_name]['position']) ? $this->mapping[$option_name]['position'] : null;
+		return isset($this->mapping['position']) ? $this->mapping['position'] : null;
 	}
 
 	public function getData($option_name, $data)
 	{
-		return isset($this->mapping[$option_name]['custom'][$data]) ? $this->mapping[$option_name]['custom'][$data] : null;
+		return isset($this->mapping['custom'][$data]) ? $this->mapping['custom'][$data] : null;
 	}
 
 }
