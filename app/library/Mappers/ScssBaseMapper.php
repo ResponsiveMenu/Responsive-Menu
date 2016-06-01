@@ -93,7 +93,7 @@ class ScssBaseMapper extends ScssMapper
           @for \$i from 1 through 6 {
             & ul.responsive-menu-submenu-depth-#{\$i}
             a.responsive-menu-item-link {
-                padding-left: 5% * \$i;
+                padding-left: 5% + (5% * \$i);
             }
           }
 
