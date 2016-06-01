@@ -54,10 +54,17 @@ class JsMapper
           if(this.accordion == 'on') {
             // Get Top Most Parent and the siblings
             top_siblings = sub_menu.parents('.responsive-menu-item-has-children').last().siblings('.responsive-menu-item-has-children');
+            first_siblings = sub_menu.parents('.responsive-menu-item-has-children').first().siblings('.responsive-menu-item-has-children');
             // Close up just the top level parents to key the rest as it was
             top_siblings.children('.responsive-menu-submenu').slideUp(200, 'linear').removeClass('responsive-menu-submenu-open');
             // Set each parent arrow to inactive
             top_siblings.each(function() {
+              $(this).find('.responsive-menu-subarrow').first().html(self.inactiveArrow);
+            });
+            // Now Repeat for the current item siblings
+            first_siblings.children('.responsive-menu-submenu').slideUp(200, 'linear').removeClass('responsive-menu-submenu-open');
+
+            first_siblings.each(function() {
               $(this).find('.responsive-menu-subarrow').first().html(self.inactiveArrow);
             });
           }
