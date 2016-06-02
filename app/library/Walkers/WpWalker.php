@@ -5,14 +5,26 @@ namespace ResponsiveMenu\Walkers;
 class WpWalker extends \Walker_Nav_Menu
 {
 
-    public function __construct($arrows)
+    private $curItem;
+
+    public function __construct($options)
     {
-      $this->arrows = $arrows;
+      $this->options = $options;
     }
 
-  	public function start_lvl( &$output, $depth = 0, $args = array() )
+  	public function start_lvl( &$output, $depth = 0, $args = array())
     {
-  		$output .= "<ul class='responsive-menu-submenu responsive-menu-submenu-depth-" . ($depth + 1) . "'>";
+      if($this->options['auto_expand_all_submenus'] == 'on'):
+        $class = 'responsive-menu-submenu-open';
+      elseif(
+        ($this->options['auto_expand_current_submenus'] == 'on')
+        && ($this->curItem->current_item_ancestor || $this->curItem->current_item_parent)
+        ):
+        $class = 'responsive-menu-submenu-open';
+      else:
+        $class = '';
+      endif;
+      $output .= "<ul class='responsive-menu-submenu responsive-menu-submenu-depth-" . ($depth + 1) . " {$class}'>";
   	}
 
   	public function end_lvl( &$output, $depth = 0, $args = array() )
@@ -22,7 +34,7 @@ class WpWalker extends \Walker_Nav_Menu
 
   	public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 )
     {
-
+      $this->curItem = $item;
   		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
       $responsive_menu_classes = [];
 
@@ -70,12 +82,16 @@ class WpWalker extends \Walker_Nav_Menu
   		$title = apply_filters( 'nav_menu_item_title', $title, $item, $args, $depth );
 
       if(in_array('responsive-menu-item-has-children', $responsive_menu_classes)):
-
-        if( in_array('responsive-menu-item-current-parent', $responsive_menu_classes)
-          || in_array('responsive-menu-item-current-ancestor', $responsive_menu_classes)):
-          $initial_arrow = '<div class="responsive-menu-subarrow responsive-menu-subarrow-active">' . $this->arrows['active'] . '</div>';
+        $inactive_arrow = '<div class="responsive-menu-subarrow">' . $this->options['inactive_arrow_shape']->getValue() . '</div>';
+        $active_arrow = '<div class="responsive-menu-subarrow responsive-menu-subarrow-active">' . $this->options['active_arrow_shape']->getValue()  . '</div>';
+        if($this->options['auto_expand_all_submenus'] == 'on'):
+          $initial_arrow = $active_arrow;
+        elseif(
+        $this->options['auto_expand_current_submenus'] == 'on' && (in_array('responsive-menu-item-current-parent', $responsive_menu_classes)
+            || in_array('responsive-menu-item-current-ancestor', $responsive_menu_classes))):
+            $initial_arrow = $active_arrow;
         else:
-          $initial_arrow = '<div class="responsive-menu-subarrow">' . $this->arrows['inactive'] . '</div>';
+          $initial_arrow = $inactive_arrow;
         endif;
       else:
         $initial_arrow = '';
@@ -94,7 +110,7 @@ class WpWalker extends \Walker_Nav_Menu
 
   	public function end_el( &$output, $item, $depth = 0, $args = array() )
     {
-  		$output .= "</li>\n";
+  		$output .= "</li>";
   	}
 
 }

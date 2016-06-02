@@ -18,8 +18,7 @@ class Front extends Base
       $options['menu_depth']->getValue(),
       $options['theme_location_menu']->getValue(),
       $options['custom_walker']->getValue() ? $options['custom_walker']->getValue() : 'ResponsiveMenu\Walkers\WpWalker',
-      $options['active_arrow_shape']->getValue(),
-      $options['inactive_arrow_shape']->getValue()
+      $options
     );
 
     add_filter('body_class', function($classes) use($options) {

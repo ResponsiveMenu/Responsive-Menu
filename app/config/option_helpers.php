@@ -353,6 +353,16 @@ $option_helpers = array(
     'pro' => true
 	),
 
+  'auto_expand_all_submenus' => array(
+    'type' => 'ResponsiveMenu\Form\Checkbox',
+		'position' => 'menu.submenus'
+	),
+
+  'auto_expand_current_submenus' => array(
+    'type' => 'ResponsiveMenu\Form\Checkbox',
+		'position' => 'menu.submenus'
+	),
+
   'menu_background_colour' => array(
     'type' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'menu.background_colours'

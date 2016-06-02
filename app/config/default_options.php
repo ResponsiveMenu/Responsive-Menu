@@ -48,6 +48,9 @@ $default_options = array(
   'active_arrow_font_icon' => '',
   'inactive_arrow_font_icon' => '',
   'accordion_animation' => 'off',
+  'auto_expand_all_submenus' => 'off',
+  'auto_expand_current_submenus' => 'off',
+
   'menu_background_colour' => '#fff',
   'menu_item_background_colour' => '#fff',
   'menu_item_background_hover_colour' => '#fff',
