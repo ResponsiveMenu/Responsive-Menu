@@ -31,7 +31,8 @@ use ResponsiveMenu\Formatters\Text as Text;
     				<div class="options_container">
     					<?php $i=0; foreach(Tabs::getTabOptions($tab_name, $this->options) as $option) : ?>
     						<div class="option_holder <?php echo $i%2 == 0 ? 'left' : 'right'; ?>
-                  <?php echo $option->isPro() ? 'pro_option' : ''; ?>">
+                  <?php echo $option->isPro() ? 'pro_option' : ''; ?>"
+                  id="<?php echo $option->getName(); ?>">
     							<h4><?php Text::underscoreToWord($option->getName()) ?></h4>
     								<h5><?php echo $option->getLabel(); ?>&nbsp;</h5>
     							<?php FormElement::render($option); $i++; ?>
