@@ -81,6 +81,7 @@ class WpWalker extends \Walker_Nav_Menu
 
   		$title = apply_filters( 'nav_menu_item_title', $title, $item, $args, $depth );
 
+      /* Calculate which arrow to show */
       if(in_array('responsive-menu-item-has-children', $responsive_menu_classes)):
         $inactive_arrow = '<div class="responsive-menu-subarrow">' . $this->options['inactive_arrow_shape']->getValue() . '</div>';
         $active_arrow = '<div class="responsive-menu-subarrow responsive-menu-subarrow-active">' . $this->options['active_arrow_shape']->getValue()  . '</div>';
@@ -97,13 +98,19 @@ class WpWalker extends \Walker_Nav_Menu
         $initial_arrow = '';
       endif;
 
+      /* Clear Arrow if we are at the final depth level */
       if($depth + 1 == $this->options['menu_depth']->getValue())
         $initial_arrow = '';
 
+      /* Get Font Icon Information */
       if($this->options['menu_font_icons']):
         $font_icons = json_decode($this->options['menu_font_icons']);
-        $font_icons = array_filter(array_combine($font_icons->id, $font_icons->icon));
-        $font_icon = isset($font_icons[$item->ID]) ? "<i class='fa {$font_icons[$item->ID]}'></i>" : "";
+        if(is_array($font_icons)):
+          $font_icons = array_filter(array_combine($font_icons->id, $font_icons->icon));
+          $font_icon = isset($font_icons[$item->ID]) ? "<i class='fa {$font_icons[$item->ID]}'></i>" : "";
+        else:
+          $font_icon = '';
+        endif;
       else:
         $font_icon = '';
       endif;

@@ -26,8 +26,10 @@ class ScssMenuMapper extends ScssMapper
         }
       }
 
-      {$this->options['page_wrapper']} {
-        transition: transform {$this->options['animation_speed']}s;
+      @if '{$this->options['page_wrapper']}' != '' {
+        & {$this->options['page_wrapper']} {
+          transition: transform {$this->options['animation_speed']}s;
+        }
       }
 
       #responsive-menu-container {
@@ -106,9 +108,9 @@ class ScssMenuMapper extends ScssMapper
       }
       @media screen and ( max-width: {$this->options['breakpoint']}px ) {
         @if '{$this->options['menu_to_hide']}' != '' {
-          {$this->options['menu_to_hide']} {
+          & {$this->options['menu_to_hide']} {
             display: none;
-          };
+          }
         }
       }
 

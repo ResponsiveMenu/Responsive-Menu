@@ -10,15 +10,20 @@ class Main extends Base
 	{
     $flash = [];
 
-		if(isset($_POST['responsive_menu_submit'])):
+		if(isset($_POST['responsive_menu_submit']) || isset($_POST['responsive_menu_reset'])):
 
       # This is Dirty and should be injected
       include dirname(dirname(dirname(__FILE__))) . '/config/default_options.php';
-      $combined_options = array_merge($default_options, $_POST['menu']);
+
+      # If Reset was selected use default options
+      if(isset($_POST['responsive_menu_reset']))
+        $options = $default_options;
+      else
+        $options = array_merge($default_options, $_POST['menu']);
 
       # Again there must be a better way
       $null_to_defaults = [];
-      foreach($combined_options as $key => $val)
+      foreach($options as $key => $val)
         $null_to_defaults[$key] = $val || $val === '0' ? $val : $default_options[$key];
 
       # Update All Options
