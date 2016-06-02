@@ -88,6 +88,7 @@ $default_options = array(
   'menu_title_link' => null,
   'menu_title_link_location' => '_self',
   'menu_width' => 75,
+  'close_menu_on_link_click' => 'off',
   'menu_disable_scrolling' => 'off',
   'menu_overlay_colour' => 'rgba(0,0,0,0.7)',
   'menu_remove_search_bar' => 'off',

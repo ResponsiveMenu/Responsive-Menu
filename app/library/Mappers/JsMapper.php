@@ -32,6 +32,8 @@ class JsMapper
         activeArrow: '{$this->options['active_arrow_shape']}',
         inactiveArrow: '{$this->options['inactive_arrow_shape']}',
         wrapper: '#responsive-menu-wrapper',
+        closeOnClick: '{$this->options['close_menu_on_link_click']}',
+        linkElement: '.responsive-menu-item-link',
         openMenu: function() {
           $(this.trigger).addClass(this.activeClass);
           $('body').addClass(this.openClass);
@@ -130,6 +132,13 @@ class JsMapper
               }
             }
           });
+          if(this.closeOnClick == 'on') {
+            $(this.linkElement).on('click', function() {
+              self.closeMenu();
+            });
+          }
+
+
         }
       };
       ResponsiveMenu.init();

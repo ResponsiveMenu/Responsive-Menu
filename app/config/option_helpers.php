@@ -123,6 +123,11 @@ $option_helpers = array(
 		'position' => 'menu.general'
 	),
 
+	'close_menu_on_link_click' => array(
+    'type' => 'ResponsiveMenu\Form\Checkbox',
+		'position' => 'menu.advanced'
+	),
+
   'minify_scripts' => array(
     'type' => 'ResponsiveMenu\Form\Checkbox',
 		'position' => 'technical.scripts',
