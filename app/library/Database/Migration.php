@@ -60,6 +60,7 @@ class Migration
   		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
   		dbDelta( $sql );
   		$this->addNewOptions();
+      $this->migrateVersion2Options();
     endif;
 	}
 
@@ -67,15 +68,15 @@ class Migration
 	{
 		$this->addNewOptions();
     $this->tidyUpOptions();
-		if($this->needsUpdate()):
+		if($this->needsUpdate($this->getVersion(), $this->db->getVersion())):
 			$this->migrations();
 			$this->updateVersion();
 		endif;
 	}
 
-	protected function needsUpdate()
+	public function needsUpdate($current_version, $old_version)
 	{
-		return version_compare($this->getVersion(), $this->db->getVersion(), '<');
+		return version_compare($current_version, $old_version, '<');
 	}
 
 	protected function getVersion()
@@ -97,5 +98,10 @@ class Migration
 	{
 
 	}
+
+  protected function migrateVersion2Options()
+  {
+
+  }
 
 }

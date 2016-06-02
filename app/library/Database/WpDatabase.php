@@ -12,7 +12,8 @@ class WpDatabase implements Database
 
 	public function update($table, array $to_update, array $where)
 	{
-		$this->db->update( $table, $to_update, $where );
+    if(is_array($to_update['value'])) var_dump($to_update['value'] = json_encode($to_update['value']));
+		$this->db->update($table, $to_update, $where );
 	}
 
 	public function delete($table, $name)
@@ -28,7 +29,7 @@ class WpDatabase implements Database
 	public function insert($table, array $arguments)
 	{
 		$arguments['created_at'] = current_time('mysql');
-		$this->db->insert( $table, $arguments );
+		$this->db->insert($table, $arguments);
 	}
 
 	public function insertIfNotExists($table, array $arguments)

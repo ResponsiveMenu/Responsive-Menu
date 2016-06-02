@@ -52,6 +52,11 @@ $option_helpers = array(
 		'position' => 'menu.general',
 	),
 
+	'menu_font_icons' => array(
+    'type' => 'ResponsiveMenu\Form\FontIconPageList',
+		'position' => 'menu.font_icons',
+	),
+
 	'menu_disable_scrolling' => array(
     'type' => 'ResponsiveMenu\Form\Checkbox',
 		'position' => 'menu.advanced',

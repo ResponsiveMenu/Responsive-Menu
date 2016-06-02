@@ -99,7 +99,7 @@ class WpWalker extends \Walker_Nav_Menu
 
       if($depth + 1 == $this->options['menu_depth']->getValue())
         $initial_arrow = '';
-        
+
       $item_output = $args->before;
   		$item_output .= '<a'. $attributes .'>';
   		$item_output .= $args->link_before . $title . $args->link_after;

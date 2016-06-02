@@ -94,6 +94,7 @@ $default_options = array(
   'menu_overlay' => 'off',
   'menu_overlay_colour' => 'rgba(0,0,0,0.7)',
   'menu_remove_search_bar' => 'off',
+  'menu_font_icons' => '',
 
   'minify_scripts' => 'off',
   'scripts_in_footer' => 'off',

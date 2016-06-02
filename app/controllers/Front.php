@@ -41,6 +41,9 @@ class Front extends Base
       });
     endif;
 
+    wp_enqueue_script('responsive-menu-font-awesome', 'https://use.fontawesome.com/b6bedb3084.js', null, null);
+
+
 		$this->view->render('menu', $options, ['menu' => $menu_mapper->map()]);
 		$this->view->render('button', $options);
 
