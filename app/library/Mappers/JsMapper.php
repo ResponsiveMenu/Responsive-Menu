@@ -32,7 +32,8 @@ class JsMapper
         activeArrow: '{$this->options['active_arrow_shape']}',
         inactiveArrow: '{$this->options['inactive_arrow_shape']}',
         wrapper: '#responsive-menu-wrapper',
-        closeOnClick: '{$this->options['close_menu_on_link_click']}',
+        closeOnClick: '{$this->options['menu_close_on_link_click']}',
+        itemTriggerSubMenu: '{$this->options['menu_item_click_to_trigger_submenu']}',
         linkElement: '.responsive-menu-item-link',
         openMenu: function() {
           $(this.trigger).addClass(this.activeClass);
@@ -135,6 +136,12 @@ class JsMapper
           if(this.closeOnClick == 'on') {
             $(this.linkElement).on('click', function() {
               self.closeMenu();
+            });
+          }
+          if(this.itemTriggerSubMenu == 'on') {
+            $('.responsive-menu-item-has-children > ' + this.linkElement).on('click', function(e) {
+              e.preventDefault();
+              self.triggerSubArrow($(this).children('.responsive-menu-subarrow').first());
             });
           }
 

@@ -123,7 +123,12 @@ $option_helpers = array(
 		'position' => 'menu.general'
 	),
 
-	'close_menu_on_link_click' => array(
+	'menu_close_on_link_click' => array(
+    'type' => 'ResponsiveMenu\Form\Checkbox',
+		'position' => 'menu.advanced'
+	),
+
+	'menu_item_click_to_trigger_submenu' => array(
     'type' => 'ResponsiveMenu\Form\Checkbox',
 		'position' => 'menu.advanced'
 	),
