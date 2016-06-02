@@ -265,3 +265,37 @@ input[type="button"].image_button
 }
 
 /* End Text Box Styling */
+
+#menu_font_icons
+{
+  width: 100%;
+}
+
+.font-icon-container
+{
+  width: 100%;
+  display: table;
+}
+
+.font-icon-row
+{
+  display: table-row;
+}
+
+.font-icon-cell-id,
+.font-icon-cell-icon
+{
+  display: table-cell;
+  text-align: left;
+}
+
+.font-icon-cell-id
+{
+  width: 100px;
+}
+
+.font-icon-cell-id input,
+.font-icon-cell-icon input
+{
+  width: 100%;
+}

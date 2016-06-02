@@ -55,6 +55,7 @@ $option_helpers = array(
 	'menu_font_icons' => array(
     'type' => 'ResponsiveMenu\Form\FontIconPageList',
 		'position' => 'menu.font_icons',
+    'pro' => true
 	),
 
 	'menu_disable_scrolling' => array(

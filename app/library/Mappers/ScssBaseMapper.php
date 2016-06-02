@@ -120,6 +120,9 @@ class ScssBaseMapper extends ScssMapper
             text-decoration: none;
             padding: 0 5%;
             position: relative;
+            .fa {
+              margin-right: 15px;
+            }
             .responsive-menu-subarrow {
               position: absolute;
               right: 0;
