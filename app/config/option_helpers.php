@@ -353,6 +353,11 @@ $option_helpers = array(
     'pro' => true
 	),
 
+  'menu_background_colour' => array(
+    'type' => 'ResponsiveMenu\Form\Colour',
+		'position' => 'menu.background_colours'
+	),
+
   'menu_item_background_colour' => array(
     'type' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'menu.background_colours'

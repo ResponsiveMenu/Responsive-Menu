@@ -31,6 +31,7 @@ class JsMapper
         accordion: '{$this->options['accordion_animation']}',
         activeArrow: '{$this->options['active_arrow_shape']}',
         inactiveArrow: '{$this->options['inactive_arrow_shape']}',
+        wrapper: '#responsive-menu-wrapper',
         openMenu: function() {
           $(this.trigger).addClass(this.activeClass);
           $('body').addClass(this.openClass);
@@ -53,8 +54,8 @@ class JsMapper
 
           if(this.accordion == 'on') {
             // Get Top Most Parent and the siblings
-            top_siblings = sub_menu.parents('.responsive-menu-item-has-children').last().siblings('.responsive-menu-item-has-children');
-            first_siblings = sub_menu.parents('.responsive-menu-item-has-children').first().siblings('.responsive-menu-item-has-children');
+            var top_siblings = sub_menu.parents('.responsive-menu-item-has-children').last().siblings('.responsive-menu-item-has-children');
+            var first_siblings = sub_menu.parents('.responsive-menu-item-has-children').first().siblings('.responsive-menu-item-has-children');
             // Close up just the top level parents to key the rest as it was
             top_siblings.children('.responsive-menu-submenu').slideUp(200, 'linear').removeClass('responsive-menu-submenu-open');
             // Set each parent arrow to inactive
@@ -63,7 +64,6 @@ class JsMapper
             });
             // Now Repeat for the current item siblings
             first_siblings.children('.responsive-menu-submenu').slideUp(200, 'linear').removeClass('responsive-menu-submenu-open');
-
             first_siblings.each(function() {
               $(this).find('.responsive-menu-subarrow').first().html(self.inactiveArrow);
             });
@@ -84,6 +84,9 @@ class JsMapper
         menuWidth: function() {
           return $(this.container).width();
         },
+        wrapperHeight: function() {
+          return $(this.wrapper).height();
+        },
         setWrapperTranslate: function() {
           var translate = '';
           switch(this.animationType + this.animationSide) {
@@ -92,7 +95,7 @@ class JsMapper
             case 'pushright':
               translate = 'translateX(-' + this.menuWidth() + 'px)'; break;
             case 'pushtop':
-              translate = 'translateY(' + this.menuHeight() + 'px)'; break;
+              translate = 'translateY(' + this.wrapperHeight() + 'px)'; break;
             case 'pushbottom':
               translate = 'translateY(-' + this.menuHeight() + 'px)'; break;
             }
@@ -118,11 +121,18 @@ class JsMapper
             e.preventDefault();
             self.triggerSubArrow(this);
           });
+          $(window).resize(function() {
+            if($(window).width() > self.breakpoint) {
+              self.closeMenu();
+            } else {
+              if($('.responsive-menu-open').length>0){
+                self.setWrapperTranslate();
+              }
+            }
+          });
         }
       };
-
       ResponsiveMenu.init();
-
     });
 
 JS;

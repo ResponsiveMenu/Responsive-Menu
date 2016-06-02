@@ -30,6 +30,9 @@ class ScssBaseMapper extends ScssMapper
         top: 0;
         bottom: 0;
         z-index: 9999;
+        /* Fix for scroll bars appearing when not needed */
+        padding-bottom: 5px;
+        margin-bottom: -5px;
         overflow-y: auto;
 
         .admin-bar & {
@@ -80,7 +83,6 @@ class ScssBaseMapper extends ScssMapper
         }
 
         #responsive-menu {
-          margin-bottom: 15px;
           &, ul {
             width: 100%;
           }

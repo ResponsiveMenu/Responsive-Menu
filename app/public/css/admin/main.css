@@ -57,7 +57,7 @@
 .option_holder
 {
 	display: inline-block;
-	width: 31%;
+	width: 30%;
   vertical-align: middle;
   position: relative;
   text-align: center;
@@ -121,6 +121,7 @@
 	border: 1px solid #CCC;
 	border-radius: 0 2px 2px 2px;
 	padding: 0 15px 15px 15px;
+  text-align: center;
 }
 
 .options_container input,

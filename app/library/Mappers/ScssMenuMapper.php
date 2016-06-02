@@ -33,7 +33,9 @@ class ScssMenuMapper extends ScssMapper
       #responsive-menu-container {
         width: {$this->options['menu_width']}%;
         {$this->options['menu_appear_from']}: 0;
-        background: {$this->options['menu_item_background_colour']};
+        @if '{$this->options['menu_auto_height']}' == 'off' {
+          background: {$this->options['menu_background_colour']};
+        }
         transition: transform {$this->options['animation_speed']}s;
         text-align: {$this->options['menu_text_alignment']};
 
@@ -41,7 +43,7 @@ class ScssMenuMapper extends ScssMapper
           @if '{$this->options['menu_appear_from']}' == 'bottom' {
             top: auto;
           } @else {
-            bottom: auto;
+            bottom: '';
           }
         }
 
