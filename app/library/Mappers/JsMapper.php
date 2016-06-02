@@ -118,6 +118,7 @@ class JsMapper
           });
           $('.responsive-menu-subarrow').on('click', function(e) {
             e.preventDefault();
+            e.stopPropagation();
             self.triggerSubArrow(this);
           });
           $(window).resize(function() {
