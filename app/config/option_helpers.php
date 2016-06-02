@@ -58,6 +58,12 @@ $option_helpers = array(
     'pro' => true
 	),
 
+	'menu_overlay' => array(
+    'type' => 'ResponsiveMenu\Form\Checkbox',
+		'position' => 'menu.advanced',
+    'pro' => true
+	),
+
 	'menu_overlay_colour' => array(
     'type' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'menu.advanced',

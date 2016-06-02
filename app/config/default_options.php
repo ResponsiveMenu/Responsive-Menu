@@ -91,6 +91,7 @@ $default_options = array(
   'menu_close_on_link_click' => 'off',
   'menu_item_click_to_trigger_submenu' => 'off',
   'menu_disable_scrolling' => 'off',
+  'menu_overlay' => 'off',
   'menu_overlay_colour' => 'rgba(0,0,0,0.7)',
   'menu_remove_search_bar' => 'off',
 

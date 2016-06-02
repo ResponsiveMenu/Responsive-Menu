@@ -51,10 +51,8 @@ class JsMapper
           this.isOpen ? this.closeMenu() : this.openMenu();
         },
         triggerSubArrow: function(subarrow) {
-
           var sub_menu = $(subarrow).parent().next('.responsive-menu-submenu');
           var self = this;
-
           if(this.accordion == 'on') {
             // Get Top Most Parent and the siblings
             var top_siblings = sub_menu.parents('.responsive-menu-item-has-children').last().siblings('.responsive-menu-item-has-children');
@@ -71,7 +69,6 @@ class JsMapper
               $(this).find('.responsive-menu-subarrow').first().html(self.inactiveArrow);
             });
           }
-
           if(sub_menu.hasClass('responsive-menu-submenu-open')) {
             sub_menu.slideUp(200, 'linear').removeClass('responsive-menu-submenu-open');
             $(subarrow).html(this.inactiveArrow);
@@ -79,7 +76,6 @@ class JsMapper
             sub_menu.slideDown(200, 'linear').addClass('responsive-menu-submenu-open');
             $(subarrow).html(this.activeArrow);
           }
-
         },
         menuHeight: function() {
           return $(this.container).height();
@@ -144,8 +140,6 @@ class JsMapper
               self.triggerSubArrow($(this).children('.responsive-menu-subarrow').first());
             });
           }
-
-
         }
       };
       ResponsiveMenu.init();
