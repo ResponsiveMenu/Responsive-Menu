@@ -1,72 +1,53 @@
 <?php
 
 namespace ResponsiveMenu\Routing;
+use ResponsiveMenu\Routing\Container as Container;
 
 class WpRouting implements Routing
 {
 
-	protected $dependencies;
+  protected $container;
 
-	public function __construct($dependencies)
+	public function __construct(Container $container)
 	{
-		$this->dependencies = $dependencies;
+		$this->container = $container;
 	}
 
 	public function route()
 	{
-		if(is_admin()):
-			add_action( 'admin_menu', [$this, 'adminPage']);
-    else:
-      $controller = $this->getController('front.main');
-      add_action('template_redirect', [$controller, 'index']);
-    endif;
+		if(is_admin())
+			add_action('admin_menu', [$this, 'adminPage']);
+    else
+      add_action('template_redirect', [$this->container['front_controller'], 'index']);
 	}
 
 	public function adminPage()
 	{
+
+    /* Heavily reliant on WordPress so very hard coded */
+    if(isset($_POST['responsive_menu_submit']))
+      $method = 'update';
+    elseif(isset($_POST['responsive_menu_reset']))
+      $method = 'reset';
+    else
+      $method = 'index';
+
 		add_menu_page(
 			'Responsive Menu',
 			'Responsive Menu',
 			'manage_options',
 			'responsive-menu-3',
-			array($this->getController('admin.main'), 'index'),
+      function() use ($method) {
+        $controller = $this->container['admin_controller'];
+        if($method == 'update' || $method == 'reset'):
+          include dirname(dirname(dirname(__FILE__))) . '/config/default_options.php';
+          $controller->$method($default_options);
+        else:
+          $controller->$method();
+        endif;
+      },
 			plugin_dir_url(dirname(dirname(__FILE__))) . 'public/imgs/icon.png',
 			0 );
-	}
-
-	protected function getController($key)
-	{
-		$view = $this->getView($key);
-		$repo = $this->getRepository($key);
-		$css_factory = $this->getCssFactory($key);
-		$js_factory = $this->getJsFactory($key);
-		return new $this->dependencies[$key]['controller']($repo, $view, $css_factory, $js_factory);
-	}
-
-	protected function getView($key)
-	{
-		return new $this->dependencies[$key]['view'];
-	}
-
-	protected function getRepository($key)
-	{
-		return new $this->dependencies[$key]['repository']($this->getDatabase($key));
-	}
-
-	protected function getCssFactory($key)
-	{
-		return new $this->dependencies[$key]['css_factory'];
-	}
-
-	protected function getJsFactory($key)
-	{
-		return new $this->dependencies[$key]['js_factory'];
-	}
-
-	protected function getDatabase($key)
-	{
-		global $wpdb;
-		return new $this->dependencies[$key]['database']($wpdb);
 	}
 
 }

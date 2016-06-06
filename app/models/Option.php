@@ -10,13 +10,21 @@ class Option
 	private $helper;
   private $default;
 
-	public function __construct($name, $value, Helper $helper, $default)
+	public function __construct($name, $value)
 	{
 		$this->name = $name;
 		$this->value = $value;
-		$this->helper = $helper;
-    $this->default = $default;
 	}
+
+  public function setHelper(Helper $helper)
+  {
+    $this->helper = $helper;
+  }
+
+  public function setDefault($default)
+  {
+    $this->default = $default;
+  }
 
 	public function getName()
 	{

@@ -9,7 +9,7 @@ class FontIconPageList
 	public function render(Option $option)
 	{
 
-    if($decoded = json_decode($option))
+    if($decoded = json_decode(json_decode($option->getValue())))
       $final = array_filter(array_combine($decoded->id, $decoded->icon));
     else
       $final = null;

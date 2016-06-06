@@ -1,23 +1,31 @@
 <?php
 
-$route_dependencies = [
+$container = new ResponsiveMenu\Routing\Container();
 
-	'front.main' => [
-			'controller' => 'ResponsiveMenu\Controllers\Front',
-			'repository' => 'ResponsiveMenu\Repositories\OptionRepository',
-			'view' => 'ResponsiveMenu\View\FrontView',
-			'database' => 'ResponsiveMenu\Database\WpDatabase',
-      'css_factory' => 'ResponsiveMenu\Factories\CssFactory',
-      'js_factory' => 'ResponsiveMenu\Factories\JsFactory'
-	],
+$container['database'] = function($c) {
+  return new ResponsiveMenu\Database\WpDatabase;
+};
 
-	'admin.main' => [
-			'controller' => 'ResponsiveMenu\Controllers\Admin\Main',
-			'repository' => 'ResponsiveMenu\Repositories\OptionRepository',
-			'view' => 'ResponsiveMenu\View\AdminView',
-			'database' => 'ResponsiveMenu\Database\WpDatabase',
-      'css_factory' => 'ResponsiveMenu\Factories\CssFactory',
-      'js_factory' => 'ResponsiveMenu\Factories\JsFactory'
-	],
+$container['option_factory'] = function($c) {
+  return new ResponsiveMenu\Factories\OptionFactory;
+};
 
-];
+$container['option_repository'] = function($c) {
+    return new ResponsiveMenu\Repositories\OptionRepository($c['database'], $c['option_factory']);
+};
+
+$container['admin_view'] = function($c) {
+  return new ResponsiveMenu\View\AdminView;
+};
+
+$container['front_view'] = function($c) {
+  return new ResponsiveMenu\View\FrontView;
+};
+
+$container['admin_controller'] = function($c) {
+    return new ResponsiveMenu\Controllers\Admin\Main($c['option_repository'], $c['admin_view']);
+};
+
+$container['front_controller'] = function($c) {
+    return new ResponsiveMenu\Controllers\Front($c['option_repository'], $c['front_view']);
+};

@@ -3,15 +3,19 @@
 namespace ResponsiveMenu\Controllers;
 use ResponsiveMenu\Controllers\Base as Base;
 use ResponsiveMenu\Mappers\WpMenuMapper as MenuMapper;
+use ResponsiveMenu\Factories\CssFactory as CssFactory;
+use ResponsiveMenu\Factories\JsFactory as JsFactory;
 
 class Front extends Base
 {
 	public function index()
 	{
     $options = $this->repository->all();
+    $css_factory = new CssFactory;
+    $js_factory = new JsFactory;
 
-    $css = $this->css_factory->build($options);
-    $js = $this->js_factory->build($options);
+    $css = $css_factory->build($options);
+    $js = $js_factory->build($options);
 
     $menu_mapper = new MenuMapper(
       $options['menu_to_use']->getValue(),
@@ -42,7 +46,6 @@ class Front extends Base
     endif;
 
     wp_enqueue_script('responsive-menu-font-awesome', 'https://use.fontawesome.com/b6bedb3084.js', null, null);
-
 
 		$this->view->render('menu', $options, ['menu' => $menu_mapper->map()]);
 		$this->view->render('button', $options);

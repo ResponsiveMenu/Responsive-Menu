@@ -54,6 +54,7 @@ $option_helpers = array(
 
 	'menu_font_icons' => array(
     'type' => 'ResponsiveMenu\Form\FontIconPageList',
+    'filter' => 'ResponsiveMenu\Filters\JsonFilter',
 		'position' => 'menu.font_icons',
     'pro' => true
 	),

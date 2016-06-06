@@ -6,29 +6,18 @@ use ResponsiveMenu\Helpers\OptionHelper as Helper;
 
 class OptionFactory
 {
-	static public function build($options)
+  public function build($name, $value)
 	{
 		include dirname(dirname(dirname(__FILE__))) . '/config/option_helpers.php';
 		include dirname(dirname(dirname(__FILE__))) . '/config/default_options.php';
-		$helper = new Helper($option_helpers[$options->name]);
-		$option = new Option($options->name, $options->value, $helper, $default_options[$options->name]);
+		$helper = new Helper($option_helpers[$name]);
+
+    $value = $value || $value === '0' ? $value : $default_options[$name];
+		$option = new Option($name, $value);
+    $option->setHelper($helper);
 		$value = $option->getFilter()->filter($option->getValue());
 		$option->setValue($value);
-    
 		return $option;
 	}
 
-	static public function buildMany($options)
-	{
-		include dirname(dirname(dirname(__FILE__))) . '/config/option_helpers.php';
-		include dirname(dirname(dirname(__FILE__))) . '/config/default_options.php';
-
-    foreach($options as $key):
-      $saved[$key->name] = new Option($key->name, $key->value, new Helper($option_helpers[$key->name]), $default_options[$key->name]);
-	    $value = $saved[$key->name]->getFilter()->filter($saved[$key->name]->getValue());
-	    $saved[$key->name]->setValue($value);
-    endforeach;
-
-		return $saved;
-	}
 }
