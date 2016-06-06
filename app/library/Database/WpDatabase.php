@@ -12,8 +12,7 @@ class WpDatabase implements Database
 
 	public function update($table, array $to_update, array $where)
 	{
-    if(is_array($to_update['value'])) $to_update['value'] = json_encode($to_update['value']);
-		$this->db->update($table, $to_update, $where );
+		$this->db->update($table, $to_update, $where);
 	}
 
 	public function delete($table, $name)

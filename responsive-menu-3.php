@@ -17,14 +17,11 @@ include dirname(__FILE__) . '/autoload.php';
 include dirname(__FILE__) . '/app/config/route_dependencies.php';
 
 /* Route the admin */
-$routing = new ResponsiveMenu\Routing\Routes(new ResponsiveMenu\Routing\WpRouting($container));
-$routing->route();
-
-/* Load Database and Setup */
-$database = new ResponsiveMenu\Database\WpDatabase();
+$wp_router = new ResponsiveMenu\Routing\WpRouting($container);
+$wp_router->route();
 
 if(is_admin()):
-  $migration = new ResponsiveMenu\Database\Migration($database);
+  $migration = new ResponsiveMenu\Database\Migration($container['database']);
   include dirname(__FILE__) . '/app/config/default_options.php';
   $migration->setup($default_options);
   $migration->migrate();

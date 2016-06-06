@@ -30,7 +30,7 @@ class Migration
 		foreach($this->defaults as $name => $value):
 			$this->db->insertIfNotExists(
 				$this->table,
-				array( 'name' => $name, 'value' => $value)
+				array('name' => $name, 'value' => $value)
 			);
 		endforeach;
 	}
@@ -59,8 +59,8 @@ class Migration
 
   		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
   		dbDelta( $sql );
-  		$this->addNewOptions();
       $this->migrateVersion2Options();
+  		$this->addNewOptions();
     endif;
 	}
 
