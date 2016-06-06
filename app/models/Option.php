@@ -8,7 +8,6 @@ class Option
 	private $value;
 	private $name;
 	private $helper;
-  private $default;
 
 	public function __construct($name, $value)
 	{
@@ -21,11 +20,6 @@ class Option
     $this->helper = $helper;
   }
 
-  public function setDefault($default)
-  {
-    $this->default = $default;
-  }
-
 	public function getName()
 	{
 		return $this->name;
@@ -33,17 +27,17 @@ class Option
 
 	public function getValue()
 	{
-		return $this->value;
+		return $this->helper->getFilter($this->name)->filter($this->value);
+	}
+
+	public function getRawValue()
+	{
+		return is_array($this->value) ? json_encode($this->value) : $this->value;
 	}
 
 	public function setValue($value)
 	{
 		return $this->value = $value;
-	}
-
-	public function getOption()
-	{
-		return $this->value;
 	}
 
   public function isPro()
@@ -68,7 +62,7 @@ class Option
 
 	public function __toString()
 	{
-		return isset($this->value) ? $this->value : '';
+		return $this->getValue();
 	}
 
 	public function getBasePosition()
@@ -92,10 +86,5 @@ class Option
 	{
 		return $this->helper->getLabel($this->name);
 	}
-
-  public function getDefault()
-  {
-    return $this->default;
-  }
 
 }

@@ -2,7 +2,7 @@
 
 namespace ResponsiveMenu\Controllers\Admin;
 use ResponsiveMenu\Controllers\Base as Base;
-use ResponsiveMenu\Factories\OptionFactory as Option;
+use ResponsiveMenu\Models\Option as Option;
 use ResponsiveMenu\Factories\SaveFactory as SaveFactory;
 
 class Main extends Base
@@ -14,8 +14,7 @@ class Main extends Base
     $options = array_merge($default_options, $_POST['menu']);
 
     foreach($options as $key => $val):
-      $option = new Option();
-      $option = $option->build($key, $val);
+      $option = new Option($key, $val);
       $this->repository->update($option);
     endforeach;
 
@@ -32,8 +31,7 @@ class Main extends Base
 	{
 
     foreach($default_options as $key => $val):
-      $option = new Option();
-      $option = $option->build($key, $val);
+      $option = new Option($key, $val);
       $this->repository->update($option);
     endforeach;
 

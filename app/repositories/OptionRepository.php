@@ -21,7 +21,7 @@ class OptionRepository implements Repository
 
 	public function update(Option $option)
 	{
-		$this->db->update($this->table, array('value' => $option->getValue()), array('name' => $option->getName()));
+		$this->db->update($this->table, array('value' => $option->getRawValue()), array('name' => $option->getName()));
 	}
 
 	public function updateMany(array $options)

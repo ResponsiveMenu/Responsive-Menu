@@ -8,9 +8,8 @@ class FontIconPageList
 
 	public function render(Option $option)
 	{
-
-    if($decoded = json_decode(json_decode($option->getValue())))
-      $final = array_filter(array_combine($decoded->id, $decoded->icon));
+    if($option->getValue())
+      $final = array_filter(array_combine($option->getValue()->id, $option->getValue()->icon));
     else
       $final = null;
 

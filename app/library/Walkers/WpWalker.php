@@ -104,7 +104,7 @@ class WpWalker extends \Walker_Nav_Menu
 
       /* Get Font Icon Information */
       if($this->options['menu_font_icons']):
-        $font_icons = json_decode($this->options['menu_font_icons']);
+        $font_icons = $this->options['menu_font_icons']->getValue();
         if(is_array($font_icons)):
           $font_icons = array_filter(array_combine($font_icons->id, $font_icons->icon));
           $font_icon = isset($font_icons[$item->ID]) ? "<i class='fa {$font_icons[$item->ID]}'></i>" : "";
