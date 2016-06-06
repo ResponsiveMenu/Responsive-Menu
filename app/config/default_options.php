@@ -102,6 +102,9 @@ $default_options = array(
 
   'shortcode' => 'off',
   'mobile_only' => 'off',
-  'custom_walker' => null
+  'custom_walker' => null,
+  'custom_css' => null,
+
+  'items_order' => '{"menu":"","search":""}'
 
 );

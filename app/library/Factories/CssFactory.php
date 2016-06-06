@@ -19,7 +19,7 @@ class CssFactory {
     $css_menu_mapper = new ScssMenuMapper($options);
     $css_menu = $css_menu_mapper->map();
 
-    $css = $css_base . $css_button . $css_menu;
+    $css = $css_base . $css_button . $css_menu . $options['custom_css'];
 
     if($options['minify_scripts'] == 'on'):
       $minifier = new Minify;

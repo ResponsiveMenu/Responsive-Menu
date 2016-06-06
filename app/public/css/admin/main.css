@@ -265,8 +265,9 @@ input[type="button"].image_button
 }
 
 /* End Text Box Styling */
-
-#menu_font_icons
+#custom_css,
+#menu_font_icons_container,
+#custom_css_container
 {
   width: 100%;
 }
@@ -275,6 +276,10 @@ input[type="button"].image_button
 {
   width: 100%;
   display: table;
+}
+
+#custom_css {
+  height: 300px;
 }
 
 .font-icon-row
@@ -298,4 +303,18 @@ input[type="button"].image_button
 .font-icon-cell-icon input
 {
   width: 100%;
+}
+
+.draggable {
+  border: 1px solid #DADADA;
+  border-radius: 2px;
+  background: #EFEFEF;
+  padding: 10px 0;
+  margin: 0;
+  cursor: move;
+  font-weight: bold;
+}
+
+.draggable input {
+  display: none;
 }

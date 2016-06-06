@@ -14,6 +14,8 @@ class AdminView implements View
         //wp_enqueue_script('wp-color-picker');
       });
 
+      wp_enqueue_script('item-drag', '//code.jquery.com/ui/1.11.4/jquery-ui.js', 'jquery', 'null');
+
       wp_register_style( 'admin-css',  plugin_dir_url(dirname(dirname(__FILE__))) . 'public/css/admin/main.css', false, null );
       wp_enqueue_style( 'admin-css' );
 

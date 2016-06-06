@@ -525,6 +525,18 @@ $option_helpers = array(
 	'custom_walker' => array(
 		'position' => 'technical.menu',
     'pro' => true
-	)
+	),
+
+	'custom_css' => array(
+    'type' => 'ResponsiveMenu\Form\TextArea',
+		'position' => 'custom_css.main',
+    'pro' => true
+	),
+
+	'items_order' => array(
+    'type' => 'ResponsiveMenu\Form\MenuOrdering',
+    'filter' => 'ResponsiveMenu\Filters\JsonFilter',
+		'position' => 'items_order.order'
+	),
 
 );
