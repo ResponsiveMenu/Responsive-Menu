@@ -41,6 +41,10 @@ class ScssMenuMapper extends ScssMapper
         transition: transform {$this->options['animation_speed']}s;
         text-align: {$this->options['menu_text_alignment']};
 
+        & #responsive-menu-wrapper {
+          background: {$this->options['menu_background_colour']};
+        }
+        
         @if '{$this->options['menu_auto_height']}' == 'on' {
           @if '{$this->options['menu_appear_from']}' == 'bottom' {
             top: auto;

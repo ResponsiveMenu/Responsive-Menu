@@ -87,6 +87,8 @@ class ScssBaseMapper extends ScssMapper
             padding: 0;
           }
 
+        #responsive-menu-search-box,
+        #responsive-menu-additional-content,
         #responsive-menu-title {
           padding: 25px 5%;
         }

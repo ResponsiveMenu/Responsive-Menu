@@ -47,8 +47,12 @@ $option_helpers = array(
     'pro' => true
 	),
 
-	'menu_remove_search_bar' => array(
+	'menu_remove_search_box' => array(
     'type' => 'ResponsiveMenu\Form\Checkbox',
+		'position' => 'menu.general',
+	),
+
+	'menu_search_box_text' => array(
 		'position' => 'menu.general',
 	),
 

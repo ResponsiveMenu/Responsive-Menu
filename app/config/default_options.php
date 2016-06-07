@@ -93,8 +93,9 @@ $default_options = array(
   'menu_disable_scrolling' => 'off',
   'menu_overlay' => 'off',
   'menu_overlay_colour' => 'rgba(0,0,0,0.7)',
-  'menu_remove_search_bar' => 'off',
   'menu_font_icons' => '',
+  'menu_remove_search_box' => 'off',
+  'menu_search_box_text' => null,
 
   'minify_scripts' => 'off',
   'scripts_in_footer' => 'off',
@@ -105,6 +106,6 @@ $default_options = array(
   'custom_walker' => null,
   'custom_css' => null,
 
-  'items_order' => '{"menu":"","search":""}'
+  'items_order' => '{"menu":"","search":"","additional content":""}'
 
 );
