@@ -4,7 +4,7 @@ $default_options = array(
 
 	'breakpoint' => 800,
 	'menu_to_hide' => '',
-	'menu_depth' => 2,
+	'menu_depth' => 5,
 	'menu_to_use' => '',
   'theme_location_menu' => '',
 
