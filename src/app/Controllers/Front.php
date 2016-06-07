@@ -4,6 +4,7 @@ namespace ResponsiveMenu\Controllers;
 use ResponsiveMenu\Controllers\Base as Base;
 use ResponsiveMenu\ViewModels\Menu as MenuViewModel;
 use ResponsiveMenu\Factories\FrontDisplayFactory as DisplayFactory;
+use ResponsiveMenu\Shortcodes\ResponsiveMenuShortcode as Shortcode;
 
 class Front extends Base
 {
@@ -31,6 +32,12 @@ class Front extends Base
     if($options['shortcode'] == 'off'):
 		  $this->view->render('menu', ['options' => $options, 'menu' => $menu_display->getHtml()]);
 	    $this->view->render('button', ['options' => $options]);
+    else:
+      add_shortcode('responsive_menu', function($atts) use($options, $menu_display) {
+        array_walk($atts, function($a, $b) use ($options) { $options[$b] = $a; });
+        return $this->view->make('menu', ['options' => $options, 'menu' => $menu_display->getHtml()]) .
+  	           $this->view->make('button', ['options' => $options]);
+      });
     endif;
 
 	}

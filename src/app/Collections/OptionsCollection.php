@@ -33,7 +33,8 @@ class OptionsCollection implements \ArrayAccess {
   }
 
   public function offsetSet($offset, $value) {
-    $this->add($value);
+    if(isset($this->options[$offset]))
+      $this->options[$offset]->setValue($value);
   }
 
   public function offsetUnset($offset) {

@@ -47,7 +47,7 @@ class ComplexOption implements Option {
 
 	public function setValue($value)
 	{
-		return $this->value = $value;
+		$this->value = $value;
 	}
 
 	public function setIsPro($is_pro = false)
@@ -67,7 +67,7 @@ class ComplexOption implements Option {
 
 	public function setPosition($position = null)
 	{
-		return $this->position = $position;
+		$this->position = $position;
 	}
 
 	public function getPosition()

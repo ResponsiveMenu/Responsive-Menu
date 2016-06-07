@@ -23,9 +23,14 @@ class SimpleOption implements Option {
 		return $this->value;
 	}
 
+	public function setValue($value)
+	{
+		return $this->value = $value;
+	}
+
   public function __toString()
 	{
 		return (string) $this->value;
 	}
-  
+
 }
