@@ -16,7 +16,7 @@ Tags: responsive, menu, responsive menu
 include dirname(__FILE__) . '/autoload.php';
 include dirname(__FILE__) . '/app/config/route_dependencies.php';
 
-/* Route the admin */
+/* Route the plugin */
 $wp_router = new ResponsiveMenu\Routing\WpRouting($container);
 $wp_router->route();
 

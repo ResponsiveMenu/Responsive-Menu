@@ -10,9 +10,9 @@ class MenuOrdering implements FormComponent
 	public function render(Option $option)
 	{
     $required = ['title', 'menu', 'search', 'additional content'];
-    $current = array_keys((array) $option->getValue());
+    $current = array_keys((array) json_decode($option->getValue()));
 
-    $all_options = array_unique(array_merge($current, $required));
+    $all_options = array_filter(array_unique(array_merge($current, $required)));
 
     echo '<ul id="sortable">';
     foreach($all_options as $name)

@@ -6,7 +6,7 @@ use ResponsiveMenu\Factories\CssFactory as CssFactory;
 use ResponsiveMenu\Factories\JsFactory as JsFactory;
 use ResponsiveMenu\Collections\OptionsCollection as OptionsCollection;
 
-class SaveFactory {
+class AdminSaveFactory {
 
   public function build(OptionsCollection $options) {
 

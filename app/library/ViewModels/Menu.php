@@ -17,7 +17,8 @@ class Menu {
       'additional content' => 'ResponsiveMenu\ViewModels\Components\AdditionalContent'
     ];
     $content = '';
-    foreach($this->options['items_order']->getValue() as $key => $val):
+
+    foreach(json_decode($this->options['items_order']) as $key => $val):
       $mapper = new $mapping[$key];
       $content .= $mapper->render($this->options);
     endforeach;

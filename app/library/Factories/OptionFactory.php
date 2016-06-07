@@ -1,7 +1,7 @@
 <?php
 
 namespace ResponsiveMenu\Factories;
-use ResponsiveMenu\Models\Option as Option;
+use ResponsiveMenu\Models\ComplexOption as ComplexOption;
 use ResponsiveMenu\Helpers\OptionHelper as Helper;
 
 class OptionFactory
@@ -20,7 +20,7 @@ class OptionFactory
       : new \ResponsiveMenu\Form\Text;
 
     $value = $value || $value === '0' ? $value : $default_options[$name];
-		$option = new Option($name, $value);
+		$option = new ComplexOption($name, $value);
     $option->setFilter($filter);
     $option->setFormComponent($form_component);
     $option->setData(isset($option_helpers[$name]['custom'])?$option_helpers[$name]['custom']:null);

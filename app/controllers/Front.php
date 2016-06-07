@@ -2,52 +2,36 @@
 
 namespace ResponsiveMenu\Controllers;
 use ResponsiveMenu\Controllers\Base as Base;
-use ResponsiveMenu\Factories\CssFactory as CssFactory;
-use ResponsiveMenu\Factories\JsFactory as JsFactory;
 use ResponsiveMenu\ViewModels\Menu as MenuViewModel;
+use ResponsiveMenu\Factories\FrontDisplayFactory as DisplayFactory;
 
 class Front extends Base
 {
 	public function index()
 	{
-
+    # Get Latest Options
     $options = $this->repository->all();
 
+    # If we want mobile only and we are not on mobile, let's get outta here!
     if($options['mobile_only'] == 'on' && !wp_is_mobile())
       return;
 
-    $css_factory = new CssFactory;
-    $js_factory = new JsFactory;
+    # This needs refactoring - Martin Fowler HELP!
+    $display_factory = new DisplayFactory();
+    $display_factory->build($options);
 
-    $css = $css_factory->build($options);
-    $js = $js_factory->build($options);
-
-    add_filter('body_class', function($classes) use($options) {
-      $classes[] = 'responsive-menu-' . $options['animation_type'] . '-' . $options['menu_appear_from'];
-      return $classes;
-    });
-
-    if($options['external_files'] == 'on') :
-      $data_folder_dir = plugins_url(). '/responsive-menu-3-data';
-      $css_file = $data_folder_dir . '/css/responsive-menu-' . get_current_blog_id() . '.css';
-      $js_file = $data_folder_dir . '/js/responsive-menu-' . get_current_blog_id() . '.js';
-      wp_enqueue_style('responsive-menu', $css_file, null, null);
-      wp_enqueue_script('responsive-menu', $js_file, ['jquery'], null, $options['scripts_in_footer'] == 'on' ? true : false);
-    else :
-      add_action('wp_head', function() use ($css) {
-        echo '<style>' . $css . '</style>';
-      });
-      add_action($options['scripts_in_footer'] == 'on' ? 'wp_footer' : 'wp_head', function() use ($js) {
-        echo '<script>' . $js . '</script>';
-      });
-    endif;
-
+    # Build Our Menu Display
     $menu_display = new MenuViewModel($options);
 
-    wp_enqueue_script('responsive-menu-font-awesome', 'https://use.fontawesome.com/b6bedb3084.js', null, null);
+    # Only load Font Icon Scripts if Needed
+    if($options->usesFontIcons())
+      wp_enqueue_script('responsive-menu-font-awesome', 'https://use.fontawesome.com/b6bedb3084.js', null, null);
 
-		$this->view->render('menu', ['options' => $options, 'menu' => $menu_display->getHtml()]);
-		$this->view->render('button', ['options' => $options]);
+    # Only render if we don't have shortcodes turned on
+    if($options['shortcode'] == 'off'):
+		  $this->view->render('menu', ['options' => $options, 'menu' => $menu_display->getHtml()]);
+	    $this->view->render('button', ['options' => $options]);
+    endif;
 
 	}
 

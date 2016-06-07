@@ -1,8 +1,8 @@
 <?php
 
-namespace ResponsiveMenu\Controllers;
+namespace ResponsiveMenu\Controllers\Admin;
 use ResponsiveMenu\View\View as View;
-use ResponsiveMenu\Repositories\Options\ReadRepository as Repository;
+use ResponsiveMenu\Repositories\Options\Repository as Repository;
 
 class Base
 {

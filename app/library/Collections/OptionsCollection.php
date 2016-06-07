@@ -19,6 +19,11 @@ class OptionsCollection implements \ArrayAccess {
     return $this->options;
   }
 
+  public function usesFontIcons() {
+    # Code to determine if they are used
+    return true;
+  }
+
   public function offsetExists($offset) {
     return array_key_exists($offset, $this->options);
   }
