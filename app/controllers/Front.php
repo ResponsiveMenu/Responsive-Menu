@@ -10,7 +10,12 @@ class Front extends Base
 {
 	public function index()
 	{
+
     $options = $this->repository->all();
+
+    if($options['mobile_only'] == 'on' && !wp_is_mobile())
+      return;
+
     $css_factory = new CssFactory;
     $js_factory = new JsFactory;
 
