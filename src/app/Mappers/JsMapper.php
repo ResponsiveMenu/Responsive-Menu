@@ -30,8 +30,8 @@ class JsMapper
         container: '#responsive-menu-container',
         openClass: 'responsive-menu-open',
         accordion: '{$this->options['accordion_animation']}',
-        activeArrow: '{$this->options['active_arrow_shape']}',
-        inactiveArrow: '{$this->options['inactive_arrow_shape']}',
+        activeArrow: '{$this->options->getActiveArrow()}',
+        inactiveArrow: '{$this->options->getInActiveArrow()}',
         wrapper: '#responsive-menu-wrapper',
         closeOnClick: '{$this->options['menu_close_on_link_click']}',
         itemTriggerSubMenu: '{$this->options['menu_item_click_to_trigger_submenu']}',
@@ -39,12 +39,16 @@ class JsMapper
         openMenu: function() {
           $(this.trigger).addClass(this.activeClass);
           $('body').addClass(this.openClass);
+          $('.responsive-menu-button-icon-active').hide();
+          $('.responsive-menu-button-icon-inactive').show();
           this.setWrapperTranslate();
           this.isOpen = true;
         },
         closeMenu: function() {
           $(this.trigger).removeClass(this.activeClass);
           $('body').removeClass(this.openClass);
+          $('.responsive-menu-button-icon-inactive').hide();
+          $('.responsive-menu-button-icon-active').show();
           this.clearWrapperTranslate();
           this.isOpen = false;
         },

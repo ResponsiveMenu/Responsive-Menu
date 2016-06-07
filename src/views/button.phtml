@@ -12,7 +12,8 @@
         aria-controls="navigation">
   <?php echo in_array($button_title_pos, array('top', 'left')) ? $button_title_html : ''; ?>
   <span class="hamburger-box">
-    <span class="hamburger-inner"></span>
+    <?php echo $l['options']->getButtonIcon(); ?>
+    <?php echo $l['options']->getButtonIconActive(); ?>
   </span>
   <?php echo in_array($button_title_pos, array('bottom', 'right')) ? $button_title_html : ''; ?>
 </button>

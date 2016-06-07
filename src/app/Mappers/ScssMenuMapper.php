@@ -82,6 +82,11 @@ class ScssMenuMapper extends ScssMapper
             background-color: {$this->options['menu_title_background_hover_colour']};
             color: {$this->options['menu_title_hover_colour']};
           }
+          #responsive-menu-title-image {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 15px;
+          }
         }
 
         #responsive-menu {
@@ -101,8 +106,9 @@ class ScssMenuMapper extends ScssMapper
               }
 
               .responsive-menu-subarrow {
-                height: {$this->options['menu_links_height']}px;
-                line-height: {$this->options['menu_links_height']}px;
+                height: {$this->options['submenu_arrow_height']}px;
+                line-height: {$this->options['submenu_arrow_height']}px;
+                width: {$this->options['submenu_arrow_width']}px;
                 color: {$this->options['menu_sub_arrow_shape_colour']};
                 border: 1px solid {$this->options['menu_sub_arrow_border_colour']};
                 background-color: {$this->options['menu_sub_arrow_background_colour']};

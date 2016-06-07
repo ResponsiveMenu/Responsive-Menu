@@ -132,7 +132,10 @@ class ScssBaseMapper extends ScssMapper
               top: 0;
               bottom: 0;
               padding: 0 10px;
-              margin: -1px; // Fix double borders with menu link
+              overflow: hidden;
+              .fa {
+                margin-right: 0;
+              }
             }
           }
         }
@@ -145,10 +148,13 @@ class ScssBaseMapper extends ScssMapper
       }
 
       .hamburger {
-        padding: 0;
 
         .admin-bar & {
           margin-top: 32px;
+        }
+
+        .responsive-menu-button-icon-inactive {
+          display: none;
         }
 
       }
@@ -156,6 +162,10 @@ class ScssBaseMapper extends ScssMapper
       #responsive-menu-button {
         z-index: 9999;
         display: none;
+        overflow: hidden;
+        img {
+          max-width: 100%;
+        }
       }
 
       .hamburger-label {

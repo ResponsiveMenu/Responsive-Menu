@@ -381,6 +381,14 @@ $option_helpers = array(
     'pro' => true
 	),
 
+  'submenu_arrow_width' => array(
+		'position' => 'menu.submenus',
+	),
+
+  'submenu_arrow_height' => array(
+		'position' => 'menu.submenus',
+	),
+
   'accordion_animation' => array(
     'form_component' => 'ResponsiveMenu\Form\Checkbox',
 		'position' => 'menu.submenus',

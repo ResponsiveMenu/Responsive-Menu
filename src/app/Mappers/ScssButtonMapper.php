@@ -30,6 +30,9 @@ class ScssButtonMapper extends ScssMapper
         position: {$this->options['button_position_type']};
         top: {$this->options['button_top']}px;
         {$this->options['button_left_or_right']}: {$this->options['button_distance_from_side']}%;
+        .hamburger-box {
+          color: {$this->options['button_line_colour']};
+        }
       }
 
       .hamburger-label {

@@ -84,8 +84,8 @@ class WpWalker extends \Walker_Nav_Menu
 
       /* Calculate which arrow to show */
       if(in_array('responsive-menu-item-has-children', $responsive_menu_classes)):
-        $inactive_arrow = '<div class="responsive-menu-subarrow">' . $this->options['inactive_arrow_shape']->getValue() . '</div>';
-        $active_arrow = '<div class="responsive-menu-subarrow responsive-menu-subarrow-active">' . $this->options['active_arrow_shape']->getValue()  . '</div>';
+        $inactive_arrow = '<div class="responsive-menu-subarrow">' . $this->options->getInActiveArrow() . '</div>';
+        $active_arrow = '<div class="responsive-menu-subarrow responsive-menu-subarrow-active">' . $this->options->getActiveArrow()  . '</div>';
         if($this->options['auto_expand_all_submenus'] == 'on'):
           $initial_arrow = $active_arrow;
         elseif(
