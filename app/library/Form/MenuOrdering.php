@@ -9,9 +9,14 @@ class MenuOrdering implements FormComponent
 
 	public function render(Option $option)
 	{
+    $required = ['title', 'menu', 'search', 'additional content'];
+    $current = array_keys((array) $option->getValue());
+
+    $all_options = array_unique(array_merge($current, $required));
+
     echo '<ul id="sortable">';
-    foreach($option->getValue() as $item => $order)
-      echo '<li class="draggable">'.ucwords($item).'<input type="text" name="menu['.$option->getName().']['.$item.']" /></li>';
+    foreach($all_options as $name)
+      echo '<li class="draggable">'.ucwords($name).'<input type="text" name="menu['.$option->getName().']['.$name.']" /></li>';
     echo '</ul>';
 
     echo '<script>

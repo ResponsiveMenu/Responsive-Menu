@@ -1,7 +1,7 @@
-
 <?php
 
 namespace ResponsiveMenu\ViewModels\Components;
+
 use ResponsiveMenu\Collections\OptionsCollection as OptionsCollection;
 
 interface ViewComponent {

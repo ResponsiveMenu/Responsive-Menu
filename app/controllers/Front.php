@@ -2,9 +2,9 @@
 
 namespace ResponsiveMenu\Controllers;
 use ResponsiveMenu\Controllers\Base as Base;
-use ResponsiveMenu\Mappers\WpMenuMapper as MenuMapper;
 use ResponsiveMenu\Factories\CssFactory as CssFactory;
 use ResponsiveMenu\Factories\JsFactory as JsFactory;
+use ResponsiveMenu\ViewModels\Menu as MenuViewModel;
 
 class Front extends Base
 {
@@ -16,14 +16,6 @@ class Front extends Base
 
     $css = $css_factory->build($options);
     $js = $js_factory->build($options);
-
-    $menu_mapper = new MenuMapper(
-      $options['menu_to_use']->getValue(),
-      $options['menu_depth']->getValue(),
-      $options['theme_location_menu']->getValue(),
-      $options['custom_walker']->getValue() ? $options['custom_walker']->getValue() : 'ResponsiveMenu\Walkers\WpWalker',
-      $options
-    );
 
     add_filter('body_class', function($classes) use($options) {
       $classes[] = 'responsive-menu-' . $options['animation_type'] . '-' . $options['menu_appear_from'];
@@ -45,9 +37,11 @@ class Front extends Base
       });
     endif;
 
+    $menu_display = new MenuViewModel($options);
+
     wp_enqueue_script('responsive-menu-font-awesome', 'https://use.fontawesome.com/b6bedb3084.js', null, null);
 
-		$this->view->render('menu', ['options' => $options, 'menu' => $menu_mapper->map()]);
+		$this->view->render('menu', ['options' => $options, 'menu' => $menu_display->getHtml()]);
 		$this->view->render('button', ['options' => $options]);
 
 	}

@@ -1,13 +1,14 @@
 <?php
 
 namespace ResponsiveMenu\Walkers;
+use ResponsiveMenu\Collections\OptionsCollection as OptionsCollection;
 
 class WpWalker extends \Walker_Nav_Menu
 {
 
     private $curItem;
 
-    public function __construct($options)
+    public function __construct(OptionsCollection $options)
     {
       $this->options = $options;
     }
