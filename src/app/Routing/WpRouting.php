@@ -8,21 +8,21 @@ class WpRouting implements Routing
 
   protected $container;
 
-	public function __construct(Container $container)
-	{
-		$this->container = $container;
-	}
+  public function __construct(Container $container)
+  {
+    $this->container = $container;
+  }
 
-	public function route()
-	{
-		if(is_admin())
-			add_action('admin_menu', [$this, 'adminPage']);
+  public function route()
+  {
+    if(is_admin())
+      add_action('admin_menu', [$this, 'adminPage']);
     else
       add_action('template_redirect', [$this->container['front_controller'], 'index']);
-	}
+  }
 
-	public function adminPage()
-	{
+  public function adminPage()
+  {
 
     /* Heavily reliant on WordPress so very hard coded */
     if(isset($_POST['responsive_menu_submit']))
@@ -32,11 +32,11 @@ class WpRouting implements Routing
     else
       $method = 'index';
 
-		add_menu_page(
-			'Responsive Menu',
-			'Responsive Menu',
-			'manage_options',
-			'responsive-menu-3',
+    add_menu_page(
+      'Responsive Menu',
+      'Responsive Menu',
+      'manage_options',
+      'responsive-menu-3',
       function() use ($method) {
         $controller = $this->container['admin_controller'];
         if($method == 'update' || $method == 'reset'):
@@ -46,8 +46,8 @@ class WpRouting implements Routing
           $controller->$method();
         endif;
       },
-			plugin_dir_url(dirname(dirname(__FILE__))) . 'public/imgs/icon.png',
-			0 );
-	}
+      plugin_dir_url(dirname(dirname(__FILE__))) . 'public/imgs/icon.png',
+      0 );
+  }
 
 }
