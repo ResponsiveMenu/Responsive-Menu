@@ -14,7 +14,7 @@ Tags: responsive, menu, responsive menu
 
 /* Required includes for plugin to function */
 include dirname(__FILE__) . '/autoload.php';
-include dirname(__FILE__) . '/app/config/route_dependencies.php';
+include dirname(__FILE__) . '/src/config/route_dependencies.php';
 
 /* Route the plugin */
 $wp_router = new ResponsiveMenu\Routing\WpRouting($container);
@@ -22,7 +22,7 @@ $wp_router->route();
 
 if(is_admin()):
   $migration = new ResponsiveMenu\Database\Migration($container['database']);
-  include dirname(__FILE__) . '/app/config/default_options.php';
+  include dirname(__FILE__) . '/src/config/default_options.php';
   $migration->setup($default_options);
   $migration->migrate();
 endif;
