@@ -44,7 +44,14 @@ class ScssBaseMapper extends ScssMapper
         margin-bottom: -5px;
         overflow-y: auto;
         overflow-x: hidden;
-
+        .responsive-menu-search-box {
+          width: 100%;
+          padding: 0 2%;
+          border-radius: 2px;
+          border: 2px solid #dadada;
+          height: 50px;
+          background: white;
+        }
         .admin-bar & {
           margin-top: 32px;
         }

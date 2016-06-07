@@ -189,6 +189,11 @@ $option_helpers = array(
     'position' => 'button.general'
   ),
 
+  'button_font' => array(
+    'position' => 'button.general',
+    'pro' => true
+  ),
+
   'button_font_icon' => array(
     'position' => 'button.general',
     'pro' => true

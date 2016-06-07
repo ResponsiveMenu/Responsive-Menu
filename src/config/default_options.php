@@ -12,6 +12,7 @@ $default_options = array(
   'button_title' => null,
   'button_image' => null,
   'button_image_when_clicked' => null,
+  'button_font' => null,
   'button_font_icon' => null,
   'button_font_icon_when_clicked' => null,
   'button_click_trigger' => '#responsive-menu-button',

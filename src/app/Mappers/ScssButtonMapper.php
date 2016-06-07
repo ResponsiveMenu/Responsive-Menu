@@ -38,6 +38,9 @@ class ScssButtonMapper extends ScssMapper
       .hamburger-label {
         color: {$this->options['button_text_colour']};
         font-size: {$this->options['button_font_size']}px;
+        @if '{$this->options['button_font']}' != '' {
+          font-family: '{$this->options['button_font']}';
+        }
       }
 
       @media screen and ( max-width: {$this->options['breakpoint']}px ) {
