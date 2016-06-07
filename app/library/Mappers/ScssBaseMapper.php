@@ -43,6 +43,7 @@ class ScssBaseMapper extends ScssMapper
         padding-bottom: 5px;
         margin-bottom: -5px;
         overflow-y: auto;
+        overflow-x: hidden;
 
         .admin-bar & {
           margin-top: 32px;

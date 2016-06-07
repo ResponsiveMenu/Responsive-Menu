@@ -1,10 +1,11 @@
 <?php
 
 namespace ResponsiveMenu\Mappers;
+use ResponsiveMenu\Collections\OptionsCollection as OptionsCollection;
 
 class JsMapper
 {
-  public function __construct(array $options)
+  public function __construct(OptionsCollection $options)
   {
     $this->options = $options;
   }

@@ -10,13 +10,23 @@ class OptionFactory
 	{
 		include dirname(dirname(dirname(__FILE__))) . '/config/option_helpers.php';
 		include dirname(dirname(dirname(__FILE__))) . '/config/default_options.php';
-		$helper = new Helper($option_helpers[$name]);
+
+    $filter = isset($option_helpers[$name]['filter'])
+      ? new $option_helpers[$name]['filter']
+      : new \ResponsiveMenu\Filters\TextFilter;
+
+    $form_component = isset($option_helpers[$name]['form_component'])
+      ? new $option_helpers[$name]['form_component']
+      : new \ResponsiveMenu\Form\Text;
 
     $value = $value || $value === '0' ? $value : $default_options[$name];
 		$option = new Option($name, $value);
-    $option->setHelper($helper);
-		$value = $option->getFilter()->filter($option->getValue());
-		$option->setValue($value);
+    $option->setFilter($filter);
+    $option->setFormComponent($form_component);
+    $option->setData(isset($option_helpers[$name]['custom'])?$option_helpers[$name]['custom']:null);
+    $option->setIsPro(isset($option_helpers[$name]['pro'])?$option_helpers[$name]['pro']:null);
+    $option->setPosition(isset($option_helpers[$name]['position'])?$option_helpers[$name]['position']:null);
+    $option->setLabel(isset($option_helpers[$name]['label'])?$option_helpers[$name]['label']:null);
 		return $option;
 	}
 

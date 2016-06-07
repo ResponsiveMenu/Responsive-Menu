@@ -1,22 +1,20 @@
 <?php
 
 use ResponsiveMenu\Formatters\Tabs as Tabs;
-use ResponsiveMenu\Formatters\FormElement as FormElement;
 use ResponsiveMenu\Formatters\Text as Text;
 
 ?>
-
 <div class="wrap">
 	<div class="tabs_container">
-		<?php Tabs::render($this->options); ?>
+		<?php Tabs::render($l['options']); ?>
 	</div>
-  <?php if(isset($this->messages['success'])): ?>
-    <div id="success_message" class="flash_messages"><?php echo $this->messages['success']; ?></div>
+  <?php if(isset($l['flash']['success'])): ?>
+    <div id="success_message" class="flash_messages"><?php echo $l['flash']['success']; ?></div>
   <?php endif; ?>
-  <?php if(isset($this->messages['errors'])): ?>
+  <?php if(isset($l['flash']['errors'])): ?>
     <div id="error_messages" class="flash_messages">
       <ul>
-      <?php foreach($this->messages['errors'] as $error): ?>
+      <?php foreach($l['flash']['errors'] as $error): ?>
         <li><?php echo $error; ?></li>
       <?php endforeach; ?>
       </ul>
@@ -24,18 +22,18 @@ use ResponsiveMenu\Formatters\Text as Text;
   <?php endif; ?>
   <div id="all_options_container">
   	<form action="" method="post">
-  		<?php $t=1; foreach(Tabs::getTabs($this->options) as $key => $val) : ?>
+  		<?php $t=1; foreach(Tabs::getTabs($l['options']) as $key => $val) : ?>
   			<div class="tab_container tab_container_<?php echo $t; ?>" id="tab_container_<?php echo $key; ?>">
-          <?php foreach(Tabs::getSubTabs($key, $this->options) as $tab_name): ?>
+          <?php foreach(Tabs::getSubTabs($key, $l['options']) as $tab_name): ?>
             <h4><?php echo $val; ?> &raquo; <?php Text::underscoreToWord(explode('.',$tab_name)[1]); ?></h4>
     				<div class="options_container">
-    					<?php $i=0; foreach(Tabs::getTabOptions($tab_name, $this->options) as $option) : ?>
+    					<?php $i=0; foreach(Tabs::getTabOptions($tab_name, $l['options']) as $option) : ?>
     						<div class="option_holder <?php echo $i%2 == 0 ? 'left' : 'right'; ?>
                   <?php echo $option->isPro() ? 'pro_option' : ''; ?>"
                   id="<?php echo $option->getName(); ?>_container">
     							<h4><?php Text::underscoreToWord($option->getName()) ?></h4>
     								<h5><?php echo $option->getLabel(); ?>&nbsp;</h5>
-    							<?php FormElement::render($option); $i++; ?>
+    							<?php $option->getFormComponent()->render($option); $i++; ?>
     						</div>
     					<?php endforeach; ?>
     				</div>

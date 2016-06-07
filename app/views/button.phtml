@@ -1,12 +1,12 @@
-<?php $button_title = $this->options['button_title']; ?>
-<?php $button_title_pos = $this->options['button_title_position']; ?>
+<?php $button_title = $l['options']['button_title']; ?>
+<?php $button_title_pos = $l['options']['button_title_position']; ?>
 <?php $button_title_html = $button_title != '' ? '<span class="hamburger-label hamburger-label-'.$button_title_pos.'">'.$button_title.'</span>' : ''; ?>
 <?php $accessible = in_array($button_title_pos, array('left', 'right')) ? 'hamburger--accessible' : ''; ?>
 
 <button id="responsive-menu-button"
         class="hamburger
         <?php echo $accessible; ?>
-        hamburger--<?php echo $this->options['button_click_animation']; ?>"
+        hamburger--<?php echo $l['options']['button_click_animation']; ?>"
         type="button"
         aria-label="Menu"
         aria-controls="navigation">

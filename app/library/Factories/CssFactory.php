@@ -5,10 +5,11 @@ use ResponsiveMenu\Mappers\ScssBaseMapper as ScssBaseMapper;
 use ResponsiveMenu\Mappers\ScssButtonMapper as ScssButtonMapper;
 use ResponsiveMenu\Mappers\ScssMenuMapper as ScssMenuMapper;
 use ResponsiveMenu\Formatters\Minify as Minify;
+use ResponsiveMenu\Collections\OptionsCollection as OptionsCollection;
 
 class CssFactory {
 
-  public function build($options) {
+  public function build(OptionsCollection $options) {
 
     $css_base_mapper = new ScssBaseMapper($options);
     $css_base = $css_base_mapper->map();

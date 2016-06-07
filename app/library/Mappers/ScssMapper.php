@@ -1,11 +1,12 @@
 <?php
 
 namespace ResponsiveMenu\Mappers;
+use ResponsiveMenu\Collections\OptionsCollection as OptionsCollection;
 
 class ScssMapper
 {
 
-  public function __construct(array $options)
+  public function __construct(OptionsCollection $options)
   {
     $this->options = $options;
     #Ugly

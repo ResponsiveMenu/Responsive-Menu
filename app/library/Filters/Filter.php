@@ -4,5 +4,5 @@ namespace ResponsiveMenu\Filters;
 
 interface Filter
 {
-	public function filter( $data );
+	public function filter($data);
 }

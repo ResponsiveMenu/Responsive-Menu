@@ -4,11 +4,11 @@ namespace ResponsiveMenu\Factories;
 use ResponsiveMenu\Filesystem\FileCreator as FileCreator;
 use ResponsiveMenu\Factories\CssFactory as CssFactory;
 use ResponsiveMenu\Factories\JsFactory as JsFactory;
+use ResponsiveMenu\Collections\OptionsCollection as OptionsCollection;
 
 class SaveFactory {
 
-
-  public function build($options) {
+  public function build(OptionsCollection $options) {
 
       $flash = [];
 

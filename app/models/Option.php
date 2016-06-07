@@ -1,13 +1,19 @@
 <?php
 
 namespace ResponsiveMenu\Models;
-use ResponsiveMenu\Helpers\OptionHelper as Helper;
+use ResponsiveMenu\Filters\Filter as Filter;
+use ResponsiveMenu\Form\FormComponent as FormComponent;
 
-class Option
-{
+class Option {
+
 	private $value;
 	private $name;
-	private $helper;
+  private $filter;
+  private $form_component;
+  private $is_pro;
+  private $position;
+  private $data;
+  private $label;
 
 	public function __construct($name, $value)
 	{
@@ -15,9 +21,14 @@ class Option
 		$this->value = $value;
 	}
 
-  public function setHelper(Helper $helper)
+  public function setFilter(Filter $filter)
   {
-    $this->helper = $helper;
+    $this->filter = $filter;
+  }
+
+  public function setFormComponent(FormComponent $form_component)
+  {
+    $this->form_component = $form_component;
   }
 
 	public function getName()
@@ -27,7 +38,7 @@ class Option
 
 	public function getValue()
 	{
-		return $this->helper->getFilter($this->name)->filter($this->value);
+		return $this->filter->filter($this->value);
 	}
 
 	public function getRawValue()
@@ -40,51 +51,70 @@ class Option
 		return $this->value = $value;
 	}
 
+	public function setIsPro($is_pro = false)
+	{
+		$this->is_pro = $is_pro;
+	}
+
   public function isPro()
   {
-    return $this->helper->isPro($this->name);
+    return $this->is_pro;
   }
 
-	public function getType()
+	public function getFormComponent()
 	{
-		return $this->helper->getType($this->name);
+		return $this->form_component;
+	}
+
+	public function setPosition($position = null)
+	{
+		return $this->position = $position;
 	}
 
 	public function getPosition()
 	{
-		return $this->helper->getPosition($this->name);
+		return $this->position;
 	}
 
 	public function getFilter()
 	{
-		return $this->helper->getFilter($this->name);
+		return $this->filter;
 	}
 
 	public function __toString()
 	{
-		return $this->getValue();
+		return (string) $this->value;
 	}
 
 	public function getBasePosition()
 	{
-		$position = $this->getPosition();
+		$position = $this->position;
 		$positions = explode('.', $position);
 		return isset($positions[1]) ? $positions[1] : null;
 	}
 
 	public function getData($data)
 	{
-		return $this->helper->getData($this->name, $data);
+		return $this->data[$data];
 	}
+
+  public function setData($data = null) {
+    $this->data = $data;
+  }
 
 	public function hasLabel()
 	{
-		return $this->getLabel() ? true : false;
+		return $this->label ? true : false;
 	}
 
 	public function getLabel()
 	{
-		return $this->helper->getLabel($this->name);
+		return $this->label;
+	}
+
+	public function setLabel($label = null)
+	{
+		$this->label = $label;
 	}
 
 }

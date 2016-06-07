@@ -38,7 +38,7 @@ $default_options = array(
   'animation_type' => 'slide',
   'page_wrapper' => null,
   'animation_speed' => 0.5,
-  'transition_speed' => 1,
+  'transition_speed' => 0.5,
 
   // Menu Settings
   'active_arrow_shape' => '▲',
@@ -95,7 +95,8 @@ $default_options = array(
   'menu_overlay_colour' => 'rgba(0,0,0,0.7)',
   'menu_font_icons' => '',
   'menu_remove_search_box' => 'off',
-  'menu_search_box_text' => null,
+  'menu_search_box_text' => 'Search',
+  'menu_word_wrap' => 'off',
 
   'minify_scripts' => 'off',
   'scripts_in_footer' => 'off',
@@ -105,6 +106,19 @@ $default_options = array(
   'mobile_only' => 'off',
   'custom_walker' => null,
   'custom_css' => null,
+
+  'use_single_menu' => 'off',
+  'single_menu_height' => '80',
+  'single_menu_item_link_colour' => '#ffffff',
+  'single_menu_item_hover_colour' => '#ffffff',
+
+  'use_header_bar' => 'off',
+  'header_bar_logo' => null,
+  'header_bar_logo_link' => null,
+  'header_bar_html_content' => null,
+  'header_bar_height' => '80',
+  'header_bar_background_color' => '#ffffff',
+  'header_include_search_bar' => 'off',
 
   'items_order' => '{"menu":"","search":"","additional content":""}'
 

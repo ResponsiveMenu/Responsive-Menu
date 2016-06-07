@@ -1,23 +1,27 @@
 <div id="responsive-menu-container"
-  class="<?php echo $this->options['animation_type']; ?>-<?php echo $this->options['menu_appear_from']; ?>">
+  class="<?php echo $l['options']['animation_type']; ?>-<?php echo $l['options']['menu_appear_from']; ?>">
   <div id="responsive-menu-wrapper">
-    <div id="responsive-menu-title"><?php echo $this->options['menu_title']; ?></div>
-    <?php echo $this->data['menu']; ?>
-    <?php if($this->options['menu_remove_search_box'] != 'on'): ?>
+    <div id="responsive-menu-title">
+      <a href="<?php echo $l['options']['menu_title_link']; ?>" target="<?php echo $l['options']['menu_title_link_location']; ?>">
+        <?php echo $l['options']['menu_title']; ?>
+      </a>
+    </div>
+    <?php echo $l['menu']; ?>
+    <?php if($l['options']['menu_remove_search_box'] != 'on'): ?>
       <div id="responsive-menu-search-box">
         <?php $action = function_exists( 'icl_get_home_url' ) ? icl_get_home_url() : get_home_url(); ?>
         <form action="<?php echo $action; ?>" class="responsive-menu-search-form" role="search">
-          <input type="search" name="s" placeholder="<?php _e( 'Search', 'responsive-menu' ); ?>" class="responsive-menu-search-box">
+          <input type="search" name="s" placeholder="<?php _e( $l['options']['menu_search_box_text'], 'responsive-menu' ); ?>" class="responsive-menu-search-box">
         </form>
       </div>
     <?php endif; ?>
-    <?php if($this->options['menu_additional_content']->getValue()): ?>
+    <?php if($l['options']['menu_additional_content']->getValue()): ?>
       <div id="responsive-menu-additional-content">
-        <?php echo do_shortcode($this->options['menu_additional_content']); ?>
+        <?php echo do_shortcode($l['options']['menu_additional_content']); ?>
       </div>
     <?php endif; ?>
   </div>
 </div>
-<?php if($this->options['menu_overlay'] == 'on') : ?>
+<?php if($l['options']['menu_overlay'] == 'on') : ?>
   <div id="responsive-menu-mask"></div>
 <?php endif; ?>

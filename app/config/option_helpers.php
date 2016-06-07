@@ -16,19 +16,19 @@ $option_helpers = array(
 	),
 
 	'menu_to_use' => array(
-    'type' => 'ResponsiveMenu\Form\Select',
+    'form_component' => 'ResponsiveMenu\Form\Select',
 		'position' => 'initial_setup.initial',
     'custom' => array('select'=> $available_menus)
 	),
 
 	'theme_location_menu' => array(
-    'type' => 'ResponsiveMenu\Form\Select',
+    'form_component' => 'ResponsiveMenu\Form\Select',
 		'position' => 'menu.advanced',
     'custom' => array('select'=> $location_menus )
 	),
 
 	'menu_depth' => array(
-		'type' => 'ResponsiveMenu\Form\Select',
+		'form_component' => 'ResponsiveMenu\Form\Select',
 		'position' => 'menu.advanced',
     'custom' => array('select' => array_combine(range(1,5),range(1,5)))
 	),
@@ -42,13 +42,13 @@ $option_helpers = array(
 	),
 
 	'menu_auto_height' => array(
-    'type' => 'ResponsiveMenu\Form\Checkbox',
+    'form_component' => 'ResponsiveMenu\Form\Checkbox',
 		'position' => 'menu.advanced',
     'pro' => true
 	),
 
 	'menu_remove_search_box' => array(
-    'type' => 'ResponsiveMenu\Form\Checkbox',
+    'form_component' => 'ResponsiveMenu\Form\Checkbox',
 		'position' => 'menu.general',
 	),
 
@@ -56,38 +56,45 @@ $option_helpers = array(
 		'position' => 'menu.general',
 	),
 
+	'menu_word_wrap' => array(
+    'form_component' => 'ResponsiveMenu\Form\Checkbox',
+		'position' => 'menu.advanced',
+    'pro' => true
+	),
+
 	'menu_font_icons' => array(
-    'type' => 'ResponsiveMenu\Form\FontIconPageList',
+    'form_component' => 'ResponsiveMenu\Form\FontIconPageList',
     'filter' => 'ResponsiveMenu\Filters\JsonFilter',
 		'position' => 'menu.font_icons',
     'pro' => true
 	),
 
 	'menu_disable_scrolling' => array(
-    'type' => 'ResponsiveMenu\Form\Checkbox',
+    'form_component' => 'ResponsiveMenu\Form\Checkbox',
 		'position' => 'menu.advanced',
     'pro' => true
 	),
 
 	'menu_overlay' => array(
-    'type' => 'ResponsiveMenu\Form\Checkbox',
+    'form_component' => 'ResponsiveMenu\Form\Checkbox',
 		'position' => 'menu.advanced',
     'pro' => true
 	),
 
 	'menu_overlay_colour' => array(
-    'type' => 'ResponsiveMenu\Form\Colour',
+    'form_component' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'menu.advanced',
     'pro' => true
 	),
 
 	'menu_additional_content' => array(
-    'type' => 'ResponsiveMenu\Form\Textarea',
+    'filter' => 'ResponsiveMenu\Filters\HtmlFilter',
+    'form_component' => 'ResponsiveMenu\Form\Textarea',
 		'position' => 'menu.advanced',
 	),
 
 	'menu_additional_content_position' => array(
-    'type' => 'ResponsiveMenu\Form\Select',
+    'form_component' => 'ResponsiveMenu\Form\Select',
 		'position' => 'menu.advanced',
     'custom' => array('select' => array(
       'below' => 'Below Menu Links',
@@ -100,7 +107,7 @@ $option_helpers = array(
 	),
 
 	'menu_title_image' => array(
-    'type' => 'ResponsiveMenu\Form\Image',
+    'form_component' => 'ResponsiveMenu\Form\Image',
 		'position' => 'menu.general'
 	),
 
@@ -110,7 +117,7 @@ $option_helpers = array(
 	),
 
 	'menu_appear_from' => array(
-    'type' => 'ResponsiveMenu\Form\Select',
+    'form_component' => 'ResponsiveMenu\Form\Select',
 		'position' => 'menu.general',
     'custom' => array('select' => array(
       'left' => 'Left',
@@ -126,7 +133,7 @@ $option_helpers = array(
 	),
 
 	'menu_title_link_location' => array(
-    'type' => 'ResponsiveMenu\Form\Select',
+    'form_component' => 'ResponsiveMenu\Form\Select',
 		'position' => 'menu.general',
     'custom' => array('select' => array(
       '_blank' => 'New Tab',
@@ -141,27 +148,27 @@ $option_helpers = array(
 	),
 
 	'menu_close_on_link_click' => array(
-    'type' => 'ResponsiveMenu\Form\Checkbox',
+    'form_component' => 'ResponsiveMenu\Form\Checkbox',
 		'position' => 'menu.advanced'
 	),
 
 	'menu_item_click_to_trigger_submenu' => array(
-    'type' => 'ResponsiveMenu\Form\Checkbox',
+    'form_component' => 'ResponsiveMenu\Form\Checkbox',
 		'position' => 'menu.advanced'
 	),
 
   'minify_scripts' => array(
-    'type' => 'ResponsiveMenu\Form\Checkbox',
+    'form_component' => 'ResponsiveMenu\Form\Checkbox',
 		'position' => 'technical.scripts',
 	),
 
   'scripts_in_footer' => array(
-    'type' => 'ResponsiveMenu\Form\Checkbox',
+    'form_component' => 'ResponsiveMenu\Form\Checkbox',
 		'position' => 'technical.scripts',
 	),
 
   'external_files' => array(
-    'type' => 'ResponsiveMenu\Form\Checkbox',
+    'form_component' => 'ResponsiveMenu\Form\Checkbox',
 		'position' => 'technical.scripts',
 	),
 
@@ -173,12 +180,12 @@ $option_helpers = array(
 	),
 
   'button_image' => array(
-    'type' => 'ResponsiveMenu\Form\Image',
+    'form_component' => 'ResponsiveMenu\Form\Image',
 		'position' => 'button.general'
 	),
 
   'button_image_when_clicked' => array(
-    'type' => 'ResponsiveMenu\Form\Image',
+    'form_component' => 'ResponsiveMenu\Form\Image',
     'position' => 'button.general'
   ),
 
@@ -193,7 +200,7 @@ $option_helpers = array(
   ),
 
   'button_title_position' => array(
-    'type' => 'ResponsiveMenu\Form\Select',
+    'form_component' => 'ResponsiveMenu\Form\Select',
     'position' => 'button.general',
     'custom' => array('select' => array(
       'left' => 'Left',
@@ -209,7 +216,7 @@ $option_helpers = array(
 
   'button_click_animation' => array(
     'position' => 'button.general',
-    'type' => 'ResponsiveMenu\Form\Select',
+    'form_component' => 'ResponsiveMenu\Form\Select',
     'custom' => array('select' => array(
       'off' => 'Off',
       '3dx' => '3DX',
@@ -243,22 +250,22 @@ $option_helpers = array(
   ),
 
 	'button_background_colour' => array(
-		'type' => 'ResponsiveMenu\Form\Colour',
+		'form_component' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'button.colours'
 	),
 
 	'button_line_colour' => array(
-		'type' => 'ResponsiveMenu\Form\Colour',
+		'form_component' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'button.colours'
 	),
 
 	'button_text_colour' => array(
-		'type' => 'ResponsiveMenu\Form\Colour',
+		'form_component' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'button.colours'
 	),
 
 	'button_transparent_background' => array(
-		'type' => 'ResponsiveMenu\Form\Checkbox',
+		'form_component' => 'ResponsiveMenu\Form\Checkbox',
 		'position' => 'button.colours'
 	),
 
@@ -291,7 +298,7 @@ $option_helpers = array(
 	),
 
   'button_left_or_right' => array(
-    'type' => 'ResponsiveMenu\Form\Select',
+    'form_component' => 'ResponsiveMenu\Form\Select',
 		'position' => 'button.location',
     'custom' => array('select' => array(
       'left' => 'Left',
@@ -300,7 +307,7 @@ $option_helpers = array(
 	),
 
   'button_position_type' => array(
-    'type' => 'ResponsiveMenu\Form\Select',
+    'form_component' => 'ResponsiveMenu\Form\Select',
     'position' => 'button.advanced',
     'custom' => array('select' => array(
       'absolute' => 'Static',
@@ -309,7 +316,7 @@ $option_helpers = array(
   ),
 
   'button_push_with_animation' => array(
-    'type' => 'ResponsiveMenu\Form\Checkbox',
+    'form_component' => 'ResponsiveMenu\Form\Checkbox',
 		'position' => 'button.advanced'
 	),
 
@@ -323,7 +330,7 @@ $option_helpers = array(
 
   /* Animation Settings */
 	'animation_type' => array(
-		'type' => 'ResponsiveMenu\Form\Select',
+		'form_component' => 'ResponsiveMenu\Form\Select',
 		'position' => 'animation.menu',
     'custom' => array('select' => array(
       'slide' => 'Slide',
@@ -353,13 +360,13 @@ $option_helpers = array(
 	),
 
   'active_arrow_image' => array(
-    'type' => 'ResponsiveMenu\Form\Image',
+    'form_component' => 'ResponsiveMenu\Form\Image',
 		'position' => 'menu.submenus',
     'pro' => true
 	),
 
   'inactive_arrow_image' => array(
-    'type' => 'ResponsiveMenu\Form\Image',
+    'form_component' => 'ResponsiveMenu\Form\Image',
 		'position' => 'menu.submenus',
     'pro' => true
 	),
@@ -375,118 +382,118 @@ $option_helpers = array(
 	),
 
   'accordion_animation' => array(
-    'type' => 'ResponsiveMenu\Form\Checkbox',
+    'form_component' => 'ResponsiveMenu\Form\Checkbox',
 		'position' => 'menu.submenus',
     'pro' => true
 	),
 
   'auto_expand_all_submenus' => array(
-    'type' => 'ResponsiveMenu\Form\Checkbox',
+    'form_component' => 'ResponsiveMenu\Form\Checkbox',
 		'position' => 'menu.submenus'
 	),
 
   'auto_expand_current_submenus' => array(
-    'type' => 'ResponsiveMenu\Form\Checkbox',
+    'form_component' => 'ResponsiveMenu\Form\Checkbox',
 		'position' => 'menu.submenus'
 	),
 
   'menu_background_colour' => array(
-    'type' => 'ResponsiveMenu\Form\Colour',
+    'form_component' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'menu.background_colours'
 	),
 
   'menu_item_background_colour' => array(
-    'type' => 'ResponsiveMenu\Form\Colour',
+    'form_component' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'menu.background_colours'
 	),
 
   'menu_item_background_hover_colour' => array(
-    'type' => 'ResponsiveMenu\Form\Colour',
+    'form_component' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'menu.background_colours'
 	),
 
   'menu_item_border_colour' => array(
-    'type' => 'ResponsiveMenu\Form\Colour',
+    'form_component' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'menu.background_colours'
 	),
 
   'menu_title_background_colour' => array(
-    'type' => 'ResponsiveMenu\Form\Colour',
+    'form_component' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'menu.background_colours'
 	),
 
   'menu_title_background_hover_colour' => array(
-    'type' => 'ResponsiveMenu\Form\Colour',
+    'form_component' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'menu.background_colours'
 	),
 
   'menu_current_item_background_colour' => array(
-    'type' => 'ResponsiveMenu\Form\Colour',
+    'form_component' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'menu.background_colours'
 	),
 
   'menu_current_item_background_hover_colour' => array(
-    'type' => 'ResponsiveMenu\Form\Colour',
+    'form_component' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'menu.background_colours'
 	),
 
   'menu_title_colour' => array(
-    'type' => 'ResponsiveMenu\Form\Colour',
+    'form_component' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'menu.text_colours'
 	),
 
   'menu_title_hover_colour' => array(
-    'type' => 'ResponsiveMenu\Form\Colour',
+    'form_component' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'menu.text_colours'
 	),
 
   'menu_link_colour' => array(
-    'type' => 'ResponsiveMenu\Form\Colour',
+    'form_component' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'menu.text_colours'
 	),
 
   'menu_link_hover_colour' => array(
-    'type' => 'ResponsiveMenu\Form\Colour',
+    'form_component' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'menu.text_colours'
 	),
 
   'menu_current_link_colour' => array(
-    'type' => 'ResponsiveMenu\Form\Colour',
+    'form_component' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'menu.text_colours'
 	),
 
   'menu_current_link_hover_colour' => array(
-    'type' => 'ResponsiveMenu\Form\Colour',
+    'form_component' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'menu.text_colours'
 	),
 
   'menu_sub_arrow_border_colour' => array(
-    'type' => 'ResponsiveMenu\Form\Colour',
+    'form_component' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'menu.sub_arrow_colours'
 	),
 
   'menu_sub_arrow_border_hover_colour' => array(
-    'type' => 'ResponsiveMenu\Form\Colour',
+    'form_component' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'menu.sub_arrow_colours'
 	),
 
   'menu_sub_arrow_background_colour' => array(
-    'type' => 'ResponsiveMenu\Form\Colour',
+    'form_component' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'menu.sub_arrow_colours'
 	),
 
   'menu_sub_arrow_background_hover_colour' => array(
-    'type' => 'ResponsiveMenu\Form\Colour',
+    'form_component' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'menu.sub_arrow_colours'
 	),
 
   'menu_sub_arrow_shape_colour' => array(
-    'type' => 'ResponsiveMenu\Form\Colour',
+    'form_component' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'menu.sub_arrow_colours'
 	),
 
   'menu_sub_arrow_shape_hover_colour' => array(
-    'type' => 'ResponsiveMenu\Form\Colour',
+    'form_component' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'menu.sub_arrow_colours'
 	),
 
@@ -503,7 +510,7 @@ $option_helpers = array(
 	),
 
   'menu_text_alignment' => array(
-    'type' => 'ResponsiveMenu\Form\Select',
+    'form_component' => 'ResponsiveMenu\Form\Select',
 		'position' => 'menu.style',
     'custom' => array('select' => array(
       'left' => 'Left',
@@ -516,12 +523,12 @@ $option_helpers = array(
 	),
 
 	'shortcode' => array(
-		'type' => 'ResponsiveMenu\Form\Checkbox',
+		'form_component' => 'ResponsiveMenu\Form\Checkbox',
 		'position' => 'technical.menu'
 	),
 
 	'mobile_only' => array(
-		'type' => 'ResponsiveMenu\Form\Checkbox',
+		'form_component' => 'ResponsiveMenu\Form\Checkbox',
 		'position' => 'technical.menu',
     'pro' => true
 	),
@@ -532,15 +539,78 @@ $option_helpers = array(
 	),
 
 	'custom_css' => array(
-    'type' => 'ResponsiveMenu\Form\TextArea',
+    'form_component' => 'ResponsiveMenu\Form\TextArea',
 		'position' => 'custom_css.main',
     'pro' => true
 	),
 
 	'items_order' => array(
-    'type' => 'ResponsiveMenu\Form\MenuOrdering',
+    'form_component' => 'ResponsiveMenu\Form\MenuOrdering',
     'filter' => 'ResponsiveMenu\Filters\JsonFilter',
 		'position' => 'items_order.order'
+	),
+
+	'use_single_menu' => array(
+    'form_component' => 'ResponsiveMenu\Form\CheckBox',
+		'position' => 'single_menu.setup',
+    'pro' => true
+	),
+
+	'single_menu_height' => array(
+		'position' => 'single_menu.sizing',
+    'pro' => true
+	),
+
+	'single_menu_item_link_colour' => array(
+    'form_component' => 'ResponsiveMenu\Form\Colour',
+		'position' => 'single_menu.colours',
+    'pro' => true
+	),
+
+	'single_menu_item_hover_colour' => array(
+    'form_component' => 'ResponsiveMenu\Form\Colour',
+		'position' => 'single_menu.colours',
+    'pro' => true
+	),
+
+  'use_header_bar' => array(
+    'form_component' => 'ResponsiveMenu\Form\CheckBox',
+		'position' => 'header_bar.setup',
+    'pro' => true
+	),
+
+  'header_bar_logo' => array(
+    'form_component' => 'ResponsiveMenu\Form\Image',
+		'position' => 'header_bar.setup',
+    'pro' => true
+	),
+
+  'header_bar_logo_link' => array(
+		'position' => 'header_bar.setup',
+    'pro' => true
+	),
+
+  'header_bar_html_content' => array(
+    'form_component' => 'ResponsiveMenu\Form\TextArea',
+		'position' => 'header_bar.setup',
+    'pro' => true
+	),
+
+  'header_bar_height' => array(
+		'position' => 'header_bar.sizing',
+    'pro' => true
+	),
+
+  'header_bar_background_color' => array(
+    'form_component' => 'ResponsiveMenu\Form\Colour',
+		'position' => 'header_bar.colours',
+    'pro' => true
+	),
+
+  'header_include_search_bar' => array(
+    'form_component' => 'ResponsiveMenu\Form\Checkbox',
+		'position' => 'header_bar.advanced',
+    'pro' => true
 	),
 
 );

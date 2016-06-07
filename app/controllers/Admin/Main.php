@@ -23,7 +23,7 @@ class Main extends Base
     $flash['errors'] = $save_factory->build($options);
     $flash['success'] = 'Responsive Menu Options Updated Successfully';
 
-    $this->view->render('main', $options, $flash);
+    $this->view->render('main', ['options' => $options, 'flash' => $flash]);
 
 	}
 
@@ -40,12 +40,12 @@ class Main extends Base
     $flash['errors'] = $save_factory->build($options);
     $flash['success'] = 'Responsive Menu Options Reset Successfully';
 
-    $this->view->render('main', $options, $flash);
+    $this->view->render('main', ['options' => $options, 'flash' => $flash]);
 
 	}
 
   public function index() {
-    $this->view->render('main', $this->repository->all());
+    $this->view->render('main', ['options' => $this->repository->all()]);
   }
 
 }

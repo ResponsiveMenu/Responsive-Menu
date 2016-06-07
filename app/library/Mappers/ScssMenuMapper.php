@@ -44,7 +44,7 @@ class ScssMenuMapper extends ScssMapper
         & #responsive-menu-wrapper {
           background: {$this->options['menu_background_colour']};
         }
-        
+
         @if '{$this->options['menu_auto_height']}' == 'on' {
           @if '{$this->options['menu_appear_from']}' == 'bottom' {
             top: auto;
@@ -71,7 +71,13 @@ class ScssMenuMapper extends ScssMapper
         #responsive-menu-title {
           background-color: {$this->options['menu_title_background_colour']};
           color: {$this->options['menu_title_colour']};
-
+          a {
+            color: {$this->options['menu_title_colour']};
+            text-decoration: none;
+            &:hover {
+              color: {$this->options['menu_title_hover_colour']};
+            }
+          }
           &:hover {
             background-color: {$this->options['menu_title_background_hover_colour']};
             color: {$this->options['menu_title_hover_colour']};
@@ -82,12 +88,13 @@ class ScssMenuMapper extends ScssMapper
 
           li.responsive-menu-item {
             a {
-              height: {$this->options['menu_links_height']}px;
               line-height: {$this->options['menu_links_height']}px;
               border: 1px solid {$this->options['menu_item_border_colour']};
               color: {$this->options['menu_link_colour']};
               background-color: {$this->options['menu_item_background_colour']};
-
+              @if '{$this->options['menu_word_wrap']}' != 'off' {
+                word-wrap: break-word;
+              }
               &:hover {
                 color: {$this->options['menu_link_hover_colour']};
                 background-color: {$this->options['menu_item_background_hover_colour']};

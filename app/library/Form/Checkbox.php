@@ -2,8 +2,9 @@
 
 namespace ResponsiveMenu\Form;
 use ResponsiveMenu\Models\Option as Option;
+use ResponsiveMenu\Form\FormComponent as FormComponent;
 
-class Checkbox
+class Checkbox implements FormComponent
 {
 
 	public function render(Option $option)

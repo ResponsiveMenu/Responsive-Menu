@@ -1,10 +1,11 @@
 <?php
 
 namespace ResponsiveMenu\Formatters;
+use ResponsiveMenu\Collections\OptionsCollection as OptionsCollection;
 
 class Tabs
 {
-	public static function render($options)
+	public static function render(OptionsCollection $options)
 	{
     $tabs = self::getTabs($options);
 		foreach($tabs as $key => $val):
@@ -13,10 +14,10 @@ class Tabs
     endforeach;
 	}
 
-	public static function getTabs($options)
+	public static function getTabs(OptionsCollection $options)
 	{
 		$final = array();
-		foreach($options as $option):
+		foreach($options->all() as $option):
 			if($option->getPosition()):
 				$item = explode('.',$option->getPosition());
 				$final[$item[0]] = ucwords(str_replace('_', ' ', $item[0]));
@@ -25,10 +26,10 @@ class Tabs
 		return array_unique(array_filter($final));
 	}
 
-	public static function getSubTabs($tab, $options)
+	public static function getSubTabs($tab, OptionsCollection $options)
 	{
     $final = array();
-		foreach($options as $option):
+		foreach($options->all() as $option):
 			if($option->getPosition()):
 				$item = explode('.',$option->getPosition());
 				$final[] = $item[0] == $tab ? $option->getPosition() : null;
@@ -37,10 +38,10 @@ class Tabs
 		return array_unique(array_filter($final));
 	}
 
-	public static function getTabOptions($tab_name, $options)
+	public static function getTabOptions($tab_name, OptionsCollection $options)
 	{
 		$final = array();
-		foreach($options as $option) :
+		foreach($options->all() as $option) :
 			if($option->getPosition()) :
 				if($tab_name == $option->getPosition())
 					$final[] = $option;

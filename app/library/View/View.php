@@ -4,5 +4,5 @@ namespace ResponsiveMenu\View;
 
 interface View
 {
-	public function render($location, $options = [], $data = []);
+	public function render($location, $l = []);
 }

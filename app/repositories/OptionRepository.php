@@ -4,6 +4,7 @@ namespace ResponsiveMenu\Repositories;
 use ResponsiveMenu\Factories\OptionFactory as Factory;
 use ResponsiveMenu\Models\Option as Option;
 use ResponsiveMenu\Database\Database as Database;
+use ResponsiveMenu\Collections\OptionsCollection as OptionsCollection;
 
 class OptionRepository implements Repository
 {
@@ -33,10 +34,10 @@ class OptionRepository implements Repository
 	public function all()
 	{
     $options = $this->db->all($this->table);
-    $all_options = [];
+    $collection = new OptionsCollection;
     foreach($options as $option)
-      $all_options[$option->name] = $this->factory->build($option->name, $option->value);
-    return $all_options;
+      $collection->add($this->factory->build($option->name, $option->value));
+    return $collection;
 	}
 
 }

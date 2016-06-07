@@ -2,9 +2,9 @@
 
 namespace ResponsiveMenu\Form;
 use ResponsiveMenu\Models\Option as Option;
+use ResponsiveMenu\Form\FormComponent as FormComponent;
 
-class FontIconPageList
-{
+class FontIconPageList implements FormComponent {
 
 	public function render(Option $option)
 	{

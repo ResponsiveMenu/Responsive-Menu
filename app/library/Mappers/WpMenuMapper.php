@@ -1,10 +1,11 @@
 <?php
 
 namespace ResponsiveMenu\Mappers;
+use ResponsiveMenu\Collections\OptionsCollection as OptionsCollection;
 
 class WpMenuMapper
 {
-  public function __construct($menu_name, $depth, $theme_location = '', $walker = '', $options)
+  public function __construct($menu_name, $depth, $theme_location = '', $walker = '', OptionsCollection $options)
   {
     $this->menu_name = $menu_name ? $menu_name : null;
     $this->depth = $depth ? $depth : 0;
