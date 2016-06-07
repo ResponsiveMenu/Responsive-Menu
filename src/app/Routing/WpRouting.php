@@ -23,7 +23,6 @@ class WpRouting implements Routing
 
   public function adminPage()
   {
-
     /* Heavily reliant on WordPress so very hard coded */
     if(isset($_POST['responsive_menu_submit']))
       $method = 'update';
