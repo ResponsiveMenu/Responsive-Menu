@@ -8,8 +8,9 @@ class FontIconPageList implements FormComponent {
 
 	public function render(Option $option)
 	{
-    if($option->getValue())
-      $final = array_filter(array_combine($option->getValue()->id, $option->getValue()->icon));
+
+    if($decoded = json_decode($option->getValue()))
+      $final = array_filter(array_combine($decoded->id, $decoded->icon));
     else
       $final = null;
 
@@ -60,7 +61,7 @@ class FontIconPageList implements FormComponent {
       echo "<script>
         jQuery(document).ready(function($) {
           $(document).on('click', '.add-font-icon', function(e) {
-            var lastRow = $('#{$option->getName()} .font-icon-row').last();
+            var lastRow = $('#{$option->getName()}_container .font-icon-row').last();
             var nextRow = lastRow.clone();
             nextRow.find(':text').val('')
             lastRow.after(nextRow);
