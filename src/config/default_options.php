@@ -123,6 +123,5 @@ $default_options = array(
   'header_bar_background_color' => '#ffffff',
   'header_include_search_bar' => 'off',
 
-  'items_order' => '{"title": "","menu":"","search":"","additional content":""}'
-
+  'items_order' => '{"title": "","menu":"","search":"","additional content":""}',
 );

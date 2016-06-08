@@ -21,8 +21,8 @@ $wp_router = new ResponsiveMenu\Routing\WpRouting($container);
 $wp_router->route();
 
 if(is_admin()):
-  $migration = new ResponsiveMenu\Database\Migration($container['database']);
   include dirname(__FILE__) . '/src/config/default_options.php';
-  $migration->setup($default_options);
-  $migration->migrate();
+  $migration = new ResponsiveMenu\Database\Migration($container['database'], $default_options);
+  $migration->setup();
+  $migration->synchronise();
 endif;

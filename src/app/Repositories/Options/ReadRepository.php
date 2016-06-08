@@ -2,7 +2,6 @@
 
 namespace ResponsiveMenu\Repositories\Options;
 
-interface ReadRepository
-{
-	public function all();
+interface ReadRepository {
+  public function all();
 }

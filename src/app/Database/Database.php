@@ -4,9 +4,8 @@ namespace ResponsiveMenu\Database;
 
 interface Database
 {
-	public function update($table, array $to_update, array $where);
-	public function delete($table, $name);
-	public function all($table);
-	public function insert($table, array $arguments);
-	public function insertIfNotExists($table, array $arguments);
+	public function update(array $to_update, array $where);
+	public function delete($name);
+	public function all();
+	public function insert(array $arguments);
 }

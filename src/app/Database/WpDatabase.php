@@ -2,59 +2,41 @@
 
 namespace ResponsiveMenu\Database;
 
-class WpDatabase implements Database
-{
-	public function __construct()
-	{
-		global $wpdb;
-		$this->db = $wpdb;
-	}
+class WpDatabase implements Database {
 
-	public function update($table, array $to_update, array $where)
-	{
-		$this->db->update($table, $to_update, $where);
-	}
+  const TABLE = 'responsive_menu';
 
-	public function delete($table, $name)
-	{
-    $this->db->delete($table, $name);
-	}
-
-	public function all($table)
-	{
-		return $this->db->get_results("SELECT * FROM $table");
-	}
-
-	public function insert($table, array $arguments)
-	{
-		$arguments['created_at'] = current_time('mysql');
-		$this->db->insert($table, $arguments);
-	}
-
-	public function insertIfNotExists($table, array $arguments)
-	{
-		if(!$this->select($table, key($arguments), $arguments[key($arguments)])) $this->insert($table, $arguments);
-	}
-
-	public function select($table, $column, $value)
-	{
-		return $this->db->get_results( "SELECT * FROM $table WHERE $column = '$value';" );
-	}
-
-	public function getPrefix()
-	{
-		return $this->db->prefix;
-	}
-
-	public function getCharset()
-	{
-		return $this->db->get_charset_collate();
-	}
-
-  public function getVersion()
+  public function __construct()
   {
-    $plugin_data = get_plugin_data(dirname(dirname(dirname(dirname(__FILE__)))) . '/responsive-menu-3.php', false, false);
-    return $plugin_data['Version'];
+    global $wpdb;
+    $this->db = $wpdb;
+    $this->table = $this->db->prefix . self::TABLE;
+  }
+
+  public function update(array $to_update, array $where)
+  {
+    $this->db->update($this->table, $to_update, $where);
+  }
+
+  public function delete($name)
+  {
+    $this->db->delete($this->table, $name);
+  }
+
+  public function all()
+  {
+    return $this->db->get_results("SELECT * FROM $this->table");
+  }
+
+  public function insert(array $arguments)
+  {
+    $arguments['created_at'] = current_time('mysql');
+    $this->db->insert($this->table, $arguments);
+  }
+
+  public function select($column, $value)
+  {
+    return $this->db->get_results("SELECT * FROM $this->table WHERE $column = '$value';");
   }
 
 }

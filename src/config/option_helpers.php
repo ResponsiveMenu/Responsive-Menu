@@ -89,7 +89,7 @@ $option_helpers = array(
 
 	'menu_additional_content' => array(
     'filter' => 'ResponsiveMenu\Filters\HtmlFilter',
-    'form_component' => 'ResponsiveMenu\Form\Textarea',
+    'form_component' => 'ResponsiveMenu\Form\TextArea',
 		'position' => 'menu.advanced',
 	),
 
