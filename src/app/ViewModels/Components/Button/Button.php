@@ -13,10 +13,13 @@ class Button implements ViewComponent {
     $button_title_pos = $options['button_title_position'];
     $button_title_html = $button_title != '' ? '<span class="hamburger-label hamburger-label-'.$button_title_pos.'">'.$button_title.'</span>' : '';
     $accessible = in_array($button_title_pos, array('left', 'right')) ? 'hamburger--accessible' : '';
+    $content = '';
 
-    $content = '<button id="responsive-menu-button"
-            class="hamburger ' . $accessible . '
-            hamburger--' . $options['button_click_animation'] . '"
+    $content .= $options['use_header_bar'] == 'on' ? '<div id="responsive-menu-header-bar-button" class="responsive-menu-header-box">' : '';
+
+    $content .= '<button id="responsive-menu-button"
+            class="hamburger ' . $accessible .
+            'hamburger--' . $options['button_click_animation'] . '"
             type="button"
             aria-label="Menu"
             aria-controls="navigation">';
@@ -24,6 +27,7 @@ class Button implements ViewComponent {
     $content .= '<span class="hamburger-box">' . $options->getButtonIcon() . $options->getButtonIconActive() . '</span>';
     $content .= in_array($button_title_pos, array('bottom', 'right')) ? $button_title_html : '';
     $content .= '</button>';
+    $content .= $options['use_header_bar'] == 'on' ? '</div>' : '';
 
     return $content;
 

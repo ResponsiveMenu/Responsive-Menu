@@ -25,8 +25,7 @@ class Front extends Base
 
     # Build Our Menu Display
     $menu = new MenuViewModel($options);
-    $button = new ButtonViewModel($options);
-    $header = new HeaderBarViewModel($options);
+    $html = $options['use_header_bar'] == 'on' ? new HeaderBarViewModel($options) : new ButtonViewModel($options);
 
     # Only load Font Icon Scripts if Needed
     if($options->usesFontIcons())
@@ -34,14 +33,22 @@ class Front extends Base
 
     # Only render if we don't have shortcodes turned on
     if($options['shortcode'] == 'off'):
-		  $this->view->render('header_bar', ['options' => $options, 'header' => $header->getHtml()]);
-		  $this->view->render('menu', ['options' => $options, 'menu' => $menu->getHtml()]);
-	    $this->view->render('button', ['button' => $button->getHtml(), 'options' => $options]);
+      $options['use_header_bar'] == 'on'
+        ? $this->view->render('header_bar', ['options' => $options, 'header' => $html->getHtml()])
+        : $this->view->render('button', ['options' => $options, 'button' => $html->getHtml()]);
+      $this->view->render('menu', ['options' => $options, 'menu' => $menu->getHtml()]);
+
     else:
-      add_shortcode('responsive_menu', function($atts) use($options, $menu, $button) {
+      add_shortcode('responsive_menu', function($atts) use($options, $html, $menu) {
+
         array_walk($atts, function($a, $b) use ($options) { $options[$b] = $a; });
-        return $this->view->make('menu', ['options' => $options, 'menu' => $menu->getHtml()]) .
-  	           $this->view->make('button', ['button' => $button->getHtml(), 'options' => $options]);
+
+        $html = $options['use_header_bar'] == 'on'
+                ? $this->view->make('header_bar', ['options' => $options, 'header' => $html->getHtml()])
+                : $this->view->make('button', ['options' => $options, 'button' => $html->getHtml()]);
+
+        return $html . $this->view->make('menu', ['options' => $options, 'menu' => $menu->getHtml()]);
+        
       });
     endif;
 

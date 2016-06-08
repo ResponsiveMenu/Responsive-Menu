@@ -21,7 +21,7 @@ class CssFactory {
     $css_menu_mapper = new ScssMenuMapper($options);
     $css_menu = $css_menu_mapper->map();
 
-    if($options['use_header_bar']->getValue()):
+    if($options['use_header_bar'] == 'on'):
       $css_header_bar_mapper = new ScssHeaderBarMapper($options);
       $css_header_bar = $css_header_bar_mapper->map();
     else:

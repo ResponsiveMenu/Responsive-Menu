@@ -13,7 +13,6 @@ class ScssHeaderBarMapper extends ScssMapper
         background-color: {$this->options['header_bar_background_color']};
         height: {$this->options['header_bar_height']}px;
         color: {$this->options['header_bar_text_color']};
-        margin-top: {$this->options['header_bar_margin_top']}px;
         font-size: {$this->options['header_bar_font_size']}px;
         @if '{$this->options['header_bar_font']}' != '' {
           font-family: '{$this->options['header_bar_font']}';
@@ -24,7 +23,7 @@ class ScssHeaderBarMapper extends ScssMapper
       }
       @media screen and ( max-width: {$this->options['breakpoint']}px ) {
         #responsive-menu-header {
-          display: inline-block;
+          display: block;
         }
         body {
           padding-top: {$this->options['header_bar_height']}px;

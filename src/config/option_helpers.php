@@ -650,11 +650,6 @@ $option_helpers = array(
     'pro' => true
 	),
 
-  'header_bar_margin_top' => array(
-		'position' => 'header_bar.styling',
-    'pro' => true
-	),
-
   'header_bar_position_type' => array(
     'form_component' => 'ResponsiveMenu\Form\Select',
     'position' => 'header_bar.advanced',

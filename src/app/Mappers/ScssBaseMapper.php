@@ -209,10 +209,15 @@ class ScssBaseMapper extends ScssMapper
         .admin-bar & {
           margin-top: 32px;
         }
-        .responsive-menu-header-bar-item {
+        .responsive-menu-header-box {
           display: inline-block;
           &, & img {
             vertical-align: middle;
+            max-width: 100%;
+          }
+          &:last-child {
+            float: right;
+            margin-right: 0;
           }
         }
         #responsive-menu-button {
@@ -220,11 +225,9 @@ class ScssBaseMapper extends ScssMapper
           margin: 0;
           left: auto;
           right: auto;
-          top: auto;
           bottom: auto;
         }
-        .responsive-menu-header-bar-item,
-        #responsive-menu-button {
+        .responsive-menu-header-box {
           margin-right: 2%;
         }
       }

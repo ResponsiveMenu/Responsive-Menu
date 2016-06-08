@@ -127,7 +127,6 @@ $default_options = array(
   'header_bar_text_color' => '#ffffff',
   'header_include_search_bar' => 'off',
   'header_bar_position_type' => 'fixed',
-  'header_bar_margin_top' => '0',
 
   'items_order' => '{"title": "","menu":"","search":"","additional content":""}',
   'header_bar_items_order' => '{"logo": "","title":"","search":"","html content":"","button":""}',

@@ -9,7 +9,7 @@ class Title implements ViewComponent {
 
   public function render(OptionsCollection $options) {
 
-    return '<div id="responsive-menu-header-bar-title" class="responsive-menu-header-bar-item">Title</div>';
+    return '<div id="responsive-menu-header-bar-title" class="responsive-menu-header-bar-item responsive-menu-header-box">Title</div>';
 
 
   }
