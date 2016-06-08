@@ -26,7 +26,7 @@ class Migration{
     else:
       foreach($options as $converted)
         $current[$converted->name] = $converted->value;
-      $final = array_diff($this->defaults, $current);
+      $final = array_diff_key($this->defaults, $current);
       if(is_array($final)):
   		    foreach($final as $name => $value)
   			     $this->db->insert(array('name' => $name, 'value' => $value));

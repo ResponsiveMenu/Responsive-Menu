@@ -6,7 +6,7 @@ class JsonFilter implements Filter
 {
 	public function filter($data)
 	{
-		return json_encode($data);
+		return is_string($data) ? $data : json_encode($data);
 	}
 
 }
