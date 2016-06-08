@@ -3,6 +3,8 @@
 namespace ResponsiveMenu\Controllers;
 use ResponsiveMenu\Controllers\Base as Base;
 use ResponsiveMenu\ViewModels\Menu as MenuViewModel;
+use ResponsiveMenu\ViewModels\Button as ButtonViewModel;
+use ResponsiveMenu\ViewModels\HeaderBar as HeaderBarViewModel;
 use ResponsiveMenu\Factories\FrontDisplayFactory as DisplayFactory;
 use ResponsiveMenu\Shortcodes\ResponsiveMenuShortcode as Shortcode;
 
@@ -22,7 +24,9 @@ class Front extends Base
     $display_factory->build($options);
 
     # Build Our Menu Display
-    $menu_display = new MenuViewModel($options);
+    $menu = new MenuViewModel($options);
+    $button = new ButtonViewModel($options);
+    $header = new HeaderBarViewModel($options);
 
     # Only load Font Icon Scripts if Needed
     if($options->usesFontIcons())
@@ -30,13 +34,14 @@ class Front extends Base
 
     # Only render if we don't have shortcodes turned on
     if($options['shortcode'] == 'off'):
-		  $this->view->render('menu', ['options' => $options, 'menu' => $menu_display->getHtml()]);
-	    $this->view->render('button', ['options' => $options]);
+		  $this->view->render('header_bar', ['options' => $options, 'header' => $header->getHtml()]);
+		  $this->view->render('menu', ['options' => $options, 'menu' => $menu->getHtml()]);
+	    $this->view->render('button', ['button' => $button->getHtml(), 'options' => $options]);
     else:
-      add_shortcode('responsive_menu', function($atts) use($options, $menu_display) {
+      add_shortcode('responsive_menu', function($atts) use($options, $menu, $button) {
         array_walk($atts, function($a, $b) use ($options) { $options[$b] = $a; });
-        return $this->view->make('menu', ['options' => $options, 'menu' => $menu_display->getHtml()]) .
-  	           $this->view->make('button', ['options' => $options]);
+        return $this->view->make('menu', ['options' => $options, 'menu' => $menu->getHtml()]) .
+  	           $this->view->make('button', ['button' => $button->getHtml(), 'options' => $options]);
       });
     endif;
 

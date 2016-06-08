@@ -318,3 +318,12 @@ input[type="button"].image_button
 .draggable input {
   display: none;
 }
+
+#header_bar_items_order_container {
+  width: 100%;
+}
+
+#header_bar_items_order_container .draggable {
+  display: inline-block;
+  width: 19%;
+}

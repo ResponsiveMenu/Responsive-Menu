@@ -316,7 +316,8 @@ $option_helpers = array(
     'position' => 'button.advanced',
     'custom' => array('select' => array(
       'absolute' => 'Static',
-      'fixed' => 'Fixed')
+      'fixed' => 'Fixed',
+      'relative' => 'Relative')
     )
   ),
 
@@ -614,7 +615,23 @@ $option_helpers = array(
     'pro' => true
 	),
 
+  'header_bar_font_size' => array(
+		'position' => 'header_bar.sizing',
+    'pro' => true
+	),
+
+  'header_bar_font' => array(
+		'position' => 'header_bar.styling',
+    'pro' => true
+	),
+
   'header_bar_background_color' => array(
+    'form_component' => 'ResponsiveMenu\Form\Colour',
+		'position' => 'header_bar.colours',
+    'pro' => true
+	),
+
+  'header_bar_text_color' => array(
     'form_component' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'header_bar.colours',
     'pro' => true
@@ -625,5 +642,23 @@ $option_helpers = array(
 		'position' => 'header_bar.advanced',
     'pro' => true
 	),
+
+  'header_bar_items_order' => array(
+    'form_component' => 'ResponsiveMenu\Form\HeaderBarOrdering',
+    'filter' => 'ResponsiveMenu\Filters\JsonFilter',
+		'position' => 'header_bar.ordering',
+    'pro' => true
+	),
+
+  'header_position_type' => array(
+    'form_component' => 'ResponsiveMenu\Form\Select',
+    'position' => 'header_bar.advanced',
+    'custom' => array('select' => array(
+      'absolute' => 'Static',
+      'fixed' => 'Fixed',
+      'relative' => 'Relative')
+    ),
+    'pro' => true
+  ),
 
 );

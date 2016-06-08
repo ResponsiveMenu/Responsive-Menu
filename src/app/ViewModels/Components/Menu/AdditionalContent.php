@@ -1,6 +1,8 @@
 <?php
 
-namespace ResponsiveMenu\ViewModels\Components;
+namespace ResponsiveMenu\ViewModels\Components\Menu;
+
+use ResponsiveMenu\ViewModels\Components\ViewComponent as ViewComponent;
 use ResponsiveMenu\Collections\OptionsCollection as OptionsCollection;
 
 class AdditionalContent implements ViewComponent {

@@ -1,6 +1,7 @@
 <?php
 
 namespace ResponsiveMenu\ViewModels;
+
 use ResponsiveMenu\Collections\OptionsCollection as OptionsCollection;
 
 class Menu {
@@ -11,10 +12,10 @@ class Menu {
 
   public function getHtml() {
     $mapping = [
-      'title' => 'ResponsiveMenu\ViewModels\Components\Title',
-      'menu' => 'ResponsiveMenu\ViewModels\Components\Menu',
-      'search' => 'ResponsiveMenu\ViewModels\Components\Search',
-      'additional content' => 'ResponsiveMenu\ViewModels\Components\AdditionalContent'
+      'title' => 'ResponsiveMenu\ViewModels\Components\Menu\Title',
+      'menu' => 'ResponsiveMenu\ViewModels\Components\Menu\Menu',
+      'search' => 'ResponsiveMenu\ViewModels\Components\Menu\Search',
+      'additional content' => 'ResponsiveMenu\ViewModels\Components\Menu\AdditionalContent'
     ];
     $content = '';
 

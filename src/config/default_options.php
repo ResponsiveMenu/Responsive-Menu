@@ -118,10 +118,18 @@ $default_options = array(
   'use_header_bar' => 'off',
   'header_bar_logo' => null,
   'header_bar_logo_link' => null,
+  'header_bar_title' => null,
   'header_bar_html_content' => null,
   'header_bar_height' => '80',
+  'header_bar_font_size' => '14',
+  'header_bar_font' => null,
   'header_bar_background_color' => '#ffffff',
+  'header_bar_text_color' => '#ffffff',
   'header_include_search_bar' => 'off',
+  'header_bar_position_type' => 'fixed',
+  'header_bar_margin_top' => 'fixed',
 
   'items_order' => '{"title": "","menu":"","search":"","additional content":""}',
+  'header_bar_items_order' => '{"logo": "","title":"","search":"","html content":"","button":""}',
+
 );

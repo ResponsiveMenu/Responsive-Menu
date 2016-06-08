@@ -1,6 +1,8 @@
 <?php
 
-namespace ResponsiveMenu\ViewModels\Components;
+namespace ResponsiveMenu\ViewModels\Components\Menu;
+
+use ResponsiveMenu\ViewModels\Components\ViewComponent as ViewComponent;
 use ResponsiveMenu\Collections\OptionsCollection as OptionsCollection;
 
 class Title implements ViewComponent {
@@ -19,8 +21,6 @@ class Title implements ViewComponent {
       $content .= '</div>';
       return $content;
     endif;
-
-
 
   }
 
