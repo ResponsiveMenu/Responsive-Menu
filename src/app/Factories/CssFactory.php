@@ -4,6 +4,7 @@ namespace ResponsiveMenu\Factories;
 use ResponsiveMenu\Mappers\ScssBaseMapper as ScssBaseMapper;
 use ResponsiveMenu\Mappers\ScssButtonMapper as ScssButtonMapper;
 use ResponsiveMenu\Mappers\ScssMenuMapper as ScssMenuMapper;
+use ResponsiveMenu\Mappers\ScssHeaderBarMapper as ScssHeaderBarMapper;
 use ResponsiveMenu\Formatters\Minify as Minify;
 use ResponsiveMenu\Collections\OptionsCollection as OptionsCollection;
 
@@ -20,7 +21,14 @@ class CssFactory {
     $css_menu_mapper = new ScssMenuMapper($options);
     $css_menu = $css_menu_mapper->map();
 
-    $css = $css_base . $css_button . $css_menu . $options['custom_css'];
+    if($options['use_header_bar']->getValue()):
+      $css_header_bar_mapper = new ScssHeaderBarMapper($options);
+      $css_header_bar = $css_header_bar_mapper->map();
+    else:
+      $css_header_bar = '';
+    endif;
+
+    $css = $css_base . $css_button . $css_menu . $css_header_bar . $options['custom_css'];
 
     if($options['minify_scripts'] == 'on'):
       $minifier = new Minify;

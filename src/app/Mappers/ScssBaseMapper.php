@@ -198,8 +198,39 @@ class ScssBaseMapper extends ScssMapper
         margin: 10px auto;
       }
 
+      #responsive-menu-header {
+        width: 100%;
+        padding: 0 5%;
+        box-sizing: border-box;
+        top: 0;
+        right: 0;
+        left: 0;
+        display: none;
+        .admin-bar & {
+          margin-top: 32px;
+        }
+        .responsive-menu-header-bar-item {
+          display: inline-block;
+          &, & img {
+            vertical-align: middle;
+          }
+        }
+        #responsive-menu-button {
+          position: relative;
+          margin: 0;
+          left: auto;
+          right: auto;
+          top: auto;
+          bottom: auto;
+        }
+        .responsive-menu-header-bar-item,
+        #responsive-menu-button {
+          margin-right: 2%;
+        }
+      }
+
       @media screen and ( max-width: 782px ) {
-        .admin-bar .hamburger {
+        .admin-bar .hamburger, .admin-bar #responsive-menu-header {
             margin-top: 46px;
         }
       }

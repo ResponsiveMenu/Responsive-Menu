@@ -9,7 +9,9 @@ class HtmlContent implements ViewComponent {
 
   public function render(OptionsCollection $options) {
 
-    return 'HtmlContent';
+    return '<div id="responsive-menu-header-bar-html" class="responsive-menu-header-bar-item">' .
+              do_shortcode($options['header_bar_html_content']) .
+            '</div>';
 
   }
 

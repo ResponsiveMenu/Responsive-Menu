@@ -31,7 +31,7 @@ $default_options = array(
   'button_top' => 50,
   'button_distance_from_side' => 5,
   'button_left_or_right' => 'right',
-  'button_position_type' => 'absolute',
+  'button_position_type' => 'fixed',
   'button_push_with_animation' => 'off',
   'button_font_size' => 14,
 
@@ -127,7 +127,7 @@ $default_options = array(
   'header_bar_text_color' => '#ffffff',
   'header_include_search_bar' => 'off',
   'header_bar_position_type' => 'fixed',
-  'header_bar_margin_top' => 'fixed',
+  'header_bar_margin_top' => '0',
 
   'items_order' => '{"title": "","menu":"","search":"","additional content":""}',
   'header_bar_items_order' => '{"logo": "","title":"","search":"","html content":"","button":""}',

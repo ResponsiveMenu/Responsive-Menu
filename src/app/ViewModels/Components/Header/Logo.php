@@ -9,7 +9,10 @@ class Logo implements ViewComponent {
 
   public function render(OptionsCollection $options) {
 
-    return 'Logo';
+    return '<div id="responsive-menu-header-bar-logo" class="responsive-menu-header-bar-item">
+            <img src="'. $options['header_bar_logo'].'" />
+            </div>';
+
 
   }
 
