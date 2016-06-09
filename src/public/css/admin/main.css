@@ -25,6 +25,7 @@
   color: white;
   padding: 10px 25px;
   border-radius: 2px;
+  cursor: pointer;
   margin-top: 15px;
   font-weight: bold;
 }
@@ -35,6 +36,7 @@
 .postbox .inside .text {
   padding: 5px 15px;
   height: 30px;
+  margin-right: 10px;
 }
 
 .postbox .inside .textarea {
@@ -87,11 +89,12 @@
   text-align: left;
 }
 
-#items_order_container td,
 #header_bar_items_order_container td {
   width: 100%;
   display: block;
-  padding: 0;
+  padding: 20px;
+  border: 0;
+  box-sizing: border-box;
 }
 
 .postbox .inside tr.pro_option td:last-child:before {
@@ -406,11 +409,8 @@ input[type="button"].image_button
   display: none;
 }
 
-#header_bar_items_order_container {
-  width: 100%;
-}
 
 #header_bar_items_order_container .draggable {
   display: inline-block;
-  width: 19%;
+  width: 18%;
 }
