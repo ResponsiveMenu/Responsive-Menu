@@ -47,6 +47,7 @@ class ScssButtonMapper extends ScssMapper
 
         #responsive-menu-button {
           display: inline-block;
+          transition: transform {$this->options['animation_speed']}s;
         }
       }
 CSS;

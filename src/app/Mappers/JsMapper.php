@@ -46,7 +46,6 @@ class JsMapper
           this.isOpen = true;
         },
         closeMenu: function() {
-          console.log('closing');
           $(this.trigger).removeClass(this.activeClass);
           $('body').removeClass(this.openClass);
           $('.responsive-menu-button-icon-inactive').hide();
@@ -94,28 +93,29 @@ class JsMapper
           return $(this.wrapper).height();
         },
         setWrapperTranslate: function() {
-          var translate = '';
-          switch(this.animationType + this.animationSide) {
-            case 'pushleft':
+          switch(this.animationSide) {
+            case 'left':
               translate = 'translateX(' + this.menuWidth() + 'px)'; break;
-            case 'pushright':
+            case 'right':
               translate = 'translateX(-' + this.menuWidth() + 'px)'; break;
-            case 'pushtop':
+            case 'top':
               translate = 'translateY(' + this.wrapperHeight() + 'px)'; break;
-            case 'pushbottom':
+            case 'bottom':
               translate = 'translateY(-' + this.menuHeight() + 'px)'; break;
             }
-            if(translate) {
+            if(this.animationType == 'push') {
               $(this.pageWrapper).css({'transform':translate});
+            }
+            if(this.pushButton == 'on') {
+              $('#responsive-menu-button').css({'transform':translate});
             }
         },
         clearWrapperTranslate: function() {
-          switch(this.animationType + this.animationSide) {
-            case 'pushleft':
-            case 'pushright':
-            case 'pushtop':
-            case 'pushbottom':
-              $(this.pageWrapper).css({'transform':''}); break;
+          if(this.animationType == 'push') {
+            $(this.pageWrapper).css({'transform':''});
+          }
+          if(this.pushButton == 'on') {
+            $('#responsive-menu-button').css({'transform':''});
           }
         },
         init: function() {
