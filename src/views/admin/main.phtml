@@ -5,6 +5,8 @@ use ResponsiveMenu\Formatters\Text as Text;
 
 ?>
 <div class="wrap">
+  <div id="poststuff">
+    <div id="postbox-container" class="postbox-container">
 	<div class="tabs_container">
 		<?php Tabs::render($l['options']); ?>
 	</div>
@@ -29,11 +31,13 @@ use ResponsiveMenu\Formatters\Text as Text;
   <?php endif; ?>
   <div id="all_options_container">
   	<form action="" method="post">
-  		<?php $t=1; foreach(Tabs::getTabs($l['options']) as $key => $val) : ?>
+      <div class="meta-box-sortables ui-sortable" id="normal-sortables">
+  		<?php $t=1; foreach(Tabs::getTabs($l['options']) as $key => $val): ?>
   			<div class="tab_container tab_container_<?php echo $t; ?>" id="tab_container_<?php echo $key; ?>">
           <?php foreach(Tabs::getSubTabs($key, $l['options']) as $tab_name): ?>
             <div class="postbox postbox_<?php echo explode('.',$tab_name)[1]; ?>">
-            <h4><?php echo $val; ?> &raquo; <?php Text::underscoreToWord(explode('.',$tab_name)[1]); ?></h4>
+              <button aria-expanded="true" class="handlediv button-link" type="button"><span class="screen-reader-text">Toggle panel: Location</span><span aria-hidden="true" class="toggle-indicator"></span></button>
+            <h2 class="hndle ui-sortable-handle"><?php echo $val; ?> &raquo; <?php Text::underscoreToWord(explode('.',$tab_name)[1]); ?></h2>
     				<div class="inside">
               <table class="widefat">
     					<?php $i=0; foreach(Tabs::getTabOptions($tab_name, $l['options']) as $option) : ?>
@@ -50,6 +54,7 @@ use ResponsiveMenu\Formatters\Text as Text;
         <?php endforeach; ?>
   			</div>
   		<?php $t++; endforeach; ?>
+    </div>
   		<input type="submit" class="button submit" name="responsive_menu_submit" value="Update Options" />
   		<input type="submit" class="button submit" name="responsive_menu_reset" value="Reset Options" />
   	</form>
@@ -65,4 +70,6 @@ use ResponsiveMenu\Formatters\Text as Text;
       </ul>
       Buy now for only $14.99
   </div>
+</div>
+</div>
 </div>
