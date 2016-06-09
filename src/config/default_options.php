@@ -92,6 +92,7 @@ $default_options = array(
   'menu_title_link_location' => '_self',
   'menu_width' => 75,
   'menu_close_on_link_click' => 'off',
+  'menu_close_on_body_click' => 'off',
   'menu_item_click_to_trigger_submenu' => 'off',
   'menu_disable_scrolling' => 'off',
   'menu_overlay' => 'off',

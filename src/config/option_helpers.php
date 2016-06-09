@@ -152,6 +152,11 @@ $option_helpers = array(
 		'position' => 'menu.advanced'
 	),
 
+	'menu_close_on_body_click' => array(
+    'form_component' => 'ResponsiveMenu\Form\Checkbox',
+		'position' => 'menu.advanced'
+	),
+
 	'menu_item_click_to_trigger_submenu' => array(
     'form_component' => 'ResponsiveMenu\Form\Checkbox',
 		'position' => 'menu.advanced'

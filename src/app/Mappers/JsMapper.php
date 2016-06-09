@@ -33,7 +33,8 @@ class JsMapper
         activeArrow: '{$this->options->getActiveArrow()}',
         inactiveArrow: '{$this->options->getInActiveArrow()}',
         wrapper: '#responsive-menu-wrapper',
-        closeOnClick: '{$this->options['menu_close_on_link_click']}',
+        closeOnClick: '{$this->options['menu_close_on_body_click']}',
+        closeOnLinkClick: '{$this->options['menu_close_on_link_click']}',
         itemTriggerSubMenu: '{$this->options['menu_item_click_to_trigger_submenu']}',
         linkElement: '.responsive-menu-item-link',
         openMenu: function() {
@@ -138,9 +139,20 @@ class JsMapper
               }
             }
           });
-          if(this.closeOnClick == 'on') {
+          if(this.closeOnLinkClick == 'on') {
             $(this.linkElement).on('click', function() {
               self.closeMenu();
+            });
+          }
+          if(this.closeOnClick == 'on') {
+            $('body').onclick = function() {};
+            $(document).on('click', 'body', function(e) {
+              if($(e.target).closest('#responsive-menu-container').length > 0 || $(e.target).closest('#responsive-menu-button').length > 0) {
+                return false;
+              }
+              if(self.isOpen) {
+                self.closeMenu();
+              }
             });
           }
           if(this.itemTriggerSubMenu == 'on') {
