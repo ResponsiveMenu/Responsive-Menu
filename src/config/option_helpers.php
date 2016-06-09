@@ -66,6 +66,7 @@ $option_helpers = array(
     'form_component' => 'ResponsiveMenu\Form\FontIconPageList',
     'filter' => 'ResponsiveMenu\Filters\JsonFilter',
 		'position' => 'menu.font_icons',
+    'label' => 'This is where you can set the font icons label test...',
     'pro' => true
 	),
 
@@ -403,7 +404,7 @@ $option_helpers = array(
   'accordion_animation' => array(
     'form_component' => 'ResponsiveMenu\Form\Checkbox',
 		'position' => 'menu.submenus',
-    'pro' => true
+    'label' => 'Example of explanatory text'
 	),
 
   'auto_expand_all_submenus' => array(
@@ -666,6 +667,11 @@ $option_helpers = array(
 	),
 
   'header_bar_logo_link' => array(
+		'position' => 'header_bar.setup',
+    'pro' => true
+	),
+
+  'header_bar_title' => array(
 		'position' => 'header_bar.setup',
     'pro' => true
 	),

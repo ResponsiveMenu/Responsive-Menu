@@ -3,14 +3,117 @@
 	display: none;
 }
 
-.tab_container > h4
-{
-  margin: 15px 0 -1px 0;
-  background: #333;
-  color: white;
-  border-radius: 2px 2px 0 0;
-  padding: 5px;
+.postbox > h4 {
+  background: #ffffff none repeat scroll 0 0;
+  border-bottom: 1px solid #eee;
+  box-sizing: border-box;
+  display: block;
+  font-size: 14px;
+  line-height: 1.4;
+  padding: 8px 12px;
+  width: 100%;
+  margin: 0;
+}
+
+.add-font-icon {
   display: inline-block;
+  background: #298CBA;
+  color: white;
+  padding: 10px 25px;
+  border-radius: 2px;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+.postbox .inside .select,
+.postbox .inside .image_button,
+.postbox .inside .image,
+.postbox .inside .text {
+  padding: 5px 15px;
+  height: 30px;
+}
+
+.postbox .inside .textarea {
+  height: 100px;
+  padding: 15px;
+  width: 100%;
+}
+
+.font-icon-container .font-icon-row:first-child {
+  font-weight: bold;
+}
+
+.postbox .inside {
+  padding: 0;
+  margin: 0;
+}
+
+.postbox .inside table {
+  width: 100%;
+  border-spacing: 0;
+}
+
+.postbox .inside table .description {
+  color: #899194;
+  line-height: 16px;
+  font-size: 12px;
+}
+
+.postbox .inside table tr td {
+  border-bottom: 1px solid #f5f5f5;
+  vertical-align: middle;
+}
+
+.postbox .inside table tr td:first-child {
+  background: #F9F9F9;
+  font-weight: bold;
+  border-right: 1px solid #e1e1e1;
+  color: #333;
+}
+
+.postbox .inside table tr td:last-child:hover {
+  background: #FCFCFC;
+}
+
+.postbox .inside table tr.pro_option td:last-child:hover {
+  background: #FFE9E8;
+}
+
+.postbox .inside table tr td:last-child {
+  text-align: left;
+}
+
+#items_order_container td,
+#header_bar_items_order_container td {
+  width: 100%;
+  display: block;
+  padding: 0;
+}
+
+.postbox .inside tr.pro_option td:last-child:before {
+  content: "PRO";
+  float: right;
+  color: #DE4B42;
+  font-weight: bold;
+  font-size: 9px;
+  margin-top: 6px;
+  border-left: 1px solid #DE4B42;
+  padding-left: 8px;
+}
+
+#items_order_container td:last-child,
+#header_bar_items_order_container td:last-child {
+  text-align: center;
+}
+
+.postbox_font_icons .inside
+{
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.postbox .inside .wp-color-picker {
+  cursor: crosshair;
 }
 
 #all_options_container,
@@ -91,30 +194,6 @@
   border-color: #ED655E;
 }
 
-.option_holder.pro_option:hover
-{
-  background-color: #ED655E;
-}
-
-.option_holder.pro_option:after
-{
-  content: 'PRO';
-  position: absolute;
-  top: 0;
-  right: 0;
-  color: white;
-  text-align: center;
-  padding: 5px;
-  background: #ED655E;
-  border-radius: 0 2px 0 2px;
-}
-
-.option_holder.pro_option:hover:after
-{
-  background-color: white;
-  color: #ED655E;
-}
-
 .options_container
 {
 	background: white;
@@ -146,14 +225,13 @@ ul#adminmenu > li.current > a.current::after
 .onoffswitch {
     position: relative; width: 74px;
     -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
-    margin: auto;
 }
 .onoffswitch-checkbox {
     display: none;
 }
 .onoffswitch-label {
     display: block; overflow: hidden; cursor: pointer;
-    border: 2px solid #DE4B42; border-radius: 12px;
+    border: 2px solid transparent;
     text-align: left;
 }
 .onoffswitch-inner {
@@ -168,12 +246,12 @@ ul#adminmenu > li.current > a.current::after
 .onoffswitch-inner:before {
     content: "ON";
     padding-left: 10px;
-    background-color: #DE4B42; color: #FFFFFF;
+    background-color: transparent; color: #DE4B42;
 }
 .onoffswitch-inner:after {
     content: "OFF";
     padding-right: 10px;
-    background-color: #EEEEEE; color: #999999;
+    background-color: transparent; color: #999999;
     text-align: right;
 }
 .onoffswitch-switch {
@@ -207,7 +285,6 @@ input[type="checkbox"]
     cursor: pointer;
     overflow: hidden;
     background: #fafafa url("data:image/png;base64,R0lGODlhDwAUAIABAAAAAP///yH5BAEAAAEALAAAAAAPABQAAAIXjI+py+0Po5wH2HsXzmw//lHiSJZmUAAAOw==")no-repeat 95% 50%;
-    margin: auto;
 }
 
 .select-style select {
@@ -296,7 +373,7 @@ input[type="button"].image_button
 
 .font-icon-cell-id
 {
-  width: 100px;
+  width: 50px;
 }
 
 .font-icon-cell-id input,

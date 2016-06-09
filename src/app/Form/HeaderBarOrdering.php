@@ -14,14 +14,14 @@ class HeaderBarOrdering implements FormComponent
 
     $all_options = array_filter(array_unique(array_merge($current, $required)));
 
-    echo '<ul id="sortable">';
+    echo '<ul id="header-bar-sortable">';
     foreach($all_options as $name)
       echo '<li class="draggable">'.ucwords($name).'<input type="text" name="menu['.$option->getName().']['.$name.']" /></li>';
     echo '</ul>';
 
     echo '<script>
       jQuery(document).ready(function($) {
-        $( "#sortable" ).sortable({
+        $( "#header-bar-sortable" ).sortable({
           revert: true
         });
         $( "#sortable, .draggable" ).disableSelection();

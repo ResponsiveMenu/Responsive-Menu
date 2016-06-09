@@ -24,7 +24,10 @@ class ScssHeaderBarMapper extends ScssMapper
         .responsive-menu-header-bar-item {
           line-height: {$this->options['header_bar_height']}px;
         }
-        display: block;
+        a {
+          color: {$this->options['header_bar_text_color']};
+          text-decoration: none;
+        }
       }
       body {
         padding-top: {$this->options['header_bar_height']}px;
