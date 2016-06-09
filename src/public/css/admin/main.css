@@ -3,6 +3,10 @@
 	display: none;
 }
 
+.tabs_container {
+  margin: 25px 0 15px 0;
+}
+
 .postbox > h4 {
   background: #ffffff none repeat scroll 0 0;
   border-bottom: 1px solid #eee;
@@ -132,7 +136,7 @@
 #banner_area
 {
   width: 24%;
-  margin-top: 53px;
+  margin-top: 1px;
   margin-left: 2%;
   padding: 15px 2%;
   background: #DE4B42;
@@ -155,6 +159,12 @@
 	border-radius: 2px;
 	cursor: pointer;
 	background: white;
+  margin: 0 5px 0 0 !important;
+}
+
+.tab.active_tab {
+  background: #00A0D2;
+  color: white;
 }
 
 .option_holder

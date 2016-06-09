@@ -10,7 +10,7 @@ class Tabs
     $tabs = self::getTabs($options);
 		foreach($tabs as $key => $val):
       $is_active = $val == reset($tabs) ? ' active_tab' : '';
-			echo '<div class="tab' . $is_active . '" id="tab_' . $key . '">' . $val . '</div>';
+			echo '<a class="tab page-title-action' . $is_active . '" id="tab_' . $key . '">' . $val . '</a>';
     endforeach;
 	}
 
