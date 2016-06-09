@@ -45,6 +45,7 @@ class JsMapper
           this.isOpen = true;
         },
         closeMenu: function() {
+          console.log('closing');
           $(this.trigger).removeClass(this.activeClass);
           $('body').removeClass(this.openClass);
           $('.responsive-menu-button-icon-inactive').hide();
@@ -128,7 +129,9 @@ class JsMapper
           });
           $(window).resize(function() {
             if($(window).width() > self.breakpoint) {
+              if(self.isOpen){
                 self.closeMenu();
+              }
             } else {
               if($('.responsive-menu-open').length>0){
                 self.setWrapperTranslate();
