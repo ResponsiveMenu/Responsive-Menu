@@ -128,7 +128,7 @@ class JsMapper
           });
           $(window).resize(function() {
             if($(window).width() > self.breakpoint) {
-              self.closeMenu();
+                self.closeMenu();
             } else {
               if($('.responsive-menu-open').length>0){
                 self.setWrapperTranslate();

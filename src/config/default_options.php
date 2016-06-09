@@ -111,9 +111,24 @@ $default_options = array(
   'custom_css' => null,
 
   'use_single_menu' => 'off',
+
   'single_menu_height' => '80',
+  'single_menu_font' => null,
+  'single_menu_font_size' => '14',
+
+  'single_menu_submenu_height' => '40',
+  'single_menu_submenu_font' => null,
+  'single_menu_submenu_font_size' => '12',
+
   'single_menu_item_link_colour' => '#ffffff',
-  'single_menu_item_hover_colour' => '#ffffff',
+  'single_menu_item_link_colour_hover' => '#ffffff',
+  'single_menu_item_background_colour' => '#ffffff',
+  'single_menu_item_background_colour_hover' => '#ffffff',
+
+  'single_menu_item_submenu_link_colour' => '#ffffff',
+  'single_menu_item_submenu_link_colour_hover' => '#ffffff',
+  'single_menu_item_submenu_background_colour' => '#ffffff',
+  'single_menu_item_submenu_background_colour_hover' => '#ffffff',
 
   'use_header_bar' => 'off',
   'header_bar_logo' => null,

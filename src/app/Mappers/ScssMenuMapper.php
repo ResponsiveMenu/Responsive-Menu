@@ -10,6 +10,8 @@ class ScssMenuMapper extends ScssMapper
 
     $css = <<<CSS
 
+    @media screen and ( max-width: {$this->options['breakpoint']}px ) {
+
       @if '{$this->options['menu_disable_scrolling']}' == 'on' {
         body.responsive-menu-open {
           overflow: hidden;
@@ -123,7 +125,6 @@ class ScssMenuMapper extends ScssMapper
           }
         }
       }
-      @media screen and ( max-width: {$this->options['breakpoint']}px ) {
         @if '{$this->options['menu_to_hide']}' != '' {
           & {$this->options['menu_to_hide']} {
             display: none;

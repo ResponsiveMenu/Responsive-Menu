@@ -575,13 +575,74 @@ $option_helpers = array(
     'pro' => true
 	),
 
+	'single_menu_font' => array(
+		'position' => 'single_menu.sizing',
+    'pro' => true
+	),
+
+	'single_menu_font_size' => array(
+		'position' => 'single_menu.sizing',
+    'pro' => true
+	),
+
+	'single_menu_submenu_height' => array(
+		'position' => 'single_menu.sizing',
+    'pro' => true
+	),
+
+	'single_menu_submenu_font' => array(
+		'position' => 'single_menu.sizing',
+    'pro' => true
+	),
+
+	'single_menu_submenu_font_size' => array(
+		'position' => 'single_menu.sizing',
+    'pro' => true
+	),
+
 	'single_menu_item_link_colour' => array(
     'form_component' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'single_menu.colours',
     'pro' => true
 	),
 
-	'single_menu_item_hover_colour' => array(
+	'single_menu_item_link_colour_hover' => array(
+    'form_component' => 'ResponsiveMenu\Form\Colour',
+		'position' => 'single_menu.colours',
+    'pro' => true
+	),
+
+	'single_menu_item_background_colour' => array(
+    'form_component' => 'ResponsiveMenu\Form\Colour',
+		'position' => 'single_menu.colours',
+    'pro' => true
+	),
+
+	'single_menu_item_background_colour_hover' => array(
+    'form_component' => 'ResponsiveMenu\Form\Colour',
+		'position' => 'single_menu.colours',
+    'pro' => true
+	),
+
+	'single_menu_item_submenu_link_colour' => array(
+    'form_component' => 'ResponsiveMenu\Form\Colour',
+		'position' => 'single_menu.colours',
+    'pro' => true
+	),
+
+	'single_menu_item_submenu_link_colour_hover' => array(
+    'form_component' => 'ResponsiveMenu\Form\Colour',
+		'position' => 'single_menu.colours',
+    'pro' => true
+	),
+
+	'single_menu_item_submenu_background_colour' => array(
+    'form_component' => 'ResponsiveMenu\Form\Colour',
+		'position' => 'single_menu.colours',
+    'pro' => true
+	),
+
+	'single_menu_item_submenu_background_colour_hover' => array(
     'form_component' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'single_menu.colours',
     'pro' => true

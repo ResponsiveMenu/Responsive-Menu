@@ -34,6 +34,18 @@ class ScssBaseMapper extends ScssMapper
         }
       }
 
+      #responsive-menu-container,
+      #responsive-menu-header {
+        display: none;
+      }
+
+      @media screen and (max-width: {$this->options['breakpoint']}px) {
+
+        #responsive-menu-container,
+        #responsive-menu-header {
+          display: block;
+        }
+
       #responsive-menu-container {
         position: fixed;
         top: 0;
@@ -148,12 +160,6 @@ class ScssBaseMapper extends ScssMapper
         }
       }
 
-      @media screen and ( max-width: 782px ) {
-        .admin-bar #responsive-menu-container {
-            margin-top: 46px;
-        }
-      }
-
       .hamburger {
 
         .admin-bar & {
@@ -231,12 +237,15 @@ class ScssBaseMapper extends ScssMapper
           margin-right: 2%;
         }
       }
+    }
 
-      @media screen and ( max-width: 782px ) {
-        .admin-bar .hamburger, .admin-bar #responsive-menu-header {
-            margin-top: 46px;
-        }
+    @media screen and ( max-width: 782px ) {
+      .admin-bar #responsive-menu-container,
+      .admin-bar .hamburger,
+      .admin-bar #responsive-menu-header {
+          margin-top: 46px;
       }
+    }
 CSS;
 
     return $this->compiler->compile($css);

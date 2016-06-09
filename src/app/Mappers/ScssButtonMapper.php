@@ -12,6 +12,8 @@ class ScssButtonMapper extends ScssMapper
 
     $css = <<<CSS
 
+    @media screen and ( max-width: {$this->options['breakpoint']}px ) {
+
       \$hamburger-layer-height: {$this->options['button_line_height']}px;
       \$hamburger-layer-spacing: {$this->options['button_line_margin']}px;
       \$hamburger-layer-color: {$this->options['button_line_colour']};
@@ -43,7 +45,6 @@ class ScssButtonMapper extends ScssMapper
         }
       }
 
-      @media screen and ( max-width: {$this->options['breakpoint']}px ) {
         #responsive-menu-button {
           display: inline-block;
         }
