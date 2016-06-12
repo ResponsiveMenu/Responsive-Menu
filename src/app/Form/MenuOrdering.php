@@ -16,7 +16,12 @@ class MenuOrdering implements FormComponent
 
     echo '<ul id="menu-sortable">';
     foreach($all_options as $name)
-      echo '<li class="draggable">'.ucwords($name).'<input type="text" name="menu['.$option->getName().']['.$name.']" /><i class="fa fa-sort"></i></li>';
+      echo '<li class="draggable">'
+        . ucwords($name)
+        . '<input type="text" name="menu['.$option->getName().']['.$name.']" />'
+        . '<i class="fa fa-sort"></i>'
+        . '<div class="order-option-switch"></div>'
+        . '</li>';
     echo '</ul>';
 
     echo '<script>

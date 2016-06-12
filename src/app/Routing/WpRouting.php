@@ -24,12 +24,18 @@ class WpRouting implements Routing
   public function adminPage()
   {
     /* Heavily reliant on WordPress so very hard coded */
-    if(isset($_POST['responsive_menu_submit']))
+    if(isset($_POST['responsive_menu_submit'])):
       $method = 'update';
-    elseif(isset($_POST['responsive_menu_reset']))
+    elseif(isset($_POST['responsive_menu_reset'])):
       $method = 'reset';
-    else
+    elseif(isset($_POST['responsive_menu_export'])):
+      $controller = $this->container['admin_controller'];
+      $controller->export();
+    elseif(isset($_POST['responsive_menu_import'])):
+      $method = 'import';
+    else:
       $method = 'index';
+    endif;
 
     add_menu_page(
       'Responsive Menu',
@@ -46,7 +52,7 @@ class WpRouting implements Routing
         endif;
       },
       plugin_dir_url(dirname(dirname(__FILE__))) . 'public/imgs/icon.png',
-      0 );
+      0);
   }
 
 }
