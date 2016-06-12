@@ -60,16 +60,16 @@ class JsMapper
           var sub_menu = $(subarrow).parent().next('.responsive-menu-submenu');
           var self = this;
           if(this.accordion == 'on') {
-            // Get Top Most Parent and the siblings
+            /* Get Top Most Parent and the siblings */
             var top_siblings = sub_menu.parents('.responsive-menu-item-has-children').last().siblings('.responsive-menu-item-has-children');
             var first_siblings = sub_menu.parents('.responsive-menu-item-has-children').first().siblings('.responsive-menu-item-has-children');
-            // Close up just the top level parents to key the rest as it was
+            /* Close up just the top level parents to key the rest as it was */
             top_siblings.children('.responsive-menu-submenu').slideUp(200, 'linear').removeClass('responsive-menu-submenu-open');
-            // Set each parent arrow to inactive
+            /* Set each parent arrow to inactive */
             top_siblings.each(function() {
               $(this).find('.responsive-menu-subarrow').first().html(self.inactiveArrow);
             });
-            // Now Repeat for the current item siblings
+            /* Now Repeat for the current item siblings */
             first_siblings.children('.responsive-menu-submenu').slideUp(200, 'linear').removeClass('responsive-menu-submenu-open');
             first_siblings.each(function() {
               $(this).find('.responsive-menu-subarrow').first().html(self.inactiveArrow);

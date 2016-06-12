@@ -94,15 +94,6 @@ $option_helpers = array(
 		'position' => 'menu.advanced',
 	),
 
-	'menu_additional_content_position' => array(
-    'form_component' => 'ResponsiveMenu\Form\Select',
-		'position' => 'menu.advanced',
-    'custom' => array('select' => array(
-      'below' => 'Below Menu Links',
-      'above' => ' Above Menu Links')
-    )
-	),
-
 	'menu_title' => array(
 		'position' => 'menu.general'
 	),

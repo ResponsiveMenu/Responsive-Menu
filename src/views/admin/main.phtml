@@ -6,70 +6,71 @@ use ResponsiveMenu\Formatters\Text as Text;
 ?>
 <div class="wrap">
   <div id="poststuff">
-    <div id="postbox-container" class="postbox-container">
-	<div class="tabs_container">
-		<?php Tabs::render($l['options']); ?>
-	</div>
-  <?php if(isset($l['flash']['success'])): ?>
-    <div class="updated notice notice-success is-dismissible" id="message">
-      <p><?php echo $l['flash']['success']; ?></p>
-      <button class="notice-dismiss" type="button">
-      <span class="screen-reader-text">
-      Dismiss this notice.
-    </span>
-    </button>
-    </div>
-  <?php endif; ?>
-  <?php if(isset($l['flash']['errors'])): ?>
-    <div id="error_messages" class="flash_messages">
-      <ul>
-      <?php foreach($l['flash']['errors'] as $error): ?>
-        <li><?php echo $error; ?></li>
-      <?php endforeach; ?>
-      </ul>
-    </div>
-  <?php endif; ?>
-  <div id="all_options_container">
-  	<form action="" method="post">
-      <div class="meta-box-sortables ui-sortable" id="normal-sortables">
-  		<?php $t=1; foreach(Tabs::getTabs($l['options']) as $key => $val): ?>
-  			<div class="tab_container tab_container_<?php echo $t; ?>" id="tab_container_<?php echo $key; ?>">
-          <?php foreach(Tabs::getSubTabs($key, $l['options']) as $tab_name): ?>
-            <div class="postbox postbox_<?php echo explode('.',$tab_name)[1]; ?>">
-              <button aria-expanded="true" class="handlediv button-link" type="button"><span class="screen-reader-text">Toggle panel: Location</span><span aria-hidden="true" class="toggle-indicator"></span></button>
-            <h2 class="hndle ui-sortable-handle"><?php echo $val; ?> &raquo; <?php Text::underscoreToWord(explode('.',$tab_name)[1]); ?></h2>
-    				<div class="inside">
-              <table class="widefat">
-    					<?php $i=0; foreach(Tabs::getTabOptions($tab_name, $l['options']) as $option) : ?>
-    						<tr class="<?php echo $option->isPro() ? 'pro_option' : ''; ?>"
-                  id="<?php echo $option->getName(); ?>_container">
-  							       <td><div class="label"><?php Text::underscoreToWord($option->getName()) ?></div><span class="description"><?php echo $option->getLabel(); ?></span></td>
-							         <td><?php $option->getFormComponent()->render($option); $i++; ?></td>
-                  </tr>
-    						</div>
-    					<?php endforeach; ?>
-              </table>
-    				</div>
-          </div>
-        <?php endforeach; ?>
-  			</div>
-  		<?php $t++; endforeach; ?>
-    </div>
-  		<input type="submit" class="button submit" name="responsive_menu_submit" value="Update Options" />
-  		<input type="submit" class="button submit" name="responsive_menu_reset" value="Reset Options" />
-  	</form>
-  </div><!--
-  --><div id="banner_area">
-      Banner area
-      <ul>
-        <li>FontIcon Support</li>
-        <li>Opacity colour option</li>
-        <li>15+ button animations</li>
-        <li>Desktop & Responsive menu configuration</li>
-        <li>Header Bar</li>
-      </ul>
-      Buy now for only $14.99
-  </div>
-</div>
-</div>
-</div>
+      <div id="postbox-container" class="postbox-container">
+      	<div class="tabs_container">
+      		<?php Tabs::render($l['options']); ?>
+      	</div> <!-- tabs_container -->
+        <?php if(isset($l['flash']['success'])): ?>
+          <div class="updated notice notice-success is-dismissible" id="message">
+            <p><?php echo $l['flash']['success']; ?></p>
+            <button class="notice-dismiss" type="button">
+              <span class="screen-reader-text">
+              Dismiss this notice.
+              </span>
+            </button>
+          </div> <!-- updated -->
+        <?php endif; ?>
+      <?php if(isset($l['flash']['errors'])): ?>
+        <div id="error_messages" class="flash_messages">
+          <ul>
+          <?php foreach($l['flash']['errors'] as $error): ?>
+            <li><?php echo $error; ?></li>
+          <?php endforeach; ?>
+          </ul>
+        </div> <!-- error_messages -->
+      <?php endif; ?>
+      <div id="all_options_container">
+        <div class="meta-box-sortables ui-sortable" id="normal-sortables">
+        	<form action="" method="post">
+        		<?php $t=1; foreach(Tabs::getTabs($l['options']) as $key => $val): ?>
+      			     <div class="tab_container tab_container_<?php echo $t; ?>" id="tab_container_<?php echo $key; ?>">
+                   <?php foreach(Tabs::getSubTabs($key, $l['options']) as $tab_name): ?>
+                      <div class="postbox" id="postbox_<?php echo explode('.',$tab_name)[1]; ?>">
+                        <div class="handlediv">
+                          <button aria-expanded="true" class="button-link" type="button"><span class="screen-reader-text">Toggle panel: Location</span><span aria-hidden="true" class="toggle-indicator"></span></button>
+                        </div>
+                        <h2 class="ui-sortable-handle hndle"><?php echo $val; ?> &raquo; <?php Text::underscoreToWord(explode('.',$tab_name)[1]); ?></h2>
+                				<div class="inside">
+                          <table class="widefat">
+                  					<?php $i=0; foreach(Tabs::getTabOptions($tab_name, $l['options']) as $option) : ?>
+                  						<tr class="<?php echo $option->isPro() ? 'pro_option' : ''; ?>"
+                                id="<?php echo $option->getName(); ?>_container">
+                							       <td><div class="label"><?php Text::underscoreToWord($option->getName()) ?></div><span class="description"><?php echo $option->getLabel(); ?></span></td>
+              							         <td><?php $option->getFormComponent()->render($option); $i++; ?></td>
+                                </tr>
+                  					<?php endforeach; ?>
+                          </table> <!-- .widefat -->
+                				</div> <!-- .inside -->
+                    </div> <!-- .postbox -->
+                <?php endforeach; ?>
+              </div> <!-- .tab_container -->
+        		<?php $t++; endforeach; ?>
+        		<input type="submit" class="button submit" name="responsive_menu_submit" value="Update Options" />
+        		<input type="submit" class="button submit" name="responsive_menu_reset" value="Reset Options" />
+        	</form>
+        </div> <!-- #normal-sortables -->
+      </div><!--#all_options_container
+   --><div id="banner_area">
+        Banner area
+        <ul>
+          <li>FontIcon Support</li>
+          <li>Opacity colour option</li>
+          <li>15+ button animations</li>
+          <li>Desktop & Responsive menu configuration</li>
+          <li>Header Bar</li>
+        </ul>
+        Buy now for only $14.99
+      </div> <!-- #banner_area -->
+    </div> <!-- #postbox-container -->
+  </div> <!-- #poststuff -->
+</div> <!-- #wrap -->

@@ -14,7 +14,7 @@ class AdminView implements View
       //wp_enqueue_script('wp-color-picker');
 
       wp_enqueue_script('postbox');
-      wp_enqueue_script('postbox-edit', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/js/admin/postbox-edit.js', array('jquery', 'postbox') );
+      wp_enqueue_script('postbox-edit', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/js/admin/postbox-edit.js', array('jquery', 'postbox'));
 
       wp_enqueue_script('item-drag', '//code.jquery.com/ui/1.11.4/jquery-ui.js', 'jquery', 'null');
 
