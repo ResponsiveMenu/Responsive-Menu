@@ -15,12 +15,11 @@ class Image implements FormComponent
 				id='{$option->getName()}'
 				name='menu[{$option->getName()}]'
 				value='{$option->getValue()}' />
-        <input
+        <button
             type='button'
-            value='Upload Image'
             class='button image_button'
             for='{$option->getName()}'
-          />";
+          /><i class='fa fa-upload'></i></button>";
 	}
 
 }

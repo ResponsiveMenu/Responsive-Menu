@@ -16,7 +16,7 @@ class HeaderBarOrdering implements FormComponent
 
     echo '<ul id="header-bar-sortable">';
     foreach($all_options as $name)
-      echo '<li class="draggable">'.ucwords($name).'<input type="text" name="menu['.$option->getName().']['.$name.']" /></li>';
+      echo '<li class="draggable">'.ucwords($name).'<input type="text" name="menu['.$option->getName().']['.$name.']" /><i class="fa fa-sort fa-rotate-90"></i></li>';
     echo '</ul>';
 
     echo '<script>

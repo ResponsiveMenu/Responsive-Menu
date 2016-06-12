@@ -7,6 +7,36 @@
   margin: 25px 0 15px 0;
 }
 
+#menu-sortable {
+  position: relative;
+}
+
+#menu-sortable,
+#items_order_container td:last-child {
+  width:400px;
+}
+
+#postbox_order .fa {
+  position: absolute;
+  right: 3%;
+  top: 13px;
+}
+
+#postbox_ordering .fa {
+  position: absolute;
+  left: 47%;
+  bottom: 5px;
+}
+
+#postbox_ordering li.draggable {
+  height: 31px;
+  vertical-align: top;
+}
+
+li.draggable {
+  position: relative;
+}
+
 .postbox > h4 {
   background: #ffffff none repeat scroll 0 0;
   border-bottom: 1px solid #eee;
