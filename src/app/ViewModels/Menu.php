@@ -20,9 +20,12 @@ class Menu {
     $content = '';
 
     foreach(json_decode($this->options['items_order']) as $key => $val):
-      $mapper = new $mapping[$key];
-      $content .= $mapper->render($this->options);
+      if($val == 'on'):
+        $mapper = new $mapping[$key];
+        $content .= $mapper->render($this->options);
+      endif;
     endforeach;
+    
     return $content;
   }
 

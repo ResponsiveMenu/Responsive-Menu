@@ -97,7 +97,6 @@ $default_options = array(
   'menu_overlay' => 'off',
   'menu_overlay_colour' => 'rgba(0,0,0,0.7)',
   'menu_font_icons' => '',
-  'menu_remove_search_box' => 'off',
   'menu_search_box_text' => 'Search',
   'menu_word_wrap' => 'off',
 
@@ -143,7 +142,7 @@ $default_options = array(
   'header_include_search_bar' => 'off',
   'header_bar_position_type' => 'fixed',
 
-  'items_order' => '{"title": "","menu":"","search":"","additional content":""}',
-  'header_bar_items_order' => '{"logo": "","title":"","search":"","html content":"","button":""}',
+  'items_order' => '{"title": "on","menu":"on","search":"on","additional content":"on"}',
+  'header_bar_items_order' => '{"logo": "on","title":"on","search":"on","html content":"on","button":"on"}',
 
 );

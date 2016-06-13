@@ -39,6 +39,7 @@
   vertical-align: top;
 }
 
+.menu-order-option-switch,
 .order-option-switch {
   background: #DE4B42;
   color: white;
@@ -48,10 +49,23 @@
   bottom: 0;
   line-height: 40px;
   padding: 0 5px;
+  width: 30px;
+  text-align: center;
 }
 
+.menu-order-option-switch.menu-order-option-switch-on,
+.order-option-switch.order-option-switch-on {
+  background: green;
+}
+
+.menu-order-option-switch:after,
 .order-option-switch:after {
   content: "OFF";
+}
+
+.menu-order-option-switch.menu-order-option-switch-on:after,
+.order-option-switch.order-option-switch-on:after {
+  content: "ON";
 }
 
 li.draggable {
@@ -468,6 +482,8 @@ input[type="button"].image_button
   margin: 0;
   cursor: move;
   font-weight: bold;
+  padding-left: 35px;
+  box-sizing: border-box;
 }
 
 .draggable input {
