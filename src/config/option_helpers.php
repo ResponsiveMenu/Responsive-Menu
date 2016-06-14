@@ -332,7 +332,8 @@ $option_helpers = array(
 		'position' => 'animation.menu',
     'custom' => array('select' => array(
       'slide' => 'Slide',
-      'push' => 'Push')
+      'push' => 'Push',
+      'fade' => 'Fade')
     )
 	),
 

@@ -12,13 +12,15 @@ class JsMapper
 
   public function map()
   {
+    $animation_speed = $this->options['animation_speed']->getValue() * 1000;
+
     $js = <<<JS
 
     jQuery(document).ready(function($) {
 
       var ResponsiveMenu = {
         trigger: '{$this->options['button_click_trigger']}',
-        animationSpeed: {$this->options['animation_speed']},
+        animationSpeed: {$animation_speed},
         breakpoint: {$this->options['breakpoint']},
         pushButton: '{$this->options['button_push_with_animation']}',
         animationType: '{$this->options['animation_type']}',
@@ -46,7 +48,11 @@ class JsMapper
           if(this.isSingleMenu == 'on'){
             $(this.container).removeClass('responsive-menu-no-transition');
           }
-          this.setWrapperTranslate();
+          if(this.animationType != 'fade') {
+            this.setWrapperTranslate();
+          } else {
+            this.fadeMenuIn();
+          }
           this.isOpen = true;
         },
         closeMenu: function() {
@@ -54,7 +60,11 @@ class JsMapper
           $('body').removeClass(this.openClass);
           $('.responsive-menu-button-icon-inactive').hide();
           $('.responsive-menu-button-icon-active').show();
-          this.clearWrapperTranslate();
+          if(this.animationType != 'fade') {
+            this.clearWrapperTranslate();
+          } else {
+            this.fadeMenuOut();
+          }
           this.isOpen = false;
         },
         triggerMenu: function() {
@@ -122,6 +132,12 @@ class JsMapper
             $('#responsive-menu-button').css({'transform':''});
           }
         },
+        fadeMenuIn: function() {
+          $(this.container).fadeIn(this.animationSpeed);
+        },
+        fadeMenuOut: function() {
+          $(this.container).fadeOut(this.animationSpeed);
+        },
         init: function() {
           var self = this;
           $(this.trigger).on(this.triggerTypes, function(){
@@ -135,7 +151,12 @@ class JsMapper
           $(window).resize(function() {
             if($(window).width() > self.breakpoint) {
               if(self.isOpen){
-                self.closeMenu();
+                if(self.animationType != 'fade') {
+                  self.closeMenu();
+                }
+              }
+              if(self.animationType == 'fade') {
+                self.fadeMenuIn();
               }
             } else {
               if(self.isSingleMenu == 'on'){
@@ -143,6 +164,10 @@ class JsMapper
               }
               if($('.responsive-menu-open').length>0){
                 self.setWrapperTranslate();
+              }
+              if(self.animationType == 'fade') {
+                $(self.container).hide();
+                self.isOpen = false;
               }
             }
           });

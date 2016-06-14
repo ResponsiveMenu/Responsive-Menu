@@ -12,6 +12,15 @@ class ScssMenuMapper extends ScssMapper
 
     @media screen and ( max-width: {$this->options['breakpoint']}px ) {
 
+      .responsive-menu-fade-top,
+      .responsive-menu-fade-left,
+      .responsive-menu-fade-right,
+      .responsive-menu-fade-bottom {
+        #responsive-menu-container {
+          display: none;
+        }
+      }
+      
       @if '{$this->options['menu_disable_scrolling']}' == 'on' {
         body.responsive-menu-open {
           overflow: hidden;
