@@ -25,6 +25,7 @@ class OptionFactory
     $option->setFormComponent($form_component);
     $option->setData(isset($option_helpers[$name]['custom'])?$option_helpers[$name]['custom']:null);
     $option->setIsPro(isset($option_helpers[$name]['pro'])?$option_helpers[$name]['pro']:null);
+    $option->setIsSemiPro(isset($option_helpers[$name]['semi_pro'])?$option_helpers[$name]['semi_pro']:null);
     $option->setPosition(isset($option_helpers[$name]['position'])?$option_helpers[$name]['position']:null);
     $option->setLabel(isset($option_helpers[$name]['label'])?$option_helpers[$name]['label']:null);
 		return $option;

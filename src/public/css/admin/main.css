@@ -152,6 +152,10 @@ li.draggable {
   background: #FFE9E8;
 }
 
+.postbox .inside table tr.semi_pro_option td:last-child:hover {
+  background: #EDEAEA;
+}
+
 .postbox .inside table tr td:last-child {
   text-align: left;
 }
@@ -182,6 +186,7 @@ input[type="text"].image,
   box-sizing: border-box;
 }
 
+.postbox .inside tr.semi_pro_option td:last-child:before,
 .postbox .inside tr.pro_option td:last-child:before {
   content: "PRO";
   float: right;
@@ -191,6 +196,12 @@ input[type="text"].image,
   margin-top: 6px;
   border-left: 1px solid #DE4B42;
   padding-left: 8px;
+}
+
+.postbox .inside tr.semi_pro_option td:last-child:before {
+  content: "SEMI PRO";
+  color: #333;
+  border-color: #333;
 }
 
 #items_order_container td:last-child,
@@ -291,6 +302,10 @@ input[type="text"].image,
 .option_holder.pro_option
 {
   border-color: #ED655E;
+}
+
+.option_holder.semi_pro_option {
+  border-color: #DADADA;
 }
 
 .options_container

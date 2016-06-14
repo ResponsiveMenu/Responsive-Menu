@@ -50,7 +50,7 @@ use ResponsiveMenu\Formatters\Text as Text;
                 				<div class="inside">
                           <table class="widefat">
                   					<?php $i=0; foreach(Tabs::getTabOptions($tab_name, $l['options']) as $option) : ?>
-                  						<tr class="<?php echo $option->isPro() ? 'pro_option' : ''; ?>"
+                  						<tr class="<?php echo $option->isPro() ? 'pro_option' : ''; ?> <?php echo $option->isSemiPro() ? 'semi_pro_option' : ''; ?>"
                                 id="<?php echo $option->getName(); ?>_container">
                 							       <td><div class="label"><?php Text::underscoreToWord($option->getName()) ?></div><span class="description"><?php echo $option->getLabel(); ?></span></td>
               							         <td><?php $option->getFormComponent()->render($option); $i++; ?></td>

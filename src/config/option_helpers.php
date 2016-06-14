@@ -334,7 +334,8 @@ $option_helpers = array(
       'slide' => 'Slide',
       'push' => 'Push',
       'fade' => 'Fade')
-    )
+    ),
+    'semi_pro' => true
 	),
 
 	'page_wrapper' => array(

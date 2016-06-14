@@ -11,6 +11,7 @@ class ComplexOption implements Option {
   private $filter;
   private $form_component;
   private $is_pro;
+  private $is_semi_pro;
   private $position;
   private $data;
   private $label;
@@ -58,6 +59,16 @@ class ComplexOption implements Option {
   public function isPro()
   {
     return $this->is_pro;
+  }
+
+	public function setIsSemiPro($is_semi_pro = false)
+	{
+		$this->is_semi_pro = $is_semi_pro;
+	}
+
+  public function isSemiPro()
+  {
+    return $this->is_semi_pro;
   }
 
 	public function getFormComponent()
