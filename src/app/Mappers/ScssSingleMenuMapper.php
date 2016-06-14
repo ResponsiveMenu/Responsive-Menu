@@ -80,15 +80,11 @@ class ScssSingleMenuMapper extends ScssMapper
           }
         }
 
-
-
-
-
-
     }
 CSS;
 
     return $this->compiler->compile($css);
+    
   }
 
 }
