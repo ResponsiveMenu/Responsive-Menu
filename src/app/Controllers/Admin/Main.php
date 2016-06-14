@@ -21,7 +21,7 @@ class Main extends Base
     $options = $this->repository->all();
     $save_factory = new SaveFactory();
     $flash['errors'] = $save_factory->build($options);
-    $flash['success'] = _('Responsive Menu Options Updated Successfully', 'responsive-menu');
+    $flash['success'] = __('Responsive Menu Options Updated Successfully', 'responsive-menu');
 
     $this->view->render('main', ['options' => $options, 'flash' => $flash]);
 
@@ -39,7 +39,7 @@ class Main extends Base
     $options = $this->repository->all();
     $save_factory = new SaveFactory();
     $flash['errors'] = $save_factory->build($options);
-    $flash['success'] = _('Responsive Menu Options Reset Successfully', 'responsive-menu');
+    $flash['success'] = __('Responsive Menu Options Reset Successfully', 'responsive-menu');
 
     $this->view->render('main', ['options' => $options, 'flash' => $flash]);
 
@@ -63,9 +63,9 @@ class Main extends Base
       $options = $this->repository->all();
       $save_factory = new SaveFactory();
       $flash['errors'] = $save_factory->build($options);
-      $flash['success'] = _('Responsive Menu Options Reset Successfully', 'responsive-menu');
+      $flash['success'] = __('Responsive Menu Options Reset Successfully', 'responsive-menu');
     else:
-      $flash['errors'][] = _('No file selected', 'responsive-menu');
+      $flash['errors'][] = __('No file selected', 'responsive-menu');
       $options = $this->repository->all();
     endif;
 
