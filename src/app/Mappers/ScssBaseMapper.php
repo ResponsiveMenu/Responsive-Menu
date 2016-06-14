@@ -34,6 +34,7 @@ class ScssBaseMapper extends ScssMapper
         }
       }
 
+      #responsive-menu-button,
       #responsive-menu-container,
       #responsive-menu-header {
         display: none;

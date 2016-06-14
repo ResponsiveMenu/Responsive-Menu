@@ -68,6 +68,10 @@ class ScssSingleMenuMapper extends ScssMapper
                     background: {$this->options['single_menu_item_submenu_background_colour']};
                   }
                 }
+                .responsive-menu-submenu {
+                  top: 0;
+                  left: 100%;
+                }
               }
             }
             &:hover > .responsive-menu-submenu {
