@@ -51,6 +51,7 @@
   padding: 0 5px;
   width: 30px;
   text-align: center;
+  cursor: pointer;
 }
 
 .menu-order-option-switch.menu-order-option-switch-on,
@@ -493,5 +494,5 @@ input[type="button"].image_button
 
 #header_bar_items_order_container .draggable {
   display: inline-block;
-  width: 18%;
+  width: 19%;
 }

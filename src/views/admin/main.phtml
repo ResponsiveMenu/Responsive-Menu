@@ -9,14 +9,14 @@ use ResponsiveMenu\Formatters\Text as Text;
       <div id="postbox-container" class="postbox-container">
       	<div class="tabs_container">
       		<?php Tabs::render($l['options']); ?>
-          <a id="tab_import_export" class="tab page-title-action">Import/Export</a>
+          <a id="tab_import_export" class="tab page-title-action"><?php _e('Import/Export', 'responsive-menu') ?></a>
       	</div> <!-- tabs_container -->
         <?php if(isset($l['flash']['success'])): ?>
           <div class="updated notice notice-success is-dismissible" id="message">
-            <p><?php echo $l['flash']['success']; ?></p>
+            <p><?php _e($l['flash']['success'], 'responsive-menu'); ?></p>
             <button class="notice-dismiss" type="button">
               <span class="screen-reader-text">
-              Dismiss this notice.
+              <?php _e('Dismiss this notice', 'responsive-menu') ?>.
               </span>
             </button>
           </div> <!-- updated -->
@@ -25,12 +25,12 @@ use ResponsiveMenu\Formatters\Text as Text;
         <div class="notice notice-error is-dismissible" id="message">
           <ul>
                     <?php foreach($l['flash']['errors'] as $error): ?>
-                      <li><?php echo $error; ?></li>
+                      <li><?php _e($error, 'responsive-menu'); ?></li>
                     <?php endforeach; ?>
                     </ul>
           <button class="notice-dismiss" type="button">
             <span class="screen-reader-text">
-            Dismiss this notice.
+            <?php _e('Dismiss this notice', 'responsive-menu') ?>.
             </span>
           </button>
         </div>
@@ -67,25 +67,25 @@ use ResponsiveMenu\Formatters\Text as Text;
                    <div class="handlediv">
                      <button aria-expanded="true" class="button-link" type="button"><span class="screen-reader-text">Toggle panel: Location</span><span aria-hidden="true" class="toggle-indicator"></span></button>
                    </div>
-                   <h2 class="ui-sortable-handle hndle">Import/Export</h2>
+                   <h2 class="ui-sortable-handle hndle"><?php _e('Import/Export', 'responsive-menu') ?></h2>
                    <div class="inside">
                      <table class="widefat">
                          <tr id="import_container">
-                                <td><div class="label">Import</div><span class="description"></span></td>
+                                <td><div class="label"><?php _e('Import', 'responsive-menu') ?></div><span class="description"></span></td>
                                 <td>
                                   <input type="file" name="responsive_menu_import_file" />
                                   <input type="submit" class="button submit" name="responsive_menu_import" value="Import Options" /></td>
                         </tr>
                          <tr id="export_container">
-                                <td><div class="label">Export</div><span class="description"></span></td>
+                                <td><div class="label"><?php _e('Export', 'responsive-menu') ?></div><span class="description"></span></td>
                                 <td><input type="submit" class="button submit" name="responsive_menu_export" value="Export Options" /></td>
                          </tr>
                      </table> <!-- .widefat -->
                    </div> <!-- .inside -->
                </div> <!-- .postbox -->
          </div> <!-- .tab_container -->
-        		<input type="submit" class="button submit" name="responsive_menu_submit" value="Update Options" />
-        		<input type="submit" class="button submit" name="responsive_menu_reset" value="Reset Options" />
+        		<input type="submit" class="button submit" name="responsive_menu_submit" value="<?php _e('Update Options', 'responsive-menu') ?>" />
+        		<input type="submit" class="button submit" name="responsive_menu_reset" value="<?php _e('Reset Options', 'responsive-menu') ?>" />
         	</form>
         </div> <!-- #normal-sortables -->
       </div><!--#all_options_container

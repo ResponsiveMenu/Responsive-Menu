@@ -23,19 +23,19 @@ class AdminSaveFactory {
         $js_folder = $data_folder_dir . '/js';
         $css_folder = $data_folder_dir . '/css';
         if($options['external_files'] == 'on' && !is_dir($data_folder_dir)):
-          if(!mkdir($data_folder_dir)) $flash['errors'][] = 'Unable to make data directory';
-          if(!mkdir($css_folder))  $flass['errors'][] = 'Unable to make CSS data directory';
-          if(!mkdir($js_folder))  $flash['errors'][] = 'Unable to make JS data directory';
+          if(!mkdir($data_folder_dir)) $flash['errors'][] = _('Unable to make data directory', 'responsive-menu');
+          if(!mkdir($css_folder))  $flass['errors'][] = _('Unable to make CSS data directory', 'responsive-menu');
+          if(!mkdir($js_folder))  $flash['errors'][] = _('Unable to make JS data directory', 'responsive-menu');
         endif;
 
         $css = $css_factory->build($options);
         $js = $js_factory->build($options);
 
         if(!$file_creator->createCssFile($css_folder, 'responsive-menu-' . get_current_blog_id() . '.css', $css))
-          $flash['errors'][] = 'Unable to create CSS file';
+          $flash['errors'][] = _('Unable to create CSS file', 'responsive-menu');
 
         if(!$file_creator->createJsFile($js_folder, 'responsive-menu-' . get_current_blog_id() . '.js', $js))
-          $flash['errors'][] = 'Unable to create JS file';
+          $flash['errors'][] = _('Unable to create JS file', 'responsive-menu');
 
       endif;
 

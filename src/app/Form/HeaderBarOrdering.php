@@ -20,7 +20,6 @@ class HeaderBarOrdering implements FormComponent
       echo '<li class="draggable">'
               . ucwords($name)
               . '<input type="text" class="orderable-item" value="'.$current_value.'" name="menu['.$option->getName().']['.$name.']" />'
-              . '<i class="fa fa-sort fa-rotate-90"></i>'
               . '<div class="order-option-switch ' . $on_class . '"></div>'
             . '</li>';
     endforeach;

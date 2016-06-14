@@ -7,6 +7,7 @@ Description: Highly Customisable Responsive Menu Plugin for WordPress
 Version: 3.0.0
 Author: Responsive Menu
 Text Domain: responsive-menu
+Domain Path: /translations
 Author URI: http://responsive.menu
 License: GPL2
 Tags: responsive, menu, responsive menu
@@ -15,6 +16,11 @@ Tags: responsive, menu, responsive menu
 /* Required includes for plugin to function */
 include dirname(__FILE__) . '/autoload.php';
 include dirname(__FILE__) . '/src/config/route_dependencies.php';
+
+/* Internationalise the plugin */
+add_action('plugins_loaded', function() {
+  load_plugin_textdomain('responsive-menu', false, basename(dirname(__FILE__)) . '/translations/');
+});
 
 /* Route the plugin */
 $wp_router = new ResponsiveMenu\Routing\WpRouting($container);
