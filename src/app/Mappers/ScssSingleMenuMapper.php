@@ -9,11 +9,12 @@ class ScssSingleMenuMapper extends ScssMapper
   {
 
     $css = <<<CSS
-
+      #responsive-menu-container.responsive-menu-no-transition {
+          transition: none;
+      }
       @media screen and (min-width: {$this->options['breakpoint']}px) {
         #responsive-menu-container {
           display: block;
-          transform: 0;
           & div {
             display: none;
           }
@@ -38,13 +39,13 @@ class ScssSingleMenuMapper extends ScssMapper
               transition: color, background {$this->options['transition_speed']}s;
               display: block;
               padding: 0 15px;
-              font-size: {$this->options['single_menu_font_size']}px;
-              @if '{$this->options['single_menu_font']}' != '' {
-                font-family: '{$this->options['single_menu_font']}';
-              }
               &:hover {
                 color: {$this->options['single_menu_item_link_colour_hover']};
                 background: {$this->options['single_menu_item_background_colour_hover']};
+              }
+              font-size: {$this->options['single_menu_font_size']}px;
+              @if '{$this->options['single_menu_font']}' != '' {
+                font-family: '{$this->options['single_menu_font']}';
               }
             }
             .responsive-menu-submenu {
@@ -60,12 +61,12 @@ class ScssSingleMenuMapper extends ScssMapper
                   color: {$this->options['single_menu_item_submenu_link_colour']};
                   font-size: {$this->options['single_menu_submenu_height']};
                   line-height: {$this->options['single_menu_submenu_height']}px;
-                  @if '{$this->options['single_menu_submenu_font']}' != '' {
-                    font-family: '{$this->options['single_menu_submenu_font']}';
-                  }
                   &:hover {
                     color: {$this->options['single_menu_item_submenu_link_colour_hover']};
-                    background: {$this->options['single_menu_item_submenu_background_colour']};
+                    background: {$this->options['single_menu_item_submenu_background_colour_hover']};
+                  }
+                  @if '{$this->options['single_menu_submenu_font']}' != '' {
+                    font-family: '{$this->options['single_menu_submenu_font']}';
                   }
                 }
                 .responsive-menu-submenu {
@@ -84,7 +85,7 @@ class ScssSingleMenuMapper extends ScssMapper
 CSS;
 
     return $this->compiler->compile($css);
-    
+
   }
 
 }

@@ -37,11 +37,15 @@ class JsMapper
         closeOnLinkClick: '{$this->options['menu_close_on_link_click']}',
         itemTriggerSubMenu: '{$this->options['menu_item_click_to_trigger_submenu']}',
         linkElement: '.responsive-menu-item-link',
+        isSingleMenu: '{$this->options['use_single_menu']}',
         openMenu: function() {
           $(this.trigger).addClass(this.activeClass);
           $('body').addClass(this.openClass);
           $('.responsive-menu-button-icon-active').hide();
           $('.responsive-menu-button-icon-inactive').show();
+          if(this.isSingleMenu == 'on'){
+            $(this.container).removeClass('responsive-menu-no-transition');
+          }
           this.setWrapperTranslate();
           this.isOpen = true;
         },
@@ -134,6 +138,9 @@ class JsMapper
                 self.closeMenu();
               }
             } else {
+              if(self.isSingleMenu == 'on'){
+                $(self.container).addClass('responsive-menu-no-transition');
+              }
               if($('.responsive-menu-open').length>0){
                 self.setWrapperTranslate();
               }
