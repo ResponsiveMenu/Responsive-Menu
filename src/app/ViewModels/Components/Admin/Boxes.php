@@ -70,6 +70,12 @@ class Boxes {
       case 'menu_ordering' : $comp = new Form\MenuOrdering;
                         $comp->render($this->options[$option_name]);
                         break;
+      case 'import' : $comp = new Form\Import;
+                        $comp->render();
+                        break;
+      case 'export' : $comp = new Form\Export;
+                        $comp->render();
+                        break;
       default : $comp = new Form\Text;
                         $comp->render($this->options[$option_name]);
                         break;

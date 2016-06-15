@@ -243,6 +243,19 @@ $order_mapping = [
     ]
   ],
   'Import/Export' => [
-
+    __('Import/Export', 'responsive-menu') => [
+        [
+          'option' => 'import',
+          'title' => __('Import', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'import'
+        ],
+        [
+          'option' => 'export',
+          'title' => __('Export', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'export'
+        ]
+    ]
   ]
 ];
