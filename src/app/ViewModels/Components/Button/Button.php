@@ -18,7 +18,7 @@ class Button implements ViewComponent {
     $content .= $options['use_header_bar'] == 'on' ? '<div id="responsive-menu-header-bar-button" class="responsive-menu-header-box">' : '';
 
     $content .= '<button id="responsive-menu-button"
-            class="hamburger ' . $accessible .
+            class="responsive-menu-button ' . $accessible .
             ' responsive-menu-' . $options['button_click_animation'] . '"
             type="button"
             aria-label="Menu"

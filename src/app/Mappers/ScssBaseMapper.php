@@ -161,7 +161,7 @@ class ScssBaseMapper extends ScssMapper
         }
       }
 
-      .hamburger {
+      .responsive-menu-button {
 
         .admin-bar & {
           margin-top: 32px;
@@ -242,7 +242,7 @@ class ScssBaseMapper extends ScssMapper
 
     @media screen and ( max-width: 782px ) {
       .admin-bar #responsive-menu-container,
-      .admin-bar .hamburger,
+      .admin-bar .responsive-menu-button,
       .admin-bar #responsive-menu-header {
           margin-top: 46px;
       }

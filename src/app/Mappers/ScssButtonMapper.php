@@ -23,7 +23,7 @@ class ScssButtonMapper extends ScssMapper
 
       @import "{$hamburger_css_dir}";
 
-      .hamburger {
+      .responsive-menu-button {
         width: {$this->options['button_width']}px;
         height: {$this->options['button_height']}px;
         @if '{$this->options['button_transparent_background']}' == 'off' {
