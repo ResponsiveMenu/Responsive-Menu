@@ -175,7 +175,7 @@ $order_mapping = [
           'title' => __('Theme Location Menu', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
           'type' => 'select',
-          'select' => [$location_menus]
+          'select' => $location_menus
         ]
       ],
     __('General', 'responsive-menu') =>
@@ -478,9 +478,7 @@ $order_mapping = [
         'title' => __('Menu to Use', 'responsive-menu'),
         'label' => __('', 'responsive-menu'),
         'type' => 'select',
-        'select' => [
-          $menus_array
-        ]
+        'select' => $menus_array
       ],
       [
         'option' => 'menu_to_hide',
@@ -631,9 +629,9 @@ $order_mapping = [
           'label' => __('', 'responsive-menu'),
           'type' => 'select',
           'select' => [
-            ['value' => 'absolute', 'display', 'Absolute'],
-            ['value' => 'fixed', 'display', 'Fixed'],
-            ['value' => 'relative', 'display', 'Relative']
+            ['value' => 'absolute', 'display' => 'Absolute'],
+            ['value' => 'fixed', 'display' => 'Fixed'],
+            ['value' => 'relative', 'display' => 'Relative']
           ]
         ],
         [
@@ -657,8 +655,8 @@ $order_mapping = [
           'label' => __('', 'responsive-menu'),
           'type' => 'select',
           'select' => [
-            ['value' => 'left', 'display', 'Left'],
-            ['value' => 'right', 'display', 'Right']
+            ['value' => 'left', 'display' => 'Left'],
+            ['value' => 'right', 'display' => 'Right']
           ]
         ],
         [

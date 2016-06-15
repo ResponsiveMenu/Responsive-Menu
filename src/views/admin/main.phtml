@@ -42,58 +42,12 @@ $boxes = new ResponsiveMenu\ViewModels\Components\Admin\Boxes($order_mapping, $l
       </div>
 
       <div id="all_options_container">
-        <?php echo $boxes->render(); ?>
-      </div>
-
-      <div id="all_options_container">
         <div class="meta-box-sortables ui-sortable" id="normal-sortables">
         	<form action="" method="post" enctype="multipart/form-data">
             <input type="submit" class="button submit" name="responsive_menu_submit" value="Update Options" style="display: none;" />
-        		<?php $t=1; foreach(Tabs::getTabs($l['options']) as $key => $val): ?>
-      			     <div class="tab_container tab_container_<?php echo $t; ?>" id="tab_container_<?php echo $key; ?>">
-                   <?php foreach(Tabs::getSubTabs($key, $l['options']) as $tab_name): ?>
-                      <div class="postbox" id="postbox_<?php echo explode('.',$tab_name)[1]; ?>">
-                        <div class="handlediv">
-                          <button aria-expanded="true" class="button-link" type="button"><span class="screen-reader-text">Toggle panel: Location</span><span aria-hidden="true" class="toggle-indicator"></span></button>
-                        </div>
-                        <h2 class="ui-sortable-handle hndle"><?php echo $val; ?> &raquo; <?php Text::underscoreToWord(explode('.',$tab_name)[1]); ?></h2>
-                				<div class="inside">
-                          <table class="widefat">
-                  					<?php $i=0; foreach(Tabs::getTabOptions($tab_name, $l['options']) as $option) : ?>
-                  						<tr class="<?php echo $option->isPro() ? 'pro_option' : ''; ?> <?php echo $option->isSemiPro() ? 'semi_pro_option' : ''; ?>"
-                                id="<?php echo $option->getName(); ?>_container">
-                							       <td><div class="label"><?php Text::underscoreToWord($option->getName()) ?></div><span class="description"><?php echo $option->getLabel(); ?></span></td>
-              							         <td><?php $option->getFormComponent()->render($option); $i++; ?></td>
-                                </tr>
-                  					<?php endforeach; ?>
-                          </table> <!-- .widefat -->
-                				</div> <!-- .inside -->
-                    </div> <!-- .postbox -->
-                <?php endforeach; ?>
-              </div> <!-- .tab_container -->
-        		<?php $t++; endforeach; ?>
-            <div class="tab_container tab_container_import_export" id="tab_container_import_export">
-                 <div class="postbox" id="postbox_import_export">
-                   <div class="handlediv">
-                     <button aria-expanded="true" class="button-link" type="button"><span class="screen-reader-text">Toggle panel: Location</span><span aria-hidden="true" class="toggle-indicator"></span></button>
-                   </div>
-                   <h2 class="ui-sortable-handle hndle"><?php _e('Import/Export', 'responsive-menu') ?></h2>
-                   <div class="inside">
-                     <table class="widefat">
-                         <tr id="import_container">
-                                <td><div class="label"><?php _e('Import', 'responsive-menu') ?></div><span class="description"></span></td>
-                                <td>
-                                  <input type="file" name="responsive_menu_import_file" />
-                                  <input type="submit" class="button submit" name="responsive_menu_import" value="Import Options" /></td>
-                        </tr>
-                         <tr id="export_container">
-                                <td><div class="label"><?php _e('Export', 'responsive-menu') ?></div><span class="description"></span></td>
-                                <td><input type="submit" class="button submit" name="responsive_menu_export" value="Export Options" /></td>
-                         </tr>
-                     </table> <!-- .widefat -->
-                   </div> <!-- .inside -->
-               </div> <!-- .postbox -->
-         </div> <!-- .tab_container -->
+            <div id="options_list_container">
+              <?php echo $boxes->render(); ?>
+            </div>
         		<input type="submit" class="button submit" name="responsive_menu_submit" value="<?php _e('Update Options', 'responsive-menu') ?>" />
         		<input type="submit" class="button submit" name="responsive_menu_reset" value="<?php _e('Reset Options', 'responsive-menu') ?>" />
         	</form>
