@@ -19,7 +19,7 @@ class Button implements ViewComponent {
 
     $content .= '<button id="responsive-menu-button"
             class="hamburger ' . $accessible .
-            ' responsive-menu-hamburger-' . $options['button_click_animation'] . '"
+            ' responsive-menu-' . $options['button_click_animation'] . '"
             type="button"
             aria-label="Menu"
             aria-controls="navigation">';

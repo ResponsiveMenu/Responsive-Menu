@@ -2,7 +2,7 @@
   /*
    * Arrow
    */
-  .responsive-menu-hamburger-arrow.is-active {
+  .responsive-menu-arrow.is-active {
     .responsive-menu-inner {
       &::before {
         transform: translate3d($hamburger-layer-width * -0.2, 0, 0) rotate(-45deg) scale(0.7, 1);
