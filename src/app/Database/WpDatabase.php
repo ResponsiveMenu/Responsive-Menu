@@ -4,13 +4,13 @@ namespace ResponsiveMenu\Database;
 
 class WpDatabase implements Database {
 
-  const TABLE = 'responsive_menu';
+  protected static $table_name = 'responsive_menu';
 
   public function __construct()
   {
     global $wpdb;
     $this->db = $wpdb;
-    $this->table = $this->db->prefix . self::TABLE;
+    $this->table = $this->db->prefix . self::$table_name;
   }
 
   public function update(array $to_update, array $where)

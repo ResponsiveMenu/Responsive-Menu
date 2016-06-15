@@ -8,8 +8,8 @@ class Migration{
 
 	protected $db;
 
-  const VERSION_VAR = 'RMVer';
-  const OLD_OPTIONS_VAR = 'RMOptions';
+  protected static $version_var = 'RMVer';
+  protected static $old_options_var = 'RMOptions';
 
 	public function __construct(Database $db, $default_options)
 	{
@@ -82,12 +82,12 @@ class Migration{
 
 	protected function getOldVersion()
 	{
-		return get_option(self::VERSION_VAR);
+		return get_option(self::$version_var);
 	}
 
 	protected function updateVersion()
 	{
-		update_option(self::VERSION_VAR, $this->getCurrentVersion());
+		update_option(self::$version_var, $this->getCurrentVersion());
 	}
 
   protected function isVersion3($version)
@@ -97,7 +97,7 @@ class Migration{
 
   protected function migrateVersion2Options()
   {
-    $old_options = get_option(self::OLD_OPTIONS_VAR);
+    $old_options = get_option(self::$old_options_var);
 
     $new_options = [
       'menu_to_use' => $old_options['RM'] ? $old_options['RM'] : '',
