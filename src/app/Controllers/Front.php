@@ -15,10 +15,6 @@ class Front extends Base
     # Get Latest Options
     $options = $this->repository->all();
 
-    # If we want mobile only and we are not on mobile, let's get outta here!
-    if($options['mobile_only'] == 'on' && !wp_is_mobile())
-      return;
-
     # This needs refactoring - Martin Fowler HELP!
     $display_factory = new DisplayFactory();
     $display_factory->build($options);
