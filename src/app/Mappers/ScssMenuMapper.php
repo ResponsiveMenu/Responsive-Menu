@@ -21,12 +21,6 @@ class ScssMenuMapper extends ScssMapper
         }
       }
 
-      @if '{$this->options['menu_disable_scrolling']}' == 'on' {
-        body.responsive-menu-open {
-          overflow: hidden;
-        } 
-      }
-
       @if '{$this->options['page_wrapper']}' != '' {
         & {$this->options['page_wrapper']} {
           transition: transform {$this->options['animation_speed']}s;
