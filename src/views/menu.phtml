@@ -1,12 +1,8 @@
 <div id="responsive-menu-container"
   class="
   <?php echo $l['options']['animation_type']; ?>-<?php echo $l['options']['menu_appear_from']; ?>
-  <?php echo $l['options']['use_single_menu'] == 'on' ? 'responsive-menu-no-transition' : '' ?>
   ">
   <div id="responsive-menu-wrapper">
     <?php echo $l['menu']; ?>
   </div>
 </div>
-<?php if($l['options']['menu_overlay'] == 'on') : ?>
-  <div id="responsive-menu-mask"></div>
-<?php endif; ?>

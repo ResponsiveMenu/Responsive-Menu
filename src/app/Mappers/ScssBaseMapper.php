@@ -19,21 +19,6 @@ class ScssBaseMapper extends ScssMapper
         }
       }
 
-      #responsive-menu-mask {
-        position: fixed;
-        z-index: 9998;
-        top: 0;
-        left: 0;
-        overflow: hidden;
-        width: 0;
-        height: 0;
-        background-color: rgba(0,0,0,0);
-        .responsive-menu-open & {
-          width: 100%;
-          height: 100%;
-        }
-      }
-
       #responsive-menu-button,
       #responsive-menu-container,
       #responsive-menu-header {
