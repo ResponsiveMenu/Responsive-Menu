@@ -114,7 +114,14 @@ $order_mapping = [
 
   ],
   __('Item Ordering', 'responsive-menu') => [
-
+    __('Order', 'responsive-menu') => [
+        [
+          'option' => 'items_order',
+          'title' => __('Order of Menu Items', 'responsive-menu'),
+          'label' => __('Drag the items to re-order and click to turn them on/off', 'responsive-menu'),
+          'type' => 'menu_ordering'
+        ]
+    ],
   ],
   __('Single Menu', 'responsive-menu') => [
     __('Setup', 'responsive-menu') => [
