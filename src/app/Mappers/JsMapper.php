@@ -39,20 +39,12 @@ class JsMapper
         closeOnLinkClick: '{$this->options['menu_close_on_link_click']}',
         itemTriggerSubMenu: '{$this->options['menu_item_click_to_trigger_submenu']}',
         linkElement: '.responsive-menu-item-link',
-        isSingleMenu: '{$this->options['use_single_menu']}',
         openMenu: function() {
           $(this.trigger).addClass(this.activeClass);
           $('body').addClass(this.openClass);
           $('.responsive-menu-button-icon-active').hide();
           $('.responsive-menu-button-icon-inactive').show();
-          if(this.isSingleMenu == 'on'){
-            $(this.container).removeClass('responsive-menu-no-transition');
-          }
-          if(this.animationType != 'fade') {
-            this.setWrapperTranslate();
-          } else {
-            this.fadeMenuIn();
-          }
+          this.setWrapperTranslate();
           this.isOpen = true;
         },
         closeMenu: function() {
@@ -60,11 +52,7 @@ class JsMapper
           $('body').removeClass(this.openClass);
           $('.responsive-menu-button-icon-inactive').hide();
           $('.responsive-menu-button-icon-active').show();
-          if(this.animationType != 'fade') {
-            this.clearWrapperTranslate();
-          } else {
-            this.fadeMenuOut();
-          }
+          this.clearWrapperTranslate();
           this.isOpen = false;
         },
         triggerMenu: function() {
@@ -132,12 +120,6 @@ class JsMapper
             $('#responsive-menu-button').css({'transform':''});
           }
         },
-        fadeMenuIn: function() {
-          $(this.container).fadeIn(this.animationSpeed);
-        },
-        fadeMenuOut: function() {
-          $(this.container).fadeOut(this.animationSpeed);
-        },
         init: function() {
           var self = this;
           $(this.trigger).on(this.triggerTypes, function(){
@@ -151,23 +133,11 @@ class JsMapper
           $(window).resize(function() {
             if($(window).width() > self.breakpoint) {
               if(self.isOpen){
-                if(self.animationType != 'fade') {
-                  self.closeMenu();
-                }
-              }
-              if(self.animationType == 'fade') {
-                self.fadeMenuIn();
+                self.closeMenu();
               }
             } else {
-              if(self.isSingleMenu == 'on'){
-                $(self.container).addClass('responsive-menu-no-transition');
-              }
               if($('.responsive-menu-open').length>0){
                 self.setWrapperTranslate();
-              }
-              if(self.animationType == 'fade') {
-                $(self.container).hide();
-                self.isOpen = false;
               }
             }
           });
