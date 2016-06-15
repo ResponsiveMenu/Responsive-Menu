@@ -64,6 +64,9 @@ class Boxes {
       case 'colour' : $comp = new Form\Colour;
                         $comp->render($this->options[$option_name]);
                         break;
+      case 'textarea' : $comp = new Form\TextArea;
+                        $comp->render($this->options[$option_name]);
+                        break;
       default : $comp = new Form\Text;
                         $comp->render($this->options[$option_name]);
                         break;

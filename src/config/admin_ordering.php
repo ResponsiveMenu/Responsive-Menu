@@ -57,7 +57,15 @@ $order_mapping = [
 
   ],
   __('Custom CSS', 'responsive-menu') => [
-
+    __('CSS', 'responsive-menu') => [
+        [
+          'option' => 'custom_css',
+          'title' => __('Custom CSS', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'textarea',
+          'pro' => true
+        ]
+    ]
   ],
   __('Technical', 'responsive-menu') => [
 
