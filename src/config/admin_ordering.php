@@ -497,7 +497,216 @@ $order_mapping = [
   */
 
   __('Button', 'responsive-menu') => [
-
+    __('Colours', 'responsive-menu') => [
+        [
+          'option' => 'button_background_colour',
+          'title' => __('Background Colour', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'colour'
+        ],
+        [
+          'option' => 'button_background_colour_hover',
+          'title' => __('Background Colour Hover', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'colour'
+        ],
+        [
+          'option' => 'button_line_colour',
+          'title' => __('Line Colour', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'colour'
+        ],
+        [
+          'option' => 'button_text_colour',
+          'title' => __('Text Colour', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'colour'
+        ],
+        [
+          'option' => 'button_transparent_background',
+          'title' => __('Transparent Background', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'checkbox'
+        ],
+    ],
+    __('General', 'responsive-menu') =>
+      [
+        [
+          'option' => 'button_click_animation',
+          'title' => __('Animation Type', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'select',
+          'select' => [
+            ['value' => 'off', 'display' => 'Off'],
+            ['value' => '3dx', 'display' => '3DX', 'disabled' => true],
+            ['value' => '3dx-r', 'display' => '3DX Reverse', 'disabled' => true],
+            ['value' => '3dy', 'display' => '3DY', 'disabled' => true],
+            ['value' => '3dy-r', 'display' => '3DY Reverse', 'disabled' => true],
+            ['value' => 'arrow', 'display' => 'Arrow', 'disabled' => true],
+            ['value' => 'arrow-r', 'display' => 'Arrow Reverse', 'disabled' => true],
+            ['value' => 'arrowalt', 'display' => 'Arrow Alt', 'disabled' => true],
+            ['value' => 'arrowalt-r', 'display' => 'Arrow Alt Reverse', 'disabled' => true],
+            ['value' => 'boring', 'display' => 'Boring'],
+            ['value' => 'collapse', 'display' => 'Collapse', 'disabled' => true],
+            ['value' => 'collapse-r', 'display' => 'Collapse Reverse', 'disabled' => true],
+            ['value' => 'elastic', 'display' => 'Elastic', 'disabled' => true],
+            ['value' => 'elastic-r', 'display' => 'Elastic Reverse', 'disabled' => true],
+            ['value' => 'emphatic', 'display' => 'Emphatic', 'disabled' => true],
+            ['value' => 'emphatic-r', 'display' => 'Emphatic Reverse', 'disabled' => true],
+            ['value' => 'slider', 'display' => 'Slider', 'disabled' => true],
+            ['value' => 'slider-r', 'display' => 'Slider Reverse', 'disabled' => true],
+            ['value' => 'spin', 'display' => 'Spin', 'disabled' => true],
+            ['value' => 'spin-r', 'display' => 'Spin Reverse', 'disabled' => true],
+            ['value' => 'spring', 'display' => 'Spring', 'disabled' => true],
+            ['value' => 'spring-r', 'display' => 'Spring Reverse', 'disabled' => true],
+            ['value' => 'stand', 'display' => 'Stand', 'disabled' => true],
+            ['value' => 'stand-r', 'display' => 'Stand Reverse', 'disabled' => true],
+            ['value' => 'squeeze', 'display' => 'Squeeze', 'disabled' => true],
+            ['value' => 'vortex', 'display' => 'Vortex', 'disabled' => true],
+            ['value' => 'vortex-r', 'display' => 'Vortex Reverse', 'disabled' => true]
+          ],
+          'semi_pro' => true
+        ],
+        [
+          'option' => 'button_font',
+          'title' => __('Font', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+        ],
+        [
+          'option' => 'button_font_icon',
+          'title' => __('Font Icon', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+        ],
+        [
+          'option' => 'button_font_icon_when_clicked',
+          'title' => __('Font Icon When Clicked', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+        ],
+        [
+          'option' => 'button_image',
+          'title' => __('Image', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'image'
+        ],
+        [
+          'option' => 'button_image_when_clicked',
+          'title' => __('Image When Clicked', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'image'
+        ],
+        [
+          'option' => 'button_title',
+          'title' => __('Title', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+        ],
+        [
+          'option' => 'button_title_line_height',
+          'title' => __('Title Line Height', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'unit' => 'px'
+        ],
+        [
+          'option' => 'button_title_position',
+          'title' => __('Title Position', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'select',
+          'select' => [
+            ['value' => 'left', 'display' => 'Left'],
+            ['value' => 'right', 'display' => 'Right'],
+            ['value' => 'top', 'display' => 'Top'],
+            ['value' => 'bottom', 'display' => 'Bottom']
+          ]
+        ],
+      ],
+      __('Advanced', 'responsive-menu') =>
+      [
+        [
+          'option' => 'button_click_trigger',
+          'title' => __('Trigger', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+        ],
+        [
+          'option' => 'button_position_type',
+          'title' => __('Position Type', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'select',
+          'select' => [
+            ['value' => 'absolute', 'display', 'Absolute'],
+            ['value' => 'fixed', 'display', 'Fixed'],
+            ['value' => 'relative', 'display', 'Relative']
+          ]
+        ],
+        [
+          'option' => 'button_push_with_animation',
+          'title' => __('Push Button with Animation', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'checkbox'
+        ],
+      ],
+      __('Location', 'responsive-menu') =>
+      [
+        [
+          'option' => 'button_distance_from_side',
+          'title' => __('Distance from Side', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'unit' => '%'
+        ],
+        [
+          'option' => 'button_left_or_right',
+          'title' => __('Button Position', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'select',
+          'select' => [
+            ['value' => 'left', 'display', 'Left'],
+            ['value' => 'right', 'display', 'Right']
+          ]
+        ],
+        [
+          'option' => 'button_top',
+          'title' => __('Distance from Top', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'unit' => 'px'
+        ],
+      ],
+      __('Sizing', 'responsive-menu') =>
+      [
+        [
+          'option' => 'button_font_size',
+          'title' => __('Font Size', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'unit' => 'px'
+        ],
+        [
+          'option' => 'button_height',
+          'title' => __('Height', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'unit' => 'px'
+        ],
+        [
+          'option' => 'button_line_height',
+          'title' => __('Line Height', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'unit' => 'px'
+        ],
+        [
+          'option' => 'button_line_margin',
+          'title' => __('Line Margin', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'unit' => 'px'
+        ],
+        [
+          'option' => 'button_line_width',
+          'title' => __('Line Width', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'unit' => 'px'
+        ],
+        [
+          'option' => 'button_width',
+          'title' => __('Width', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'unit' => 'px'
+        ],
+      ],
   ],
 
   /*
@@ -573,7 +782,108 @@ $order_mapping = [
   *
   */
   __('Header Bar', 'responsive-menu') => [
-
+    __('Setup', 'responsive-menu') => [
+        [
+          'option' => 'use_header_bar',
+          'title' => __('Use Header Bar', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'checkbox',
+          'pro' => true
+        ],
+        [
+          'option' => 'header_bar_position_type',
+          'title' => __('Position Type', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'select',
+          'select' => [
+              ['value' => 'fixed', 'display' => 'Fixed'],
+              ['value' => 'relative', 'display' => 'Relative'],
+              ['value' => 'absolute', 'display' => 'Absolute']
+          ],
+          'pro' => true
+        ],
+      ],
+    __('Ordering', 'responsive-menu') => [
+        [
+          'option' => 'header_bar_items_order',
+          'title' => __('Ordering', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'header_ordering',
+          'pro' => true
+        ]
+      ],
+    __('Logo', 'responsive-menu') => [
+        [
+          'option' => 'header_bar_logo',
+          'title' => __('Logo', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'image',
+          'pro' => true
+        ],
+        [
+          'option' => 'header_bar_logo_link',
+          'title' => __('Logo Link', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'pro' => true
+        ],
+      ],
+    __('Title', 'responsive-menu') => [
+        [
+          'option' => 'header_bar_title',
+          'title' => __('Title', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'pro' => true
+        ]
+      ],
+    __('Content', 'responsive-menu') => [
+        [
+          'option' => 'header_bar_html_content',
+          'title' => __('HTML Content', 'responsive-menu'),
+          'label' => __('Accepts shortcodes', 'responsive-menu'),
+          'type' => 'textarea',
+          'pro' => true
+        ]
+      ],
+    __('Text', 'responsive-menu') => [
+        [
+          'option' => 'header_bar_font',
+          'title' => __('Font', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'pro' => true
+        ],
+        [
+          'option' => 'header_bar_font_size',
+          'title' => __('Font Size', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'unit' => 'px',
+          'pro' => true
+        ],
+      ],
+    __('Sizing', 'responsive-menu') => [
+        [
+          'option' => 'header_bar_height',
+          'title' => __('Height', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'unit' => 'px',
+          'pro' => true
+        ],
+      ],
+    __('Colours', 'responsive-menu') => [
+        [
+          'option' => 'header_bar_background_color',
+          'title' => __('Background Colour', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'colour',
+          'pro' => true
+        ],
+        [
+          'option' => 'header_bar_text_color',
+          'title' => __('Text Colour', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'colour',
+          'pro' => true
+        ],
+      ],
   ],
 
   /*

@@ -19,6 +19,7 @@ $default_options = array(
   'button_title_position' => 'left',
   'button_title_line_height' => '13',
   'button_background_colour' => '#000',
+  'button_background_colour_hover' => '#000',
   'button_click_animation' => 'boring',
   'button_line_colour' => '#fff',
   'button_text_colour' => '#fff',
@@ -139,7 +140,6 @@ $default_options = array(
   'header_bar_font' => null,
   'header_bar_background_color' => '#ffffff',
   'header_bar_text_color' => '#ffffff',
-  'header_include_search_bar' => 'off',
   'header_bar_position_type' => 'fixed',
 
   'items_order' => '{"title": "on","menu":"on","search":"on","additional content":"on"}',

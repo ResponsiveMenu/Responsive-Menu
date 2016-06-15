@@ -77,6 +77,9 @@ class Boxes {
       case 'menu_ordering' : $comp = new Form\MenuOrdering;
                         $comp->render($this->options[$option_name]);
                         break;
+      case 'header_ordering' : $comp = new Form\HeaderBarOrdering;
+                        $comp->render($this->options[$option_name]);
+                        break;
       case 'fonticons' : $comp = new Form\FontIconPageList;
                         $comp->render($this->options[$option_name]);
                         break;

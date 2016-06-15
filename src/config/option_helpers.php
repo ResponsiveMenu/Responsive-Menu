@@ -251,6 +251,11 @@ $option_helpers = array(
 		'position' => 'button.colours'
 	),
 
+	'button_background_colour_hover' => array(
+		'form_component' => 'ResponsiveMenu\Form\Colour',
+		'position' => 'button.colours'
+	),
+
 	'button_line_colour' => array(
 		'form_component' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'button.colours'
@@ -694,12 +699,6 @@ $option_helpers = array(
   'header_bar_text_color' => array(
     'form_component' => 'ResponsiveMenu\Form\Colour',
 		'position' => 'header_bar.colours',
-    'pro' => true
-	),
-
-  'header_include_search_bar' => array(
-    'form_component' => 'ResponsiveMenu\Form\Checkbox',
-		'position' => 'header_bar.advanced',
     'pro' => true
 	),
 
