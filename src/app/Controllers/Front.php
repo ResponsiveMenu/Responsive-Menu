@@ -27,10 +27,6 @@ class Front extends Base
     $menu = new MenuViewModel($options);
     $html = $options['use_header_bar'] == 'on' ? new HeaderBarViewModel($options) : new ButtonViewModel($options);
 
-    # Only load Font Icon Scripts if Needed
-    if($options->usesFontIcons())
-      wp_enqueue_script('responsive-menu-font-awesome', 'https://use.fontawesome.com/b6bedb3084.js', null, null);
-
     # Only render if we don't have shortcodes turned on
     if($options['shortcode'] == 'off'):
       $options['use_header_bar'] == 'on'
@@ -48,7 +44,7 @@ class Front extends Base
                 : $this->view->make('button', ['options' => $options, 'button' => $html->getHtml()]);
 
         return $html . $this->view->make('menu', ['options' => $options, 'menu' => $menu->getHtml()]);
-        
+
       });
     endif;
 

@@ -20,13 +20,10 @@ class OptionsCollection implements \ArrayAccess {
   }
 
   public function usesFontIcons() {
-    # Code to determine if they are used
-    return true;
+    return false;
   }
 
   public function getActiveArrow() {
-    if($this->options['active_arrow_font_icon']->getValue())
-      return '<i class="fa ' . $this->options['active_arrow_font_icon'] .'"></i>';
     if($this->options['active_arrow_image']->getValue())
       return '<img src="' . $this->options['active_arrow_image'] .'" />';
     else
@@ -35,8 +32,6 @@ class OptionsCollection implements \ArrayAccess {
   }
 
   public function getInActiveArrow() {
-    if($this->options['inactive_arrow_font_icon']->getValue())
-      return '<i class="fa ' . $this->options['inactive_arrow_font_icon'] .'"></i>';
     if($this->options['inactive_arrow_image']->getValue())
       return '<img src="' . $this->options['inactive_arrow_image'] .'" />';
     else
@@ -45,8 +40,6 @@ class OptionsCollection implements \ArrayAccess {
   }
 
   public function getTitleImage() {
-    if($this->options['menu_title_font_icon']->getValue())
-      return '<i class="fa ' . $this->options['menu_title_font_icon'] .'"></i>';
     if($this->options['menu_title_image']->getValue())
       return '<img src="' . $this->options['menu_title_image'] .'" />';
     else
@@ -55,8 +48,6 @@ class OptionsCollection implements \ArrayAccess {
   }
 
   public function getButtonIcon() {
-    if($this->options['button_font_icon']->getValue())
-      return '<i class="fa ' . $this->options['button_font_icon'] .' responsive-menu-button-icon responsive-menu-button-icon-active"></i>';
     if($this->options['button_image']->getValue())
       return '<img src="' . $this->options['button_image'] .'" class="responsive-menu-button-icon responsive-menu-button-icon-active" />';
     else
@@ -64,8 +55,6 @@ class OptionsCollection implements \ArrayAccess {
   }
 
   public function getButtonIconActive() {
-    if($this->options['button_font_icon_when_clicked']->getValue())
-      return '<i class="fa ' . $this->options['button_font_icon_when_clicked'] .' responsive-menu-button-icon responsive-menu-button-icon-inactive"></i>';
     if($this->options['button_image']->getValue())
       return '<img src="' . $this->options['button_image_when_clicked'] .'" class=" responsive-menu-button-icon responsive-menu-button-icon-inactive" />';
     else

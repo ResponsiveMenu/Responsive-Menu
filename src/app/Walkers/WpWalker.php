@@ -103,21 +103,8 @@ class WpWalker extends \Walker_Nav_Menu
       if($depth + 1 == $this->options['menu_depth']->getValue())
         $initial_arrow = '';
 
-      /* Get Font Icon Information */
-      if($this->options['menu_font_icons']):
-        $font_icons = json_decode($this->options['menu_font_icons']);
-        if(is_object($font_icons)):
-          $font_icons = array_filter(array_combine($font_icons->id, $font_icons->icon));
-          $font_icon = isset($font_icons[$item->ID]) ? "<i class='fa {$font_icons[$item->ID]}'></i>" : "";
-        else:
-          $font_icon = '';
-        endif;
-      else:
-        $font_icon = '';
-      endif;
-
       $item_output = $args->before;
-  		$item_output .= '<a'. $attributes .'>' . $font_icon;
+  		$item_output .= '<a'. $attributes .'>';
   		$item_output .= $args->link_before . $title . $args->link_after;
       $item_output .= $initial_arrow;
   		$item_output .= '</a>';
