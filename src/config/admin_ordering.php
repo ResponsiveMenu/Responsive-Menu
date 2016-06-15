@@ -1,5 +1,7 @@
 <?php
 
+foreach(get_terms('nav_menu') as $menu) $menus_array[$menu->slug] = ['value' => $menu->name];
+
 $order_mapping = [
 
   /*
@@ -92,7 +94,29 @@ $order_mapping = [
   */
 
   __('Initial Setup', 'responsive-menu') => [
-
+    __('Menu', 'responsive-menu') =>
+    [
+      [
+        'option' => 'breakpoint',
+        'title' => __('Breakpoint', 'responsive-menu'),
+        'label' => __('This is the width of the screen at which point you would like the menu to start showing', 'responsive-menu'),
+        'unit' => 'px'
+      ],
+      [
+        'option' => 'menu_to_use',
+        'title' => __('Menu to Use', 'responsive-menu'),
+        'label' => __('', 'responsive-menu'),
+        'type' => 'select',
+        'select' => [
+          $menus_array
+        ]
+      ],
+      [
+        'option' => 'menu_to_hide',
+        'title' => __('CSS of Menu to Hide', 'responsive-menu'),
+        'label' => __('', 'responsive-menu')
+      ]
+    ]
   ],
 
   /*
