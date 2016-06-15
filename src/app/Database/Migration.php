@@ -20,7 +20,8 @@ class Migration{
 	protected function addNewOptions()
 	{
     # If DB is empty we need to fill it up!
-    if(empty($options = $this->db->all())):
+    $options = $this->db->all()
+    if(empty($options)):
       foreach($this->defaults as $name => $value)
         $this->db->insert(array('name' => $name, 'value' => $value));
     # Otherwise we only add new options
