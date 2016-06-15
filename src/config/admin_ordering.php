@@ -68,7 +68,47 @@ $order_mapping = [
     ]
   ],
   __('Technical', 'responsive-menu') => [
-
+    __('Scripts', 'responsive-menu') => [
+        [
+          'option' => 'external_files',
+          'title' => __('Use External Files?', 'responsive-menu'),
+          'label' => __('This will create external files for CSS and JavaScript', 'responsive-menu'),
+          'type' => 'checkbox'
+        ],
+        [
+          'option' => 'minify_scripts',
+          'title' => __('Minify Scripts?', 'responsive-menu'),
+          'label' => __('This will minify CSS and JavaScript output', 'responsive-menu'),
+          'type' => 'checkbox'
+        ],
+        [
+          'option' => 'scripts_in_footer',
+          'title' => __('Place Scripts In Footer?', 'responsive-menu'),
+          'label' => __('This will place the JavaScript file in the footer', 'responsive-menu'),
+          'type' => 'checkbox'
+        ]
+    ],
+    __('Menu', 'responsive-menu') => [
+        [
+          'option' => 'custom_walker',
+          'title' => __('Use a Custom Walker?', 'responsive-menu'),
+          'label' => __('Warning: For extremely advanced use only', 'responsive-menu'),
+          'type' => 'checkbox'
+        ],
+        [
+          'option' => 'mobile_only',
+          'title' => __('Show on mobile devices only?', 'responsive-menu'),
+          'label' => __('This will make it not a responsive menu but a "mobile menu"', 'responsive-menu'),
+          'type' => 'checkbox',
+          'pro' => true
+        ],
+        [
+          'option' => 'shortcode',
+          'title' => __('Use Shortcode?', 'responsive-menu'),
+          'label' => __('Please place [responsive_menu] in your files to use', 'responsive-menu'),
+          'type' => 'checkbox'
+        ]
+    ]
   ],
   __('Header Bar', 'responsive-menu') => [
 
