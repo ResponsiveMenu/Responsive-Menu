@@ -19,7 +19,7 @@ class AdminSaveFactory {
         $file_creator = new FileCreator;
 
         # Create Data Folders if They don't exist
-        $data_folder_dir = dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/responsive-menu-3-data';
+        $data_folder_dir = dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/responsive-menu-data';
         $js_folder = $data_folder_dir . '/js';
         $css_folder = $data_folder_dir . '/css';
         if($options['external_files'] == 'on' && !is_dir($data_folder_dir)):

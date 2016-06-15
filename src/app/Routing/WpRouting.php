@@ -41,7 +41,7 @@ class WpRouting implements Routing
       'Responsive Menu',
       'Responsive Menu',
       'manage_options',
-      'responsive-menu-3',
+      'responsive-menu',
       function() use ($method) {
         $controller = $this->container['admin_controller'];
         if($method == 'update' || $method == 'reset'):

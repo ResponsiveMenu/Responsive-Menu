@@ -7,7 +7,7 @@ class AdminView implements View
 
   public function __construct()
   {
-    if(is_admin() && isset($_GET['page']) && $_GET['page'] == 'responsive-menu-3'):
+    if(is_admin() && isset($_GET['page']) && $_GET['page'] == 'responsive-menu'):
 
       wp_enqueue_media();
       //wp_enqueue_style('wp-color-picker');

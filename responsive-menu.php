@@ -1,7 +1,7 @@
 <?php
 
 /*
-Plugin Name: Responsive Menu 3
+Plugin Name: Responsive Menu
 Plugin URI: http://responsive.menu
 Description: Highly Customisable Responsive Menu Plugin for WordPress
 Version: 3.0.0
@@ -14,7 +14,7 @@ Tags: responsive, menu, responsive menu
 
 /* Check correct PHP version first */
 if(version_compare(PHP_VERSION, '5.4', '<'))
-  exit(sprintf('Responsive Menu 3.0 requires PHP 5.4 or higher. You are still on %s', PHP_VERSION));
+  exit(sprintf('Responsive Menu requires PHP 5.4 or higher. You are still on %s', PHP_VERSION));
 
 /* Required includes for plugin to function */
 include dirname(__FILE__) . '/autoload.php';

@@ -183,7 +183,7 @@ class Migration{
 
   public function getCurrentVersion()
   {
-    $plugin_data = get_plugin_data(dirname(dirname(dirname(dirname(__FILE__)))) . '/responsive-menu-3.php', false, false);
+    $plugin_data = get_plugin_data(dirname(dirname(dirname(dirname(__FILE__)))) . '/responsive-menu.php', false, false);
     return $plugin_data['Version'];
   }
 
