@@ -17,7 +17,7 @@ class Tabs {
   }
 
   public function i($data) {
-      return strtolower(str_replace(['/', '_'], '_', $data));
+      return strtolower(str_replace([' ', '/'], '_', $data));
   }
 
 }

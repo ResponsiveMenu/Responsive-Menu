@@ -34,13 +34,14 @@ class Boxes {
                   $semi_pro = isset($option['semi_pro'])  ? 'semi_pro_option' : '';
                   $type = isset($option['type']) ? $option['type'] : null;
                   $unit = isset($option['unit']) ? '<span class="units">' . $option['unit'] . '</span>' : null;
+                  $select = isset($option['select']) ? $option['select'] : null;
               echo '<tr class="' . $pro . ' ' . $semi_pro . '" id="' . $option['option'] . '_container">
                       <td>
                         <div class="label">' . $option['title'] . '</div>
                         <span class="description">' . $option['label'] . '</span>
                       </td>
                       <td>';
-                        $this->f($type, $option['option']);
+                        $this->f($type, $option['option'], $select);
                 echo $unit . '</td>
                     </tr>';
                 endforeach;
@@ -53,10 +54,10 @@ class Boxes {
   }
 
   public function i($data) {
-      return strtolower(str_replace(['/', '_'], '_', $data));
+      return strtolower(str_replace([' ', '/'], '_', $data));
   }
 
-  public function f($type, $option_name) {
+  public function f($type, $option_name, $select) {
     switch($type):
       case 'checkbox' : $comp = new Form\Checkbox;
                         $comp->render($this->options[$option_name]);
@@ -68,9 +69,15 @@ class Boxes {
                         $comp->render($this->options[$option_name]);
                         break;
       case 'select' : $comp = new Form\Select;
+                        $comp->render($this->options[$option_name], $select);
+                        break;
+      case 'image' : $comp = new Form\Image;
                         $comp->render($this->options[$option_name]);
                         break;
       case 'menu_ordering' : $comp = new Form\MenuOrdering;
+                        $comp->render($this->options[$option_name]);
+                        break;
+      case 'fonticons' : $comp = new Form\FontIconPageList;
                         $comp->render($this->options[$option_name]);
                         break;
       case 'import' : $comp = new Form\Import;
