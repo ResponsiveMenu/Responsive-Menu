@@ -158,6 +158,7 @@ li.draggable {
 
 .postbox .inside table tr td:last-child {
   text-align: left;
+  position: relative;
 }
 
 input[type="text"].image,
@@ -168,10 +169,23 @@ input[type="text"].image,
   width: 74%;
 }
 
+#normal-sortables .button.submit,
 .postbox .inside .image_button {
   background: #298CBA;
   color: white;
   border-color: #298CBA;
+}
+
+#normal-sortables .button.submit {
+  padding: 0 35px;
+  height: 50px;
+  line-height: 50px;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+#normal-sortables .button.submit:hover {
+  background: #40A1CE;
 }
 
 .postbox .inside .image_button .fa {
@@ -202,6 +216,22 @@ input[type="text"].image,
   content: "SEMI PRO";
   color: #333;
   border-color: #333;
+}
+
+.postbox .inside tr.pro_option td:last-child:hover:after {
+  width: 100%;
+  content: "Please upgrade to use";
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(222, 75, 66, 0.6);
+  position: absolute;
+  text-align: center;
+  color: white;
+  padding: 3% 0;
+  font-weight: bold;
+  font-size: 12px;
 }
 
 #items_order_container td:last-child,
@@ -237,11 +267,30 @@ input[type="text"].image,
   width: 24%;
   margin-top: 1px;
   margin-left: 2%;
-  padding: 15px 2%;
+  padding: 35px 2%;
   background: #DE4B42;
   color: #fff;
   border: 1px solid #D33C34;
   border-radius: 2px;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 24px;
+}
+
+#banner_area li  {
+  list-style: inside;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+#banner_area .button {
+  background: white;
+  padding: 0 25px;
+  height: 50px;
+  line-height: 50px;
+  font-weight: bold;
+  font-size: 13px;
+  color: #333;
 }
 
 #options_list_container .tab_container:first-child {
@@ -387,6 +436,49 @@ input[type="checkbox"]
   display: none;
 }
 
+.key-container {
+  margin-bottom: 15px;
+}
+
+.key-container .key-title {
+  font-weight: bold;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.key-container .key {
+  display: inline-block;
+  font-size: 9px;
+  border: 1px solid #DADADA;
+  border-radius: 2px;
+  padding: 5px 15px 5px 5px;
+  background: white;
+}
+
+.key-container .key span {
+  border-right: 1px solid #de4b42;
+  display: inline-block;
+  padding-right: 5px;
+  margin-right: 10px;
+  color: #de4b42;
+  font-size: 9px;
+  font-weight: bold;
+}
+
+.key-container .key.key-semi-pro span {
+  color: #333;
+  border-color: #333;
+}
+
+.key-container .key.key-pro {
+  margin-right: 15px;
+}
+
+.key-container a {
+  text-decoration: none;
+  color: #333;
+}
+
 /* End On-Off Buttons */
 
 /* Nice Select Button Styling */
@@ -399,13 +491,14 @@ input[type="checkbox"]
 }
 
 .select-style select {
-    width: 115%;
+    width: 105%;
     border: none;
     cursor: pointer;
     box-shadow: none;
     background: transparent;
     background-image: none;
     -webkit-appearance: none;
+    max-width: 115%;
 }
 
 .select-style select:focus {

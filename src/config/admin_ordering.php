@@ -108,6 +108,7 @@ $order_mapping = [
           'option' => 'menu_auto_height',
           'title' => __('Menu Auto Height', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
+          'type' => 'checkbox',
           'pro' => true
         ],
         [
@@ -235,7 +236,7 @@ $order_mapping = [
           'option' => 'menu_width',
           'title' => __('Menu Width', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
-          'unit' => 'px'
+          'unit' => '%'
         ],
       ],
     __('Background Colours', 'responsive-menu') =>
@@ -244,49 +245,57 @@ $order_mapping = [
           'option' => 'menu_background_colour',
           'title' => __('Background Colour', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
-          'type' => 'colour'
+          'type' => 'colour',
+          'semi_pro' => true
         ],
         [
           'option' => 'menu_current_item_background_colour',
           'title' => __('Current Item Background Colour', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
-          'type' => 'colour'
+          'type' => 'colour',
+          'semi_pro' => true
         ],
         [
           'option' => 'menu_current_item_background_hover_colour',
           'title' => __('Current Item Background Colour Hover', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
-          'type' => 'colour'
+          'type' => 'colour',
+          'semi_pro' => true
         ],
         [
           'option' => 'menu_item_background_colour',
           'title' => __('Item Background Colour', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
-          'type' => 'colour'
+          'type' => 'colour',
+          'semi_pro' => true
         ],
         [
           'option' => 'menu_item_background_hover_colour',
           'title' => __('Item Background Colour Hover', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
-          'type' => 'colour'
+          'type' => 'colour',
+          'semi_pro' => true
         ],
         [
           'option' => 'menu_item_border_colour',
           'title' => __('Item Border Colour', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
-          'type' => 'colour'
+          'type' => 'colour',
+          'semi_pro' => true
         ],
         [
           'option' => 'menu_title_background_colour',
           'title' => __('Title Background Colour', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
-          'type' => 'colour'
+          'type' => 'colour',
+          'semi_pro' => true
         ],
         [
           'option' => 'menu_title_background_hover_colour',
           'title' => __('Title Background Colour Hover', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
-          'type' => 'colour'
+          'type' => 'colour',
+          'semi_pro' => true
         ]
       ],
       __('Text Colours', 'responsive-menu') =>
@@ -295,37 +304,43 @@ $order_mapping = [
             'option' => 'menu_current_link_colour',
             'title' => __('Current Link Colour', 'responsive-menu'),
             'label' => __('', 'responsive-menu'),
-            'type' => 'colour'
+            'type' => 'colour',
+            'semi_pro' => true
           ],
           [
             'option' => 'menu_current_link_hover_colour',
             'title' => __('Current Link Hover Colour', 'responsive-menu'),
             'label' => __('', 'responsive-menu'),
-            'type' => 'colour'
+            'type' => 'colour',
+            'semi_pro' => true
           ],
           [
             'option' => 'menu_link_colour',
             'title' => __('Link Colour', 'responsive-menu'),
             'label' => __('', 'responsive-menu'),
-            'type' => 'colour'
+            'type' => 'colour',
+            'semi_pro' => true
           ],
           [
             'option' => 'menu_link_hover_colour',
             'title' => __('Link Hover Colour', 'responsive-menu'),
             'label' => __('', 'responsive-menu'),
-            'type' => 'colour'
+            'type' => 'colour',
+            'semi_pro' => true
           ],
           [
             'option' => 'menu_title_colour',
             'title' => __('Title Colour', 'responsive-menu'),
             'label' => __('', 'responsive-menu'),
-            'type' => 'colour'
+            'type' => 'colour',
+            'semi_pro' => true
           ],
           [
             'option' => 'menu_title_hover_colour',
             'title' => __('Title Hover Colour', 'responsive-menu'),
             'label' => __('', 'responsive-menu'),
-            'type' => 'colour'
+            'type' => 'colour',
+            'semi_pro' => true
           ],
         ],
         __('Styling', 'responsive-menu') =>
@@ -370,7 +385,8 @@ $order_mapping = [
                 'option' => 'menu_font_icons',
                 'title' => __('Font Icons', 'responsive-menu'),
                 'label' => __('', 'responsive-menu'),
-                'type' => 'fonticons'
+                'type' => 'fonticons',
+                'pro' => true
               ]
             ],
           __('Sub-Arrow Colours', 'responsive-menu') =>
@@ -379,37 +395,43 @@ $order_mapping = [
                 'option' => 'menu_sub_arrow_background_colour',
                 'title' => __('Background Colour', 'responsive-menu'),
                 'label' => __('', 'responsive-menu'),
-                'type' => 'colour'
+                'type' => 'colour',
+                'semi_pro' => true
               ],
               [
                 'option' => 'menu_sub_arrow_background_hover_colour',
                 'title' => __('Background Hover Colour', 'responsive-menu'),
                 'label' => __('', 'responsive-menu'),
-                'type' => 'colour'
+                'type' => 'colour',
+                'semi_pro' => true
               ],
               [
                 'option' => 'menu_sub_arrow_border_colour',
                 'title' => __('Border Colour', 'responsive-menu'),
                 'label' => __('', 'responsive-menu'),
-                'type' => 'colour'
+                'type' => 'colour',
+                'semi_pro' => true
               ],
               [
                 'option' => 'menu_sub_arrow_border_hover_colour',
                 'title' => __('Border Hover Colour', 'responsive-menu'),
                 'label' => __('', 'responsive-menu'),
-                'type' => 'colour'
+                'type' => 'colour',
+                'semi_pro' => true
               ],
               [
                 'option' => 'menu_sub_arrow_shape_colour',
                 'title' => __('Shape Colour', 'responsive-menu'),
                 'label' => __('', 'responsive-menu'),
-                'type' => 'colour'
+                'type' => 'colour',
+                'semi_pro' => true
               ],
               [
                 'option' => 'menu_sub_arrow_shape_hover_colour',
                 'title' => __('Shape Hover Colour', 'responsive-menu'),
                 'label' => __('', 'responsive-menu'),
-                'type' => 'colour'
+                'type' => 'colour',
+                'semi_pro' => true
               ],
             ],
   ],
@@ -500,25 +522,29 @@ $order_mapping = [
           'option' => 'button_background_colour',
           'title' => __('Background Colour', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
-          'type' => 'colour'
+          'type' => 'colour',
+          'semi_pro' => true
         ],
         [
           'option' => 'button_background_colour_hover',
           'title' => __('Background Colour Hover', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
-          'type' => 'colour'
+          'type' => 'colour',
+          'semi_pro' => true
         ],
         [
           'option' => 'button_line_colour',
           'title' => __('Line Colour', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
-          'type' => 'colour'
+          'type' => 'colour',
+          'semi_pro' => true
         ],
         [
           'option' => 'button_text_colour',
           'title' => __('Text Colour', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
-          'type' => 'colour'
+          'type' => 'colour',
+          'semi_pro' => true
         ],
         [
           'option' => 'button_transparent_background',
@@ -1037,6 +1063,12 @@ $order_mapping = [
           'title' => __('Export', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
           'type' => 'export'
+        ],
+        [
+          'option' => 'reset',
+          'title' => __('Reset', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'reset'
         ]
     ]
   ]

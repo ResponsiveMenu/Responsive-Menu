@@ -89,6 +89,9 @@ class Boxes {
       case 'export' : $comp = new Form\Export;
                         $comp->render();
                         break;
+      case 'reset' : $comp = new Form\Reset;
+                        $comp->render();
+                        break;
       default : $comp = new Form\Text;
                         $comp->render($this->options[$option_name]);
                         break;

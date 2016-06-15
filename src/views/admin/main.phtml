@@ -41,6 +41,13 @@ $boxes = new ResponsiveMenu\ViewModels\Components\Admin\Boxes($order_mapping, $l
         <?php echo $tabs->render(); ?>
       </div>
 
+        <div class="key-container">
+          <a href="http://responsive.menu/pricing/">
+            <div class="key key-pro"><span>PRO</span>Only available in Pro version</div>
+            <div class="key key-semi-pro"><span>SEMI PRO</span>Fully unlocked in Pro version (i.e - opacity selection for colours)</div>
+          </a>
+        </div>
+
       <div id="all_options_container">
         <div class="meta-box-sortables ui-sortable" id="normal-sortables">
         	<form action="" method="post" enctype="multipart/form-data">
@@ -48,21 +55,20 @@ $boxes = new ResponsiveMenu\ViewModels\Components\Admin\Boxes($order_mapping, $l
             <div id="options_list_container">
               <?php echo $boxes->render(); ?>
             </div>
-        		<input type="submit" class="button submit" name="responsive_menu_submit" value="<?php _e('Update Options', 'responsive-menu') ?>" />
-        		<input type="submit" class="button submit" name="responsive_menu_reset" value="<?php _e('Reset Options', 'responsive-menu') ?>" />
+        		<input type="submit" id="responsive_menu_submit" class="button submit" name="responsive_menu_submit" value="<?php _e('Update Options', 'responsive-menu') ?>" />
         	</form>
         </div> <!-- #normal-sortables -->
       </div><!--#all_options_container
    --><div id="banner_area">
-        Banner area
+        <?php _e('Upgrade today to unlock the following features:', 'responsive-menu'); ?>
         <ul>
-          <li>FontIcon Support</li>
-          <li>Opacity colour option</li>
-          <li>15+ button animations</li>
-          <li>Desktop & Responsive menu configuration</li>
-          <li>Header Bar</li>
+          <li><?php _e('Font Awesome Icon Support', 'responsive-menu'); ?></li>
+          <li><?php _e('Opacity Option for all Colours', 'responsive-menu'); ?></li>
+          <li><?php _e('15+ Button Animations', 'responsive-menu'); ?></li>
+          <li><?php _e('Desktop & Responsive Menu Configuration In One', 'responsive-menu'); ?></li>
+          <li><?php _e('Header Bar', 'responsive-menu'); ?></li>
         </ul>
-        Buy now for only $14.99
+        <a target="_blank" href="http://responsive.menu/pricing" class="button">Buy now for only $14.99</a>
       </div> <!-- #banner_area -->
     </div> <!-- #postbox-container -->
   </div> <!-- #poststuff -->
