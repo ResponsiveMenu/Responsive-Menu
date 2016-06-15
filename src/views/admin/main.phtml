@@ -2,15 +2,16 @@
 
 use ResponsiveMenu\Formatters\Tabs as Tabs;
 use ResponsiveMenu\Formatters\Text as Text;
+// This is horrible!
+include dirname(dirname(dirname(__FILE__))) . '/config/admin_ordering.php';
+
+$tabs = new ResponsiveMenu\ViewModels\Components\Admin\Tabs($order_mapping);
+$boxes = new ResponsiveMenu\ViewModels\Components\Admin\Boxes($order_mapping, $l['options']);
 
 ?>
 <div class="wrap">
   <div id="poststuff">
       <div id="postbox-container" class="postbox-container">
-      	<div class="tabs_container">
-      		<?php Tabs::render($l['options']); ?>
-          <a id="tab_import_export" class="tab page-title-action"><?php _e('Import/Export', 'responsive-menu') ?></a>
-      	</div> <!-- tabs_container -->
         <?php if(isset($l['flash']['success'])): ?>
           <div class="updated notice notice-success is-dismissible" id="message">
             <p><?php _e($l['flash']['success'], 'responsive-menu'); ?></p>
@@ -35,6 +36,15 @@ use ResponsiveMenu\Formatters\Text as Text;
           </button>
         </div>
       <?php endif; ?>
+
+      <div class="tabs_container">
+        <?php echo $tabs->render(); ?>
+      </div>
+
+      <div id="all_options_container">
+        <?php echo $boxes->render(); ?>
+      </div>
+
       <div id="all_options_container">
         <div class="meta-box-sortables ui-sortable" id="normal-sortables">
         	<form action="" method="post" enctype="multipart/form-data">

@@ -12,6 +12,10 @@ License: GPL2
 Tags: responsive, menu, responsive menu
 */
 
+/* Check correct PHP version first */
+if(version_compare(PHP_VERSION, '5.4', '<'))
+  exit(sprintf('Responsive Menu 3.0 requires PHP 5.4 or higher. You are still on %s', PHP_VERSION));
+
 /* Required includes for plugin to function */
 include dirname(__FILE__) . '/autoload.php';
 include dirname(__FILE__) . '/src/config/route_dependencies.php';

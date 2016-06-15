@@ -244,8 +244,7 @@ input[type="text"].image,
   border-radius: 2px;
 }
 
-.tab_container_1
-{
+#all_options_container .tab_container:first-child {
 	display: block;
 }
 
