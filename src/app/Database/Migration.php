@@ -46,13 +46,13 @@ class Migration{
 	public function setup()
 	{
     # Create the database table if it doesn't exist
-		$sql = "CREATE TABLE IF NOT EXISTS `{$this->db->table}` (
-				  `name` varchar(255) NOT NULL,
-				  `value` varchar(5000) DEFAULT NULL,
-				  `created_at` datetime NOT NULL,
-				  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-          PRIMARY KEY (name)
-				) {$this->db->db->get_charset_collate()}";
+    $sql = "CREATE TABLE IF NOT EXISTS " . $this->db->table . " (
+    				  name varchar(50) NOT NULL,
+    				  value varchar(5000) DEFAULT NULL,
+    				  created_at datetime NOT NULL,
+    				  updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+              PRIMARY KEY  (name)
+    				) " . $this->db->db->get_charset_collate() . ";"
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php' );
 		dbDelta($sql);
 	}
