@@ -4,7 +4,6 @@ namespace ResponsiveMenu\Controllers;
 use ResponsiveMenu\Controllers\Base as Base;
 use ResponsiveMenu\ViewModels\Menu as MenuViewModel;
 use ResponsiveMenu\ViewModels\Button as ButtonViewModel;
-use ResponsiveMenu\ViewModels\HeaderBar as HeaderBarViewModel;
 use ResponsiveMenu\Factories\FrontDisplayFactory as DisplayFactory;
 use ResponsiveMenu\Shortcodes\ResponsiveMenuShortcode as Shortcode;
 
