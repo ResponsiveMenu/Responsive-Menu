@@ -50,8 +50,6 @@ class WpWalker extends \Walker_Nav_Menu
         endswitch;
       endforeach;
 
-  		$args = apply_filters( 'nav_menu_item_args', $args, $item, $depth );
-
   		$class_names = join(' ', array_unique($responsive_menu_classes));
   		$class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
 
@@ -103,12 +101,10 @@ class WpWalker extends \Walker_Nav_Menu
       if($depth + 1 == $this->options['menu_depth']->getValue())
         $initial_arrow = '';
 
-      $item_output = $args->before;
-  		$item_output .= '<a'. $attributes .'>';
-  		$item_output .= $args->link_before . $title . $args->link_after;
+  		$item_output = '<a'. $attributes .'>';
+  		$item_output .= $title;
       $item_output .= $initial_arrow;
   		$item_output .= '</a>';
-  		$item_output .= $args->after;
 
   		$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 
