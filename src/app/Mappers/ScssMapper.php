@@ -10,7 +10,9 @@ class ScssMapper
   {
     $this->options = $options;
     #Ugly
-    require_once "scssphp/scss.inc.php";
+    if(!class_exists('\scssc'))
+      require_once "scssphp/scss.inc.php";
+
     $this->compiler = new \scssc();
   }
 
