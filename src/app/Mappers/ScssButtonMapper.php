@@ -32,12 +32,12 @@ class ScssButtonMapper extends ScssMapper
         position: {$this->options['button_position_type']};
         top: {$this->options['button_top']}px;
         {$this->options['button_left_or_right']}: {$this->options['button_distance_from_side']}%;
-        .hamburger-box {
+        .responsive-menu-box {
           color: {$this->options['button_line_colour']};
         }
       }
 
-      .hamburger-label {
+      .responsive-menu-label {
         color: {$this->options['button_text_colour']};
         font-size: {$this->options['button_font_size']}px;
         @if '{$this->options['button_font']}' != '' {

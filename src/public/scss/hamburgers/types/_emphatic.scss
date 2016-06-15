@@ -2,10 +2,10 @@
   /*
    * Emphatic
    */
-  .hamburger--emphatic {
+  .responsive-menu-hamburger-emphatic {
     overflow: hidden;
 
-    .hamburger-inner {
+    .responsive-menu-inner {
       transition: background-color 0.2s 0.25s ease-in;
 
       &::before {
@@ -25,7 +25,7 @@
     }
 
     &.is-active {
-      .hamburger-inner {
+      .responsive-menu-inner {
         transition-delay: 0s;
         transition-timing-function: ease-out;
         background-color: transparent;

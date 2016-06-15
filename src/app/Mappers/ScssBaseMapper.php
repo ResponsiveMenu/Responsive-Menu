@@ -182,24 +182,24 @@ class ScssBaseMapper extends ScssMapper
         }
       }
 
-      .hamburger-label {
+      .responsive-menu-label {
         display: inline-block;
         font-weight: 600;
         margin: 0 5px;
         vertical-align: middle;
       }
 
-      .hamburger--accessible {
+      .responsive-menu-accessible {
         display: inline-block;
       }
 
-      .hamburger--accessible .hamburger-box {
+      .responsive-menu-accessible .responsive-menu-box {
         display: inline-block;
         vertical-align: middle;
       }
 
-      .hamburger-label.hamburger-label-top,
-      .hamburger-label.hamburger-label-bottom
+      .responsive-menu-label.responsive-menu-label-top,
+      .responsive-menu-label.responsive-menu-label-bottom
       {
         display: block;
         margin: 10px auto;

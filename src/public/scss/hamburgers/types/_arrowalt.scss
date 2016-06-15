@@ -2,8 +2,8 @@
   /*
    * Arrow Alt
    */
-  .hamburger--arrowalt {
-    .hamburger-inner {
+  .responsive-menu-hamburger-arrowalt {
+    .responsive-menu-inner {
       &::before {
         transition: top 0.1s 0.15s ease,
                     transform 0.15s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -16,7 +16,7 @@
     }
 
     &.is-active {
-      .hamburger-inner {
+      .responsive-menu-inner {
         &::before {
           top: 0;
           transform: translate3d($hamburger-layer-width * -0.2, $hamburger-layer-width * -0.25, 0) rotate(-45deg) scale(0.7, 1);

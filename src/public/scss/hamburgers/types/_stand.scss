@@ -2,8 +2,8 @@
   /*
    * Stand
    */
-  .hamburger--stand {
-    .hamburger-inner {
+  .responsive-menu-hamburger-stand {
+    .responsive-menu-inner {
       transition: transform 0.1s 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19),
                   background-color 0s 0.1s linear;
 
@@ -19,7 +19,7 @@
     }
 
     &.is-active {
-      .hamburger-inner {
+      .responsive-menu-inner {
         transform: rotate(90deg);
         background-color: transparent;
 

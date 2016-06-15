@@ -28,14 +28,14 @@
   }
 }
 
-.hamburger-box {
+.responsive-menu-box {
   width: $hamburger-layer-width;
   height: $hamburger-layer-height * 3 + $hamburger-layer-spacing * 2;
   display: inline-block;
   position: relative;
 }
 
-.hamburger-inner {
+.responsive-menu-inner {
   display: block;
   top: 50%;
   margin-top: $hamburger-layer-height / -2;

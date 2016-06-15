@@ -2,12 +2,12 @@
   /*
    * 3DY
    */
-  .hamburger--3dy {
-    .hamburger-box {
+  .responsive-menu-hamburger-3dy {
+    .responsive-menu-box {
       perspective: $hamburger-layer-width * 2;
     }
 
-    .hamburger-inner {
+    .responsive-menu-inner {
       transition: transform 0.2s cubic-bezier(0.645, 0.045, 0.355, 1),
                   background-color 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
 
@@ -18,7 +18,7 @@
     }
 
     &.is-active {
-      .hamburger-inner {
+      .responsive-menu-inner {
         background-color: transparent;
         transform: rotateX(-180deg);
 

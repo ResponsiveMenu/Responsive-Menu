@@ -2,8 +2,8 @@
   /*
    * Spring
    */
-  .hamburger--spring {
-    .hamburger-inner {
+  .responsive-menu-hamburger-spring {
+    .responsive-menu-inner {
       top: $hamburger-layer-height / 2;
       transition: background-color 0s 0.15s linear;
 
@@ -21,7 +21,7 @@
     }
 
     &.is-active {
-      .hamburger-inner {
+      .responsive-menu-inner {
         transition-delay: 0.32s;
         background-color: transparent;
 

@@ -2,8 +2,8 @@
   /*
    * Vortex Reverse
    */
-  .hamburger--vortex-r {
-    .hamburger-inner {
+  .responsive-menu-hamburger-vortex-r {
+    .responsive-menu-inner {
       transition-duration: 0.3s;
       transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
 
@@ -24,7 +24,7 @@
     }
 
     &.is-active {
-      .hamburger-inner {
+      .responsive-menu-inner {
         transform: rotate(-765deg);
         transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
 

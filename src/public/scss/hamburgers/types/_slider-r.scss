@@ -2,8 +2,8 @@
   /*
    * Slider Reverse
    */
-  .hamburger--slider-r {
-    .hamburger-inner {
+  .responsive-menu-hamburger-slider-r {
+    .responsive-menu-inner {
       top: $hamburger-layer-height / 2;
 
       &::before {
@@ -19,7 +19,7 @@
     }
 
     &.is-active {
-      .hamburger-inner {
+      .responsive-menu-inner {
         $y-offset: $hamburger-layer-spacing + $hamburger-layer-height;
 
         transform: translate3d(0, $y-offset, 0) rotate(-45deg);
