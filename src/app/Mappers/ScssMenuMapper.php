@@ -20,7 +20,7 @@ class ScssMenuMapper extends ScssMapper
           display: none;
         }
       }
-      
+
       @if '{$this->options['menu_disable_scrolling']}' == 'on' {
         body.responsive-menu-open {
           overflow: hidden;
@@ -46,22 +46,12 @@ class ScssMenuMapper extends ScssMapper
       #responsive-menu-container {
         width: {$this->options['menu_width']}%;
         {$this->options['menu_appear_from']}: 0;
-        @if '{$this->options['menu_auto_height']}' == 'off' {
-          background: {$this->options['menu_background_colour']};
-        }
+        background: {$this->options['menu_background_colour']};
         transition: transform {$this->options['animation_speed']}s;
         text-align: {$this->options['menu_text_alignment']};
 
         & #responsive-menu-wrapper {
           background: {$this->options['menu_background_colour']};
-        }
-
-        @if '{$this->options['menu_auto_height']}' == 'on' {
-          @if '{$this->options['menu_appear_from']}' == 'bottom' {
-            top: auto;
-          } @else {
-            bottom: '';
-          }
         }
 
         @if '{$this->options['menu_maximum_width']}' != '' {
