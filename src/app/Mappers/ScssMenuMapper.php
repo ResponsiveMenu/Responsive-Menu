@@ -82,9 +82,6 @@ class ScssMenuMapper extends ScssMapper
               border: 1px solid {$this->options['menu_item_border_colour']};
               color: {$this->options['menu_link_colour']};
               background-color: {$this->options['menu_item_background_colour']};
-              @if '{$this->options['menu_word_wrap']}' != 'off' {
-                word-wrap: break-word;
-              }
               &:hover {
                 color: {$this->options['menu_link_hover_colour']};
                 background-color: {$this->options['menu_item_background_hover_colour']};
