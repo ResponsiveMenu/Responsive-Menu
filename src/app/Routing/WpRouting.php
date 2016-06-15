@@ -51,8 +51,7 @@ class WpRouting implements Routing
           $controller->$method();
         endif;
       },
-      plugin_dir_url(dirname(dirname(__FILE__))) . 'public/imgs/icon.png',
-      0);
+      plugin_dir_url(dirname(dirname(__FILE__))) . 'public/imgs/icon.png');
   }
 
 }
