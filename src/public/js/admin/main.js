@@ -1,14 +1,6 @@
 jQuery(function($) {
 
-  //$('.wp-color-picker').wpColorPicker();
-
-  // Remove in Free
-  $.minicolors.defaults = $.extend($.minicolors.defaults, {
-      format: 'rgb',
-      opacity: true
-  });
-  $('.wp-color-picker').minicolors();
-  // End
+  $('.wp-color-picker').wpColorPicker();
 
   $('#banner_area').stick_in_parent();
 
