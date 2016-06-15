@@ -67,6 +67,9 @@ class Boxes {
       case 'textarea' : $comp = new Form\TextArea;
                         $comp->render($this->options[$option_name]);
                         break;
+      case 'select' : $comp = new Form\Select;
+                        $comp->render($this->options[$option_name]);
+                        break;
       case 'menu_ordering' : $comp = new Form\MenuOrdering;
                         $comp->render($this->options[$option_name]);
                         break;

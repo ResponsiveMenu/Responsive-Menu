@@ -1,6 +1,13 @@
 <?php
 
 $order_mapping = [
+
+  /*
+  *
+  * MENU
+  *
+  */
+
   __('Menu', 'responsive-menu') =>  [
     __('Sub Menus', 'responsive-menu') =>
       [
@@ -33,29 +40,77 @@ $order_mapping = [
         ]
       ]
   ],
+
+  /*
+  *
+  * ANIMATION
+  *
+  */
+
   __('Animation', 'responsive-menu') => [
-    __('Anim One', 'responsive-menu') =>
+    __('Speed', 'responsive-menu') =>
     [
       [
-        'option' => 'accordion_animation',
-        'title' => __('Accordion Animation', 'responsive-menu'),
-        'label' => __('Example label', 'responsive-menu'),
-        'type' => 'checkbox'
+        'option' => 'animation_speed',
+        'title' => __('Animation Speed', 'responsive-menu'),
+        'label' => __('', 'responsive-menu'),
+        'unit' => 's'
       ],
       [
-        'option' => 'accordion_animation',
-        'title' => __('Accordion Animation2', 'responsive-menu'),
-        'label' => __('Example label2', 'responsive-menu'),
-        'type' => 'checkbox'
+        'option' => 'transition_speed',
+        'title' => __('Transition Speed', 'responsive-menu'),
+        'label' => __('', 'responsive-menu'),
+        'unit' => 's'
+      ]
+    ],
+    __('Type', 'responsive-menu') =>
+    [
+      [
+        'option' => 'animation_type',
+        'title' => __('Animation Type', 'responsive-menu'),
+        'label' => __('', 'responsive-menu'),
+        'type' => 'select',
+        'semi_pro' => true,
+        'select' => [
+          'slide' => ['value' => 'Slide'],
+          'push' => ['value' => 'Push'],
+          'fade' => ['value' => 'Fade']
+        ]
+      ],
+      [
+        'option' => 'page_wrapper',
+        'title' => __('Page Wrapper CSS selector', 'responsive-menu'),
+        'label' => __('This is only needed if you are using the push animation', 'responsive-menu')
       ]
     ]
   ],
+
+  /*
+  *
+  * INITIAL SETUP
+  *
+  */
+
   __('Initial Setup', 'responsive-menu') => [
 
   ],
+
+  /*
+  *
+  * BUTTON
+  *
+  */
+
   __('Button', 'responsive-menu') => [
 
   ],
+
+  /*
+  *
+  * CUSTOM CSS
+  *
+  */
+
   __('Custom CSS', 'responsive-menu') => [
     __('CSS', 'responsive-menu') => [
         [
@@ -67,6 +122,13 @@ $order_mapping = [
         ]
     ]
   ],
+
+  /*
+  *
+  * TECHNICAL
+  *
+  */
+
   __('Technical', 'responsive-menu') => [
     __('Scripts', 'responsive-menu') => [
         [
@@ -110,9 +172,21 @@ $order_mapping = [
         ]
     ]
   ],
+
+  /*
+  *
+  * HEADER BAR
+  *
+  */
   __('Header Bar', 'responsive-menu') => [
 
   ],
+
+  /*
+  *
+  * ITEMS ORDERING
+  *
+  */
   __('Item Ordering', 'responsive-menu') => [
     __('Order', 'responsive-menu') => [
         [
@@ -123,6 +197,12 @@ $order_mapping = [
         ]
     ],
   ],
+
+  /*
+  *
+  * SINGLE MENU
+  *
+  */
   __('Single Menu', 'responsive-menu') => [
     __('Setup', 'responsive-menu') => [
         [
