@@ -52,7 +52,7 @@ class Migration{
     				  created_at datetime NOT NULL,
     				  updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
               PRIMARY KEY  (name)
-    				) " . $this->db->db->get_charset_collate() . ";"
+    				) " . $this->db->db->get_charset_collate() . ";";
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php' );
 		dbDelta($sql);
 	}
