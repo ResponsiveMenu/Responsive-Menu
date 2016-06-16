@@ -136,7 +136,7 @@ class ScssBaseMapper extends ScssMapper
               right: 0;
               top: 0;
               bottom: 0;
-              padding: 0 10px;
+              text-align: center;
               overflow: hidden;
               .fa {
                 margin-right: 0;
