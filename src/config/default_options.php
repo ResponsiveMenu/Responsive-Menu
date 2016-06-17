@@ -84,6 +84,7 @@ $default_options = array(
   'menu_maximum_width' => null,
   'menu_auto_height' => 'off',
   'menu_additional_content' => null,
+  'menu_additional_content_colour' => '#fff',
   'menu_title' => null,
   'menu_title_image' => null,
   'menu_title_font_icon' => null,

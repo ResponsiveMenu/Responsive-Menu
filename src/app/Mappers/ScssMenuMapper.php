@@ -38,6 +38,10 @@ class ScssMenuMapper extends ScssMapper
           background: {$this->options['menu_background_colour']};
         }
 
+        #responsive-menu-additional-content {
+          color: {$this->options['menu_additional_content_colour']};
+        }
+        
         @if '{$this->options['menu_maximum_width']}' != '' {
           max-width: {$this->options['menu_maximum_width']}px;
         }

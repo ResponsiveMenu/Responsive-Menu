@@ -186,7 +186,13 @@ $order_mapping = [
           'option' => 'menu_additional_content',
           'title' => __('Additional Content', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
-          'type' => 'textarea' #212121
+          'type' => 'textarea'
+        ],
+        [
+          'option' => 'menu_additional_content_colour',
+          'title' => __('Additional Content Text Colour', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'colour'
         ],
         [
           'option' => 'menu_appear_from',
