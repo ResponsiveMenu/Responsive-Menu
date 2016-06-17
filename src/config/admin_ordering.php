@@ -183,6 +183,12 @@ $order_mapping = [
     __('General', 'responsive-menu') =>
       [
         [
+          'option' => 'menu_additional_content',
+          'title' => __('Additional Content', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'textarea' #212121
+        ],
+        [
           'option' => 'menu_appear_from',
           'title' => __('Menu Appear From', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
@@ -601,11 +607,13 @@ $order_mapping = [
           'option' => 'button_font_icon',
           'title' => __('Font Icon', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
+          'pro' => true
         ],
         [
           'option' => 'button_font_icon_when_clicked',
           'title' => __('Font Icon When Clicked', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
+          'pro' => true
         ],
         [
           'option' => 'button_image',
