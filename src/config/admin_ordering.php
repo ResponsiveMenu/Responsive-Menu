@@ -209,7 +209,8 @@ $order_mapping = [
         [
           'option' => 'menu_search_box_text',
           'title' => __('Menu Search Box Text', 'responsive-menu'),
-          'label' => __('', 'responsive-menu')
+          'label' => __('', 'responsive-menu'),
+          'pro' => true
         ],
         [
           'option' => 'menu_title',
