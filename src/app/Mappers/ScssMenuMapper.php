@@ -12,12 +12,13 @@ class ScssMenuMapper extends ScssMapper
 
     @media screen and ( max-width: {$this->options['breakpoint']}px ) {
 
-      .responsive-menu-fade-top,
-      .responsive-menu-fade-left,
-      .responsive-menu-fade-right,
-      .responsive-menu-fade-bottom {
-        #responsive-menu-container {
-          display: none;
+
+      @if '{$this->options['menu_close_on_body_click']}' == 'on' {
+        html.responsive-menu-open {
+          cursor: pointer;
+          #responsive-menu-container {
+            cursor: initial;
+          }
         }
       }
 
