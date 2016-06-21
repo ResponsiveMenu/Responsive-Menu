@@ -29,7 +29,8 @@ class Front extends Base
     else:
       add_shortcode('responsive_menu', function($atts) use($options, $html, $menu) {
 
-        array_walk($atts, function($a, $b) use ($options) { $options[$b] = $a; });
+        if($atts)
+          array_walk($atts, function($a, $b) use ($options) { $options[$b] = $a; });
 
         $this->view->make('button', ['options' => $options, 'button' => $html->getHtml()]);
 
