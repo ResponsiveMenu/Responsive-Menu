@@ -298,6 +298,13 @@ $order_mapping = [
           'semi_pro' => true
         ],
         [
+          'option' => 'menu_item_border_colour_hover',
+          'title' => __('Item Border Colour Hover', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'colour',
+          'semi_pro' => true
+        ],
+        [
           'option' => 'menu_title_background_colour',
           'title' => __('Title Background Colour', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),

@@ -41,7 +41,7 @@ class ScssMenuMapper extends ScssMapper
         #responsive-menu-additional-content {
           color: {$this->options['menu_additional_content_colour']};
         }
-        
+
         @if '{$this->options['menu_maximum_width']}' != '' {
           max-width: {$this->options['menu_maximum_width']}px;
         }
@@ -89,6 +89,12 @@ class ScssMenuMapper extends ScssMapper
               &:hover {
                 color: {$this->options['menu_link_hover_colour']};
                 background-color: {$this->options['menu_item_background_hover_colour']};
+                border-color: {$this->options['menu_item_border_colour_hover']};
+                .responsive-menu-subarrow {
+                  color: {$this->options['menu_sub_arrow_shape_hover_colour']};
+                  border-color: {$this->options['menu_sub_arrow_border_hover_colour']};
+                  background-color: {$this->options['menu_sub_arrow_background_hover_colour']};
+                }
               }
 
               .responsive-menu-subarrow {

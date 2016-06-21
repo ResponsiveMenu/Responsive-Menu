@@ -59,6 +59,7 @@ $default_options = array(
   'menu_item_background_colour' => '#212121',
   'menu_item_background_hover_colour' => '#3f3f3f',
   'menu_item_border_colour' => '#212121',
+  'menu_item_border_colour_hover' => '#212121',
   'menu_title_background_colour' => '#212121',
   'menu_title_background_hover_colour' => '#212121',
   'menu_current_item_background_colour' => '#212121',

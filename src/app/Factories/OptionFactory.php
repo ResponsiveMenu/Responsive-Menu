@@ -19,7 +19,7 @@ class OptionFactory
       ? new $option_helpers[$name]['form_component']
       : new \ResponsiveMenu\Form\Text;
 
-    $value = $value || $value === '0' ? $value : $default_options[$name];
+    $value = isset($value) || $value === '0' ? $value : $default_options[$name];
 		$option = new ComplexOption($name, $value);
     $option->setFilter($filter);
     $option->setFormComponent($form_component);
