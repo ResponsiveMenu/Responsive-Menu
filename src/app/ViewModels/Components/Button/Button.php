@@ -21,8 +21,7 @@ class Button implements ViewComponent {
             class="responsive-menu-button ' . $accessible .
             ' responsive-menu-' . $options['button_click_animation'] . '"
             type="button"
-            aria-label="Menu"
-            aria-controls="navigation">';
+            aria-label="Menu">';
     $content .= in_array($button_title_pos, array('top', 'left')) ? $button_title_html : '';
     $content .= '<span class="responsive-menu-box">' . $options->getButtonIcon() . $options->getButtonIconActive() . '</span>';
     $content .= in_array($button_title_pos, array('bottom', 'right')) ? $button_title_html : '';
