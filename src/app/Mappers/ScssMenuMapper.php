@@ -12,7 +12,6 @@ class ScssMenuMapper extends ScssMapper
 
     @media screen and ( max-width: {$this->options['breakpoint']}px ) {
 
-
       @if '{$this->options['menu_close_on_body_click']}' == 'on' {
         html.responsive-menu-open {
           cursor: pointer;
