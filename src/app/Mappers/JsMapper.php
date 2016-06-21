@@ -41,7 +41,7 @@ class JsMapper
         linkElement: '.responsive-menu-item-link',
         openMenu: function() {
           $(this.trigger).addClass(this.activeClass);
-          $('body').addClass(this.openClass);
+          $('html').addClass(this.openClass);
           $('.responsive-menu-button-icon-active').hide();
           $('.responsive-menu-button-icon-inactive').show();
           this.setWrapperTranslate();
@@ -49,7 +49,7 @@ class JsMapper
         },
         closeMenu: function() {
           $(this.trigger).removeClass(this.activeClass);
-          $('body').removeClass(this.openClass);
+          $('html').removeClass(this.openClass);
           $('.responsive-menu-button-icon-inactive').hide();
           $('.responsive-menu-button-icon-active').show();
           this.clearWrapperTranslate();
