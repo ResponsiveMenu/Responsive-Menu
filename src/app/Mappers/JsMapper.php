@@ -151,11 +151,11 @@ class JsMapper
           if(this.closeOnBodyClick == 'on') {
             $(document).on('click', 'body', function(e) {
               if(self.isOpen) {
-                if($(e.target).closest('#responsive-menu-container').length > 0 || $(e.target).closest('#responsive-menu-button').length > 0) {
-                  return false;
+                if($(e.target).closest('#responsive-menu-container').length || $(e.target).closest('#responsive-menu-button').length) {
+                  return;
                 }
-                self.closeMenu();
               }
+              self.closeMenu();
             });
           }
           if(this.itemTriggerSubMenu == 'on') {
