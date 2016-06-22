@@ -9,12 +9,15 @@ use ResponsiveMenu\Walkers\WpWalker as Walker;
 class Menu implements ViewComponent {
 
   public function render(OptionsCollection $options) {
+
+    $menu = apply_filters('wpml_translate_single_string', $options['menu_to_use']->getValue(), 'Responsive Menu', 'menu_to_use');
+
     return wp_nav_menu(
       [
         'container' => '',
         'menu_id' => 'responsive-menu',
         'menu_class' => null,
-        'menu' => $options['menu_to_use']->getValue() ? $options['menu_to_use']->getValue() : null,
+        'menu' => $menu ? $menu : null,
         'depth' => $options['menu_depth']->getValue() ? $options['menu_depth']->getValue() : 0,
         'theme_location' => $options['theme_location_menu']->getValue() ? $options['theme_location_menu']->getValue() : null,
         'walker' => $options['custom_walker']->getValue() ? new $options['custom_walker']($options) : new Walker($options),

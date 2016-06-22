@@ -3,6 +3,7 @@
 namespace ResponsiveMenu\Controllers\Admin;
 use ResponsiveMenu\Factories\OptionFactory as OptionFactory;
 use ResponsiveMenu\Factories\AdminSaveFactory as SaveFactory;
+use ResponsiveMenu\WPML\WPML as WPML;
 
 class Main extends Base
 {
@@ -23,6 +24,9 @@ class Main extends Base
     $flash['errors'] = $save_factory->build($options);
     $flash['success'] = __('Responsive Menu Options Updated Successfully', 'responsive-menu');
 
+    $wpml = new WPML;
+    $wpml->saveFromOptions($options);
+
     $this->view->render('main', ['options' => $options, 'flash' => $flash]);
 
 	}
@@ -40,6 +44,9 @@ class Main extends Base
     $save_factory = new SaveFactory();
     $flash['errors'] = $save_factory->build($options);
     $flash['success'] = __('Responsive Menu Options Reset Successfully', 'responsive-menu');
+
+    $wpml = new WPML;
+    $wpml->saveFromOptions($options);
 
     $this->view->render('main', ['options' => $options, 'flash' => $flash]);
 
@@ -69,6 +76,9 @@ class Main extends Base
       $options = $this->repository->all();
     endif;
 
+    $wpml = new WPML;
+    $wpml->saveFromOptions($options);
+    
     $this->view->render('main', ['options' => $options, 'flash' => $flash]);
   }
 
