@@ -11,10 +11,10 @@ class ScssBaseMapper extends ScssMapper
     $css = <<<CSS
 
       .responsive-menu-open {
-        &.responsive-menu-push-left,
-        &.responsive-menu-push-right,
-        &.responsive-menu-push-top,
-        &.responsive-menu-push-bottom {
+        .responsive-menu-push-left,
+        .responsive-menu-push-right,
+        .responsive-menu-push-top,
+        .responsive-menu-push-bottom {
           overflow-x: hidden;
         }
       }
