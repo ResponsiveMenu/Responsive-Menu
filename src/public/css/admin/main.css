@@ -267,23 +267,39 @@ input[type="text"].image,
   width: 24%;
   margin-top: 1px;
   margin-left: 2%;
-  padding: 35px 2%;
+}
+
+#upgrade_banner {
+  padding: 35px;
   background: #DE4B42;
   color: #fff;
   border: 1px solid #D33C34;
   border-radius: 2px;
+}
+
+#docs_banner {
+  background: #FAB719;
+  padding: 35px;
+  color: #333;
+  margin-top: 15px;
+  text-align: center;
+}
+
+#upgrade_banner,
+#docs_banner {
   font-size: 18px;
   font-weight: bold;
   line-height: 24px;
 }
 
-#banner_area li  {
+#upgrade_banner li  {
   list-style: inside;
   font-weight: bold;
   font-size: 11px;
 }
 
-#banner_area .button {
+#docs_banner .button,
+#upgrade_banner .button {
   background: white;
   padding: 0 25px;
   height: 50px;
@@ -291,6 +307,13 @@ input[type="text"].image,
   font-weight: bold;
   font-size: 13px;
   color: #333;
+  display: inline-block;
+  margin: auto;
+  width: auto;
+}
+
+#docs_banner .button {
+  margin-top: 15px;
 }
 
 #options_list_container .tab_container:first-child {

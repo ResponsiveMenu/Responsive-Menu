@@ -60,15 +60,21 @@ $boxes = new ResponsiveMenu\ViewModels\Components\Admin\Boxes($order_mapping, $l
         </div> <!-- #normal-sortables -->
       </div><!--#all_options_container
    --><div id="banner_area">
-        <?php _e('Upgrade today to unlock the following features:', 'responsive-menu'); ?>
-        <ul>
-          <li><?php _e('Font Awesome Icon Support', 'responsive-menu'); ?></li>
-          <li><?php _e('Opacity Option for all Colours', 'responsive-menu'); ?></li>
-          <li><?php _e('15+ Button Animations', 'responsive-menu'); ?></li>
-          <li><?php _e('Desktop & Responsive Menu Configuration In One', 'responsive-menu'); ?></li>
-          <li><?php _e('Header Bar', 'responsive-menu'); ?></li>
-        </ul>
-        <a target="_blank" href="http://responsive.menu/pricing" class="button">Buy now for only $14.99</a>
+       <div id="upgrade_banner">
+            <?php _e('Upgrade today to unlock the following features:', 'responsive-menu'); ?>
+            <ul>
+              <li><?php _e('Font Awesome Icon Support', 'responsive-menu'); ?></li>
+              <li><?php _e('Opacity Option for all Colours', 'responsive-menu'); ?></li>
+              <li><?php _e('15+ Button Animations', 'responsive-menu'); ?></li>
+              <li><?php _e('Desktop & Responsive Menu Configuration In One', 'responsive-menu'); ?></li>
+              <li><?php _e('Header Bar', 'responsive-menu'); ?></li>
+            </ul>
+            <a target="_blank" href="http://responsive.menu/pricing" class="button"><?php _e('Buy now for only $14.99', 'responsive-menu'); ?></a>
+          </div>
+          <div id="docs_banner">
+            <?php _e('Confused? Check our documentation', 'responsive-menu'); ?>
+            <a target="_blank" href="https://responsive.menu/docs" class="button"><?php _e('View Docs', 'responsive-menu'); ?></a>
+          </div>
       </div> <!-- #banner_area -->
     </div> <!-- #postbox-container -->
   </div> <!-- #poststuff -->
