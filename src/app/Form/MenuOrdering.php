@@ -21,7 +21,6 @@ class MenuOrdering implements FormComponent
       echo '<li class="draggable">'
               . ucwords($name)
               . '<input type="text" class="orderable-item" value="'.$current_value.'" name="menu['.$option->getName().']['.$name.']" />'
-              . '<i class="fa fa-sort"></i>'
               . '<div class="menu-order-option-switch ' . $on_class . '"></div>'
             . '</li>';
     endforeach;

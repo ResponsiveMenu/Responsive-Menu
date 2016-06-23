@@ -6,6 +6,37 @@ foreach(get_registered_nav_menus() as $menu) $location_menus[] = ['value' => $me
 $location_menus[] = ['value' => '', 'display' => 'None'];
 
 $order_mapping = [
+  
+      /*
+      *
+      * INITIAL SETUP
+      *
+      */
+
+      __('Initial Setup', 'responsive-menu') => [
+        __('Menu', 'responsive-menu') =>
+        [
+          [
+            'option' => 'breakpoint',
+            'title' => __('Breakpoint', 'responsive-menu'),
+            'label' => __('This is the width of the screen at which point you would like the menu to start showing', 'responsive-menu'),
+            'unit' => 'px'
+          ],
+          [
+            'option' => 'menu_to_use',
+            'title' => __('Menu to Use', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'select',
+            'select' => $menus_array
+          ],
+          [
+            'option' => 'menu_to_hide',
+            'title' => __('CSS of Menu to Hide', 'responsive-menu'),
+            'label' => __('', 'responsive-menu')
+          ]
+        ]
+      ],
+
 
   /*
   *
@@ -14,82 +45,32 @@ $order_mapping = [
   */
 
   __('Menu', 'responsive-menu') =>  [
-    __('Sub Menu Animations', 'responsive-menu') =>
+    __('Section Ordering', 'responsive-menu') => [
+        [
+          'option' => 'items_order',
+          'title' => __('Order of Menu Items', 'responsive-menu'),
+          'label' => __('Drag the items to re-order and click to turn them on/off', 'responsive-menu'),
+          'type' => 'menu_ordering'
+        ]
+    ],
+    __('Font Icons', 'responsive-menu') =>
       [
         [
-          'option' => 'accordion_animation',
-          'title' => __('Use Accordion Animation', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'checkbox'
-        ],
-        [
-          'option' => 'auto_expand_all_submenus',
-          'title' => __('Auto Expand All Submenus', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'checkbox'
-        ],
-        [
-          'option' => 'auto_expand_current_submenus',
-          'title' => __('Auto Expand Current Submenus', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'checkbox'
-        ],
-      ],
-    __('Sub Menu Styling', 'responsive-menu') =>
-      [
-        [
-          'option' => 'submenu_arrow_height',
-          'title' => __('Sub-Menu Arrow Height', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'unit' => 'px'
-        ],
-        [
-          'option' => 'submenu_arrow_width',
-          'title' => __('Sub-Menu Arrow width', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'unit' => 'px'
-        ],
-
-      ],
-    __('Sub Menu Arrows', 'responsive-menu') =>
-      [
-        [
-          'option' => 'active_arrow_font_icon',
-          'title' => __('Active Arrow Font Icon', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
+          'option' => 'menu_font_icons',
+          'title' => __('Font Icons', 'responsive-menu'),
+          'label' => __('Responsive Menu uses the brilliant <a href="http://fontawesome.io/icons/" target="_blank">Awesome Font Icons</a> for implementing icons in your menu - for more info please visit our doc pages at <a href="https://responsive.menu/docs/basic-setup/font-icons/" target="_blank">https://responsive.menu/docs/basic-setup/font-icons/</a>', 'responsive-menu'),
+          'type' => 'fonticons',
           'pro' => true
-        ],
-        [
-          'option' => 'inactive_arrow_font_icon',
-          'title' => __('Inactive Arrow Font Icon', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'pro' => true
-        ],
-        [
-          'option' => 'active_arrow_shape',
-          'title' => __('Active Arrow Shape', 'responsive-menu'),
-          'label' => __('', 'responsive-menu')
-        ],
-        [
-          'option' => 'inactive_arrow_shape',
-          'title' => __('Inactive Arrow Shape', 'responsive-menu'),
-          'label' => __('', 'responsive-menu')
-        ],
-        [
-          'option' => 'active_arrow_image',
-          'title' => __('Active Arrow Image', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'image'
-        ],
-        [
-          'option' => 'inactive_arrow_image',
-          'title' => __('Inactive Arrow Image', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'image'
         ]
       ],
     __('Sizing', 'responsive-menu') =>
       [
+        [
+          'option' => 'menu_width',
+          'title' => __('Menu Width', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'unit' => '%'
+        ],
         [
           'option' => 'menu_maximum_width',
           'title' => __('Maximum Width', 'responsive-menu'),
@@ -102,15 +83,137 @@ $order_mapping = [
           'label' => __('', 'responsive-menu'),
           'unit' => 'px'
         ],
-      ],
-    __('Advanced', 'responsive-menu') =>
-      [
+        [
+          'option' => 'menu_links_height',
+          'title' => __('Links Height', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'unit' => 'px'
+        ],
         [
           'option' => 'menu_auto_height',
           'title' => __('Menu Auto Height', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
           'type' => 'checkbox',
           'pro' => true
+        ],
+      ],
+      __('Title', 'responsive-menu') =>
+        [
+          [
+            'option' => 'menu_title',
+            'title' => __('Text', 'responsive-menu'),
+            'label' => __('', 'responsive-menu')
+          ],
+          [
+            'option' => 'menu_title_link',
+            'title' => __('Link', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+          ],
+          [
+            'option' => 'menu_title_link_location',
+            'title' => __('Link Location', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'select',
+            'select' => [
+              ['value' => '_blank', 'display' => 'New Tab'],
+              ['value' => '_self', 'display' => 'Same Page'],
+              ['value' => '_parent', 'display' => 'Parent Page'],
+              ['value' => '_top', 'display' => 'Full Window Body']
+            ]
+          ],
+          [
+            'option' => 'menu_title_font_size',
+            'title' => __('Title Font Size', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'unit' => 'px'
+          ],
+          [
+            'option' => 'menu_title_font_icon',
+            'title' => __('Font Icon', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'pro' => true
+          ],
+          [
+            'option' => 'menu_title_image',
+            'title' => __('Image', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'image'
+          ],
+          [
+            'option' => 'menu_title_background_colour',
+            'title' => __('Title Background Colour', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'colour',
+            'semi_pro' => true
+          ],
+          [
+            'option' => 'menu_title_background_hover_colour',
+            'title' => __('Title Background Colour Hover', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'colour',
+            'semi_pro' => true
+          ],
+          [
+            'option' => 'menu_title_colour',
+            'title' => __('Title Colour', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'colour',
+            'semi_pro' => true
+          ],
+          [
+            'option' => 'menu_title_hover_colour',
+            'title' => __('Title Hover Colour', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'colour',
+            'semi_pro' => true
+          ]
+
+        ],
+    __('Additional Content', 'responsive-menu') =>
+      [
+        [
+          'option' => 'menu_additional_content',
+          'title' => __('Text', 'responsive-menu'),
+          'label' => __('HTMl and Shortcodes can be used', 'responsive-menu'),
+          'type' => 'textarea'
+        ],
+        [
+          'option' => 'menu_additional_content_colour',
+          'title' => __('Colour', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'colour'
+        ],
+      ],
+    __('Animation', 'responsive-menu') =>
+      [
+        [
+          'option' => 'menu_appear_from',
+          'title' => __('Appear From', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'select',
+          'select' => [
+            ['value' => 'top', 'display' => 'Top'],
+            ['value' => 'left', 'display' => 'Left'],
+            ['value' => 'right', 'display' => 'Right'],
+            ['value' => 'bottom', 'display' => 'Bottom']
+          ],
+        ],
+        [
+          'option' => 'animation_type',
+          'title' => __('Animation Type', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'select',
+          'semi_pro' => true,
+          'select' => [
+            ['value' => 'slide',  'display' => 'Slide'],
+            ['value' => 'push', 'display' => 'Push'],
+            ['value' => 'fade', 'display' => 'Fade', 'disabled' => true]
+          ]
+        ],
+        [
+          'option' => 'page_wrapper',
+          'title' => __('Page Wrapper CSS selector', 'responsive-menu'),
+          'label' => __('This is only needed if you are using the push animation above', 'responsive-menu')
         ],
         [
           'option' => 'menu_close_on_body_click',
@@ -124,154 +227,22 @@ $order_mapping = [
           'label' => __('', 'responsive-menu'),
           'type' => 'checkbox'
         ],
-        [
-          'option' => 'menu_depth',
-          'title' => __('Depth', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'select',
-          'select' => [
-            ['value' => 1, 'display' => 1],
-            ['value' => 2, 'display' => 2],
-            ['value' => 3, 'display' => 3],
-            ['value' => 4, 'display' => 4],
-            ['value' => 5, 'display' => 5],
-          ]
-        ],
-        [
-          'option' => 'menu_disable_scrolling',
-          'title' => __('Disable Scrolling when Menu Active', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'checkbox',
-          'pro' => true
-        ],
-        [
-          'option' => 'menu_item_click_to_trigger_submenu',
-          'title' => __('Disable Parent Item Clicks', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'checkbox'
-
-        ],
-        [
-          'option' => 'menu_overlay',
-          'title' => __('Add Overlay When Menu Open', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'checkbox',
-          'pro' => true
-        ],
-        [
-          'option' => 'menu_overlay_colour',
-          'title' => __('Overlay Colour', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'colour',
-          'pro' => true
-        ],
-        [
-          'option' => 'menu_word_wrap',
-          'title' => __('Word Wrap', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'checkbox',
-          'pro' => true
-        ],
-        [
-          'option' => 'theme_location_menu',
-          'title' => __('Theme Location Menu', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'select',
-          'select' => $location_menus
-        ]
       ],
-    __('General', 'responsive-menu') =>
+    __('Search Box', 'responsive-menu') =>
       [
-        [
-          'option' => 'menu_additional_content',
-          'title' => __('Additional Content', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'textarea'
-        ],
-        [
-          'option' => 'menu_additional_content_colour',
-          'title' => __('Additional Content Text Colour', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'colour'
-        ],
-        [
-          'option' => 'menu_appear_from',
-          'title' => __('Menu Appear From', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'select',
-          'select' => [
-            ['value' => 'top', 'display' => 'Top'],
-            ['value' => 'left', 'display' => 'Left'],
-            ['value' => 'right', 'display' => 'Right'],
-            ['value' => 'bottom', 'display' => 'Bottom']
-          ]
-        ],
         [
           'option' => 'menu_search_box_text',
           'title' => __('Menu Search Box Text', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
           'pro' => true
         ],
-        [
-          'option' => 'menu_title',
-          'title' => __('Menu Title', 'responsive-menu'),
-          'label' => __('', 'responsive-menu')
-        ],
-        [
-          'option' => 'menu_title_font_icon',
-          'title' => __('Menu Title Font Icon', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'pro' => true
-        ],
-        [
-          'option' => 'menu_title_image',
-          'title' => __('Menu Title Image', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'image'
-        ],
-        [
-          'option' => 'menu_title_link',
-          'title' => __('Menu Title Link', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-        ],
-        [
-          'option' => 'menu_title_link_location',
-          'title' => __('Menu Title Link Location', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'select',
-          'select' => [
-            ['value' => '_blank', 'display' => 'New Tab'],
-            ['value' => '_self', 'display' => 'Same Page'],
-            ['value' => '_parent', 'display' => 'Parent Page'],
-            ['value' => '_top', 'display' => 'Full Window Body']
-          ]
-        ],
-        [
-          'option' => 'menu_width',
-          'title' => __('Menu Width', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'unit' => '%'
-        ],
+
       ],
     __('Background Colours', 'responsive-menu') =>
       [
         [
           'option' => 'menu_background_colour',
           'title' => __('Background Colour', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'colour',
-          'semi_pro' => true
-        ],
-        [
-          'option' => 'menu_current_item_background_colour',
-          'title' => __('Current Item Background Colour', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'colour',
-          'semi_pro' => true
-        ],
-        [
-          'option' => 'menu_current_item_background_hover_colour',
-          'title' => __('Current Item Background Colour Hover', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
           'type' => 'colour',
           'semi_pro' => true
@@ -305,36 +276,23 @@ $order_mapping = [
           'semi_pro' => true
         ],
         [
-          'option' => 'menu_title_background_colour',
-          'title' => __('Title Background Colour', 'responsive-menu'),
+          'option' => 'menu_current_item_background_colour',
+          'title' => __('Current Item Background Colour', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
           'type' => 'colour',
           'semi_pro' => true
         ],
         [
-          'option' => 'menu_title_background_hover_colour',
-          'title' => __('Title Background Colour Hover', 'responsive-menu'),
+          'option' => 'menu_current_item_background_hover_colour',
+          'title' => __('Current Item Background Colour Hover', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
           'type' => 'colour',
           'semi_pro' => true
-        ]
+        ],
       ],
       __('Text Colours', 'responsive-menu') =>
         [
-          [
-            'option' => 'menu_current_link_colour',
-            'title' => __('Current Link Colour', 'responsive-menu'),
-            'label' => __('', 'responsive-menu'),
-            'type' => 'colour',
-            'semi_pro' => true
-          ],
-          [
-            'option' => 'menu_current_link_hover_colour',
-            'title' => __('Current Link Hover Colour', 'responsive-menu'),
-            'label' => __('', 'responsive-menu'),
-            'type' => 'colour',
-            'semi_pro' => true
-          ],
+
           [
             'option' => 'menu_link_colour',
             'title' => __('Link Colour', 'responsive-menu'),
@@ -350,21 +308,22 @@ $order_mapping = [
             'semi_pro' => true
           ],
           [
-            'option' => 'menu_title_colour',
-            'title' => __('Title Colour', 'responsive-menu'),
+            'option' => 'menu_current_link_colour',
+            'title' => __('Current Link Colour', 'responsive-menu'),
             'label' => __('', 'responsive-menu'),
             'type' => 'colour',
             'semi_pro' => true
           ],
           [
-            'option' => 'menu_title_hover_colour',
-            'title' => __('Title Hover Colour', 'responsive-menu'),
+            'option' => 'menu_current_link_hover_colour',
+            'title' => __('Current Link Hover Colour', 'responsive-menu'),
             'label' => __('', 'responsive-menu'),
             'type' => 'colour',
             'semi_pro' => true
           ],
+
         ],
-        __('Styling', 'responsive-menu') =>
+        __('Link Text Styling', 'responsive-menu') =>
           [
             [
               'option' => 'menu_font',
@@ -378,208 +337,87 @@ $order_mapping = [
               'unit' => 'px'
             ],
             [
-              'option' => 'menu_links_height',
-              'title' => __('Links Height', 'responsive-menu'),
-              'label' => __('', 'responsive-menu'),
-              'unit' => 'px'
-            ],
-            [
               'option' => 'menu_text_alignment',
               'title' => __('Text Alignment', 'responsive-menu'),
               'label' => __('', 'responsive-menu'),
               'type' => 'select',
               'select' => [
                 ['value' => 'left', 'display' => 'Left'],
-                ['value' => 'right', 'display' => 'Right']
+                ['value' => 'right', 'display' => 'Right'],
+                ['value' => 'center', 'display' => 'Centred'],
+                ['value' => 'justify', 'display' => 'Justified']
               ]
             ],
             [
-              'option' => 'menu_title_font_size',
-              'title' => __('Title Font Size', 'responsive-menu'),
+              'option' => 'menu_word_wrap',
+              'title' => __('Word Wrap', 'responsive-menu'),
               'label' => __('', 'responsive-menu'),
-              'unit' => 'px'
+              'type' => 'checkbox',
+              'pro' => true
             ],
           ],
-          __('Font Icons', 'responsive-menu') =>
+          __('Page Overlay', 'responsive-menu') =>
             [
               [
-                'option' => 'menu_font_icons',
-                'title' => __('Font Icons', 'responsive-menu'),
+                'option' => 'menu_overlay',
+                'title' => __('Add Page Overlay When Menu Open', 'responsive-menu'),
                 'label' => __('', 'responsive-menu'),
-                'type' => 'fonticons',
+                'type' => 'checkbox',
                 'pro' => true
+              ],
+              [
+                'option' => 'menu_overlay_colour',
+                'title' => __('Overlay Colour', 'responsive-menu'),
+                'label' => __('', 'responsive-menu'),
+                'type' => 'colour',
+                'pro' => true
+              ],
+            ],
+          __('Advanced', 'responsive-menu') =>
+            [
+              [
+                'option' => 'menu_depth',
+                'title' => __('Depth', 'responsive-menu'),
+                'label' => __('', 'responsive-menu'),
+                'type' => 'select',
+                'select' => [
+                  ['value' => 1, 'display' => 1],
+                  ['value' => 2, 'display' => 2],
+                  ['value' => 3, 'display' => 3],
+                  ['value' => 4, 'display' => 4],
+                  ['value' => 5, 'display' => 5],
+                ]
+              ],
+              [
+                'option' => 'menu_disable_scrolling',
+                'title' => __('Disable Scrolling when Menu Active', 'responsive-menu'),
+                'label' => __('', 'responsive-menu'),
+                'type' => 'checkbox',
+                'pro' => true
+              ],
+              [
+                'option' => 'theme_location_menu',
+                'title' => __('Theme Location Menu', 'responsive-menu'),
+                'label' => __('', 'responsive-menu'),
+                'type' => 'select',
+                'select' => $location_menus
               ]
             ],
-          __('Sub-Arrow Colours', 'responsive-menu') =>
-            [
-              [
-                'option' => 'menu_sub_arrow_background_colour',
-                'title' => __('Background Colour', 'responsive-menu'),
-                'label' => __('', 'responsive-menu'),
-                'type' => 'colour',
-                'semi_pro' => true
-              ],
-              [
-                'option' => 'menu_sub_arrow_background_hover_colour',
-                'title' => __('Background Hover Colour', 'responsive-menu'),
-                'label' => __('', 'responsive-menu'),
-                'type' => 'colour',
-                'semi_pro' => true
-              ],
-              [
-                'option' => 'menu_sub_arrow_border_colour',
-                'title' => __('Border Colour', 'responsive-menu'),
-                'label' => __('', 'responsive-menu'),
-                'type' => 'colour',
-                'semi_pro' => true
-              ],
-              [
-                'option' => 'menu_sub_arrow_border_hover_colour',
-                'title' => __('Border Hover Colour', 'responsive-menu'),
-                'label' => __('', 'responsive-menu'),
-                'type' => 'colour',
-                'semi_pro' => true
-              ],
-              [
-                'option' => 'menu_sub_arrow_shape_colour',
-                'title' => __('Shape Colour', 'responsive-menu'),
-                'label' => __('', 'responsive-menu'),
-                'type' => 'colour',
-                'semi_pro' => true
-              ],
-              [
-                'option' => 'menu_sub_arrow_shape_hover_colour',
-                'title' => __('Shape Hover Colour', 'responsive-menu'),
-                'label' => __('', 'responsive-menu'),
-                'type' => 'colour',
-                'semi_pro' => true
-              ],
-            ],
   ],
 
-  /*
-  *
-  * ANIMATION
-  *
-  */
+    /*
+    *
+    * BUTTON
+    *
+    */
 
-  __('Animation', 'responsive-menu') => [
-    __('Speed', 'responsive-menu') =>
-    [
-      [
-        'option' => 'animation_speed',
-        'title' => __('Animation Speed', 'responsive-menu'),
-        'label' => __('', 'responsive-menu'),
-        'unit' => 's'
-      ],
-      [
-        'option' => 'transition_speed',
-        'title' => __('Transition Speed', 'responsive-menu'),
-        'label' => __('', 'responsive-menu'),
-        'unit' => 's'
-      ]
-    ],
-    __('Type', 'responsive-menu') =>
-    [
-      [
-        'option' => 'animation_type',
-        'title' => __('Animation Type', 'responsive-menu'),
-        'label' => __('', 'responsive-menu'),
-        'type' => 'select',
-        'semi_pro' => true,
-        'select' => [
-          ['value' => 'slide',  'display' => 'Slide'],
-          ['value' => 'push', 'display' => 'Push'],
-          ['value' => 'fade', 'display' => 'Fade', 'disabled' => true]
-        ]
-      ],
-      [
-        'option' => 'page_wrapper',
-        'title' => __('Page Wrapper CSS selector', 'responsive-menu'),
-        'label' => __('This is only needed if you are using the push animation', 'responsive-menu')
-      ]
-    ]
-  ],
-
-  /*
-  *
-  * INITIAL SETUP
-  *
-  */
-
-  __('Initial Setup', 'responsive-menu') => [
-    __('Menu', 'responsive-menu') =>
-    [
-      [
-        'option' => 'breakpoint',
-        'title' => __('Breakpoint', 'responsive-menu'),
-        'label' => __('This is the width of the screen at which point you would like the menu to start showing', 'responsive-menu'),
-        'unit' => 'px'
-      ],
-      [
-        'option' => 'menu_to_use',
-        'title' => __('Menu to Use', 'responsive-menu'),
-        'label' => __('', 'responsive-menu'),
-        'type' => 'select',
-        'select' => $menus_array
-      ],
-      [
-        'option' => 'menu_to_hide',
-        'title' => __('CSS of Menu to Hide', 'responsive-menu'),
-        'label' => __('', 'responsive-menu')
-      ]
-    ]
-  ],
-
-  /*
-  *
-  * BUTTON
-  *
-  */
-
-  __('Button', 'responsive-menu') => [
-    __('Colours', 'responsive-menu') => [
-        [
-          'option' => 'button_background_colour',
-          'title' => __('Background Colour', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'colour',
-          'semi_pro' => true
-        ],
-        [
-          'option' => 'button_background_colour_hover',
-          'title' => __('Background Colour Hover', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'colour',
-          'semi_pro' => true
-        ],
-        [
-          'option' => 'button_line_colour',
-          'title' => __('Line Colour', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'colour',
-          'semi_pro' => true
-        ],
-        [
-          'option' => 'button_text_colour',
-          'title' => __('Text Colour', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'colour',
-          'semi_pro' => true
-        ],
-        [
-          'option' => 'button_transparent_background',
-          'title' => __('Transparent Background', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'checkbox'
-        ],
-    ],
-    __('General', 'responsive-menu') =>
+    __('Button', 'responsive-menu') => [
+      __('Animation', 'responsive-menu') =>
       [
         [
           'option' => 'button_click_animation',
           'title' => __('Animation Type', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
+          'label' => __('To see all animations in action please visit <a href="https://jonsuh.com/hamburgers/" target="_blank">this page</a>', 'responsive-menu'),
           'type' => 'select',
           'select' => [
             ['value' => 'off', 'display' => 'Off'],
@@ -613,66 +451,6 @@ $order_mapping = [
           'semi_pro' => true
         ],
         [
-          'option' => 'button_font',
-          'title' => __('Font', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-        ],
-        [
-          'option' => 'button_font_icon',
-          'title' => __('Font Icon', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'pro' => true
-        ],
-        [
-          'option' => 'button_font_icon_when_clicked',
-          'title' => __('Font Icon When Clicked', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'pro' => true
-        ],
-        [
-          'option' => 'button_image',
-          'title' => __('Image', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'image'
-        ],
-        [
-          'option' => 'button_image_when_clicked',
-          'title' => __('Image When Clicked', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'image'
-        ],
-        [
-          'option' => 'button_title',
-          'title' => __('Title', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-        ],
-        [
-          'option' => 'button_title_line_height',
-          'title' => __('Title Line Height', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'unit' => 'px'
-        ],
-        [
-          'option' => 'button_title_position',
-          'title' => __('Title Position', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'select',
-          'select' => [
-            ['value' => 'left', 'display' => 'Left'],
-            ['value' => 'right', 'display' => 'Right'],
-            ['value' => 'top', 'display' => 'Top'],
-            ['value' => 'bottom', 'display' => 'Bottom']
-          ]
-        ],
-      ],
-      __('Advanced', 'responsive-menu') =>
-      [
-        [
-          'option' => 'button_click_trigger',
-          'title' => __('Trigger', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-        ],
-        [
           'option' => 'button_position_type',
           'title' => __('Position Type', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
@@ -700,7 +478,7 @@ $order_mapping = [
         ],
         [
           'option' => 'button_left_or_right',
-          'title' => __('Button Position', 'responsive-menu'),
+          'title' => __('Button Side', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
           'type' => 'select',
           'select' => [
@@ -715,20 +493,23 @@ $order_mapping = [
           'unit' => 'px'
         ],
       ],
-      __('Sizing', 'responsive-menu') =>
+      __('Container Sizing', 'responsive-menu') =>
       [
-        [
-          'option' => 'button_font_size',
-          'title' => __('Font Size', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'unit' => 'px'
-        ],
         [
           'option' => 'button_height',
           'title' => __('Height', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
           'unit' => 'px'
         ],
+        [
+          'option' => 'button_width',
+          'title' => __('Width', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'unit' => 'px'
+        ],
+      ],
+      __('Hamburger Sizing', 'responsive-menu') =>
+      [
         [
           'option' => 'button_line_height',
           'title' => __('Line Height', 'responsive-menu'),
@@ -747,32 +528,288 @@ $order_mapping = [
           'label' => __('', 'responsive-menu'),
           'unit' => 'px'
         ],
+
+      ],
+      __('Background Colours', 'responsive-menu') => [
+          [
+            'option' => 'button_background_colour',
+            'title' => __('Background Colour', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'colour',
+            'semi_pro' => true
+          ],
+          [
+            'option' => 'button_background_colour_hover',
+            'title' => __('Background Hover Colour', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'colour',
+            'semi_pro' => true
+          ],
+          [
+            'option' => 'button_transparent_background',
+            'title' => __('Transparent Background', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'checkbox'
+          ]
+        ],
+        __('Line Colours', 'responsive-menu') => [
+          [
+            'option' => 'button_line_colour',
+            'title' => __('Line Colour', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'colour',
+            'semi_pro' => true
+          ],
+        ],
+        __('Title', 'responsive-menu') => [
+          [
+            'option' => 'button_title',
+            'title' => __('Text', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+          ],
+          [
+            'option' => 'button_text_colour',
+            'title' => __('Colour', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'colour',
+            'semi_pro' => true
+          ],
+          [
+            'option' => 'button_title_position',
+            'title' => __('Title Text Position', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'select',
+            'select' => [
+              ['value' => 'left', 'display' => 'Left'],
+              ['value' => 'right', 'display' => 'Right'],
+              ['value' => 'top', 'display' => 'Top'],
+              ['value' => 'bottom', 'display' => 'Bottom']
+            ]
+          ],
+          [
+            'option' => 'button_font',
+            'title' => __('Font', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+          ],
+          [
+            'option' => 'button_font_size',
+            'title' => __('Font Size', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'unit' => 'px'
+          ],
+          [
+            'option' => 'button_title_line_height',
+            'title' => __('Line Height', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'unit' => 'px'
+          ],
+      ],
+      __('Image', 'responsive-menu') =>
         [
-          'option' => 'button_width',
-          'title' => __('Width', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'unit' => 'px'
+          [
+            'option' => 'button_font_icon',
+            'title' => __('Font Icon', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'pro' => true
+          ],
+          [
+            'option' => 'button_font_icon_when_clicked',
+            'title' => __('Font Icon When Clicked', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'pro' => true
+          ],
+          [
+            'option' => 'button_image',
+            'title' => __('Image', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'image'
+          ],
+          [
+            'option' => 'button_image_when_clicked',
+            'title' => __('Image When Clicked', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'image'
+          ]
+        ],
+        __('Advanced', 'responsive-menu') =>
+        [
+          [
+            'option' => 'button_click_trigger',
+            'title' => __('Trigger', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+          ],
+        ],
+    ],
+
+/*
+*
+* SUB MENUS
+*
+*/
+    __('Sub-Menus', 'responsive-menu') => [
+      __('Link Colours', 'responsive-menu') => [
+          [
+            'option' => 'single_menu_item_submenu_background_colour',
+            'title' => __('Link Background Colour', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'colour',
+            'pro' => true
+          ],
+          [
+            'option' => 'single_menu_item_submenu_background_colour_hover',
+            'title' => __('Link Background Hover Colour', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'colour',
+            'pro' => true
+          ],
+          [
+            'option' => 'single_menu_item_submenu_link_colour',
+            'title' => __('Link Colour', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'colour',
+            'pro' => true
+          ],
+          [
+            'option' => 'single_menu_item_submenu_link_colour_hover',
+            'title' => __('Link Hover Colour', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'colour',
+            'pro' => true
+          ]
+      ],
+      __('Toggle Button Colours', 'responsive-menu') =>
+        [
+          [
+            'option' => 'menu_sub_arrow_background_colour',
+            'title' => __('Background Colour', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'colour',
+            'semi_pro' => true
+          ],
+          [
+            'option' => 'menu_sub_arrow_background_hover_colour',
+            'title' => __('Background Hover Colour', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'colour',
+            'semi_pro' => true
+          ],
+          [
+            'option' => 'menu_sub_arrow_border_colour',
+            'title' => __('Border Colour', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'colour',
+            'semi_pro' => true
+          ],
+          [
+            'option' => 'menu_sub_arrow_border_hover_colour',
+            'title' => __('Border Hover Colour', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'colour',
+            'semi_pro' => true
+          ],
+        ],
+      __('Toggle Icon Colours', 'responsive-menu') =>
+        [
+          [
+            'option' => 'menu_sub_arrow_shape_colour',
+            'title' => __('Icon Colour', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'colour',
+            'semi_pro' => true
+          ],
+          [
+            'option' => 'menu_sub_arrow_shape_hover_colour',
+            'title' => __('Icon Hover Colour', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'colour',
+            'semi_pro' => true
+          ],
+        ],
+      __('Animations', 'responsive-menu') =>
+        [
+          [
+            'option' => 'accordion_animation',
+            'title' => __('Use Accordion Animation', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'checkbox'
+          ],
+          [
+            'option' => 'auto_expand_all_submenus',
+            'title' => __('Auto Expand All Submenus', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'checkbox'
+          ],
+          [
+            'option' => 'auto_expand_current_submenus',
+            'title' => __('Auto Expand Current Submenus', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'checkbox'
+          ],
+          [
+            'option' => 'menu_item_click_to_trigger_submenu',
+            'title' => __('Disable Parent Item Clicks', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'checkbox'
+
+          ],
+        ],
+
+
+
+      __('Sizing', 'responsive-menu') =>
+        [
+          [
+            'option' => 'submenu_arrow_height',
+            'title' => __('Toggle Button Height', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'unit' => 'px'
+          ],
+          [
+            'option' => 'submenu_arrow_width',
+            'title' => __('Toggle Button Width', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'unit' => 'px'
+          ],
+
+        ],
+      __('Toggle Icons', 'responsive-menu') =>
+        [
+          [
+            'option' => 'active_arrow_font_icon',
+            'title' => __('Font Icon Active', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'pro' => true
+          ],
+          [
+            'option' => 'inactive_arrow_font_icon',
+            'title' => __('Font Icon Inactive', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'pro' => true
+          ],
+          [
+            'option' => 'active_arrow_shape',
+            'title' => __('HTML Shape Active', 'responsive-menu'),
+            'label' => __('', 'responsive-menu')
+          ],
+          [
+            'option' => 'inactive_arrow_shape',
+            'title' => __('HTML Shape Inactive', 'responsive-menu'),
+            'label' => __('', 'responsive-menu')
+          ],
+          [
+            'option' => 'active_arrow_image',
+            'title' => __('Image Active', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'image'
+          ],
+          [
+            'option' => 'inactive_arrow_image',
+            'title' => __('Image Inactive', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'image'
+          ]
         ],
       ],
-  ],
-
-  /*
-  *
-  * CUSTOM CSS
-  *
-  */
-
-  __('Custom CSS', 'responsive-menu') => [
-    __('CSS', 'responsive-menu') => [
-        [
-          'option' => 'custom_css',
-          'title' => __('Custom CSS', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'textarea',
-          'pro' => true
-        ]
-    ]
-  ],
 
   /*
   *
@@ -817,12 +854,43 @@ $order_mapping = [
         [
           'option' => 'shortcode',
           'title' => __('Use Shortcode?', 'responsive-menu'),
-          'label' => __('Please place [responsive_menu] in your files to use', 'responsive-menu'),
+          'label' => __('Please place [responsive_menu_pro] in your files to use', 'responsive-menu'),
           'type' => 'checkbox'
+        ]
+    ],
+    __('Animation Speeds', 'responsive-menu') =>
+    [
+      [
+        'option' => 'animation_speed',
+        'title' => __('Animation Speed', 'responsive-menu'),
+        'label' => __('', 'responsive-menu'),
+        'unit' => 's'
+      ],
+      [
+        'option' => 'transition_speed',
+        'title' => __('Transition Speed', 'responsive-menu'),
+        'label' => __('', 'responsive-menu'),
+        'unit' => 's'
+      ]
+    ],
+  ],
+  /*
+  *
+  * CUSTOM CSS
+  *
+  */
+
+  __('Custom CSS', 'responsive-menu') => [
+    __('CSS', 'responsive-menu') => [
+        [
+          'option' => 'custom_css',
+          'title' => __('Custom CSS', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'textarea',
+          'pro' => true
         ]
     ]
   ],
-
   /*
   *
   * HEADER BAR
@@ -935,22 +1003,6 @@ $order_mapping = [
 
   /*
   *
-  * ITEMS ORDERING
-  *
-  */
-  __('Item Ordering', 'responsive-menu') => [
-    __('Order', 'responsive-menu') => [
-        [
-          'option' => 'items_order',
-          'title' => __('Order of Menu Items', 'responsive-menu'),
-          'label' => __('Drag the items to re-order and click to turn them on/off', 'responsive-menu'),
-          'type' => 'menu_ordering'
-        ]
-    ],
-  ],
-
-  /*
-  *
   * SINGLE MENU
   *
   */
@@ -988,36 +1040,6 @@ $order_mapping = [
         ],
         [
           'option' => 'single_menu_item_link_colour_hover',
-          'title' => __('Link Colour (Hover)', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'colour',
-          'pro' => true
-        ]
-    ],
-    __('Sub-Menu Colours', 'responsive-menu') => [
-        [
-          'option' => 'single_menu_item_submenu_background_colour',
-          'title' => __('Link Background Colour', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'colour',
-          'pro' => true
-        ],
-        [
-          'option' => 'single_menu_item_submenu_background_colour_hover',
-          'title' => __('Link Background Colour (Hover)', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'colour',
-          'pro' => true
-        ],
-        [
-          'option' => 'single_menu_item_submenu_link_colour',
-          'title' => __('Link Colour', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'colour',
-          'pro' => true
-        ],
-        [
-          'option' => 'single_menu_item_submenu_link_colour_hover',
           'title' => __('Link Colour (Hover)', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
           'type' => 'colour',
