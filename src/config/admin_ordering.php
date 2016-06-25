@@ -6,7 +6,7 @@ foreach(get_registered_nav_menus() as $menu) $location_menus[] = ['value' => $me
 $location_menus[] = ['value' => '', 'display' => 'None'];
 
 $order_mapping = [
-  
+
       /*
       *
       * INITIAL SETUP
@@ -915,6 +915,12 @@ $order_mapping = [
               ['value' => 'relative', 'display' => 'Relative'],
               ['value' => 'absolute', 'display' => 'Absolute']
           ],
+          'pro' => true
+        ],
+        [
+          'option' => 'header_bar_breakpoint',
+          'title' => __('Breakpoint', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
           'pro' => true
         ],
       ],

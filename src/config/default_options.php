@@ -133,6 +133,7 @@ $default_options = array(
   'single_menu_item_submenu_background_colour_hover' => '#ffffff',
 
   'use_header_bar' => 'off',
+  'header_bar_breakpoint' => '800',
   'header_bar_logo' => null,
   'header_bar_logo_link' => null,
   'header_bar_title' => null,
