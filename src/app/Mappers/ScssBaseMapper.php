@@ -36,7 +36,7 @@ class ScssBaseMapper extends ScssMapper
         position: fixed;
         top: 0;
         bottom: 0;
-        z-index: 9999;
+        z-index: 9998;
         /* Fix for scroll bars appearing when not needed */
         padding-bottom: 5px;
         margin-bottom: -5px;
