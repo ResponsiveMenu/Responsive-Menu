@@ -20,6 +20,7 @@ class OptionFactory
       : new \ResponsiveMenu\Form\Text;
 
     $value = isset($value) || $value === '0' ? $value : $default_options[$name];
+    $value = stripslashes_deep($value);
 		$option = new ComplexOption($name, $value);
     $option->setFilter($filter);
     $option->setFormComponent($form_component);
