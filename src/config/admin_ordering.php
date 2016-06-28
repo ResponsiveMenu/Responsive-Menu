@@ -647,36 +647,7 @@ $order_mapping = [
 *
 */
     __('Sub-Menus', 'responsive-menu') => [
-      __('Link Colours', 'responsive-menu') => [
-          [
-            'option' => 'single_menu_item_submenu_background_colour',
-            'title' => __('Link Background Colour', 'responsive-menu'),
-            'label' => __('', 'responsive-menu'),
-            'type' => 'colour',
-            'pro' => true
-          ],
-          [
-            'option' => 'single_menu_item_submenu_background_colour_hover',
-            'title' => __('Link Background Hover Colour', 'responsive-menu'),
-            'label' => __('', 'responsive-menu'),
-            'type' => 'colour',
-            'pro' => true
-          ],
-          [
-            'option' => 'single_menu_item_submenu_link_colour',
-            'title' => __('Link Colour', 'responsive-menu'),
-            'label' => __('', 'responsive-menu'),
-            'type' => 'colour',
-            'pro' => true
-          ],
-          [
-            'option' => 'single_menu_item_submenu_link_colour_hover',
-            'title' => __('Link Hover Colour', 'responsive-menu'),
-            'label' => __('', 'responsive-menu'),
-            'type' => 'colour',
-            'pro' => true
-          ]
-      ],
+
       __('Toggle Button Colours', 'responsive-menu') =>
         [
           [
@@ -854,7 +825,7 @@ $order_mapping = [
         [
           'option' => 'shortcode',
           'title' => __('Use Shortcode?', 'responsive-menu'),
-          'label' => __('Please place [responsive_menu_pro] in your files to use', 'responsive-menu'),
+          'label' => __('Please place [responsive_menu] in your files to use. Full documentation can be found <a target="_blank" href="https://responsive.menu/docs/advanced-setup/shortcode/">here</a>', 'responsive-menu'),
           'type' => 'checkbox'
         ]
     ],
@@ -936,14 +907,14 @@ $order_mapping = [
     __('Logo', 'responsive-menu') => [
         [
           'option' => 'header_bar_logo',
-          'title' => __('Logo', 'responsive-menu'),
+          'title' => __('Image', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
           'type' => 'image',
           'pro' => true
         ],
         [
           'option' => 'header_bar_logo_link',
-          'title' => __('Logo Link', 'responsive-menu'),
+          'title' => __('Link', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
           'pro' => true
         ],
@@ -1017,45 +988,75 @@ $order_mapping = [
         [
           'option' => 'use_single_menu',
           'title' => __('Use Single Menu', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
+          __('To use this option you must turn the Shortcode option on and use the shortcode in your theme where you want the menu to appear', 'responsive-menu'),
           'type' => 'checkbox',
           'pro' => true
         ]
     ],
-    __('Main Menu Colours', 'responsive-menu') => [
+    __('Menu Colours', 'responsive-menu') => [
         [
           'option' => 'single_menu_item_background_colour',
-          'title' => __('Link Background Colour', 'responsive-menu'),
+          'title' => __('Background Colour', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
           'type' => 'colour',
           'pro' => true
         ],
         [
           'option' => 'single_menu_item_background_colour_hover',
-          'title' => __('Link Background Colour (Hover)', 'responsive-menu'),
+          'title' => __('Background Hover Colour', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
           'type' => 'colour',
           'pro' => true
         ],
         [
           'option' => 'single_menu_item_link_colour',
-          'title' => __('Link Colour', 'responsive-menu'),
+          'title' => __('Text Colour', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
           'type' => 'colour',
           'pro' => true
         ],
         [
           'option' => 'single_menu_item_link_colour_hover',
-          'title' => __('Link Colour (Hover)', 'responsive-menu'),
+          'title' => __('Text Hover Colour', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
           'type' => 'colour',
           'pro' => true
-        ]
+        ],
+      ],
+        __('Sub-Menu Colours', 'responsive-menu') => [
+            [
+              'option' => 'single_menu_item_submenu_background_colour',
+              'title' => __('Background Colour', 'responsive-menu'),
+              'label' => __('', 'responsive-menu'),
+              'type' => 'colour',
+              'pro' => true
+            ],
+            [
+              'option' => 'single_menu_item_submenu_background_colour_hover',
+              'title' => __('Background Hover Colour', 'responsive-menu'),
+              'label' => __('', 'responsive-menu'),
+              'type' => 'colour',
+              'pro' => true
+            ],
+            [
+              'option' => 'single_menu_item_submenu_link_colour',
+              'title' => __('Text Colour', 'responsive-menu'),
+              'label' => __('', 'responsive-menu'),
+              'type' => 'colour',
+              'pro' => true
+            ],
+            [
+              'option' => 'single_menu_item_submenu_link_colour_hover',
+              'title' => __('Text Hover Colour', 'responsive-menu'),
+              'label' => __('', 'responsive-menu'),
+              'type' => 'colour',
+              'pro' => true
+            ]
     ],
-    __('Main Menu Styling', 'responsive-menu') => [
+    __('Menu Styling', 'responsive-menu') => [
         [
           'option' => 'single_menu_font',
-          'title' => __('Font Name', 'responsive-menu'),
+          'title' => __('Font', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
           'pro' => true
         ],
@@ -1070,7 +1071,7 @@ $order_mapping = [
     __('Sub-Menu Styling', 'responsive-menu') => [
         [
           'option' => 'single_menu_submenu_font',
-          'title' => __('Font Name', 'responsive-menu'),
+          'title' => __('Font', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
           'pro' => true
         ],
@@ -1082,7 +1083,7 @@ $order_mapping = [
           'pro' => true
         ]
     ],
-    __('Main Menu Sizing', 'responsive-menu') => [
+    __('Menu Sizing', 'responsive-menu') => [
         [
           'option' => 'single_menu_height',
           'title' => __('Height', 'responsive-menu'),
@@ -1091,7 +1092,7 @@ $order_mapping = [
           'pro' => true
         ]
     ],
-    __('Sub-Menu Menu Sizing', 'responsive-menu') => [
+    __('Sub-Menu Sizing', 'responsive-menu') => [
         [
           'option' => 'single_menu_submenu_height',
           'title' => __('Height', 'responsive-menu'),
