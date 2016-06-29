@@ -38,7 +38,21 @@ jQuery(function($) {
 		container_name = '#tab_container_' + $(this).attr('id').replace('tab_', '');
 		$('.tab_container').css('display', 'none');
 		$(container_name).css('display', 'block');
-    $('.tab').removeClass('active_tab');
-    $(this).addClass('active_tab');
+        $('.tab').removeClass('active_tab');
+        $(this).addClass('active_tab');
+        if(typeof(Storage) !== "undefined") {
+            localStorage.responsive_menu_tab = $(this).attr('id');
+            console.log(localStorage.responsive_menu_tab);
+        }
 	});
+    
+    if(typeof(Storage) !== "undefined" && localStorage.responsive_menu_tab) {
+        tab_id = localStorage.responsive_menu_tab;
+        container_name = '#tab_container_' + tab_id.replace('tab_', '');
+        $('.tab_container').css('display', 'none');
+        $(container_name).css('display', 'block');
+        $('.tab').removeClass('active_tab');
+        $('#' + tab_id).addClass('active_tab');
+    }
+    
 });
