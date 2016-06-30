@@ -28,6 +28,9 @@ class ScssButtonMapper extends ScssMapper
         height: {$this->options['button_height']}px;
         @if '{$this->options['button_transparent_background']}' == 'off' {
           background-color: {$this->options['button_background_colour']};
+          &:hover {
+            background-color: {$this->options['button_background_colour_hover']};
+          }
         }
         position: {$this->options['button_position_type']};
         top: {$this->options['button_top']}px;
@@ -47,7 +50,7 @@ class ScssButtonMapper extends ScssMapper
 
         #responsive-menu-button {
           display: inline-block;
-          transition: transform {$this->options['animation_speed']}s;
+          transition: transform {$this->options['animation_speed']}s, background-color {$this->options['transition_speed']}s;
         }
       }
 CSS;
