@@ -2,7 +2,7 @@
 
 $menus_array = [];
 foreach(get_terms('nav_menu') as $menu) $menus_array[] = [ 'value' => $menu->slug, 'display' => $menu->name];
-foreach(get_registered_nav_menus() as $menu) $location_menus[] = ['value' => $menu, 'display' => $menu];
+foreach(get_registered_nav_menus() as $location => $menu) $location_menus[] = ['value' => $location, 'display' => $menu];
 $location_menus[] = ['value' => '', 'display' => 'None'];
 
 $order_mapping = [
