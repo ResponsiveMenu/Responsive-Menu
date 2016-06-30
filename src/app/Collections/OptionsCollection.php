@@ -57,8 +57,6 @@ class OptionsCollection implements \ArrayAccess {
   public function getButtonIconActive() {
     if($this->options['button_image']->getValue())
       return '<img src="' . $this->options['button_image_when_clicked'] .'" class=" responsive-menu-button-icon responsive-menu-button-icon-inactive" />';
-    else
-      return '<span class="responsive-menu-inner"></span>';
   }
 
   public function offsetExists($offset) {

@@ -323,7 +323,7 @@ $order_mapping = [
           ],
 
         ],
-        __('Link Text Styling', 'responsive-menu') =>
+        __('Text Styling', 'responsive-menu') =>
           [
             [
               'option' => 'menu_font',
