@@ -31,7 +31,9 @@ class FrontDisplayFactory {
         echo '<style>' . $css . '</style>';
       });
       add_action($options['scripts_in_footer'] == 'on' ? 'wp_footer' : 'wp_head', function() use ($js) {
-        echo '<script>' . $js . '</script>';
+        if(wp_script_is('jquery', 'done')) {
+          echo '<script>' . $js . '</script>';
+        }
       });
     endif;
 
