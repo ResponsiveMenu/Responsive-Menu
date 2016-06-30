@@ -14,7 +14,7 @@ class FontIconPageList implements FormComponent {
     else
       $final = null;
 
-    echo "<div class='font-icon-container'><div class='font-icon-row'><div class='font-icon-cell-id'>" . __('Menu Item Id', 'responsive-menu') . "</div><div class='font-icon-cell-icon'>" . __('Icon', 'responsive-menu') . "</div></div>";
+    echo "<div class='font-icon-container'><div class='font-icon-row'><div class='font-icon-cell-id'>" . __('Id', 'responsive-menu') . "</div><div class='font-icon-cell-icon'>" . __('Icon', 'responsive-menu') . "</div></div>";
 
     if(is_array($final) && !empty($final)):
       foreach( $final as $id => $icon):
