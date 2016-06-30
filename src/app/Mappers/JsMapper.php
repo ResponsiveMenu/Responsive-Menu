@@ -142,7 +142,7 @@ class JsMapper
             }
           });
           if(this.closeOnLinkClick == 'on') {
-            $(this.linkElement).on('click', function() {
+            $(this.linkElement).on('click touchstart', function() {
               if(self.isOpen) {
                 self.closeMenu();
               }
