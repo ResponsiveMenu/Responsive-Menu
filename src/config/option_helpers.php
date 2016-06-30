@@ -12,5 +12,8 @@ $option_helpers = array(
 	),
   'header_bar_items_order' => array(
     'filter' => 'ResponsiveMenu\Filters\JsonFilter'
-	)
+	),
+  'header_bar_html_content' => array(
+    'filter' => 'ResponsiveMenuPro\Filters\HtmlFilter'
+  )
 );
