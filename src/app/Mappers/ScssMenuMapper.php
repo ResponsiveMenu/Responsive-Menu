@@ -116,6 +116,14 @@ class ScssMenuMapper extends ScssMapper
                   }
               }
             }
+            &.responsive-menu-current-item > .responsive-menu-item-link {
+              background-color: {$this->options['menu_current_item_background_colour']};
+              color: {$this->options['menu_current_link_colour']};
+              &:hover {
+                background-color: {$this->options['menu_current_item_background_hover_colour']};
+                color: {$this->options['menu_current_link_hover_colour']};
+              }
+            }
           }
         }
       }
