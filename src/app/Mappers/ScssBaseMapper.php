@@ -50,9 +50,6 @@ class ScssBaseMapper extends ScssMapper
           height: 50px;
           background: white;
         }
-        .admin-bar & {
-          margin-top: 32px;
-        }
 
         &.push-left,
         &.slide-left {
@@ -147,15 +144,9 @@ class ScssBaseMapper extends ScssMapper
       }
 
       .responsive-menu-button {
-
-        .admin-bar & {
-          margin-top: 32px;
-        }
-
         .responsive-menu-button-icon-inactive {
           display: none;
         }
-
       }
 
       #responsive-menu-button {
@@ -198,9 +189,6 @@ class ScssBaseMapper extends ScssMapper
         right: 0;
         left: 0;
         display: none;
-        .admin-bar & {
-          margin-top: 32px;
-        }
         .responsive-menu-header-box {
           display: inline-block;
           &, & img {
@@ -222,14 +210,6 @@ class ScssBaseMapper extends ScssMapper
         .responsive-menu-header-box {
           margin-right: 2%;
         }
-      }
-    }
-
-    @media screen and ( max-width: 782px ) {
-      .admin-bar #responsive-menu-container,
-      .admin-bar .responsive-menu-button,
-      .admin-bar #responsive-menu-header {
-          margin-top: 46px;
       }
     }
 CSS;
