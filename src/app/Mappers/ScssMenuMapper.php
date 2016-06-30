@@ -71,6 +71,9 @@ class ScssMenuMapper extends ScssMapper
           &:hover {
             background-color: {$this->options['menu_title_background_hover_colour']};
             color: {$this->options['menu_title_hover_colour']};
+            a {
+              color: {$this->options['menu_title_hover_colour']};
+            }
           }
           #responsive-menu-title-image {
             display: inline-block;
