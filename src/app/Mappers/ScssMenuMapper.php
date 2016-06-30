@@ -85,6 +85,9 @@ class ScssMenuMapper extends ScssMapper
         #responsive-menu {
 
           li.responsive-menu-item {
+            .responsive-menu-item-link {
+              font-size: {$this->options['menu_font_size']}px;
+            }
             a {
               line-height: {$this->options['menu_links_height']}px;
               border: 1px solid {$this->options['menu_item_border_colour']};
