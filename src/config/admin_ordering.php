@@ -988,7 +988,7 @@ $order_mapping = [
         [
           'option' => 'use_single_menu',
           'title' => __('Use Single Menu', 'responsive-menu'),
-          __('To use this option you must turn the Shortcode option on and use the shortcode in your theme where you want the menu to appear', 'responsive-menu'),
+          'label' => __('To use this option you must turn the Shortcode option on and use the shortcode in your theme where you want the menu to appear', 'responsive-menu'),
           'type' => 'checkbox',
           'pro' => true
         ]
