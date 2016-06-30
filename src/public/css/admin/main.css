@@ -654,3 +654,43 @@ input[type="button"].image_button
   font-weight: bold;
   cursor: pointer;
 }
+
+@media (max-width: 800px) {
+  .tab {
+    margin-bottom: 10px !important;
+    width: 18%;
+    margin-right: 1% !important;
+  }
+  #banner_area,
+  #all_options_container {
+    width: 100%;
+  }
+  .tabs_container {
+    text-align: center;
+  }
+  .postbox .inside table tr td,
+  .postbox .inside table tr td:last-child,
+  .postbox .inside table tr td:first-child {
+    width: 100%;
+    display: block;
+    text-align: center;
+    padding: 10px 0;
+  }
+  #banner_area {
+    margin: 15px 0;
+  }
+  #menu-sortable,
+  .onoffswitch,
+  .select-style {
+    margin: auto;
+  }
+  #menu-sortable, #items_order_container td:last-child {
+    width: 90%;
+    margin: auto;
+  }
+  #normal-sortables .button.submit {
+    margin: auto;
+    display: block;
+    float: none;
+  }
+}
