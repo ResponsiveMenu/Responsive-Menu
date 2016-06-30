@@ -29,10 +29,10 @@ class FrontDisplayFactory {
     else :
       add_action('wp_head', function() use ($css) {
         echo '<style>' . $css . '</style>';
-      });
+      }, 100);
       add_action($options['scripts_in_footer'] == 'on' ? 'wp_footer' : 'wp_head', function() use ($js) {
         echo '<script>' . $js . '</script>';
-      });
+      }, 100);
     endif;
 
   }
