@@ -142,8 +142,11 @@ class JsMapper
             }
           });
           if(this.closeOnLinkClick == 'on') {
-            $(this.linkElement).on('click touchstart', function() {
+            $(this.linkElement).on('click touchstart', function(e) {
               if(self.isOpen) {
+                if($(e.target).closest('.responsive-menu-subarrow').length) {
+                  return;
+                }
                 self.closeMenu();
               }
             });
