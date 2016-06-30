@@ -257,9 +257,8 @@ input[type="text"].image,
   box-sizing: border-box;
 }
 
-#all_options_container
-{
-  width: 70%;
+#all_options_container {
+  width: 74%;
 }
 
 #banner_area
@@ -621,8 +620,37 @@ input[type="button"].image_button
   display: none;
 }
 
-
 #header_bar_items_order_container .draggable {
   display: inline-block;
   width: 19%;
+}
+
+.upgrade-notes  {
+	background: #DE4B42;
+  padding: 15px 2%;
+  width: 96%;
+  position: relative;
+  margin: 15px 0;
+  color: white;
+}
+
+.upgrade-notes a {
+  color: white;
+  text-decoration: underline;
+}
+
+.upgrade-notes-title {
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.upgrade-notes-close {
+  position: absolute;
+  top: 0;
+  right: 2%;
+  font-size: 18px;
+  padding: 15px;
+  font-weight: bold;
+  cursor: pointer;
 }

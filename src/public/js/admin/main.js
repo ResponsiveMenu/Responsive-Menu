@@ -45,6 +45,19 @@ jQuery(function($) {
         }
 	});
 
+    if(typeof(Storage) !== "undefined") {
+      if(localStorage.rmupgrade) {
+    		$('.upgrade-notes').hide();
+    	} else {
+    		$(document).on('click', '.upgrade-notes-close', function(e) {
+    			e.stopPropagation();
+    			e.preventDefault();
+    			$('.upgrade-notes').fadeOut();
+    			localStorage.rmupgrade = "true";
+    		});
+    	}
+    }
+
     if(typeof(Storage) !== "undefined" && localStorage.responsive_menu_tab) {
         tab_id = localStorage.responsive_menu_tab;
         container_name = '#tab_container_' + tab_id.replace('tab_', '');
