@@ -60,6 +60,7 @@ class ScssMenuMapper extends ScssMapper
         #responsive-menu-title {
           background-color: {$this->options['menu_title_background_colour']};
           color: {$this->options['menu_title_colour']};
+          font-size: {$this->options['menu_title_font_size']}px;
           a {
             color: {$this->options['menu_title_colour']};
             text-decoration: none;
