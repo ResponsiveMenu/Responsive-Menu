@@ -106,6 +106,7 @@ class JsMapper
               translate = 'translateY(-' + this.menuHeight() + 'px)'; break;
             }
             if(this.animationType == 'push') {
+              $('body').css('overflow-x', 'hidden');
               $(this.pageWrapper).css({'transform':translate});
             }
             if(this.pushButton == 'on') {
@@ -113,8 +114,12 @@ class JsMapper
             }
         },
         clearWrapperTranslate: function() {
+          self = this;
           if(this.animationType == 'push') {
             $(this.pageWrapper).css({'transform':''});
+            setTimeout(function() {
+              $('body').css('overflow-x', '');
+            }, self.animationSpeed * 1000);
           }
           if(this.pushButton == 'on') {
             $('#responsive-menu-button').css({'transform':''});
