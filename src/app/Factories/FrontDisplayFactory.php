@@ -20,6 +20,8 @@ class FrontDisplayFactory {
       return $classes;
     });
 
+    wp_enqueue_script('jquery');
+    
     if($options['external_files'] == 'on') :
       $data_folder_dir = plugins_url(). '/responsive-menu-data';
       $css_file = $data_folder_dir . '/css/responsive-menu-' . get_current_blog_id() . '.css';
