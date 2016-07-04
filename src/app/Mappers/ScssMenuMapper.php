@@ -28,7 +28,6 @@ class ScssMenuMapper extends ScssMapper
         html.responsive-menu-pro-open,
         .responsive-menu-pro-open body {
           width: 100%;
-          overflow-x: hidden;
         }
       }
 
