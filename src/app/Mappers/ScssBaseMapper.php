@@ -45,32 +45,56 @@ class ScssBaseMapper extends ScssMapper
         &.push-left,
         &.slide-left {
           transform: translateX(-100%);
-          .responsive-menu-open & {
+          -ms-transform: translateX(-100%);
+          -webkit-transform: translateX(-100%);
+          -moz-transform: translateX(-100%);
+          .responsive-menu-pro-open & {
             transform: translateX(0);
+            -ms-transform: translateX(0);
+            -webkit-transform: translateX(0);
+            -moz-transform: translateX(0);
           }
         }
 
         &.push-top,
         &.slide-top {
           transform: translateY(-100%);
-          .responsive-menu-open & {
+          -ms-transform: translateY(-100%);
+          -webkit-transform: translateY(-100%);
+          -moz-transform: translateY(-100%);
+          .responsive-menu-pro-open & {
             transform: translateY(0);
+            -ms-transform: translateY(0);
+            -webkit-transform: translateY(0);
+            -moz-transform: translateY(0);
           }
         }
 
         &.push-right,
         &.slide-right {
           transform: translateX(100%);
-          .responsive-menu-open & {
+          -ms-transform: translateX(100%);
+          -webkit-transform: translateX(100%);
+          -moz-transform: translateX(100%);
+          .responsive-menu-pro-open & {
             transform: translateX(0);
+            -ms-transform: translateX(0);
+            -webkit-transform: translateX(0);
+            -moz-transform: translateX(0);
           }
         }
 
         &.push-bottom,
         &.slide-bottom {
           transform: translateY(100%);
-          .responsive-menu-open & {
+          -ms-transform: translateY(100%);
+          -webkit-transform: translateY(100%);
+          -moz-transform: translateY(100%);
+          .responsive-menu-pro-open & {
             transform: translateY(0);
+            -ms-transform: translateY(0);
+            -webkit-transform: translateY(0);
+            -moz-transform: translateY(0);
           }
         }
 
