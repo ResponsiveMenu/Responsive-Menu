@@ -21,13 +21,13 @@ class FrontDisplayFactory {
     });
 
     wp_enqueue_script('jquery');
-    
+
     if($options['external_files'] == 'on') :
       $data_folder_dir = plugins_url(). '/responsive-menu-data';
       $css_file = $data_folder_dir . '/css/responsive-menu-' . get_current_blog_id() . '.css';
       $js_file = $data_folder_dir . '/js/responsive-menu-' . get_current_blog_id() . '.js';
-      wp_enqueue_style('responsive-menu', $css_file, null, null);
-      wp_enqueue_script('responsive-menu', $js_file, ['jquery'], null, $options['scripts_in_footer'] == 'on' ? true : false);
+      wp_enqueue_style('responsive-menu', $css_file, null, false);
+      wp_enqueue_script('responsive-menu', $js_file, ['jquery'], false, $options['scripts_in_footer'] == 'on' ? true : false);
     else :
       add_action('wp_head', function() use ($css) {
         echo '<style>' . $css . '</style>';
