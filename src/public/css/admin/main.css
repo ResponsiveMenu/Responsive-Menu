@@ -225,13 +225,12 @@ input[type="text"].image,
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(222, 75, 66, 0.6);
   position: absolute;
   text-align: center;
-  color: white;
-  padding: 3% 0;
+  color: #333;
+  transform: translateY(30%);
   font-weight: bold;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 #items_order_container td:last-child,
