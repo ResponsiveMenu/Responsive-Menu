@@ -25,8 +25,8 @@ class ScssMenuMapper extends ScssMapper
         & {$this->options['page_wrapper']} {
           transition: transform {$this->options['animation_speed']}s;
         }
-        html.responsive-menu-pro-open,
-        .responsive-menu-pro-open body {
+        html.responsive-menu-open,
+        .responsive-menu-open body {
           width: 100%;
         }
       }
