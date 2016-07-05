@@ -62,7 +62,7 @@ class ScssBaseMapper extends ScssMapper
           -ms-transform: translateY(-100%);
           -webkit-transform: translateY(-100%);
           -moz-transform: translateY(-100%);
-          .responsive-menu-pro-open & {
+          .responsive-menu-open & {
             transform: translateY(0);
             -ms-transform: translateY(0);
             -webkit-transform: translateY(0);
@@ -76,7 +76,7 @@ class ScssBaseMapper extends ScssMapper
           -ms-transform: translateX(100%);
           -webkit-transform: translateX(100%);
           -moz-transform: translateX(100%);
-          .responsive-menu-pro-open & {
+          .responsive-menu-open & {
             transform: translateX(0);
             -ms-transform: translateX(0);
             -webkit-transform: translateX(0);
@@ -90,7 +90,7 @@ class ScssBaseMapper extends ScssMapper
           -ms-transform: translateY(100%);
           -webkit-transform: translateY(100%);
           -moz-transform: translateY(100%);
-          .responsive-menu-pro-open & {
+          .responsive-menu-open & {
             transform: translateY(0);
             -ms-transform: translateY(0);
             -webkit-transform: translateY(0);
