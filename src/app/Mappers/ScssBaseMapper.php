@@ -48,7 +48,7 @@ class ScssBaseMapper extends ScssMapper
           -ms-transform: translateX(-100%);
           -webkit-transform: translateX(-100%);
           -moz-transform: translateX(-100%);
-          .responsive-menu-pro-open & {
+          .responsive-menu-open & {
             transform: translateX(0);
             -ms-transform: translateX(0);
             -webkit-transform: translateX(0);
