@@ -32,7 +32,7 @@ class Front extends Base
         if($atts)
           array_walk($atts, function($a, $b) use ($options) { $options[$b] = $a; });
 
-        $this->view->make('button', ['options' => $options, 'button' => $html->getHtml()]);
+        $html = $this->view->make('button', ['options' => $options, 'button' => $html->getHtml()]);
 
         return $html . $this->view->make('menu', ['options' => $options, 'menu' => $menu->getHtml()]);
 
