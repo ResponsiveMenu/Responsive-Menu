@@ -11,9 +11,11 @@ This is a Highly Customisable Responsive Menu Plugin for WordPress
 
 == Description ==
 
-This is a Highly Customisable Responsive Menu Plugin for WordPress, with over 120 customisable options giving you a combination of 14,000 options!<br /><br />
+This is a Highly Customisable Responsive Menu Plugin for WordPress, with over 120 customisable options giving you a combination of 14,000 options!
+<br /><br />
+**Requires PHP 5.4+**, please ensure you have this installed before upgrading.
+<br /><br />
 With this plugin, you can edit the following and more:
-<br />
 <ul>
 <li>Menu Title</li>
 <li>Menu Title Image</li>
@@ -95,7 +97,6 @@ It also includes the following functionality:
 <ul>
 <li>WPML/Polylang Support</li>
 </ul>
-<br /><br />
 If you decide to go Pro then you will also get the following functionality:
 <ul>
 <li>FontIcon Support for individual menu items</li>
@@ -104,7 +105,6 @@ If you decide to go Pro then you will also get the following functionality:
 <li>Header Bar</li>
 <li>Single Menu Option</li>
 </ul>
-<br /><br />
 For more reasons to go Pro, please visit <a target="_blank" href="https://responsive.menu/why-go-pro/">this page</a>.
 If you would like to see any other options added to the plugin or would like to help with translating the plugin into various languages then please email me or place them in a support ticket.
 <br />
@@ -125,8 +125,15 @@ Alternatively:
 
 == Frequently Asked Questions ==
 
-FAQ: <a target="_blank" href="https://responsive.menu/faq/">http://responsive.menu/faq/</a><br/>
-Docs: <a target="_blank" href="https://responsive.menu/docs/">http://responsive.menu/docs/</a>
+1. Why do I get the error `Parse error: syntax error, unexpected '[' in /home/..../wp-content/plugins/responsive-menu/src/app/Routing/WpRouting.php on line 19`?
+
+This is due to your PHP version not being high enough, you need at least PHP 5.4 for the plugin to work.
+
+2. I am getting a message similar to `Fatal error: Uncaught exception 'Exception' with message 'parse error: failed at $hamburger-layer-color: ;`, why?
+
+All you need to do is login to your WordPress admin, go to my plugin page and hit 'Update Options' to fix this.
+
+To view our whole FAQ, please go to https://responsive.menu/faq/
 
 == Screenshots ==
 
@@ -139,8 +146,15 @@ Docs: <a target="_blank" href="https://responsive.menu/docs/">http://responsive.
 == Changelog ==
 
 = 3.0.0 (5th July 2016) =
+* **Requires PHP 5.4** - Please ensure you have it installed to work
 * Version 3 released!
-* Too many changes to mention!
+* Please login to your admin and hit 'Update Options' upon installing on all sites
+* Awesome FontIcon integration
+* Much Smoother Animations
+* Button Animations
+* And much, much more
+* Many bug fixes
+* Completely re-written from the ground up
 
 = 2.8.9 (17th June 2016) =
 * Last Version 2 release with beta notice
