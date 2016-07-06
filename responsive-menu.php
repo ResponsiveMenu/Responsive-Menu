@@ -14,12 +14,12 @@ Tags: responsive, menu, responsive menu
 
 /* Check correct PHP version first */
 register_activation_hook(__FILE__, 'activate_responsive_menu');
-if(version_compare(PHP_VERSION, '5,4', '<')):
-  function activate_responsive_menu() {
+function activate_responsive_menu() {
+  if(version_compare(PHP_VERSION, '5,4', '<')):
     deactivate_plugins(plugin_basename(__FILE__ ));
     wp_die(sprintf('Responsive Menu requires PHP 5.4 or higher. You are still on %s', PHP_VERSION));
-  }
-endif;
+  endif;
+}
 
 /* Required includes for plugin to function */
 include dirname(__FILE__) . '/autoload.php';
