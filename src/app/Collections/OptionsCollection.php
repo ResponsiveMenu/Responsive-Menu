@@ -24,7 +24,7 @@ class OptionsCollection implements \ArrayAccess {
   }
 
   public function getActiveArrow() {
-    if($this->options['active_arrow_image']->getValue())
+    if($this->options['active_arrow_image'] && $this->options['active_arrow_image']->getValue())
       return '<img src="' . $this->options['active_arrow_image'] .'" />';
     else
       return $this->options['active_arrow_shape'];
@@ -32,7 +32,7 @@ class OptionsCollection implements \ArrayAccess {
   }
 
   public function getInActiveArrow() {
-    if($this->options['inactive_arrow_image']->getValue())
+    if($this->options['inactive_arrow_image'] && $this->options['inactive_arrow_image']->getValue())
       return '<img src="' . $this->options['inactive_arrow_image'] .'" />';
     else
       return $this->options['inactive_arrow_shape'];
@@ -40,7 +40,7 @@ class OptionsCollection implements \ArrayAccess {
   }
 
   public function getTitleImage() {
-    if($this->options['menu_title_image']->getValue())
+    if($this->options['menu_title_image'] && $this->options['menu_title_image']->getValue())
       return '<img src="' . $this->options['menu_title_image'] .'" />';
     else
       return null;
@@ -48,14 +48,14 @@ class OptionsCollection implements \ArrayAccess {
   }
 
   public function getButtonIcon() {
-    if($this->options['button_image']->getValue())
+    if($this->options['button_image'] && $this->options['button_image']->getValue())
       return '<img src="' . $this->options['button_image'] .'" class="responsive-menu-button-icon responsive-menu-button-icon-active" />';
     else
       return '<span class="responsive-menu-inner"></span>';
   }
 
   public function getButtonIconActive() {
-    if($this->options['button_image']->getValue())
+    if($this->options['button_image'] && $this->options['button_image']->getValue())
       return '<img src="' . $this->options['button_image_when_clicked'] .'" class=" responsive-menu-button-icon responsive-menu-button-icon-inactive" />';
   }
 

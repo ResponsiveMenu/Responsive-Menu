@@ -105,33 +105,36 @@ class scssc {
 	 */
 	public function compile($code, $name = null)
 	{
-		$this->indentLevel  = -1;
-		$this->commentsSeen = array();
-		$this->extends      = array();
-		$this->extendsMap   = array();
-		$this->parsedFiles  = array();
-		$this->env          = null;
-		$this->scope        = null;
+    try {
+  		$this->indentLevel  = -1;
+  		$this->commentsSeen = array();
+  		$this->extends      = array();
+  		$this->extendsMap   = array();
+  		$this->parsedFiles  = array();
+  		$this->env          = null;
+  		$this->scope        = null;
 
-		$locale = setlocale(LC_NUMERIC, 0);
-		setlocale(LC_NUMERIC, "C");
+  		$locale = setlocale(LC_NUMERIC, 0);
+  		setlocale(LC_NUMERIC, "C");
 
-		$this->parser = new scss_parser($name);
+  		$this->parser = new scss_parser($name);
 
-		$tree = $this->parser->parse($code);
+  		$tree = $this->parser->parse($code);
 
-		$this->formatter = new $this->formatter();
+  		$this->formatter = new $this->formatter();
 
-		$this->pushEnv($tree);
-		$this->injectVariables($this->registeredVars);
-		$this->compileRoot($tree);
-		$this->popEnv();
+  		$this->pushEnv($tree);
+  		$this->injectVariables($this->registeredVars);
+  		$this->compileRoot($tree);
+  		$this->popEnv();
 
-		$out = $this->formatter->format($this->scope);
+  		$out = $this->formatter->format($this->scope);
 
-		setlocale(LC_NUMERIC, $locale);
+  		setlocale(LC_NUMERIC, $locale);
 
-		return $out;
+  		return $out;
+    } catch(Exception $e) {}
+
 	}
 
 	protected function isSelfExtend($target, $origin) {

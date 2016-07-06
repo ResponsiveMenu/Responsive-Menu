@@ -12,7 +12,7 @@ class JsMapper
 
   public function map()
   {
-    $animation_speed = $this->options['animation_speed']->getValue() * 1000;
+    $animation_speed = $this->options['animation_speed'] ? $this->options['animation_speed']->getValue() * 1000 : 500;
 
     $js = <<<JS
 
