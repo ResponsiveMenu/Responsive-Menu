@@ -305,9 +305,10 @@ input[type="text"].image,
   font-weight: bold;
   font-size: 13px;
   color: #333;
-  display: inline-block;
+  display: block;
   margin: auto;
   width: auto;
+  text-align: center;
 }
 
 #docs_banner .button {
