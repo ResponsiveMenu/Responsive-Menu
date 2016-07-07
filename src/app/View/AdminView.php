@@ -27,8 +27,6 @@ class AdminView implements View
       wp_register_script('admin-js',  plugin_dir_url(dirname(dirname(__FILE__))) . 'public/js/admin/main.js', 'jquery', null );
       wp_enqueue_script('admin-js' );
 
-      wp_register_script('sticky-sidebar-js',  plugin_dir_url(dirname(dirname(__FILE__))) . 'public/js/admin/sticky-sidebar.js', 'jquery', null );
-      wp_enqueue_script('sticky-sidebar-js');
     endif;
   }
 

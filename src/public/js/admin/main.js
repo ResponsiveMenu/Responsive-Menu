@@ -1,9 +1,7 @@
 jQuery(function($) {
 
   $('.wp-color-picker').wpColorPicker();
-
-  $('#banner_area').stick_in_parent();
-
+  
   var custom_uploader;
 
   $('.image_button').click(function (e) {
