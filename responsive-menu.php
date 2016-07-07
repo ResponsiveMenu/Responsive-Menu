@@ -4,7 +4,7 @@
 Plugin Name: Responsive Menu
 Plugin URI: http://responsive.menu
 Description: Highly Customisable Responsive Menu Plugin for WordPress
-Version: 3.0.0
+Version: 3.0.1
 Author: Responsive Menu
 Text Domain: responsive-menu
 Author URI: http://responsive.menu
