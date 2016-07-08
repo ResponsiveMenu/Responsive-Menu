@@ -148,11 +148,16 @@ class JsMapper
           });
           if(this.closeOnLinkClick == 'on') {
             $(this.linkElement).on('click', function(e) {
+              e.preventDefault();
+              old_href = $(this).attr('href');
               if(self.isOpen) {
                 if($(e.target).closest('.responsive-menu-subarrow').length) {
                   return;
                 }
                 self.closeMenu();
+                setTimeout(function() {
+                  window.location = old_href;
+                }, self.animationSpeed);
               }
             });
           }

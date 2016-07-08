@@ -147,6 +147,7 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 
 = 3.0.2 (8th July 2016) =
 * **Requires PHP 5.4**
+* Fixed issue with close on link click option
 * Improved database migration scripts
 * Updated default button size
 * Improved License Checks (Pro)
