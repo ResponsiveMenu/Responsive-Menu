@@ -46,6 +46,7 @@ class Migration{
 	public function setup()
 	{
     # Create the database table if it doesn't exist
+    if(!$this->isVersion3($this->getOldVersion())):
     $sql = "CREATE TABLE IF NOT EXISTS " . $this->db->table . " (
     				  name varchar(50) NOT NULL,
     				  value varchar(5000) DEFAULT NULL,
@@ -55,6 +56,7 @@ class Migration{
     				) " . $this->db->db->get_charset_collate() . ";";
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php' );
 		dbDelta($sql);
+        endif;
 	}
 
 	public function synchronise()
