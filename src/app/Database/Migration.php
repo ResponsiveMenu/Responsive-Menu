@@ -47,17 +47,17 @@ class Migration{
 	{
     # Create the database table if it doesn't exist
     if(!$this->isVersion3($this->getOldVersion())):
-    $sql = "CREATE TABLE " . $this->db->table . " (
-    				  name varchar(50) NOT NULL,
-    				  value varchar(5000) DEFAULT NULL,
-    				  created_at datetime NOT NULL,
-    				  updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-              PRIMARY KEY  (name)
-    				) " . $this->db->db->get_charset_collate() . ";";
-		require_once(ABSPATH . 'wp-admin/includes/upgrade.php' );
-		dbDelta($sql);
-        $this->synchronise();
-        endif;
+      $sql = "CREATE TABLE " . $this->db->table . " (
+      				  name varchar(50) NOT NULL,
+      				  value varchar(5000) DEFAULT NULL,
+      				  created_at datetime NOT NULL,
+      				  updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                PRIMARY KEY  (name)
+      				) " . $this->db->db->get_charset_collate() . ";";
+  		require_once(ABSPATH . 'wp-admin/includes/upgrade.php' );
+  		dbDelta($sql);
+      $this->synchronise();
+    endif;
 	}
 
 	public function synchronise()
@@ -67,15 +67,17 @@ class Migration{
       $this->migrateVersion2Options();
     endif;
 
-    # Now we can add any new options
-		$this->addNewOptions();
+    if($this->needsUpdate($this->getOldVersion(), $this->getCurrentVersion())):
 
-    # Finally delete any that are no longer used
-    $this->tidyUpOptions();
+      # Now we can add any new options
+  		$this->addNewOptions();
 
-    # Perform any version specific updates
-		if($this->needsUpdate($this->getOldVersion(), $this->getCurrentVersion())):
+      # Finally delete any that are no longer used
+      $this->tidyUpOptions();
+
+      # And Update Version
 			$this->updateVersion();
+
 		endif;
 	}
 
