@@ -56,6 +56,7 @@ class Migration{
     				) " . $this->db->db->get_charset_collate() . ";";
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php' );
 		dbDelta($sql);
+        $this->synchronise();
         endif;
 	}
 
