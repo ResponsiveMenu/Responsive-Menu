@@ -147,7 +147,7 @@ class JsMapper
             }
           });
           if(this.closeOnLinkClick == 'on') {
-            $(this.linkElement).on('click touchstart', function(e) {
+            $(this.linkElement).on('click tap', function(e) {
               if(self.isOpen) {
                 if($(e.target).closest('.responsive-menu-subarrow').length) {
                   return;
