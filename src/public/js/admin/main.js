@@ -1,7 +1,7 @@
 jQuery(function($) {
 
   $('.wp-color-picker').wpColorPicker();
-  
+
   var custom_uploader;
 
   $('.image_button').click(function (e) {
@@ -54,15 +54,6 @@ jQuery(function($) {
     			localStorage.rmupgrade = "true";
     		});
     	}
-    }
-
-    if(typeof(Storage) !== "undefined" && localStorage.responsive_menu_tab) {
-        tab_id = localStorage.responsive_menu_tab;
-        container_name = '#tab_container_' + tab_id.replace('tab_', '');
-        $('.tab_container').css('display', 'none');
-        $(container_name).css('display', 'block');
-        $('.tab').removeClass('active_tab');
-        $('#' + tab_id).addClass('active_tab');
     }
 
 });
