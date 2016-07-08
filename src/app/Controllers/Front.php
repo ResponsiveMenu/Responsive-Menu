@@ -22,10 +22,6 @@ class Front extends Base
     $menu = new MenuViewModel($options);
     $html = new ButtonViewModel($options);
 
-    # Load touch js if we need it
-    if($options['menu_close_on_link_click'] == 'on')
-      wp_enqueue_script('responsive-menu-touch', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/js/touch.js', ['jquery']);
-      
     # Only render if we don't have shortcodes turned on
     if($options['shortcode'] == 'off'):
       $this->view->render('button', ['options' => $options, 'button' => $html->getHtml()]);
