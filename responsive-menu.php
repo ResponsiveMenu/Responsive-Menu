@@ -35,8 +35,11 @@ $wp_router = new ResponsiveMenu\Routing\WpRouting($container);
 $wp_router->route();
 
 if(is_admin()):
-  include dirname(__FILE__) . '/src/config/default_options.php';
-  $migration = new ResponsiveMenu\Database\Migration($container['database'], $default_options);
-  $migration->setup();
-  $migration->synchronise();
+	add_action('admin_init', function() use($container) {
+	  include dirname(__FILE__) . '/src/config/default_options.php';
+	  $migration = new ResponsiveMenu\Database\Migration($container['database'], $default_options);
+	  $migration->setup();
+	  if(isset($_GET['page']) && $_GET['page'] == 'responsive-menu')
+	  	$migration->synchronise();
+	});
 endif;
