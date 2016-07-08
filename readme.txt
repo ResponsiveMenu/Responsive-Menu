@@ -150,6 +150,7 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 * Improved database migration scripts
 * Updated default button size
 * Improved License Checks (Pro)
+* Removed tab memory (too resource intensive)
 * Fixed Query Monitor "IF" error - thanks to KTS915
 * Bug fixes
 
