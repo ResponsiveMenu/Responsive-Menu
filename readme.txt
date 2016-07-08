@@ -150,6 +150,7 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 * Improved database migration scripts
 * Updated default button size
 * Improved License Checks (Pro)
+* Fixed Query Monitor "IF" error - thanks to KTS915
 * Bug fixes
 
 = 3.0.1 (7th July 2016) =
