@@ -47,7 +47,7 @@ class Migration{
 	{
     # Create the database table if it doesn't exist
     if(!$this->isVersion3($this->getOldVersion())):
-    $sql = "CREATE TABLE IF NOT EXISTS " . $this->db->table . " (
+    $sql = "CREATE TABLE " . $this->db->table . " (
     				  name varchar(50) NOT NULL,
     				  value varchar(5000) DEFAULT NULL,
     				  created_at datetime NOT NULL,
