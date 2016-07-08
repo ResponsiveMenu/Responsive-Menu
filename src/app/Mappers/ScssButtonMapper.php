@@ -27,9 +27,9 @@ class ScssButtonMapper extends ScssMapper
         width: {$this->options['button_width']}px;
         height: {$this->options['button_height']}px;
         @if '{$this->options['button_transparent_background']}' == 'off' {
-          background-color: {$this->options['button_background_colour']};
+          background: {$this->options['button_background_colour']};
           &:hover {
-            background-color: {$this->options['button_background_colour_hover']};
+            background: {$this->options['button_background_colour_hover']};
           }
         }
         position: {$this->options['button_position_type']};
