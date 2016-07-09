@@ -1,0 +1,756 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Responsive Menu - 3.0.3\n"
+"POT-Creation-Date: 2016-07-09 18:03+0100\n"
+"PO-Revision-Date: 2016-07-09 18:04+0100\n"
+"Last-Translator: \n"
+"Language-Team: Responsive Menu <support@responsive.menu>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: _;__;_e\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: src/app/Controllers/Admin.php:28
+msgid "Responsive Menu Options Updated Successfully"
+msgstr ""
+
+#: src/app/Controllers/Admin.php:46 src/app/Controllers/Admin.php:72
+msgid "Responsive Menu Options Reset Successfully"
+msgstr ""
+
+#: src/app/Controllers/Admin.php:74
+msgid "No file selected"
+msgstr ""
+
+#: src/app/Factories/AdminSaveFactory.php:26
+msgid "Unable to make data directory"
+msgstr ""
+
+#: src/app/Factories/AdminSaveFactory.php:27
+msgid "Unable to make CSS data directory"
+msgstr ""
+
+#: src/app/Factories/AdminSaveFactory.php:28
+msgid "Unable to make JS data directory"
+msgstr ""
+
+#: src/app/Factories/AdminSaveFactory.php:35
+msgid "Unable to create CSS file"
+msgstr ""
+
+#: src/app/Factories/AdminSaveFactory.php:38
+msgid "Unable to create JS file"
+msgstr ""
+
+#: src/app/Form/Export.php:10
+msgid "Export Options"
+msgstr ""
+
+#: src/app/Form/FontIconPageList.php:17
+msgid "Id"
+msgstr ""
+
+#: src/app/Form/FontIconPageList.php:17
+msgid "Icon"
+msgstr ""
+
+#: src/app/Form/FontIconPageList.php:59
+msgid "Add New Font Icon"
+msgstr ""
+
+#: src/app/Form/Import.php:11
+msgid "Import Options"
+msgstr ""
+
+#: src/app/Form/Reset.php:10
+msgid "Reset Options"
+msgstr ""
+
+#: src/app/ViewModels/Components/Admin/Boxes.php:25
+msgid "Toggle panel: Location"
+msgstr ""
+
+#: src/config/admin_ordering.php:16
+msgid "Initial Setup"
+msgstr ""
+
+#: src/config/admin_ordering.php:17 src/config/admin_ordering.php:47
+#: src/config/admin_ordering.php:812
+msgid "Menu"
+msgstr ""
+
+#: src/config/admin_ordering.php:21 src/config/admin_ordering.php:893
+msgid "Breakpoint"
+msgstr ""
+
+#: src/config/admin_ordering.php:22
+msgid ""
+"This is the width of the screen at which point you would like the menu to "
+"start showing"
+msgstr ""
+
+#: src/config/admin_ordering.php:27
+msgid "Menu to Use"
+msgstr ""
+
+#: src/config/admin_ordering.php:34
+msgid "CSS of Menu to Hide"
+msgstr ""
+
+#: src/config/admin_ordering.php:48
+msgid "Section Ordering"
+msgstr ""
+
+#: src/config/admin_ordering.php:51
+msgid "Order of Menu Items"
+msgstr ""
+
+#: src/config/admin_ordering.php:52
+msgid "Drag the items to re-order and click to turn them on/off"
+msgstr ""
+
+#: src/config/admin_ordering.php:56 src/config/admin_ordering.php:60
+msgid "Font Icons"
+msgstr ""
+
+#: src/config/admin_ordering.php:61
+msgid ""
+"Responsive Menu uses the brilliant <a href=\"http://fontawesome.io/icons/\" "
+"target=\"_blank\">Awesome Font Icons</a> for implementing icons in your menu "
+"- for more info please visit our doc pages at <a href=\"https://responsive."
+"menu/docs/basic-setup/font-icons/\" target=\"_blank\">https://responsive."
+"menu/docs/basic-setup/font-icons/</a>"
+msgstr ""
+
+#: src/config/admin_ordering.php:66 src/config/admin_ordering.php:730
+#: src/config/admin_ordering.php:954
+msgid "Sizing"
+msgstr ""
+
+#: src/config/admin_ordering.php:70
+msgid "Menu Width"
+msgstr ""
+
+#: src/config/admin_ordering.php:76
+msgid "Maximum Width"
+msgstr ""
+
+#: src/config/admin_ordering.php:82
+msgid "Minimum Width"
+msgstr ""
+
+#: src/config/admin_ordering.php:88
+msgid "Links Height"
+msgstr ""
+
+#: src/config/admin_ordering.php:94
+msgid "Menu Auto Height"
+msgstr ""
+
+#: src/config/admin_ordering.php:100 src/config/admin_ordering.php:564
+#: src/config/admin_ordering.php:922 src/config/admin_ordering.php:925
+msgid "Title"
+msgstr ""
+
+#: src/config/admin_ordering.php:104 src/config/admin_ordering.php:176
+#: src/config/admin_ordering.php:567 src/config/admin_ordering.php:939
+msgid "Text"
+msgstr ""
+
+#: src/config/admin_ordering.php:109 src/config/admin_ordering.php:917
+msgid "Link"
+msgstr ""
+
+#: src/config/admin_ordering.php:114
+msgid "Link Location"
+msgstr ""
+
+#: src/config/admin_ordering.php:126
+msgid "Title Font Size"
+msgstr ""
+
+#: src/config/admin_ordering.php:132 src/config/admin_ordering.php:611
+msgid "Font Icon"
+msgstr ""
+
+#: src/config/admin_ordering.php:138 src/config/admin_ordering.php:607
+#: src/config/admin_ordering.php:623 src/config/admin_ordering.php:910
+msgid "Image"
+msgstr ""
+
+#: src/config/admin_ordering.php:144
+msgid "Title Background Colour"
+msgstr ""
+
+#: src/config/admin_ordering.php:151
+msgid "Title Background Colour Hover"
+msgstr ""
+
+#: src/config/admin_ordering.php:158
+msgid "Title Colour"
+msgstr ""
+
+#: src/config/admin_ordering.php:165
+msgid "Title Hover Colour"
+msgstr ""
+
+#: src/config/admin_ordering.php:172
+msgid "Additional Content"
+msgstr ""
+
+#: src/config/admin_ordering.php:177
+msgid "HTMl and Shortcodes can be used"
+msgstr ""
+
+#: src/config/admin_ordering.php:182 src/config/admin_ordering.php:572
+msgid "Colour"
+msgstr ""
+
+#: src/config/admin_ordering.php:187 src/config/admin_ordering.php:415
+msgid "Animation"
+msgstr ""
+
+#: src/config/admin_ordering.php:191
+msgid "Appear From"
+msgstr ""
+
+#: src/config/admin_ordering.php:203 src/config/admin_ordering.php:419
+msgid "Animation Type"
+msgstr ""
+
+#: src/config/admin_ordering.php:215
+msgid "Page Wrapper CSS selector"
+msgstr ""
+
+#: src/config/admin_ordering.php:216
+msgid "This is only needed if you are using the push animation above"
+msgstr ""
+
+#: src/config/admin_ordering.php:220
+msgid "Close Menu on Body Clicks"
+msgstr ""
+
+#: src/config/admin_ordering.php:226
+msgid "Close Menu on Link Clicks"
+msgstr ""
+
+#: src/config/admin_ordering.php:231
+msgid "Search Box"
+msgstr ""
+
+#: src/config/admin_ordering.php:235
+msgid "Menu Search Box Text"
+msgstr ""
+
+#: src/config/admin_ordering.php:241 src/config/admin_ordering.php:533
+msgid "Background Colours"
+msgstr ""
+
+#: src/config/admin_ordering.php:245 src/config/admin_ordering.php:536
+#: src/config/admin_ordering.php:655 src/config/admin_ordering.php:966
+#: src/config/admin_ordering.php:999 src/config/admin_ordering.php:1029
+msgid "Background Colour"
+msgstr ""
+
+#: src/config/admin_ordering.php:252
+msgid "Item Background Colour"
+msgstr ""
+
+#: src/config/admin_ordering.php:259
+msgid "Item Background Colour Hover"
+msgstr ""
+
+#: src/config/admin_ordering.php:266
+msgid "Item Border Colour"
+msgstr ""
+
+#: src/config/admin_ordering.php:273
+msgid "Item Border Colour Hover"
+msgstr ""
+
+#: src/config/admin_ordering.php:280
+msgid "Current Item Background Colour"
+msgstr ""
+
+#: src/config/admin_ordering.php:287
+msgid "Current Item Background Colour Hover"
+msgstr ""
+
+#: src/config/admin_ordering.php:293
+msgid "Text Colours"
+msgstr ""
+
+#: src/config/admin_ordering.php:298
+msgid "Link Colour"
+msgstr ""
+
+#: src/config/admin_ordering.php:305
+msgid "Link Hover Colour"
+msgstr ""
+
+#: src/config/admin_ordering.php:312
+msgid "Current Link Colour"
+msgstr ""
+
+#: src/config/admin_ordering.php:319
+msgid "Current Link Hover Colour"
+msgstr ""
+
+#: src/config/admin_ordering.php:326
+msgid "Text Styling"
+msgstr ""
+
+#: src/config/admin_ordering.php:330 src/config/admin_ordering.php:591
+#: src/config/admin_ordering.php:942 src/config/admin_ordering.php:1059
+#: src/config/admin_ordering.php:1074
+msgid "Font"
+msgstr ""
+
+#: src/config/admin_ordering.php:335 src/config/admin_ordering.php:596
+#: src/config/admin_ordering.php:948 src/config/admin_ordering.php:1065
+#: src/config/admin_ordering.php:1080
+msgid "Font Size"
+msgstr ""
+
+#: src/config/admin_ordering.php:341
+msgid "Text Alignment"
+msgstr ""
+
+#: src/config/admin_ordering.php:353
+msgid "Word Wrap"
+msgstr ""
+
+#: src/config/admin_ordering.php:359
+msgid "Page Overlay"
+msgstr ""
+
+#: src/config/admin_ordering.php:363
+msgid "Add Page Overlay When Menu Open"
+msgstr ""
+
+#: src/config/admin_ordering.php:370
+msgid "Overlay Colour"
+msgstr ""
+
+#: src/config/admin_ordering.php:376 src/config/admin_ordering.php:634
+msgid "Advanced"
+msgstr ""
+
+#: src/config/admin_ordering.php:380
+msgid "Depth"
+msgstr ""
+
+#: src/config/admin_ordering.php:393
+msgid "Disable Scrolling when Menu Active"
+msgstr ""
+
+#: src/config/admin_ordering.php:400
+msgid "Theme Location Menu"
+msgstr ""
+
+#: src/config/admin_ordering.php:414
+msgid "Button"
+msgstr ""
+
+#: src/config/admin_ordering.php:420
+msgid ""
+"To see all animations in action please visit <a href=\"https://jonsuh.com/"
+"hamburgers/\" target=\"_blank\">this page</a>"
+msgstr ""
+
+#: src/config/admin_ordering.php:455 src/config/admin_ordering.php:881
+msgid "Position Type"
+msgstr ""
+
+#: src/config/admin_ordering.php:466
+msgid "Push Button with Animation"
+msgstr ""
+
+#: src/config/admin_ordering.php:471
+msgid "Location"
+msgstr ""
+
+#: src/config/admin_ordering.php:475
+msgid "Distance from Side"
+msgstr ""
+
+#: src/config/admin_ordering.php:481
+msgid "Button Side"
+msgstr ""
+
+#: src/config/admin_ordering.php:491
+msgid "Distance from Top"
+msgstr ""
+
+#: src/config/admin_ordering.php:496
+msgid "Container Sizing"
+msgstr ""
+
+#: src/config/admin_ordering.php:500 src/config/admin_ordering.php:957
+#: src/config/admin_ordering.php:1089 src/config/admin_ordering.php:1098
+msgid "Height"
+msgstr ""
+
+#: src/config/admin_ordering.php:506
+msgid "Width"
+msgstr ""
+
+#: src/config/admin_ordering.php:511
+msgid "Hamburger Sizing"
+msgstr ""
+
+#: src/config/admin_ordering.php:515 src/config/admin_ordering.php:602
+msgid "Line Height"
+msgstr ""
+
+#: src/config/admin_ordering.php:521
+msgid "Line Margin"
+msgstr ""
+
+#: src/config/admin_ordering.php:527
+msgid "Line Width"
+msgstr ""
+
+#: src/config/admin_ordering.php:543 src/config/admin_ordering.php:662
+#: src/config/admin_ordering.php:1006 src/config/admin_ordering.php:1036
+msgid "Background Hover Colour"
+msgstr ""
+
+#: src/config/admin_ordering.php:550
+msgid "Transparent Background"
+msgstr ""
+
+#: src/config/admin_ordering.php:555
+msgid "Line Colours"
+msgstr ""
+
+#: src/config/admin_ordering.php:558
+msgid "Line Colour"
+msgstr ""
+
+#: src/config/admin_ordering.php:579
+msgid "Title Text Position"
+msgstr ""
+
+#: src/config/admin_ordering.php:617
+msgid "Font Icon When Clicked"
+msgstr ""
+
+#: src/config/admin_ordering.php:629
+msgid "Image When Clicked"
+msgstr ""
+
+#: src/config/admin_ordering.php:638
+msgid "Trigger"
+msgstr ""
+
+#: src/config/admin_ordering.php:649
+msgid "Sub-Menus"
+msgstr ""
+
+#: src/config/admin_ordering.php:651
+msgid "Toggle Button Colours"
+msgstr ""
+
+#: src/config/admin_ordering.php:669
+msgid "Border Colour"
+msgstr ""
+
+#: src/config/admin_ordering.php:676
+msgid "Border Hover Colour"
+msgstr ""
+
+#: src/config/admin_ordering.php:682
+msgid "Toggle Icon Colours"
+msgstr ""
+
+#: src/config/admin_ordering.php:686
+msgid "Icon Colour"
+msgstr ""
+
+#: src/config/admin_ordering.php:693
+msgid "Icon Hover Colour"
+msgstr ""
+
+#: src/config/admin_ordering.php:699
+msgid "Animations"
+msgstr ""
+
+#: src/config/admin_ordering.php:703
+msgid "Use Accordion Animation"
+msgstr ""
+
+#: src/config/admin_ordering.php:709
+msgid "Auto Expand All Submenus"
+msgstr ""
+
+#: src/config/admin_ordering.php:715
+msgid "Auto Expand Current Submenus"
+msgstr ""
+
+#: src/config/admin_ordering.php:721
+msgid "Disable Parent Item Clicks"
+msgstr ""
+
+#: src/config/admin_ordering.php:734
+msgid "Toggle Button Height"
+msgstr ""
+
+#: src/config/admin_ordering.php:740
+msgid "Toggle Button Width"
+msgstr ""
+
+#: src/config/admin_ordering.php:746
+msgid "Toggle Icons"
+msgstr ""
+
+#: src/config/admin_ordering.php:750
+msgid "Font Icon Active"
+msgstr ""
+
+#: src/config/admin_ordering.php:756
+msgid "Font Icon Inactive"
+msgstr ""
+
+#: src/config/admin_ordering.php:762
+msgid "HTML Shape Active"
+msgstr ""
+
+#: src/config/admin_ordering.php:767
+msgid "HTML Shape Inactive"
+msgstr ""
+
+#: src/config/admin_ordering.php:772
+msgid "Image Active"
+msgstr ""
+
+#: src/config/admin_ordering.php:778
+msgid "Image Inactive"
+msgstr ""
+
+#: src/config/admin_ordering.php:791
+msgid "Technical"
+msgstr ""
+
+#: src/config/admin_ordering.php:792
+msgid "Scripts"
+msgstr ""
+
+#: src/config/admin_ordering.php:795
+msgid "Use External Files?"
+msgstr ""
+
+#: src/config/admin_ordering.php:796
+msgid "This will create external files for CSS and JavaScript"
+msgstr ""
+
+#: src/config/admin_ordering.php:801
+msgid "Minify Scripts?"
+msgstr ""
+
+#: src/config/admin_ordering.php:802
+msgid "This will minify CSS and JavaScript output"
+msgstr ""
+
+#: src/config/admin_ordering.php:807
+msgid "Place Scripts In Footer?"
+msgstr ""
+
+#: src/config/admin_ordering.php:808
+msgid "This will place the JavaScript file in the footer"
+msgstr ""
+
+#: src/config/admin_ordering.php:815
+msgid "Custom Walker"
+msgstr ""
+
+#: src/config/admin_ordering.php:816
+msgid "Warning: For extremely advanced use only"
+msgstr ""
+
+#: src/config/admin_ordering.php:820
+msgid "Show on mobile devices only?"
+msgstr ""
+
+#: src/config/admin_ordering.php:821
+msgid "This will make it not a responsive menu but a \"mobile menu\""
+msgstr ""
+
+#: src/config/admin_ordering.php:827
+msgid "Use Shortcode?"
+msgstr ""
+
+#: src/config/admin_ordering.php:828
+msgid ""
+"Please place [responsive_menu] in your files to use. Full documentation can "
+"be found <a target=\"_blank\" href=\"https://responsive.menu/docs/advanced-"
+"setup/shortcode/\">here</a>"
+msgstr ""
+
+#: src/config/admin_ordering.php:832
+msgid "Animation Speeds"
+msgstr ""
+
+#: src/config/admin_ordering.php:836
+msgid "Animation Speed"
+msgstr ""
+
+#: src/config/admin_ordering.php:842
+msgid "Transition Speed"
+msgstr ""
+
+#: src/config/admin_ordering.php:854 src/config/admin_ordering.php:858
+msgid "Custom CSS"
+msgstr ""
+
+#: src/config/admin_ordering.php:855
+msgid "CSS"
+msgstr ""
+
+#: src/config/admin_ordering.php:870 src/views/admin/main.phtml:79
+msgid "Header Bar"
+msgstr ""
+
+#: src/config/admin_ordering.php:871 src/config/admin_ordering.php:987
+msgid "Setup"
+msgstr ""
+
+#: src/config/admin_ordering.php:874
+msgid "Use Header Bar"
+msgstr ""
+
+#: src/config/admin_ordering.php:898 src/config/admin_ordering.php:901
+msgid "Ordering"
+msgstr ""
+
+#: src/config/admin_ordering.php:907
+msgid "Logo"
+msgstr ""
+
+#: src/config/admin_ordering.php:930
+msgid "Content"
+msgstr ""
+
+#: src/config/admin_ordering.php:933
+msgid "HTML Content"
+msgstr ""
+
+#: src/config/admin_ordering.php:934
+msgid "Accepts shortcodes"
+msgstr ""
+
+#: src/config/admin_ordering.php:963
+msgid "Colours"
+msgstr ""
+
+#: src/config/admin_ordering.php:973 src/config/admin_ordering.php:1013
+#: src/config/admin_ordering.php:1043
+msgid "Text Colour"
+msgstr ""
+
+#: src/config/admin_ordering.php:986
+msgid "Single Menu"
+msgstr ""
+
+#: src/config/admin_ordering.php:990
+msgid "Use Single Menu"
+msgstr ""
+
+#: src/config/admin_ordering.php:991
+msgid ""
+"To use this option you must turn the Shortcode option on and use the "
+"shortcode in your theme where you want the menu to appear"
+msgstr ""
+
+#: src/config/admin_ordering.php:996
+msgid "Menu Colours"
+msgstr ""
+
+#: src/config/admin_ordering.php:1020 src/config/admin_ordering.php:1050
+msgid "Text Hover Colour"
+msgstr ""
+
+#: src/config/admin_ordering.php:1026
+msgid "Sub-Menu Colours"
+msgstr ""
+
+#: src/config/admin_ordering.php:1056
+msgid "Menu Styling"
+msgstr ""
+
+#: src/config/admin_ordering.php:1071
+msgid "Sub-Menu Styling"
+msgstr ""
+
+#: src/config/admin_ordering.php:1086
+msgid "Menu Sizing"
+msgstr ""
+
+#: src/config/admin_ordering.php:1095
+msgid "Sub-Menu Sizing"
+msgstr ""
+
+#: src/config/admin_ordering.php:1106
+msgid "Import/Export"
+msgstr ""
+
+#: src/config/admin_ordering.php:1109
+msgid "Import"
+msgstr ""
+
+#: src/config/admin_ordering.php:1115
+msgid "Export"
+msgstr ""
+
+#: src/config/admin_ordering.php:1121
+msgid "Reset"
+msgstr ""
+
+#: src/views/admin/main.phtml:20 src/views/admin/main.phtml:34
+msgid "Dismiss this notice"
+msgstr ""
+
+#: src/views/admin/main.phtml:67
+msgid "Update Options"
+msgstr ""
+
+#: src/views/admin/main.phtml:73
+msgid "Upgrade today to unlock the following features:"
+msgstr ""
+
+#: src/views/admin/main.phtml:75
+msgid "Font Awesome Icon Support"
+msgstr ""
+
+#: src/views/admin/main.phtml:76
+msgid "Opacity Option for all Colours"
+msgstr ""
+
+#: src/views/admin/main.phtml:77
+msgid "15+ Button Animations"
+msgstr ""
+
+#: src/views/admin/main.phtml:78
+msgid "Style Desktop Menu Too"
+msgstr ""
+
+#: src/views/admin/main.phtml:80
+msgid "And much more"
+msgstr ""
+
+#: src/views/admin/main.phtml:82
+msgid "Upgrade Now"
+msgstr ""
+
+#: src/views/admin/main.phtml:85
+msgid "Confused? Check out our documentation"
+msgstr ""
+
+#: src/views/admin/main.phtml:86
+msgid "View Docs"
+msgstr ""
