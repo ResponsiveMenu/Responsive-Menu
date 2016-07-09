@@ -127,7 +127,8 @@ class JsMapper
         },
         init: function() {
           var self = this;
-          $(this.trigger).on(this.triggerTypes, function(){
+          $(this.trigger).on(this.triggerTypes, function(e){
+            e.stopPropagation();
             self.triggerMenu();
           });
           $('.responsive-menu-subarrow').on('click', function(e) {
