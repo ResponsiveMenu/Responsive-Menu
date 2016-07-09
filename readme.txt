@@ -147,6 +147,7 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 
 = 3.0.3 (9th July 2016) =
 * **Requires PHP 5.4**
+* Fixed bug with custom trigger
 * Removed extend() function from Pimple Container as it was throwing security notices in VaultPress - thanks to Brin @ WinningWp.com
 
 = 3.0.2 (8th July 2016) =
