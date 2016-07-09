@@ -5,19 +5,15 @@ use ResponsiveMenu\Factories\OptionFactory as OptionFactory;
 use ResponsiveMenu\Factories\AdminSaveFactory as SaveFactory;
 use ResponsiveMenu\WPML\WPML as WPML;
 
-class Main extends Base
-{
+class Main extends Base {
 
-	public function update($default_options)
-	{
+	public function update($default_options) {
 
     $options = array_merge($default_options, $_POST['menu']);
 
-    foreach($options as $key => $val):
-      $option_factory = new OptionFactory;
-      $option = $option_factory->build($key, $val);
-      $this->repository->update($option);
-    endforeach;
+    $option_factory = new OptionFactory;
+    foreach($options as $key => $val)
+      $this->repository->update($option_factory->build($key, $val));
 
     $options = $this->repository->all();
     $save_factory = new SaveFactory();
@@ -31,14 +27,11 @@ class Main extends Base
 
 	}
 
-	public function reset($default_options)
-	{
+	public function reset($default_options) {
 
-    foreach($default_options as $key => $val):
-      $option_factory = new OptionFactory;
-      $option = $option_factory->build($key, $val);
-      $this->repository->update($option);
-    endforeach;
+    $option_factory = new OptionFactory;
+    foreach($options as $key => $val)
+      $this->repository->update($option_factory->build($key, $val));
 
     $options = $this->repository->all();
     $save_factory = new SaveFactory();
@@ -61,11 +54,10 @@ class Main extends Base
     if(!empty($_FILES['responsive_menu_import_file']['tmp_name'])):
       $file = file_get_contents($_FILES['responsive_menu_import_file']['tmp_name']);
       $decoded = json_decode($file);
-      foreach($decoded as $key => $val):
-        $option_factory = new OptionFactory;
-        $option = $option_factory->build($key, $val);
-        $this->repository->update($option);
-      endforeach;
+
+      $option_factory = new OptionFactory;
+      foreach($options as $key => $val)
+        $this->repository->update($option_factory->build($key, $val));
 
       $options = $this->repository->all();
       $save_factory = new SaveFactory();

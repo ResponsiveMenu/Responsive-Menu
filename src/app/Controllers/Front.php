@@ -7,10 +7,9 @@ use ResponsiveMenu\ViewModels\Button as ButtonViewModel;
 use ResponsiveMenu\Factories\FrontDisplayFactory as DisplayFactory;
 use ResponsiveMenu\Shortcodes\ResponsiveMenuShortcode as Shortcode;
 
-class Front extends Base
-{
-	public function index()
-	{
+class Front extends Base {
+  
+	public function index() {
     # Get Latest Options
     $options = $this->repository->all();
 

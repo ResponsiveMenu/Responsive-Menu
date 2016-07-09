@@ -11,14 +11,12 @@ class Migration{
   protected static $version_var = 'RMVer';
   protected static $old_options_var = 'RMOptions';
 
-	public function __construct(Database $db, $default_options)
-	{
+	public function __construct(Database $db, $default_options) {
 		$this->db = $db;
     $this->defaults = $default_options;
 	}
 
-	protected function addNewOptions()
-	{
+	protected function addNewOptions() {
     # If DB is empty we need to fill it up!
     $options = $this->db->all();
     if(empty($options)):
@@ -36,15 +34,13 @@ class Migration{
     endif;
 	}
 
-	protected function tidyUpOptions()
-	{
+	protected function tidyUpOptions() {
 		$current = array_map(function($a) { return $a->name; }, $this->db->all());
     foreach(array_diff($current, array_keys($this->defaults)) as $to_delete)
       $this->db->delete(array('name' => $to_delete));
 	}
 
-	public function setup()
-	{
+	public function setup() {
     # Create the database table if it doesn't exist
     if(!$this->isVersion3($this->getOldVersion())):
       $sql = "CREATE TABLE " . $this->db->table . " (
@@ -60,8 +56,7 @@ class Migration{
     endif;
 	}
 
-	public function synchronise()
-	{
+	public function synchronise() {
     # First Thing we need to do is migrate any old options
     if(!$this->isVersion3($this->getOldVersion())):
       $this->migrateVersion2Options();
@@ -81,28 +76,23 @@ class Migration{
 		endif;
 	}
 
-	protected function needsUpdate($current_version, $old_version)
-	{
+	protected function needsUpdate($current_version, $old_version) {
 		return version_compare($current_version, $old_version, '<');
 	}
 
-	protected function getOldVersion()
-	{
+	protected function getOldVersion() {
 		return get_option(self::$version_var);
 	}
 
-	protected function updateVersion()
-	{
+	protected function updateVersion() {
 		update_option(self::$version_var, $this->getCurrentVersion());
 	}
 
-  protected function isVersion3($version)
-  {
+  protected function isVersion3($version) {
     return substr($version, 0, 1) == 3;
   }
 
-  protected function migrateVersion2Options()
-  {
+  protected function migrateVersion2Options() {
     $old_options = get_option(self::$old_options_var);
 
     $new_options = [
@@ -189,8 +179,7 @@ class Migration{
 
   }
 
-  public function getCurrentVersion()
-  {
+  public function getCurrentVersion() {
     $plugin_data = get_plugin_data(dirname(dirname(dirname(dirname(__FILE__)))) . '/responsive-menu.php', false, false);
     return $plugin_data['Version'];
   }

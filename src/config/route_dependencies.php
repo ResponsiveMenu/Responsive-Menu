@@ -11,11 +11,8 @@ $container['option_factory'] = function($c) {
 };
 
 $container['option_repository'] = function($c) {
-    return new ResponsiveMenu\Repositories\Options\ComplexOptionRepository($c['database'], $c['option_factory']);
-};
-
-$container['simple_option_repository'] = function($c) {
-    return new ResponsiveMenu\Repositories\Options\SimpleOptionReadRepository($c['database']);
+  global $wpdb;
+  return new ResponsiveMenu\Repositories\OptionRepository($wpdb, $c['option_factory']);
 };
 
 $container['admin_view'] = function($c) {
@@ -31,5 +28,5 @@ $container['admin_controller'] = function($c) {
 };
 
 $container['front_controller'] = function($c) {
-    return new ResponsiveMenu\Controllers\Front($c['simple_option_repository'], $c['front_view']);
+    return new ResponsiveMenu\Controllers\Front($c['option_repository'], $c['front_view']);
 };

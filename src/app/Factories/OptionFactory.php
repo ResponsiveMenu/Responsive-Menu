@@ -1,34 +1,27 @@
 <?php
 
 namespace ResponsiveMenu\Factories;
-use ResponsiveMenu\Models\ComplexOption as ComplexOption;
-use ResponsiveMenu\Helpers\OptionHelper as Helper;
+use ResponsiveMenu\Models\Option as Option;
 
-class OptionFactory
-{
-  public function build($name, $value)
-	{
-		include dirname(dirname(dirname(__FILE__))) . '/config/option_helpers.php';
-		include dirname(dirname(dirname(__FILE__))) . '/config/default_options.php';
+class OptionFactory {
 
-    $filter = isset($option_helpers[$name]['filter'])
-      ? new $option_helpers[$name]['filter']
+  public function __construct() {
+    include dirname(dirname(dirname(__FILE__))) . '/config/option_helpers.php';
+    include dirname(dirname(dirname(__FILE__))) . '/config/default_options.php';
+    $this->defaults = $default_options;
+    $this->helper = $option_helpers;
+  }
+
+  public function build($name, $value) {
+
+    $filter = isset($this->helper[$name]['filter'])
+      ? new $this->helper[$name]['filter']
       : new \ResponsiveMenu\Filters\TextFilter;
 
-    $form_component = isset($option_helpers[$name]['form_component'])
-      ? new $option_helpers[$name]['form_component']
-      : new \ResponsiveMenu\Form\Text;
-
-    $value = isset($value) || $value === '0' ? $value : $default_options[$name];
+    $value = isset($value) || $value === '0' ? $value : $this->defaults[$name];
     $value = stripslashes_deep($value);
-		$option = new ComplexOption($name, $value);
+		$option = new Option($name, $value);
     $option->setFilter($filter);
-    $option->setFormComponent($form_component);
-    $option->setData(isset($option_helpers[$name]['custom'])?$option_helpers[$name]['custom']:null);
-    $option->setIsPro(isset($option_helpers[$name]['pro'])?$option_helpers[$name]['pro']:null);
-    $option->setIsSemiPro(isset($option_helpers[$name]['semi_pro'])?$option_helpers[$name]['semi_pro']:null);
-    $option->setPosition(isset($option_helpers[$name]['position'])?$option_helpers[$name]['position']:null);
-    $option->setLabel(isset($option_helpers[$name]['label'])?$option_helpers[$name]['label']:null);
 		return $option;
 	}
 

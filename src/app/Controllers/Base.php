@@ -2,13 +2,11 @@
 
 namespace ResponsiveMenu\Controllers;
 use ResponsiveMenu\View\View as View;
-use ResponsiveMenu\Repositories\Options\ReadRepository as Repository;
+use ResponsiveMenu\Repositories\OptionRepository as OptionRepository;
 
-class Base
-{
+class Base {
 
-	public function __construct(Repository $repository, View $view)
-	{
+	public function __construct(OptionRepository $repository, View $view) {
 		$this->repository = $repository;
 		$this->view = $view;
 	}

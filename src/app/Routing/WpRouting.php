@@ -3,26 +3,22 @@
 namespace ResponsiveMenu\Routing;
 use ResponsiveMenu\Routing\Container as Container;
 
-class WpRouting implements Routing
-{
+class WpRouting implements Routing {
 
   protected $container;
 
-  public function __construct(Container $container)
-  {
+  public function __construct(Container $container) {
     $this->container = $container;
   }
 
-  public function route()
-  {
+  public function route() {
     if(is_admin())
       add_action('admin_menu', [$this, 'adminPage']);
     else
       add_action('template_redirect', [$this->container['front_controller'], 'index']);
   }
 
-  public function adminPage()
-  {
+  public function adminPage() {
     /* Heavily reliant on WordPress so very hard coded */
     if(isset($_POST['responsive_menu_submit'])):
       $method = 'update';

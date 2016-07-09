@@ -48,7 +48,7 @@ if(is_admin()):
   Polylang Integration Section */
   add_action('plugins_loaded', function() use($container) {
     if(function_exists('pll_register_string')):
-      $repo = $container['simple_option_repository'];
+      $repo = $container['option_repository'];
       $options = $repo->all();
 
       $menu_to_use = isset($options['menu_to_use']) ? $options['menu_to_use']->getValue() : '';
