@@ -211,47 +211,6 @@ class Container implements \ArrayAccess
     }
 
     /**
-     * Extends an object definition.
-     *
-     * Useful when you want to extend an existing object definition,
-     * without necessarily loading that object.
-     *
-     * @param string   $id       The unique identifier for the object
-     * @param callable $callable A service definition to extend the original
-     *
-     * @return callable The wrapped callable
-     *
-     * @throws \InvalidArgumentException if the identifier is not defined or not a service definition
-     */
-    public function extend($id, $callable)
-    {
-        if (!isset($this->keys[$id])) {
-            throw new \InvalidArgumentException(sprintf('Identifier "%s" is not defined.', $id));
-        }
-
-        if (!is_object($this->values[$id]) || !method_exists($this->values[$id], '__invoke')) {
-            throw new \InvalidArgumentException(sprintf('Identifier "%s" does not contain an object definition.', $id));
-        }
-
-        if (!is_object($callable) || !method_exists($callable, '__invoke')) {
-            throw new \InvalidArgumentException('Extension service definition is not a Closure or invokable object.');
-        }
-
-        $factory = $this->values[$id];
-
-        $extended = function ($c) use ($callable, $factory) {
-            return $callable($factory($c), $c);
-        };
-
-        if (isset($this->factories[$factory])) {
-            $this->factories->detach($factory);
-            $this->factories->attach($extended);
-        }
-
-        return $this[$id] = $extended;
-    }
-
-    /**
      * Returns all defined value names.
      *
      * @return array An array of value names
