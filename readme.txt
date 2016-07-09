@@ -1,5 +1,6 @@
 === Responsive Menu ===
 Contributors: ResponsiveMenu
+Donate link: https://responsive.menu/donate
 Tags: responsive, menu, responsive menu, mobile menu, wordpress responsive menu, wp responsive menu, tablet menu, mobile, tablet, 3 lines, 3 line, three line, three lines
 Requires at least: 3.5.0
 Tested up to: 4.5.3
@@ -148,6 +149,7 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 = 3.0.3 (9th July 2016) =
 * **Requires PHP 5.4**
 * Fixed bug with custom trigger
+* Updated Polylang Support
 * Removed extend() function from Pimple Container as it was throwing security notices in VaultPress - thanks to Brin @ WinningWp.com
 
 = 3.0.2 (8th July 2016) =

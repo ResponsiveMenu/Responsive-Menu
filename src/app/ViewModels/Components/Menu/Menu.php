@@ -12,6 +12,11 @@ class Menu implements ViewComponent {
 
     $menu = apply_filters('wpml_translate_single_string', $options['menu_to_use']->getValue(), 'Responsive Menu', 'menu_to_use');
 
+    /*
+    Add Polylang Support */
+    if(function_exists('pll__'))
+      $menu = pll__($menu);
+
     return wp_nav_menu(
       [
         'container' => '',

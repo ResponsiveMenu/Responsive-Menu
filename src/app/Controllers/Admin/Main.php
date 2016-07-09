@@ -78,7 +78,7 @@ class Main extends Base
 
     $wpml = new WPML;
     $wpml->saveFromOptions($options);
-    
+
     $this->view->render('main', ['options' => $options, 'flash' => $flash]);
   }
 
