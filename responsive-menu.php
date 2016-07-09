@@ -43,17 +43,23 @@ if(is_admin()):
 	  $migration->setup();
   	$migration->synchronise();
 	});
-  
+
   /*
   Polylang Integration Section */
   add_action('plugins_loaded', function() use($container) {
     if(function_exists('pll_register_string')):
-      $repo = new ResponsiveMenu\Repositories\Options\SimpleOptionReadRepository($container['database']);
+      $repo = $container['simple_option_repository'];
       $options = $repo->all();
-      pll_register_string('Menu Slug', $options['menu_to_use']->getValue(), 'Responsive Menu');
-      pll_register_string('Button Title', $options['button_title']->getValue(), 'Responsive Menu');
-      pll_register_string('Menu Title', $options['menu_title']->getValue(), 'Responsive Menu');
-      pll_register_string('Menu Title Link', $options['menu_title_link']->getValue(), 'Responsive Menu');
+
+      $menu_to_use = isset($options['menu_to_use']) ? $options['menu_to_use']->getValue() : '';
+      $button_title = isset($options['button_title']) ? $options['button_title']->getValue() : '';
+      $menu_title = isset($options['menu_title']) ? $options['menu_title']->getValue() : '';
+      $menu_title_link = isset($options['menu_title_link']) ? $options['menu_title_link']->getValue() : '';
+
+      pll_register_string('Menu Slug', $menu_to_use, 'Responsive Menu');
+      pll_register_string('Button Title', $button_title, 'Responsive Menu');
+      pll_register_string('Menu Title', $menu_title, 'Responsive Menu');
+      pll_register_string('Menu Title Link', $menu_title_link, 'Responsive Menu');
     endif;
   });
 endif;
