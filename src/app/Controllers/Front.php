@@ -1,14 +1,21 @@
 <?php
 
 namespace ResponsiveMenu\Controllers;
+use ResponsiveMenu\View\View as View;
+use ResponsiveMenu\Repositories\OptionRepository as OptionRepository;
 use ResponsiveMenu\Controllers\Base as Base;
 use ResponsiveMenu\ViewModels\Menu as MenuViewModel;
 use ResponsiveMenu\ViewModels\Button as ButtonViewModel;
 use ResponsiveMenu\Factories\FrontDisplayFactory as DisplayFactory;
 use ResponsiveMenu\Shortcodes\ResponsiveMenuShortcode as Shortcode;
 
-class Front extends Base {
-  
+class Front  {
+
+  public function __construct(OptionRepository $repository, View $view) {
+    $this->repository = $repository;
+    $this->view = $view;
+  }
+
 	public function index() {
     # Get Latest Options
     $options = $this->repository->all();

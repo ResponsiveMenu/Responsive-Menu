@@ -1,11 +1,18 @@
 <?php
 
-namespace ResponsiveMenu\Controllers\Admin;
+namespace ResponsiveMenu\Controllers;
+use ResponsiveMenu\View\View as View;
+use ResponsiveMenu\Repositories\OptionRepository as OptionRepository;
 use ResponsiveMenu\Factories\OptionFactory as OptionFactory;
 use ResponsiveMenu\Factories\AdminSaveFactory as SaveFactory;
 use ResponsiveMenu\WPML\WPML as WPML;
 
-class Main extends Base {
+class Admin {
+
+  public function __construct(OptionRepository $repository, View $view) {
+		$this->repository = $repository;
+		$this->view = $view;
+	}
 
 	public function update($default_options) {
 
@@ -30,7 +37,7 @@ class Main extends Base {
 	public function reset($default_options) {
 
     $option_factory = new OptionFactory;
-    foreach($options as $key => $val)
+    foreach($default_options as $key => $val)
       $this->repository->update($option_factory->build($key, $val));
 
     $options = $this->repository->all();
@@ -56,7 +63,7 @@ class Main extends Base {
       $decoded = json_decode($file);
 
       $option_factory = new OptionFactory;
-      foreach($options as $key => $val)
+      foreach($decoded as $key => $val)
         $this->repository->update($option_factory->build($key, $val));
 
       $options = $this->repository->all();

@@ -23,7 +23,7 @@ $container['front_view'] = function($c) {
 };
 
 $container['admin_controller'] = function($c) {
-    return new ResponsiveMenu\Controllers\Admin\Main($c['option_repository'], $c['admin_view']);
+    return new ResponsiveMenu\Controllers\Admin($c['option_repository'], $c['admin_view']);
 };
 
 $container['front_controller'] = function($c) {
