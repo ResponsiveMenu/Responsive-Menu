@@ -146,6 +146,10 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 
 == Changelog ==
 
+= 3.0.4 (9th July 2016) =
+* **Requires PHP 5.4**
+* Fixed bug with overwriting values with shortcode
+
 = 3.0.3 (9th July 2016) =
 * **Requires PHP 5.4**
 * Fixed bug with custom trigger
