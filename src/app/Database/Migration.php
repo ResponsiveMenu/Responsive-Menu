@@ -10,6 +10,7 @@ class Migration{
 
   protected static $version_var = 'RMVer';
   protected static $old_options_var = 'RMOptions';
+  protected static $table = 'responsive_menu';
 
 	public function __construct(Database $db, $default_options) {
 		$this->db = $db;
@@ -18,10 +19,10 @@ class Migration{
 
 	protected function addNewOptions() {
     # If DB is empty we need to fill it up!
-    $options = $this->db->all();
+    $options = $this->db->all(self::$table);
     if(empty($options)):
       foreach($this->defaults as $name => $value)
-        $this->db->insert(array('name' => $name, 'value' => $value));
+        $this->db->insert(self::$table, array('name' => $name, 'value' => $value));
     # Otherwise we only add new options
     else:
       foreach($options as $converted)
@@ -29,27 +30,27 @@ class Migration{
       $final = array_diff_key($this->defaults, $current);
       if(is_array($final)):
   		    foreach($final as $name => $value)
-  			     $this->db->insert(array('name' => $name, 'value' => $value));
+  			     $this->db->insert(self::$table, array('name' => $name, 'value' => $value));
       endif;
     endif;
 	}
 
 	protected function tidyUpOptions() {
-		$current = array_map(function($a) { return $a->name; }, $this->db->all());
+		$current = array_map(function($a) { return $a->name; }, $this->db->all(self::$table));
     foreach(array_diff($current, array_keys($this->defaults)) as $to_delete)
-      $this->db->delete(array('name' => $to_delete));
+      $this->db->delete(self::$table, array('name' => $to_delete));
 	}
 
 	public function setup() {
     # Create the database table if it doesn't exist
     if(!$this->isVersion3($this->getOldVersion())):
-      $sql = "CREATE TABLE " . $this->db->table . " (
+      $sql = "CREATE TABLE " . $this->db->getPrefix() . self::$table . " (
       				  name varchar(50) NOT NULL,
       				  value varchar(5000) DEFAULT NULL,
       				  created_at datetime NOT NULL,
       				  updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                 PRIMARY KEY  (name)
-      				) " . $this->db->db->get_charset_collate() . ";";
+      				) " . $this->db->getCharset() . ";";
   		require_once(ABSPATH . 'wp-admin/includes/upgrade.php' );
   		dbDelta($sql);
       $this->synchronise();
@@ -175,7 +176,7 @@ class Migration{
     ];
 
     foreach(array_filter($new_options) as $key => $val)
-        $this->db->insert(array('name' => $key, 'value' => $val));
+        $this->db->insert(self::$table, array('name' => $key, 'value' => $val));
 
   }
 

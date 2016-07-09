@@ -4,39 +4,38 @@ namespace ResponsiveMenu\Database;
 
 class WpDatabase implements Database {
 
-  protected static $table_name = 'responsive_menu';
-
-  public function __construct()
-  {
+  public function __construct() {
     global $wpdb;
     $this->db = $wpdb;
-    $this->table = $this->db->prefix . self::$table_name;
   }
 
-  public function update(array $to_update, array $where)
-  {
-    $this->db->update($this->table, $to_update, $where);
+  public function update($table, array $to_update, array $where) {
+    $this->db->update($this->db->prefix . $table, $to_update, $where);
   }
 
-  public function delete($name)
-  {
-    $this->db->delete($this->table, $name);
+  public function delete($table, $name) {
+    $this->db->delete($this->db->prefix . $table, $name);
   }
 
-  public function all()
-  {
-    return $this->db->get_results("SELECT * FROM $this->table");
+  public function all($table) {
+    return $this->db->get_results("SELECT * FROM {$this->db->prefix}{$table}");
   }
 
-  public function insert(array $arguments)
-  {
+  public function insert($table, array $arguments) {
     $arguments['created_at'] = current_time('mysql');
-    $this->db->insert($this->table, $arguments);
+    $this->db->insert($this->db->prefix . $table, $arguments);
   }
 
-  public function select($column, $value)
-  {
-    return $this->db->get_results("SELECT * FROM $this->table WHERE $column = '$value';");
+  public function select($table, $column, $value) {
+    return $this->db->get_results("SELECT * FROM {$this->prexix}{$table} WHERE $column = '$value';");
+  }
+
+  public function getPrefix() {
+    return $this->db->prefix;
+  }
+
+  public function getCharset() {
+    return $this->db->get_charset_collate();
   }
 
 }

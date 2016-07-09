@@ -11,8 +11,7 @@ $container['option_factory'] = function($c) {
 };
 
 $container['option_repository'] = function($c) {
-  global $wpdb;
-  return new ResponsiveMenu\Repositories\OptionRepository($wpdb, $c['option_factory']);
+  return new ResponsiveMenu\Repositories\OptionRepository($c['database'], $c['option_factory']);
 };
 
 $container['admin_view'] = function($c) {
