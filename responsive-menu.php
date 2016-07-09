@@ -35,7 +35,6 @@ $wp_router = new ResponsiveMenu\Routing\WpRouting($container);
 $wp_router->route();
 
 if(is_admin()):
-
   /*
   * Initial Migration and Version Check synchronisation */
 	add_action('admin_init', function() use($container) {
@@ -44,7 +43,7 @@ if(is_admin()):
 	  $migration->setup();
   	$migration->synchronise();
 	});
-
+  
   /*
   Polylang Integration Section */
   add_action('plugins_loaded', function() use($container) {
@@ -57,5 +56,4 @@ if(is_admin()):
       pll_register_string('Menu Title Link', $options['menu_title_link']->getValue(), 'Responsive Menu');
     endif;
   });
-
 endif;

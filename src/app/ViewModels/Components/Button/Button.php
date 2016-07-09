@@ -18,6 +18,7 @@ class Button implements ViewComponent {
 
     $button_title_pos = $options['button_title_position']->getValue();
     $button_title_html = $button_title != '' ? '<span class="responsive-menu-label responsive-menu-label-'.$button_title_pos.'">'.$button_title.'</span>' : '';
+
     $accessible = in_array($button_title_pos, array('left', 'right')) ? 'responsive-menu-accessible' : '';
     $content = '';
 
