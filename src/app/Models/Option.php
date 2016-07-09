@@ -26,6 +26,10 @@ class Option {
 		return $this->value;
 	}
 
+	public function setValue($value) {
+		$this->value = $value;
+	}
+
   public function getFiltered() {
     return $this->filter->filter($this->value);
   }
@@ -37,5 +41,5 @@ class Option {
 	public function __toString() {
 		return (string) $this->value;
 	}
-  
+
 }
