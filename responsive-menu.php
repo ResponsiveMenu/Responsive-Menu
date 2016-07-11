@@ -38,8 +38,7 @@ if(is_admin()):
   /*
   * Initial Migration and Version Check synchronisation */
 	add_action('admin_init', function() use($container) {
-	  include dirname(__FILE__) . '/src/config/default_options.php';
-	  $migration = new ResponsiveMenu\Database\Migration($container['database'], $default_options);
+	  $migration = $container['migration'];
 	  $migration->setup();
   	$migration->synchronise();
 	});
@@ -48,8 +47,8 @@ if(is_admin()):
   Polylang Integration Section */
   add_action('plugins_loaded', function() use($container) {
     if(function_exists('pll_register_string')):
-      $repo = $container['option_repository'];
-      $options = $repo->all();
+      $service = $container['option_service'];
+      $options = $service->all();
 
       $menu_to_use = isset($options['menu_to_use']) ? $options['menu_to_use']->getValue() : '';
       $button_title = isset($options['button_title']) ? $options['button_title']->getValue() : '';

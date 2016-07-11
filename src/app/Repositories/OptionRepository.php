@@ -22,12 +22,15 @@ class OptionRepository {
   }
 
   public function update(Option $option) {
-    $this->db->update(self::$table, ['value' => $option->getFiltered()], ['name' => $option->getName()]);
+    $this->db->update(self::$table,
+      ['value' => $option->getFiltered()],
+      ['name' => $option->getName()]
+    );
   }
 
-  public function create($name, $value) {
-    $arguments['name'] = $name;
-    $arguments['value'] = $value;
+  public function create(Option $option) {
+    $arguments['name'] = $option->getName();
+    $arguments['value'] = $option->getFiltered();
     $arguments['created_at'] = current_time('mysql');
     $this->db->insert(self::$table, $arguments);
   }

@@ -1,49 +1,56 @@
 <?php
 
 namespace ResponsiveMenu\Database;
-use ResponsiveMenu\Options\Options as Options;
+use ResponsiveMenu\Collections\OptionsCollection as OptionsCollection;
 use ResponsiveMenu\Database\Database as Database;
+use ResponsiveMenu\Services\OptionService as OptionService;
 
-class Migration{
+class Migration {
 
 	protected $db;
 
-  protected static $version_var = 'RMVer';
-  protected static $old_options_var = 'RMOptions';
+  protected $current_version;
+  protected $old_version;
+  protected $old_options;
+  protected $defaults;
+
   protected static $table = 'responsive_menu';
+  protected static $version_var = 'RMVer';
 
-	public function __construct(Database $db, $default_options) {
-		$this->db = $db;
-    $this->defaults = $default_options;
+	public function __construct(Database $db, OptionService $service, $defaults, $current_version, $old_version, $old_options) {
+    $this->db = $db;
+		$this->service = $service;
+    $this->defaults = $defaults;
+    $this->current_version = $current_version;
+    $this->old_version = $old_version;
+    $this->old_options = $old_options;
 	}
 
-	protected function addNewOptions() {
-    # If DB is empty we need to fill it up!
-    $options = $this->db->all(self::$table);
-    if(empty($options)):
-      foreach($this->defaults as $name => $value)
-        $this->db->insert(self::$table, array('name' => $name, 'value' => $value));
-    # Otherwise we only add new options
-    else:
-      foreach($options as $converted)
-        $current[$converted->name] = $converted->value;
-      $final = array_diff_key($this->defaults, $current);
-      if(is_array($final)):
-  		    foreach($final as $name => $value)
-  			     $this->db->insert(self::$table, array('name' => $name, 'value' => $value));
-      endif;
-    endif;
+	public function addNewOptions() {
+    $options = $this->service->all();
+    if($options->isEmpty())
+      $this->service->createOptions($this->defaults);
+    else
+	    $this->service->createOptions($this->getNewOptions($options));
 	}
 
-	protected function tidyUpOptions() {
-		$current = array_map(function($a) { return $a->name; }, $this->db->all(self::$table));
-    foreach(array_diff($current, array_keys($this->defaults)) as $to_delete)
-      $this->db->delete(self::$table, array('name' => $to_delete));
+	public function tidyUpOptions() {
+    foreach($this->getOptionsToDelete() as $delete)
+      $this->db->delete(self::$table, array('name' => $delete));
 	}
 
+  public function getNewOptions(OptionsCollection $options) {
+    $current = [];
+    foreach($options->all() as $converted)
+      $current[$converted->getName()] = $converted->getValue();
+    return array_diff_key($this->defaults, $current);
+  }
+
+  /*
+  Can't be tested :-( */
 	public function setup() {
     # Create the database table if it doesn't exist
-    if(!$this->isVersion3($this->getOldVersion())):
+    if(!$this->isVersion3()):
       $sql = "CREATE TABLE " . $this->db->getPrefix() . self::$table . " (
       				  name varchar(50) NOT NULL,
       				  value varchar(5000) DEFAULT NULL,
@@ -58,12 +65,12 @@ class Migration{
 	}
 
 	public function synchronise() {
-    # First Thing we need to do is migrate any old options
-    if(!$this->isVersion3($this->getOldVersion())):
-      $this->migrateVersion2Options();
-    endif;
 
-    if($this->needsUpdate($this->getOldVersion(), $this->getCurrentVersion())):
+    # First Thing we need to do is migrate any old options
+    if(!$this->isVersion3())
+      $this->migrateVersion2Options();
+
+    if($this->needsUpdate()):
 
       # Now we can add any new options
   		$this->addNewOptions();
@@ -74,27 +81,35 @@ class Migration{
       # And Update Version
 			$this->updateVersion();
 
-		endif;
+    endif;
+
 	}
 
-	protected function needsUpdate($current_version, $old_version) {
-		return version_compare($current_version, $old_version, '<');
-	}
-
-	protected function getOldVersion() {
-		return get_option(self::$version_var);
+	public function needsUpdate() {
+		return version_compare($this->old_version, $this->current_version, '<');
 	}
 
 	protected function updateVersion() {
-		update_option(self::$version_var, $this->getCurrentVersion());
+		update_option(self::$version_var, $this->current_version);
 	}
 
-  protected function isVersion3($version) {
-    return substr($version, 0, 1) == 3;
+  public function isVersion3() {
+    return substr($this->old_version, 0, 1) == 3;
   }
 
-  protected function migrateVersion2Options() {
-    $old_options = get_option(self::$old_options_var);
+  public function migrateVersion2Options() {
+    $this->service->createOptions($this->getMigratedOptions());
+  }
+
+  public function getOptionsToDelete() {
+    return array_diff(
+          array_map(function($a) { return $a->getName(); }, $this->service->all()->all()),
+          array_keys($this->defaults)
+        );
+  }
+
+  public function getMigratedOptions() {
+    $old_options = $this->old_options;
 
     $new_options = [
       'menu_to_use' => $old_options['RM'] ? $old_options['RM'] : '',
@@ -107,7 +122,7 @@ class Migration{
       'button_line_colour' => $old_options['RMLineCol'] ? $old_options['RMLineCol'] : '',
       'button_background_colour' => $old_options['RMClickBkg'] ? $old_options['RMClickBkg'] : '',
       'button_title' => $old_options['RMClickTitle'] ? $old_options['RMClickTitle'] : '',
-      'button_transparent_background' => $old_options['RMBkgTran'] ? 'on' : 'off',
+      'button_transparent_background' => $old_options['RMBkgTran'] ? 'on' : '',
       'menu_font' => $old_options['RMFont'] ? $old_options['RMFont'] : '',
       'button_position_type' => $old_options['RMPos'] ? 'fixed' : '',
       'menu_title_image' => $old_options['RMImage'] ? $old_options['RMImage'] : '',
@@ -127,7 +142,7 @@ class Migration{
       'menu_link_hover_colour' => $old_options['RMTextColHov'] ? $old_options['RMTextColHov'] : '',
       'menu_sub_arrow_shape_hover_colour' => $old_options['RMTextColHov'] ? $old_options['RMTextColHov'] : '',
       'menu_title_hover_colour' => $old_options['RMTitleColHov'] ? $old_options['RMTitleColHov'] : '',
-      'animation_type' => $old_options['RMAnim'] == 'overlay' ? 'slide' : 'push',
+      'animation_type' => $old_options['RMAnim'] == 'push' ? 'push' : '',
       'page_wrapper' => $old_options['RMPushCSS'] ? $old_options['RMPushCSS'] : '',
       'menu_title_background_colour' => $old_options['RMTitleBkg'] ? $old_options['RMTitleBkg'] : '',
       'menu_title_background_hover_colour' => $old_options['RMTitleBkg'] ? $old_options['RMTitleBkg'] : '',
@@ -139,34 +154,34 @@ class Migration{
       'animation_speed' => $old_options['RMAnimSpd'] ? $old_options['RMAnimSpd'] : '',
       'transition_speed' => $old_options['RMTranSpd'] ? $old_options['RMTranSpd'] : '',
       'menu_text_alignment' => $old_options['RMTxtAlign'] ? $old_options['RMTxtAlign'] : '',
-      'auto_expand_all_submenus' => $old_options['RMExpand'] ? 'on' : 'off',
+      'auto_expand_all_submenus' => $old_options['RMExpand'] ? 'on' : '',
       'menu_links_height' => $old_options['RMLinkHeight'] ? $old_options['RMLinkHeight'] + 24 : '',
       'submenu_arrow_height' => $old_options['RMLinkHeight'] ? $old_options['RMLinkHeight'] + 24 : '',
       'submenu_arrow_width' => $old_options['RMLinkHeight'] ? $old_options['RMLinkHeight'] + 24 : '',
-      'external_files' => $old_options['RMExternal'] ? 'on' : 'off',
+      'external_files' => $old_options['RMExternal'] ? 'on' : '',
       'menu_appear_from' => $old_options['RMSide'] ? $old_options['RMSide'] : '',
-      'scripts_in_footer' => $old_options['RMFooter'] ? 'on' : 'off',
+      'scripts_in_footer' => $old_options['RMFooter'] ? 'on' : '',
       'button_image' => $old_options['RMClickImg'] ? $old_options['RMClickImg'] : '',
-      'minify_scripts' => $old_options['RMMinify'] ? 'on' : 'off',
-      'menu_close_on_link_click' => $old_options['RMClickClose'] ? 'on' : 'off',
+      'minify_scripts' => $old_options['RMMinify'] ? 'on' : '',
+      'menu_close_on_link_click' => $old_options['RMClickClose'] ? 'on' : '',
       'menu_minimum_width' => $old_options['RMMinWidth'] ? $old_options['RMMinWidth'] : '',
       'menu_maximum_width' => $old_options['RMMaxWidth'] ? $old_options['RMMaxWidth'] : '',
-      'auto_expand_current_submenus' => $old_options['RMExpandPar'] ? 'on' : 'off',
-      'menu_item_click_to_trigger_submenu' => $old_options['RMIgnParCli'] ? 'on' : 'off',
-      'menu_close_on_body_click' => $old_options['RMCliToClo'] ? 'on' : 'off',
+      'auto_expand_current_submenus' => $old_options['RMExpandPar'] ? 'on' : '',
+      'menu_item_click_to_trigger_submenu' => $old_options['RMIgnParCli'] ? 'on' : '',
+      'menu_close_on_body_click' => $old_options['RMCliToClo'] ? 'on' : '',
       'menu_title_link' => $old_options['RMTitleLink'] ? $old_options['RMTitleLink'] : '',
       'menu_additional_content' => $old_options['RMHtml'] ? $old_options['RMHtml'] : '',
-      'shortcode' => $old_options['RMShortcode'] ? 'on' : 'off',
+      'shortcode' => $old_options['RMShortcode'] ? 'on' : '',
       'button_line_height' => $old_options['RMLineHeight'] ? $old_options['RMLineHeight'] : '',
       'button_line_width' => $old_options['RMLineWidth'] ? $old_options['RMLineWidth'] : '',
       'button_line_margin' => $old_options['RMLineMargin'] ? $old_options['RMLineMargin'] : '',
       'button_image_when_clicked' => $old_options['RMClickImgClicked'] ? $old_options['RMClickImgClicked'] : '',
-      'accordion_animation' => $old_options['RMAccordion'] ? 'on' : 'off',
+      'accordion_animation' => $old_options['RMAccordion'] ? 'on' : '',
       'active_arrow_shape' => $old_options['RMArShpA'] ? json_decode($old_options['RMArShpA']) : '',
       'inactive_arrow_shape' => $old_options['RMArShpI'] ? json_decode($old_options['RMArShpI']) : '',
       'active_arrow_image' => $old_options['RMArImgA'] ? $old_options['RMArImgA'] : '',
       'inactive_arrow_image' => $old_options['RMArImgI'] ? $old_options['RMArImgI'] : '',
-      'button_push_with_animation' => $old_options['RMPushBtn'] ? 'on' : 'off',
+      'button_push_with_animation' => $old_options['RMPushBtn'] ? 'on' : '',
       'menu_current_item_background_hover_colour' => $old_options['RMCurBkgHov'] ? $old_options['RMCurBkgHov'] : '',
       'menu_current_link_hover_colour' => $old_options['RMCurColHov'] ? $old_options['RMCurColHov'] : '',
       'custom_walker' => $old_options['RMWalker'] ? $old_options['RMWalker'] : '',
@@ -175,14 +190,12 @@ class Migration{
       'button_title_position' => $old_options['RMClickTitlePos'] ? $old_options['RMClickTitlePos'] : '',
     ];
 
+    $to_save = [];
+
     foreach(array_filter($new_options) as $key => $val)
-        $this->db->insert(self::$table, array('name' => $key, 'value' => $val));
+      $to_save[$key] = $val;
 
-  }
-
-  public function getCurrentVersion() {
-    $plugin_data = get_plugin_data(dirname(dirname(dirname(dirname(__FILE__)))) . '/responsive-menu.php', false, false);
-    return $plugin_data['Version'];
+    return $to_save;
   }
 
 }

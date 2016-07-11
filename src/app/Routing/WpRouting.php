@@ -40,12 +40,20 @@ class WpRouting implements Routing {
       'responsive-menu',
       function() use ($method) {
         $controller = $this->container['admin_controller'];
-        if($method == 'update' || $method == 'reset'):
-          include dirname(dirname(dirname(__FILE__))) . '/config/default_options.php';
-          $controller->$method($default_options);
-        else:
-          $controller->$method();
-        endif;
+        switch ($method) :
+          case 'update':
+            $controller->$method($this->container['default_options'], $_POST['menu']);
+            break;
+          case 'reset':
+            $controller->$method($this->container['default_options']);
+            break;
+          case 'import':
+            $controller->$method($this->container['default_options'], $_FILES['responsive_menu_import_file']);
+            break;
+          default:
+            $controller->$method();
+            break;
+        endswitch;
       },
       'dashicons-menu');
   }

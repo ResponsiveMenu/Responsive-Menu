@@ -5,9 +5,7 @@ use ResponsiveMenu\Models\Option as Option;
 
 class OptionFactory {
 
-  public function __construct() {
-    include dirname(dirname(dirname(__FILE__))) . '/config/option_helpers.php';
-    include dirname(dirname(dirname(__FILE__))) . '/config/default_options.php';
+  public function __construct($default_options, $option_helpers) {
     $this->defaults = $default_options;
     $this->helper = $option_helpers;
   }

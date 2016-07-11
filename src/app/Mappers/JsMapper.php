@@ -119,7 +119,7 @@ class JsMapper
             $(this.pageWrapper).css({'transform':''});
             setTimeout(function() {
               $('html, body').css('overflow-x', '');
-            }, self.animationSpeed );
+            }, self.animationSpeed);
           }
           if(this.pushButton == 'on') {
             $('#responsive-menu-button').css({'transform':''});

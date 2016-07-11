@@ -76,4 +76,8 @@ class OptionsCollection implements \ArrayAccess {
     unset($this->options[$offset]);
   }
 
+  public function isEmpty() {
+    return isset($this->options) && count($this->options) > 0 ? false : true;
+  }
+
 }
