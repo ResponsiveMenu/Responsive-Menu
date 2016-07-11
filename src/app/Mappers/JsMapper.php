@@ -107,7 +107,7 @@ class JsMapper
             }
             if(this.animationType == 'push') {
               $(this.pageWrapper).css({'transform':translate});
-              $('html').css('overflow-x', 'hidden');
+              $('html, body').css('overflow-x', 'hidden');
             }
             if(this.pushButton == 'on') {
               $('#responsive-menu-button').css({'transform':translate});
@@ -118,7 +118,7 @@ class JsMapper
           if(this.animationType == 'push') {
             $(this.pageWrapper).css({'transform':''});
             setTimeout(function() {
-              $('html').css('overflow-x', '');
+              $('html, body').css('overflow-x', '');
             }, self.animationSpeed );
           }
           if(this.pushButton == 'on') {
