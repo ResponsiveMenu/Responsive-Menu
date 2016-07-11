@@ -227,10 +227,11 @@ input[type="text"].image,
   bottom: 0;
   position: absolute;
   text-align: center;
-  color: #333;
-  transform: translateY(30%);
+  color: #fff;
   font-weight: bold;
   font-size: 14px;
+  padding-top: 2%;
+  background: rgba(222, 75, 66, 0.6);
 }
 
 #items_order_container td:last-child,
