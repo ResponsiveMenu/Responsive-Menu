@@ -149,6 +149,7 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 = 3.0.5 (11th July 2016) =
 * **Requires PHP 5.4**
 * Fixed bug with push animation
+* Fixed issue where custom menu classes weren't being added
 
 = 3.0.4 (9th July 2016) =
 * **Requires PHP 5.4**
