@@ -108,6 +108,7 @@ class JsMapper
             if(this.animationType == 'push') {
               $(this.pageWrapper).css({'transform':translate});
               $('html, body').css('overflow-x', 'hidden');
+              $('html, body').css('height', 'auto');
             }
             if(this.pushButton == 'on') {
               $('#responsive-menu-button').css({'transform':translate});
@@ -119,6 +120,7 @@ class JsMapper
             $(this.pageWrapper).css({'transform':''});
             setTimeout(function() {
               $('html, body').css('overflow-x', '');
+              $('html, body').css('height', '');
             }, self.animationSpeed);
           }
           if(this.pushButton == 'on') {
