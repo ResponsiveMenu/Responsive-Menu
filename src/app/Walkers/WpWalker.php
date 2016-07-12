@@ -37,7 +37,7 @@ class WpWalker extends \Walker_Nav_Menu
     {
       $this->curItem = $item;
   		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
-      $responsive_menu_classes = [];
+      $responsive_menu_classes = $classes;
 
       # Turn into our Responsive Menu Classes
       foreach($classes as $class):
