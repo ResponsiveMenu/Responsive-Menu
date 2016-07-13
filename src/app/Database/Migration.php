@@ -91,6 +91,7 @@ class Migration {
 
 	protected function updateVersion() {
 		update_option(self::$version_var, $this->current_version);
+        $this->old_version = $this->current_version;
 	}
 
   public function isVersion3() {
@@ -99,6 +100,8 @@ class Migration {
 
   public function migrateVersion2Options() {
     $this->service->createOptions($this->getMigratedOptions());
+    $this->addNewOptions();
+    $this->updateVersion();
   }
 
   public function getOptionsToDelete() {
