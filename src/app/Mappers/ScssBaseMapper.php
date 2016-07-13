@@ -11,15 +11,13 @@ class ScssBaseMapper extends ScssMapper
     $css = <<<CSS
 
       #responsive-menu-button,
-      #responsive-menu-container,
-      #responsive-menu-header {
+      #responsive-menu-container {
         display: none;
       }
 
       @media screen and (max-width: {$this->options['breakpoint']}px) {
 
-        #responsive-menu-container,
-        #responsive-menu-header {
+        #responsive-menu-container {
           display: block;
         }
 
@@ -196,36 +194,6 @@ class ScssBaseMapper extends ScssMapper
         margin: 0 auto;
       }
 
-      #responsive-menu-header {
-        width: 100%;
-        padding: 0 5%;
-        box-sizing: border-box;
-        top: 0;
-        right: 0;
-        left: 0;
-        display: none;
-        .responsive-menu-header-box {
-          display: inline-block;
-          &, & img {
-            vertical-align: middle;
-            max-width: 100%;
-          }
-          &:last-child {
-            float: right;
-            margin-right: 0;
-          }
-        }
-        #responsive-menu-button {
-          position: relative;
-          margin: 0;
-          left: auto;
-          right: auto;
-          bottom: auto;
-        }
-        .responsive-menu-header-box {
-          margin-right: 2%;
-        }
-      }
     }
 CSS;
 
