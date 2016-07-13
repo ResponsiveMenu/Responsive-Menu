@@ -19,7 +19,7 @@ class Migration {
 
 	public function __construct(Database $db, OptionService $service, $defaults, $current_version, $old_version, $old_options) {
     $this->db = $db;
-		$this->service = $service;
+	$this->service = $service;
     $this->defaults = $defaults;
     $this->current_version = $current_version;
     $this->old_version = $old_version;
@@ -67,7 +67,7 @@ class Migration {
 	public function synchronise() {
 
     # First Thing we need to do is migrate any old options
-    if(!$this->isVersion3())
+    if($this->old_options && !$this->isVersion3())
       $this->migrateVersion2Options();
 
     if($this->needsUpdate()):
