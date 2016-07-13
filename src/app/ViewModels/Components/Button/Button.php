@@ -22,8 +22,6 @@ class Button implements ViewComponent {
     $accessible = in_array($button_title_pos, array('left', 'right')) ? 'responsive-menu-accessible' : '';
     $content = '';
 
-    $content .= $options['use_header_bar'] == 'on' ? '<div id="responsive-menu-header-bar-button" class="responsive-menu-header-box">' : '';
-
     $content .= '<button id="responsive-menu-button"
             class="responsive-menu-button ' . $accessible .
             ' responsive-menu-' . $options['button_click_animation'] . '"
@@ -33,7 +31,6 @@ class Button implements ViewComponent {
     $content .= '<span class="responsive-menu-box">' . $options->getButtonIcon() . $options->getButtonIconActive() . '</span>';
     $content .= in_array($button_title_pos, array('bottom', 'right')) ? $button_title_html : '';
     $content .= '</button>';
-    $content .= $options['use_header_bar'] == 'on' ? '</div>' : '';
 
     return $content;
 
