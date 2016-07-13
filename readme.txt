@@ -150,6 +150,7 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 * **Requires PHP 5.4**
 * Improved Database Migration Scripts
 * Changed sub-arrows to only show border on left edge
+* Improved button title text spacing
 
 = 3.0.5 (13th July 2016) =
 * **Requires PHP 5.4**

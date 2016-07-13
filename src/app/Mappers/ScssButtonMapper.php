@@ -43,6 +43,7 @@ class ScssButtonMapper extends ScssMapper
       .responsive-menu-label {
         color: {$this->options['button_text_colour']};
         font-size: {$this->options['button_font_size']}px;
+        line-height: {$this->options['button_title_line_height']}px;
         @if '{$this->options['button_font']}' != '' {
           font-family: '{$this->options['button_font']}';
         }

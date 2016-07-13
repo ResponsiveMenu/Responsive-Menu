@@ -193,7 +193,7 @@ class ScssBaseMapper extends ScssMapper
       .responsive-menu-label.responsive-menu-label-bottom
       {
         display: block;
-        margin: 10px auto;
+        margin: 0 auto;
       }
 
       #responsive-menu-header {
