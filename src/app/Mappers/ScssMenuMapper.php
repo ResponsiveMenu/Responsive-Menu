@@ -113,7 +113,7 @@ class ScssMenuMapper extends ScssMapper
                 line-height: {$this->options['submenu_arrow_height']}px;
                 width: {$this->options['submenu_arrow_width']}px;
                 color: {$this->options['menu_sub_arrow_shape_colour']};
-                border: 1px solid {$this->options['menu_sub_arrow_border_colour']};
+                border-left: 1px solid {$this->options['menu_sub_arrow_border_colour']};
                 background-color: {$this->options['menu_sub_arrow_background_colour']};
 
                   &:hover {
