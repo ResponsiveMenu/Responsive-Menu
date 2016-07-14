@@ -151,6 +151,7 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 * Improved Database Migration Scripts
 * Changed sub-arrows to only show border on left edge
 * Improved button title text spacing
+* Improved PHP version checking process
 
 = 3.0.5 (13th July 2016) =
 * **Requires PHP 5.4**
