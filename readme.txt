@@ -409,4 +409,9 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 * Initial Version Released.
 
 == Upgrade Notice ==
-Requires PHP 5.4 to function - please check before upgrading
+
+= 2.8.9 =
+Requires PHP 5.4  - DO NOT upgrade if you do not have this installed.
+
+= 2.8.8 =
+Requires PHP 5.4  - DO NOT upgrade if you do not have this installed.
