@@ -4,7 +4,7 @@ Donate link: https://responsive.menu/donate
 Tags: responsive, menu, responsive menu, mobile menu, wordpress responsive menu, wp responsive menu, tablet menu, mobile, tablet, 3 lines, 3 line, three line, three lines
 Requires at least: 3.5.0
 Tested up to: 4.5.3
-Stable tag: 3.0.6
+Stable tag: 3.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -145,6 +145,10 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 3. Example Front End Expanded Menu
 
 == Changelog ==
+
+= 3.0.7 (15th July 2016) =
+* **Requires PHP 5.4**
+* Added string translation to Search text
 
 = 3.0.6 (13th July 2016) =
 * **Requires PHP 5.4**

@@ -12,7 +12,7 @@ class Search implements ViewComponent {
       $action = function_exists( 'icl_get_home_url' ) ? icl_get_home_url() : get_home_url();
       return '<div id="responsive-menu-search-box">
         <form action="'.$action.'" class="responsive-menu-search-form" role="search">
-          <input type="search" name="s" placeholder="Search" class="responsive-menu-search-box">
+          <input type="search" name="s" placeholder="' . __('Search', 'responsive-menu') . '" class="responsive-menu-search-box">
         </form>
       </div>';
 
