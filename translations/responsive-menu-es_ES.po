@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Responsive Menu - 3.0.3\n"
-"POT-Creation-Date: 2016-07-09 18:03+0100\n"
-"PO-Revision-Date: 2016-07-09 18:04+0100\n"
+"POT-Creation-Date: 2016-07-15 22:52+0100\n"
+"PO-Revision-Date: 2016-07-15 22:52+0100\n"
 "Last-Translator: \n"
 "Language-Team: Responsive Menu <support@responsive.menu>\n"
 "Language: es\n"
@@ -15,35 +15,44 @@ msgstr ""
 "X-Poedit-KeywordsList: _;__;_e\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/app/Controllers/Admin.php:28
+#: responsive-menu.php:25
+#, php-format
+msgid ""
+"Responsive Menu requires PHP 5.4 or higher to function and has therefore "
+"been automatically disabled. You are still on %s.%sPlease speak to your "
+"webhost about upgrading your PHP version. For more information please visit "
+"%s"
+msgstr ""
+
+#: src/app/Controllers/Admin.php:17
 msgid "Responsive Menu Options Updated Successfully"
 msgstr ""
 
-#: src/app/Controllers/Admin.php:46 src/app/Controllers/Admin.php:72
+#: src/app/Controllers/Admin.php:24 src/app/Controllers/Admin.php:37
 msgid "Responsive Menu Options Reset Successfully"
 msgstr ""
 
-#: src/app/Controllers/Admin.php:74
+#: src/app/Controllers/Admin.php:39
 msgid "No file selected"
 msgstr ""
 
-#: src/app/Factories/AdminSaveFactory.php:26
+#: src/app/Factories/AdminSaveFactory.php:24
 msgid "Unable to make data directory"
 msgstr ""
 
-#: src/app/Factories/AdminSaveFactory.php:27
+#: src/app/Factories/AdminSaveFactory.php:25
 msgid "Unable to make CSS data directory"
 msgstr ""
 
-#: src/app/Factories/AdminSaveFactory.php:28
+#: src/app/Factories/AdminSaveFactory.php:26
 msgid "Unable to make JS data directory"
 msgstr ""
 
-#: src/app/Factories/AdminSaveFactory.php:35
+#: src/app/Factories/AdminSaveFactory.php:33
 msgid "Unable to create CSS file"
 msgstr ""
 
-#: src/app/Factories/AdminSaveFactory.php:38
+#: src/app/Factories/AdminSaveFactory.php:36
 msgid "Unable to create JS file"
 msgstr ""
 
@@ -73,6 +82,10 @@ msgstr ""
 
 #: src/app/ViewModels/Components/Admin/Boxes.php:25
 msgid "Toggle panel: Location"
+msgstr ""
+
+#: src/app/ViewModels/Components/Menu/Search.php:15
+msgid "Search"
 msgstr ""
 
 #: src/config/admin_ordering.php:16
