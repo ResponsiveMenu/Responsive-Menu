@@ -26,7 +26,8 @@ $container['option_factory'] = function($c) {
 $container['option_repository'] = function($c) {
   return new ResponsiveMenu\Repositories\OptionRepository(
     $c['database'],
-    $c['option_factory']
+    $c['option_factory'],
+    $c['default_options']
   );
 };
 

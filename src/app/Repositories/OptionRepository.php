@@ -8,9 +8,10 @@ class OptionRepository {
 
   protected static $table = 'responsive_menu';
 
-  public function __construct($db, $factory) {
+  public function __construct($db, $factory, $defaults) {
     $this->db = $db;
     $this->factory = $factory;
+    $this->defaults = $defaults;
   }
 
   public function all() {
@@ -39,4 +40,15 @@ class OptionRepository {
       $this->db->delete(self::$table, $name);
   }
 
+  public function buildFromArray(array $array) {
+    $collection = new OptionsCollection;
+    foreach(array_merge($this->defaults, $array) as $name => $value):
+      $option = $this->factory->build($name, $value);
+      $option->setValue($option->getFiltered());
+      $collection->add($option);
+    endforeach;
+
+    return $collection;
+  }
+  
 }

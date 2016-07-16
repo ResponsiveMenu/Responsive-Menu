@@ -12,10 +12,14 @@ class WpRouting implements Routing {
   }
 
   public function route() {
-    if(is_admin())
+    if(is_admin()):
       add_action('admin_menu', [$this, 'adminPage']);
-    else
-      add_action('template_redirect', [$this->container['front_controller'], 'index']);
+    else:
+      if(isset($_GET['responsive-menu-preview']) && isset($_POST['menu']))
+        add_action('template_redirect', [$this->container['front_controller'], 'preview']);
+      else
+        add_action('template_redirect', [$this->container['front_controller'], 'index']);
+    endif;
   }
 
   public function adminPage() {

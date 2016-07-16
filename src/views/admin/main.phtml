@@ -59,7 +59,7 @@ $boxes = new ResponsiveMenu\ViewModels\Components\Admin\Boxes($order_mapping, $l
 
       <div id="all_options_container">
         <div class="meta-box-sortables ui-sortable" id="normal-sortables">
-        	<form action="" method="post" enctype="multipart/form-data">
+        	<form action="" method="post" enctype="multipart/form-data" id="responsive_menu_form">
             <input type="submit" class="button submit" name="responsive_menu_submit" value="Update Options" style="display: none;" />
             <div id="options_list_container">
               <?php echo $boxes->render(); ?>
@@ -69,6 +69,22 @@ $boxes = new ResponsiveMenu\ViewModels\Components\Admin\Boxes($order_mapping, $l
         </div> <!-- #normal-sortables -->
       </div><!--#all_options_container
    --><div id="banner_area">
+
+       <div class="postbox " id="submitdiv">
+         <h2 class="hndle ui-sortable-handle"><span>Preview</span></h2>
+         <div class="inside">
+           <div id="submitpost" class="submitbox">
+             <div id="minor-publishing-actions">
+                 <div id="delete-action">
+                   <a href="https://responsive.menu/why-go-pro/" class="submitdelete deletion"><?php _e('Upgrade Now', 'responsive-menu'); ?></a>
+                 </div>
+                 <input type="submit" class="button preview" id="responsive_menu_preview" name="responsive_menu_preview" value="<?php _e('Preview Changes', 'responsive-menu'); ?>" />
+                 <br /><br />
+             </div>
+           </div>
+         </div>
+       </div>
+
        <div id="upgrade_banner">
             <?php _e('Upgrade today to unlock the following features:', 'responsive-menu'); ?>
             <ul>
@@ -77,6 +93,7 @@ $boxes = new ResponsiveMenu\ViewModels\Components\Admin\Boxes($order_mapping, $l
               <li><?php _e('15+ Button Animations', 'responsive-menu'); ?></li>
               <li><?php _e('Style Desktop Menu Too', 'responsive-menu'); ?></li>
               <li><?php _e('Header Bar', 'responsive-menu'); ?></li>
+              <li><?php _e('Menu Preview', 'responsive-menu'); ?></li>
               <li><?php _e('And much more', 'responsive-menu'); ?></li>
             </ul>
             <a target="_blank" href="http://responsive.menu/why-go-pro" class="button"><?php _e('Upgrade Now', 'responsive-menu'); ?></a>

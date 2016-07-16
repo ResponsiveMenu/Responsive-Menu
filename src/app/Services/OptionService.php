@@ -33,7 +33,7 @@ class OptionService {
   		$this->repository->create($this->factory->build($key, $val));
 
     $options = $this->all();
-    
+
   	$this->updateWpml($options);
   	$this->buildFiles($options);
 
@@ -56,4 +56,8 @@ class OptionService {
   	endif;
 	}
 
+  public function buildFromPostArray(array $post) {
+    return $this->repository->buildFromArray($post);
+  }
+  
 }
