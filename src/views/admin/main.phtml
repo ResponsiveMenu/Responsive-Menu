@@ -42,17 +42,17 @@ $boxes = new ResponsiveMenu\ViewModels\Components\Admin\Boxes($order_mapping, $l
       </div>
 
       <div class="key-container">
-        <a href="http://responsive.menu/pricing/">
-          <div class="key key-pro"><span>PRO</span>Only available in Pro version</div>
-          <div class="key key-semi-pro"><span>SEMI PRO</span>Fully unlocked in Pro version (i.e - opacity selection for colours)</div>
+        <a href="https://responsive.menu/why-go-pro/">
+          <div class="key key-pro"><span><?php _e('PRO', 'responsive-menu'); ?></span><?php _e('Only available in Pro version', 'responsive-menu'); ?></div>
+          <div class="key key-semi-pro"><span><?php _e('SEMI PRO', 'responsive-menu'); ?></span><?php _e('Fully unlocked in Pro version (i.e - opacity selection for colours)', 'responsive-menu'); ?></div>
         </a>
       </div>
 
   		<div class="upgrade-notes">
-  			<div class="upgrade-notes-title">Welcome to Responsive Menu 3.0</div>
+  			<div class="upgrade-notes-title"><?php _e('Welcome to Responsive Menu 3.0', 'responsive-menu'); ?></div>
   			<div class="upgrade-notes-content">
-          As this is a brand new version, there are over 14,000 combinations of options so squashing bugs is not an easy task and some may still exist. Therefore, please report any bugs to us <a href="https://responsive.menu/contact/" target="_blank">here</a> and we will deal with them quickly.<br /><br />
-          For an upgrade guide, please check out <a href="https://responsive.menu/upgrading-from-version-2-to-version-3" target="_blank">this page</a>.
+          <?php _e(sprintf('As this is a brand new version, there are over 14,000 combinations of options so squashing bugs is not an easy task and some may still exist. Therefore, please report any bugs to us %shere%s and we will deal with them quickly.%s
+          For an upgrade guide, please check out %sthis page%s.', '<a href="https://responsive.menu/contact/" target="_blank">', '</a>', '<br /><br />', '<a href="https://responsive.menu/upgrading-from-version-2-to-version-3" target="_blank">', '</a>'), 'responsive-menu'); ?>
         </div>
         <div class="upgrade-notes-close">x</div>
   		</div>
@@ -60,7 +60,7 @@ $boxes = new ResponsiveMenu\ViewModels\Components\Admin\Boxes($order_mapping, $l
       <div id="all_options_container">
         <div class="meta-box-sortables ui-sortable" id="normal-sortables">
         	<form action="" method="post" enctype="multipart/form-data" id="responsive_menu_form">
-            <input type="submit" class="button submit" name="responsive_menu_submit" value="Update Options" style="display: none;" />
+            <input type="submit" class="button submit" name="responsive_menu_submit" value="<?php _e('Update Options', 'responsive-menu'); ?>" style="display: none;" />
             <div id="options_list_container">
               <?php echo $boxes->render(); ?>
             </div>
@@ -76,7 +76,7 @@ $boxes = new ResponsiveMenu\ViewModels\Components\Admin\Boxes($order_mapping, $l
            <div id="submitpost" class="submitbox">
              <div id="minor-publishing-actions">
                  <div id="delete-action">
-                   <a href="https://responsive.menu/why-go-pro/" class="submitdelete deletion"><?php _e('Upgrade Now', 'responsive-menu'); ?></a>
+                   <a href="https://responsive.menu/why-go-pro/" target="_blank" class="submitdelete deletion"><?php _e('Upgrade Now', 'responsive-menu'); ?></a>
                  </div>
                  <input type="submit" class="button preview" id="responsive_menu_preview" name="responsive_menu_preview" value="<?php _e('Preview Changes', 'responsive-menu'); ?>" />
                  <br /><br />
@@ -86,14 +86,14 @@ $boxes = new ResponsiveMenu\ViewModels\Components\Admin\Boxes($order_mapping, $l
        </div>
 
        <div id="upgrade_banner">
-            <?php _e('Upgrade today to unlock the following features:', 'responsive-menu'); ?>
+            <div id="upgrade_banner_title"><?php _e('Upgrade today to unlock the following features:', 'responsive-menu'); ?></div>
             <ul>
-              <li><?php _e('Font Awesome Icon Support', 'responsive-menu'); ?></li>
-              <li><?php _e('Opacity Option for all Colours', 'responsive-menu'); ?></li>
-              <li><?php _e('15+ Button Animations', 'responsive-menu'); ?></li>
-              <li><?php _e('Style Desktop Menu Too', 'responsive-menu'); ?></li>
-              <li><?php _e('Header Bar', 'responsive-menu'); ?></li>
-              <li><?php _e('Menu Preview', 'responsive-menu'); ?></li>
+              <li><i class="fa fa-check"></i><?php _e('Font Awesome Icon Support', 'responsive-menu'); ?></li>
+              <li><i class="fa fa-check"></i><?php _e('Opacity Option for all Colours', 'responsive-menu'); ?></li>
+              <li><i class="fa fa-check"></i><?php _e('15+ Button Animations', 'responsive-menu'); ?></li>
+              <li><i class="fa fa-check"></i><?php _e('Main Desktop Menu Styling', 'responsive-menu'); ?></li>
+              <li><i class="fa fa-check"></i><?php _e('Add and configure a Header Bar', 'responsive-menu'); ?></li>
+              <li><i class="fa fa-check"></i><?php _e('Preview Changes', 'responsive-menu'); ?></li>
               <li><?php _e('And much more', 'responsive-menu'); ?></li>
             </ul>
             <a target="_blank" href="http://responsive.menu/why-go-pro" class="button"><?php _e('Upgrade Now', 'responsive-menu'); ?></a>

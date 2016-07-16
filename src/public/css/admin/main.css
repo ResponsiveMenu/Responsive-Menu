@@ -13,6 +13,11 @@
   margin: 0;
 }
 
+#submitdiv {
+  width: 100%;
+  min-width: 100%;
+}
+
 #menu-sortable {
   position: relative;
 }
@@ -269,11 +274,16 @@ input[type="text"].image,
 }
 
 #upgrade_banner {
-  padding: 35px;
+  padding: 25px 5%;
   background: #DE4B42;
   color: #fff;
   border: 1px solid #D33C34;
   border-radius: 2px;
+  text-align: center;
+}
+
+#upgrade_banner i {
+  margin-right: 5px;
 }
 
 #docs_banner {
@@ -292,7 +302,7 @@ input[type="text"].image,
 }
 
 #upgrade_banner li  {
-  list-style: inside;
+  list-style: none;
   font-weight: bold;
   font-size: 11px;
 }
@@ -654,6 +664,16 @@ input[type="button"].image_button
   padding: 15px;
   font-weight: bold;
   cursor: pointer;
+}
+
+@media (max-width: 1200px) {
+  .preview,
+  #delete-action {
+    float: none;
+    width: 100%;
+    clear: both;
+    text-align: center;
+  }
 }
 
 @media (max-width: 800px) {
