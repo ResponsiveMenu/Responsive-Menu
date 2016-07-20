@@ -46,6 +46,26 @@ class ScssMenuMapper extends ScssMapper
           color: {$this->options['menu_additional_content_colour']};
         }
 
+        .responsive-menu-search-box {
+            background: {$this->options['menu_search_box_background_colour']};
+            border: 2px solid {$this->options['menu_search_box_border_colour']};
+            color: {$this->options['menu_search_box_text_colour']};
+            &:-ms-input-placeholder {
+              color: {$this->options['menu_search_box_text_colour']};
+            }
+            &:-webkit-input-placeholder {
+              color: {$this->options['menu_search_box_text_colour']};
+            }
+            &:-moz-placeholder {
+              color: {$this->options['menu_search_box_text_colour']};
+              opacity: 1;
+            }
+            &::-moz-placeholder {
+              color: {$this->options['menu_search_box_text_colour']};
+              opacity: 1;
+            }
+        }
+
         @if '{$this->options['menu_maximum_width']}' != '' {
           max-width: {$this->options['menu_maximum_width']}px;
         }

@@ -35,9 +35,7 @@ class ScssBaseMapper extends ScssMapper
           width: 100%;
           padding: 0 2%;
           border-radius: 2px;
-          border: 2px solid #dadada;
           height: 50px;
-          background: white;
         }
 
         &.push-left,

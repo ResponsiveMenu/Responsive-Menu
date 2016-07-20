@@ -102,8 +102,8 @@ $default_options = array(
   'menu_font_icons' => '',
   'menu_search_box_text' => 'Search',
   'menu_search_box_text_colour' => '#333',
-  'menu_search_box_text_border_colour' => '#333',
-  'menu_search_box_text_background_colour' => '#fff',
+  'menu_search_box_border_colour' => '#dadada',
+  'menu_search_box_background_colour' => '#fff',
   'menu_word_wrap' => 'off',
 
   'minify_scripts' => 'off',

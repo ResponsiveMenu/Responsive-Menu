@@ -243,13 +243,13 @@ $order_mapping = [
           'type' => 'colour'
         ],
         [
-          'option' => 'menu_search_box_text_border_colour',
+          'option' => 'menu_search_box_border_colour',
           'title' => __('Border Colour', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
           'type' => 'colour'
         ],
         [
-          'option' => 'menu_search_box_text_background_colour',
+          'option' => 'menu_search_box_background_colour',
           'title' => __('Background Colour', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
           'type' => 'colour'
