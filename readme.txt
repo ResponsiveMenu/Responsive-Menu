@@ -149,6 +149,9 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 = 3.0.7 (15th July 2016) =
 * **Requires PHP 5.4**
 * Added preview option - Pro only
+* Added search box text colour option
+* Added search box background colour option
+* Added search box border colour option
 * Added string translation to Search text
 
 = 3.0.6 (13th July 2016) =
