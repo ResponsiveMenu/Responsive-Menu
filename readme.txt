@@ -152,6 +152,8 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 * Added search box text colour option
 * Added search box background colour option
 * Added search box border colour option
+* Fixed header bar bug with disabled scrolling - PRO
+* Fixed smooth scrolling issue on iOS with disabled scrolling - PRO
 * Added string translation to Search text
 
 = 3.0.6 (13th July 2016) =
