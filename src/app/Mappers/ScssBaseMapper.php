@@ -25,7 +25,7 @@ class ScssBaseMapper extends ScssMapper
         position: fixed;
         top: 0;
         bottom: 0;
-        z-index: 9998;
+        z-index: 99998;
         /* Fix for scroll bars appearing when not needed */
         padding-bottom: 5px;
         margin-bottom: -5px;
@@ -36,6 +36,7 @@ class ScssBaseMapper extends ScssMapper
           padding: 0 2%;
           border-radius: 2px;
           height: 50px;
+          -webkit-appearance: none;
         }
 
         &.push-left,
@@ -161,7 +162,7 @@ class ScssBaseMapper extends ScssMapper
       }
 
       #responsive-menu-button {
-        z-index: 9999;
+        z-index: 99999;
         display: none;
         overflow: hidden;
         img {
