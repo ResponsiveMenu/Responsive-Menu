@@ -101,6 +101,9 @@ $default_options = array(
   'menu_overlay_colour' => 'rgba(0,0,0,0.7)',
   'menu_font_icons' => '',
   'menu_search_box_text' => 'Search',
+  'menu_search_box_text_colour' => '#333',
+  'menu_search_box_text_border_colour' => '#333',
+  'menu_search_box_text_background_colour' => '#fff',
   'menu_word_wrap' => 'off',
 
   'minify_scripts' => 'off',
