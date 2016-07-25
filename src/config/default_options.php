@@ -104,6 +104,7 @@ $default_options = array(
   'menu_search_box_text_colour' => '#333',
   'menu_search_box_border_colour' => '#dadada',
   'menu_search_box_background_colour' => '#fff',
+  'menu_search_box_placholder_colour' => '#C7C7CD',
   'menu_word_wrap' => 'off',
 
   'minify_scripts' => 'off',

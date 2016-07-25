@@ -253,6 +253,12 @@ $order_mapping = [
           'title' => __('Background Colour', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
           'type' => 'colour'
+        ],
+        [
+          'option' => 'menu_search_box_placholder_colour',
+          'title' => __('Placeholder Colour', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'colour'
         ]
       ],
     __('Background Colours', 'responsive-menu') =>

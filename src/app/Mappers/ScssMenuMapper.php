@@ -51,17 +51,17 @@ class ScssMenuMapper extends ScssMapper
             border: 2px solid {$this->options['menu_search_box_border_colour']};
             color: {$this->options['menu_search_box_text_colour']};
             &:-ms-input-placeholder {
-              color: {$this->options['menu_search_box_text_colour']};
+              color: {$this->options['menu_search_box_placholder_colour']};
             }
             &:-webkit-input-placeholder {
-              color: {$this->options['menu_search_box_text_colour']};
+              color: {$this->options['menu_search_box_placholder_colour']};
             }
             &:-moz-placeholder {
-              color: {$this->options['menu_search_box_text_colour']};
+              color: {$this->options['menu_search_box_placholder_colour']};
               opacity: 1;
             }
             &::-moz-placeholder {
-              color: {$this->options['menu_search_box_text_colour']};
+              color: {$this->options['menu_search_box_placholder_colour']};
               opacity: 1;
             }
         }
