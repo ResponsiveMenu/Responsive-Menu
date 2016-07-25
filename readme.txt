@@ -146,6 +146,12 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 
 == Changelog ==
 
+= 3.0.8 (25h July 2016) =
+* **Requires PHP 5.4**
+* Added placeholder search text colour option
+* Improved update process (no longer need to login to admin to trigger)
+* Bug fixes
+
 = 3.0.7 (22nd July 2016) =
 * **Requires PHP 5.4**
 * Added preview option - Pro only
