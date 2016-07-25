@@ -39,8 +39,7 @@ $container['option_service'] = function($c) {
 };
 
 $container['current_version'] = function($c) {
-  $plugin_data = get_plugin_data(dirname(dirname(dirname(__FILE__))) . '/responsive-menu.php', false, false);
-  return $plugin_data['Version'];
+  return '3.0.8';
 };
 
 $container['old_version'] = function($c) {
