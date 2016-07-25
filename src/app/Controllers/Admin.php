@@ -32,7 +32,7 @@ class Admin {
   public function import($default_options, $file) {
     if(!empty($file['tmp_name'])):
       $file = file_get_contents($file['tmp_name']);
-      $decoded = json_decode($file);
+      $decoded = (array) json_decode($file);
       $options = $this->service->updateOptions(array_merge($default_options, array_filter($decoded)));
       $flash['success'] = __('Responsive Menu Options Reset Successfully', 'responsive-menu');
     else:
