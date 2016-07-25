@@ -39,7 +39,7 @@ $container['option_service'] = function($c) {
 };
 
 $container['current_version'] = function($c) {
-  return '3.0.8';
+  return '3.0.9';
 };
 
 $container['old_version'] = function($c) {
