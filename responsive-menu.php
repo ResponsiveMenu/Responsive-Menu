@@ -41,14 +41,15 @@ add_action('plugins_loaded', function() {
 $wp_router = new ResponsiveMenu\Routing\WpRouting($container);
 $wp_router->route();
 
+/*
+* Initial Migration and Version Check synchronisation */
+add_action('init', function() use($container) {
+  $migration = $container['migration'];
+  $migration->setup();
+  $migration->synchronise();
+});
+    
 if(is_admin()):
-  /*
-  * Initial Migration and Version Check synchronisation */
-	add_action('admin_init', function() use($container) {
-	  $migration = $container['migration'];
-	  $migration->setup();
-  	$migration->synchronise();
-	});
 
   /*
   Polylang Integration Section */
