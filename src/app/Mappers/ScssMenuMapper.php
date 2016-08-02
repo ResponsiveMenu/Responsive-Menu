@@ -78,7 +78,7 @@ class ScssMenuMapper extends ScssMapper
         }
 
         & .responsive-menu-item-link, & #responsive-menu-title, & .responsive-menu-subarrow {
-          transition: background-color {$this->options['transition_speed']}s;
+          transition: background-color {$this->options['transition_speed']}s, border-color {$this->options['transition_speed']}s;
         }
 
         #responsive-menu-title {
@@ -146,9 +146,11 @@ class ScssMenuMapper extends ScssMapper
             &.responsive-menu-current-item > .responsive-menu-item-link {
               background-color: {$this->options['menu_current_item_background_colour']};
               color: {$this->options['menu_current_link_colour']};
+              border-color: {$this->options['menu_current_item_border_colour']};
               &:hover {
                 background-color: {$this->options['menu_current_item_background_hover_colour']};
                 color: {$this->options['menu_current_link_hover_colour']};
+                border-color: {$this->options['menu_current_item_border_hover_colour']};
               }
             }
           }

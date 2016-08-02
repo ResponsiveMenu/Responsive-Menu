@@ -285,6 +285,23 @@ $order_mapping = [
           'semi_pro' => true
         ],
         [
+          'option' => 'menu_current_item_background_colour',
+          'title' => __('Current Item Background Colour', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'colour',
+          'semi_pro' => true
+        ],
+        [
+          'option' => 'menu_current_item_background_hover_colour',
+          'title' => __('Current Item Background Colour Hover', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'type' => 'colour',
+          'semi_pro' => true
+        ],
+      ],
+    __('Border Colours', 'responsive-menu-pro') =>
+      [
+        [
           'option' => 'menu_item_border_colour',
           'title' => __('Item Border Colour', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
@@ -299,19 +316,19 @@ $order_mapping = [
           'semi_pro' => true
         ],
         [
-          'option' => 'menu_current_item_background_colour',
-          'title' => __('Current Item Background Colour', 'responsive-menu'),
+          'option' => 'menu_current_item_border_colour',
+          'title' => __('Current Item Border Colour', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
           'type' => 'colour',
           'semi_pro' => true
         ],
         [
-          'option' => 'menu_current_item_background_hover_colour',
-          'title' => __('Current Item Background Colour Hover', 'responsive-menu'),
+          'option' => 'menu_current_item_border_hover_colour',
+          'title' => __('Current Item Border Colour Hover', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
           'type' => 'colour',
           'semi_pro' => true
-        ],
+        ]
       ],
       __('Text Colours', 'responsive-menu') =>
         [

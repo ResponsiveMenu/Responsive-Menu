@@ -133,7 +133,6 @@ class ScssBaseMapper extends ScssMapper
           a {
             width: 100%;
             display: block;
-            margin-top: -1px; // Fix double borders with menu link above
             text-decoration: none;
             padding: 0 5%;
             position: relative;
