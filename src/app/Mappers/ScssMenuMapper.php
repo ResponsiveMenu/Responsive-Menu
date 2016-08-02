@@ -114,7 +114,8 @@ class ScssMenuMapper extends ScssMapper
             }
             a {
               line-height: {$this->options['menu_links_height']}px;
-              border: 1px solid {$this->options['menu_item_border_colour']};
+              border-top: 1px solid {$this->options['menu_item_border_colour']};
+              border-bottom: 1px solid {$this->options['menu_item_border_colour']};
               color: {$this->options['menu_link_colour']};
               background-color: {$this->options['menu_item_background_colour']};
               &:hover {
