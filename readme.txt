@@ -146,9 +146,15 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 
 == Changelog ==
 
-= 3.0.9 (25h July 2016) =
+= 3.0.9 (2nd August 2016) =
 * **Requires PHP 5.4**
+* Added current item border colour option
+* Added current item border hover colour option
+* Apply title link to title image
+* Fixed transition bug with iPhone Safari iOS on links
 * Fixed Import option bug
+* Import native jquery-ui-core instead of externally
+* Minor bug fixes
 
 = 3.0.8 (25th July 2016) =
 * **Requires PHP 5.4**
