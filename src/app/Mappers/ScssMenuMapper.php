@@ -77,8 +77,8 @@ class ScssMenuMapper extends ScssMapper
           font-family: '{$this->options['menu_font']}';
         }
 
-        & a, & #responsive-menu-title, & .responsive-menu-subarrow {
-          transition: all {$this->options['transition_speed']}s;
+        & .responsive-menu-item-link, & #responsive-menu-title, & .responsive-menu-subarrow {
+          transition: background-color {$this->options['transition_speed']}s;
         }
 
         #responsive-menu-title {
