@@ -146,7 +146,7 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 
 == Changelog ==
 
-= 3.0.9 (2nd August 2016) =
+= 3.0.9 (4th August 2016) =
 * **Requires PHP 5.4**
 * Added current item border colour option
 * Added current item border hover colour option

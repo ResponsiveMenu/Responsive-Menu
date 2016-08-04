@@ -1,7 +1,7 @@
 <?php
 
 namespace ResponsiveMenu\Collections;
-use ResponsiveMenu\Models\Option as Option;
+use ResponsiveMenu\Models\Option;
 
 class OptionsCollection implements \ArrayAccess {
 
