@@ -53,6 +53,26 @@ class MigrationTest extends TestCase {
       $this->assertFalse($migration->needsUpdate());
     }
 
+    public function testVersionCompareDoesNeedUpdateWithTenComparedToOne() {
+      $migration = new Migration($this->database, $this->service, $this->defaults, '3.0.10', '3.0.1', $this->old_options);
+      $this->assertTrue($migration->needsUpdate());
+    }
+
+    public function testVersionCompareDoesntNeedUpdateWithOneComparedToTen() {
+      $migration = new Migration($this->database, $this->service, $this->defaults, '3.0.1', '3.0.10', $this->old_options);
+      $this->assertFalse($migration->needsUpdate());
+    }
+
+    public function testVersionCompareDoesntNeedUpdateWithDoubleEndPointWithVersionHigher() {
+      $migration = new Migration($this->database, $this->service, $this->defaults, '3.0.10', '3.2.0', $this->old_options);
+      $this->assertFalse($migration->needsUpdate());
+    }
+
+    public function testVersionCompareDoesNeedUpdateWithDoubleEndPointWithVersionHigher() {
+      $migration = new Migration($this->database, $this->service, $this->defaults, '3.2.0', '3.0.10', $this->old_options);
+      $this->assertTrue($migration->needsUpdate());
+    }
+
     public function testNewOptionsReturnedAreCorrect() {
       $this->assertSame(['default_four' => 'new'], $this->base_migration->getNewOptions($this->options_collection));
     }
@@ -73,5 +93,5 @@ class MigrationTest extends TestCase {
     public function testOptionsToMigrate() {
       $this->assertSame(['menu_to_use' => 'old RM value', 'menu_depth' => 'old RMDepth value'], $this->base_migration->getMigratedOptions());
     }
-    
+
 }
