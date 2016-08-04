@@ -13,6 +13,7 @@ class ScssBaseMapper extends ScssMapper
       #responsive-menu-button,
       #responsive-menu-container {
         display: none;
+        -webkit-text-size-adjust: 100%;
       }
 
       @media screen and (max-width: {$this->options['breakpoint']}px) {
