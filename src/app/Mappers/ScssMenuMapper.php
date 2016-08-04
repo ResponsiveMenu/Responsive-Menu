@@ -78,7 +78,7 @@ class ScssMenuMapper extends ScssMapper
         }
 
         & .responsive-menu-item-link, & #responsive-menu-title, & .responsive-menu-subarrow {
-          transition: background-color {$this->options['transition_speed']}s, border-color {$this->options['transition_speed']}s;
+          transition: background-color {$this->options['transition_speed']}s, border-color {$this->options['transition_speed']}s, color {$this->options['transition_speed']}s;
         }
 
         #responsive-menu-title {
