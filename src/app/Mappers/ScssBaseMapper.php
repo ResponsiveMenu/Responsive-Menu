@@ -10,7 +10,7 @@ class ScssBaseMapper extends ScssMapper
 
     $css = <<<CSS
 
-      #responsive-menu-button,
+      button#responsive-menu-button,
       #responsive-menu-container {
         display: none;
         -webkit-text-size-adjust: 100%;
@@ -155,13 +155,13 @@ class ScssBaseMapper extends ScssMapper
         }
       }
 
-      .responsive-menu-button {
+      button#responsive-menu-button {
         .responsive-menu-button-icon-inactive {
           display: none;
         }
       }
 
-      #responsive-menu-button {
+      button#responsive-menu-button {
         z-index: 99999;
         display: none;
         overflow: hidden;
