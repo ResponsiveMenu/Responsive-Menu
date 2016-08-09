@@ -62,11 +62,13 @@ if(is_admin()):
       $button_title = isset($options['button_title']) ? $options['button_title']->getValue() : '';
       $menu_title = isset($options['menu_title']) ? $options['menu_title']->getValue() : '';
       $menu_title_link = isset($options['menu_title_link']) ? $options['menu_title_link']->getValue() : '';
+      $menu_additional_content = isset($options['menu_additional_content']) ? $options['menu_additional_content']->getValue() : '';
 
       pll_register_string('Menu Slug', $menu_to_use, 'Responsive Menu');
       pll_register_string('Button Title', $button_title, 'Responsive Menu');
       pll_register_string('Menu Title', $menu_title, 'Responsive Menu');
       pll_register_string('Menu Title Link', $menu_title_link, 'Responsive Menu');
+      pll_register_string('Additional Content', $menu_additional_content, 'Responsive Menu');
     endif;
   });
 endif;
