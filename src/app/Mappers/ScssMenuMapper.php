@@ -131,6 +131,7 @@ class ScssMenuMapper extends ScssMapper
               }
 
               .responsive-menu-subarrow {
+                {$this->options['arrow_position']}: 0;
                 height: {$this->options['submenu_arrow_height']}px;
                 line-height: {$this->options['submenu_arrow_height']}px;
                 width: {$this->options['submenu_arrow_width']}px;
