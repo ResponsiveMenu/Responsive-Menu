@@ -148,8 +148,10 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 
 = 3.0.10 (12th August 2016) =
 * **Requires PHP 5.4**
-* Added item link colours to transition list
 * Added sub-arrow active colours - Pro only
+* Added sub-arrow positioning side option
+* Switched sub-menu padding round if right text-alignment used
+* Added item link colours to transition list
 * Minor bug fixes
 
 = 3.0.9 (4th August 2016) =
