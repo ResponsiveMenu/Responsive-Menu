@@ -809,9 +809,6 @@ __('Sub-Menus', 'responsive-menu') => [
 
           ],
         ],
-
-
-
       __('Sizing', 'responsive-menu') =>
         [
           [
@@ -863,6 +860,16 @@ __('Sub-Menus', 'responsive-menu') => [
             'title' => __('Image Inactive', 'responsive-menu'),
             'label' => __('', 'responsive-menu'),
             'type' => 'image'
+          ],
+          [
+            'option' => 'arrow_position',
+            'title' => __('Icon Position', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+              'type' => 'select',
+              'select' => [
+                ['value' => 'left', 'display' => 'Left'],
+                ['value' => 'right', 'display' => 'Right']
+              ],
           ]
         ],
       ],
