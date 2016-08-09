@@ -142,7 +142,6 @@ class ScssBaseMapper extends ScssMapper
             }
             .responsive-menu-subarrow {
               position: absolute;
-              right: 0;
               top: 0;
               bottom: 0;
               text-align: center;
