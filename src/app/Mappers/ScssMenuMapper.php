@@ -87,6 +87,7 @@ class ScssMenuMapper extends ScssMapper
           font-size: {$this->options['menu_title_font_size']}px;
           a {
             color: {$this->options['menu_title_colour']};
+            font-size: {$this->options['menu_title_font_size']}px;
             text-decoration: none;
             &:hover {
               color: {$this->options['menu_title_hover_colour']};
