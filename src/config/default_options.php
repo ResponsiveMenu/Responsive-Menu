@@ -49,6 +49,7 @@ $default_options = array(
   'inactive_arrow_image' => '',
   'active_arrow_font_icon' => '',
   'inactive_arrow_font_icon' => '',
+  'arrow_position' => 'right',
   'submenu_arrow_width' => '40',
   'submenu_arrow_height' => '40',
   'accordion_animation' => 'off',
