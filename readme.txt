@@ -151,6 +151,7 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 * Additional Content added to WPML/Polylang
 * Added sub-arrow active colours - Pro only
 * Added sub-arrow positioning side option
+* Allow 0 values to be entered
 * Switched sub-menu padding round if right text-alignment used
 * Added item link colours to transition list
 * Minor bug fixes

@@ -13,7 +13,9 @@ class Admin {
 
 	public function update($default_options, $new_options) {
     $this->view->render('main', [
-      'options' => $this->service->updateOptions(array_merge($default_options, array_filter($new_options))),
+      'options' => $this->service->updateOptions(array_merge($default_options, array_filter($new_options, function($value) {
+        return ($value !== null && $value !== false && $value !== '');
+      }))),
       'flash' => ['success' =>  __('Responsive Menu Options Updated Successfully', 'responsive-menu')]
     ]);
 	}

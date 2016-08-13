@@ -59,5 +59,5 @@ class OptionService {
   public function buildFromPostArray(array $post) {
     return $this->repository->buildFromArray($post);
   }
-  
+
 }
