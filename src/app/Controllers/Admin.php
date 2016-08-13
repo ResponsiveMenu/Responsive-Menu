@@ -12,10 +12,9 @@ class Admin {
 	}
 
 	public function update($default_options, $new_options) {
+    $updated_options = $this->service->combineOptions($default_options, $new_options);
     $this->view->render('main', [
-      'options' => $this->service->updateOptions(array_merge($default_options, array_filter($new_options, function($value) {
-        return ($value !== null && $value !== false && $value !== '');
-      }))),
+      'options' => $this->service->updateOptions($updated_options),
       'flash' => ['success' =>  __('Responsive Menu Options Updated Successfully', 'responsive-menu')]
     ]);
 	}
@@ -35,7 +34,8 @@ class Admin {
     if(!empty($file['tmp_name'])):
       $file = file_get_contents($file['tmp_name']);
       $decoded = (array) json_decode($file);
-      $options = $this->service->updateOptions(array_merge($default_options, array_filter($decoded)));
+      $updated_options = $this->service->combineOptions($default_options, $new_options);
+      $options = $this->service->updateOptions(array_merge($updated_options));
       $flash['success'] = __('Responsive Menu Options Reset Successfully', 'responsive-menu');
     else:
       $flash['errors'][] = __('No file selected', 'responsive-menu');

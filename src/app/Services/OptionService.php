@@ -1,11 +1,11 @@
 <?php
 
 namespace ResponsiveMenu\Services;
-use ResponsiveMenu\Repositories\OptionRepository as OptionRepository;
-use ResponsiveMenu\WPML\WPML as WPML;
-use ResponsiveMenu\Factories\AdminSaveFactory as SaveFactory;
-use ResponsiveMenu\Factories\OptionFactory as OptionFactory;
-use ResponsiveMenu\Collections\OptionsCollection as OptionsCollection;
+use ResponsiveMenu\Repositories\OptionRepository;
+use ResponsiveMenu\WPML\WPML;
+use ResponsiveMenu\Factories\AdminSaveFactory;
+use ResponsiveMenu\Factories\OptionFactory;
+use ResponsiveMenu\Collections\OptionsCollection;
 
 class OptionService {
 
@@ -51,13 +51,19 @@ class OptionService {
 
 	public function buildFiles(OptionsCollection $options) {
 		if($options['external_files'] == 'on'):
-    		$save_factory = new SaveFactory();
+    		$save_factory = new AdminSaveFactory();
     		$save_factory->build($options);
   	endif;
 	}
 
   public function buildFromPostArray(array $post) {
     return $this->repository->buildFromArray($post);
+  }
+
+  public function combineOptions($default_options, $new_options) {
+    return array_merge($default_options, array_filter($new_options, function($value) {
+      return ($value !== null && $value !== false && $value !== '');
+    }));
   }
 
 }
