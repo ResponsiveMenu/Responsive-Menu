@@ -1,20 +1,17 @@
 <?php
 
 namespace ResponsiveMenu\Walkers;
-use ResponsiveMenu\Collections\OptionsCollection as OptionsCollection;
+use ResponsiveMenu\Collections\OptionsCollection;
 
-class WpWalker extends \Walker_Nav_Menu
-{
+class WpWalker extends \Walker_Nav_Menu {
 
     private $curItem;
 
-    public function __construct(OptionsCollection $options)
-    {
+    public function __construct(OptionsCollection $options) {
       $this->options = $options;
     }
 
-  	public function start_lvl( &$output, $depth = 0, $args = array())
-    {
+  	public function start_lvl(&$output, $depth = 0, $args = array()) {
       if($this->options['auto_expand_all_submenus'] == 'on'):
         $class = 'responsive-menu-submenu-open';
       elseif(
@@ -28,12 +25,7 @@ class WpWalker extends \Walker_Nav_Menu
       $output .= "<ul class='responsive-menu-submenu responsive-menu-submenu-depth-" . ($depth + 1) . " {$class}'>";
   	}
 
-  	public function end_lvl( &$output, $depth = 0, $args = array() )
-    {
-  		$output .= "</ul>";
-  	}
-
-  	public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 )
+  	public function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0)
     {
       $this->curItem = $item;
   		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
@@ -110,9 +102,12 @@ class WpWalker extends \Walker_Nav_Menu
 
   	}
 
-  	public function end_el( &$output, $item, $depth = 0, $args = array() )
-    {
+  	public function end_el(&$output, $item, $depth = 0, $args = array()) {
   		$output .= "</li>";
+  	}
+
+    public function end_lvl(&$output, $depth = 0, $args = array()) {
+  		$output .= "</ul>";
   	}
 
 }

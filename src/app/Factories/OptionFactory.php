@@ -17,11 +17,11 @@ class OptionFactory {
       : new \ResponsiveMenu\Filters\TextFilter;
 
     $value = isset($value) || $value == '0' ? $value : $this->defaults[$name];
-		$option = new Option($name, $value);
+    $option = new Option($name, $value);
     $option->setFilter($filter);
 
     return $option;
 
-	}
+  }
 
 }
