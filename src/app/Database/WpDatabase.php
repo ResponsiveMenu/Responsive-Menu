@@ -30,20 +30,24 @@ class WpDatabase implements Database {
     return $this->db->get_results("SELECT * FROM {$this->prexix}{$table} WHERE $column = '$value';");
   }
 
-  public function getPrefix() {
-    return $this->db->prefix;
-  }
-
-  public function getCharset() {
-    return $this->db->get_charset_collate();
-  }
-
   public function mySqlTime() {
     return current_time('mysql');
   }
 
   public function updateOption($key, $value) {
     update_option($key, $value);
+  }
+
+  public function createTable($table) {
+    $sql = "CREATE TABLE " . $this->db->prefix . $table . " (
+              name varchar(50) NOT NULL,
+              value varchar(5000) DEFAULT NULL,
+              created_at datetime NOT NULL,
+              updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+              PRIMARY KEY  (name)
+            ) " . $this->db->get_charset_collate() . ";";
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php' );
+    dbDelta($sql);
   }
 
 }

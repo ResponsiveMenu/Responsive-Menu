@@ -51,15 +51,7 @@ class Migration {
 	public function setup() {
     # Create the database table if it doesn't exist
     if(!$this->isVersion3()):
-      $sql = "CREATE TABLE " . $this->db->getPrefix() . self::$table . " (
-      				  name varchar(50) NOT NULL,
-      				  value varchar(5000) DEFAULT NULL,
-      				  created_at datetime NOT NULL,
-      				  updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-                PRIMARY KEY  (name)
-      				) " . $this->db->getCharset() . ";";
-  		require_once(ABSPATH . 'wp-admin/includes/upgrade.php' );
-  		dbDelta($sql);
+        $this->db->createTable(self::$table);
       $this->synchronise();
     endif;
 	}
