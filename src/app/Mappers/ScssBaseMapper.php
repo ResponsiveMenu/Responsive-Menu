@@ -2,11 +2,9 @@
 
 namespace ResponsiveMenu\Mappers;
 
-class ScssBaseMapper extends ScssMapper
-{
+class ScssBaseMapper extends ScssMapper {
 
-  public function map()
-  {
+  public function map() {
 
     $css = <<<CSS
 
