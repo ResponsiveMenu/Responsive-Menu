@@ -41,7 +41,7 @@ class Boxes {
                         <span class="description">' . $option['label'] . '</span>
                       </td>
                       <td>';
-                        $this->f($type, $option['option'], $select);
+                      echo $this->f($type, $option['option'], $select);
                 echo $unit . '</td>
                     </tr>';
                 endforeach;
@@ -60,40 +60,40 @@ class Boxes {
   public function f($type, $option_name, $select) {
     switch($type):
       case 'checkbox' : $comp = new Form\Checkbox;
-                        $comp->render($this->options[$option_name]);
+                        return $comp->render($this->options[$option_name]);
                         break;
       case 'colour' : $comp = new Form\Colour;
-                        $comp->render($this->options[$option_name]);
+                        return $comp->render($this->options[$option_name]);
                         break;
       case 'textarea' : $comp = new Form\TextArea;
-                        $comp->render($this->options[$option_name]);
+                        return $comp->render($this->options[$option_name]);
                         break;
       case 'select' : $comp = new Form\Select;
-                        $comp->render($this->options[$option_name], $select);
+                        return $comp->render($this->options[$option_name], $select);
                         break;
       case 'image' : $comp = new Form\Image;
-                        $comp->render($this->options[$option_name]);
+                        return $comp->render($this->options[$option_name]);
                         break;
       case 'menu_ordering' : $comp = new Form\MenuOrdering;
-                        $comp->render($this->options[$option_name]);
+                        return $comp->render($this->options[$option_name]);
                         break;
       case 'header_ordering' : $comp = new Form\HeaderBarOrdering;
-                        $comp->render($this->options[$option_name]);
+                        return $comp->render($this->options[$option_name]);
                         break;
       case 'fonticons' : $comp = new Form\FontIconPageList;
-                        $comp->render($this->options[$option_name]);
+                        return $comp->render($this->options[$option_name]);
                         break;
       case 'import' : $comp = new Form\Import;
-                        $comp->render();
+                        return $comp->render();
                         break;
       case 'export' : $comp = new Form\Export;
-                        $comp->render();
+                        return $comp->render();
                         break;
       case 'reset' : $comp = new Form\Reset;
-                        $comp->render();
+                        return $comp->render();
                         break;
       default : $comp = new Form\Text;
-                        $comp->render($this->options[$option_name]);
+                        return $comp->render($this->options[$option_name]);
                         break;
     endswitch;
 
