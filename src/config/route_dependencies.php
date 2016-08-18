@@ -12,6 +12,8 @@ $container['default_options'] = function($c) {
   return $default_options;
 };
 
+$container['site_id'] = get_current_blog_id();
+
 $container['database'] = function($c) {
   return new ResponsiveMenu\Database\WpDatabase;
 };
@@ -24,7 +26,9 @@ $container['scripts_builder'] = function($c) {
   return new ResponsiveMenu\Filesystem\ScriptsBuilder(
     new ResponsiveMenu\Factories\CssFactory,
     new ResponsiveMenu\Factories\JsFactory,
-    new ResponsiveMenu\Filesystem\FileCreator
+    new ResponsiveMenu\Filesystem\FileCreator,
+    new ResponsiveMenu\Filesystem\FolderCreator,
+    $c['site_id']
   );
 };
 
