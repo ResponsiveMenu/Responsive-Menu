@@ -8,7 +8,7 @@ use ResponsiveMenu\Models\Option;
 class MigrationTest extends TestCase {
 
     public function setUp() {
-      $this->database = $this->createMock('ResponsiveMenu\Database\Database');
+      $this->database = $this->createMock('ResponsiveMenu\Database\WpDatabase');
       $this->service = $this->createMock('ResponsiveMenu\Services\OptionService');
       $this->defaults = ['default_one' => 1, 'default_two' => 'string', 'default_three' => 4.5, 'default_four' => 'new'];
       $this->current_version = '3.0.8';
@@ -92,6 +92,23 @@ class MigrationTest extends TestCase {
 
     public function testOptionsToMigrate() {
       $this->assertSame(['menu_to_use' => 'old RM value', 'menu_depth' => 'old RMDepth value'], $this->base_migration->getMigratedOptions());
+    }
+
+    public function testSetup() {
+      $this->database->method('createTable')->willReturn(true);
+      $migration = new Migration($this->database, $this->service, $this->defaults, '3.0.10', '2.8.9', $this->old_options);
+      $this->assertEquals(null, $migration->setUp());
+    }
+
+    public function testSynchronise() {
+      $this->assertEquals(null, $this->base_migration->synchronise());
+    }
+
+    public function testAddNewOptionsEmpty() {
+      $service = $this->createMock('ResponsiveMenu\Services\OptionService');
+      $service->method('all')->willReturn(new ResponsiveMenu\Collections\OptionsCollection);
+      $migration = new Migration($this->database, $service, $this->defaults, $this->current_version, $this->old_version, $this->old_options);
+      $this->assertEquals(null, $migration->addNewOptions());
     }
 
 }

@@ -14,11 +14,11 @@ class FontIconPageList implements FormComponent {
     else
       $final = null;
 
-    echo "<div class='font-icon-container'><div class='font-icon-row'><div class='font-icon-cell-id'>" . __('Id', 'responsive-menu') . "</div><div class='font-icon-cell-icon'>" . __('Icon', 'responsive-menu') . "</div></div>";
+    $output = "<div class='font-icon-container'><div class='font-icon-row'><div class='font-icon-cell-id'>" . __('Id', 'responsive-menu') . "</div><div class='font-icon-cell-icon'>" . __('Icon', 'responsive-menu') . "</div></div>";
 
     if(is_array($final) && !empty($final)):
-      foreach( $final as $id => $icon):
-      		echo "
+      foreach($final as $id => $icon):
+      		$output .= "
           <div class='font-icon-row'>
             <div class='font-icon-cell-id'>
                 <input
@@ -37,7 +37,7 @@ class FontIconPageList implements FormComponent {
             </div>";
           endforeach;
     else:
-      echo "
+      $output .= "
       <div class='font-icon-row'>
         <div class='font-icon-cell-id'>
             <input
@@ -56,9 +56,9 @@ class FontIconPageList implements FormComponent {
         </div>";
     endif;
 
-      echo "</div><div class='add-font-icon'>" . __('Add New Font Icon', 'responsive-menu') . "</div>";
+      $output .= "</div><div class='add-font-icon'>" . __('Add New Font Icon', 'responsive-menu') . "</div>";
 
-      echo "<script>
+      $output .= "<script>
         jQuery(document).ready(function($) {
           $(document).on('click', '.add-font-icon', function(e) {
             var lastRow = $('#{$option->getName()}_container .font-icon-row').last();
@@ -69,6 +69,7 @@ class FontIconPageList implements FormComponent {
         });
       </script>";
 
+      return $output;
 	}
 
 }

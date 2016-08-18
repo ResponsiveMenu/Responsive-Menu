@@ -46,12 +46,9 @@ class Migration {
     return array_diff_key($this->defaults, $current);
   }
 
-  /*
-  Can't be tested :-( */
 	public function setup() {
-    # Create the database table if it doesn't exist
     if(!$this->isVersion3()):
-        $this->db->createTable(self::$table);
+      $this->db->createTable(self::$table);
       $this->synchronise();
     endif;
 	}
