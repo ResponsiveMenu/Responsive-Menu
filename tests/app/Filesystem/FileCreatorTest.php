@@ -6,7 +6,6 @@ class FileCreatorTest extends TestCase {
 
   public function setUp() {
     $this->creator = new ResponsiveMenu\Filesystem\FileCreator;
-
   }
 
   public function testCreate() {
@@ -22,4 +21,5 @@ class FileCreatorTest extends TestCase {
     if(file_exists(dirname(__FILE__). '/test.txt'))
       unlink(dirname(__FILE__). '/test.txt');
   }
+  
 }

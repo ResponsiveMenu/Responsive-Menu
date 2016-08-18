@@ -17,4 +17,5 @@ class FolderCreatorTest extends TestCase {
   public function tearDown() {
     rmdir($this->dir);
   }
+  
 }
