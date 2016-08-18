@@ -6,10 +6,6 @@ class ImportTest extends TestCase {
 
   public function setUp() {
     $this->form_component = new ResponsiveMenu\Form\Import;
-    // Yuck - Needed for WordPress Internationalisation function
-    function __($a, $b) {
-      return $a;
-    }
   }
 
   public function testRendering() {
