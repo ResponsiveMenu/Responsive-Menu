@@ -1,17 +1,16 @@
 <?php
 
 namespace ResponsiveMenu\Mappers;
-use ResponsiveMenu\Collections\OptionsCollection as OptionsCollection;
+use ResponsiveMenu\Collections\OptionsCollection;
 
-class JsMapper
-{
-  public function __construct(OptionsCollection $options)
-  {
+class JsMapper {
+
+  public function __construct(OptionsCollection $options) {
     $this->options = $options;
   }
 
-  public function map()
-  {
+  public function map() {
+
     $animation_speed = $this->options['animation_speed'] ? $this->options['animation_speed']->getValue() * 1000 : 500;
 
     $js = <<<JS
