@@ -1,19 +1,19 @@
 <?php
 
-$option_helpers = array(
-	'menu_font_icons' => array(
+$option_helpers = [
+	'menu_font_icons' => [
     'filter' => 'ResponsiveMenu\Filters\JsonFilter'
-	),
-	'menu_additional_content' => array(
+	],
+	'menu_additional_content' => [
     'filter' => 'ResponsiveMenu\Filters\HtmlFilter'
-	),
-	'items_order' => array(
+	],
+	'items_order' => [
     'filter' => 'ResponsiveMenu\Filters\JsonFilter'
-	),
-  'header_bar_items_order' => array(
+	],
+  'header_bar_items_order' => [
     'filter' => 'ResponsiveMenu\Filters\JsonFilter'
-	),
-  'header_bar_html_content' => array(
+	],
+  'header_bar_html_content' => [
     'filter' => 'ResponsiveMenu\Filters\HtmlFilter'
-  )
-);
+  ]
+];

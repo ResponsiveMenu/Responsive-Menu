@@ -1,6 +1,6 @@
 <?php
 
-$default_options = array(
+$default_options = [
 
 	'breakpoint' => 800,
 	'menu_to_hide' => '',
@@ -161,4 +161,4 @@ $default_options = array(
   'items_order' => '{"title": "on","menu":"on","search":"on","additional content":"on"}',
   'header_bar_items_order' => '{"logo": "on","title":"on","search":"on","html content":"on","button":"on"}',
 
-);
+];
