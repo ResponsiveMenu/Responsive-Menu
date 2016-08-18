@@ -34,9 +34,9 @@ class Admin {
     if(!empty($file['tmp_name'])):
       $file = file_get_contents($file['tmp_name']);
       $decoded = (array) json_decode($file);
-      $updated_options = $this->service->combineOptions($default_options, $new_options);
-      $options = $this->service->updateOptions(array_merge($updated_options));
-      $flash['success'] = __('Responsive Menu Options Reset Successfully', 'responsive-menu');
+      $updated_options = $this->service->combineOptions($default_options, $decoded);
+      $options = $this->service->updateOptions($updated_options);
+      $flash['success'] = __('Responsive Menu Options Imported Successfully', 'responsive-menu');
     else:
       $flash['errors'][] = __('No file selected', 'responsive-menu');
       $options = $this->service->all();

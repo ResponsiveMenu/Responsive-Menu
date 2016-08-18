@@ -19,7 +19,9 @@ class OptionFactory {
     $value = isset($value) || $value == '0' ? $value : $this->defaults[$name];
 		$option = new Option($name, $value);
     $option->setFilter($filter);
-		return $option;
+
+    return $option;
+
 	}
 
 }
