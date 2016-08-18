@@ -30,7 +30,7 @@ class ScssButtonMapperTest extends TestCase {
     $this->mapper = new ResponsiveMenu\Mappers\ScssButtonMapper($this->collection);
   }
 
-  public function testThis() {
+  public function testOutput() {
     $this->assertContains('height: 555px;', $this->mapper->map());
     $this->assertContains('height: 888px;', $this->mapper->map());
     $this->assertContains('width: 777px;', $this->mapper->map());
