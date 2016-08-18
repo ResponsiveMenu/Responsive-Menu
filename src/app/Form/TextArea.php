@@ -1,17 +1,13 @@
 <?php
 
 namespace ResponsiveMenu\Form;
-use ResponsiveMenu\Models\Option as Option;
-use ResponsiveMenu\Form\FormComponent as FormComponent;
+use ResponsiveMenu\Models\Option;
+use ResponsiveMenu\Form\FormComponent;
 
 class TextArea implements FormComponent {
 
-	public function render(Option $option)
-	{
-		echo "<textarea
-				class='textarea'
-				id='{$option->getName()}'
-				name='menu[{$option->getName()}]'>{$option->getValue()}</textarea>";
+	public function render(Option $option) {
+		return "<textarea class='textarea' id='{$option->getName()}' name='menu[{$option->getName()}]'>{$option->getValue()}</textarea>";
 	}
 
 }
