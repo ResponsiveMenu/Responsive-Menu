@@ -1,7 +1,7 @@
 <?php
 
 namespace ResponsiveMenu\WPML;
-use ResponsiveMenu\Collections\OptionsCollection as OptionsCollection;
+use ResponsiveMenu\Collections\OptionsCollection;
 
 class WPML {
 

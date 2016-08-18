@@ -3,15 +3,21 @@
 namespace ResponsiveMenu\Services;
 use ResponsiveMenu\Repositories\OptionRepository;
 use ResponsiveMenu\WPML\WPML;
-use ResponsiveMenu\Factories\AdminSaveFactory;
 use ResponsiveMenu\Factories\OptionFactory;
 use ResponsiveMenu\Collections\OptionsCollection;
+use ResponsiveMenu\Filesystem\ScriptsBuilder;
 
 class OptionService {
 
-	public function __construct(OptionRepository $repository, OptionFactory $factory) {
+	public function __construct(OptionRepository $repository, OptionFactory $factory, WPML $wpml, ScriptsBuilder $builder) {
 		$this->repository = $repository;
 		$this->factory = $factory;
+		$this->wpml = $wpml;
+		$this->builder = $builder;
+	}
+
+  public function all() {
+		return $this->repository->all();
 	}
 
 	public function updateOptions(array $options) {
@@ -19,12 +25,7 @@ class OptionService {
   	foreach($options as $key => $val)
   		$this->repository->update($this->factory->build($key, $val));
 
-    $options = $this->all();
-
-    $this->updateWpml($options);
-    $this->buildFiles($options);
-
-		return $options;
+		return $this->processAfterSavingOptions();
 	}
 
 	public function createOptions(array $options) {
@@ -32,29 +33,16 @@ class OptionService {
   	foreach($options as $key => $val)
   		$this->repository->create($this->factory->build($key, $val));
 
+    return $this->processAfterSavingOptions();
+	}
+
+  private function processAfterSavingOptions() {
     $options = $this->all();
-
-  	$this->updateWpml($options);
-  	$this->buildFiles($options);
-
-  	return $options;
-	}
-
-	public function all() {
-		return $this->repository->all();
-	}
-
-	public function updateWpml(OptionsCollection $options) {
-    $wpml = new WPML;
-		$wpml->saveFromOptions($options);
-	}
-
-	public function buildFiles(OptionsCollection $options) {
-		if($options['external_files'] == 'on'):
-    		$save_factory = new AdminSaveFactory();
-    		$save_factory->build($options);
-  	endif;
-	}
+    $this->wpml->saveFromOptions($options);
+    if($options['external_files'] == 'on')
+      $this->builder->build($options);
+    return $options;
+  }
 
   public function buildFromPostArray(array $post) {
     return $this->repository->buildFromArray($post);

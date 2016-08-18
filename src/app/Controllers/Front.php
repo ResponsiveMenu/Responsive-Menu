@@ -1,8 +1,8 @@
 <?php
 
 namespace ResponsiveMenu\Controllers;
-use ResponsiveMenu\View\View as View;
-use ResponsiveMenu\Services\OptionService as OptionService;
+use ResponsiveMenu\View\View;
+use ResponsiveMenu\Services\OptionService;
 use ResponsiveMenu\ViewModels\Menu as MenuViewModel;
 use ResponsiveMenu\ViewModels\Button as ButtonViewModel;
 use ResponsiveMenu\Factories\FrontDisplayFactory as DisplayFactory;

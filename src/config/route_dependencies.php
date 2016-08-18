@@ -16,6 +16,18 @@ $container['database'] = function($c) {
   return new ResponsiveMenu\Database\WpDatabase;
 };
 
+$container['wpml'] = function($c) {
+  return new ResponsiveMenu\WPML\WPML;
+};
+
+$container['scripts_builder'] = function($c) {
+  return new ResponsiveMenu\Filesystem\ScriptsBuilder(
+    new ResponsiveMenu\Factories\CssFactory,
+    new ResponsiveMenu\Factories\JsFactory,
+    new ResponsiveMenu\Filesystem\FileCreator
+  );
+};
+
 $container['option_factory'] = function($c) {
   return new ResponsiveMenu\Factories\OptionFactory(
     $c['default_options'],
@@ -34,7 +46,9 @@ $container['option_repository'] = function($c) {
 $container['option_service'] = function($c) {
   return new ResponsiveMenu\Services\OptionService(
   	$c['option_repository'],
-  	$c['option_factory']
+  	$c['option_factory'],
+    $c['wpml'],
+    $c['scripts_builder']
 	);
 };
 
