@@ -6,6 +6,8 @@ use ResponsiveMenu\Services\OptionService as OptionService;
 use ResponsiveMenu\ViewModels\Menu as MenuViewModel;
 use ResponsiveMenu\ViewModels\Button as ButtonViewModel;
 use ResponsiveMenu\Factories\FrontDisplayFactory as DisplayFactory;
+use ResponsiveMenu\ViewModels\Components\Button\Button as ButtonComponent;
+use ResponsiveMenu\ViewModels\Components\ComponentFactory;
 
 class Front  {
 
@@ -23,8 +25,8 @@ class Front  {
     $display_factory->build($options);
 
     # Build Our Menu Display
-    $menu = new MenuViewModel($options);
-    $html = new ButtonViewModel($options);
+    $menu = new MenuViewModel($options, new ComponentFactory);
+    $html = new ButtonViewModel($options, new ButtonComponent);
 
     # Only render if we don't have shortcodes turned on
     if($options['shortcode'] == 'off'):
