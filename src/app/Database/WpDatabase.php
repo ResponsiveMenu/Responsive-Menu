@@ -38,4 +38,8 @@ class WpDatabase implements Database {
     return $this->db->get_charset_collate();
   }
 
+  public function mySqlTime() {
+    return current_time('mysql');
+  }
+
 }
