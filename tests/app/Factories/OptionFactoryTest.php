@@ -40,4 +40,15 @@ class OptionFactoryTest extends TestCase {
     $this->assertEquals('updated', $option->getValue());
   }
 
+  public function testDecodingArrayData() {
+    $option = $this->factory->build('a', ['a' => 1, 'b' => ['a' => 1, 'b' => 2]]);
+    $this->assertEquals(['a' => 1, 'b' => ['a' => 1, 'b' => 2]], $option->getValue());
+  }
+
+  public function testDecodedOfJsonDataToArray() {
+    $value = (array) json_decode('{"a":"1","b":"2"}');
+    $option = $this->factory->build('a', $value);
+    $this->assertEquals(['a' => 1, 'b' => 2], $option->getValue());
+  }
+
 }
