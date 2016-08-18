@@ -19,7 +19,7 @@ class Migration {
 
 	public function __construct(Database $db, OptionService $service, $defaults, $current_version, $old_version, $old_options) {
     $this->db = $db;
-	   $this->service = $service;
+	  $this->service = $service;
     $this->defaults = $defaults;
     $this->current_version = $current_version;
     $this->old_version = $old_version;
@@ -90,7 +90,7 @@ class Migration {
 	}
 
 	protected function updateVersion() {
-		update_option(self::$version_var, $this->current_version);
+		$this->db->updateOption(self::$version_var, $this->current_version);
         $this->old_version = $this->current_version;
 	}
 

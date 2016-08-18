@@ -42,4 +42,8 @@ class WpDatabase implements Database {
     return current_time('mysql');
   }
 
+  public function updateOption($key, $value) {
+    update_option($key, $value);
+  }
+
 }
