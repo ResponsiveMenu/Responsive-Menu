@@ -19,19 +19,19 @@ class ScriptsBuilder {
 
   public function build(OptionsCollection $options) {
 
-      $data_folder_dir = dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/responsive-menu-data';
+    $data_folder_dir = dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/responsive-menu-data';
 
-      $js_folder = $data_folder_dir . '/js';
-      $css_folder = $data_folder_dir . '/css';
+    $js_folder = $data_folder_dir . '/js';
+    $css_folder = $data_folder_dir . '/css';
 
-      if(!$this->folders->exists($data_folder_dir)):
-        $this->folders->create($data_folder_dir);
-        $this->folders->create($css_folder);
-        $this->folders->create($js_folder);
-      endif;
+    if(!$this->folders->exists($data_folder_dir)):
+      $this->folders->create($data_folder_dir);
+      $this->folders->create($css_folder);
+      $this->folders->create($js_folder);
+    endif;
 
-      $this->files->create($css_folder, 'responsive-menu-' . $this->site_id . '.css', $this->css->build($options));
-      $this->files->create($js_folder, 'responsive-menu-' . $this->site_id . '.js', $this->js->build($options));
+    $this->files->create($css_folder, 'responsive-menu-' . $this->site_id . '.css', $this->css->build($options));
+    $this->files->create($js_folder, 'responsive-menu-' . $this->site_id . '.js', $this->js->build($options));
 
   }
 

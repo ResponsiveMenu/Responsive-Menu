@@ -48,7 +48,7 @@ class Front  {
 	}
 
   public function preview() {
-    $this->view->render('preview');
+    return $this->view->render('preview');
   }
 
 }

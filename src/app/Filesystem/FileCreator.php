@@ -9,14 +9,14 @@ class FileCreator {
   }
 
   protected function open_write_and_close($file_name, $data) {
-    if($file = fopen($file_name, 'w')):
+    try{
+      $file = fopen($file_name, 'w');
       fwrite($file, $data);
       fclose($file);
-    else:
+      return true;
+    } catch(\Exception $e) {
       return false;
-    endif;
-
-    return true;
+    }
   }
 
 }
