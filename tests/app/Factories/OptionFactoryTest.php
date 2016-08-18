@@ -5,8 +5,8 @@ use PHPUnit\Framework\TestCase;
 class OptionFactoryTest extends TestCase {
 
   public function setUp() {
-    $defaults = ['a' => 1, 'b' => 2];
-    $helpers = ['a' => ['filter' => 'ResponsiveMenu\Filters\HtmlFilter']];
+    $defaults = ['a' => 1, 'b' => 2, 'c' => 3];
+    $helpers = ['a' => ['filter' => 'ResponsiveMenu\Filters\HtmlFilter'], 'c' => ['filter' => 'ResponsiveMenu\Filters\JsonFilter']];
     $this->factory = new ResponsiveMenu\Factories\OptionFactory($defaults, $helpers);
   }
 
@@ -46,9 +46,8 @@ class OptionFactoryTest extends TestCase {
   }
 
   public function testDecodedOfJsonDataToArray() {
-    $value = (array) json_decode('{"a":"1","b":"2"}');
-    $option = $this->factory->build('a', $value);
-    $this->assertEquals(['a' => 1, 'b' => 2], $option->getValue());
+    $option = $this->factory->build('c', '{"a":"1","b":"2"}');
+    $this->assertEquals(['a' => 1, 'b' => 2], (array) json_decode($option->getValue()));
   }
 
 }

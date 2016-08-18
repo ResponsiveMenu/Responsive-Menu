@@ -39,4 +39,19 @@ class OptionTest extends TestCase {
     $this->option->setFilter($filter);
     $this->assertInstanceOf('ResponsiveMenu\Filters\TextFilter', $this->option->getFilter());
   }
+
+  public function testFilteredJsonAsString() {
+    $option = new ResponsiveMenu\Models\Option('a', '{"a":"1","b":"2"}');
+    $filter = new ResponsiveMenu\Filters\JsonFilter;
+    $option->setFilter($filter);
+    $this->assertEquals('{"a":"1","b":"2"}', $option->getFiltered());
+  }
+
+  public function testFilteredJsonAsArray() {
+    $option = new ResponsiveMenu\Models\Option('a', ['a' => 1,'b' => 2]);
+    $filter = new ResponsiveMenu\Filters\JsonFilter;
+    $option->setFilter($filter);
+    $this->assertEquals('{"a":1,"b":2}', $option->getFiltered());
+  }
+
 }

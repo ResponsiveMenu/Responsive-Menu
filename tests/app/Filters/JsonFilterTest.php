@@ -9,7 +9,7 @@ class JsonFilterTest extends TestCase {
   }
 
   public function testFilteredWithString() {
-    $this->assertEquals('a', $this->filter->filter('a'));
+    $this->assertEquals('{"a":1,"b":2}', $this->filter->filter('{"a":1,"b":2}'));
   }
 
   public function testFilteredWithArray() {
