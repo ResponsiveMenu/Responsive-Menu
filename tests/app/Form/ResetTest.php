@@ -6,10 +6,6 @@ class ResetTest extends TestCase {
 
   public function setUp() {
     $this->form_component = new ResponsiveMenu\Form\Reset;
-    // Yuck - Needed for WordPress Internationalisation function
-    function __($a, $b) {
-      return 'Reset Options';
-    }
   }
 
   public function testRendering() {
