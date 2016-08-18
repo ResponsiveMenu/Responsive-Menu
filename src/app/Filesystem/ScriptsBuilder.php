@@ -21,14 +21,14 @@ class ScriptsBuilder {
       $js_folder = $data_folder_dir . '/js';
       $css_folder = $data_folder_dir . '/css';
 
-      if($options['external_files'] == 'on' && !is_dir($data_folder_dir)):
+      if(!is_dir($data_folder_dir)):
         mkdir($data_folder_dir);
         mkdir($css_folder);
         mkdir($js_folder);
       endif;
 
-      $this->creator->createCssFile($css_folder, 'responsive-menu-' . get_current_blog_id() . '.css', $this->css->build($options));
-      $this->creator->createJsFile($js_folder, 'responsive-menu-' . get_current_blog_id() . '.js', $this->js->build($options));
+      $this->creator->create($css_folder, 'responsive-menu-' . get_current_blog_id() . '.css', $this->css->build($options));
+      $this->creator->create($js_folder, 'responsive-menu-' . get_current_blog_id() . '.js', $this->js->build($options));
 
   }
 

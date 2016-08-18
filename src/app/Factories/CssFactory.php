@@ -1,11 +1,11 @@
 <?php
 
 namespace ResponsiveMenu\Factories;
-use ResponsiveMenu\Mappers\ScssBaseMapper as ScssBaseMapper;
-use ResponsiveMenu\Mappers\ScssButtonMapper as ScssButtonMapper;
-use ResponsiveMenu\Mappers\ScssMenuMapper as ScssMenuMapper;
-use ResponsiveMenu\Formatters\Minify as Minify;
-use ResponsiveMenu\Collections\OptionsCollection as OptionsCollection;
+use ResponsiveMenu\Mappers\ScssBaseMapper;
+use ResponsiveMenu\Mappers\ScssButtonMapper;
+use ResponsiveMenu\Mappers\ScssMenuMapper;
+use ResponsiveMenu\Formatters\Minify;
+use ResponsiveMenu\Collections\OptionsCollection;
 
 class CssFactory {
 

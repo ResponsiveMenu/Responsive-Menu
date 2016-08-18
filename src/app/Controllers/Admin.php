@@ -13,21 +13,21 @@ class Admin {
 
 	public function update($default_options, $new_options) {
     $updated_options = $this->service->combineOptions($default_options, $new_options);
-    $this->view->render('main', [
+    return $this->view->render('main', [
       'options' => $this->service->updateOptions($updated_options),
       'flash' => ['success' =>  __('Responsive Menu Options Updated Successfully', 'responsive-menu')]
     ]);
 	}
 
 	public function reset($default_options) {
-    $this->view->render('main', [
+    return $this->view->render('main', [
       'options' => $this->service->updateOptions($default_options),
       'flash' => ['success' => __('Responsive Menu Options Reset Successfully', 'responsive-menu')]
     ]);
 	}
 
   public function index() {
-    $this->view->render('main', ['options' => $this->service->all()]);
+    return $this->view->render('main', ['options' => $this->service->all()]);
   }
 
   public function import($default_options, $file) {
@@ -42,7 +42,7 @@ class Admin {
       $options = $this->service->all();
     endif;
 
-    $this->view->render('main', ['options' => $options, 'flash' => $flash]);
+    return $this->view->render('main', ['options' => $options, 'flash' => $flash]);
   }
 
   public function export() {

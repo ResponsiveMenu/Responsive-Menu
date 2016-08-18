@@ -5,10 +5,6 @@ use PHPUnit\Framework\TestCase;
 class ExportTest extends TestCase {
 
   public function setUp() {
-    // Yuck - Needed for WordPress Internationalisation function
-    function __($a, $b) {
-      return $a;
-    }
     $this->form_component = new ResponsiveMenu\Form\Export;
   }
 

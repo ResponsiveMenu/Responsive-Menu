@@ -1,9 +1,9 @@
 <?php
 
 namespace ResponsiveMenu\Factories;
-use ResponsiveMenu\Factories\CssFactory as CssFactory;
-use ResponsiveMenu\Factories\JsFactory as JsFactory;
-use ResponsiveMenu\Collections\OptionsCollection as OptionsCollection;
+use ResponsiveMenu\Factories\CssFactory;
+use ResponsiveMenu\Factories\JsFactory;
+use ResponsiveMenu\Collections\OptionsCollection;
 
 class FrontDisplayFactory {
 
