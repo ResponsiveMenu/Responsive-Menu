@@ -2,22 +2,20 @@
 
 namespace ResponsiveMenu\ViewModels\Components\Menu;
 
-use ResponsiveMenu\ViewModels\Components\ViewComponent as ViewComponent;
-use ResponsiveMenu\Collections\OptionsCollection as OptionsCollection;
+use ResponsiveMenu\ViewModels\Components\ViewComponent;
+use ResponsiveMenu\Collections\OptionsCollection;
+use ResponsiveMenu\Translation\Translator;
 
 class Title implements ViewComponent {
 
+  public function __construct(Translator $translator) {
+    $this->translator = $translator;
+  }
+
   public function render(OptionsCollection $options) {
 
-    $title = apply_filters('wpml_translate_single_string', $options['menu_title']->getValue(), 'Responsive Menu', 'menu_title');
-    $link = apply_filters('wpml_translate_single_string', $options['menu_title_link']->getValue(), 'Responsive Menu', 'menu_title_link');
-
-    /*
-    Add Polylang Support */
-    if(function_exists('pll__')):
-      $title = pll__($title);
-      $link = pll__($link);
-    endif;
+    $title = $this->translator->translate($options['menu_title']);
+    $link = $this->translator->translate($options['menu_title_link']);
 
     if($options['menu_title']->getValue() || $options->getTitleImage()):
       $content = '<div id="responsive-menu-title">';

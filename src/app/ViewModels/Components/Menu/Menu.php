@@ -2,21 +2,21 @@
 
 namespace ResponsiveMenu\ViewModels\Components\Menu;
 
-use ResponsiveMenu\ViewModels\Components\ViewComponent as ViewComponent;
-use ResponsiveMenu\Collections\OptionsCollection as OptionsCollection;
+use ResponsiveMenu\ViewModels\Components\ViewComponent;
+use ResponsiveMenu\Collections\OptionsCollection;
 use ResponsiveMenu\Walkers\WpWalker as Walker;
+use ResponsiveMenu\Translation\Translator;
 
 class Menu implements ViewComponent {
 
+  public function __construct(Translator $translator) {
+    $this->translator = $translator;
+  }
+
   public function render(OptionsCollection $options) {
 
-    $menu = apply_filters('wpml_translate_single_string', $options['menu_to_use']->getValue(), 'Responsive Menu', 'menu_to_use');
-
-    /*
-    Add Polylang Support */
-    if(function_exists('pll__'))
-      $menu = pll__($menu);
-
+    $menu = $this->translator->translate($options['menu_to_use']);
+     
     return wp_nav_menu(
       [
         'container' => '',

@@ -2,16 +2,19 @@
 
 namespace ResponsiveMenu\ViewModels\Components\Menu;
 
-use ResponsiveMenu\ViewModels\Components\ViewComponent as ViewComponent;
-use ResponsiveMenu\Collections\OptionsCollection as OptionsCollection;
+use ResponsiveMenu\ViewModels\Components\ViewComponent;
+use ResponsiveMenu\Collections\OptionsCollection;
+use ResponsiveMenu\Translation\Translator;
 
 class Search implements ViewComponent {
 
-  public function render(OptionsCollection $options) {
+  public function __construct(Translator $translator) {
+    $this->translator = $translator;
+  }
 
-      $action = function_exists( 'icl_get_home_url' ) ? icl_get_home_url() : get_home_url();
+  public function render(OptionsCollection $options) {
       return '<div id="responsive-menu-search-box">
-        <form action="'.$action.'" class="responsive-menu-search-form" role="search">
+        <form action="'.$this->translator->searchUrl().'" class="responsive-menu-search-form" role="search">
           <input type="search" name="s" placeholder="' . __('Search', 'responsive-menu') . '" class="responsive-menu-search-box">
         </form>
       </div>';

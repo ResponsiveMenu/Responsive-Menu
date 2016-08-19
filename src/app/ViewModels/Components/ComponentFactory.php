@@ -1,6 +1,7 @@
 <?php
 
 namespace ResponsiveMenu\ViewModels\Components;
+use ResponsiveMenu\Translation\Translator;
 
 class ComponentFactory {
 
@@ -13,7 +14,7 @@ class ComponentFactory {
       'additional content' => 'ResponsiveMenu\ViewModels\Components\Menu\AdditionalContent'
     ];
 
-    return new $components[$key];
+    return new $components[$key](new Translator);
 
   }
 
