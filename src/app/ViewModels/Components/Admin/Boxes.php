@@ -14,11 +14,11 @@ class Boxes {
   }
 
   public function render() {
-
+    $output = '';
     foreach($this->config as $tab_name => $sub_menus):
-      echo '<div class="tab_container" id="tab_container_' . $this->i($tab_name) . '">';
+      $output .= '<div class="tab_container" id="tab_container_' . $this->i($tab_name) . '">';
         foreach($sub_menus as $sub_menu_name => $options):
-          echo '
+          $output .= '
           <div class="postbox" id="postbox_' . $this->i($sub_menu_name).'">
             <div class="handlediv">
               <button aria-expanded="true" class="button-link" type="button">
@@ -35,22 +35,23 @@ class Boxes {
                   $type = isset($option['type']) ? $option['type'] : null;
                   $unit = isset($option['unit']) ? '<span class="units">' . $option['unit'] . '</span>' : null;
                   $select = isset($option['select']) ? $option['select'] : null;
-              echo '<tr class="' . $pro . ' ' . $semi_pro . '" id="' . $option['option'] . '_container">
+              $output .= '<tr class="' . $pro . ' ' . $semi_pro . '" id="' . $option['option'] . '_container">
                       <td>
                         <div class="label">' . $option['title'] . '</div>
                         <span class="description">' . $option['label'] . '</span>
                       </td>
                       <td>';
-                      echo $this->f($type, $option['option'], $select);
-                echo $unit . '</td>
+                      $output .= $this->f($type, $option['option'], $select);
+                $output .= $unit . '</td>
                     </tr>';
                 endforeach;
-        echo '</table>
+        $output .= '</table>
             </div> <!-- .inside -->
           </div> <!-- .postbox -->';
         endforeach;
-      echo '</div> <!-- .tab_container -->';
+      $output .= '</div> <!-- .tab_container -->';
     endforeach;
+    return $output;
   }
 
   public function i($data) {

@@ -12,11 +12,13 @@ class Tabs {
 
   public function render() {
     $i=0;
+    $output = '';
     foreach(array_keys($this->config) as $tab_name) {
       $active_class = $i == 0 ? ' active_tab' : '';
-      echo '<a id="tab_' . $this->i($tab_name) . '" class="tab page-title-action' . $active_class . '">' . $tab_name . '</a>';
+      $output .= '<a id="tab_' . $this->i($tab_name) . '" class="tab page-title-action' . $active_class . '">' . $tab_name . '</a>';
       $i++;
     }
+    return $output;
   }
 
   public function i($data) {

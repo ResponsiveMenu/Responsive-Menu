@@ -8,10 +8,10 @@ class OptionsServiceTest extends TestCase {
     public function setUp() {
       $this->repository = $this->createMock('ResponsiveMenu\Repositories\OptionRepository');
       $this->factory = $this->createMock('ResponsiveMenu\Factories\OptionFactory');
-      $this->wpml = $this->createMock('ResponsiveMenu\WPML\WPML');
+      $this->translator = $this->createMock('ResponsiveMenu\Translation\Translator');
       $this->scripts_builder = $this->createMock('ResponsiveMenu\Filesystem\ScriptsBuilder');
 
-      $this->service = new OptionService($this->repository, $this->factory, $this->wpml, $this->scripts_builder);
+      $this->service = new OptionService($this->repository, $this->factory, $this->translator, $this->scripts_builder);
     }
 
     public function testCombiningBasicOptions() {
