@@ -18,8 +18,8 @@ $container['database'] = function($c) {
   return new ResponsiveMenu\Database\WpDatabase;
 };
 
-$container['wpml'] = function($c) {
-  return new ResponsiveMenu\WPML\WPML;
+$container['translator'] = function($c) {
+  return new ResponsiveMenu\Translation\Translator;
 };
 
 $container['scripts_builder'] = function($c) {
@@ -51,7 +51,7 @@ $container['option_service'] = function($c) {
   return new ResponsiveMenu\Services\OptionService(
   	$c['option_repository'],
   	$c['option_factory'],
-    $c['wpml'],
+    $c['translator'],
     $c['scripts_builder']
 	);
 };

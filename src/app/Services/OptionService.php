@@ -2,17 +2,17 @@
 
 namespace ResponsiveMenu\Services;
 use ResponsiveMenu\Repositories\OptionRepository;
-use ResponsiveMenu\WPML\WPML;
+use ResponsiveMenu\Translation\Translator;
 use ResponsiveMenu\Factories\OptionFactory;
 use ResponsiveMenu\Collections\OptionsCollection;
 use ResponsiveMenu\Filesystem\ScriptsBuilder;
 
 class OptionService {
 
-	public function __construct(OptionRepository $repository, OptionFactory $factory, WPML $wpml, ScriptsBuilder $builder) {
+	public function __construct(OptionRepository $repository, OptionFactory $factory, Translator $translator, ScriptsBuilder $builder) {
 		$this->repository = $repository;
 		$this->factory = $factory;
-		$this->wpml = $wpml;
+		$this->translator = $translator;
 		$this->builder = $builder;
 	}
 
@@ -38,7 +38,7 @@ class OptionService {
 
   private function processAfterSavingOptions() {
     $options = $this->all();
-    $this->wpml->saveFromOptions($options);
+    $this->translator->saveTranslations($options);
     if($options['external_files'] == 'on')
       $this->builder->build($options);
     return $options;
