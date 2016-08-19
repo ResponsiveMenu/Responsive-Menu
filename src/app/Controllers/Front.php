@@ -8,6 +8,7 @@ use ResponsiveMenu\ViewModels\Button as ButtonViewModel;
 use ResponsiveMenu\Factories\FrontDisplayFactory as DisplayFactory;
 use ResponsiveMenu\ViewModels\Components\Button\Button as ButtonComponent;
 use ResponsiveMenu\ViewModels\Components\ComponentFactory;
+use ResponsiveMenu\Translation\Translator;
 
 class Front  {
 
@@ -26,7 +27,7 @@ class Front  {
 
     # Build Our Menu Display
     $menu = new MenuViewModel($options, new ComponentFactory);
-    $html = new ButtonViewModel($options, new ButtonComponent);
+    $html = new ButtonViewModel($options, new ButtonComponent(new Translator));
 
     # Only render if we don't have shortcodes turned on
     if($options['shortcode'] == 'off'):
