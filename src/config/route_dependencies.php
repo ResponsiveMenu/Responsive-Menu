@@ -26,10 +26,50 @@ $container['translator'] = function($c) {
   return new ResponsiveMenu\Translation\Translator;
 };
 
+$container['minifier'] = function($c) {
+  return new ResponsiveMenu\Formatters\Minify;
+};
+
+$container['js_mapper'] = function($c) {
+  return new ResponsiveMenu\Mappers\JsMapper;
+};
+
+$container['js_factory'] = function($c) {
+  return new ResponsiveMenu\Factories\JsFactory(
+    $c['js_mapper'],
+    $c['minifier']
+  );
+};
+
+$container['scss_compiler'] = function($c) {
+  return new scssc;
+};
+
+$container['css_base_mapper'] = function($c) {
+  return new ResponsiveMenu\Mappers\ScssBaseMapper($c['scss_compiler']);
+};
+
+$container['css_button_mapper'] = function($c) {
+  return new ResponsiveMenu\Mappers\ScssButtonMapper($c['scss_compiler']);
+};
+
+$container['css_menu_mapper'] = function($c) {
+  return new ResponsiveMenu\Mappers\ScssMenuMapper($c['scss_compiler']);
+};
+
+$container['css_factory'] = function($c) {
+  return new ResponsiveMenu\Factories\CssFactory(
+    $c['minifier'],
+    $c['css_base_mapper'],
+    $c['css_button_mapper'],
+    $c['css_menu_mapper']
+  );
+};
+
 $container['scripts_builder'] = function($c) {
   return new ResponsiveMenu\Filesystem\ScriptsBuilder(
-    new ResponsiveMenu\Factories\CssFactory,
-    new ResponsiveMenu\Factories\JsFactory,
+    $c['css_factory'],
+    $c['js_factory'],
     new ResponsiveMenu\Filesystem\FileCreator,
     new ResponsiveMenu\Filesystem\FolderCreator,
     $c['site_id']
@@ -84,7 +124,10 @@ $container['admin_view'] = function($c) {
 };
 
 $container['front_view'] = function($c) {
-  return new ResponsiveMenu\View\FrontView;
+  return new ResponsiveMenu\View\FrontView(
+    $c['js_factory'],
+    $c['css_factory']
+  );
 };
 
 $container['admin_controller'] = function($c) {
@@ -92,10 +135,6 @@ $container['admin_controller'] = function($c) {
   	$c['option_service'],
   	$c['admin_view']
  );
-};
-
-$container['translator'] = function($c) {
-  return new ResponsiveMenu\Translation\Translator;
 };
 
 $container['component_factory'] = function($c) {

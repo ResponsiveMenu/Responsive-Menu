@@ -1,10 +1,11 @@
 <?php
 
 namespace ResponsiveMenu\Mappers;
+use ResponsiveMenu\Collections\OptionsCollection;
 
 class ScssMenuMapper extends ScssMapper {
 
-  public function map() {
+  public function map(OptionsCollection $options) {
 
     $css = <<<CSS
 

@@ -1,10 +1,11 @@
 <?php
 
 namespace ResponsiveMenu\Mappers;
+use ResponsiveMenu\Collections\OptionsCollection;
 
 class ScssBaseMapper extends ScssMapper {
 
-  public function map() {
+  public function map(OptionsCollection $options) {
 
     $css = <<<CSS
 
@@ -14,7 +15,7 @@ class ScssBaseMapper extends ScssMapper {
         -webkit-text-size-adjust: 100%;
       }
 
-      @media screen and (max-width: {$this->options['breakpoint']}px) {
+      @media screen and (max-width: {$options['breakpoint']}px) {
 
         #responsive-menu-container {
           display: block;
@@ -120,7 +121,7 @@ class ScssBaseMapper extends ScssMapper {
           @for \$i from 1 through 6 {
             & ul.responsive-menu-submenu-depth-#{\$i}
             a.responsive-menu-item-link {
-                padding-{$this->options['menu_text_alignment']}: 5% + (5% * \$i);
+                padding-{$options['menu_text_alignment']}: 5% + (5% * \$i);
             }
           }
 

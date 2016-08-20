@@ -1,23 +1,26 @@
 <?php
 
 namespace ResponsiveMenu\Factories;
-use ResponsiveMenu\Mappers\JsMapper as JsMapper;
-use ResponsiveMenu\Formatters\Minify as Minify;
-use ResponsiveMenu\Collections\OptionsCollection as OptionsCollection;
+use ResponsiveMenu\Mappers\JsMapper;
+use ResponsiveMenu\Formatters\Minify;
+use ResponsiveMenu\Collections\OptionsCollection;
 
 class JsFactory {
 
+  public function __construct(JsMapper $mapper, Minify $minifier) {
+    $this->mapper = $mapper;
+    $this->minifier = $minifier;
+  }
+
   public function build(OptionsCollection $options) {
 
-    $js_mapper = new JsMapper($options);
-    $js = $js_mapper->map();
+    $js = $this->mapper->map($options);
 
-    if($options['minify_scripts'] == 'on'):
-      $minifier = new Minify;
-      $js = $minifier->minify($js);
-    endif;
+    if($options['minify_scripts'] == 'on')
+      $js = $this->minifier->minify($js);
 
     return $js;
 
   }
+
 }

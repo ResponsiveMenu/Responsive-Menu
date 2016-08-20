@@ -5,38 +5,34 @@ use ResponsiveMenu\Collections\OptionsCollection;
 
 class JsMapper {
 
-  public function __construct(OptionsCollection $options) {
-    $this->options = $options;
-  }
+  public function map(OptionsCollection $options) {
 
-  public function map() {
-
-    $animation_speed = $this->options['animation_speed'] ? $this->options['animation_speed']->getValue() * 1000 : 500;
+    $animation_speed = $options['animation_speed'] ? $options['animation_speed']->getValue() * 1000 : 500;
 
     $js = <<<JS
 
     jQuery(document).ready(function($) {
 
       var ResponsiveMenu = {
-        trigger: '{$this->options['button_click_trigger']}',
+        trigger: '{$options['button_click_trigger']}',
         animationSpeed: {$animation_speed},
-        breakpoint: {$this->options['breakpoint']},
-        pushButton: '{$this->options['button_push_with_animation']}',
-        animationType: '{$this->options['animation_type']}',
-        animationSide: '{$this->options['menu_appear_from']}',
-        pageWrapper: '{$this->options['page_wrapper']}',
+        breakpoint: {$options['breakpoint']},
+        pushButton: '{$options['button_push_with_animation']}',
+        animationType: '{$options['animation_type']}',
+        animationSide: '{$options['menu_appear_from']}',
+        pageWrapper: '{$options['page_wrapper']}',
         isOpen: false,
         triggerTypes: 'click',
         activeClass: 'is-active',
         container: '#responsive-menu-container',
         openClass: 'responsive-menu-open',
-        accordion: '{$this->options['accordion_animation']}',
-        activeArrow: '{$this->options->getActiveArrow()}',
-        inactiveArrow: '{$this->options->getInActiveArrow()}',
+        accordion: '{$options['accordion_animation']}',
+        activeArrow: '{$options->getActiveArrow()}',
+        inactiveArrow: '{$options->getInActiveArrow()}',
         wrapper: '#responsive-menu-wrapper',
-        closeOnBodyClick: '{$this->options['menu_close_on_body_click']}',
-        closeOnLinkClick: '{$this->options['menu_close_on_link_click']}',
-        itemTriggerSubMenu: '{$this->options['menu_item_click_to_trigger_submenu']}',
+        closeOnBodyClick: '{$options['menu_close_on_body_click']}',
+        closeOnLinkClick: '{$options['menu_close_on_link_click']}',
+        itemTriggerSubMenu: '{$options['menu_item_click_to_trigger_submenu']}',
         linkElement: '.responsive-menu-item-link',
         openMenu: function() {
           $(this.trigger).addClass(this.activeClass);

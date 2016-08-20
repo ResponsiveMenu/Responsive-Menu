@@ -8,6 +8,11 @@ use ResponsiveMenu\Collections\OptionsCollection;
 
 class FrontView implements View {
 
+  public function __construct(JsFactory $js, CssFactory $css) {
+    $this->js = $js;
+    $this->css = $css;
+  }
+
 	public function render($location, $l = []) {
     add_action('wp_footer', function() use ($location, $l) {
       include dirname(dirname(dirname(__FILE__))) . '/views/' . $location . '.phtml';
@@ -24,11 +29,8 @@ class FrontView implements View {
 
   public function echoOrIncludeScripts(OptionsCollection $options) {
 
-    $css_factory = new CssFactory;
-    $js_factory = new JsFactory;
-
-    $css = $css_factory->build($options);
-    $js = $js_factory->build($options);
+    $css = $this->css->build($options);
+    $js = $this->js->build($options);
 
     add_filter('body_class', function($classes) use($options) {
       $classes[] = 'responsive-menu-' . $options['animation_type'] . '-' . $options['menu_appear_from'];
