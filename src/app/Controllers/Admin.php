@@ -30,11 +30,10 @@ class Admin {
     return $this->view->render('main', ['options' => $this->service->all()]);
   }
 
-  public function import($default_options, $file) {
-    if(!empty($file['tmp_name'])):
-      $file = file_get_contents($file['tmp_name']);
-      $decoded = (array) json_decode($file);
-      $updated_options = $this->service->combineOptions($default_options, $decoded);
+  public function import($default_options, $imported_options) {
+
+    if(!empty($imported_options)):
+      $updated_options = $this->service->combineOptions($default_options, $imported_options);
       $options = $this->service->updateOptions($updated_options);
       $flash['success'] = __('Responsive Menu Options Imported Successfully', 'responsive-menu');
     else:
@@ -46,15 +45,12 @@ class Admin {
   }
 
   public function export() {
-    nocache_headers();
-    header('Content-Type: application/json; charset=utf-8');
-    header('Content-Disposition: attachment; filename=export.json');
-    header('Expires: 0');
+    $this->view->noCacheHeaders();
     $final = [];
     foreach($this->service->all()->all() as $option)
       $final[$option->getName()] = $option->getValue();
-    echo json_encode($final);
-    exit();
+    $this->view->display(json_encode($final));
+    $this->view->stopProcessing();
   }
 
 }

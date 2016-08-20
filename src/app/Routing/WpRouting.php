@@ -52,7 +52,9 @@ class WpRouting implements Routing {
             $controller->$method($this->container['default_options']);
             break;
           case 'import':
-            $controller->$method($this->container['default_options'], $_FILES['responsive_menu_import_file']);
+            $file = $_FILES['responsive_menu_import_file'];
+            $file_options = isset($file['tmp_name']) ? (array) json_decode(file_get_contents($file['tmp_name'])) : null;
+            $controller->$method($this->container['default_options'], $file_options);
             break;
           default:
             $controller->$method();
