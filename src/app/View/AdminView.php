@@ -2,11 +2,9 @@
 
 namespace ResponsiveMenu\View;
 
-class AdminView implements View
-{
+class AdminView implements View {
 
-  public function __construct()
-  {
+  public function __construct() {
     if(is_admin() && isset($_GET['page']) && $_GET['page'] == 'responsive-menu'):
 
       wp_enqueue_media();
@@ -30,8 +28,7 @@ class AdminView implements View
     endif;
   }
 
-	public function render($location, $l = [])
-	{
+	public function render($location, $l = []) {
 		include dirname(dirname(dirname(__FILE__))) . '/views/admin/' . $location . '.phtml';
 	}
 

@@ -23,7 +23,6 @@ class TranslatorTest extends TestCase {
     }
   }
   public function setUp() {
-
     $this->translator = new Translator;
   }
 

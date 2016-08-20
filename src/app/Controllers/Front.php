@@ -5,7 +5,6 @@ use ResponsiveMenu\View\View;
 use ResponsiveMenu\Services\OptionService;
 use ResponsiveMenu\ViewModels\Menu as MenuViewModel;
 use ResponsiveMenu\ViewModels\Button as ButtonViewModel;
-use ResponsiveMenu\Factories\FrontDisplayFactory as DisplayFactory;
 use ResponsiveMenu\ViewModels\Components\Button\Button as ButtonComponent;
 use ResponsiveMenu\ViewModels\Components\ComponentFactory;
 use ResponsiveMenu\Translation\Translator;
@@ -21,9 +20,7 @@ class Front  {
     # Get Latest Options
     $options = $this->service->all();
 
-    # This needs refactoring - Martin Fowler HELP!
-    $display_factory = new DisplayFactory();
-    $display_factory->build($options);
+    $this->view->echoOrIncludeScripts($options);
 
     # Build Our Menu Display
     $menu = new MenuViewModel($options, new ComponentFactory);

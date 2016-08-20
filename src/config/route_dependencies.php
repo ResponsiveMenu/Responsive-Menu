@@ -2,6 +2,10 @@
 
 $container = new ResponsiveMenu\Routing\Container();
 
+$container['current_version'] = function($c) {
+  return '3.0.10';
+};
+
 $container['option_helpers'] = function($c) {
   include dirname(__FILE__) . '/option_helpers.php';
   return $option_helpers;
@@ -54,10 +58,6 @@ $container['option_service'] = function($c) {
     $c['translator'],
     $c['scripts_builder']
 	);
-};
-
-$container['current_version'] = function($c) {
-  return '3.0.10';
 };
 
 $container['old_version'] = function($c) {

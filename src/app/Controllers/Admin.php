@@ -1,8 +1,8 @@
 <?php
 
 namespace ResponsiveMenu\Controllers;
-use ResponsiveMenu\View\View as View;
-use ResponsiveMenu\Services\OptionService as OptionService;
+use ResponsiveMenu\View\View;
+use ResponsiveMenu\Services\OptionService;
 
 class Admin {
 
@@ -47,9 +47,9 @@ class Admin {
 
   public function export() {
     nocache_headers();
-    header( 'Content-Type: application/json; charset=utf-8' );
-    header( 'Content-Disposition: attachment; filename=export.json' );
-    header( "Expires: 0" );
+    header('Content-Type: application/json; charset=utf-8');
+    header('Content-Disposition: attachment; filename=export.json');
+    header('Expires: 0');
     $final = [];
     foreach($this->service->all()->all() as $option)
       $final[$option->getName()] = $option->getValue();
