@@ -1,8 +1,6 @@
 <?php
 
-require_once __DIR__ . "/../scss.inc.php";
-
-// Runs all the tests in inputs/ and compares their output to ouputs/
+require_once dirname(dirname(dirname(__FILE__))) . '/src/app/Mappers/scss.inc.php';
 
 function _dump($value) {
 	fwrite(STDOUT, print_r($value, true));
@@ -80,4 +78,3 @@ class InputTest extends PHPUnit_Framework_TestCase {
 		}
 	}
 }
-

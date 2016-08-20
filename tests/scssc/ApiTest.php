@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/../scss.inc.php";
+require_once dirname(dirname(dirname(__FILE__))) . '/src/app/Mappers/scss.inc.php';
 
 class ApiTest extends PHPUnit_Framework_TestCase
 {
@@ -21,7 +21,7 @@ class ApiTest extends PHPUnit_Framework_TestCase
 			$this->compile("result: add-two(10, 20);")
 		);
 	}
-	
+
 	public function testImportMissing()
 	{
 		$this->assertEquals(
@@ -29,13 +29,13 @@ class ApiTest extends PHPUnit_Framework_TestCase
 			$this->compile('@import "missing";')
 		);
 	}
-	
+
 	public function testImportCustomCallback()
 	{
 		$this->scss->addImportPath(function ($path) {
 			return __DIR__ . '/inputs/' . str_replace('.css', '.scss', $path);
 		});
-		
+
 		$this->assertEquals(
 			trim(file_get_contents(__DIR__ . '/outputs/variables.css')),
 			$this->compile('@import "variables.css";')
