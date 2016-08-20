@@ -21,7 +21,7 @@ class CssFactory {
     $css =  $this->base->map($options) . $this->button->map($options) . $this->menu->map($options);
 
     if($options['minify_scripts'] == 'on')
-      $this->minifier->minify($css);
+      $css = $this->minifier->minify($css);
 
     return $css;
 

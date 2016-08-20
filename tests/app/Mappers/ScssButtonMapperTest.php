@@ -27,14 +27,16 @@ class ScssButtonMapperTest extends TestCase {
     $this->collection->add(new ResponsiveMenu\Models\Option('button_title_line_height', 5));
     $this->collection->add(new ResponsiveMenu\Models\Option('animation_speed', 5));
     $this->collection->add(new ResponsiveMenu\Models\Option('transition_speed', 5));
-    $this->mapper = new ResponsiveMenu\Mappers\ScssButtonMapper($this->collection);
+    $this->scss = new scssc;
+    $this->mapper = new ResponsiveMenu\Mappers\ScssButtonMapper($this->scss);
   }
 
   public function testOutput() {
-    $this->assertContains('height: 555px;', $this->mapper->map());
-    $this->assertContains('height: 888px;', $this->mapper->map());
-    $this->assertContains('width: 777px;', $this->mapper->map());
-    $this->assertContains('max-width: 444px', $this->mapper->map());
+    $mapped = $this->mapper->map($this->collection);
+    $this->assertContains('height: 555px;', $mapped);
+    $this->assertContains('height: 888px;', $mapped);
+    $this->assertContains('width: 777px;', $mapped);
+    $this->assertContains('max-width: 444px', $mapped);
   }
 
 }

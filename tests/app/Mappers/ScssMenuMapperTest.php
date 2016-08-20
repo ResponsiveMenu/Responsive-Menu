@@ -52,14 +52,15 @@ class ScssMenuMapperTest extends TestCase {
     $this->collection->add(new ResponsiveMenu\Models\Option('menu_current_link_hover_colour', '#ffffff'));
     $this->collection->add(new ResponsiveMenu\Models\Option('menu_current_item_border_hover_colour', '#ffffff'));
     $this->collection->add(new ResponsiveMenu\Models\Option('menu_to_hide', '#tohide'));
-
-    $this->mapper = new ResponsiveMenu\Mappers\ScssMenuMapper($this->collection);
+    $this->scss = new scssc;
+    $this->mapper = new ResponsiveMenu\Mappers\ScssMenuMapper($this->scss);
   }
 
   public function testThis() {
-    $this->assertContains('width: 333%;', $this->mapper->map());
-    $this->assertContains('max-width: 444px;', $this->mapper->map());
-    $this->assertContains('min-width: 555px;', $this->mapper->map());
+    $mapped = $this->mapper->map($this->collection);
+    $this->assertContains('width: 333%;', $mapped);
+    $this->assertContains('max-width: 444px;', $mapped);
+    $this->assertContains('min-width: 555px;', $mapped);
 
   }
 

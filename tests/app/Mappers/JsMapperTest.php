@@ -21,29 +21,31 @@ class JsMapperTest extends TestCase {
     $this->collection->add(new ResponsiveMenu\Models\Option('menu_item_click_to_trigger_submenu', 'k'));
     $this->collection->add(new ResponsiveMenu\Models\Option('button_push_with_animation', 'l'));
 
-    $this->mapper = new ResponsiveMenu\Mappers\JsMapper($this->collection);
+    $this->mapper = new ResponsiveMenu\Mappers\JsMapper;
   }
 
   public function testOutput() {
-    $this->assertContains('animationSpeed: 5000', $this->mapper->map());
-    $this->assertContains("trigger: 'd'", $this->mapper->map());
-    $this->assertContains('breakpoint: c', $this->mapper->map());
-    $this->assertContains("pushButton: 'l'", $this->mapper->map());
-    $this->assertContains("animationType: 'e'", $this->mapper->map());
-    $this->assertContains("animationSide: 'f'", $this->mapper->map());
-    $this->assertContains("pageWrapper: 'g'", $this->mapper->map());
-    $this->assertContains("accordion: 'h'", $this->mapper->map());
-    $this->assertContains("closeOnBodyClick: 'i'", $this->mapper->map());
-    $this->assertContains("closeOnLinkClick: 'j'", $this->mapper->map());
-    $this->assertContains("itemTriggerSubMenu: 'k'", $this->mapper->map());
+    $mapped = $this->mapper->map($this->collection);
+    $this->assertContains('animationSpeed: 5000', $mapped);
+    $this->assertContains("trigger: 'd'", $mapped);
+    $this->assertContains('breakpoint: c', $mapped);
+    $this->assertContains("pushButton: 'l'", $mapped);
+    $this->assertContains("animationType: 'e'", $mapped);
+    $this->assertContains("animationSide: 'f'", $mapped);
+    $this->assertContains("pageWrapper: 'g'", $mapped);
+    $this->assertContains("accordion: 'h'", $mapped);
+    $this->assertContains("closeOnBodyClick: 'i'", $mapped);
+    $this->assertContains("closeOnLinkClick: 'j'", $mapped);
+    $this->assertContains("itemTriggerSubMenu: 'k'", $mapped);
   }
 
   public function testDefaultAnimationSpeed() {
     $collection = new ResponsiveMenu\Collections\OptionsCollection;
     $collection->add(new ResponsiveMenu\Models\Option('active_arrow_image', 'a'));
     $collection->add(new ResponsiveMenu\Models\Option('inactive_arrow_image', 'b'));
-    $mapper = new ResponsiveMenu\Mappers\JsMapper($collection);
-    $this->assertContains('animationSpeed: 500', $this->mapper->map());
+    $mapper = new ResponsiveMenu\Mappers\JsMapper;
+    $mapped = $this->mapper->map($collection);
+    $this->assertContains('animationSpeed: 500', $mapped);
   }
 
 }
