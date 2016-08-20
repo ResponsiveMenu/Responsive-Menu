@@ -94,9 +94,31 @@ $container['admin_controller'] = function($c) {
  );
 };
 
+$container['translator'] = function($c) {
+  return new ResponsiveMenu\Translation\Translator;
+};
+
+$container['component_factory'] = function($c) {
+  return new ResponsiveMenu\ViewModels\Components\ComponentFactory;
+};
+
+$container['button_component'] = function($c) {
+  return new ResponsiveMenu\ViewModels\Components\Button\Button($c['translator']);
+};
+
+$container['menu_view'] = function($c) {
+   return new ResponsiveMenu\ViewModels\Menu($c['component_factory']);
+};
+
+$container['button_view'] = function($c) {
+   return new ResponsiveMenu\ViewModels\Button($c['button_component']);
+};
+
 $container['front_controller'] = function($c) {
   return new ResponsiveMenu\Controllers\Front(
     $c['option_service'],
-    $c['front_view']
+    $c['front_view'],
+    $c['menu_view'],
+    $c['button_view']
   );
 };

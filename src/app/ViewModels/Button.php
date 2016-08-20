@@ -7,13 +7,12 @@ use ResponsiveMenu\Collections\OptionsCollection;
 
 class Button {
 
-  public function __construct(OptionsCollection $options, ButtonComponent $component) {
-      $this->options = $options;
+  public function __construct(ButtonComponent $component) {
       $this->component = $component;
   }
 
-  public function getHtml() {
-      return $this->component->render($this->options);
+  public function getHtml(OptionsCollection $options) {
+      return $this->component->render($options);
   }
 
 }

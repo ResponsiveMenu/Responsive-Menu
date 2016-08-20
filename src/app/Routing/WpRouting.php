@@ -1,7 +1,7 @@
 <?php
 
 namespace ResponsiveMenu\Routing;
-use ResponsiveMenu\Routing\Container as Container;
+use ResponsiveMenu\Routing\Container;
 
 class WpRouting implements Routing {
 

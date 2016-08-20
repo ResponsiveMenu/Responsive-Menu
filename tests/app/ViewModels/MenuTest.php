@@ -11,22 +11,22 @@ class MenuTest extends TestCase {
     $this->component->method('render')->willReturn('a');
     $this->factory->method('build')->willReturn($this->component);
 
-    $this->menu = new ResponsiveMenu\ViewModels\Menu($this->collection, $this->factory);
+    $this->menu = new ResponsiveMenu\ViewModels\Menu($this->factory);
   }
 
   public function testOutput() {
       $this->collection->add(new ResponsiveMenu\Models\Option('items_order', '{"title" : "on", "search" : "off"}'));
-      $this->assertEquals('a', $this->menu->getHtml($this->menu));
+      $this->assertEquals('a', $this->menu->getHtml($this->collection));
   }
 
   public function testOutputWithTwoOptionsOn() {
       $this->collection->add(new ResponsiveMenu\Models\Option('items_order', '{"title" : "on", "search" : "on"}'));
-      $this->assertEquals('aa', $this->menu->getHtml($this->menu));
+      $this->assertEquals('aa', $this->menu->getHtml($this->collection));
   }
 
   public function testOutputWithOptionsOff() {
       $this->collection->add(new ResponsiveMenu\Models\Option('items_order', '{"title" : "off", "search" : "off"}'));
-      $this->assertEquals('', $this->menu->getHtml($this->menu));
+      $this->assertEquals('', $this->menu->getHtml($this->collection));
   }
 
 }

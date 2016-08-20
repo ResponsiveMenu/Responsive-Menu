@@ -8,7 +8,7 @@ class ButtonTest extends TestCase {
     $this->collection = $this->createMock('ResponsiveMenu\Collections\OptionsCollection');
     $this->component = $this->createMock('ResponsiveMenu\ViewModels\Components\Button\Button');
     $this->component->method('render')->willReturn('a');
-    $this->button = new ResponsiveMenu\ViewModels\Button($this->collection, $this->component);
+    $this->button = new ResponsiveMenu\ViewModels\Button($this->component);
   }
 
   public function testOutput() {

@@ -53,4 +53,17 @@ class FrontView implements View {
     endif;
   }
 
+  public function addShortcode($options, $button, $menu) {
+    add_shortcode('responsive_menu', function($atts) use($options, $button, $menu) {
+
+      if($atts)
+        array_walk($atts, function($a, $b) use ($options) { $options[$b] = $a; });
+
+      $html = $this->make('button', ['options' => $options, 'button' => $button]);
+
+      return $html . $this->make('menu', ['options' => $options, 'menu' => $menu]);
+
+    });
+  }
+
 }

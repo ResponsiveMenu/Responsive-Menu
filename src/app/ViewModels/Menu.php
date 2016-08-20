@@ -7,17 +7,16 @@ use ResponsiveMenu\ViewModels\Components\ComponentFactory;
 
 class Menu {
 
-  public function __construct(OptionsCollection $options, ComponentFactory $factory) {
-      $this->options = $options;
+  public function __construct(ComponentFactory $factory) {
       $this->factory = $factory;
   }
 
-  public function getHtml() {
+  public function getHtml(OptionsCollection $options) {
     $content = '';
 
-    foreach(json_decode($this->options['items_order']) as $key => $val)
+    foreach(json_decode($options['items_order']) as $key => $val)
       if($val == 'on')
-        $content .= $this->factory->build($key)->render($this->options);
+        $content .= $this->factory->build($key)->render($options);
 
     return $content;
   }
