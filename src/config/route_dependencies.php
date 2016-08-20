@@ -19,7 +19,8 @@ $container['default_options'] = function($c) {
 $container['site_id'] = get_current_blog_id();
 
 $container['database'] = function($c) {
-  return new ResponsiveMenu\Database\WpDatabase;
+  global $wpdb;
+  return new ResponsiveMenu\Database\WpDatabase($wpdb);
 };
 
 $container['translator'] = function($c) {
