@@ -11,7 +11,7 @@ $boxes = new ResponsiveMenu\ViewModels\Components\Admin\Boxes($order_mapping, $l
 ?>
 <div class="wrap">
   <div id="poststuff">
-      <div id="postbox-container" class="postbox-container">
+      <div id="postbox-container" class="postbox-container responsive-menu-postbox-container">
         <?php if(isset($l['flash']['success'])): ?>
           <div class="updated notice notice-success is-dismissible" id="message">
             <p><?php _e($l['flash']['success'], 'responsive-menu'); ?></p>
