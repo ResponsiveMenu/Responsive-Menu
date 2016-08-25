@@ -19,8 +19,7 @@ class Translator {
     $translated = apply_filters('wpml_translate_single_string', $option->getValue(), 'Responsive Menu', $option->getName());
 
     // Polylang Support
-    if(function_exists('pll__'))
-      $translated = pll__($translated);
+    $translated = function_exists('pll__') ? pll__($translated) : $translated;
 
     return $translated;
   }

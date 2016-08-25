@@ -4,12 +4,25 @@ use PHPUnit\Framework\TestCase;
 use ResponsiveMenu\Routing\Container;
 
 class ContainerTest extends TestCase {
+
   public function testCreatedObjectIsReturn() {
     $container = new Container;
     $container['std'] = function($c) {
       return new \StdClass;
     };
     $this->assertInstanceOf('StdClass', $container['std']);
+  }
+
+  public function testCreatedObjectIsReturnedWithDependencies() {
+    $container = new Container;
+    $container['std'] = function($c) {
+      return new \StdClass;
+    };
+    $container['std_two'] = function($c) {
+      return new \StdClass($c['std']);
+    };
+    $this->assertInstanceOf('StdClass', $container['std']);
+    $this->assertInstanceOf('StdClass', $container['std_two']);
   }
 
   public function testVariableIsReturned() {

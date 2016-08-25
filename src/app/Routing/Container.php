@@ -4,9 +4,9 @@ namespace ResponsiveMenu\Routing;
 
 class Container implements \ArrayAccess
 {
-    private $values = array();
-    private $raw = array();
-    private $keys = array();
+    private $values = [];
+    private $raw = [];
+    private $keys = [];
 
     public function offsetSet($id, $value) {
       $this->values[$id] = $value;
@@ -35,7 +35,7 @@ class Container implements \ArrayAccess
     }
 
     public function offsetUnset($id) {
-      if (isset($this->keys[$id])) {
+      if(isset($this->keys[$id])) {
         unset($this->values[$id], $this->raw[$id], $this->keys[$id]);
       }
     }
