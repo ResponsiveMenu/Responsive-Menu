@@ -148,6 +148,7 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 
 = 3.0.10 (12th August 2016) =
 * **Requires PHP 5.4**
+* Improved RTL support
 * Additional Content added to WPML/Polylang
 * Added sub-arrow active colours - Pro only
 * Added sub-arrow positioning side option
