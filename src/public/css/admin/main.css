@@ -412,12 +412,6 @@ input[type="text"].image,
 	background: white;
 }
 
-ul#adminmenu a.wp-has-current-submenu::after,
-ul#adminmenu > li.current > a.current::after
-{
-	border-color: transparent #DE4B42 transparent transparent;
-}
-
 /* On-Off Buttons */
 
 .onoffswitch {
