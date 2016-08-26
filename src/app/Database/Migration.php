@@ -80,7 +80,7 @@ class Migration {
 
 	protected function updateVersion() {
 		$this->db->updateOption(self::$version_var, $this->current_version);
-        $this->old_version = $this->current_version;
+    $this->old_version = $this->current_version;
 	}
 
   public function isVersion3() {

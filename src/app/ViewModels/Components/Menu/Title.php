@@ -1,7 +1,6 @@
 <?php
 
 namespace ResponsiveMenu\ViewModels\Components\Menu;
-
 use ResponsiveMenu\ViewModels\Components\ViewComponent;
 use ResponsiveMenu\Collections\OptionsCollection;
 use ResponsiveMenu\Translation\Translator;
@@ -18,6 +17,7 @@ class Title implements ViewComponent {
     $link = $this->translator->translate($options['menu_title_link']);
 
     if($options['menu_title']->getValue() || $options->getTitleImage()):
+
       $content = '<div id="responsive-menu-title">';
 
       if($options['menu_title_link']->getValue())
@@ -40,6 +40,7 @@ class Title implements ViewComponent {
       $content .= '</div>';
 
       return $content;
+
     endif;
 
   }

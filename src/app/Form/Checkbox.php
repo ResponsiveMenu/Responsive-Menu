@@ -1,12 +1,13 @@
 <?php
 
 namespace ResponsiveMenu\Form;
-use ResponsiveMenu\Models\Option as Option;
-use ResponsiveMenu\Form\FormComponent as FormComponent;
+use ResponsiveMenu\Models\Option;
+use ResponsiveMenu\Form\FormComponent;
 
 class Checkbox implements FormComponent {
 
 	public function render(Option $option) {
+    
     $checked = $option->getValue() == 'on' ? " checked='checked'" : "";
 
 		return "<div class='onoffswitch'>

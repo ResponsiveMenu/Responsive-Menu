@@ -1,7 +1,6 @@
 <?php
 
 namespace ResponsiveMenu\ViewModels\Components\Menu;
-
 use ResponsiveMenu\ViewModels\Components\ViewComponent;
 use ResponsiveMenu\Collections\OptionsCollection;
 use ResponsiveMenu\Walkers\WpWalker;

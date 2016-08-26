@@ -1,8 +1,8 @@
 <?php
 
 namespace ResponsiveMenu\ViewModels\Components\Admin;
-use ResponsiveMenu\Collections\OptionsCollection as OptionsCollection;
-use ResponsiveMenu\Form as Form;
+use ResponsiveMenu\Collections\OptionsCollection;
+use ResponsiveMenu\Form;
 
 class Boxes {
 

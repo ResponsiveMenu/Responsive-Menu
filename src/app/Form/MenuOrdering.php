@@ -1,14 +1,13 @@
 <?php
 
 namespace ResponsiveMenu\Form;
-use ResponsiveMenu\Models\Option as Option;
-use ResponsiveMenu\Form\FormComponent as FormComponent;
+use ResponsiveMenu\Models\Option;
+use ResponsiveMenu\Form\FormComponent;
 
-class MenuOrdering implements FormComponent
-{
+class MenuOrdering implements FormComponent {
 
-	public function render(Option $option)
-	{
+	public function render(Option $option) {
+
     $required = ['title' => '', 'menu' => '', 'search' => '', 'additional content' => ''];
     $current_options = (array) json_decode($option->getValue());
     $all_options = array_merge($current_options, $required);

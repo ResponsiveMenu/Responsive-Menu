@@ -1,13 +1,12 @@
 <?php
 
 namespace ResponsiveMenu\Form;
-use ResponsiveMenu\Models\Option as Option;
-use ResponsiveMenu\Form\FormComponent as FormComponent;
+use ResponsiveMenu\Models\Option;
+use ResponsiveMenu\Form\FormComponent;
 
 class FontIconPageList implements FormComponent {
 
-	public function render(Option $option)
-	{
+	public function render(Option $option) {
 
     if($decoded = json_decode($option->getValue()))
       $final = array_filter(array_combine($decoded->id, $decoded->icon));

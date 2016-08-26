@@ -1,7 +1,6 @@
 <?php
 
 namespace ResponsiveMenu\ViewModels;
-
 use ResponsiveMenu\Collections\OptionsCollection;
 use ResponsiveMenu\ViewModels\Components\ComponentFactory;
 

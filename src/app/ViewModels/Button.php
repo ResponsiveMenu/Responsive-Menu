@@ -1,7 +1,6 @@
 <?php
 
 namespace ResponsiveMenu\ViewModels;
-
 use ResponsiveMenu\ViewModels\Components\Button\Button as ButtonComponent;
 use ResponsiveMenu\Collections\OptionsCollection;
 
