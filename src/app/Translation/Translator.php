@@ -34,4 +34,8 @@ class Translator {
         do_action('wpml_register_single_string', 'Responsive Menu', $option_name, $options[$option_name]->getValue());
   }
 
+  public function allowShortcode($text) {
+    return do_shortcode($text);
+  }
+  
 }

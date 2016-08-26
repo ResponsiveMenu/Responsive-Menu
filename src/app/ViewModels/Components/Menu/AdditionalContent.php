@@ -16,7 +16,7 @@ class AdditionalContent implements ViewComponent {
     $content = $this->translator->translate($options['menu_additional_content']);
 
     if($content)
-      return '<div id="responsive-menu-additional-content">' . do_shortcode($content) . '</div>';
+      return '<div id="responsive-menu-additional-content">' . $this->translator->allowShortcode($content) . '</div>';
 
   }
 
