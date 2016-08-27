@@ -43,7 +43,7 @@ $container['js_factory'] = function($c) {
 };
 
 $container['scss_compiler'] = function($c) {
-  return new scssc;
+  return new scssc_free;
 };
 
 $container['css_base_mapper'] = function($c) {

@@ -42,7 +42,7 @@
  *
  * @author Leaf Corcoran <leafot@gmail.com>
  */
-class scssc {
+class scssc_free {
 	static public $VERSION = 'v0.0.12';
 
 	static protected $operatorNames = array(
@@ -93,7 +93,7 @@ class scssc {
 
 	protected $numberPrecision = 5;
 
-	protected $formatter = "scss_formatter_nested";
+	protected $formatter = "scss_formatter_nested_free";
 
 	/**
 	 * Compile scss
@@ -1570,7 +1570,7 @@ class scssc {
 			return;
 		}
 
-		$parser = new scss_parser(__METHOD__, false);
+		$parser = new scss_parser_free(__METHOD__, false);
 
 		foreach ($args as $name => $strValue) {
 			if ($name[0] === '$') {
@@ -1653,7 +1653,7 @@ class scssc {
 			$tree = $this->importCache[$realPath];
 		} else {
 			$code = file_get_contents($path);
-			$parser = new scss_parser($path, false);
+			$parser = new scss_parser_free($path, false);
 			$tree = $parser->parse($code);
 			$this->parsedFiles[] = $path;
 
@@ -2659,7 +2659,7 @@ class scssc {
  *
  * @author Leaf Corcoran <leafot@gmail.com>
  */
-class scss_parser {
+class scss_parser_free {
 	static protected $precedence = array(
 		"or" => 0,
 		"and" => 1,
@@ -2712,7 +2712,7 @@ class scss_parser {
 	}
 
 	static protected function makeOperatorStr($operators) {
-		return '('.implode('|', array_map(array('scss_parser','preg_quote'),
+		return '('.implode('|', array_map(array('scss_parser_free','preg_quote'),
 			$operators)).')';
 	}
 
@@ -3859,7 +3859,7 @@ class scss_parser {
 			$s = $this->seek();
 			// self
 			if ($this->literal("&", false)) {
-				$parts[] = scssc::$selfSelector;
+				$parts[] = scssc_free::$selfSelector;
 				continue;
 			}
 
@@ -4172,7 +4172,7 @@ class scss_parser {
  *
  * @author Leaf Corcoran <leafot@gmail.com>
  */
-class scss_formatter {
+class scss_formatter_free {
 	public $indentChar = "  ";
 
 	public $break = "\n";
@@ -4239,7 +4239,7 @@ class scss_formatter {
  *
  * @author Leaf Corcoran <leafot@gmail.com>
  */
-class scss_formatter_nested extends scss_formatter {
+class scss_formatter_nested_free extends scss_formatter_free {
 	public $close = " }";
 
 	// adjust the depths of all children, depth first
@@ -4330,7 +4330,7 @@ class scss_formatter_nested extends scss_formatter {
  *
  * @author Leaf Corcoran <leafot@gmail.com>
  */
-class scss_formatter_compressed extends scss_formatter {
+class scss_formatter_compressed_free extends scss_formatter_free {
 	public $open = "{";
 	public $tagSeparator = ",";
 	public $assignSeparator = ":";
@@ -4346,7 +4346,7 @@ class scss_formatter_compressed extends scss_formatter {
  *
  * @author Leaf Corcoran <leafot@gmail.com>
  */
-class scss_server {
+class scss_server_free {
 	/**
 	 * Join path components
 	 *
@@ -4471,7 +4471,7 @@ class scss_server {
 		$css = $this->scss->compile(file_get_contents($in), $in);
 		$elapsed = round((microtime(true) - $start), 4);
 
-		$v = scssc::$VERSION;
+		$v = scssc_free::$VERSION;
 		$t = @date('r');
 		$css = "/* compiled by scssphp $v on $t (${elapsed}s) */\n\n" . $css;
 
@@ -4537,7 +4537,7 @@ class scss_server {
 		header($protocol . ' 404 Not Found');
 		header('Content-type: text/plain');
 
-		$v = scssc::$VERSION;
+		$v = scssc_free::$VERSION;
 		echo "/* INPUT NOT FOUND scss $v */\n";
 	}
 
@@ -4559,7 +4559,7 @@ class scss_server {
 		if (!is_dir($this->cacheDir)) mkdir($this->cacheDir, 0755, true);
 
 		if (!isset($scss)) {
-			$scss = new scssc();
+			$scss = new scssc_free();
 			$scss->setImportPaths($this->dir);
 		}
 		$this->scss = $scss;
