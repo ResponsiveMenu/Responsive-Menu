@@ -7,7 +7,7 @@ class ScssBaseMapperTest extends TestCase {
   public function setUp() {
     $this->collection = new ResponsiveMenu\Collections\OptionsCollection;
     $this->collection->add(new ResponsiveMenu\Models\Option('breakpoint', 6000));
-    $this->scss = new scssc;
+    $this->scss = new scssc_free;
     $this->mapper = new ResponsiveMenu\Mappers\ScssBaseMapper($this->scss);
   }
 

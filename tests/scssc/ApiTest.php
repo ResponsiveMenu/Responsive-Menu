@@ -6,7 +6,7 @@ class ApiTest extends PHPUnit_Framework_TestCase
 {
 	public function setUp()
 	{
-		$this->scss = new scssc();
+		$this->scss = new scssc_free();
 	}
 
 	public function testUserFunction()

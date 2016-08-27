@@ -52,7 +52,7 @@ class ScssMenuMapperTest extends TestCase {
     $this->collection->add(new ResponsiveMenu\Models\Option('menu_current_link_hover_colour', '#ffffff'));
     $this->collection->add(new ResponsiveMenu\Models\Option('menu_current_item_border_hover_colour', '#ffffff'));
     $this->collection->add(new ResponsiveMenu\Models\Option('menu_to_hide', '#tohide'));
-    $this->scss = new scssc;
+    $this->scss = new scssc_free;
     $this->mapper = new ResponsiveMenu\Mappers\ScssMenuMapper($this->scss);
   }
 

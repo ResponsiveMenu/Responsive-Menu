@@ -27,7 +27,7 @@ class ScssButtonMapperTest extends TestCase {
     $this->collection->add(new ResponsiveMenu\Models\Option('button_title_line_height', 5));
     $this->collection->add(new ResponsiveMenu\Models\Option('animation_speed', 5));
     $this->collection->add(new ResponsiveMenu\Models\Option('transition_speed', 5));
-    $this->scss = new scssc;
+    $this->scss = new scssc_free;
     $this->mapper = new ResponsiveMenu\Mappers\ScssButtonMapper($this->scss);
   }
 

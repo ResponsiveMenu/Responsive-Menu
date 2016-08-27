@@ -15,7 +15,7 @@ class InputTest extends PHPUnit_Framework_TestCase {
 	protected static $outputDir = "outputs";
 
 	public function setUp() {
-		$this->scss = new scssc();
+		$this->scss = new scssc_free();
 		$this->scss->addImportPath(__DIR__ . "/" . self::$inputDir);
 	}
 
