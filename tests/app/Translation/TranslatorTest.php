@@ -21,6 +21,9 @@ class TranslatorTest extends TestCase {
     function pll__($a) {
       return $a;
     }
+    function do_shortcode($a) {
+      return $a;
+    }
   }
   public function setUp() {
     $this->translator = new Translator;
@@ -38,6 +41,10 @@ class TranslatorTest extends TestCase {
 
   public function testTranslate() {
     $this->assertEquals('a', $this->translator->translate(new Option('menu_additional_content', 'a')));
+  }
+
+  public function testAllowShortcode() {
+    $this->assertEquals('a', $this->translator->allowShortcode('a'));
   }
 
 }
