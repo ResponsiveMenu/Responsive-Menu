@@ -30,13 +30,7 @@ if(version_compare(PHP_VERSION, '5.4', '<'))
 
 /* Required includes for plugin to function */
 include dirname(__FILE__) . '/autoload.php';
-include dirname(__FILE__) . '/src/config/route_dependencies.php';
-include dirname(__FILE__) . '/src/config/routing.php';
-
-/* Internationalise the plugin */
-add_action('plugins_loaded', function() {
-  load_plugin_textdomain('responsive-menu', false, basename(dirname(__FILE__)) . '/translations/');
-});
+include dirname(__FILE__) . '/src/config/services.php';
 
 /*
 * Initial Migration and Version Check synchronisation */
@@ -46,26 +40,5 @@ add_action('init', function() use($container) {
   $migration->synchronise();
 });
 
-if(is_admin()):
-
-  /*
-  Polylang Integration Section */
-  add_action('plugins_loaded', function() use($container) {
-    if(function_exists('pll_register_string')):
-      $service = $container['option_service'];
-      $options = $service->all();
-
-      $menu_to_use = isset($options['menu_to_use']) ? $options['menu_to_use']->getValue() : '';
-      $button_title = isset($options['button_title']) ? $options['button_title']->getValue() : '';
-      $menu_title = isset($options['menu_title']) ? $options['menu_title']->getValue() : '';
-      $menu_title_link = isset($options['menu_title_link']) ? $options['menu_title_link']->getValue() : '';
-      $menu_additional_content = isset($options['menu_additional_content']) ? $options['menu_additional_content']->getValue() : '';
-
-      pll_register_string('Menu Slug', $menu_to_use, 'Responsive Menu');
-      pll_register_string('Button Title', $button_title, 'Responsive Menu');
-      pll_register_string('Menu Title', $menu_title, 'Responsive Menu');
-      pll_register_string('Menu Title Link', $menu_title_link, 'Responsive Menu');
-      pll_register_string('Additional Content', $menu_additional_content, 'Responsive Menu');
-    endif;
-  });
-endif;
+include dirname(__FILE__) . '/src/config/routing.php';
+include dirname(__FILE__) . '/src/config/internationalise.php';
