@@ -117,7 +117,7 @@ class scssc_free {
   		$locale = setlocale(LC_NUMERIC, 0);
   		setlocale(LC_NUMERIC, "C");
 
-  		$this->parser = new scss_parser($name);
+  		$this->parser = new scss_parser_free($name);
 
   		$tree = $this->parser->parse($code);
 
