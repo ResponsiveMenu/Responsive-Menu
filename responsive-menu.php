@@ -31,15 +31,12 @@ if(version_compare(PHP_VERSION, '5.4', '<'))
 /* Required includes for plugin to function */
 include dirname(__FILE__) . '/autoload.php';
 include dirname(__FILE__) . '/src/config/route_dependencies.php';
+include dirname(__FILE__) . '/src/config/routing.php';
 
 /* Internationalise the plugin */
 add_action('plugins_loaded', function() {
   load_plugin_textdomain('responsive-menu', false, basename(dirname(__FILE__)) . '/translations/');
 });
-
-/* Route the plugin */
-$wp_router = new ResponsiveMenu\Routing\WpRouting($container);
-$wp_router->route();
 
 /*
 * Initial Migration and Version Check synchronisation */
