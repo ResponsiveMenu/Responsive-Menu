@@ -22,14 +22,11 @@ class Front  {
 
     $this->view->echoOrIncludeScripts($options);
 
-    $menu = $this->menu->getHtml($options);
-    $button = $this->button->getHtml($options);
-
     if($options['shortcode'] == 'off'):
-      $this->view->render('button', ['options' => $options, 'button' => $button]);
-      return $this->view->render('menu', ['options' => $options, 'menu' => $menu]);
+      $this->view->render('button', ['options' => $options, 'button' => $this->button->getHtml($options)]);
+      return $this->view->render('menu', ['options' => $options, 'menu' => $this->menu->getHtml($options)]);
     else:
-      return $this->view->addShortcode($options, $button, $menu);
+      return $this->view->addShortcode($options, $this->button, $this->menu);
     endif;
 
 	}

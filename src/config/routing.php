@@ -2,6 +2,7 @@
 
 if(is_admin()):
   add_action('admin_menu', function() use($container) {
+    
     if(isset($_POST['responsive_menu_submit'])):
       $method = 'update';
     elseif(isset($_POST['responsive_menu_reset'])):

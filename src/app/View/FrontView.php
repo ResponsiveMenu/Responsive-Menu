@@ -5,6 +5,8 @@ namespace ResponsiveMenu\View;
 use ResponsiveMenu\Factories\CssFactory;
 use ResponsiveMenu\Factories\JsFactory;
 use ResponsiveMenu\Collections\OptionsCollection;
+use ResponsiveMenu\ViewModels\Menu;
+use ResponsiveMenu\ViewModels\Button;
 
 class FrontView implements View {
 
@@ -55,15 +57,15 @@ class FrontView implements View {
     endif;
   }
 
-  public function addShortcode($options, $button, $menu) {
+  public function addShortcode($options, Button $button, Menu $menu) {
     add_shortcode('responsive_menu', function($atts) use($options, $button, $menu) {
 
       if($atts)
-        array_walk($atts, function($a, $b) use ($options) { $options[$b] = $a; });
+        array_walk($atts, function($a, $b) use ($options) { $options[$b]->setValue($a); });
 
-      $html = $this->make('button', ['options' => $options, 'button' => $button]);
+      $html = $this->make('button', ['options' => $options, 'button' => $button->getHtml($options)]);
 
-      return $html . $this->make('menu', ['options' => $options, 'menu' => $menu]);
+      return $html . $this->make('menu', ['options' => $options, 'menu' => $menu->getHtml($options)]);
 
     });
   }
