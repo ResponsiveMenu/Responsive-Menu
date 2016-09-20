@@ -150,13 +150,14 @@ class JsMapper {
                 return;
               }
               old_href = $(this).attr('href');
+              old_target = typeof $(this).attr('target') == 'undefined' ? '_self' : $(this).attr('target');
               if(self.isOpen) {
                 if($(e.target).closest('.responsive-menu-subarrow').length) {
                   return;
                 }
                 self.closeMenu();
                 setTimeout(function() {
-                  window.location = old_href;
+                  window.open(old_href, old_target);
                 }, self.animationSpeed);
               }
             });

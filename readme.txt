@@ -146,6 +146,12 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 
 == Changelog ==
 
+= 3.0.12 (29th August 2016) =
+** Requires PHP 5.4**
+* Fixed close menu on link click bug with single header (Pro only)
+* Fixed conflict bug with "close on link clicks" and "disable parent click" options
+* Added header bar title link to WPML/Polylang
+
 = 3.0.11 (29th August 2016) =
 ** Requires PHP 5.4**
 * Fixed export options bug (Pro only)
