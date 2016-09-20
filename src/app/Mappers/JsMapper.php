@@ -145,6 +145,10 @@ class JsMapper {
           if(this.closeOnLinkClick == 'on') {
             $(this.linkElement).on('click', function(e) {
               e.preventDefault();
+              /* Fix for when close menu on parent clicks is on */
+              if(self.itemTriggerSubMenu == 'on' && $(this).is('.responsive-menu-item-has-children > ' + self.linkElement)) {
+                return;
+              }
               old_href = $(this).attr('href');
               if(self.isOpen) {
                 if($(e.target).closest('.responsive-menu-subarrow').length) {
