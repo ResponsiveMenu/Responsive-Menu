@@ -151,6 +151,7 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 * Fixed close menu on link click bug with single header (Pro only)
 * Fixed conflict bug with "close on link clicks" and "disable parent click" options
 * Added header bar title link to WPML/Polylang
+* Link target now taken into account with "Close Menu on Link Clicks"
 
 = 3.0.11 (29th August 2016) =
 ** Requires PHP 5.4**
