@@ -63,6 +63,15 @@ $order_mapping = [
           'pro' => true
         ]
       ],
+      __('Background', 'responsive-menu') =>
+        [
+          [
+            'option' => 'menu_background_image',
+            'title' => __('Background Image', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'image'
+          ],
+        ],
     __('Sizing', 'responsive-menu') =>
       [
         [

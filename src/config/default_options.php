@@ -57,6 +57,7 @@ $default_options = [
   'auto_expand_current_submenus' => 'off',
 
   'menu_background_colour' => '#212121',
+  'menu_background_image' => '',
   'menu_item_background_colour' => '#212121',
   'menu_item_background_hover_colour' => '#3f3f3f',
   'menu_item_border_colour' => '#212121',
