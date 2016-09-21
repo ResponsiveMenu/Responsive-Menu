@@ -85,9 +85,13 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 
 2. Front End Expanded Menu with Background Image
 
-3. Example Front End Expanded Menu
+3. Alternative Example Front End Expanded Menu
 
 4. Fully customisable Admin Screen
+
+5. Alternative Example Front End Expanded Menu
+
+6. Alternative Example Front End Expanded Menu
 
 == Changelog ==
 
