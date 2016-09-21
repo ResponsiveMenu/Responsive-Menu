@@ -81,13 +81,13 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 
 == Screenshots ==
 
-1. Fully customisable Admin Screen
+1. Example Front End Menu Button
 
-2. Example Front End Menu Button
+2. Front End Expanded Menu with Background Image
 
 3. Example Front End Expanded Menu
 
-4. Front End Expanded Menu with Background Image
+4. Fully customisable Admin Screen
 
 == Changelog ==
 
