@@ -3384,7 +3384,7 @@ class scss_parser_free {
 		if ($this->variable($out)) return true;
 		if ($this->color($out)) return true;
 		if ($this->unit($out)) return true;
-		if ($this->string($out)) return true;
+		if ($this->text($out)) return true;
 		if ($this->func($out)) return true;
 		if ($this->progid($out)) return true;
 
@@ -3582,7 +3582,7 @@ class scss_parser_free {
 		return false;
 	}
 
-	protected function string(&$out) {
+	protected function text(&$out) {
 		$s = $this->seek();
 		if ($this->literal('"', false)) {
 			$delim = '"';
@@ -3695,7 +3695,7 @@ class scss_parser_free {
 				}
 			}
 
-			if (($tok == "'" || $tok == '"') && $this->string($str)) {
+			if (($tok == "'" || $tok == '"') && $this->text($str)) {
 				$content[] = $str;
 				continue;
 			}
@@ -3939,7 +3939,7 @@ class scss_parser_free {
 						$attrParts[] = " ";
 						continue;
 					}
-					if ($this->string($str)) {
+					if ($this->text($str)) {
 						$attrParts[] = $str;
 						continue;
 					}
