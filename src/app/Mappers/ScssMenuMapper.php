@@ -33,6 +33,7 @@ class ScssMenuMapper extends ScssMapper {
       #responsive-menu-container {
         width: {$options['menu_width']}%;
         {$options['menu_appear_from']}: 0;
+
         background: {$options['menu_background_colour']};
         transition: transform {$options['animation_speed']}s;
         text-align: {$options['menu_text_alignment']};
@@ -157,6 +158,25 @@ class ScssMenuMapper extends ScssMapper {
             }
           }
         }
+
+        @if '{$options['menu_background_image']}' != '' {
+          background: url('{$options['menu_background_image']}');
+          background-size: cover;
+          #responsive-menu-title,
+          #responsive-menu-title:hover,
+          #responsive-menu li.responsive-menu-item a,
+          #responsive-menu li.responsive-menu-item a:hover,
+          #responsive-menu li.responsive-menu-item a .responsive-menu-subarrow,
+          #responsive-menu li.responsive-menu-item a .responsive-menu-subarrow:hover,
+          #responsive-menu li.responsive-menu-item a:hover .responsive-menu-subarrow,
+          #responsive-menu li.responsive-menu-item.responsive-menu-current-item > .responsive-menu-item-link,
+          #responsive-menu li.responsive-menu-item.responsive-menu-current-item > .responsive-menu-item-link:hover,
+          #responsive-menu-wrapper {
+            background: none;
+            border: 0;
+          }
+        }
+
       }
         @if '{$options['menu_to_hide']}' != '' {
           & {$options['menu_to_hide']} {

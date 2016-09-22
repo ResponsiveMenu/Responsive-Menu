@@ -271,9 +271,8 @@ $order_mapping = [
         [
           'option' => 'menu_background_image',
           'title' => __('Background Image', 'responsive-menu'),
-          'label' => __('', 'responsive-menu'),
-          'type' => 'image',
-          'pro' => true
+          'label' => __('Enabling this will deactivate all other colour options', 'responsive-menu'),
+          'type' => 'image'
         ],
         [
           'option' => 'menu_background_colour',
