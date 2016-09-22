@@ -40,19 +40,6 @@ jQuery(function($) {
     $(this).addClass('active_tab');
 	});
 
-    if(typeof(Storage) !== "undefined") {
-      if(localStorage.rmupgrade) {
-    		$('.upgrade-notes').hide();
-    	} else {
-    		$(document).on('click', '.upgrade-notes-close', function(e) {
-    			e.stopPropagation();
-    			e.preventDefault();
-    			$('.upgrade-notes').fadeOut();
-    			localStorage.rmupgrade = "true";
-    		});
-    	}
-    }
-
     $(document).on('click', '#responsive_menu_preview', function(e) {
       e.preventDefault();
       $('#responsive_menu_form').attr('action', '/?responsive-menu-preview=true');

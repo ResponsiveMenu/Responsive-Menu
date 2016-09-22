@@ -15,7 +15,6 @@ class AdminView implements View {
       wp_enqueue_script('responsive-menu-font-awesome', 'https://use.fontawesome.com/b6bedb3084.js', null, null);
 
       wp_enqueue_script('postbox');
-      wp_enqueue_script('postbox-edit', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/js/admin/postbox-edit.js', array('jquery', 'postbox'));
 
       wp_enqueue_script('jquery-ui-core');
 
