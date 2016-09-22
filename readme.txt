@@ -33,6 +33,7 @@ PHP 5.4+
 <li>Set the fonts, font sizes and text alignment you want to use</li>
 <li>Set which side and where you want the button to show</li>
 <li>Set which side the menu appears from (left, right, top or bottom)</li>
+<li>Use background image for the menu</li>
 <li>Choice of menu animations (slide over the top or push the content)</li>
 <li>Choice of which Menu to use</li>
 <li>Choice of screen size at which the menu will be shown</li>
@@ -54,7 +55,6 @@ PHP 5.4+
 
 **Advanced & Pro Functionality:**
 <ul>
-<li>Use background image for the menu</li>
 <li>Preview your changes before implementing</li>
 <li>FontIcon Support for individual menu items</li>
 <li>15 button animation effects</li>
@@ -96,17 +96,21 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 
 1. Example Front End Menu Button
 
-2. Front End Expanded Menu with Background Image (requires Pro)
+2. Front End Expanded Menu with Background Image
 
-3. Alternative Example Front End Expanded Menu with Background Image (requires Pro)
+3. Alternative Example Front End Expanded Menu with Background Image
 
-4. Alternative Example Front End Expanded Menu with Background Image (requires Pro)
+4. Alternative Example Front End Expanded Menu with Background Image
 
-5. Alternative Example Front End Expanded Menu with Background Image (requires Pro)
+5. Alternative Example Front End Expanded Menu with Background Image
 
 6. Fully customisable Admin Screen
 
 == Changelog ==
+
+= 3.0.13 (22nd September 2016) =
+** Requires PHP 5.4**
+* Made menu background image option free (feeling generous today!)
 
 = 3.0.12 (22nd September 2016) =
 ** Requires PHP 5.4**
