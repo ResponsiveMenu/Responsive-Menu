@@ -40,7 +40,7 @@ PHP 5.4+
 <li>Choice of Sub-menu depth to display down to</li>
 <li>Choice of Animation Types & Speeds for the Menu & Button</li>
 <li>Integrated search (fully customisable)</li>
-<li>Ability to disable and re-order the different components (title, search, menu, html content)</li>
+<li>Ability to disable and re-order the different components</li>
 <li>Ability to fix the button to the top or to let it scroll with the page</li>
 <li>Ability to upload logos, sub-arrow images etc.</li>
 <li>Ability to include Scripts externally, minified and in footer</li>
@@ -54,6 +54,8 @@ PHP 5.4+
 
 **Advanced & Pro Functionality:**
 <ul>
+<li>Use background image for the menu</li>
+<li>Preview your changes before implementing</li>
 <li>FontIcon Support for individual menu items</li>
 <li>15 button animation effects</li>
 <li>Colour opacity for all colours</li>
