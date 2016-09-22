@@ -30,9 +30,11 @@ class WpWalker extends \Walker_Nav_Menu {
       endforeach;
 
       /* Clear child class if we are at the final depth level */
-      if($depth + 1 == $this->options['menu_depth']->getValue() && ($key = array_search('responsive-menu-item-has-children', $responsive_menu_classes)) !== false) {
-        unset($responsive_menu_classes[$key]);
-      }
+      if(isset($responsive_menu_classes)):
+        if($depth + 1 == $this->options['menu_depth']->getValue() && ($key = array_search('responsive-menu-item-has-children', $responsive_menu_classes)) !== false) {
+          unset($responsive_menu_classes[$key]);
+        }
+      endif;
 
   		$class_names = join(' ', array_unique($responsive_menu_classes));
   		$class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
