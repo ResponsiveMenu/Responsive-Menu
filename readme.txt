@@ -60,6 +60,7 @@ PHP 5.4+
 **Advanced & Pro Functionality:**
 <ul>
 <li>Preview your changes before implementing</li>
+<li>Animate the menu items when menu is opened</li>
 <li>FontIcon Support for individual menu items</li>
 <li>15 button animation effects</li>
 <li>Colour opacity for all colours</li>
