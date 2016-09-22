@@ -8,12 +8,12 @@ Stable tag: 3.0.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Highly customisable Responsive Menu plugin with 120+ options. No coding knowledge needed to design it exactly as you want.
+Highly customisable Responsive Menu plugin with 150+ options. No coding knowledge needed to design it exactly as you want.
 
 == Description ==
 **Description:**
 <br /><br />
-Highly customisable Responsive Menu Plugin for WordPress. With over 120 customisable options you get a combination of 14,000 options!
+Highly customisable Responsive Menu Plugin for WordPress. With over 150 customisable options you get a combination of 22,500 options! No coding experience or knowledge is needed with an easy to use interface you can get it looking exactly as you want with minimal fuss.
 <br /><br />
 **See it in action:**
 <br /><br />
@@ -23,32 +23,43 @@ Highly customisable Responsive Menu Plugin for WordPress. With over 120 customis
 <br /><br />
 PHP 5.4+
 <br /><br />
+**Fully documented:**
+<br /><br />
+<a href="https://responsive.menu/docs/">https://responsive.menu/docs/</a>
+<br /><br />
 **Basic Functionality:**
 <ul>
-<li>Menu, Button & Title Image, Background & Colours</li>
-<li>Menu, Button & Title Font, Font Size & Alignment</li>
-<li>Menu, Button & Title widths & heights</li>
-<li>All Menu & Sub-Menu Colours</li>
-<li>Which Menu to Responsify</li>
-<li>Breakpoint Width for menu to take effect</li>
-<li>CSS for hiding specific elements</li>
-<li>Menu depth To display</li>
-<li>Animation Types & Speeds for Menu & Button</li>
-<li>Include Scripts externally, minified and in footer
-<li>Import/Export options</li>
-<li>Custom HTML components</li>
-<li>Custom triggers</li>
+<li>Change **every colour**</li>
+<li>Set the fonts, font sizes and text alignment you want to use</li>
+<li>Set which side and where you want the button to show</li>
+<li>Set which side the menu appears from (left, right, top or bottom)</li>
+<li>Choice of menu animations (slide over the top or push the content)</li>
+<li>Choice of which Menu to use</li>
+<li>Choice of screen size at which the menu will be shown</li>
+<li>Choice of CSS elements to hide when menu is showing</li>
+<li>Choice of Sub-menu depth to display down to</li>
+<li>Choice of Animation Types & Speeds for the Menu & Button</li>
+<li>Integrated search (fully customisable)</li>
+<li>Ability to disable and re-order the different components (title, search, menu, html content)</li>
+<li>Ability to fix the button to the top or to let it scroll with the page</li>
+<li>Ability to upload logos, sub-arrow images etc.</li>
+<li>Ability to include Scripts externally, minified and in footer</li>
+<li>Ability to import and export options in a click of a button</li>
+<li>Ability to add custom HTML components</li>
+<li>Ability to choose custom menu triggers</li>
+<li>WPML/Polylang Support</li>
+<li>RTL Support</li>
 <li>Plus much, much more!</li>
 </ul>
 
 **Advanced & Pro Functionality:**
 <ul>
-<li>WPML/Polylang Support</li>
 <li>FontIcon Support for individual menu items</li>
-<li>Button Animation Effects</li>
-<li>Colour Opacity for all colours</li>
-<li>Header Bar</li>
-<li>Single Menu</li>
+<li>15 button animation effects</li>
+<li>Colour opacity for all colours</li>
+<li>Custom overlay colour and opacity</li>
+<li>Integrated header bar</li>
+<li>Let the plugin provide and style your main menu as well as hamburger menu</li>
 </ul>
 
 For more reasons to go Pro, please visit <a target="_blank" href="https://responsive.menu/why-go-pro/">this page</a>.
@@ -100,7 +111,7 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 * Fixed close menu on link click bug with single header (Pro only)
 * Fixed conflict bug with "close on link clicks" and "disable parent click" options
 * Added header bar title link to WPML/Polylang
-* Added alt tag option for every image 
+* Added alt tag option for every image
 * Link target now taken into account with "Close Menu on Link Clicks"
 
 = 3.0.11 (29th August 2016) =
