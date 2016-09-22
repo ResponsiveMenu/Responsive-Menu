@@ -112,6 +112,10 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 
 == Changelog ==
 
+= 3.0.14 (22nd September 2016) =
+* **Requires PHP 5.4**
+* Added animation of menu items when menu opened (Pro only)
+
 = 3.0.13 (22nd September 2016) =
 * **Requires PHP 5.4**
 * Made menu background image option free (feeling generous today!)
