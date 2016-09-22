@@ -29,7 +29,7 @@ PHP 5.4+
 <br /><br />
 **Basic Functionality:**
 <ul>
-<li>Change **every colour**</li>
+<li>Change every colour</li>
 <li>Set the fonts, font sizes and text alignment you want to use</li>
 <li>Set which side and where you want the button to show</li>
 <li>Set which side the menu appears from (left, right, top or bottom)</li>
