@@ -19,11 +19,13 @@ class TitleTest extends TestCase {
     $collection->add(new Option('menu_title_link', 'b'));
     $collection->add(new Option('menu_title_link_location', 'c'));
     $collection->add(new Option('menu_title_image', 'd'));
+    $collection->add(new Option('menu_title_image_alt', 'e'));
     $this->translator->method('translate')->will($this->onConsecutiveCalls('a', 'b'));
     $rendered = $this->component->render($collection);
     $this->assertContains('target="c"', $rendered);
     $this->assertContains('href="b"', $rendered);
-    $this->assertContains('img src="d"', $rendered);
+    $this->assertContains('alt="e"', $rendered);
+    $this->assertContains('src="d"', $rendered);
     $this->assertContains('>a<', $rendered);
   }
 

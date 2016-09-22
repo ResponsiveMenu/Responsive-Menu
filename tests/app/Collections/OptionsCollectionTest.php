@@ -43,7 +43,8 @@ class OptionsCollectionTest extends TestCase {
 
   public function testGetActiveArrow() {
     $this->collection->add(new ResponsiveMenu\Models\Option('active_arrow_image', 'test.jpg'));
-    $this->assertEquals('<img src="test.jpg" />', $this->collection->getActiveArrow());
+    $this->collection->add(new ResponsiveMenu\Models\Option('active_arrow_image_alt', 'test-alt'));
+    $this->assertEquals('<img alt="test-alt" src="test.jpg" />', $this->collection->getActiveArrow());
   }
 
   public function testGetActiveArrowDoesntExist() {
@@ -54,7 +55,8 @@ class OptionsCollectionTest extends TestCase {
 
   public function testGetInactiveArrow() {
     $this->collection->add(new ResponsiveMenu\Models\Option('inactive_arrow_image', 'test.jpg'));
-    $this->assertEquals('<img src="test.jpg" />', $this->collection->getInActiveArrow());
+    $this->collection->add(new ResponsiveMenu\Models\Option('inactive_arrow_image_alt', 'test-alt'));
+    $this->assertEquals('<img alt="test-alt" src="test.jpg" />', $this->collection->getInActiveArrow());
   }
 
   public function testGetInactiveArrowDoesntExist() {
@@ -65,17 +67,20 @@ class OptionsCollectionTest extends TestCase {
 
   public function testGetInactiveTitleImage() {
     $this->collection->add(new ResponsiveMenu\Models\Option('menu_title_image', 'test.jpg'));
-    $this->assertEquals('<img src="test.jpg" />', $this->collection->getTitleImage());
+    $this->collection->add(new ResponsiveMenu\Models\Option('menu_title_image_alt', 'test-alt'));
+    $this->assertEquals('<img alt="test-alt" src="test.jpg" />', $this->collection->getTitleImage());
   }
 
   public function testGetInactiveTitleImageDoesntExist() {
     $this->collection->add(new ResponsiveMenu\Models\Option('menu_title_image', ''));
+    $this->collection->add(new ResponsiveMenu\Models\Option('menu_title_image_alt', ''));
     $this->assertEquals(null, $this->collection->getTitleImage());
   }
 
   public function testGetButtonIcon() {
     $this->collection->add(new ResponsiveMenu\Models\Option('button_image', 'test.jpg'));
-    $this->assertEquals('<img src="test.jpg" class="responsive-menu-button-icon responsive-menu-button-icon-active" />', $this->collection->getButtonIcon());
+    $this->collection->add(new ResponsiveMenu\Models\Option('button_image_alt', 'test-alt'));
+    $this->assertEquals('<img alt="test-alt" src="test.jpg" class="responsive-menu-button-icon responsive-menu-button-icon-active" />', $this->collection->getButtonIcon());
   }
 
   public function testGetButtonIconDoesntExist() {
@@ -85,13 +90,17 @@ class OptionsCollectionTest extends TestCase {
 
   public function testGetButtonIconActive() {
     $this->collection->add(new ResponsiveMenu\Models\Option('button_image', 'test2.jpg'));
+    $this->collection->add(new ResponsiveMenu\Models\Option('button_image_alt', 'alt-a'));
     $this->collection->add(new ResponsiveMenu\Models\Option('button_image_when_clicked', 'test.jpg'));
-    $this->assertEquals('<img src="test.jpg" class="responsive-menu-button-icon responsive-menu-button-icon-inactive" />', $this->collection->getButtonIconActive());
+    $this->collection->add(new ResponsiveMenu\Models\Option('button_image_alt_when_clicked', 'alt-b'));
+    $this->assertEquals('<img alt="alt-b" src="test.jpg" class="responsive-menu-button-icon responsive-menu-button-icon-inactive" />', $this->collection->getButtonIconActive());
   }
 
   public function testGetButtonIconActiveDoesntExist() {
     $this->collection->add(new ResponsiveMenu\Models\Option('button_image', ''));
+    $this->collection->add(new ResponsiveMenu\Models\Option('button_image_alt', ''));
     $this->collection->add(new ResponsiveMenu\Models\Option('button_image_when_clicked', 'test.jpg'));
+    $this->collection->add(new ResponsiveMenu\Models\Option('button_image_alt_when_clicked', 'test.jpg'));
     $this->assertEquals(null, $this->collection->getButtonIconActive());
   }
 
@@ -101,6 +110,7 @@ class OptionsCollectionTest extends TestCase {
 
   public function testIsCollectionEmptyNotEmpty() {
     $this->collection->add(new ResponsiveMenu\Models\Option('button_image', 'test.jpg'));
+    $this->collection->add(new ResponsiveMenu\Models\Option('button_image_alt', 'test.jpg'));
     $this->assertFalse($this->collection->isEmpty());
   }
 

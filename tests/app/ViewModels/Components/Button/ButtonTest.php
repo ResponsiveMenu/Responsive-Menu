@@ -19,7 +19,9 @@ class ButtonTest extends TestCase {
     $collection->add(new Option('button_title_position', 'left'));
     $collection->add(new Option('button_click_animation', 'd'));
     $collection->add(new Option('button_image', 'e'));
+    $collection->add(new Option('button_image_alt', 'g'));
     $collection->add(new Option('button_image_when_clicked', 'f'));
+    $collection->add(new Option('button_image_alt_when_clicked', 'h'));
 
     $this->translator->method('translate')->willReturn('a');
 
@@ -27,6 +29,8 @@ class ButtonTest extends TestCase {
     $this->assertContains('responsive-menu-label-left', $rendered);
     $this->assertContains('responsive-menu-accessible', $rendered);
     $this->assertContains('responsive-menu-d', $rendered);
+    $this->assertContains('alt="g"', $rendered);
+    $this->assertContains('alt="h"', $rendered);
   }
 
 }

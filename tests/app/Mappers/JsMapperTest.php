@@ -9,7 +9,9 @@ class JsMapperTest extends TestCase {
     $this->collection->add(new ResponsiveMenu\Models\Option('animation_speed', 5));
     $this->collection->add(new ResponsiveMenu\Models\Option('button_click_trigger', 'a'));
     $this->collection->add(new ResponsiveMenu\Models\Option('active_arrow_image', 'a'));
+    $this->collection->add(new ResponsiveMenu\Models\Option('active_arrow_image_alt', 'n'));
     $this->collection->add(new ResponsiveMenu\Models\Option('inactive_arrow_image', 'b'));
+    $this->collection->add(new ResponsiveMenu\Models\Option('inactive_arrow_image_alt', 'm'));
     $this->collection->add(new ResponsiveMenu\Models\Option('breakpoint', 'c'));
     $this->collection->add(new ResponsiveMenu\Models\Option('button_click_trigger', 'd'));
     $this->collection->add(new ResponsiveMenu\Models\Option('animation_type', 'e'));
@@ -37,15 +39,21 @@ class JsMapperTest extends TestCase {
     $this->assertContains("closeOnBodyClick: 'i'", $mapped);
     $this->assertContains("closeOnLinkClick: 'j'", $mapped);
     $this->assertContains("itemTriggerSubMenu: 'k'", $mapped);
+    $this->assertContains('alt="m"', $mapped);
+    $this->assertContains('alt="n"', $mapped);
   }
 
   public function testDefaultAnimationSpeed() {
     $collection = new ResponsiveMenu\Collections\OptionsCollection;
     $collection->add(new ResponsiveMenu\Models\Option('active_arrow_image', 'a'));
+    $collection->add(new ResponsiveMenu\Models\Option('active_arrow_image_alt', 'c'));
     $collection->add(new ResponsiveMenu\Models\Option('inactive_arrow_image', 'b'));
+    $collection->add(new ResponsiveMenu\Models\Option('inactive_arrow_image_alt', 'd'));
     $mapper = new ResponsiveMenu\Mappers\JsMapper;
     $mapped = $this->mapper->map($collection);
     $this->assertContains('animationSpeed: 500', $mapped);
+    $this->assertContains('alt="c"', $mapped);
+    $this->assertContains('alt="d"', $mapped);
   }
 
 }
