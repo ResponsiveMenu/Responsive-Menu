@@ -27,6 +27,10 @@ PHP 5.4+
 <br /><br />
 <a href="https://responsive.menu/docs/">https://responsive.menu/docs/</a>
 <br /><br />
+**Fully unit tested:**
+<br /><br />
+100% unit test coverage with test included in the plugin so you can run them yourself for peace of mind
+<br /><br />
 **Basic Functionality:**
 <ul>
 <li>Change every colour</li>
