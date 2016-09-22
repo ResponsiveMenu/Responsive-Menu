@@ -96,15 +96,15 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 
 1. Example Front End Menu Button
 
-2. Front End Expanded Menu with Background Image
+2. Front End Expanded Menu with Background Image (requires Pro)
 
-3. Alternative Example Front End Expanded Menu
+3. Alternative Example Front End Expanded Menu with Background Image (requires Pro)
 
-4. Fully customisable Admin Screen
+4. Alternative Example Front End Expanded Menu with Background Image (requires Pro)
 
-5. Alternative Example Front End Expanded Menu
+5. Alternative Example Front End Expanded Menu with Background Image (requires Pro)
 
-6. Alternative Example Front End Expanded Menu
+6. Fully customisable Admin Screen
 
 == Changelog ==
 
