@@ -29,7 +29,7 @@ PHP 5.4+
 <br /><br />
 **Fully unit tested:**
 <br /><br />
-100% unit test coverage with test included in the plugin so you can run them yourself for peace of mind
+100% unit tests coverage with test included in the plugin so you can run them yourself for peace of mind
 <br /><br />
 **Basic Functionality:**
 <ul>
