@@ -29,7 +29,7 @@ PHP 5.4+
 <br /><br />
 **Fully unit tested:**
 <br /><br />
-100% unit tests coverage with test included in the plugin so you can run them yourself for peace of mind
+100% unit test coverage with tests included in the plugin so you can run them yourself for peace of mind
 <br /><br />
 **Basic Functionality:**
 <ul>
@@ -71,6 +71,8 @@ PHP 5.4+
 
 For more reasons to go Pro, please visit <a target="_blank" href="https://responsive.menu/why-go-pro/">this page</a>.
 
+[youtube https://www.youtube.com/watch?v=aj6ba0tGKPg]
+
 == Installation ==
 
 1. Upload `responsive-menu` to the `/wp-content/plugins/` directory
@@ -99,17 +101,19 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 
 == Screenshots ==
 
-1. Example Front End Menu Button
+1. Animated Screencast
 
-2. Front End Expanded Menu with Background Image
+2. Example Front End Menu Button
 
-3. Alternative Example Front End Expanded Menu with Background Image
+3. Front End Expanded Menu with Background Image
 
 4. Alternative Example Front End Expanded Menu with Background Image
 
 5. Alternative Example Front End Expanded Menu with Background Image
 
-6. Fully customisable Admin Screen
+6. Alternative Example Front End Expanded Menu with Background Image
+
+7. Fully customisable Admin Screen
 
 == Changelog ==
 
