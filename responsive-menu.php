@@ -32,8 +32,7 @@ if(version_compare(PHP_VERSION, '5.4', '<'))
 include dirname(__FILE__) . '/autoload.php';
 include dirname(__FILE__) . '/src/config/services.php';
 
-/*
-* Initial Migration and Version Check synchronisation */
+/* Initial Migration and Version Check synchronisation */
 include dirname(__FILE__) . '/src/config/setup.php';
 
 /* Finally route and initialise the plugin */
