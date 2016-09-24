@@ -34,11 +34,8 @@ include dirname(__FILE__) . '/src/config/services.php';
 
 /*
 * Initial Migration and Version Check synchronisation */
-add_action('init', function() use($container) {
-  $migration = $container['migration'];
-  $migration->setup();
-  $migration->synchronise();
-});
+include dirname(__FILE__) . '/src/config/setup.php';
 
+/* Finally route and initialise the plugin */
 include dirname(__FILE__) . '/src/config/routing.php';
 include dirname(__FILE__) . '/src/config/internationalise.php';
