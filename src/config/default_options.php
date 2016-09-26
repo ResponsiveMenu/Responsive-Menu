@@ -168,4 +168,9 @@ $default_options = [
   'items_order' => '{"title":"on","menu":"on","search":"on","additional content":"on"}',
   'header_bar_items_order' => '{"logo":"on","title":"on","search":"on","html content":"on","button":"on"}',
 
+  'fade_submenus' => 'off',
+  'fade_submenus_side' => 'left',
+  'fade_submenus_delay' => 100,
+  'fade_submenus_speed' => 500
+  
 ];
