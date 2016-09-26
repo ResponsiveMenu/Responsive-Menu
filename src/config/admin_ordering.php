@@ -827,8 +827,15 @@ __('Sub-Menus', 'responsive-menu') => [
             'title' => __('Disable Parent Item Clicks', 'responsive-menu'),
             'label' => __('', 'responsive-menu'),
             'type' => 'checkbox'
-
           ],
+          [
+            'option' => 'use_slide_effect',
+            'title' => __('Use slide effect instead of drop-down', 'responsive-menu'),
+            'label' => __('', 'responsive-menu'),
+            'type' => 'checkbox',
+            'pro' => true,
+            'beta' => true
+          ]
         ],
         __('Fade Links In', 'responsive-menu') =>
         [

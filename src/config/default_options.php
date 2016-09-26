@@ -171,6 +171,7 @@ $default_options = [
   'fade_submenus' => 'off',
   'fade_submenus_side' => 'left',
   'fade_submenus_delay' => 100,
-  'fade_submenus_speed' => 500
-  
+  'fade_submenus_speed' => 500,
+
+  'use_slide_effect' => 'off'
 ];
