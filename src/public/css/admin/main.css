@@ -183,6 +183,7 @@ li.draggable {
 
 .beta {
   color: orange;
+  display: block;
 }
 
 .postbox .inside table tr td:last-child {

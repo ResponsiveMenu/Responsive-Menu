@@ -3,7 +3,7 @@
 $container = new ResponsiveMenu\Routing\Container();
 
 $container['current_version'] = function($c) {
-  return '3.0.13';
+  return '3.0.14';
 };
 
 $container['option_helpers'] = function($c) {
