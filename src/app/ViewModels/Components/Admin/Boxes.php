@@ -30,7 +30,7 @@ class Boxes {
             <div class="inside">
               <table class="widefat">';
                 foreach($options as $option):
-                  $pro = isset($option['pro']) ? 'pro_option' :
+                  $pro = isset($option['pro']) ? 'pro_option' : '';
                   $semi_pro = isset($option['semi_pro'])  ? 'semi_pro_option' : '';
                   $type = isset($option['type']) ? $option['type'] : null;
                   $unit = isset($option['unit']) ? '<span class="units">' . $option['unit'] . '</span>' : null;
