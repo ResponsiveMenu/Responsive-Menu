@@ -166,7 +166,7 @@ $default_options = [
   'header_bar_position_type' => 'fixed',
 
   'items_order' => '{"title":"on","menu":"on","search":"on","additional content":"on"}',
-  'header_bar_items_order' => '{"logo":"on","title":"on","search":"on","html content":"on","button":"on"}',
+  'header_bar_items_order' => '{"logo":"on","title":"on","search":"on","html content":"on"}',
 
   'fade_submenus' => 'off',
   'fade_submenus_side' => 'left',

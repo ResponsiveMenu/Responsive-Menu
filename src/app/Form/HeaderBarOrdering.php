@@ -7,11 +7,12 @@ use ResponsiveMenu\Form\FormComponent;
 class HeaderBarOrdering implements FormComponent {
 
 	public function render(Option $option) {
-    
+
     $required = ['logo' => '', 'title' => '', 'search' => '', 'html content' => '', 'button' => ''];
     $current_options = (array) json_decode($option->getValue());
     $all_options = array_merge($current_options, $required);
-
+    unset($all_options['button']);
+    
     $output = '<ul id="header-bar-sortable">';
     foreach($all_options as $name => $val):
       $current_value = isset($current_options[$name]) ? $current_options[$name] : '';
