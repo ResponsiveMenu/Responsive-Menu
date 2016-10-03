@@ -121,6 +121,8 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 == Changelog ==
 
 = 3.0.14 (22nd September 2016) =
+* **Requires PHP 5.4**
+* Improved width of first and last menu item borders
 * Added animation of menu items when menu opened (Pro only)
 * Added slide effect animation option instead of standard dropdown (Pro only)
 * Removed button from header bar to aid with z-indexing (Pro only)
