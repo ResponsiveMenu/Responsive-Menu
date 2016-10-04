@@ -19,7 +19,6 @@ Highly customisable Responsive Menu Plugin for WordPress. With over 150 customis
 <br /><br />
 <a href="https://responsive.menu">https://responsive.menu</a>
 <br /><br />
-Demos:
 <a href="https://demo.responsive.menu">https://demo.responsive.menu</a>
 <br /><br />
 **Requirements:**
