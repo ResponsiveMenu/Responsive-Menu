@@ -188,7 +188,7 @@ class ScssMenuMapper extends ScssMapper {
       }
         @if '{$options['menu_to_hide']}' != '' {
           & {$options['menu_to_hide']} {
-            display: none;
+            display: none !important;
           }
         }
       }
