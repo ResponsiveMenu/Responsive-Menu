@@ -119,7 +119,11 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 
 == Changelog ==
 
-= 3.0.14 (22nd September 2016) =
+= 3.0.15 (8th September 2016) =
+* **Requires PHP 5.4**
+* Improved FontAwesome Icon check (Pro only)
+
+= 3.0.14 (4th October 2016) =
 * **Requires PHP 5.4**
 * Improved PHP check on pre 5.3 systems
 * Improved width of first and last menu item borders
