@@ -5,6 +5,13 @@ foreach(get_terms('nav_menu') as $menu) $menus_array[] = [ 'value' => $menu->slu
 foreach(get_registered_nav_menus() as $location => $menu) $location_menus[] = ['value' => $location, 'display' => $menu];
 $location_menus[] = ['value' => '', 'display' => 'None'];
 
+$unit_options = [
+  ['value' => 'px', 'display' => 'px'],
+  ['value' => 'em', 'display' => 'em', 'disabled' => true],
+  ['value' => 'rem', 'display' => 'rem', 'disabled' => true],
+  ['value' => '%', 'display' => '%', 'disabled' => true]
+];
+
 $order_mapping = [
 
       /*
@@ -131,12 +138,7 @@ $order_mapping = [
               [
                 'option' => 'menu_title_font_size_unit',
                 'type' => 'select',
-                'select' => [
-                  ['value' => 'px', 'display' => 'px'],
-                  ['value' => 'em', 'display' => 'em', 'disabled' => true],
-                  ['value' => 'rem', 'display' => 'rem', 'disabled' => true],
-                  ['value' => '%', 'display' => '%', 'disabled' => true]
-                ]
+                'select' => $unit_options
               ]
             ]
           ],
@@ -404,12 +406,7 @@ $order_mapping = [
                 [
                   'option' => 'menu_font_size_unit',
                   'type' => 'select',
-                  'select' => [
-                    ['value' => 'px', 'display' => 'px'],
-                    ['value' => 'em', 'display' => 'em', 'disabled' => true],
-                    ['value' => 'rem', 'display' => 'rem', 'disabled' => true],
-                    ['value' => '%', 'display' => '%', 'disabled' => true]
-                  ]
+                  'select' => $unit_options
                 ]
               ]
             ],
@@ -551,7 +548,15 @@ $order_mapping = [
           'option' => 'button_distance_from_side',
           'title' => __('Distance from Side', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
-          'unit' => '%'
+          'semi_pro' => true,
+          'sub_options' =>
+          [
+            [
+              'option' => 'button_distance_from_side_unit',
+              'type' => 'select',
+              'select' => $unit_options
+            ]
+          ]
         ],
         [
           'option' => 'button_left_or_right',
@@ -567,7 +572,15 @@ $order_mapping = [
           'option' => 'button_top',
           'title' => __('Distance from Top', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
-          'unit' => 'px'
+          'semi_pro' => true,
+          'sub_options' =>
+          [
+            [
+              'option' => 'button_top_unit',
+              'type' => 'select',
+              'select' => $unit_options
+            ]
+          ]
         ],
       ],
       __('Container Sizing', 'responsive-menu') =>
@@ -576,13 +589,29 @@ $order_mapping = [
           'option' => 'button_height',
           'title' => __('Height', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
-          'unit' => 'px'
+          'semi_pro' => true,
+          'sub_options' =>
+          [
+            [
+              'option' => 'button_height_unit',
+              'type' => 'select',
+              'select' => $unit_options
+            ]
+          ]
         ],
         [
           'option' => 'button_width',
           'title' => __('Width', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
-          'unit' => 'px'
+          'semi_pro' => true,
+          'sub_options' =>
+          [
+            [
+              'option' => 'button_width_unit',
+              'type' => 'select',
+              'select' => $unit_options
+            ]
+          ]
         ],
       ],
       __('Hamburger Sizing', 'responsive-menu') =>
@@ -591,19 +620,43 @@ $order_mapping = [
           'option' => 'button_line_height',
           'title' => __('Line Height', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
-          'unit' => 'px'
+          'semi_pro' => true,
+          'sub_options' =>
+          [
+            [
+              'option' => 'button_line_height_unit',
+              'type' => 'select',
+              'select' => $unit_options
+            ]
+          ]
         ],
         [
           'option' => 'button_line_margin',
           'title' => __('Line Margin', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
-          'unit' => 'px'
+          'semi_pro' => true,
+          'sub_options' =>
+          [
+            [
+              'option' => 'button_line_margin_unit',
+              'type' => 'select',
+              'select' => $unit_options
+            ]
+          ]
         ],
         [
           'option' => 'button_line_width',
           'title' => __('Line Width', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
-          'unit' => 'px'
+          'semi_pro' => true,
+          'sub_options' =>
+          [
+            [
+              'option' => 'button_line_width_unit',
+              'type' => 'select',
+              'select' => $unit_options
+            ]
+          ]
         ],
 
       ],
@@ -678,12 +731,7 @@ $order_mapping = [
               [
                 'option' => 'button_font_size_unit',
                 'type' => 'select',
-                'select' => [
-                  ['value' => 'px', 'display' => 'px'],
-                  ['value' => 'em', 'display' => 'em', 'disabled' => true],
-                  ['value' => 'rem', 'display' => 'rem', 'disabled' => true],
-                  ['value' => '%', 'display' => '%', 'disabled' => true]
-                ]
+                'select' => $unit_options
               ]
             ]
           ],
@@ -691,7 +739,15 @@ $order_mapping = [
             'option' => 'button_title_line_height',
             'title' => __('Line Height', 'responsive-menu'),
             'label' => __('', 'responsive-menu'),
-            'unit' => 'px'
+            'semi_pro' => true,
+            'sub_options' =>
+            [
+              [
+                'option' => 'button_title_line_height_unit',
+                'type' => 'select',
+                'select' => $unit_options
+              ]
+            ]
           ],
       ],
       __('Image', 'responsive-menu') =>
@@ -917,13 +973,29 @@ __('Sub-Menus', 'responsive-menu') => [
             'option' => 'submenu_arrow_height',
             'title' => __('Toggle Button Height', 'responsive-menu'),
             'label' => __('', 'responsive-menu'),
-            'unit' => 'px'
+            'semi_pro' => true,
+            'sub_options' =>
+            [
+              [
+                'option' => 'submenu_arrow_height_unit',
+                'type' => 'select',
+                'select' => $unit_options
+              ]
+            ]
           ],
           [
             'option' => 'submenu_arrow_width',
             'title' => __('Toggle Button Width', 'responsive-menu'),
             'label' => __('', 'responsive-menu'),
-            'unit' => 'px'
+            'semi_pro' => true,
+            'sub_options' =>
+            [
+              [
+                'option' => 'submenu_arrow_width_unit',
+                'type' => 'select',
+                'select' => $unit_options
+              ]
+            ]
           ],
 
         ],
@@ -1096,6 +1168,7 @@ __('Sub-Menus', 'responsive-menu') => [
           'option' => 'header_bar_breakpoint',
           'title' => __('Breakpoint', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
+          'unit' => 'px',
           'pro' => true
         ],
       ],
@@ -1163,12 +1236,7 @@ __('Sub-Menus', 'responsive-menu') => [
             [
               'option' => 'header_bar_font_size_unit',
               'type' => 'select',
-              'select' => [
-                ['value' => 'px', 'display' => 'px'],
-                ['value' => 'em', 'display' => 'em', 'disabled' => true],
-                ['value' => 'rem', 'display' => 'rem', 'disabled' => true],
-                ['value' => '%', 'display' => '%', 'disabled' => true]
-              ]
+              'select' => $unit_options
             ]
           ]
         ],
@@ -1178,8 +1246,15 @@ __('Sub-Menus', 'responsive-menu') => [
           'option' => 'header_bar_height',
           'title' => __('Height', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
-          'unit' => 'px',
-          'pro' => true
+          'pro' => true,
+          'sub_options' =>
+          [
+            [
+              'option' => 'header_bar_height_unit',
+              'type' => 'select',
+              'select' => $unit_options
+            ]
+          ]
         ],
       ],
     __('Colours', 'responsive-menu') => [
@@ -1292,12 +1367,7 @@ __('Sub-Menus', 'responsive-menu') => [
             [
               'option' => 'single_menu_font_size_unit',
               'type' => 'select',
-              'select' => [
-                ['value' => 'px', 'display' => 'px'],
-                ['value' => 'em', 'display' => 'em', 'disabled' => true],
-                ['value' => 'rem', 'display' => 'rem', 'disabled' => true],
-                ['value' => '%', 'display' => '%', 'disabled' => true]
-              ]
+              'select' => $unit_options
             ]
           ]
         ]
@@ -1319,12 +1389,7 @@ __('Sub-Menus', 'responsive-menu') => [
             [
               'option' => 'single_menu_submenu_font_size_unit',
               'type' => 'select',
-              'select' => [
-                ['value' => 'px', 'display' => 'px'],
-                ['value' => 'em', 'display' => 'em', 'disabled' => true],
-                ['value' => 'rem', 'display' => 'rem', 'disabled' => true],
-                ['value' => '%', 'display' => '%', 'disabled' => true]
-              ]
+              'select' => $unit_options
             ]
           ]
         ]
@@ -1334,8 +1399,15 @@ __('Sub-Menus', 'responsive-menu') => [
           'option' => 'single_menu_height',
           'title' => __('Height', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
-          'unit' => 'px',
-          'pro' => true
+          'pro' => true,
+          'sub_options' =>
+          [
+            [
+              'option' => 'single_menu_height_unit',
+              'type' => 'select',
+              'select' => $unit_options
+            ]
+          ]
         ]
     ],
     __('Sub-Menu Sizing', 'responsive-menu') => [
@@ -1343,8 +1415,15 @@ __('Sub-Menus', 'responsive-menu') => [
           'option' => 'single_menu_submenu_height',
           'title' => __('Height', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
-          'unit' => 'px',
-          'pro' => true
+          'pro' => true,
+          'sub_options' =>
+          [
+            [
+              'option' => 'single_menu_submenu_height_unit',
+              'type' => 'select',
+              'select' => $unit_options
+            ]
+          ]
         ]
     ]
   ],
