@@ -12,6 +12,13 @@ $unit_options = [
   ['value' => '%', 'display' => '%', 'disabled' => true]
 ];
 
+$percentage_unit_options = [
+  ['value' => 'px', 'display' => 'px', 'disabled' => true],
+  ['value' => 'em', 'display' => 'em', 'disabled' => true],
+  ['value' => 'rem', 'display' => 'rem', 'disabled' => true],
+  ['value' => '%', 'display' => '%']
+];
+
 $order_mapping = [
 
       /*
@@ -76,25 +83,57 @@ $order_mapping = [
           'option' => 'menu_width',
           'title' => __('Menu Width', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
-          'unit' => '%'
+          'semi_pro' => true,
+          'sub_options' =>
+          [
+            [
+              'option' => 'menu_width_unit',
+              'type' => 'select',
+              'select' => $percentage_unit_options
+            ]
+          ]
         ],
         [
           'option' => 'menu_maximum_width',
           'title' => __('Maximum Width', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
-          'unit' => 'px'
+          'semi_pro' => true,
+          'sub_options' =>
+          [
+            [
+              'option' => 'menu_maximum_width_unit',
+              'type' => 'select',
+              'select' => $unit_options
+            ]
+          ]
         ],
         [
           'option' => 'menu_minimum_width',
           'title' => __('Minimum Width', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
-          'unit' => 'px'
+          'semi_pro' => true,
+          'sub_options' =>
+          [
+            [
+              'option' => 'menu_minimum_width_unit',
+              'type' => 'select',
+              'select' => $unit_options
+            ]
+          ]
         ],
         [
           'option' => 'menu_links_height',
           'title' => __('Links Height', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
-          'unit' => 'px'
+          'semi_pro' => true,
+          'sub_options' =>
+          [
+            [
+              'option' => 'menu_links_height_unit',
+              'type' => 'select',
+              'select' => $unit_options
+            ]
+          ]
         ],
         [
           'option' => 'menu_auto_height',
@@ -554,7 +593,7 @@ $order_mapping = [
             [
               'option' => 'button_distance_from_side_unit',
               'type' => 'select',
-              'select' => $unit_options
+              'select' => $percentage_unit_options
             ]
           ]
         ],
