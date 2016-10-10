@@ -110,11 +110,9 @@ class ScssMenuMapper extends ScssMapper {
         #responsive-menu {
 
           > li.responsive-menu-item:first-child a {
-              border-top-width: 2px;
+              border-top:  {$options['menu_border_width']}px solid {$options['menu_item_border_colour']};
           }
-          > li.responsive-menu-item:last-child a{
-              border-bottom-width: 2px;
-          }
+
           li.responsive-menu-item {
             .responsive-menu-item-link {
               font-size: {$options['menu_font_size']}px;
@@ -122,8 +120,7 @@ class ScssMenuMapper extends ScssMapper {
 
             a {
               line-height: {$options['menu_links_height']}px;
-              border-top: 1px solid {$options['menu_item_border_colour']};
-              border-bottom: 1px solid {$options['menu_item_border_colour']};
+              border-bottom: {$options['menu_border_width']}px solid {$options['menu_item_border_colour']};
 
               color: {$options['menu_link_colour']};
               background-color: {$options['menu_item_background_colour']};
@@ -144,7 +141,7 @@ class ScssMenuMapper extends ScssMapper {
                 line-height: {$options['submenu_arrow_height']}px;
                 width: {$options['submenu_arrow_width']}px;
                 color: {$options['menu_sub_arrow_shape_colour']};
-                border-left: 1px solid {$options['menu_sub_arrow_border_colour']};
+                border-left: {$options['menu_border_width']}px solid {$options['menu_sub_arrow_border_colour']};
                 background-color: {$options['menu_sub_arrow_background_colour']};
 
                   &:hover {

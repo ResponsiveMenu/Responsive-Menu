@@ -136,6 +136,20 @@ $order_mapping = [
           ]
         ],
         [
+          'option' => 'menu_border_width',
+          'title' => __('Border Width', 'responsive-menu'),
+          'label' => __('', 'responsive-menu'),
+          'semi_pro' => true,
+          'sub_options' =>
+          [
+            [
+              'option' => 'menu_border_width_unit',
+              'type' => 'select',
+              'select' => $unit_options
+            ]
+          ]
+        ],
+        [
           'option' => 'menu_auto_height',
           'title' => __('Menu Auto Height', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),

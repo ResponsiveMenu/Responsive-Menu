@@ -122,7 +122,7 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 = 3.0.15 (8th September 2016) =
 * **Requires PHP 5.4**
 * Improved FontAwesome Icon check (Pro only)
-* Added font size unit option (Pro only)
+* Added sizing unit options (Pro only)
 * Bug fixes
 
 = 3.0.14 (4th October 2016) =
