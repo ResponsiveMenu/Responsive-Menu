@@ -104,13 +104,16 @@ li.draggable {
   font-weight: bold;
 }
 
-.postbox .inside .select,
 .postbox .inside .image_button,
 .postbox .inside .image,
 .postbox .inside .text {
   padding: 5px 15px;
   height: 30px;
   margin-right: 10px;
+}
+
+.postbox .inside .select {
+  height: 27px;
 }
 
 .postbox .inside .textarea {
@@ -558,7 +561,7 @@ input[type="checkbox"]
 }
 
 .select-style select {
-    width: 105%;
+    width: 110%;
     border: none;
     cursor: pointer;
     box-shadow: none;
@@ -566,6 +569,7 @@ input[type="checkbox"]
     background-image: none;
     -webkit-appearance: none;
     max-width: 115%;
+    padding: 0 10px;
 }
 
 .select-style select:focus {
@@ -699,6 +703,18 @@ input[type="button"].image_button
   font-weight: bold;
   cursor: pointer;
 }
+
+.has-sub-options .select-style {
+  width: 15%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.postbox .inside .has-sub-options input.text {
+  width: 57%;
+}
+
+
 
 @media (max-width: 1200px) {
   .preview,

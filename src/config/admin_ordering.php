@@ -125,7 +125,20 @@ $order_mapping = [
             'option' => 'menu_title_font_size',
             'title' => __('Title Font Size', 'responsive-menu'),
             'label' => __('', 'responsive-menu'),
-            'unit' => 'px'
+            'semi_pro' => true,
+            'sub_options' =>
+            [
+              [
+                'option' => 'menu_title_font_size_unit',
+                'type' => 'select',
+                'select' => [
+                  ['value' => 'px', 'display' => 'px'],
+                  ['value' => 'em', 'display' => 'em', 'disabled' => true],
+                  ['value' => 'rem', 'display' => 'rem', 'disabled' => true],
+                  ['value' => '%', 'display' => '%', 'disabled' => true]
+                ]
+              ]
+            ]
           ],
           [
             'option' => 'menu_title_font_icon',

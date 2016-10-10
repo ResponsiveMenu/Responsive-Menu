@@ -34,6 +34,7 @@ class Boxes {
                   $semi_pro = isset($option['semi_pro'])  ? 'semi_pro_option' : '';
                   $type = isset($option['type']) ? $option['type'] : null;
                   $unit = isset($option['unit']) ? '<span class="units">' . $option['unit'] . '</span>' : null;
+                  $has_sub_options_class = isset($option['sub_options']) ? 'has-sub-options' : '';
                   $select = isset($option['select']) ? $option['select'] : null;
               $output .= '<tr class="' . $pro . ' ' . $semi_pro . '" id="' . $option['option'] . '_container">
                       <td>
@@ -41,8 +42,11 @@ class Boxes {
                         <span class="description">' . $option['label'] . '</span>';
               $output .= isset($option['beta']) ? '<span class="beta">beta</span>' : '';
               $output .= '</td>
-                      <td>';
+                      <td class="' . $has_sub_options_class . '">';
                       $output .= $this->f($type, $option['option'], $select);
+                      if(isset($option['sub_options']))
+                        foreach($option['sub_options'] as $sub_option)
+                          $output .= $this->f($sub_option['type'], $sub_option['option'], $sub_option['select']);
                 $output .= isset($option['pro']) ? '<a href="https://responsive.menu/why-go-pro/?utm_source=free-plugin&utm_medium=option&utm_campaign=free-plugin-option-upgrade" target="_blank" class="responsive-menu-pro-overlay"><div class="responsive-menu-pro-overlay-text">Click to upgrade now to use</div></a>' : '';
                 $output .= $unit . '</td>
                     </tr>';

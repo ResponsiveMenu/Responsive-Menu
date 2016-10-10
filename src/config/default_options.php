@@ -93,6 +93,7 @@ $default_options = [
   'menu_font' => null,
   'menu_font_size' => 13,
   'menu_title_font_size' => 13,
+  'menu_title_font_size_unit' => 'px',
   'menu_text_alignment' => 'left',
   'menu_links_height' => 40,
   'menu_minimum_width' => null,
