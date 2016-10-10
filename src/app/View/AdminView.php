@@ -18,11 +18,11 @@ class AdminView implements View {
 
       wp_enqueue_script('jquery-ui-core');
 
-      wp_register_style('admin-css',  plugin_dir_url(dirname(dirname(__FILE__))) . 'public/css/admin/main.css', false, null );
-      wp_enqueue_style('admin-css');
+      wp_register_style('responsive-menu-admin-css',  plugin_dir_url(dirname(dirname(__FILE__))) . 'public/css/admin/main.css', false, null);
+      wp_enqueue_style('responsive-menu-admin-css');
 
-      wp_register_script('admin-js',  plugin_dir_url(dirname(dirname(__FILE__))) . 'public/js/admin/main.js', 'jquery', null );
-      wp_enqueue_script('admin-js' );
+      wp_register_script('responsive-menu-admin-js',  plugin_dir_url(dirname(dirname(__FILE__))) . 'public/js/admin/main.js', 'jquery', null);
+      wp_enqueue_script('responsive-menu-admin-js');
 
     endif;
   }
