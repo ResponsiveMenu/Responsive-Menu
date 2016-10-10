@@ -398,7 +398,20 @@ $order_mapping = [
               'option' => 'menu_font_size',
               'title' => __('Font Size', 'responsive-menu'),
               'label' => __('', 'responsive-menu'),
-              'unit' => 'px'
+              'semi_pro' => true,
+              'sub_options' =>
+              [
+                [
+                  'option' => 'menu_font_size_unit',
+                  'type' => 'select',
+                  'select' => [
+                    ['value' => 'px', 'display' => 'px'],
+                    ['value' => 'em', 'display' => 'em', 'disabled' => true],
+                    ['value' => 'rem', 'display' => 'rem', 'disabled' => true],
+                    ['value' => '%', 'display' => '%', 'disabled' => true]
+                  ]
+                ]
+              ]
             ],
             [
               'option' => 'menu_text_alignment',
@@ -659,7 +672,20 @@ $order_mapping = [
             'option' => 'button_font_size',
             'title' => __('Font Size', 'responsive-menu'),
             'label' => __('', 'responsive-menu'),
-            'unit' => 'px'
+            'semi_pro' => true,
+            'sub_options' =>
+            [
+              [
+                'option' => 'button_font_size_unit',
+                'type' => 'select',
+                'select' => [
+                  ['value' => 'px', 'display' => 'px'],
+                  ['value' => 'em', 'display' => 'em', 'disabled' => true],
+                  ['value' => 'rem', 'display' => 'rem', 'disabled' => true],
+                  ['value' => '%', 'display' => '%', 'disabled' => true]
+                ]
+              ]
+            ]
           ],
           [
             'option' => 'button_title_line_height',
@@ -1131,8 +1157,20 @@ __('Sub-Menus', 'responsive-menu') => [
           'option' => 'header_bar_font_size',
           'title' => __('Font Size', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
-          'unit' => 'px',
-          'pro' => true
+          'pro' => true,
+          'sub_options' =>
+          [
+            [
+              'option' => 'header_bar_font_size_unit',
+              'type' => 'select',
+              'select' => [
+                ['value' => 'px', 'display' => 'px'],
+                ['value' => 'em', 'display' => 'em', 'disabled' => true],
+                ['value' => 'rem', 'display' => 'rem', 'disabled' => true],
+                ['value' => '%', 'display' => '%', 'disabled' => true]
+              ]
+            ]
+          ]
         ],
       ],
     __('Sizing', 'responsive-menu') => [
@@ -1248,8 +1286,20 @@ __('Sub-Menus', 'responsive-menu') => [
           'option' => 'single_menu_font_size',
           'title' => __('Font Size', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
-          'unit' => 'px',
-          'pro' => true
+          'pro' => true,
+          'sub_options' =>
+          [
+            [
+              'option' => 'single_menu_font_size_unit',
+              'type' => 'select',
+              'select' => [
+                ['value' => 'px', 'display' => 'px'],
+                ['value' => 'em', 'display' => 'em', 'disabled' => true],
+                ['value' => 'rem', 'display' => 'rem', 'disabled' => true],
+                ['value' => '%', 'display' => '%', 'disabled' => true]
+              ]
+            ]
+          ]
         ]
     ],
     __('Sub-Menu Styling', 'responsive-menu') => [
@@ -1263,8 +1313,20 @@ __('Sub-Menus', 'responsive-menu') => [
           'option' => 'single_menu_submenu_font_size',
           'title' => __('Font Size', 'responsive-menu'),
           'label' => __('', 'responsive-menu'),
-          'unit' => 'px',
-          'pro' => true
+          'pro' => true,
+          'sub_options' =>
+          [
+            [
+              'option' => 'single_menu_submenu_font_size_unit',
+              'type' => 'select',
+              'select' => [
+                ['value' => 'px', 'display' => 'px'],
+                ['value' => 'em', 'display' => 'em', 'disabled' => true],
+                ['value' => 'rem', 'display' => 'rem', 'disabled' => true],
+                ['value' => '%', 'display' => '%', 'disabled' => true]
+              ]
+            ]
+          ]
         ]
     ],
     __('Menu Sizing', 'responsive-menu') => [

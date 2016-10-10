@@ -37,6 +37,7 @@ $default_options = [
   'button_position_type' => 'fixed',
   'button_push_with_animation' => 'off',
   'button_font_size' => 14,
+  'button_font_size_unit' => 'px',
 
   // Animation Settings
   'animation_type' => 'slide',
@@ -92,6 +93,7 @@ $default_options = [
   'menu_sub_arrow_shape_hover_colour_active' => '#fff',
   'menu_font' => null,
   'menu_font_size' => 13,
+  'menu_font_size_unit' => 'px',
   'menu_title_font_size' => 13,
   'menu_title_font_size_unit' => 'px',
   'menu_text_alignment' => 'left',
@@ -137,10 +139,12 @@ $default_options = [
   'single_menu_height' => '80',
   'single_menu_font' => null,
   'single_menu_font_size' => '14',
+  'single_menu_font_size_unit' => 'px',
 
   'single_menu_submenu_height' => '40',
   'single_menu_submenu_font' => null,
   'single_menu_submenu_font_size' => '12',
+  'single_menu_submenu_font_size_unit' => 'px',
 
   'single_menu_item_link_colour' => '#ffffff',
   'single_menu_item_link_colour_hover' => '#ffffff',
@@ -161,6 +165,7 @@ $default_options = [
   'header_bar_html_content' => null,
   'header_bar_height' => '80',
   'header_bar_font_size' => '14',
+  'header_bar_font_size_unit' => 'px',
   'header_bar_font' => null,
   'header_bar_background_color' => '#ffffff',
   'header_bar_text_color' => '#ffffff',
