@@ -65,19 +65,23 @@ class JsMapper {
             /* Set each parent arrow to inactive */
             top_siblings.each(function() {
               $(this).find('.responsive-menu-subarrow').first().html(self.inactiveArrow);
+              $(this).find('.responsive-menu-subarrow').first().removeClass('responsive-menu-subarrow-active');
             });
             /* Now Repeat for the current item siblings */
             first_siblings.children('.responsive-menu-submenu').slideUp(200, 'linear').removeClass('responsive-menu-submenu-open');
             first_siblings.each(function() {
               $(this).find('.responsive-menu-subarrow').first().html(self.inactiveArrow);
+              $(this).find('.responsive-menu-subarrow').first().removeClass('responsive-menu-subarrow-active');
             });
           }
           if(sub_menu.hasClass('responsive-menu-submenu-open')) {
             sub_menu.slideUp(200, 'linear').removeClass('responsive-menu-submenu-open');
             $(subarrow).html(this.inactiveArrow);
+            $(subarrow).removeClass('responsive-menu-subarrow-active');
           } else {
             sub_menu.slideDown(200, 'linear').addClass('responsive-menu-submenu-open');
             $(subarrow).html(this.activeArrow);
+            $(subarrow).addClass('responsive-menu-subarrow-active');
           }
         },
         menuHeight: function() {

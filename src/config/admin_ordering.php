@@ -878,14 +878,14 @@ __('Sub-Menus', 'responsive-menu') => [
         'title' => __('Background Colour Active', 'responsive-menu'),
         'label' => __('', 'responsive-menu'),
         'type' => 'colour',
-        'pro' => true
+        'semi_pro' => true
       ],
       [
         'option' => 'menu_sub_arrow_background_hover_colour_active',
         'title' => __('Background Hover Colour Active', 'responsive-menu'),
         'label' => __('', 'responsive-menu'),
         'type' => 'colour',
-        'pro' => true
+        'semi_pro' => true
       ],
     ],
   __('Toggle Button Border Colours', 'responsive-menu') =>
@@ -909,14 +909,14 @@ __('Sub-Menus', 'responsive-menu') => [
         'title' => __('Border Colour Active', 'responsive-menu'),
         'label' => __('', 'responsive-menu'),
         'type' => 'colour',
-        'pro' => true
+        'semi_pro' => true
       ],
       [
         'option' => 'menu_sub_arrow_border_hover_colour_active',
         'title' => __('Border Hover Colour Active', 'responsive-menu'),
         'label' => __('', 'responsive-menu'),
         'type' => 'colour',
-        'pro' => true
+        'semi_pro' => true
       ],
     ],
   __('Toggle Button Icon Colours', 'responsive-menu') =>
@@ -940,14 +940,14 @@ __('Sub-Menus', 'responsive-menu') => [
         'title' => __('Icon Colour Active', 'responsive-menu'),
         'label' => __('', 'responsive-menu'),
         'type' => 'colour',
-        'pro' => true
+        'semi_pro' => true
       ],
       [
         'option' => 'menu_sub_arrow_shape_hover_colour_active',
         'title' => __('Icon Hover Colour Active', 'responsive-menu'),
         'label' => __('', 'responsive-menu'),
         'type' => 'colour',
-        'pro' => true
+        'semi_pro' => true
       ],
     ],
       __('Animations', 'responsive-menu') =>

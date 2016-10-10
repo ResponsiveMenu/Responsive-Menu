@@ -143,7 +143,16 @@ class ScssMenuMapper extends ScssMapper {
                 color: {$options['menu_sub_arrow_shape_colour']};
                 border-left: {$options['menu_border_width']}px solid {$options['menu_sub_arrow_border_colour']};
                 background-color: {$options['menu_sub_arrow_background_colour']};
-
+                  &.responsive-menu-subarrow-active {
+                    color: {$options['menu_sub_arrow_shape_colour_active']};
+                    border-color: {$options['menu_sub_arrow_border_colour_active']};
+                    background-color: {$options['menu_sub_arrow_background_colour_active']};
+                    &:hover {
+                      color: {$options['menu_sub_arrow_shape_hover_colour_active']};
+                      border-color: {$options['menu_sub_arrow_border_hover_colour_active']};
+                      background-color: {$options['menu_sub_arrow_background_hover_colour_active']};
+                    }
+                  }
                   &:hover {
                     color: {$options['menu_sub_arrow_shape_hover_colour']};
                     border-color: {$options['menu_sub_arrow_border_hover_colour']};
