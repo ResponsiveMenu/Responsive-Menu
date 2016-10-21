@@ -121,6 +121,7 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 
 = 3.0.16 (21st October 2016) =
 * **Requires PHP 5.4**
+* Added functionality for admin to remember last saved tab
 * Improved local scope of self = this variable in JavaScript
 * Improved slide across animation option (Pro only)
 
