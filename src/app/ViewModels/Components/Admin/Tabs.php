@@ -17,7 +17,6 @@ class Tabs {
     foreach(array_keys($this->config) as $tab_name) {
       $active_class = $this->i($tab_name) == $this->current_tab ? ' active_tab' : '';
       $output .= '<a id="tab_' . $this->i($tab_name) . '" class="tab page-title-action' . $active_class . '">' . $tab_name . '</a>';
-      $i++;
     }
     return $output;
   }

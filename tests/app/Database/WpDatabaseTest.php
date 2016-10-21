@@ -17,12 +17,6 @@ class WpDatabaseTest extends TestCase {
         return '0000';
       }
     endif;
-
-    if(!function_exists('update_option')):
-      function update_option($a, $b) {
-        return $a . ' ' . $b;
-      }
-    endif;
   }
 
   public function testUpdate() {

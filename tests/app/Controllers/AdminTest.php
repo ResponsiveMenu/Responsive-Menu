@@ -10,7 +10,13 @@ class AdminTest extends TestCase {
     function __($a, $b) {
       return $a;
     }
+    if(!function_exists('update_option')):
+      function update_option($a, $b) {
+        return $a . ' ' . $b;
+      }
+    endif;
   }
+
   public function setUp() {
     $this->view = $this->createMock('ResponsiveMenu\View\AdminView');
     $this->service = $this->createMock('ResponsiveMenu\Services\OptionService');
@@ -25,7 +31,7 @@ class AdminTest extends TestCase {
   }
 
   public function testUpdate() {
-    $this->assertTrue($this->controller->update([],[]));
+    $this->assertTrue($this->controller->update([],['responsive_menu_current_page' => true]));
   }
 
   public function testReset() {

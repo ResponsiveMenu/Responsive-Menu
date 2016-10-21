@@ -35,7 +35,7 @@ class BoxesTest extends TestCase {
           ]
         ]
       ]
-    ], $this->collection);
+    ], $this->collection, 'a_value');
   }
 
   public function testRender() {
