@@ -7,16 +7,20 @@ use ResponsiveMenu\Form;
 class Boxes {
 
   private $config;
+  private $options;
+  private $current_page;
 
-  public function __construct(array $config, OptionsCollection $options) {
+  public function __construct(array $config, OptionsCollection $options, $current_page) {
     $this->config = $config;
     $this->options = $options;
+    $this->current_page = $current_page;
   }
 
   public function render() {
     $output = '';
     foreach($this->config as $tab_name => $sub_menus):
-      $output .= '<div class="tab_container" id="tab_container_' . $this->i($tab_name) . '">';
+      $display = $this->i($tab_name) == $this->current_page ? 'block' : 'none';
+      $output .= '<div class="tab_container" id="tab_container_' . $this->i($tab_name) . '" style="display: ' . $display . ';">';
         foreach($sub_menus as $sub_menu_name => $options):
           $output .= '
           <div class="postbox" id="postbox_' . $this->i($sub_menu_name).'">

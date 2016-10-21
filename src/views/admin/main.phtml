@@ -1,12 +1,14 @@
 <?php
 
-use ResponsiveMenu\Formatters\Tabs as Tabs;
-use ResponsiveMenu\Formatters\Text as Text;
+use ResponsiveMenu\Formatters\Tabs;
+use ResponsiveMenu\Formatters\Text;
+
 // This is horrible!
 include dirname(dirname(dirname(__FILE__))) . '/config/admin_ordering.php';
 
-$tabs = new ResponsiveMenu\ViewModels\Components\Admin\Tabs($order_mapping);
-$boxes = new ResponsiveMenu\ViewModels\Components\Admin\Boxes($order_mapping, $l['options']);
+$current_page = get_option('responsive_menu_current_page', 'initial_setup');
+$tabs = new ResponsiveMenu\ViewModels\Components\Admin\Tabs($order_mapping, $current_page);
+$boxes = new ResponsiveMenu\ViewModels\Components\Admin\Boxes($order_mapping, $l['options'], $current_page);
 
 ?>
 <div class="wrap">
@@ -25,10 +27,10 @@ $boxes = new ResponsiveMenu\ViewModels\Components\Admin\Boxes($order_mapping, $l
       <?php if(isset($l['flash']['errors'])): ?>
         <div class="notice notice-error is-dismissible" id="message">
           <ul>
-                    <?php foreach($l['flash']['errors'] as $error): ?>
-                      <li><?php _e($error, 'responsive-menu'); ?></li>
-                    <?php endforeach; ?>
-                    </ul>
+            <?php foreach($l['flash']['errors'] as $error): ?>
+              <li><?php _e($error, 'responsive-menu'); ?></li>
+            <?php endforeach; ?>
+          </ul>
           <button class="notice-dismiss" type="button">
             <span class="screen-reader-text">
             <?php _e('Dismiss this notice', 'responsive-menu') ?>.
@@ -52,6 +54,7 @@ $boxes = new ResponsiveMenu\ViewModels\Components\Admin\Boxes($order_mapping, $l
         <div class="meta-box-sortables ui-sortable" id="normal-sortables">
         	<form action="" method="post" enctype="multipart/form-data" id="responsive_menu_form">
             <input type="submit" class="button submit" name="responsive_menu_submit" value="<?php _e('Update Options', 'responsive-menu'); ?>" style="display: none;" />
+            <input type="hidden" id="responsive_menu_current_page" name="menu[responsive_menu_current_page]" value="<?php echo $current_page; ?>" />
             <div id="options_list_container">
               <?php echo $boxes->render(); ?>
             </div>

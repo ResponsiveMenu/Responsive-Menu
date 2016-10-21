@@ -33,7 +33,9 @@ jQuery(function($) {
   });
 
 	$(document).on('click', '.tab', function() {
-		container_name = '#tab_container_' + $(this).attr('id').replace('tab_', '');
+    tab_name = $(this).attr('id').replace('tab_', '');
+    container_name = '#tab_container_' + tab_name;
+    $('#responsive_menu_current_page').val(tab_name);
 		$('.tab_container').css('display', 'none');
 		$(container_name).css('display', 'block');
     $('.tab').removeClass('active_tab');

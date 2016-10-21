@@ -12,6 +12,10 @@ class Admin {
 	}
 
 	public function update($default_options, $new_options) {
+
+    update_option('responsive_menu_current_page', $new_options['responsive_menu_current_page']);
+    unset($new_options['responsive_menu_current_page']);
+
     $updated_options = $this->service->combineOptions($default_options, $new_options);
     return $this->view->render('main', [
       'options' => $this->service->updateOptions($updated_options),
