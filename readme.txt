@@ -119,6 +119,11 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 
 == Changelog ==
 
+= 3.0.16 (21st October 2016) =
+* **Requires PHP 5.4**
+* Improved local scope of self = this variable in JavaScript
+* Improved slide across animation option (Pro only)
+
 = 3.0.15 (11th October 2016) =
 * **Requires PHP 5.4**
 * Added border size option
