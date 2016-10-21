@@ -113,7 +113,7 @@ class JsMapper {
             }
         },
         clearWrapperTranslate: function() {
-          self = this;
+          var self = this;
           if(this.animationType == 'push') {
             $(this.pageWrapper).css({'transform':''});
             setTimeout(function() {
