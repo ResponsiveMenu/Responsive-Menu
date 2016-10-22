@@ -29,6 +29,7 @@ class ScssBaseMapper extends ScssMapper {
         /* Fix for scroll bars appearing when not needed */
         padding-bottom: 5px;
         margin-bottom: -5px;
+        outline: 1px solid transparent;
         overflow-y: auto;
         overflow-x: hidden;
         .responsive-menu-search-box {
