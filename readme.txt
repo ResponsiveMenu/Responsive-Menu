@@ -119,6 +119,10 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 
 == Changelog ==
 
+= 3.0.17 (21st October 2016) =
+* **Requires PHP 5.4**
+* Fixed junk pixel residue left behind on screen on menu close issue
+
 = 3.0.16 (21st October 2016) =
 * **Requires PHP 5.4**
 * Added functionality for admin to remember last saved tab
