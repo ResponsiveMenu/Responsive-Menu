@@ -121,7 +121,11 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 
 = 3.0.17 (21st October 2016) =
 * **Requires PHP 5.4**
+* Fixed bug that stripped slashes from text inputs in admin screen
 * Fixed junk pixel residue left behind on screen on menu close issue
+* Fixed hiding of menu items in slide animation beta
+* Fixed "Back to %previous_category_name%" text check on slide animation beta
+* Bug fixes
 
 = 3.0.16 (21st October 2016) =
 * **Requires PHP 5.4**

@@ -1,7 +1,7 @@
 <?php
 
 namespace ResponsiveMenu\Factories;
-use ResponsiveMenu\Models\Option as Option;
+use ResponsiveMenu\Models\Option;
 
 class OptionFactory {
 
@@ -17,8 +17,7 @@ class OptionFactory {
       : new \ResponsiveMenu\Filters\TextFilter;
 
     $value = isset($value) || $value == '0' ? $value : $this->defaults[$name];
-    $value = stripslashes_deep($value);
-    $option = new Option($name, $value);
+    $option = new Option($name, stripslashes_deep($value));
     $option->setFilter($filter);
 
     return $option;
