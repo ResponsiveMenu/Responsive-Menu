@@ -109,7 +109,7 @@ class ScssMenuMapper extends ScssMapper {
 
         #responsive-menu {
 
-          > li.responsive-menu-item:first-child a {
+          > li.responsive-menu-item:first-child > a {
               border-top:  {$options['menu_border_width']}px solid {$options['menu_item_border_colour']};
           }
 

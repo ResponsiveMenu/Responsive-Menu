@@ -119,6 +119,11 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 
 == Changelog ==
 
+= 3.0.18 (6th December 2016) =
+* **Requires PHP 5.4**
+* Improved border sizes for sub-menus
+* Improved "Back to" text on beta slider menu functionality
+
 = 3.0.17 (26th November 2016) =
 * **Requires PHP 5.4**
 * Fixed bug that stripped slashes from text inputs in admin screen
