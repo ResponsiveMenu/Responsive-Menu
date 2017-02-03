@@ -12,37 +12,25 @@ $boxes = new ResponsiveMenu\ViewModels\Components\Admin\Boxes($order_mapping, $l
 
 ?>
 <div class="wrap">
-  <div id="poststuff">
-      <div id="postbox-container" class="postbox-container responsive-menu-postbox-container">
-        <?php if(isset($l['flash']['success'])): ?>
-          <div class="updated notice notice-success is-dismissible" id="message">
-            <p><?php _e($l['flash']['success'], 'responsive-menu'); ?></p>
-            <button class="notice-dismiss" type="button">
-              <span class="screen-reader-text">
-              <?php _e('Dismiss this notice', 'responsive-menu') ?>.
-              </span>
-            </button>
-          </div> <!-- updated -->
-        <?php endif; ?>
-      <?php if(isset($l['flash']['errors'])): ?>
-        <div class="notice notice-error is-dismissible" id="message">
-          <ul>
-            <?php foreach($l['flash']['errors'] as $error): ?>
-              <li><?php _e($error, 'responsive-menu'); ?></li>
-            <?php endforeach; ?>
-          </ul>
-          <button class="notice-dismiss" type="button">
-            <span class="screen-reader-text">
-            <?php _e('Dismiss this notice', 'responsive-menu') ?>.
-            </span>
-          </button>
-        </div>
-      <?php endif; ?>
 
+  <?php if(isset($l['flash']['success'])): ?>
+    <div class="responsive-menu-success"><?php _e($l['flash']['success'], 'responsive-menu'); ?></div>
+  <?php endif; ?>
+  <?php if(isset($l['flash']['errors'])): ?>
+    <div class="responsive-menu-error">
+      <ul>
+          <?php foreach($l['flash']['errors'] as $error): ?>
+            <li><?php _e($error, 'responsive-menu'); ?></li>
+          <?php endforeach; ?>
+      </ul>
+    </div>
+  <?php endif; ?>
+
+  <div id="poststuff">
+    <div id="postbox-container" class="postbox-container responsive-menu-postbox-container">
       <div class="tabs_container">
         <?php echo $tabs->render(); ?>
       </div>
-
       <div class="key-container">
         <a href="https://responsive.menu/why-go-pro/?utm_source=free-plugin&utm_medium=keys&utm_campaign=free-plugin-keys" target="_blank">
           <div class="key key-pro"><span><?php _e('PRO', 'responsive-menu'); ?></span><?php _e('Only available in Pro version', 'responsive-menu'); ?></div>

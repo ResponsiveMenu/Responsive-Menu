@@ -718,7 +718,24 @@ input[type="button"].image_button
   width: 57%;
 }
 
+.responsive-menu-error,
+.responsive-menu-success {
+  border: 1px solid #ccc;
+  border-left: 4px solid #46b450;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+  background: white;
+  height: 35px;
+  line-height: 32px;
+  padding: 0 15px;
+}
 
+.responsive-menu-error {
+  border-left-color: red;
+}
+
+#poststuff {
+  padding-top: 0;
+}
 
 @media (max-width: 1200px) {
   .preview,
