@@ -119,6 +119,10 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 
 == Changelog ==
 
+= 3.0.19 (3rd February 2017) =
+* **Requires PHP 5.4**
+* Minor improvements to admin styles
+
 = 3.0.18 (2nd February 2017) =
 * **Requires PHP 5.4**
 * Improved border sizes for sub-menus
