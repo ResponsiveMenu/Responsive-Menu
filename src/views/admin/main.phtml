@@ -12,30 +12,41 @@ $boxes = new ResponsiveMenu\ViewModels\Components\Admin\Boxes($order_mapping, $l
 
 ?>
 <div class="wrap">
-
-  <?php if(isset($l['flash']['success'])): ?>
-    <div class="responsive-menu-success"><?php _e($l['flash']['success'], 'responsive-menu'); ?></div>
-  <?php endif; ?>
-  <?php if(isset($l['flash']['errors'])): ?>
-    <div class="responsive-menu-error">
-      <ul>
-          <?php foreach($l['flash']['errors'] as $error): ?>
-            <li><?php _e($error, 'responsive-menu'); ?></li>
-          <?php endforeach; ?>
-      </ul>
-    </div>
-  <?php endif; ?>
-
   <div id="poststuff">
     <div id="postbox-container" class="postbox-container responsive-menu-postbox-container">
+
+      <div id="message-box" class="postbox">
+        <h2 class="hndle ui-sortable-handle"></h2>
+        <div class="inside">
+          <?php if(isset($l['flash']['success'])): ?>
+              <div class="updated notice notice-success is-dismissible">
+                <p><?php _e($l['flash']['success'], 'responsive-menu'); ?></p>
+                <button class="notice-dismiss" type="button">
+                  <span class="screen-reader-text">
+                  <?php _e('Dismiss this notice', 'responsive-menu') ?>.
+                  </span>
+                </button>
+              </div> <!-- updated -->
+            <?php endif; ?>
+          <?php if(isset($l['flash']['errors'])): ?>
+            <div class="notice notice-error is-dismissible" id="message">
+              <ul>
+                <?php foreach($l['flash']['errors'] as $error): ?>
+                  <li><?php _e($error, 'responsive-menu'); ?></li>
+                <?php endforeach; ?>
+              </ul>
+              <button class="notice-dismiss" type="button">
+                <span class="screen-reader-text">
+                <?php _e('Dismiss this notice', 'responsive-menu') ?>.
+                </span>
+              </button>
+            </div>
+          <?php endif; ?>
+        </div>
+      </div>
+
       <div class="tabs_container">
         <?php echo $tabs->render(); ?>
-      </div>
-      <div class="key-container">
-        <a href="https://responsive.menu/why-go-pro/?utm_source=free-plugin&utm_medium=keys&utm_campaign=free-plugin-keys" target="_blank">
-          <div class="key key-pro"><span><?php _e('PRO', 'responsive-menu'); ?></span><?php _e('Only available in Pro version', 'responsive-menu'); ?></div>
-          <div class="key key-semi-pro"><span><?php _e('SEMI PRO', 'responsive-menu'); ?></span><?php _e('Fully unlocked in Pro version', 'responsive-menu'); ?></div>
-        </a>
       </div>
 
       <div id="all_options_container">
@@ -84,6 +95,14 @@ $boxes = new ResponsiveMenu\ViewModels\Components\Admin\Boxes($order_mapping, $l
             <?php _e('Confused? Check out our documentation', 'responsive-menu'); ?>
             <a target="_blank" href="https://responsive.menu/docs" class="button"><?php _e('View Docs', 'responsive-menu'); ?></a>
           </div>
+
+          <div class="key-container">
+            <a href="https://responsive.menu/why-go-pro/?utm_source=free-plugin&utm_medium=keys&utm_campaign=free-plugin-keys" target="_blank">
+              <div class="key key-pro"><span><?php _e('PRO', 'responsive-menu'); ?></span><?php _e('Only available in Pro version', 'responsive-menu'); ?></div>
+              <div class="key key-semi-pro"><span><?php _e('SEMI PRO', 'responsive-menu'); ?></span><?php _e('Fully unlocked in Pro version', 'responsive-menu'); ?></div>
+            </a>
+          </div>
+          
       </div> <!-- #banner_area -->
     </div> <!-- #postbox-container -->
   </div> <!-- #poststuff -->

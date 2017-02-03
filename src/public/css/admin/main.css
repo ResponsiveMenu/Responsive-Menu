@@ -3,7 +3,7 @@
 }
 
 .tabs_container {
-  margin: 25px 0 15px 0;
+  margin: 0 0 15px 0;
 }
 
 .responsive-menu-postbox-container {
@@ -511,7 +511,12 @@ input[type="checkbox"]
 }
 
 .key-container {
-  margin-bottom: 15px;
+  margin: 15px 0;
+  background: white;
+  text-align: center;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
 }
 
 .key-container .key-title {
@@ -545,7 +550,7 @@ input[type="checkbox"]
 }
 
 .key-container .key.key-pro {
-  margin-right: 15px;
+  margin-bottom: 15px;
 }
 
 .key-container a {
@@ -735,6 +740,27 @@ input[type="button"].image_button
 
 #poststuff {
   padding-top: 0;
+}
+
+#poststuff #message-box {
+  margin-bottom: 0;
+}
+
+#poststuff #message-box .updated {
+  margin-bottom: 25px;
+}
+
+#poststuff #message-box h2 {
+  padding: 0;
+}
+
+#poststuff #message-box.postbox {
+  border: 0;
+  box-shadow: none;
+}
+
+.wrap {
+  margin-top: 0;
 }
 
 @media (max-width: 1200px) {
