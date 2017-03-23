@@ -1,13 +1,13 @@
 <?php
 
 namespace ResponsiveMenuTest\Controllers;
-use ResponsiveMenuTest\View\AdminView;
+use ResponsiveMenuTest\View\View;
 use ResponsiveMenuTest\Management\OptionManager;
 use ResponsiveMenuTest\Validation\Validator;
 
 class AdminController {
 
-    public function __construct(OptionManager $manager, AdminView $view) {
+    public function __construct(OptionManager $manager, View $view) {
         $this->manager = $manager;
         $this->view = $view;
     }

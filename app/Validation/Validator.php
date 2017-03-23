@@ -12,7 +12,7 @@ class Validator {
                 $validator_name = 'ResponsiveMenuTest\Validation\Validators\\' . $this->validation_map[$key]['validator'];
                 $validator = new $validator_name($value);
                 if(!$validator->validate())
-                    $this->errors[$key] = 'Validation failed on ' . $this->validation_map[$key]['nice_name'] . ': ' . $validator->getErrorMessage();
+                    $this->errors[$key] = 'Validation failed on ' . $key . $this->validation_map[$key]['nice_name'] . ': ' . $validator->getErrorMessage();
             endif;
         endforeach;
 
@@ -37,7 +37,6 @@ class Validator {
         'button_line_colour' => ['validator' => 'Colour', 'nice_name' => ''],
         'button_text_colour' => ['validator' => 'Colour', 'nice_name' => ''],
         'menu_background_colour' => ['validator' => 'Colour', 'nice_name' => ''],
-        'menu_background_image' => ['validator' => 'Colour', 'nice_name' => ''],
         'menu_item_background_colour' => ['validator' => 'Colour', 'nice_name' => ''],
         'menu_item_background_hover_colour' => ['validator' => 'Colour', 'nice_name' => ''],
         'menu_item_border_colour' => ['validator' => 'Colour', 'nice_name' => ''],

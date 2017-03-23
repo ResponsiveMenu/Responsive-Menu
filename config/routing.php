@@ -13,7 +13,7 @@ if(is_admin()):
         new ResponsiveMenuTest\Management\OptionManager(
             new ResponsiveMenuTest\Database\Database($wpdb)
         ),
-        new ResponsiveMenuTest\View\AdminView($twig)
+        new ResponsiveMenuTest\View\View($twig)
     );
 
     if(isset($_POST['responsive-menu-export'])):
@@ -70,13 +70,25 @@ if(is_admin()):
             'dashicons-menu');
     });
 else:
-    if(isset($_GET['responsive-menu-preview']) && isset($_POST['menu'])):
-        add_action('template_redirect', function() use($container) {
-            $container['front_controller']->preview();
-        });
-    else:
-        add_action('template_redirect', function() use($container) {
-            $container['front_controller']->index();
-        });
-    endif;
+    $loader = new Twig_Loader_Filesystem([
+        dirname(dirname(__FILE__)) . '/public',
+        dirname(dirname(__FILE__)) . '/views',
+    ]);
+    $twig = new Twig_Environment($loader);
+
+    global $wpdb;
+    $controller = new ResponsiveMenuTest\Controllers\FrontController(
+        new ResponsiveMenuTest\Management\OptionManager(
+            new ResponsiveMenuTest\Database\Database($wpdb)
+        ),
+        new ResponsiveMenuTest\View\View($twig)
+    );
+
+    add_action('template_redirect', function() use($controller) {
+        wp_enqueue_script('jquery');
+        if(isset($_GET['responsive-menu-preview']) && isset($_POST['menu']))
+            $controller->preview();
+        else
+            $controller->index();
+    });
 endif;

@@ -3,7 +3,7 @@
 namespace ResponsiveMenuTest\View;
 use \Twig_Environment;
 
-class AdminView {
+class View {
 
     protected $twig;
 
