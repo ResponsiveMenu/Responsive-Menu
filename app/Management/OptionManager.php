@@ -15,12 +15,12 @@ class OptionManager {
 
     public function updateOptions(array $options) {
         foreach($options as $name => $val)
-            $this->db->update('responsive_menu_test', ['value' => $val], ['name' => $name]);
+            $this->db->update('responsive_menu_test', ['value' => stripslashes_deep($val)], ['name' => $name]);
     }
 
     public function createOptions(array $options) {
         foreach($options as $name => $val)
-            $this->db->insert('responsive_menu_test', ['name' => $name, 'value' => $val]);
+            $this->db->insert('responsive_menu_test', ['name' => $name, 'value' => stripslashes_deep($val)]);
     }
 
     public function removeOptions(array $options) {
