@@ -250,8 +250,8 @@ button#responsive-menu-button,
     .responsive-menu-inner,
     .responsive-menu-inner::before,
     .responsive-menu-inner::after {
-         width: {{ options.button_line_width }};
-         height: {{ options.button_line_height }};
+         width: {{ options.button_line_width }}px;
+         height: {{ options.button_line_height }}px;
          background-color: {{ options.button_line_colour }};
          border-radius: 4px;
          position: absolute;
@@ -264,35 +264,17 @@ button#responsive-menu-button,
     .responsive-menu-inner::after {
          content: "";
          display: block;
-     }
+    }
 
     .responsive-menu-inner::before {
          top: {{ (options.button_line_margin + options.button_line_height) * -1 }}px;
-     }
+    }
 
     .responsive-menu-inner::after {
          bottom: {{ (options.button_line_margin + options.button_line_height) * -1 }}px;
-     }
-
-    .responsive-menu-boring .responsive-menu-inner,
-    .responsive-menu-boring .responsive-menu-inner::before,
-    .responsive-menu-boring .responsive-menu-inner::after {
-        transition-property: none;
     }
 
-    .responsive-menu-boring.is-active .responsive-menu-inner {
-        transform: rotate(45deg);
-    }
-
-    .responsive-menu-boring.is-active .responsive-menu-inner::before {
-         top: 0;
-         opacity: 0;
-     }
-
-    .responsive-menu-boring.is-active .responsive-menu-inner::after {
-         bottom: 0;
-         transform: rotate(-90deg);
-     }
+    {% include 'css/animations/boring.css.twig' %}
 
     button#responsive-menu-button {
         width: {{ options.button_width }}px;
