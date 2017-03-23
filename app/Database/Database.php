@@ -28,8 +28,4 @@ class Database {
         return $this->db->insert($this->db->prefix . $table, $arguments);
     }
 
-    public function select($table, $column, $value) {
-        return $this->db->get_results("SELECT * FROM {$this->db->prefix}{$table} WHERE $column = '$value';", ARRAY_A);
-    }
-
 }
