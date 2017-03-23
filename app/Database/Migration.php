@@ -1,0 +1,45 @@
+<?php
+
+namespace ResponsiveMenuTest\Database;
+use ResponsiveMenuTest\Management\OptionManager;
+
+class Migration {
+
+    private $manager;
+    private $old_version;
+    private $new_version;
+    private $defaults;
+
+    public function __construct(OptionManager $manager, $old_version, $new_version, $defaults) {
+        $this->manager = $manager;
+        $this->old_version = $old_version;
+        $this->new_version = $new_version;
+        $this->defaults = $defaults;
+    }
+
+    public function sync() {
+        $this->addNewOptions();
+        $this->tidyUpOptions();
+    }
+
+    public function needsTable() {
+        return substr($this->old_version, 0, 1) == 3;
+    }
+
+    public function needsUpdate() {
+        return version_compare($this->old_version, $this->new_version, '<');
+    }
+
+    protected function updateVersion() {
+        $this->old_version = $this->new_version;
+    }
+
+    protected function addNewOptions() {
+        $this->manager->createOptions(array_diff_key($this->defaults, $this->manager->all()));
+    }
+
+    protected function tidyUpOptions() {
+        $this->manager->removeOptions(array_diff_key($this->manager->all(), $this->defaults));
+    }
+
+}

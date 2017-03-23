@@ -1,0 +1,17 @@
+<div class="panel panel-default">
+    <div class="panel-body">Explanation about these options</div>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            {% for key, option in options %}
+            <tr>
+                <td class="well col-md-3">
+                    <label for="{{ key }}" class="control-label">{{ key }}</label>
+                </td>
+                <td>
+                    <input type="text" name="menu[{{ key }}]" value="{{ option }}" class="form-control" id="{{ key }}" placeholder="{{ option }}">
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>

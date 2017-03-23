@@ -1,0 +1,16 @@
+<div class="tab-content">
+    <form class="form-horizontal" action="" method="post">
+        <button type="submit" name="responsive-menu-submit" class="hidden btn btn-primary">Submit</button>
+        <button type="submit" name="responsive-menu-submit" class="btn btn-primary pull-right">Update Options</button>
+        <div id="menu" class="tab-pane fade in active">
+            {% include 'admin/menu.html' %}
+        </div>
+        <div id="custom-css" class="tab-pane fade">
+            {% include 'admin/custom-css.html' %}
+        </div>
+        <div id="import" class="tab-pane fade">
+            {% include 'admin/import.html' %}
+        </div>
+        <button type="submit" name="responsive-menu-submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

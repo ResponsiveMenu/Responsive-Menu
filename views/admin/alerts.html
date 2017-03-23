@@ -1,0 +1,18 @@
+{% if alert %}
+    {% for type, msg in alert %}
+        <div class="alert alert-{{ type }} alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {% if msg is iterable %}
+                <ul>
+                    {% for inner in msg %}
+                        <li>{{ inner }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                {{ msg }}
+            {% endif %}
+        </div>
+    {% endfor %}
+{% endif %}
