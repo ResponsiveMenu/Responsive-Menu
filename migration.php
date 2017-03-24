@@ -3,12 +3,9 @@
 $new_version = get_file_data(dirname(__FILE__) . '/responsive-menu-test.php', ['version'])[0];
 $old_version = get_option('responsive_menu_test_version');
 include dirname(__FILE__) . '/config/default_options.php';
-global $wpdb;
 
 $migration = new ResponsiveMenuTest\Database\Migration(
-    new ResponsiveMenuTest\Management\OptionManager(
-        new ResponsiveMenuTest\Database\Database($wpdb)
-    ),
+    ResponsiveMenuTest\Factories\Factory::OptionManager(),
     $old_version,
     $new_version,
     $default_options
@@ -29,6 +26,7 @@ if($migration->needsTable()) {
 }
 
 if($migration->needsUpdate()) {
-    $migration->sync();
+    $migration->addNewOptions();
+    $migration->tidyUpOptions();
     update_option('responsive_menu_test_version', $new_version);
 }

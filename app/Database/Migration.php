@@ -17,11 +17,6 @@ class Migration {
         $this->defaults = $defaults;
     }
 
-    public function sync() {
-        $this->addNewOptions();
-        $this->tidyUpOptions();
-    }
-
     public function needsTable() {
         return substr($this->old_version, 0, 1) == 3;
     }
@@ -30,16 +25,12 @@ class Migration {
         return version_compare($this->old_version, $this->new_version, '<');
     }
 
-    protected function updateVersion() {
-        $this->old_version = $this->new_version;
+    public function addNewOptions() {
+        return $this->manager->createOptions(array_diff_key($this->defaults, $this->manager->all()));
     }
 
-    protected function addNewOptions() {
-        $this->manager->createOptions(array_diff_key($this->defaults, $this->manager->all()));
-    }
-
-    protected function tidyUpOptions() {
-        $this->manager->removeOptions(array_diff_key($this->manager->all(), $this->defaults));
+    public function tidyUpOptions() {
+        return $this->manager->removeOptions(array_diff_key($this->manager->all(), $this->defaults));
     }
 
 }

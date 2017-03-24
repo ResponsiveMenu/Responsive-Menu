@@ -29,6 +29,3 @@ if(version_compare(PHP_VERSION, '5.4', '<'))
     return;
 
 include dirname(__FILE__) . '/vendor/autoload.php';
-include dirname(__FILE__) . '/setup.php';
-include dirname(__FILE__) . '/config/routing.php';
-

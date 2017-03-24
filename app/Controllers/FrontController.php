@@ -11,7 +11,7 @@ class FrontController {
         $this->view = $view;
     }
 
-    public function index() {
+    public function index($base_url, $blog_id) {
         $options = $this->manager->all();
 
         add_filter('body_class', function($classes) use($options) {
@@ -20,8 +20,8 @@ class FrontController {
         });
 
         if($options['external_files'] == 'on'):
-            $css_file = plugins_url(). '/responsive-menu-data/css/responsive-menu-' . get_current_blog_id() . '.css';
-            $js_file = plugins_url(). '/responsive-menu-data/js/responsive-menu-' . get_current_blog_id() . '.js';
+            $css_file = $base_url . '/responsive-menu-data/css/responsive-menu-' . $blog_id . '.css';
+            $js_file = $base_url . '/responsive-menu-data/js/responsive-menu-' . $blog_id . '.js';
             wp_enqueue_style('responsive-menu', $css_file, null, false);
             wp_enqueue_script('responsive-menu', $js_file, ['jquery'], false, $options['scripts_in_footer'] == 'on' ? true : false);
         else:

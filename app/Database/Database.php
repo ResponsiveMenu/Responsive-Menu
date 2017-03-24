@@ -4,8 +4,8 @@ namespace ResponsiveMenuTest\Database;
 
 class Database {
 
-    public function __construct($wpdb) {
-        $this->db = $wpdb;
+    public function __construct($db_base) {
+        $this->db = $db_base;
     }
 
     public function all($table) {

@@ -25,9 +25,13 @@ class AdminController {
         $validator = new Validator();
 
         if($validator->validate($new_options)):
-            $this->manager->updateOptions($new_options);
+            try {
+                $this->manager->updateOptions($new_options);
+                $alert = ['success' => 'Responsive Menu Options Updated Successfully.'];
+            } catch (\Exception $e) {
+                $alert = ['danger' => $e->getMessage()];
+            }
             $options = $this->manager->all();
-            $alert = ['success' => 'Responsive Menu Options Updated Successfully.'];
         else:
             $options = $new_options;
             $alert = ['danger' => $validator->getErrors()];
@@ -37,8 +41,7 @@ class AdminController {
             'admin/main.html',
             [
                 'options' => $options,
-                'alert' => $alert,
-                'errors' => $validator->getErrors()
+                'alert' => $alert
             ]
         );
     }
@@ -59,12 +62,15 @@ class AdminController {
     }
 
     public function import($imported_options) {
-
         if(!empty($imported_options)):
-            $this->manager->updateOptions($imported_options);
-            $alert['success'] = 'Responsive Menu Options Imported Successfully';
+            try {
+                $this->manager->updateOptions($imported_options);
+                $alert = ['success' => 'Responsive Menu Options Imported Successfully.'];
+            } catch (\Exception $e) {
+                $alert = ['danger' => $e->getMessage()];
+            }
         else:
-            $alert['errors'] = 'No file selected';
+            $alert['danger'] = 'No import file selected';
         endif;
 
         return $this->view->render(

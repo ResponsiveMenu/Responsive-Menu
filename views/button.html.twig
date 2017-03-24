@@ -15,7 +15,7 @@
 
     {% if options.button_title_pos == 'bottom' or options.button_title_html == 'right' %}
         <span class="responsive-menu-label responsive-menu-label-{{ options.button_title_position }}">
-            {{ options.button_title }}
+            {{ options.button_title|translate('button_title') }}
         </span>
     {% endif %}
 </button>

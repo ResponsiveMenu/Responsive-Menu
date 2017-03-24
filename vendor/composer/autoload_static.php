@@ -8,6 +8,11 @@ class ComposerStaticInitbe9ac5d85095f467548fb48e989d4a37
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '2f9365a85a76c0295cb7f01026efac79' => __DIR__ . '/../..' . '/config/factories.php',
+        '63ad71f867fb1647f7455709a51ebe2e' => __DIR__ . '/../..' . '/migration.php',
+        '6cb9ce5b8153df1dbf0b29f9c1ad0575' => __DIR__ . '/../..' . '/config/wp/scripts.php',
+        'be24e080ba39419cb49411bec48c312c' => __DIR__ . '/../..' . '/config/routing.php',
+        'd4d949f5311fae0a7e1bce320105fc74' => __DIR__ . '/../..' . '/config/polylang.php',
     );
 
     public static $prefixLengthsPsr4 = array (

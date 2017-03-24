@@ -5,6 +5,13 @@
   "autoload": {
     "psr-4": {
       "ResponsiveMenuTest\\": "app/"
-    }
+    },
+    "files": [
+      "config/factories.php",
+      "migration.php",
+      "config/wp/scripts.php",
+      "config/routing.php",
+      "config/polylang.php"
+    ]
   }
 }

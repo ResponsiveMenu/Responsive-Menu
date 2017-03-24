@@ -2,52 +2,25 @@
 
 if(is_admin()):
 
-    $loader = new Twig_Loader_Filesystem([
-        dirname(dirname(__FILE__)) . '/public',
-        dirname(dirname(__FILE__)) . '/views',
-    ]);
-    $twig = new Twig_Environment($loader);
-
-    global $wpdb;
     $controller = new ResponsiveMenuTest\Controllers\AdminController(
-        new ResponsiveMenuTest\Management\OptionManager(
-            new ResponsiveMenuTest\Database\Database($wpdb)
-        ),
-        new ResponsiveMenuTest\View\View($twig)
+        ResponsiveMenuTest\Factories\Factory::OptionManager(),
+        ResponsiveMenuTest\Factories\Factory::View()
     );
 
-    if(isset($_POST['responsive-menu-export'])):
-        header('Cache-Control: no-cache, no-store, must-revalidate');
-        header('Pragma: no-cache');
-        header('Expires: 0');
-        header('Content-Type: application/json; charset=utf-8');
-        header('Content-Disposition: attachment; filename=export.json');
-        echo $controller->export();
-        exit();
+    if(isset($_GET['page']) && $_GET['page'] == 'responsive-menu-test'):
+
+        if(isset($_POST['responsive-menu-export'])):
+            header('Cache-Control: no-cache, no-store, must-revalidate');
+            header('Pragma: no-cache');
+            header('Expires: 0');
+            header('Content-Type: application/json; charset=utf-8');
+            header('Content-Disposition: attachment; filename=export.json');
+            echo $controller->export();
+            exit();
+        endif;
     endif;
 
     add_action('admin_menu', function() use($controller) {
-
-        if(isset($_GET['page']) && $_GET['page'] == 'responsive-menu-test'):
-            wp_enqueue_media();
-
-            wp_enqueue_style('wp-color-picker');
-            wp_enqueue_script('wp-color-picker');
-
-            wp_enqueue_script('responsive-menu-test-bootstrap-js', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', null, null);
-            wp_enqueue_style('responsive-menu-test-bootstrap-css', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', null, null);
-
-            wp_enqueue_script('postbox');
-
-            wp_enqueue_script('jquery-ui-core');
-
-            wp_register_style('responsive-menu-test-admin-css',  plugin_dir_url(dirname(__FILE__)) . 'public/css/admin/admin.css', false, null);
-            wp_enqueue_style('responsive-menu-test-admin-css');
-
-            wp_register_script('responsive-menu-test-admin-js',  plugin_dir_url(dirname(__FILE__)) . 'public/js/admin/admin.js', 'jquery', null);
-            wp_enqueue_script('responsive-menu-test-admin-js');
-        endif;
-
         add_menu_page(
             'Responsive Menu Test',
             'Responsive Menu Test',
@@ -70,25 +43,17 @@ if(is_admin()):
             'dashicons-menu');
     });
 else:
-    $loader = new Twig_Loader_Filesystem([
-        dirname(dirname(__FILE__)) . '/public',
-        dirname(dirname(__FILE__)) . '/views',
-    ]);
-    $twig = new Twig_Environment($loader);
 
-    global $wpdb;
     $controller = new ResponsiveMenuTest\Controllers\FrontController(
-        new ResponsiveMenuTest\Management\OptionManager(
-            new ResponsiveMenuTest\Database\Database($wpdb)
-        ),
-        new ResponsiveMenuTest\View\View($twig)
+        ResponsiveMenuTest\Factories\Factory::OptionManager(),
+        ResponsiveMenuTest\Factories\Factory::View()
     );
 
     add_action('template_redirect', function() use($controller) {
-        wp_enqueue_script('jquery');
+
         if(isset($_GET['responsive-menu-preview']) && isset($_POST['menu']))
             $controller->preview();
         else
-            $controller->index();
+            $controller->index(plugins_url(), get_current_blog_id());
     });
 endif;
