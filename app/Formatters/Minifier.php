@@ -2,9 +2,9 @@
 
 namespace ResponsiveMenuTest\Formatters;
 
-class Minify {
+class Minifier {
 
-    public function minify($data) {
+    public static function minify($data) {
 
         /* remove comments */
         $minified = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $data);

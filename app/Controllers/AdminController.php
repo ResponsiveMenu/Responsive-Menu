@@ -4,6 +4,8 @@ namespace ResponsiveMenuTest\Controllers;
 use ResponsiveMenuTest\View\View;
 use ResponsiveMenuTest\Management\OptionManager;
 use ResponsiveMenuTest\Validation\Validator;
+use ResponsiveMenuTest\Tasks\UpdateOptionsTask;
+
 
 class AdminController {
 
@@ -27,6 +29,8 @@ class AdminController {
         if($validator->validate($new_options)):
             try {
                 $this->manager->updateOptions($new_options);
+                $task = new UpdateOptionsTask;
+                $task->run($new_options, $this->view);
                 $alert = ['success' => 'Responsive Menu Options Updated Successfully.'];
             } catch (\Exception $e) {
                 $alert = ['danger' => $e->getMessage()];
@@ -48,15 +52,19 @@ class AdminController {
 
     public function reset($default_options) {
 
-        $this->manager->updateOptions($default_options);
-
+        try {
+            $this->manager->updateOptions($default_options);
+            $task = new UpdateOptionsTask;
+            $task->run($default_options, $this->view);
+            $alert = ['success' => 'Responsive Menu Options Reset Successfully'];
+        } catch (\Exception $e) {
+            $alert = ['danger' => $e->getMessage()];
+        }
         return $this->view->render(
             'admin/main.html',
             [
                 'options' => $this->manager->all(),
-                'alert' => [
-                    'success' => 'Responsive Menu Options Reset Successfully'
-                ]
+                'alert' => [$alert]
             ]
         );
     }
@@ -65,6 +73,8 @@ class AdminController {
         if(!empty($imported_options)):
             try {
                 $this->manager->updateOptions($imported_options);
+                $task = new UpdateOptionsTask;
+                $task->run($imported_options, $this->view);
                 $alert = ['success' => 'Responsive Menu Options Imported Successfully.'];
             } catch (\Exception $e) {
                 $alert = ['danger' => $e->getMessage()];

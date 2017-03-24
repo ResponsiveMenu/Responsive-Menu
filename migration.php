@@ -5,7 +5,7 @@ $old_version = get_option('responsive_menu_test_version');
 include dirname(__FILE__) . '/config/default_options.php';
 
 $migration = new ResponsiveMenuTest\Database\Migration(
-    ResponsiveMenuTest\Factories\Factory::OptionManager(),
+    get_responsive_menu_test_service('option_manager'),
     $old_version,
     $new_version,
     $default_options

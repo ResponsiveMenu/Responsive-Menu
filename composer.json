@@ -7,7 +7,7 @@
       "ResponsiveMenuTest\\": "app/"
     },
     "files": [
-      "config/factories.php",
+      "config/services.php",
       "migration.php",
       "config/wp/scripts.php",
       "config/routing.php",
