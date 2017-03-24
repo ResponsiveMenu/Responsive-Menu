@@ -8,8 +8,9 @@
     },
     "files": [
       "config/services.php",
-      "migration.php",
       "config/wp/scripts.php",
+      "config/default_options.php",
+      "migration.php",
       "config/routing.php",
       "config/polylang.php"
     ]

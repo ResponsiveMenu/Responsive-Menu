@@ -1,14 +1,15 @@
 <?php
 
-$new_version = get_file_data(dirname(__FILE__) . '/responsive-menu-test.php', ['version'])[0];
-$old_version = get_option('responsive_menu_test_version');
+$version_data = get_file_data(dirname(__FILE__) . '/responsive-menu-test.php', ['version']);
+$new_version= $version_data[0];
+$old_version = ;
 include dirname(__FILE__) . '/config/default_options.php';
 
 $migration = new ResponsiveMenuTest\Database\Migration(
     get_responsive_menu_test_service('option_manager'),
-    $old_version,
+    get_option('responsive_menu_test_version'),
     $new_version,
-    $default_options
+    get_responsive_menu_test_default_options()
 );
 
 if($migration->needsTable()) {
