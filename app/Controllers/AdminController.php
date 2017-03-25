@@ -27,7 +27,7 @@ class AdminController {
 
     public function update($new_options, $nav_menus, $location_menus) {
         $validator = new Validator();
-
+        $errors = [];
         if($validator->validate($new_options)):
             try {
                 $options = $this->manager->updateOptions($new_options);
@@ -39,7 +39,8 @@ class AdminController {
             }
         else:
             $options = $new_options;
-            $alert = ['danger' => $validator->getErrors()];
+            $errors = $validator->getErrors();
+            $alert = ['danger' => $errors];
         endif;
 
         return $this->view->render(
@@ -48,7 +49,8 @@ class AdminController {
                 'options' => $options,
                 'alert' => $alert,
                 'nav_menus' => $nav_menus,
-                'location_menus' => $location_menus
+                'location_menus' => $location_menus,
+                'errors' => $errors
             ]
         );
     }
