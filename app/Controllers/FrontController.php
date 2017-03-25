@@ -45,11 +45,11 @@ class FrontController {
 
         if($options['shortcode'] == 'on'):
             add_shortcode('responsive_menu', function($atts) use($options) {
-                return $this->view->render('app.html.twig', ['options' => array_merge($options, $atts)]);
+                return $this->view->render('app.html', ['options' => array_merge($options, $atts)]);
             });
         else:
             add_action('wp_footer', function() use($options) {
-                echo $this->view->render('app.html.twig', ['options' => $options]);
+                echo $this->view->render('app.html', ['options' => $options]);
             });
         endif;
 

@@ -1,8 +1,8 @@
 <?php
 
 $twig = new Twig_Environment(new Twig_Loader_Filesystem([
-    dirname(dirname(__FILE__)) . '/public',
     dirname(dirname(__FILE__)) . '/views',
+    dirname(dirname(__FILE__)) . '/public',
 ]));
 
 $twig->addFilter(new Twig_SimpleFilter('shortcode', function($string) {

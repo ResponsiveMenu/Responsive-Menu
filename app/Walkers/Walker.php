@@ -1,12 +1,13 @@
 <?php
 
 namespace ResponsiveMenuTest\Walkers;
+use ResponsiveMenuTest\Collections\OptionsCollection;
 
 class Walker extends \Walker_Nav_Menu {
 
     private $current_item;
 
-    public function __construct($options) {
+    public function __construct(OptionsCollection $options) {
         $this->options = $options;
     }
 
@@ -66,8 +67,8 @@ class Walker extends \Walker_Nav_Menu {
 
         /* Calculate which arrow to show */
         if(in_array('responsive-menu-item-has-children', $responsive_menu_classes)):
-            $inactive_arrow = '<div class="responsive-menu-subarrow">' . $this->options['inactive_arrow_shape'] . '</div>';
-            $active_arrow = '<div class="responsive-menu-subarrow responsive-menu-subarrow-active">' . $this->options['active_arrow_shape'] . '</div>';
+            $inactive_arrow = '<div class="responsive-menu-subarrow">' . $this->options->getInActiveArrow() . '</div>';
+            $active_arrow = '<div class="responsive-menu-subarrow responsive-menu-subarrow-active">' . $this->options->getActiveArrow()  . '</div>';
             if($this->options['auto_expand_all_submenus'] == 'on'):
                 $initial_arrow = $active_arrow;
             elseif(

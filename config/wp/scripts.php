@@ -17,10 +17,10 @@ if(isset($_GET['page']) && $_GET['page'] == 'responsive-menu-test'):
 
         wp_enqueue_script('jquery-ui-core');
 
-        wp_register_style('responsive-menu-test-admin-css', plugin_dir_url(dirname(__FILE__)) . 'public/css/admin/admin.css', false, null);
+        wp_register_style('responsive-menu-test-admin-css', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/css/admin/admin.css', false, null);
         wp_enqueue_style('responsive-menu-test-admin-css');
 
-        wp_register_script('responsive-menu-test-admin-js', plugin_dir_url(dirname(__FILE__)) . 'public/js/admin/admin.js', 'jquery', null);
+        wp_register_script('responsive-menu-test-admin-js', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/js/admin/admin.js', 'jquery', null);
         wp_enqueue_script('responsive-menu-test-admin-js');
     });
 endif;

@@ -64,7 +64,7 @@ class AdminController {
             'admin/main.html',
             [
                 'options' => $this->manager->all(),
-                'alert' => [$alert]
+                'alert' => $alert
             ]
         );
     }

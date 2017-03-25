@@ -1,16 +1,39 @@
-<div class="tab-content">
-    <form class="form-horizontal" action="" method="post">
-        <button type="submit" name="responsive-menu-submit" class="hidden btn btn-primary">Submit</button>
-        <button type="submit" name="responsive-menu-submit" class="btn btn-primary pull-right">Update Options</button>
-        <div id="menu" class="tab-pane fade in active">
-            {% include 'admin/menu.html' %}
+<form class="form-horizontal" action="" method="post">
+
+    <button type="submit" name="responsive-menu-submit" class="hidden btn btn-primary">Update Option</button>
+    <button type="submit" name="responsive-menu-submit" class="btn btn-primary pull-right">Update Options</button>
+
+    <div class="tab-content">
+        <div id="initial-setup" class="tab-pane fade in active">
+            {% include 'admin/sections/initial-setup.html' %}
+        </div>
+        <div id="menu" class="tab-pane fade">
+            {% include 'admin/sections/menu.html' %}
+        </div>
+        <div id="button" class="tab-pane fade">
+            {% include 'admin/sections/button.html' %}
+        </div>
+        <div id="sub-menus" class="tab-pane fade">
+            {% include 'admin/sections/sub-menus.html' %}
+        </div>
+        <div id="technical" class="tab-pane fade">
+            {% include 'admin/sections/technical.html' %}
         </div>
         <div id="custom-css" class="tab-pane fade">
-            {% include 'admin/custom-css.html' %}
+            {% include 'admin/sections/custom-css.html' %}
         </div>
-        <div id="import" class="tab-pane fade">
-            {% include 'admin/import.html' %}
+        <div id="header-bar" class="tab-pane fade">
+            {% include 'admin/sections/header-bar.html' %}
         </div>
-        <button type="submit" name="responsive-menu-submit" class="btn btn-primary">Submit</button>
-    </form>
-</div>
+        <div id="single-menu" class="tab-pane fade">
+            {% include 'admin/sections/single-menu.html' %}
+        </div>
+        <div id="import-export" class="tab-pane fade">
+            {% include 'admin/sections/import-export.html' %}
+        </div>
+
+    </div>
+
+    <button type="submit" name="responsive-menu-submit" class="btn btn-primary">Update Options</button>
+
+</form>
