@@ -19,6 +19,10 @@ $twig->addFilter(new Twig_SimpleFilter('json_decode', function($string) {
     return json_decode($string, true);
 }));
 
+$twig->addFunction(new Twig_SimpleFunction('combine', function($keys, $values) {
+    return array_combine($keys, $values);
+}));
+
 $twig->addFunction(new Twig_SimpleFunction('build_menu', function($env, $options) {
 
     $translator = $env->getFilter('translate')->getCallable();

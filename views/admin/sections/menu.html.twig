@@ -18,15 +18,39 @@
                 </ul>
             </td>
         </tr>
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">Here you can turn options on or off and re-arrange them accordingly.</div>
+    <table class="table table-bordered table-hover">
         <tr>
             <td class="well col-md-3">
-                <label for="menu_title" class="control-label">
-                    Menu Title
-                    <div class="sub-text">This is a description with <a href="/">link</a>. Thanks</div>
-                </label>
+                <label for="items_order" class="control-label">Order of Menu Items</label>
+                <div class="sub-text">Drag the items to re-order and click to turn them on or off.</div>
             </td>
-            <td class="semi-pro">
-                <input type="text" name="menu[menu_title]" value="{{ options.menu_title }}" class="form-control" id="menu_title" placeholder="Menu Title">
+            <td>
+                <table id='font-icon-container'>
+                    <tr>
+                        <td>Id</td>
+                        <td>Icon</td>
+                    </tr>
+                    {% set icons = options.menu_font_icons|json_decode %}
+                    {% set ids_and_icons = combine(icons.id, icons.icon) %}
+                    {% for id, icon in ids_and_icons %}
+                        {% if icon or id %}
+                            <tr>
+                                <td><input type="text" class="form-control" value="{{ id }}" name="menu[menu_font_icons][id][]" /></td>
+                                <td><input type="text" class="form-control" value="{{ icon }}" name="menu[menu_font_icons][icon][]" /></td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                    <tr>
+                        <td><input type="text" class="form-control" name="menu[menu_font_icons][id][]" /></td>
+                        <td><input type="text" class="form-control" name="menu[menu_font_icons][icon][]" /></td>
+                    </tr>
+                </table>
+                <button id="add-font-icon" class="btn btn-primary" type="button">Add Font Icon</button>
             </td>
         </tr>
     </table>
@@ -48,5 +72,14 @@
             revert: true
         });
         $('#sortable, .draggable').disableSelection();
+    });
+
+    jQuery(document).ready(function($) {
+        $(document).on('click', '#add-font-icon', function() {
+            var lastRow = $('#font-icon-container tr').last();
+            var nextRow = lastRow.clone();
+            nextRow.find(':text').val('')
+            lastRow.after(nextRow);
+        });
     });
 </script>

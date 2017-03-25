@@ -1,3 +1,15 @@
+.container-fluid #banner_area,
+.container-fluid #options_area {
+    display: inline-block;
+    width: 75%;
+    vertical-align: top;
+}
+
+.container-fluid #banner_area {
+    width: 20%;
+    margin-left: 5%;
+}
+
 .container-fluid form.form-horizontal label {
     display: block;
     width: 100%;
@@ -26,8 +38,16 @@
 }
 
 .container-fluid .alert,
-.container-fluid .nav-tabs {
+.container-fluid ul.nav-tabs {
     margin-top: 25px;
+}
+
+.container-fluid form.form-horizontal ul.nav-tabs {
+    margin-bottom: 25px;
+}
+
+.container-fluid form.form-horizontal ul.nav-tabs .btn-default {
+    margin-right: 5px;
 }
 
 .pro::before,
@@ -118,4 +138,105 @@
 
 li.draggable {
     position: relative;
+}
+
+#upgrade_banner {
+    padding: 25px 5%;
+    background: #DE4B42;
+    color: #fff;
+    border: 1px solid #D33C34;
+    border-radius: 2px;
+    text-align: center;
+}
+
+#upgrade_banner i {
+    margin-right: 5px;
+}
+
+#docs_banner {
+    background: #FAB719;
+    padding: 35px;
+    color: #333;
+    margin-top: 15px;
+    text-align: center;
+}
+
+#upgrade_banner,
+#docs_banner {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 24px;
+}
+
+#upgrade_banner li  {
+    list-style: none;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+#docs_banner .button,
+#upgrade_banner .button {
+    background: white;
+    padding: 0 25px;
+    height: 50px;
+    line-height: 50px;
+    font-weight: bold;
+    font-size: 13px;
+    color: #333;
+    display: block;
+    margin: auto;
+    width: auto;
+    text-align: center;
+}
+
+#docs_banner .button {
+    margin-top: 15px;
+}
+
+.key-container {
+    margin: 15px 0;
+    background: white;
+    text-align: center;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+
+.key-container .key-title {
+    font-weight: bold;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.key-container .key {
+    display: inline-block;
+    font-size: 9px;
+    border: 1px solid #DADADA;
+    border-radius: 2px;
+    padding: 5px 15px 5px 5px;
+    background: white;
+}
+
+.key-container .key span {
+    border-right: 1px solid #de4b42;
+    display: inline-block;
+    padding-right: 5px;
+    margin-right: 10px;
+    color: #de4b42;
+    font-size: 9px;
+    font-weight: bold;
+}
+
+.key-container .key.key-semi-pro span {
+    color: #333;
+    border-color: #333;
+}
+
+.key-container .key.key-pro {
+    margin-bottom: 15px;
+}
+
+.key-container a {
+    text-decoration: none;
+    color: #333;
 }

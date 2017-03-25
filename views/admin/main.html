@@ -1,8 +1,12 @@
 <div class="container-fluid">
-    {% include 'admin/alerts.html' %}
-    {% include 'admin/tabs.html' %}
-    {% include 'admin/options.html' %}
-    <div id="banner_area">
-        {% include 'admin/banners.html' %}
-    </div>
+    <form class="form-horizontal form-inline" action="" method="post">
+        {% include 'admin/alerts.html' %}
+        {% include 'admin/tabs.html' %}
+        <div id="options_area">
+            {% include 'admin/options.html' %}
+        </div><!--
+        --><div id="banner_area">
+            {% include 'admin/banners.html' %}
+        </div>
+    </form>
 </div>
