@@ -15,6 +15,10 @@ $twig->addFilter(new Twig_SimpleFilter('translate', function($string, $key) {
     return $translated;
 }));
 
+$twig->addFilter(new Twig_SimpleFilter('json_decode', function($string) {
+    return json_decode($string, true);
+}));
+
 $twig->addFunction(new Twig_SimpleFunction('build_menu', function($env, $options) {
 
     $translator = $env->getFilter('translate')->getCallable();

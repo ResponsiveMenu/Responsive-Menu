@@ -13,6 +13,10 @@
     vertical-align: middle;
 }
 
+.container-fluid form.form-horizontal ul {
+    margin-bottom: 0;
+}
+
 .container-fluid form.form-horizontal .panel {
     border-radius: 0;
 }
@@ -63,4 +67,55 @@
 .unit {
     font-size: 12px;
     margin-left: 5px;
+}
+
+
+.draggable {
+    border: 1px solid #DADADA;
+    border-radius: 2px;
+    background: #EFEFEF;
+    padding: 10px 0;
+    margin: 0;
+    cursor: move;
+    font-weight: bold;
+    padding-left: 65px;
+    box-sizing: border-box;
+}
+
+.draggable input {
+    display: none;
+}
+
+.menu-order-option-switch,
+.order-option-switch {
+    background: #DE4B42;
+    color: white;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    line-height: 40px;
+    padding: 0 5px;
+    width: 50px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.menu-order-option-switch.menu-order-option-switch-on,
+.order-option-switch.order-option-switch-on {
+    background: green;
+}
+
+.menu-order-option-switch:after,
+.order-option-switch:after {
+    content: "OFF";
+}
+
+.menu-order-option-switch.menu-order-option-switch-on:after,
+.order-option-switch.order-option-switch-on:after {
+    content: "ON";
+}
+
+li.draggable {
+    position: relative;
 }

@@ -16,14 +16,18 @@ class OptionManager {
     }
 
     public function updateOptions(array $options) {
-        foreach($options as $name => $val)
+        foreach($options as $name => $val):
+            $val = is_array($val) ? json_encode($val) : $val;
             $this->db->update('responsive_menu_test', ['value' => stripslashes($val)], ['name' => $name]);
+        endforeach;
         return new OptionsCollection($options);
     }
 
     public function createOptions(array $options) {
-        foreach($options as $name => $val)
+        foreach($options as $name => $val):
+            $val = is_array($val) ? json_encode($val) : $val;
             $this->db->insert('responsive_menu_test', ['name' => $name, 'value' => stripslashes($val)]);
+        endforeach;
         return new OptionsCollection($options);
     }
 
