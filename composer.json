@@ -7,11 +7,11 @@
       "ResponsiveMenuTest\\": "app/"
     },
     "files": [
+      "config/default_options.php",
       "config/services.php",
       "config/wp/scripts.php",
-      "config/default_options.php",
-      "migration.php",
       "config/routing.php",
+      "migration.php",
       "config/polylang.php"
     ]
   }

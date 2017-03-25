@@ -18,7 +18,7 @@ class Migration {
     }
 
     public function needsTable() {
-        return substr($this->old_version, 0, 1) == 3;
+        return substr($this->old_version, 0, 1) != 3;
     }
 
     public function needsUpdate() {

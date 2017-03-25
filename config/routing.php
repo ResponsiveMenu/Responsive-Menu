@@ -12,8 +12,7 @@ if(is_admin()):
                 if(isset($_POST['responsive-menu-submit'])):
                     echo $controller->update($_POST['menu']);
                 elseif(isset($_POST['responsive-menu-reset'])):
-                    include dirname(__FILE__) . '/default_options.php';
-                    echo $controller->reset($default_options);
+                    echo $controller->reset(get_responsive_menu_test_default_options());
                 elseif(isset($_POST['responsive-menu-import'])):
                     $file = $_FILES['responsive_menu_import_file'];
                     $file_options = isset($file['tmp_name']) ? (array) json_decode(file_get_contents($file['tmp_name'])) : null;
