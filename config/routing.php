@@ -9,14 +9,20 @@ if(is_admin()):
             'responsive-menu-test',
             function() {
                 $controller = get_responsive_menu_test_service('admin_controller');
+
+                $menus_array = [];
+                $location_menus = ['' => 'None'];
+                foreach(get_terms('nav_menu') as $menu) $menus_array[$menu->slug] = $menu->name;
+                foreach(get_registered_nav_menus() as $location => $menu) $location_menus[$location] = $menu;
+
                 if(isset($_POST['responsive-menu-submit'])):
-                    echo $controller->update($_POST['menu']);
+                    echo $controller->update($_POST['menu'], $menus_array, $location_menus);
                 elseif(isset($_POST['responsive-menu-reset'])):
-                    echo $controller->reset(get_responsive_menu_test_default_options());
+                    echo $controller->reset(get_responsive_menu_test_default_options(), $menus_array, $location_menus);
                 elseif(isset($_POST['responsive-menu-import'])):
                     $file = $_FILES['responsive_menu_import_file'];
                     $file_options = isset($file['tmp_name']) ? (array) json_decode(file_get_contents($file['tmp_name'])) : null;
-                    echo $controller->import($file_options);
+                    echo $controller->import($file_options, $menus_array, $location_menus);
                 elseif(isset($_POST['responsive-menu-export'])):
                     header('Cache-Control: no-cache, no-store, must-revalidate');
                     header('Pragma: no-cache');
@@ -26,7 +32,7 @@ if(is_admin()):
                     echo $controller->export();
                     exit();
                 else:
-                    echo $controller->index();
+                    echo $controller->index($menus_array, $location_menus);
                 endif;
             },
             'dashicons-menu');

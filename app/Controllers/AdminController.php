@@ -14,16 +14,18 @@ class AdminController {
         $this->view = $view;
     }
 
-    public function index() {
+    public function index($nav_menus, $location_menus) {
         return $this->view->render(
             'admin/main.html',
             [
-                'options' => $this->manager->all()
+                'options' => $this->manager->all(),
+                'nav_menus' => $nav_menus,
+                'location_menus' => $location_menus
             ]
         );
     }
 
-    public function update($new_options) {
+    public function update($new_options, $nav_menus, $location_menus) {
         $validator = new Validator();
 
         if($validator->validate($new_options)):
@@ -45,12 +47,14 @@ class AdminController {
             'admin/main.html',
             [
                 'options' => $options,
-                'alert' => $alert
+                'alert' => $alert,
+                'nav_menus' => $nav_menus,
+                'location_menus' => $location_menus
             ]
         );
     }
 
-    public function reset($default_options) {
+    public function reset($default_options, $nav_menus, $location_menus) {
 
         try {
             $this->manager->updateOptions($default_options);
@@ -64,12 +68,14 @@ class AdminController {
             'admin/main.html',
             [
                 'options' => $this->manager->all(),
-                'alert' => $alert
+                'alert' => $alert,
+                'nav_menus' => $nav_menus,
+                'location_menus' => $location_menus
             ]
         );
     }
 
-    public function import($imported_options) {
+    public function import($imported_options, $nav_menus, $location_menus) {
         if(!empty($imported_options)):
             try {
                 $this->manager->updateOptions($imported_options);
@@ -87,7 +93,9 @@ class AdminController {
             'admin/main.html',
             [
                 'options' => $this->manager->all(),
-                'alert' => $alert
+                'alert' => $alert,
+                'nav_menus' => $nav_menus,
+                'location_menus' => $location_menus
             ]
         );
     }

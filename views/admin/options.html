@@ -1,11 +1,11 @@
-<form class="form-horizontal" action="" method="post">
+<form class="form-horizontal form-inline" action="" method="post">
 
     <button type="submit" name="responsive-menu-submit" class="hidden btn btn-primary">Update Option</button>
     <button type="submit" name="responsive-menu-submit" class="btn btn-primary pull-right">Update Options</button>
 
     <div class="tab-content">
         <div id="initial-setup" class="tab-pane fade in active">
-            {% include 'admin/sections/initial-setup.html' %}
+            {% include 'admin/sections/initial-setup.html.twig' %}
         </div>
         <div id="menu" class="tab-pane fade">
             {% include 'admin/sections/menu.html' %}
