@@ -30,14 +30,13 @@ class AdminController {
 
         if($validator->validate($new_options)):
             try {
-                $this->manager->updateOptions($new_options);
+                $options = $this->manager->updateOptions($new_options);
                 $task = new UpdateOptionsTask;
-                $task->run($new_options, $this->view);
+                $task->run($options, $this->view);
                 $alert = ['success' => 'Responsive Menu Options Updated Successfully.'];
             } catch (\Exception $e) {
                 $alert = ['danger' => $e->getMessage()];
             }
-            $options = $this->manager->all();
         else:
             $options = $new_options;
             $alert = ['danger' => $validator->getErrors()];
@@ -55,11 +54,10 @@ class AdminController {
     }
 
     public function reset($default_options, $nav_menus, $location_menus) {
-
         try {
-            $this->manager->updateOptions($default_options);
+            $options = $this->manager->updateOptions($default_options);
             $task = new UpdateOptionsTask;
-            $task->run($default_options, $this->view);
+            $task->run($options, $this->view);
             $alert = ['success' => 'Responsive Menu Options Reset Successfully'];
         } catch (\Exception $e) {
             $alert = ['danger' => $e->getMessage()];
@@ -67,7 +65,7 @@ class AdminController {
         return $this->view->render(
             'admin/main.html',
             [
-                'options' => $this->manager->all(),
+                'options' => $options,
                 'alert' => $alert,
                 'nav_menus' => $nav_menus,
                 'location_menus' => $location_menus
@@ -78,21 +76,23 @@ class AdminController {
     public function import($imported_options, $nav_menus, $location_menus) {
         if(!empty($imported_options)):
             try {
-                $this->manager->updateOptions($imported_options);
+                $options = $this->manager->updateOptions($imported_options);
                 $task = new UpdateOptionsTask;
                 $task->run($imported_options, $this->view);
                 $alert = ['success' => 'Responsive Menu Options Imported Successfully.'];
             } catch (\Exception $e) {
+                $options = $this->manager->all();
                 $alert = ['danger' => $e->getMessage()];
             }
         else:
-            $alert['danger'] = 'No import file selected';
+            $options = $this->manager->all();
+            $alert = ['danger' => 'No import file selected'];
         endif;
 
         return $this->view->render(
             'admin/main.html',
             [
-                'options' => $this->manager->all(),
+                'options' => $options,
                 'alert' => $alert,
                 'nav_menus' => $nav_menus,
                 'location_menus' => $location_menus

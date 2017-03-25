@@ -28,6 +28,6 @@ if($migration->needsUpdate()) {
     $migration->addNewOptions();
     $migration->tidyUpOptions();
     $task = new ResponsiveMenuTest\Tasks\UpdateOptionsTask();
-    $task->run($$options_manager->all(), get_responsive_menu_test_service('view'));
+    $task->run($options_manager->all(), get_responsive_menu_test_service('view'));
     update_option('responsive_menu_test_version', $new_version);
 }

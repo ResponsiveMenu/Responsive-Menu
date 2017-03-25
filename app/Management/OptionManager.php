@@ -16,25 +16,37 @@ class OptionManager {
     }
 
     public function updateOptions(array $options) {
+        $updated_options = [];
         foreach($options as $name => $val):
             $val = is_array($val) ? json_encode($val) : $val;
-            $this->db->update('responsive_menu_test', ['value' => stripslashes($val)], ['name' => $name]);
+            $val = stripslashes($val);
+            $updated_options[$name] = $val;
+            $this->db->update('responsive_menu_test', ['value' => $val], ['name' => $name]);
         endforeach;
-        return new OptionsCollection($options);
+        return new OptionsCollection($updated_options);
     }
 
     public function createOptions(array $options) {
+        $updated_options = [];
         foreach($options as $name => $val):
             $val = is_array($val) ? json_encode($val) : $val;
-            $this->db->insert('responsive_menu_test', ['name' => $name, 'value' => stripslashes($val)]);
+            $val = stripslashes($val);
+            $updated_options[$name] = $val;
+            $this->db->insert('responsive_menu_test', ['name' => $name, 'value' => $val]);
         endforeach;
-        return new OptionsCollection($options);
+        return new OptionsCollection($updated_options);
     }
 
     public function removeOptions(array $options) {
-        foreach($options as $name => $val)
+        $updated_options = $options;
+        foreach($options as $name => $val):
+            $val = is_array($val) ? json_encode($val) : $val;
+            $val = stripslashes($val);
+            $updated_options[$name] = $val;
+            unset($updated_options[$name]);
             $this->db->delete('responsive_menu_test', ['name' => $name]);
-        return new OptionsCollection($options);
+        endforeach;
+        return new OptionsCollection($updated_options);
     }
 
 }

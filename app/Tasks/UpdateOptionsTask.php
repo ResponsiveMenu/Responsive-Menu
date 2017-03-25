@@ -1,6 +1,7 @@
 <?php
 
 namespace ResponsiveMenuTest\Tasks;
+use ResponsiveMenuTest\Collections\OptionsCollection;
 use ResponsiveMenuTest\Formatters\Minifier;
 use ResponsiveMenuTest\View\View;
 
@@ -14,7 +15,7 @@ class UpdateOptionsTask {
         'menu_additional_content'
     ];
 
-    public function run($options, View $view) {
+    public function run(OptionsCollection $options, View $view) {
         /*
          * Build CSS and Js files
          *
