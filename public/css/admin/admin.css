@@ -10,6 +10,10 @@
     margin-left: 5%;
 }
 
+.container-fluid form.form-horizontal .toggle.btn {
+    width: 50px !important;
+}
+
 .container-fluid form.form-horizontal label {
     display: block;
     width: 100%;
@@ -19,6 +23,14 @@
 .container-fluid form.form-horizontal .bootstrap-select,
 .container-fluid form.form-horizontal input {
     width: calc(100% - 75px) !important;
+}
+
+.container-fluid form.form-horizontal input.has-unit {
+    width: calc(100% - 175px) !important;
+}
+
+.container-fluid form.form-horizontal .bootstrap-select.is-unit {
+    width: 100px !important;
 }
 
 .container-fluid form.form-horizontal td {
@@ -239,4 +251,8 @@ li.draggable {
 .key-container a {
     text-decoration: none;
     color: #333;
+}
+
+#add-font-icon {
+    margin-top: 15px;
 }

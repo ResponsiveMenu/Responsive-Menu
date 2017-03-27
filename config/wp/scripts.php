@@ -16,6 +16,9 @@ if(isset($_GET['page']) && $_GET['page'] == 'responsive-menu-test'):
         wp_enqueue_script('responsive-menu-test-select-js', 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js', null, null);
         wp_enqueue_style('responsive-menu-test-select-css', 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css', null, null);
 
+        wp_enqueue_script('responsive-menu-test-checkbox-js', 'https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js', null, null);
+        wp_enqueue_style('responsive-menu-test-checkbox-css', 'https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css', null, null);
+
         wp_enqueue_script('postbox');
 
         wp_enqueue_script('jquery-ui-core');

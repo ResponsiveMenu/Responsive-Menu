@@ -17,7 +17,7 @@
                 <span class="unit">px</span>
             </td>
         </tr>
-        <tr {% if errors.menu_to_use %} class="danger"{% endif %}>
+        <tr{% if errors.menu_to_use %} class="danger"{% endif %}>
             <td class="well col-md-3">
                 <label for="menu_title" class="control-label">
                     Menu to Use
@@ -31,11 +31,10 @@
                             {{ display }}
                         </option>
                     {% endfor %}
-                    <option class="special" disabled data-subtext="[PRO]">Another menu -</option>
                 </select>
             </td>
         </tr>
-        <tr {% if errors.menu_to_hide %} class="danger"{% endif %}>
+        <tr{% if errors.menu_to_hide %} class="danger"{% endif %}>
             <td class="well col-md-3">
                 <label for="menu_to_hide" class="control-label">
                     CSS Selector of Menu to Hide

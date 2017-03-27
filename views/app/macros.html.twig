@@ -1,0 +1,32 @@
+{% macro percentage_units(name, value) %}
+    <select class="selectpicker show-tick is-unit" name="menu[name]">
+        <option value="%" selected="selected">%</option>
+        <option value="px" disabled data-subtext="[PRO]">px -</option>
+        <option value="em" disabled data-subtext="[PRO]">em -</option>
+        <option value="rem" disabled data-subtext="[PRO]">rem -</option>
+    </select>
+{% endmacro %}
+
+{% macro pixel_units(name, value) %}
+    <select class="selectpicker show-tick is-unit" name="menu[name]">
+        <option value="px" selected="selected">px</option>
+        <option value="%"  disabled data-subtext="[PRO]">% -</option>
+        <option value="em" disabled data-subtext="[PRO]">em -</option>
+        <option value="rem" disabled data-subtext="[PRO]">rem -</option>
+    </select>
+{% endmacro %}
+
+{% macro input(name, value, class="") %}
+    <input type="text" name="menu[{{ name }}]" value="{{ value }}" class="form-control {{ class }}">
+{% endmacro %}
+
+{% macro label(for, title) %}
+    <label for="{{ for }}" class="control-label">
+        {{ title }}
+    </label>
+{% endmacro %}
+
+{% macro checkbox(name, value) %}
+    <input {% if value == 'on' %}checked="checked" {% endif %}
+           name="menu[{{ name }}]" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" type="checkbox" value="on" />
+{% endmacro %}

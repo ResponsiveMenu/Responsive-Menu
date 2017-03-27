@@ -14,7 +14,10 @@ $services_428734872364['database'] = function($c) {
 };
 
 $services_428734872364['option_manager'] = function($c) {
-    return new ResponsiveMenuTest\Management\OptionManager($c['database']);
+    return new ResponsiveMenuTest\Management\OptionManager(
+        $c['database'],
+        get_responsive_menu_test_default_options()
+    );
 };
 
 $services_428734872364['twig'] = function($c) {

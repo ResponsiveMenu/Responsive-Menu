@@ -1,7 +1,9 @@
+{% import "app/macros.html.twig" as macros %}
+
 <div class="panel panel-default">
     <div class="panel-body">Here you can turn options on or off and re-arrange them accordingly.</div>
     <table class="table table-bordered table-hover">
-        <tr>
+        <tr{% if errors.items_order %} class="danger"{% endif %}>
             <td class="well col-md-3">
                 <label for="items_order" class="control-label">Order of Menu Items</label>
                 <div class="sub-text">Drag the items to re-order and click to turn them on or off.</div>
@@ -16,41 +18,6 @@
                         </li>
                     {% endfor %}
                 </ul>
-            </td>
-        </tr>
-    </table>
-</div>
-
-<div class="panel panel-default">
-    <div class="panel-body">Here you can turn options on or off and re-arrange them accordingly.</div>
-    <table class="table table-bordered table-hover">
-        <tr>
-            <td class="well col-md-3">
-                <label for="items_order" class="control-label">Order of Menu Items</label>
-                <div class="sub-text">Drag the items to re-order and click to turn them on or off.</div>
-            </td>
-            <td>
-                <table id='font-icon-container'>
-                    <tr>
-                        <td>Id</td>
-                        <td>Icon</td>
-                    </tr>
-                    {% set icons = options.menu_font_icons|json_decode %}
-                    {% set ids_and_icons = combine(icons.id, icons.icon) %}
-                    {% for id, icon in ids_and_icons %}
-                        {% if icon or id %}
-                            <tr>
-                                <td><input type="text" class="form-control" value="{{ id }}" name="menu[menu_font_icons][id][]" /></td>
-                                <td><input type="text" class="form-control" value="{{ icon }}" name="menu[menu_font_icons][icon][]" /></td>
-                            </tr>
-                        {% endif %}
-                    {% endfor %}
-                    <tr>
-                        <td><input type="text" class="form-control" name="menu[menu_font_icons][id][]" /></td>
-                        <td><input type="text" class="form-control" name="menu[menu_font_icons][icon][]" /></td>
-                    </tr>
-                </table>
-                <button id="add-font-icon" class="btn btn-primary" type="button">Add Font Icon</button>
             </td>
         </tr>
     </table>
@@ -73,7 +40,49 @@
         });
         $('#sortable, .draggable').disableSelection();
     });
+</script>
 
+<div class="panel panel-default">
+    <div class="panel-body">Here you can turn options on or off and re-arrange them accordingly.</div>
+    <table class="table table-bordered table-hover">
+        <tr{% if errors.menu_font_icons %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                <label for="items_order" class="control-label">Font Icons</label>
+                <div class="sub-text">
+                    Responsive Menu uses the brilliant <a href="http://fontawesome.io/icons/" target="_blank">Font Awesome</a> icons for implementing icons in
+                    your menu - for more info please visit our doc pages <a href="https://responsive.menu/docs/basic-setup/font-icons/" target="_blank">here</a>.
+                </div>
+            </td>
+            <td>
+                <table id='font-icon-container'>
+                    <tr>
+                        <td>Menu Item ID</td>
+                        <td>Icon</td>
+                    </tr>
+                    {% set icons = options.menu_font_icons|json_decode %}
+                    {% if icons is iterable %}
+                        {% set ids_and_icons = combine(icons.id, icons.icon) %}
+                        {% for id, icon in ids_and_icons %}
+                            {% if icon or id %}
+                                <tr>
+                                    <td><input type="text" class="form-control" value="{{ id }}" name="menu[menu_font_icons][id][]" placeholder="32" /></td>
+                                    <td><input type="text" class="form-control" value="{{ icon }}" name="menu[menu_font_icons][icon][]" placeholder="fa-cog" /></td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    <tr>
+                        <td><input type="text" class="form-control" name="menu[menu_font_icons][id][]" placeholder="32" /></td>
+                        <td><input type="text" class="form-control" name="menu[menu_font_icons][icon][]" placeholder="fa-cog" /></td>
+                    </tr>
+                </table>
+                <button id="add-font-icon" class="btn btn-primary" type="button">Add Font Icon</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script>
     jQuery(document).ready(function($) {
         $(document).on('click', '#add-font-icon', function() {
             var lastRow = $('#font-icon-container tr').last();
@@ -83,3 +92,44 @@
         });
     });
 </script>
+
+<div class="panel panel-default">
+    <div class="panel-body">Menu Sizing</div>
+    <table class="table table-bordered table-hover">
+        <tr{% if errors.menu_width %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_title', 'Menu Width') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.input('menu_width', options.menu_width, 'has-unit') }}
+                {{ macros.percentage_units('menu_width', options.menu_width) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_maximum_width %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_maximum_width', 'Menu Maximum Width') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.input('menu_maximum_width', options.menu_maximum_width, 'has-unit') }}
+                {{ macros.pixel_units('menu_maximum_width_unit', options.menu_maximum_width_unit) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_minimum_width %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_minimum_width', 'Menu Minimum Width') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.input('menu_minimum_width', options.menu_minimum_width, 'has-unit') }}
+                {{ macros.pixel_units('menu_minimum_width_unit', options.menu_minimum_width_unit) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_auto_height %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('items_order', 'Menu Auto Height') }}
+            </td>
+            <td>
+                {{ macros.checkbox('menu_auto_height', options.menu_auto_height) }}
+            </td>
+        </tr>
+    </table>
+</div>
