@@ -7,17 +7,17 @@ if(isset($_GET['page']) && $_GET['page'] == 'responsive-menu-test'):
     add_action('admin_enqueue_scripts', function() {
         wp_enqueue_media();
 
-        wp_enqueue_style('wp-color-picker');
-        wp_enqueue_script('wp-color-picker');
+        wp_enqueue_script('responsive-menu-test-bootstrap-js', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/js/admin/bootstrap.js', null, null);
+        wp_enqueue_style('responsive-menu-test-bootstrap-css', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/css/admin/bootstrap.css', null, null);
 
-        wp_enqueue_script('responsive-menu-test-bootstrap-js', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', null, null);
-        wp_enqueue_style('responsive-menu-test-bootstrap-css', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', null, null);
+        wp_enqueue_script('responsive-menu-test-select-js', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/js/admin/bootstrap-select.js', null, null);
+        wp_enqueue_style('responsive-menu-test-select-css', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/css/admin/bootstrap-select.css', null, null);
 
-        wp_enqueue_script('responsive-menu-test-select-js', 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js', null, null);
-        wp_enqueue_style('responsive-menu-test-select-css', 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css', null, null);
+        wp_enqueue_script('responsive-menu-test-checkbox-js', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/js/admin/bootstrap-toggle.js', null, null);
+        wp_enqueue_style('responsive-menu-test-checkbox-css', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/css/admin/bootstrap-toggle.css', null, null);
 
-        wp_enqueue_script('responsive-menu-test-checkbox-js', 'https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js', null, null);
-        wp_enqueue_style('responsive-menu-test-checkbox-css', 'https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css', null, null);
+        wp_enqueue_script('responsive-menu-test-minicolours-js', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/js/admin/minicolours.js', null, null);
+        wp_enqueue_style('responsive-menu-test-minicolours-css', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/css/admin/minicolours.css', null, null);
 
         wp_enqueue_script('postbox');
 

@@ -16,8 +16,21 @@
     </select>
 {% endmacro %}
 
+{% macro link_locations(name, value) %}
+    <select class="selectpicker show-tick" name="menu[name]">
+        <option value="_blank"{% if value == '_blank' %} selected="selected"{% endif %}>New Tab</option>
+        <option value="_self"{% if value == '_self' %} selected="selected"{% endif %}>Same Page</option>
+        <option value="_parent"{% if value == '_parent' %} selected="selected"{% endif %}>Parent Page</option>
+        <option value="_top"{% if value == '_top' %} selected="selected"{% endif %}>Full Window Body</option>
+    </select>
+{% endmacro %}
+
 {% macro input(name, value, class="") %}
     <input type="text" name="menu[{{ name }}]" value="{{ value }}" class="form-control {{ class }}">
+{% endmacro %}
+
+{% macro colour(name, value) %}
+    <input type="text" class="form-control mini-colours" name="menu[{{ name }}]" value="{{ value }}" />
 {% endmacro %}
 
 {% macro label(for, title) %}
@@ -29,4 +42,14 @@
 {% macro checkbox(name, value) %}
     <input {% if value == 'on' %}checked="checked" {% endif %}
            name="menu[{{ name }}]" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" type="checkbox" value="on" />
+{% endmacro %}
+
+{% macro image(name, value) %}
+    <div class="input-group">
+        <input type="text" class="form-control" id="{{ name }}" name="menu[{{ name }}]" value="{{ value }}" />
+        <span class="input-group-btn">
+            <button type="button" class="image_button btn btn-primary" for="{{ name }}" />Upload Image</button>
+        </span>
+    </div>
+
 {% endmacro %}

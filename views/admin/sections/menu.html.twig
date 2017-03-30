@@ -98,7 +98,7 @@
     <table class="table table-bordered table-hover">
         <tr{% if errors.menu_width %} class="danger"{% endif %}>
             <td class="well col-md-3">
-                {{ macros.label('menu_title', 'Menu Width') }}
+                {{ macros.label('menu_title', 'Width') }}
             </td>
             <td class="semi-pro">
                 {{ macros.input('menu_width', options.menu_width, 'has-unit') }}
@@ -107,7 +107,7 @@
         </tr>
         <tr{% if errors.menu_maximum_width %} class="danger"{% endif %}>
             <td class="well col-md-3">
-                {{ macros.label('menu_maximum_width', 'Menu Maximum Width') }}
+                {{ macros.label('menu_maximum_width', 'Maximum Width') }}
             </td>
             <td class="semi-pro">
                 {{ macros.input('menu_maximum_width', options.menu_maximum_width, 'has-unit') }}
@@ -116,19 +116,132 @@
         </tr>
         <tr{% if errors.menu_minimum_width %} class="danger"{% endif %}>
             <td class="well col-md-3">
-                {{ macros.label('menu_minimum_width', 'Menu Minimum Width') }}
+                {{ macros.label('menu_minimum_width', 'Minimum Width') }}
             </td>
             <td class="semi-pro">
                 {{ macros.input('menu_minimum_width', options.menu_minimum_width, 'has-unit') }}
                 {{ macros.pixel_units('menu_minimum_width_unit', options.menu_minimum_width_unit) }}
             </td>
         </tr>
+        <tr{% if errors.menu_links_height %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_links_height', 'Links Height') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.input('menu_links_height', options.menu_links_height, 'has-unit') }}
+                {{ macros.pixel_units('menu_links_height_unit', options.menu_links_height_unit) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_border_width %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_border_width', 'Border Width') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.input('menu_border_width', options.menu_border_width, 'has-unit') }}
+                {{ macros.pixel_units('menu_border_width_unit', options.menu_border_width_unit) }}
+            </td>
+        </tr>
         <tr{% if errors.menu_auto_height %} class="danger"{% endif %}>
             <td class="well col-md-3">
-                {{ macros.label('items_order', 'Menu Auto Height') }}
+                {{ macros.label('items_order', 'Auto Height') }}
             </td>
             <td>
                 {{ macros.checkbox('menu_auto_height', options.menu_auto_height) }}
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">Menu Title</div>
+    <table class="table table-bordered table-hover">
+        <tr{% if errors.menu_title %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_title', 'Title') }}
+            </td>
+            <td>
+                {{ macros.input('menu_title', options.menu_title) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_title_link %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_title_link', 'Link') }}
+            </td>
+            <td>
+                {{ macros.input('menu_title_link', options.menu_title_link) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_title_link_location %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_title_link_location', 'Link Location') }}
+            </td>
+            <td>
+                {{ macros.link_locations('menu_title_link_location', options.menu_title_link) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_title_font_size %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_title_font_size', 'Font Size') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.input('menu_title_font_size', options.menu_title_font_size, 'has-unit') }}
+                {{ macros.pixel_units('menu_title_font_size_unit', options.menu_title_font_size) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_title_font_icon %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_title_font_icon', 'Font Icon') }}
+            </td>
+            <td class="pro">
+                {{ macros.input('menu_title_font_icon', options.menu_title_font_icon) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_title_image %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_title_image', 'Image') }}
+            </td>
+            <td>
+                {{ macros.image('menu_title_image', options.menu_title_image) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_title_image_alt %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_title_image_alt', 'Image alt Text') }}
+            </td>
+            <td>
+                {{ macros.input('menu_title_image_alt', options.menu_title_image_alt) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_title_background_colour %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_title_background_colour', 'Background Colour') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.colour('menu_title_background_colour', options.menu_title_background_colour) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_title_background_hover_colour %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_title_background_hover_colour', 'Background Hover Colour') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.colour('menu_title_background_hover_colour', options.menu_title_background_hover_colour) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_title_colour %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_title_colour', 'Text Colour') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.colour('menu_title_colour', options.menu_title_colour) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_title_hover_colour %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_title_hover_colour', 'Text Hover Colour') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.colour('menu_title_hover_colour', options.menu_title_hover_colour) }}
             </td>
         </tr>
     </table>

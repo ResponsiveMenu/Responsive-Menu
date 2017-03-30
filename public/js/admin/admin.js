@@ -1,6 +1,11 @@
 jQuery(function($) {
 
-    $('.wp-color-picker').wpColorPicker();
+    $.minicolors.defaults = $.extend($.minicolors.defaults, {
+        format: 'hex',
+        opacity: false,
+        theme: 'bootstrap'
+    });
+    $(".mini-colours").minicolors();
 
     var custom_uploader;
 

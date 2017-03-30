@@ -10,6 +10,14 @@
     margin-left: 5%;
 }
 
+.container-fluid form.form-horizontal .input-group {
+    width:100%;
+}
+
+.container-fluid form.form-horizontal .input-group-btn {
+    width:189px;
+}
+
 .container-fluid form.form-horizontal .toggle.btn {
     width: 50px !important;
 }
@@ -25,8 +33,12 @@
     width: calc(100% - 75px) !important;
 }
 
+.container-fluid form.form-horizontal .input-group input {
+    width: 100% !important;
+}
+
 .container-fluid form.form-horizontal input.has-unit {
-    width: calc(100% - 175px) !important;
+    width: calc(100% - 179px) !important;
 }
 
 .container-fluid form.form-horizontal .bootstrap-select.is-unit {
@@ -255,4 +267,8 @@ li.draggable {
 
 #add-font-icon {
     margin-top: 15px;
+}
+
+.mini-colours {
+    cursor: pointer;
 }
