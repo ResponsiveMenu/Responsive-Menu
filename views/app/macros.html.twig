@@ -1,5 +1,5 @@
 {% macro percentage_units(name, value) %}
-    <select class="selectpicker show-tick is-unit" name="menu[name]">
+    <select class="selectpicker show-tick is-unit" name="menu[{{ name }}]">
         <option value="%" selected="selected">%</option>
         <option value="px" disabled data-subtext="[PRO]">px -</option>
         <option value="em" disabled data-subtext="[PRO]">em -</option>
@@ -8,7 +8,7 @@
 {% endmacro %}
 
 {% macro pixel_units(name, value) %}
-    <select class="selectpicker show-tick is-unit" name="menu[name]">
+    <select class="selectpicker show-tick is-unit" name="menu[{{ name }}]">
         <option value="px" selected="selected">px</option>
         <option value="%"  disabled data-subtext="[PRO]">% -</option>
         <option value="em" disabled data-subtext="[PRO]">em -</option>
@@ -17,11 +17,47 @@
 {% endmacro %}
 
 {% macro link_locations(name, value) %}
-    <select class="selectpicker show-tick" name="menu[name]">
+    <select class="selectpicker show-tick" name="menu[{{ name }}]">
         <option value="_blank"{% if value == '_blank' %} selected="selected"{% endif %}>New Tab</option>
         <option value="_self"{% if value == '_self' %} selected="selected"{% endif %}>Same Page</option>
         <option value="_parent"{% if value == '_parent' %} selected="selected"{% endif %}>Parent Page</option>
         <option value="_top"{% if value == '_top' %} selected="selected"{% endif %}>Full Window Body</option>
+    </select>
+{% endmacro %}
+
+{% macro side_select(name, value) %}
+    <select class="selectpicker show-tick" name="menu[{{ name }}]">
+        <option value="top"{% if value == 'top' %} selected="selected"{% endif %}>Top</option>
+        <option value="right"{% if value == 'right' %} selected="selected"{% endif %}>Right</option>
+        <option value="bottom"{% if value == 'bottom' %} selected="selected"{% endif %}>Bottom</option>
+        <option value="left"{% if value == 'left' %} selected="selected"{% endif %}>Left</option>
+    </select>
+{% endmacro %}
+
+{% macro depth_select(name, value) %}
+    <select class="selectpicker show-tick" name="menu[{{ name }}]">
+        <option value="1"{% if value == '1' %} selected="selected"{% endif %}>1</option>
+        <option value="2"{% if value == '2' %} selected="selected"{% endif %}>2</option>
+        <option value="3"{% if value == '3' %} selected="selected"{% endif %}>3</option>
+        <option value="4"{% if value == '4' %} selected="selected"{% endif %}>4</option>
+        <option value="5"{% if value == '5' %} selected="selected"{% endif %}>5</option>
+    </select>
+{% endmacro %}
+
+{% macro alignment_select(name, value) %}
+    <select class="selectpicker show-tick" name="menu[{{ name }}]">
+        <option value="left"{% if value == 'left' %} selected="selected"{% endif %}>Left</option>
+        <option value="right"{% if value == 'right' %} selected="selected"{% endif %}>Right</option>
+        <option value="center"{% if value == 'center' %} selected="selected"{% endif %}>Centered</option>
+        <option value="justify"{% if value == 'justify' %} selected="selected"{% endif %}>Justified</option>
+    </select>
+{% endmacro %}
+
+{% macro animation_select(name, value) %}
+    <select class="selectpicker show-tick" name="menu[{{ name }}]">
+        <option value="side"{% if value == 'side' %} selected="selected"{% endif %}>Side</option>
+        <option value="push"{% if value == 'push' %} selected="selected"{% endif %}>Push</option>
+        <option value="fade" disabled data-subtext="[PRO]">Fade -</option>
     </select>
 {% endmacro %}
 
@@ -51,5 +87,8 @@
             <button type="button" class="image_button btn btn-primary" for="{{ name }}" />Upload Image</button>
         </span>
     </div>
+{% endmacro %}
 
+{% macro textarea(name, value) %}
+    <textarea class="form-control" name="menu[{{ name }}]">{{ value }}</textarea>
 {% endmacro %}

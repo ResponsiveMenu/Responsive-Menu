@@ -102,7 +102,7 @@
             </td>
             <td class="semi-pro">
                 {{ macros.input('menu_width', options.menu_width, 'has-unit') }}
-                {{ macros.percentage_units('menu_width', options.menu_width) }}
+                {{ macros.percentage_units('menu_width_unit', options.menu_width_unit) }}
             </td>
         </tr>
         <tr{% if errors.menu_maximum_width %} class="danger"{% endif %}>
@@ -185,7 +185,7 @@
             </td>
             <td class="semi-pro">
                 {{ macros.input('menu_title_font_size', options.menu_title_font_size, 'has-unit') }}
-                {{ macros.pixel_units('menu_title_font_size_unit', options.menu_title_font_size) }}
+                {{ macros.pixel_units('menu_title_font_size_unit', options.menu_title_font_size_unit) }}
             </td>
         </tr>
         <tr{% if errors.menu_title_font_icon %} class="danger"{% endif %}>
@@ -242,6 +242,350 @@
             </td>
             <td class="semi-pro">
                 {{ macros.colour('menu_title_hover_colour', options.menu_title_hover_colour) }}
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">Additional Content</div>
+    <table class="table table-bordered table-hover">
+        <tr{% if errors.menu_additional_content %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_additional_content', 'Content') }}
+                <div class="sub-text">HTML and shortcodes can be used here.</div>
+            </td>
+            <td>
+                {{ macros.textarea('menu_additional_content', options.menu_additional_content) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_additional_content_colour %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_additional_content_colour', 'Colour') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.colour('menu_additional_content_colour', options.menu_additional_content_colour) }}
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">Animation</div>
+    <table class="table table-bordered table-hover">
+        <tr{% if errors.menu_appear_from %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_appear_from', 'Appear From') }}
+            </td>
+            <td>
+                {{ macros.side_select('menu_appear_from', options.menu_appear_from) }}
+            </td>
+        </tr>
+        <tr{% if errors.animation_type %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('animation_type', 'Type') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.animation_select('animation_type', options.animation_type) }}
+            </td>
+        </tr>
+        <tr{% if errors.page_wrapper %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('page_wrapper', 'Push Wrapper') }}
+                <div class="sub-text">Only needed if you are using the push animation.</div>
+            </td>
+            <td>
+                {{ macros.input('page_wrapper', options.page_wrapper) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_close_on_body_click %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_close_on_body_click', 'Close on body click') }}
+            </td>
+            <td>
+                {{ macros.checkbox('menu_close_on_body_click', options.menu_close_on_body_click) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_close_on_link_click %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_close_on_link_click', 'Close on link click') }}
+            </td>
+            <td>
+                {{ macros.checkbox('menu_close_on_link_click', options.menu_close_on_link_click) }}
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">Search Box</div>
+    <table class="table table-bordered table-hover">
+        <tr{% if errors.menu_search_box_text %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_search_box_text', 'Text') }}
+            </td>
+            <td class="pro">
+                {{ macros.input('menu_search_box_text', options.menu_search_box_text) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_search_box_text_colour %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_search_box_text_colour', 'Text Colour') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.colour('menu_search_box_text_colour', options.menu_search_box_text_colour) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_search_box_border_colour %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_search_box_border_colour', 'Border Colour') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.colour('menu_search_box_border_colour', options.menu_search_box_border_colour) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_search_box_background_colour %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_search_box_background_colour', 'Background Colour') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.colour('menu_search_box_background_colour', options.menu_search_box_background_colour) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_search_box_placeholder_colour %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_search_box_placeholder_colour', 'Placeholder Colour') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.colour('menu_search_box_placeholder_colour', options.menu_search_box_placeholder_colour) }}
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">Background</div>
+    <table class="table table-bordered table-hover">
+        <tr{% if errors.menu_background_image %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_background_image', 'Image') }}
+            </td>
+            <td class="pro">
+                {{ macros.image('menu_background_image', options.menu_background_image) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_background_colour %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_background_colour', 'Background Colour') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.colour('menu_background_colour', options.menu_background_colour) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_item_background_colour %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_item_background_colour', 'Item Background Colour') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.colour('menu_item_background_colour', options.menu_item_background_colour) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_item_background_hover_colour %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_item_background_hover_colour', 'Item Background Hover Colour') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.colour('menu_item_background_hover_colour', options.menu_item_background_hover_colour) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_current_item_background_colour %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_current_item_background_colour', 'Current Item Background Colour') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.colour('menu_current_item_background_colour', options.menu_current_item_background_colour) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_current_item_background_hover_colour %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_current_item_background_hover_colour', 'Current Item Background Hover Colour') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.colour('menu_current_item_background_hover_colour', options.menu_current_item_background_hover_colour) }}
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">Border</div>
+    <table class="table table-bordered table-hover">
+        <tr{% if errors.menu_item_border_colour %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_item_border_colour', 'Item Border Colour') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.colour('menu_item_border_colour', options.menu_item_border_colour) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_item_border_colour_hover %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_item_border_colour_hover', 'Item Border Hover Colour') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.colour('menu_item_border_colour_hover', options.menu_item_border_colour_hover) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_current_item_border_colour %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_current_item_border_colour', 'Current Item Border Colour') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.colour('menu_current_item_border_colour', options.menu_current_item_border_colour) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_current_item_border_hover_colour %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_current_item_border_hover_colour', 'Current Item Border Hover Colour') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.colour('menu_current_item_border_hover_colour', options.menu_current_item_border_hover_colour) }}
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">Text</div>
+    <table class="table table-bordered table-hover">
+        <tr{% if errors.menu_link_colour %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_link_colour', 'Link Colour') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.colour('menu_link_colour', options.menu_link_colour) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_link_hover_colour %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_link_hover_colour', 'Link Hover Colour') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.colour('menu_link_hover_colour', options.menu_link_hover_colour) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_current_link_colour %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_current_link_colour', 'Current Link Hover Colour') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.colour('menu_current_link_colour', options.menu_current_link_colour) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_current_link_hover_colour %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_current_link_hover_colour', 'Current Link Colour') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.colour('menu_current_link_hover_colour', options.menu_current_link_hover_colour) }}
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">Styling</div>
+    <table class="table table-bordered table-hover">
+        <tr{% if errors.menu_font %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_font', 'Font') }}
+            </td>
+            <td>
+                {{ macros.input('menu_font', options.menu_font) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_font_size %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_font_size', 'Font Size') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.input('menu_font_size', options.menu_font_size, 'has-unit') }}
+                {{ macros.pixel_units('menu_font_size_unit', options.menu_font_size_unit) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_text_alignment %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_text_alignment', 'Text Alignment') }}
+            </td>
+            <td>
+                {{ macros.alignment_select('menu_text_alignment', options.menu_text_alignment) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_word_wrap %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_word_wrap', 'Word Wrap') }}
+            </td>
+            <td class="pro">
+                {{ macros.checkbox('menu_word_wrap', options.menu_word_wrap) }}
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">Page Overlay</div>
+    <table class="table table-bordered table-hover">
+        <tr{% if errors.menu_overlay %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_overlay', 'Enable overlay') }}
+            </td>
+            <td>
+                {{ macros.checkbox('menu_overlay', options.menu_overlay) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_overlay_colour %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_overlay_colour', 'Colour') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.colour('menu_overlay_colour', options.menu_overlay_colour) }}
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">Advanced</div>
+    <table class="table table-bordered table-hover">
+        <tr{% if errors.menu_depth %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_depth', 'Depth') }}
+            </td>
+            <td>
+                {{ macros.depth_select('menu_depth', options.menu_depth) }}
+            </td>
+        </tr>
+        <tr{% if errors.menu_disable_scrolling %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('menu_disable_scrolling', 'Disable Scrolling') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.checkbox('menu_disable_scrolling', options.menu_disable_scrolling) }}
+            </td>
+        </tr>
+        <tr{% if errors.theme_location_menu %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('theme_location_menu', 'Theme Location Menu') }}
+            </td>
+            <td>
+                <select class="selectpicker show-tick" name="menu[theme_location_menu]">
+                    {% for value, display in location_menus %}
+                        <option value="">None</option>
+                        <option value="{{ value }}" {% if options.theme_location_menu == value %}selected="selected"{% endif %}>
+                            {{ display }}
+                        </option>
+                    {% endfor %}
+                </select>
             </td>
         </tr>
     </table>

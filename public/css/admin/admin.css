@@ -29,7 +29,8 @@
 }
 
 .container-fluid form.form-horizontal .bootstrap-select,
-.container-fluid form.form-horizontal input {
+.container-fluid form.form-horizontal input,
+.container-fluid form.form-horizontal textarea {
     width: calc(100% - 75px) !important;
 }
 
