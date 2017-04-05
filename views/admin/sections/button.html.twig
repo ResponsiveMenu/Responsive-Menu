@@ -1,0 +1,111 @@
+{% import "admin/macros.html.twig" as macros %}
+
+<div class="panel panel-default">
+    <div class="panel-body">Animation</div>
+    <table class="table table-bordered table-hover">
+        <tr{% if errors.button_click_animation %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('button_click_animation', 'Type') }}
+            </td>
+            <td class="semi-pro">
+                {{ macros.button_animation_select('button_click_animation', options.button_click_animation) }}
+            </td>
+        </tr>
+        <tr{% if errors.button_position_type %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('button_position_type', 'Positioning') }}
+            </td>
+            <td>
+                {{ macros.position_type_select('button_position_type', options.button_position_type) }}
+            </td>
+        </tr>
+        <tr{% if errors.button_push_with_animation %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('button_push_with_animation', 'Push Button with Menu') }}
+            </td>
+            <td>
+                {{ macros.checkbox('button_push_with_animation', options.button_push_with_animation) }}
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">Location</div>
+    <table class="table table-bordered table-hover">
+        {{ macros.row('button_distance_from_side', 'Distance From Side', 'input', options, errors, "has-unit", "semi-pro", "", "percentage") }}
+        <tr{% if errors.button_left_or_right %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                {{ macros.label('button_left_or_right', 'Side') }}
+            </td>
+            <td>
+                {{ macros.left_right_select('button_left_or_right', options.button_left_or_right) }}
+            </td>
+        </tr>
+        {{ macros.row('button_top', 'Distance From Top', 'input', options, errors, "has-unit", "semi-pro", "", "pixel") }}
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">Container Sizing</div>
+    <table class="table table-bordered table-hover">
+        {{ macros.row('button_height', 'Height', 'input', options, errors, "has-unit", "semi-pro", "", "pixel") }}
+        {{ macros.row('button_width', 'Width', 'input', options, errors, "has-unit", "semi-pro", "", "pixel") }}
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">Hamburger Sizing</div>
+    <table class="table table-bordered table-hover">
+        {{ macros.row('button_line_height', 'Height', 'input', options, errors, "has-unit", "semi-pro", "", "pixel") }}
+        {{ macros.row('button_line_margin', 'Margin', 'input', options, errors, "has-unit", "semi-pro", "", "pixel") }}
+        {{ macros.row('button_line_width', 'Width', 'input', options, errors, "has-unit", "semi-pro", "", "pixel") }}
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">Background</div>
+    <table class="table table-bordered table-hover">
+        {{ macros.row('button_background_colour', 'Colour', 'colour', options, errors, "", "semi-pro") }}
+        {{ macros.row('button_background_colour_hover', 'Hover Colour', 'colour', options, errors, "", "semi-pro") }}
+        {{ macros.row('button_transparent_background', 'Transparent Background', 'checkbox', options, errors) }}
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">Lines</div>
+    <table class="table table-bordered table-hover">
+        {{ macros.row('button_line_colour', 'Colour', 'colour', options, errors, "", "semi-pro") }}
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">Title</div>
+    <table class="table table-bordered table-hover">
+        {{ macros.row('button_title', 'Text', 'input', options, errors) }}
+        {{ macros.row('button_text_colour', 'Colour', 'colour', options, errors, "", "semi-pro") }}
+        {{ macros.row('button_title_position', 'Alignment', 'select', options, errors, "", "", "side") }}
+        {{ macros.row('button_font', 'Font', 'input', options, errors) }}
+        {{ macros.row('button_font_size', 'Font Size', 'input', options, errors, "has-unit", "semi-pro", "", "pixel") }}
+        {{ macros.row('button_line_height', 'Line Height', 'input', options, errors, "has-unit", "semi-pro", "", "pixel") }}
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">Image</div>
+    <table class="table table-bordered table-hover">
+        {{ macros.row('button_font_icon', 'Font Icon', 'input', options, errors, "", "pro") }}
+        {{ macros.row('button_font_icon_when_clicked', 'Font Icon when clicked', 'input', options, errors, "", "pro") }}
+        {{ macros.row('button_image', 'Image', 'image', options, errors) }}
+        {{ macros.row('button_image_alt', 'Alt text', 'input', options, errors) }}
+        {{ macros.row('button_image_when_clicked', 'Image when clicked', 'image', options, errors) }}
+        {{ macros.row('button_image_alt_when_clicked', 'Alt text when clicked', 'input', options, errors) }}
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">Advanced</div>
+    <table class="table table-bordered table-hover">
+        {{ macros.row('button_click_trigger', 'Trigger', 'input', options, errors) }}
+    </table>
+</div>

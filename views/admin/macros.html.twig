@@ -1,0 +1,182 @@
+{% macro percentage_units(name, value) %}
+    <select class="selectpicker show-tick is-unit" name="menu[{{ name }}]">
+        <option value="%" selected="selected">%</option>
+        <option value="px" disabled data-subtext="[PRO]">px -</option>
+        <option value="em" disabled data-subtext="[PRO]">em -</option>
+        <option value="rem" disabled data-subtext="[PRO]">rem -</option>
+    </select>
+{% endmacro %}
+
+{% macro pixel_units(name, value) %}
+    <select class="selectpicker show-tick is-unit" name="menu[{{ name }}]">
+        <option value="px" selected="selected">px</option>
+        <option value="%"  disabled data-subtext="[PRO]">% -</option>
+        <option value="em" disabled data-subtext="[PRO]">em -</option>
+        <option value="rem" disabled data-subtext="[PRO]">rem -</option>
+    </select>
+{% endmacro %}
+
+{% macro link_locations(name, value) %}
+    <select class="selectpicker show-tick" name="menu[{{ name }}]">
+        <option value="_blank"{% if value == '_blank' %} selected="selected"{% endif %}>New Tab</option>
+        <option value="_self"{% if value == '_self' %} selected="selected"{% endif %}>Same Page</option>
+        <option value="_parent"{% if value == '_parent' %} selected="selected"{% endif %}>Parent Page</option>
+        <option value="_top"{% if value == '_top' %} selected="selected"{% endif %}>Full Window Body</option>
+    </select>
+{% endmacro %}
+
+{% macro side_select(name, value) %}
+    <select class="selectpicker show-tick" name="menu[{{ name }}]">
+        <option value="top"{% if value == 'top' %} selected="selected"{% endif %}>Top</option>
+        <option value="left"{% if value == 'left' %} selected="selected"{% endif %}>Left</option>
+        <option value="right"{% if value == 'right' %} selected="selected"{% endif %}>Right</option>
+        <option value="bottom"{% if value == 'bottom' %} selected="selected"{% endif %}>Bottom</option>
+    </select>
+{% endmacro %}
+
+{% macro left_right_select(name, value) %}
+    <select class="selectpicker show-tick" name="menu[{{ name }}]">
+        <option value="left"{% if value == 'left' %} selected="selected"{% endif %}>Left</option>
+        <option value="right"{% if value == 'right' %} selected="selected"{% endif %}>Right</option>
+    </select>
+{% endmacro %}
+
+{% macro depth_select(name, value) %}
+    <select class="selectpicker show-tick" name="menu[{{ name }}]">
+        <option value="1"{% if value == '1' %} selected="selected"{% endif %}>1</option>
+        <option value="2"{% if value == '2' %} selected="selected"{% endif %}>2</option>
+        <option value="3"{% if value == '3' %} selected="selected"{% endif %}>3</option>
+        <option value="4"{% if value == '4' %} selected="selected"{% endif %}>4</option>
+        <option value="5"{% if value == '5' %} selected="selected"{% endif %}>5</option>
+    </select>
+{% endmacro %}
+
+{% macro alignment_select(name, value) %}
+    <select class="selectpicker show-tick" name="menu[{{ name }}]">
+        <option value="left"{% if value == 'left' %} selected="selected"{% endif %}>Left</option>
+        <option value="right"{% if value == 'right' %} selected="selected"{% endif %}>Right</option>
+        <option value="center"{% if value == 'center' %} selected="selected"{% endif %}>Centered</option>
+        <option value="justify"{% if value == 'justify' %} selected="selected"{% endif %}>Justified</option>
+    </select>
+{% endmacro %}
+
+{% macro animation_select(name, value) %}
+    <select class="selectpicker show-tick" name="menu[{{ name }}]">
+        <option value="side"{% if value == 'side' %} selected="selected"{% endif %}>Side</option>
+        <option value="push"{% if value == 'push' %} selected="selected"{% endif %}>Push</option>
+        <option value="fade" disabled data-subtext="[PRO]">Fade -</option>
+    </select>
+{% endmacro %}
+
+{% macro position_type_select(name, value) %}
+    <select class="selectpicker show-tick" name="menu[{{ name }}]">
+        <option value="fixed"{% if value == 'fixed' %} selected="selected"{% endif %}>Fixed</option>
+        <option value="absolute"{% if value == 'absolute' %} selected="selected"{% endif %}>Absolute</option>
+        <option value="relative"{% if value == 'relative' %} selected="selected"{% endif %}>Relative</option>
+    </select>
+{% endmacro %}
+
+{% macro button_animation_select(name, value) %}
+    <select class="selectpicker show-tick" name="menu[{{ name }}]">
+        <option value="off"{% if value == 'off' %} selected="selected"{% endif %}>Off</option>
+        <option value="boring"{% if value == 'boring' %} selected="selected"{% endif %}>Boring</option>
+        <option value="3dx" disabled data-subtext="[PRO]">3DX -</option>
+        <option value="3dx-r" disabled data-subtext="[PRO]">3DX Reverse -</option>
+        <option value="3dy" disabled data-subtext="[PRO]">3DY -</option>
+        <option value="3dy-r" disabled data-subtext="[PRO]">3DY Reverse -</option>
+        <option value="arrow" disabled data-subtext="[PRO]">Arrow -</option>
+        <option value="arrow-r" disabled data-subtext="[PRO]">Arrow Reverse -</option>
+        <option value="arrowalt" disabled data-subtext="[PRO]">Arrow Alt -</option>
+        <option value="arrowalt-r" disabled data-subtext="[PRO]">Arrow Alt Reverse -</option>
+        <option value="collapse" disabled data-subtext="[PRO]">Collapse -</option>
+        <option value="collapse-r" disabled data-subtext="[PRO]">Collapse Reverse -</option>
+        <option value="elastic" disabled data-subtext="[PRO]">Elastic -</option>
+        <option value="elastic-r" disabled data-subtext="[PRO]">Elastic Reverse -</option>
+        <option value="emphatic" disabled data-subtext="[PRO]">Emphatic -</option>
+        <option value="emphatic-r" disabled data-subtext="[PRO]">Emphatic Reverse -</option>
+        <option value="slider" disabled data-subtext="[PRO]">Slider -</option>
+        <option value="slider-r" disabled data-subtext="[PRO]">Slider Reverse -</option>
+        <option value="spin" disabled data-subtext="[PRO]">Spin -</option>
+        <option value="spin-r" disabled data-subtext="[PRO]">Spin Reverse -</option>
+        <option value="spring" disabled data-subtext="[PRO]">Spring -</option>
+        <option value="spring-r" disabled data-subtext="[PRO]">Spring Reverse -</option>
+        <option value="stand" disabled data-subtext="[PRO]">Stand -</option>
+        <option value="stand-r" disabled data-subtext="[PRO]">Stand Reverse -</option>
+        <option value="squeeze" disabled data-subtext="[PRO]">Squeeze -</option>
+        <option value="vortex" disabled data-subtext="[PRO]">Vortex -</option>
+        <option value="vortex-r" disabled data-subtext="[PRO]">Vortex Reverse -</option>
+    </select>
+{% endmacro %}
+
+{% macro input(name, value, class="") %}
+    <input type="text" name="menu[{{ name }}]" value="{{ value }}" class="form-control {{ class }}">
+{% endmacro %}
+
+{% macro colour(name, value) %}
+    <input type="text" class="form-control mini-colours" name="menu[{{ name }}]" value="{{ value }}" />
+{% endmacro %}
+
+{% macro label(for, title) %}
+    <label for="{{ for }}" class="control-label">
+        {{ title }}
+    </label>
+{% endmacro %}
+
+{% macro checkbox(name, value) %}
+    <input {% if value == 'on' %}checked="checked" {% endif %}
+           name="menu[{{ name }}]" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" type="checkbox" value="on" />
+{% endmacro %}
+
+{% macro image(name, value) %}
+    <div class="input-group">
+        <input type="text" class="form-control" id="{{ name }}" name="menu[{{ name }}]" value="{{ value }}" />
+        <span class="input-group-btn">
+            <button type="button" class="image_button btn btn-primary" for="{{ name }}" />Upload Image</button>
+        </span>
+    </div>
+{% endmacro %}
+
+{% macro textarea(name, value) %}
+    <textarea class="form-control" name="menu[{{ name }}]">{{ value }}</textarea>
+{% endmacro %}
+
+{% macro row(name, title, type, options, errors, class="", pro="", select_type="", unit_type="", sub_title="", unit="") %}
+    {% import _self as macros %}
+    <tr{% if errors[name] %} class="danger"{% endif %}>
+        <td class="well col-md-3">
+            {{ macros.label(name, title) }}
+            {% if sub_title %}
+                <div class="sub-text">{{ sub_title|raw }}</div>
+            {% endif %}
+        </td>
+        <td{% if pro %} class="{{ pro }}"{% endif %}>
+            {% if type == 'checkbox' %}
+                {{ macros.checkbox(name, options[name]) }}
+            {% elseif type == 'colour' %}
+                {{ macros.colour(name, options[name]) }}
+            {% elseif type == 'input' %}
+                {{ macros.input(name, options[name], class) }}
+                {% if class == 'has-unit' %}
+                    {% if unit_type == 'pixel' %}
+                        {{ macros.pixel_units(name ~ '_unit', options[name ~ '_unit']) }}
+                    {% elseif unit_type == 'percentage' %}
+                        {{ macros.percentage_units(name ~ '_unit', options[name ~ '_unit']) }}
+                    {% endif %}
+                {% endif %}
+            {% elseif type == 'textarea' %}
+                {{ macros.textarea(name, options[name], class) }}
+            {% elseif type == 'select' %}
+                {% if select_type == 'side' %}
+                    {{ macros.side_select(name, options[name]) }}
+                {% elseif select_type == 'left_right' %}
+                    {{ macros.left_right_select(name, options[name]) }}
+                {% endif %}
+            {% elseif type == 'image' %}
+                {{ macros.image(name, options[name]) }}
+            {% endif %}
+            {% if unit %}
+                <span class="unit">{{ unit }}</span>
+            {% endif %}
+        </td>
+    </tr>
+{% endmacro %}

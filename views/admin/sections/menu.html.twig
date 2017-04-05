@@ -1,4 +1,4 @@
-{% import "app/macros.html.twig" as macros %}
+{% import "admin/macros.html.twig" as macros %}
 
 <div class="panel panel-default">
     <div class="panel-body">Here you can turn options on or off and re-arrange them accordingly.</div>
@@ -539,7 +539,7 @@
             <td class="well col-md-3">
                 {{ macros.label('menu_overlay', 'Enable overlay') }}
             </td>
-            <td>
+            <td class="pro">
                 {{ macros.checkbox('menu_overlay', options.menu_overlay) }}
             </td>
         </tr>
@@ -547,7 +547,7 @@
             <td class="well col-md-3">
                 {{ macros.label('menu_overlay_colour', 'Colour') }}
             </td>
-            <td class="semi-pro">
+            <td class="pro">
                 {{ macros.colour('menu_overlay_colour', options.menu_overlay_colour) }}
             </td>
         </tr>
@@ -569,7 +569,7 @@
             <td class="well col-md-3">
                 {{ macros.label('menu_disable_scrolling', 'Disable Scrolling') }}
             </td>
-            <td class="semi-pro">
+            <td class="pro">
                 {{ macros.checkbox('menu_disable_scrolling', options.menu_disable_scrolling) }}
             </td>
         </tr>
@@ -580,7 +580,6 @@
             <td>
                 <select class="selectpicker show-tick" name="menu[theme_location_menu]">
                     {% for value, display in location_menus %}
-                        <option value="">None</option>
                         <option value="{{ value }}" {% if options.theme_location_menu == value %}selected="selected"{% endif %}>
                             {{ display }}
                         </option>
