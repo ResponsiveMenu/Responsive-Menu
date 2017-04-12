@@ -16,6 +16,8 @@ if(isset($_GET['page']) && $_GET['page'] == 'responsive-menu-test'):
         wp_enqueue_script('responsive-menu-test-checkbox-js', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/js/admin/bootstrap-toggle.js', null, null);
         wp_enqueue_style('responsive-menu-test-checkbox-css', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/css/admin/bootstrap-toggle.css', null, null);
 
+        wp_enqueue_script('responsive-menu-test-file-js', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/js/admin/bootstrap-file.js', null, null);
+
         wp_enqueue_script('responsive-menu-test-minicolours-js', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/js/admin/minicolours.js', null, null);
         wp_enqueue_style('responsive-menu-test-minicolours-css', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/css/admin/minicolours.css', null, null);
 

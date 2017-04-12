@@ -4,7 +4,7 @@
 Plugin Name: Responsive Menu Test
 Plugin URI: https://responsive.menu
 Description: Highly Customisable Responsive Menu Plugin for WordPress
-Version: 3.1.43
+Version: 3.1.2
 Author: Peter Featherstone
 Text Domain: responsive-menu
 Author URI: https://peterfeatherstone.com

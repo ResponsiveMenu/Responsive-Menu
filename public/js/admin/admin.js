@@ -5,8 +5,10 @@ jQuery(function($) {
         opacity: false,
         theme: 'bootstrap'
     });
-    $(".mini-colours").minicolors();
+    $('.mini-colours').minicolors();
 
+    $(':file').filestyle({icon: false, buttonName: 'btn-primary', placeholder: 'No file'});
+    
     var custom_uploader;
 
     $('.image_button').click(function (e) {

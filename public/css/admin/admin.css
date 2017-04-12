@@ -1,11 +1,11 @@
-.container-fluid #banner_area,
-.container-fluid #options_area {
+.container-fluid #banner-area,
+.container-fluid #options-area {
     display: inline-block;
     width: 75%;
     vertical-align: top;
 }
 
-.container-fluid #banner_area {
+.container-fluid #banner-area {
     width: 20%;
     margin-left: 5%;
 }
@@ -38,6 +38,7 @@
     width: 100% !important;
 }
 
+.container-fluid form.form-horizontal .bootstrap-filestyle,
 .container-fluid form.form-horizontal input.has-unit {
     width: calc(100% - 179px) !important;
 }
@@ -165,7 +166,7 @@ li.draggable {
     position: relative;
 }
 
-#upgrade_banner {
+#upgrade-banner {
     padding: 25px 5%;
     background: #DE4B42;
     color: #fff;
@@ -174,11 +175,11 @@ li.draggable {
     text-align: center;
 }
 
-#upgrade_banner i {
+#upgrade-banner i {
     margin-right: 5px;
 }
 
-#docs_banner {
+#docs-banner {
     background: #FAB719;
     padding: 35px;
     color: #333;
@@ -186,21 +187,21 @@ li.draggable {
     text-align: center;
 }
 
-#upgrade_banner,
-#docs_banner {
+#upgrade-banner,
+#docs-banner {
     font-size: 18px;
     font-weight: bold;
     line-height: 24px;
 }
 
-#upgrade_banner li  {
+#upgrade-banner li  {
     list-style: none;
     font-weight: bold;
     font-size: 11px;
 }
 
-#docs_banner .button,
-#upgrade_banner .button {
+#docs-banner .button,
+#upgrade-banner .button {
     background: white;
     padding: 0 25px;
     height: 50px;
@@ -214,7 +215,7 @@ li.draggable {
     text-align: center;
 }
 
-#docs_banner .button {
+#docs-banner .button {
     margin-top: 15px;
 }
 

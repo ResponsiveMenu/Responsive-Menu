@@ -61,7 +61,7 @@ class AdminController {
             $task = new UpdateOptionsTask;
             $task->run($options, $this->view);
             $alert = ['success' => 'Responsive Menu Options Reset Successfully'];
-        } catch (\Exception $e) {
+        } catch(\Exception $e) {
             $alert = ['danger' => $e->getMessage()];
         }
         return $this->view->render(
@@ -77,15 +77,23 @@ class AdminController {
 
     public function import($imported_options, $nav_menus, $location_menus) {
         if(!empty($imported_options)):
-            try {
-                $options = $this->manager->updateOptions($imported_options);
-                $task = new UpdateOptionsTask;
-                $task->run($imported_options, $this->view);
-                $alert = ['success' => 'Responsive Menu Options Imported Successfully.'];
-            } catch (\Exception $e) {
-                $options = $this->manager->all();
-                $alert = ['danger' => $e->getMessage()];
-            }
+            $validator = new Validator();
+            $errors = [];
+            if($validator->validate($imported_options)):
+                try {
+                    $options = $this->manager->updateOptions($imported_options);
+                    $task = new UpdateOptionsTask;
+                    $task->run($options, $this->view);
+                    $alert = ['success' => 'Responsive Menu Options Imported Successfully.'];
+                } catch(\Exception $e) {
+                    $options = $this->manager->all();
+                    $alert = ['danger' => $e->getMessage()];
+                }
+            else:
+                $options = $imported_options;
+                $errors = $validator->getErrors();
+                $alert = ['danger' => $errors];
+            endif;
         else:
             $options = $this->manager->all();
             $alert = ['danger' => 'No import file selected'];
@@ -97,14 +105,15 @@ class AdminController {
                 'options' => $options,
                 'alert' => $alert,
                 'nav_menus' => $nav_menus,
-                'location_menus' => $location_menus
+                'location_menus' => $location_menus,
+                'errors' => $errors
             ]
         );
     }
 
     public function export() {
         return json_encode(
-            $this->manager->all()
+            $this->manager->all()->toArray()
         );
     }
 

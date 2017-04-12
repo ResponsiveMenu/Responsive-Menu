@@ -76,9 +76,9 @@
     </select>
 {% endmacro %}
 
-{% macro theme_location_select(name, value, context) %}
+{% macro custom_select(name, value, choices) %}
     <select id="responsive-menu-{{ name|replace("_", "-") }}" class="selectpicker show-tick" name="menu[{{ name }}]">
-        {% for key, display in context.location_menus %}
+        {% for key, display in choices %}
             <option value="{{ key }}" {% if key == value %}selected="selected"{% endif %}>
                 {{ display }}
             </option>
@@ -150,13 +150,16 @@
     <textarea class="form-control" id="responsive-menu-{{ name|replace("_", "-") }}" name="menu[{{ name }}]">{{ value }}</textarea>
 {% endmacro %}
 
-{% macro row(name, title, type, options, errors, class="", pro="", select_type="", unit_type="", sub_title="", unit="") %}
+{% macro row(name, title, type, options, errors, class='', pro='', select_type='', unit_type='', sub_title='', unit='', choices=[], example='') %}
     {% import _self as macros %}
     <tr{% if errors[name] %} class="danger"{% endif %}>
         <td class="well col-md-3">
             {{ macros.label(name, title) }}
             {% if sub_title %}
                 <div class="sub-text">{{ sub_title|raw }}</div>
+            {% endif %}
+            {% if example %}
+                <div class="example">{{ example|raw }}</div>
             {% endif %}
         </td>
         <td{% if pro %} class="{{ pro }}"{% endif %}>
@@ -192,12 +195,14 @@
                     {{ macros.animation_select(name, options[name]) }}
                 {% elseif select_type == 'depth' %}
                     {{ macros.depth_select(name, options[name]) }}
-                {% elseif select_type == 'theme_location' %}
-                    {{ macros.theme_location_select(name, options[name], _context) }}
                 {% elseif select_type == 'alignment' %}
                     {{ macros.alignment_select(name, options[name]) }}
                 {% elseif select_type == 'link_locations' %}
                     {{ macros.link_locations(name, options[name]) }}
+                {% elseif select_type == 'custom' %}
+                    {{ macros.custom_select(name, options[name], choices) }}
+                {% elseif select_type == 'button_animation' %}
+                    {{ macros.button_animation_select(name, options[name]) }}
                 {% endif %}
             {% elseif type == 'image' %}
                 {{ macros.image(name, options[name]) }}

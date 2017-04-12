@@ -1,19 +1,22 @@
-{% import "admin/macros.html.twig" as macros %}
+{% import 'admin/macros.html.twig' as macros %}
 
-<div class="panel panel-default">
-    <div class="panel-body">Explanation about these options</div>
-    <table class="table table-bordered table-hover">
+<div class='panel panel-default'>
+    <div class='panel-body'>Explanation about these options</div>
+    <table class='table table-bordered table-hover'>
         <tr>
             <td>Import</td>
-            <td><button name="responsive-menu-import" type="submit" class="btn btn-primary btn-lg">Import</button></td>
+            <td>
+                <input type='file' name='responsive-menu-import-file' />
+                <button name='responsive-menu-import' type='submit' class='btn btn-primary btn-lg pull-right'>Import</button>
+            </td>
         </tr>
         <tr>
             <td>Export</td>
-            <td><button name="responsive-menu-export" type="submit" class="btn btn-primary btn-lg">Export</button></td>
+            <td><button name='responsive-menu-export' type='submit' class='btn btn-primary btn-lg pull-right'>Export</button></td>
         </tr>
         <tr>
             <td>Reset</td>
-            <td><button name="responsive-menu-reset" type="submit" class="btn btn-danger btn-lg">Reset</button></td>
+            <td><button name='responsive-menu-reset' type='submit' class='btn btn-danger btn-lg pull-right'>Reset</button></td>
         </tr>
     </table>
 </div>
