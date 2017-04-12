@@ -7,10 +7,4 @@ $baseDir = dirname($vendorDir);
 
 return array(
     '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => $vendorDir . '/symfony/polyfill-mbstring/bootstrap.php',
-    'ffe32afa23fde11263bd9de3b53ce038' => $baseDir . '/config/default_options.php',
-    '9fde60a47de51fbc82844ef53abba9c3' => $baseDir . '/config/services.php',
-    '6cb9ce5b8153df1dbf0b29f9c1ad0575' => $baseDir . '/config/wp/scripts.php',
-    'be24e080ba39419cb49411bec48c312c' => $baseDir . '/config/routing.php',
-    '63ad71f867fb1647f7455709a51ebe2e' => $baseDir . '/migration.php',
-    'd4d949f5311fae0a7e1bce320105fc74' => $baseDir . '/config/polylang.php',
 );

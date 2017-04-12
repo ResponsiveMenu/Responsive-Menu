@@ -45,3 +45,5 @@ $twig->addFunction(new Twig_SimpleFunction('build_menu', function($env, $options
 
 $twig->addGlobal('search_url', function_exists('icl_get_home_url') ? icl_get_home_url() : get_home_url());
 $twig->addGlobal('admin_url', get_admin_url());
+
+return $twig;

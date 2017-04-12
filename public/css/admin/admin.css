@@ -273,3 +273,47 @@ li.draggable {
 .mini-colours {
     cursor: pointer;
 }
+
+#header-bar-items-order-container td {
+    width: 100%;
+    display: block;
+    padding: 20px;
+    border: 0;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+#header-bar-items-order-container .draggable {
+    display: inline-block;
+    width: 19%;
+    text-align: left;
+}
+
+.container-fluid form.form-horizontal td.pro {
+    position: relative;
+}
+
+.container-fluid form.form-horizontal td.pro .responsive-menu-pro-overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: rgba(222, 75, 66, 0.6);
+    text-align: center;
+    z-index: 3;
+}
+
+.container-fluid form.form-horizontal td.pro .responsive-menu-pro-overlay a {
+    top: 50%;
+    transform: translateY(-50%);
+    position: relative;
+    color: white;
+    font-size: 17px;
+    display: block;
+}
+
+.container-fluid form.form-horizontal td.pro:hover .responsive-menu-pro-overlay {
+    display: block;
+}

@@ -7,11 +7,11 @@
             {% if msg is iterable %}
                 <ul>
                     {% for inner in msg %}
-                        <li>{{ inner }}</li>
+                        <li>{{ inner|raw }}</li>
                     {% endfor %}
                 </ul>
             {% else %}
-                {{ msg }}
+                {{ msg|raw }}
             {% endif %}
         </div>
     {% endfor %}

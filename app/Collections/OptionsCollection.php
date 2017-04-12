@@ -61,4 +61,11 @@ class OptionsCollection implements \ArrayAccess {
     public function offsetSet($offset, $value) {}
     public function offsetUnset($offset) {}
 
+    public function toArray() {
+        $array = [];
+        foreach($this->options as $key => $val)
+            $array[$key] = $val;
+        return $array;
+    }
+
 }

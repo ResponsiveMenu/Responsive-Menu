@@ -26,11 +26,11 @@ class Migration {
     }
 
     public function addNewOptions() {
-        return $this->manager->createOptions(array_diff_key($this->defaults, $this->manager->all()));
+        return $this->manager->createOptions(array_diff_key($this->defaults, $this->manager->all()->toArray()));
     }
 
     public function tidyUpOptions() {
-        return $this->manager->removeOptions(array_diff_key($this->manager->all(), $this->defaults));
+        return $this->manager->removeOptions(array_diff_key($this->manager->all()->toArray(), $this->defaults));
     }
 
 }

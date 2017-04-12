@@ -5,7 +5,6 @@
 * bottom of this file
  *
  */
-global $services_428734872364;
 $services_428734872364 = new ResponsiveMenuTest\Container\Container;
 
 $services_428734872364['database'] = function($c) {
@@ -29,11 +28,11 @@ $services_428734872364['view'] = function($c) {
     return new ResponsiveMenuTest\View\View($c['twig']);
 };
 
-$services_428734872364['admin_controller'] = function ($c) {
+$services_428734872364['admin_controller'] = function($c) {
     return new ResponsiveMenuTest\Controllers\AdminController($c['option_manager'], $c['view']);
 };
 
-$services_428734872364['front_controller'] = function ($c) {
+$services_428734872364['front_controller'] = function($c) {
     return new ResponsiveMenuTest\Controllers\FrontController($c['option_manager'], $c['view']);
 };
 

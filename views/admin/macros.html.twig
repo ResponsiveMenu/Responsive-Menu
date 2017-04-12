@@ -1,5 +1,5 @@
 {% macro percentage_units(name, value) %}
-    <select class="selectpicker show-tick is-unit" name="menu[{{ name }}]">
+    <select id="responsive-menu-{{ name|replace("_", "-") }}" class="selectpicker show-tick is-unit" name="menu[{{ name }}]">
         <option value="%" selected="selected">%</option>
         <option value="px" disabled data-subtext="[PRO]">px -</option>
         <option value="em" disabled data-subtext="[PRO]">em -</option>
@@ -8,7 +8,7 @@
 {% endmacro %}
 
 {% macro pixel_units(name, value) %}
-    <select class="selectpicker show-tick is-unit" name="menu[{{ name }}]">
+    <select id="responsive-menu-{{ name|replace("_", "-") }}" id="responsive-menu-{{ name|replace("_", "-") }}"class="selectpicker show-tick is-unit" name="menu[{{ name }}]">
         <option value="px" selected="selected">px</option>
         <option value="%"  disabled data-subtext="[PRO]">% -</option>
         <option value="em" disabled data-subtext="[PRO]">em -</option>
@@ -17,7 +17,7 @@
 {% endmacro %}
 
 {% macro link_locations(name, value) %}
-    <select class="selectpicker show-tick" name="menu[{{ name }}]">
+    <select id="responsive-menu-{{ name|replace("_", "-") }}" class="selectpicker show-tick" name="menu[{{ name }}]">
         <option value="_blank"{% if value == '_blank' %} selected="selected"{% endif %}>New Tab</option>
         <option value="_self"{% if value == '_self' %} selected="selected"{% endif %}>Same Page</option>
         <option value="_parent"{% if value == '_parent' %} selected="selected"{% endif %}>Parent Page</option>
@@ -26,7 +26,7 @@
 {% endmacro %}
 
 {% macro side_select(name, value) %}
-    <select class="selectpicker show-tick" name="menu[{{ name }}]">
+    <select id="responsive-menu-{{ name|replace("_", "-") }}" class="selectpicker show-tick" name="menu[{{ name }}]">
         <option value="top"{% if value == 'top' %} selected="selected"{% endif %}>Top</option>
         <option value="left"{% if value == 'left' %} selected="selected"{% endif %}>Left</option>
         <option value="right"{% if value == 'right' %} selected="selected"{% endif %}>Right</option>
@@ -35,14 +35,14 @@
 {% endmacro %}
 
 {% macro left_right_select(name, value) %}
-    <select class="selectpicker show-tick" name="menu[{{ name }}]">
+    <select id="responsive-menu-{{ name|replace("_", "-") }}" class="selectpicker show-tick" name="menu[{{ name }}]">
         <option value="left"{% if value == 'left' %} selected="selected"{% endif %}>Left</option>
         <option value="right"{% if value == 'right' %} selected="selected"{% endif %}>Right</option>
     </select>
 {% endmacro %}
 
 {% macro depth_select(name, value) %}
-    <select class="selectpicker show-tick" name="menu[{{ name }}]">
+    <select id="responsive-menu-{{ name|replace("_", "-") }}" class="selectpicker show-tick" name="menu[{{ name }}]">
         <option value="1"{% if value == '1' %} selected="selected"{% endif %}>1</option>
         <option value="2"{% if value == '2' %} selected="selected"{% endif %}>2</option>
         <option value="3"{% if value == '3' %} selected="selected"{% endif %}>3</option>
@@ -52,7 +52,7 @@
 {% endmacro %}
 
 {% macro alignment_select(name, value) %}
-    <select class="selectpicker show-tick" name="menu[{{ name }}]">
+    <select id="responsive-menu-{{ name|replace("_", "-") }}" class="selectpicker show-tick" name="menu[{{ name }}]">
         <option value="left"{% if value == 'left' %} selected="selected"{% endif %}>Left</option>
         <option value="right"{% if value == 'right' %} selected="selected"{% endif %}>Right</option>
         <option value="center"{% if value == 'center' %} selected="selected"{% endif %}>Centered</option>
@@ -61,23 +61,33 @@
 {% endmacro %}
 
 {% macro animation_select(name, value) %}
-    <select class="selectpicker show-tick" name="menu[{{ name }}]">
-        <option value="side"{% if value == 'side' %} selected="selected"{% endif %}>Side</option>
+    <select id="responsive-menu-{{ name|replace("_", "-") }}" class="selectpicker show-tick" name="menu[{{ name }}]">
+        <option value="slide"{% if value == 'slide' %} selected="selected"{% endif %}>Slide</option>
         <option value="push"{% if value == 'push' %} selected="selected"{% endif %}>Push</option>
         <option value="fade" disabled data-subtext="[PRO]">Fade -</option>
     </select>
 {% endmacro %}
 
 {% macro position_type_select(name, value) %}
-    <select class="selectpicker show-tick" name="menu[{{ name }}]">
+    <select id="responsive-menu-{{ name|replace("_", "-") }}" class="selectpicker show-tick" name="menu[{{ name }}]">
         <option value="fixed"{% if value == 'fixed' %} selected="selected"{% endif %}>Fixed</option>
         <option value="absolute"{% if value == 'absolute' %} selected="selected"{% endif %}>Absolute</option>
         <option value="relative"{% if value == 'relative' %} selected="selected"{% endif %}>Relative</option>
     </select>
 {% endmacro %}
 
+{% macro theme_location_select(name, value, context) %}
+    <select id="responsive-menu-{{ name|replace("_", "-") }}" class="selectpicker show-tick" name="menu[{{ name }}]">
+        {% for key, display in context.location_menus %}
+            <option value="{{ key }}" {% if key == value %}selected="selected"{% endif %}>
+                {{ display }}
+            </option>
+        {% endfor %}
+    </select>
+{% endmacro %}
+
 {% macro button_animation_select(name, value) %}
-    <select class="selectpicker show-tick" name="menu[{{ name }}]">
+    <select id="responsive-menu-{{ name|replace("_", "-") }}" class="selectpicker show-tick" name="menu[{{ name }}]">
         <option value="off"{% if value == 'off' %} selected="selected"{% endif %}>Off</option>
         <option value="boring"{% if value == 'boring' %} selected="selected"{% endif %}>Boring</option>
         <option value="3dx" disabled data-subtext="[PRO]">3DX -</option>
@@ -109,35 +119,35 @@
 {% endmacro %}
 
 {% macro input(name, value, class="") %}
-    <input type="text" name="menu[{{ name }}]" value="{{ value }}" class="form-control {{ class }}">
+    <input type="text" id="responsive-menu-{{ name|replace("_", "-") }}" name="menu[{{ name }}]" value="{{ value }}" class="form-control {{ class }}">
 {% endmacro %}
 
 {% macro colour(name, value) %}
-    <input type="text" class="form-control mini-colours" name="menu[{{ name }}]" value="{{ value }}" />
+    <input type="text" id="responsive-menu-{{ name|replace("_", "-") }}" class="form-control mini-colours" name="menu[{{ name }}]" value="{{ value }}" />
 {% endmacro %}
 
 {% macro label(for, title) %}
-    <label for="{{ for }}" class="control-label">
+    <label for="responsive-menu-{{ for|replace("_", "-") }}" class="control-label">
         {{ title }}
     </label>
 {% endmacro %}
 
 {% macro checkbox(name, value) %}
-    <input {% if value == 'on' %}checked="checked" {% endif %}
+    <input {% if value == 'on' %}checked="checked" {% endif %} id="responsive-menu-{{ name|replace("_", "-") }}"
            name="menu[{{ name }}]" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" type="checkbox" value="on" />
 {% endmacro %}
 
 {% macro image(name, value) %}
     <div class="input-group">
-        <input type="text" class="form-control" id="{{ name }}" name="menu[{{ name }}]" value="{{ value }}" />
+        <input type="text" class="form-control" id="responsive-menu-{{ name|replace("_", "-") }}" name="menu[{{ name }}]" value="{{ value }}" />
         <span class="input-group-btn">
-            <button type="button" class="image_button btn btn-primary" for="{{ name }}" />Upload Image</button>
+            <button type="button" class="image_button btn btn-primary" for="responsive-menu-{{ name|replace("_", "-") }}">Upload Image</button>
         </span>
     </div>
 {% endmacro %}
 
 {% macro textarea(name, value) %}
-    <textarea class="form-control" name="menu[{{ name }}]">{{ value }}</textarea>
+    <textarea class="form-control" id="responsive-menu-{{ name|replace("_", "-") }}" name="menu[{{ name }}]">{{ value }}</textarea>
 {% endmacro %}
 
 {% macro row(name, title, type, options, errors, class="", pro="", select_type="", unit_type="", sub_title="", unit="") %}
@@ -150,6 +160,12 @@
             {% endif %}
         </td>
         <td{% if pro %} class="{{ pro }}"{% endif %}>
+            {% if pro == 'pro' %}
+                <div class="responsive-menu-pro-overlay">
+                    <a href="https://responsive.menu/why-go-pro/?utm_source=free-plugin&utm_medium=option&utm_campaign=free-plugin-option-upgrade"
+                    target="_blank">Click to upgrade now to use</a>
+                </div>
+            {% endif %}
             {% if type == 'checkbox' %}
                 {{ macros.checkbox(name, options[name]) }}
             {% elseif type == 'colour' %}
@@ -170,6 +186,18 @@
                     {{ macros.side_select(name, options[name]) }}
                 {% elseif select_type == 'left_right' %}
                     {{ macros.left_right_select(name, options[name]) }}
+                {% elseif select_type == 'position' %}
+                    {{ macros.position_type_select(name, options[name]) }}
+                {% elseif select_type == 'animation' %}
+                    {{ macros.animation_select(name, options[name]) }}
+                {% elseif select_type == 'depth' %}
+                    {{ macros.depth_select(name, options[name]) }}
+                {% elseif select_type == 'theme_location' %}
+                    {{ macros.theme_location_select(name, options[name], _context) }}
+                {% elseif select_type == 'alignment' %}
+                    {{ macros.alignment_select(name, options[name]) }}
+                {% elseif select_type == 'link_locations' %}
+                    {{ macros.link_locations(name, options[name]) }}
                 {% endif %}
             {% elseif type == 'image' %}
                 {{ macros.image(name, options[name]) }}
