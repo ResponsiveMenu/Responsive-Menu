@@ -54,8 +54,17 @@ class OptionsCollection implements \ArrayAccess {
         return array_key_exists($offset, $this->options);
     }
 
+    /*
+     * All items returned must be a string or null
+     */
     public function offsetGet($offset) {
-        return isset($this->options[$offset]) ? $this->options[$offset] : null;
+        if(isset($offset))
+            if(is_array($this->options[$offset]))
+                return json_encode($this->options[$offset]);
+            else
+                return $this->options[$offset];
+
+        return null;
     }
 
     public function offsetSet($offset, $value) {}
