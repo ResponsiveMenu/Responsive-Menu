@@ -48,4 +48,23 @@ jQuery(function($) {
         $('#responsive_menu_form').attr('target', '');
     });
 
+    $(document).on('click', '.validation-error', function(e) {
+        e.preventDefault();
+        var id_to_scroll_to = $(this).attr('href');
+        var parent_panel_id = $(id_to_scroll_to).parents('.tab-pane').attr('id');
+        var parent_tab = $('a[href="#' + parent_panel_id + '"]').parent('li');
+
+        $('ul.nav-tabs li').removeClass('active');
+        parent_tab.addClass('active');
+
+        $('.tab-content .tab-pane').removeClass('active').removeClass('in');
+
+        $('#' + parent_panel_id).addClass('active');
+        $('#' + parent_panel_id).addClass('in');
+
+        $('html, body').animate({
+            scrollTop: $(id_to_scroll_to).offset().top - 50
+        }, 1000);
+    });
+
 });

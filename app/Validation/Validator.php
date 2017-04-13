@@ -13,7 +13,7 @@ class Validator {
                 $validator = new $validator_name($value);
                 if(!$validator->validate()):
                     $nice_name = isset($this->validation_map[$key]['nice_name']) ? $this->validation_map[$key]['nice_name'] : str_replace('_', ' ', ucwords($key));
-                    $this->errors[$key] = 'Validation failed on <a href="#responsive-menu-' . str_replace('_', '-', $key) . '">'  . $nice_name . '</a>: ' . $validator->getErrorMessage();
+                    $this->errors[$key] = 'Validation failed on <a class="validation-error" href="#responsive-menu-' . str_replace('_', '-', $key) . '">'  . $nice_name . '</a>: ' . $validator->getErrorMessage();
                 endif;
             endif;
         endforeach;
