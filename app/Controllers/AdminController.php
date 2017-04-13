@@ -5,7 +5,7 @@ use ResponsiveMenuTest\View\View;
 use ResponsiveMenuTest\Management\OptionManager;
 use ResponsiveMenuTest\Validation\Validator;
 use ResponsiveMenuTest\Tasks\UpdateOptionsTask;
-
+use ResponsiveMenuTest\Collections\OptionsCollection;
 
 class AdminController {
 
@@ -38,7 +38,7 @@ class AdminController {
                 $alert = ['danger' => $e->getMessage()];
             }
         else:
-            $options = $new_options;
+            $options = new OptionsCollection($new_options);
             $errors = $validator->getErrors();
             $alert = ['danger' => $errors];
         endif;
@@ -90,7 +90,7 @@ class AdminController {
                     $alert = ['danger' => $e->getMessage()];
                 }
             else:
-                $options = $imported_options;
+                $options = new OptionsCollection($imported_options);
                 $errors = $validator->getErrors();
                 $alert = ['danger' => $errors];
             endif;
