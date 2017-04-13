@@ -1,10 +1,10 @@
 <div class='container-fluid'>
-    <form class='form-horizontal form-inline' action='' method='post' enctype='multipart/form-data'>
+    <form class='form-horizontal form-inline' id='responsive-menu-test-form' action='' method='post' enctype='multipart/form-data'>
         {% include 'admin/alerts.html' %}
         {% include 'admin/tabs.html' %}
         <div id='options-area'>
             {% include 'admin/options.html' %}
-            <button type='button' name='responsive-menu-preview' class='btn btn-default'>Preview Changes</button>
+            <button type='button' id='responsive-menu-preview' name='responsive-menu-preview' class='btn btn-default'>Preview Changes</button>
             <button type='submit' name='responsive-menu-submit' class='btn btn-primary'>Update Options</button>
         </div><!--
         --><div id='banner-area'>

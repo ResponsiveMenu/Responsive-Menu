@@ -42,7 +42,7 @@ else:
     add_action('template_redirect', function() {
         $controller = get_responsive_menu_test_service('front_controller');
         if(isset($_GET['responsive-menu-preview']) && isset($_POST['menu']))
-            $controller->preview();
+            echo $controller->preview();
         else
             $controller->index(plugins_url(), get_current_blog_id());
     });

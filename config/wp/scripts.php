@@ -27,6 +27,7 @@ if(isset($_GET['page']) && $_GET['page'] == 'responsive-menu-test'):
         wp_enqueue_style('responsive-menu-test-admin-css');
 
         wp_register_script('responsive-menu-test-admin-js', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/js/admin/admin.js', 'jquery', null);
+        wp_localize_script('responsive-menu-test-admin-js', 'WP_HOME_URL', home_url('/'));
         wp_enqueue_script('responsive-menu-test-admin-js');
     });
 endif;

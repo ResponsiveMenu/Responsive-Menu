@@ -39,13 +39,14 @@ jQuery(function($) {
         custom_uploader.open();
     });
 
-    $(document).on('click', '#responsive_menu_preview', function(e) {
+    $(document).on('click', '#responsive-menu-preview', function(e) {
         e.preventDefault();
-        $('#responsive_menu_form').attr('action', '/?responsive-menu-preview=true');
-        $('#responsive_menu_form').attr('target', '_blank');
-        $('#responsive_menu_form').submit();
-        $('#responsive_menu_form').attr('action', '');
-        $('#responsive_menu_form').attr('target', '');
+        var form = $('#responsive-menu-test-form');
+        form.attr('action', WP_HOME_URL + '?responsive-menu-preview=true');
+        form.attr('target', '_blank');
+        form.submit();
+        form.attr('action', '');
+        form.attr('target', '');
     });
 
     $(document).on('click', '.validation-error', function(e) {
@@ -59,8 +60,7 @@ jQuery(function($) {
 
         $('.tab-content .tab-pane').removeClass('active').removeClass('in');
 
-        $('#' + parent_panel_id).addClass('active');
-        $('#' + parent_panel_id).addClass('in');
+        $('#' + parent_panel_id).addClass('active').addClass('in');
 
         $('html, body').animate({
             scrollTop: $(id_to_scroll_to).offset().top - 50
