@@ -2,7 +2,7 @@
 
 namespace ResponsiveMenuTest\Collections;
 
-class OptionsCollection implements \ArrayAccess {
+class OptionsCollection implements \ArrayAccess, \Countable {
 
     private $options;
 
@@ -11,7 +11,7 @@ class OptionsCollection implements \ArrayAccess {
     }
 
     public function add(array $option) {
-        $this->options[key($option)] = $option;
+        $this->options = array_replace($this->options, $option);
     }
 
     public function getActiveArrow() {
@@ -58,7 +58,7 @@ class OptionsCollection implements \ArrayAccess {
      * All items returned must be a string or null
      */
     public function offsetGet($offset) {
-        if(isset($offset))
+        if(isset($this->options[$offset]))
             if(is_array($this->options[$offset]))
                 return json_encode($this->options[$offset]);
             else
@@ -67,14 +67,24 @@ class OptionsCollection implements \ArrayAccess {
         return null;
     }
 
-    public function offsetSet($offset, $value) {}
-    public function offsetUnset($offset) {}
+    public function offsetSet($offset, $value) {
+        $this->options[$offset] = $value;
+    }
+
+    public function offsetUnset($offset) {
+        if(isset($this->options[$offset]))
+            unset($this->options[$offset]);
+    }
 
     public function toArray() {
         $array = [];
         foreach($this->options as $key => $val)
             $array[$key] = $val;
         return $array;
+    }
+
+    public function count() {
+        return count($this->options);
     }
 
 }
