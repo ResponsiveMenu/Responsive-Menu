@@ -12,6 +12,7 @@
 <div class='panel panel-default'>
     <div class='panel-body'>Menu</div>
     <table class='table table-bordered table-hover'>
+        {{ macros.row('custom_walker', 'Custom Walker', 'input', options, errors, '', '', '', '', 'Warning: For extremely advanced use only') }}
         {{ macros.row('mobile_only', 'Show on mobile devices only?', 'checkbox', options, errors, '', 'pro', '', '', 'This will make it not a responsive menu but a "mobile menu"') }}
         {{ macros.row('shortcode', 'Use Shortcode?', 'checkbox', options, errors, '', '', '', '', 'Please place [responsive_menu] in your files to use. Full documentation can be found <a href="https://responsive.menu/docs/advanced-setup/shortcode/" target="_blank">here</a>') }}
     </table>

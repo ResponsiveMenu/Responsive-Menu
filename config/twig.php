@@ -27,6 +27,7 @@ $twig->addFunction(new Twig_SimpleFunction('build_menu', function($env, $options
 
     $translator = $env->getFilter('translate')->getCallable();
     $menu = $translator($options['menu_to_use'], 'menu_to_use');
+    $walker = $options['custom_walker'] ? new $options['custom_walker']($options) : new ResponsiveMenuTest\Walkers\Walker($options);
 
     return wp_nav_menu(
         [
@@ -36,7 +37,7 @@ $twig->addFunction(new Twig_SimpleFunction('build_menu', function($env, $options
             'menu' => $menu && !$options['theme_location_menu'] ? $menu : null,
             'depth' => $options['menu_depth'] ? $options['menu_depth'] : 0,
             'theme_location' => $options['theme_location_menu'] ? $options['theme_location_menu'] : null,
-            'walker' => new ResponsiveMenuTest\Walkers\Walker($options),
+            'walker' => $walker,
             'echo' => false
         ]
     );
