@@ -125,6 +125,7 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 * Speed improvements to front end
 * Admin now uses BootStrap
 * Twig templating engine implemented
+* Removed the custom walker functionality
 * Bug fixes and compatibility fixes
 
 = 3.0.18 (2nd February 2017) =

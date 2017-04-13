@@ -149,7 +149,6 @@ function get_responsive_menu_test_default_options() {
 
         'shortcode' => 'off',
         'mobile_only' => 'off',
-        'custom_walker' => null,
         'custom_css' => null,
 
         'use_single_menu' => 'off',
