@@ -1,11 +1,11 @@
 <?php
 
-namespace ResponsiveMenuTest\Controllers;
-use ResponsiveMenuTest\View\View;
-use ResponsiveMenuTest\Management\OptionManager;
-use ResponsiveMenuTest\Validation\Validator;
-use ResponsiveMenuTest\Tasks\UpdateOptionsTask;
-use ResponsiveMenuTest\Collections\OptionsCollection;
+namespace ResponsiveMenu\Controllers;
+use ResponsiveMenu\View\View;
+use ResponsiveMenu\Management\OptionManager;
+use ResponsiveMenu\Validation\Validator;
+use ResponsiveMenu\Tasks\UpdateOptionsTask;
+use ResponsiveMenu\Collections\OptionsCollection;
 
 class AdminController {
 

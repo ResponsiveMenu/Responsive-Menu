@@ -1,7 +1,7 @@
 <?php
 
-namespace ResponsiveMenuTest\Database;
-use ResponsiveMenuTest\Management\OptionManager;
+namespace ResponsiveMenu\Database;
+use ResponsiveMenu\Management\OptionManager;
 
 class Migration {
 

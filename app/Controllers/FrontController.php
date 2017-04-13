@@ -1,9 +1,9 @@
 <?php
 
-namespace ResponsiveMenuTest\Controllers;
-use ResponsiveMenuTest\View\View;
-use ResponsiveMenuTest\Management\OptionManager;
-use ResponsiveMenuTest\Formatters\Minifier;
+namespace ResponsiveMenu\Controllers;
+use ResponsiveMenu\View\View;
+use ResponsiveMenu\Management\OptionManager;
+use ResponsiveMenu\Formatters\Minifier;
 
 class FrontController {
 
@@ -21,8 +21,8 @@ class FrontController {
         });
 
         if($options['external_files'] == 'on'):
-            $css_file = $base_url . '/responsive-menu-test-data/css/responsive-menu-' . $blog_id . '.css';
-            $js_file = $base_url . '/responsive-menu-test-data/js/responsive-menu-' . $blog_id . '.js';
+            $css_file = $base_url . '/responsive-menu-data/css/responsive-menu-' . $blog_id . '.css';
+            $js_file = $base_url . '/responsive-menu-data/js/responsive-menu-' . $blog_id . '.js';
             wp_enqueue_style('responsive-menu', $css_file, null, false);
             wp_enqueue_script('responsive-menu', $js_file, ['jquery'], false, $options['scripts_in_footer'] == 'on' ? true : false);
         else:

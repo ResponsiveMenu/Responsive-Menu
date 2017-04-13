@@ -1,8 +1,8 @@
 <?php
 
-namespace ResponsiveMenuTest\Management;
-use ResponsiveMenuTest\Collections\OptionsCollection;
-use ResponsiveMenuTest\Database\Database;
+namespace ResponsiveMenu\Management;
+use ResponsiveMenu\Collections\OptionsCollection;
+use ResponsiveMenu\Database\Database;
 
 class OptionManager {
 
@@ -15,7 +15,7 @@ class OptionManager {
     }
 
     public function all() {
-        $options = $this->db->all('responsive_menu_test');
+        $options = $this->db->all('responsive_menu');
         return new OptionsCollection($options);
     }
 
@@ -26,7 +26,7 @@ class OptionManager {
             $val = stripslashes($val);
             $updated_options[$name] = $val;
             $updated_options = $this->combineOptions($updated_options);
-            $this->db->update('responsive_menu_test', ['value' => $val], ['name' => $name]);
+            $this->db->update('responsive_menu', ['value' => $val], ['name' => $name]);
         endforeach;
         return new OptionsCollection($updated_options);
     }
@@ -38,7 +38,7 @@ class OptionManager {
             $val = stripslashes($val);
             $updated_options[$name] = $val;
             $updated_options = $this->combineOptions($updated_options);
-            $this->db->insert('responsive_menu_test', ['name' => $name, 'value' => $val]);
+            $this->db->insert('responsive_menu', ['name' => $name, 'value' => $val]);
         endforeach;
         return new OptionsCollection($updated_options);
     }
@@ -51,7 +51,7 @@ class OptionManager {
             $updated_options[$name] = $val;
             $updated_options = $this->combineOptions($updated_options);
             unset($updated_options[$name]);
-            $this->db->delete('responsive_menu_test', ['name' => $name]);
+            $this->db->delete('responsive_menu', ['name' => $name]);
         endforeach;
         return new OptionsCollection($updated_options);
     }

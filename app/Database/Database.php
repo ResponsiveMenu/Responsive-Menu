@@ -1,6 +1,6 @@
 <?php
 
-namespace ResponsiveMenuTest\Database;
+namespace ResponsiveMenu\Database;
 
 class Database {
 

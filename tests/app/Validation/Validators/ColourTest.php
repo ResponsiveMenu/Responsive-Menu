@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use ResponsiveMenuTest\Validation\Validators;
+use ResponsiveMenu\Validation\Validators;
 
 class ColourTest extends TestCase {
 

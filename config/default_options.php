@@ -1,6 +1,6 @@
 <?php
 
-function get_responsive_menu_test_default_options() {
+function get_responsive_menu_default_options() {
 
     return [
 

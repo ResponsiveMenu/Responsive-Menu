@@ -1,6 +1,6 @@
 <?php
 
-namespace ResponsiveMenuTest\Validation\Validators;
+namespace ResponsiveMenu\Validation\Validators;
 
 abstract class BaseValidator {
 

@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use ResponsiveMenuTest\Formatters\Minifier;
+use ResponsiveMenu\Formatters\Minifier;
 
 class MinifierTest extends TestCase {
     

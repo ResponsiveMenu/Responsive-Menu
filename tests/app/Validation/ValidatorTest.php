@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use ResponsiveMenuTest\Validation\Validator;
+use ResponsiveMenu\Validation\Validator;
 
 class ValidatorTest extends TestCase {
 

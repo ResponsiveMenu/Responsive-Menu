@@ -1,6 +1,6 @@
 <?php
 
-namespace ResponsiveMenuTest\Container;
+namespace ResponsiveMenu\Container;
 
 class Container implements \ArrayAccess {
 

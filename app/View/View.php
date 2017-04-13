@@ -1,6 +1,6 @@
 <?php
 
-namespace ResponsiveMenuTest\View;
+namespace ResponsiveMenu\View;
 use \Twig_Environment;
 
 class View {

@@ -41,7 +41,7 @@ jQuery(function($) {
 
     $(document).on('click', '#responsive-menu-preview', function(e) {
         e.preventDefault();
-        var form = $('#responsive-menu-test-form');
+        var form = $('#responsive-menu-form');
         form.attr('action', WP_HOME_URL + '?responsive-menu-preview=true');
         form.attr('target', '_blank');
         form.submit();

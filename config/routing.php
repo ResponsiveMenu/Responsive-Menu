@@ -8,17 +8,17 @@ if(is_admin()):
             header('Expires: 0');
             header('Content-Type: application/json; charset=utf-8');
             header('Content-Disposition: attachment; filename=export.json');
-            $controller = get_responsive_menu_test_service('admin_controller');
+            $controller = get_responsive_menu_service('admin_controller');
             echo $controller->export();
             exit();
         endif;
         add_menu_page(
-            'Responsive Menu Test',
-            'Responsive Menu Test',
+            'Responsive Menu',
+            'Responsive Menu',
             'manage_options',
-            'responsive-menu-test',
+            'responsive-menu',
             function() {
-                $controller = get_responsive_menu_test_service('admin_controller');
+                $controller = get_responsive_menu_service('admin_controller');
                 $menus_array = [];
                 $location_menus = ['' => 'None'];
                 foreach(get_terms('nav_menu') as $menu) $menus_array[$menu->slug] = $menu->name;
@@ -30,7 +30,7 @@ if(is_admin()):
                 if(isset($_POST['responsive-menu-submit'])):
                     echo $controller->update($_POST['menu'], $menus_array, $location_menus);
                 elseif(isset($_POST['responsive-menu-reset'])):
-                    echo $controller->reset(get_responsive_menu_test_default_options(), $menus_array, $location_menus);
+                    echo $controller->reset(get_responsive_menu_default_options(), $menus_array, $location_menus);
                 elseif(isset($_POST['responsive-menu-import'])):
                     $file = $_FILES['responsive-menu-import-file'];
                     $file_options = isset($file['tmp_name']) ? (array) json_decode(file_get_contents($file['tmp_name'])) : null;
@@ -43,7 +43,7 @@ if(is_admin()):
     });
 else:
     add_action('template_redirect', function() {
-        $controller = get_responsive_menu_test_service('front_controller');
+        $controller = get_responsive_menu_service('front_controller');
         if(isset($_GET['responsive-menu-preview']) && isset($_POST['menu']))
             echo $controller->preview();
         else

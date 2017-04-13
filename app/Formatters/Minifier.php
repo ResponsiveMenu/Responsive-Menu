@@ -1,6 +1,6 @@
 <?php
 
-namespace ResponsiveMenuTest\Formatters;
+namespace ResponsiveMenu\Formatters;
 
 class Minifier {
 

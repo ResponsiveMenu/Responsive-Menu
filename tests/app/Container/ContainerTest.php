@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use ResponsiveMenuTest\Container\Container;
+use ResponsiveMenu\Container\Container;
 
 class ContainerTest extends TestCase {
 

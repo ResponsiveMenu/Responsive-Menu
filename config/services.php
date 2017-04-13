@@ -5,17 +5,17 @@
 * bottom of this file
  *
  */
-$services_428734872364 = new ResponsiveMenuTest\Container\Container;
+$services_428734872364 = new ResponsiveMenu\Container\Container;
 
 $services_428734872364['database'] = function($c) {
     global $wpdb;
-    return new ResponsiveMenuTest\Database\Database($wpdb);
+    return new ResponsiveMenu\Database\Database($wpdb);
 };
 
 $services_428734872364['option_manager'] = function($c) {
-    return new ResponsiveMenuTest\Management\OptionManager(
+    return new ResponsiveMenu\Management\OptionManager(
         $c['database'],
-        get_responsive_menu_test_default_options()
+        get_responsive_menu_default_options()
     );
 };
 
@@ -25,18 +25,18 @@ $services_428734872364['twig'] = function($c) {
 };
 
 $services_428734872364['view'] = function($c) {
-    return new ResponsiveMenuTest\View\View($c['twig']);
+    return new ResponsiveMenu\View\View($c['twig']);
 };
 
 $services_428734872364['admin_controller'] = function($c) {
-    return new ResponsiveMenuTest\Controllers\AdminController($c['option_manager'], $c['view']);
+    return new ResponsiveMenu\Controllers\AdminController($c['option_manager'], $c['view']);
 };
 
 $services_428734872364['front_controller'] = function($c) {
-    return new ResponsiveMenuTest\Controllers\FrontController($c['option_manager'], $c['view']);
+    return new ResponsiveMenu\Controllers\FrontController($c['option_manager'], $c['view']);
 };
 
-function get_responsive_menu_test_service($service) {
+function get_responsive_menu_service($service) {
     global $services_428734872364;
     return $services_428734872364[$service];
 }

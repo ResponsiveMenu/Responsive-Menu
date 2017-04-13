@@ -1,9 +1,9 @@
 <?php
 
-namespace ResponsiveMenuTest\Tasks;
-use ResponsiveMenuTest\Collections\OptionsCollection;
-use ResponsiveMenuTest\Formatters\Minifier;
-use ResponsiveMenuTest\View\View;
+namespace ResponsiveMenu\Tasks;
+use ResponsiveMenu\Collections\OptionsCollection;
+use ResponsiveMenu\Formatters\Minifier;
+use ResponsiveMenu\View\View;
 
 class UpdateOptionsTask {
 
@@ -22,7 +22,7 @@ class UpdateOptionsTask {
          */
         if($options['external_files'] == 'on'):
 
-            $base_dir = dirname(dirname(dirname(dirname(__FILE__)))) . '/responsive-menu-test-data';
+            $base_dir = dirname(dirname(dirname(dirname(__FILE__)))) . '/responsive-menu-data';
 
             if(!is_dir($base_dir))
                 if(!mkdir($base_dir))

@@ -1,7 +1,7 @@
 <?php
 
-namespace ResponsiveMenuTest\Walkers;
-use ResponsiveMenuTest\Collections\OptionsCollection;
+namespace ResponsiveMenu\Walkers;
+use ResponsiveMenu\Collections\OptionsCollection;
 
 class Walker extends \Walker_Nav_Menu {
 

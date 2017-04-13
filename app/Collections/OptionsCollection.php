@@ -1,6 +1,6 @@
 <?php
 
-namespace ResponsiveMenuTest\Collections;
+namespace ResponsiveMenu\Collections;
 
 class OptionsCollection implements \ArrayAccess, \Countable {
 

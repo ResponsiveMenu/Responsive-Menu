@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use ResponsiveMenuTest\Collections\OptionsCollection;
+use ResponsiveMenu\Collections\OptionsCollection;
 
 class OptionsCollectionTest extends TestCase {
 

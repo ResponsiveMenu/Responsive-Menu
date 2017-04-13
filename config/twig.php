@@ -27,7 +27,7 @@ $twig->addFunction(new Twig_SimpleFunction('build_menu', function($env, $options
 
     $translator = $env->getFilter('translate')->getCallable();
     $menu = $translator($options['menu_to_use'], 'menu_to_use');
-    $walker = $options['custom_walker'] ? new $options['custom_walker']($options) : new ResponsiveMenuTest\Walkers\Walker($options);
+    $walker = $options['custom_walker'] ? new $options['custom_walker']($options) : new ResponsiveMenu\Walkers\Walker($options);
 
     return wp_nav_menu(
         [
