@@ -58,6 +58,8 @@ jQuery(function($) {
         $('ul.nav-tabs li').removeClass('active');
         parent_tab.addClass('active');
 
+        $('#responsive-menu-current-page').val(parent_panel_id);
+
         $('.tab-content .tab-pane').removeClass('active').removeClass('in');
 
         $('#' + parent_panel_id).addClass('active').addClass('in');
@@ -66,5 +68,11 @@ jQuery(function($) {
             scrollTop: $(id_to_scroll_to).offset().top - 50
         }, 1000);
     });
+
+    $(document).on('click', '.nav-tabs li a', function() {
+        var tab_name = $(this).attr('href').replace('#', '');
+        $('#responsive-menu-current-page').val(tab_name);
+    });
+
 
 });

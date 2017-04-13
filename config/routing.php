@@ -24,6 +24,9 @@ if(is_admin()):
                 foreach(get_terms('nav_menu') as $menu) $menus_array[$menu->slug] = $menu->name;
                 foreach(get_registered_nav_menus() as $location => $menu) $location_menus[$location] = $menu;
 
+                if(isset($_POST['responsive-menu-current-page']))
+                    update_option('responsive_menu_current_page', $_POST['responsive-menu-current-page']);
+
                 if(isset($_POST['responsive-menu-submit'])):
                     echo $controller->update($_POST['menu'], $menus_array, $location_menus);
                 elseif(isset($_POST['responsive-menu-reset'])):

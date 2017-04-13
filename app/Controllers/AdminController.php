@@ -16,7 +16,7 @@ class AdminController {
 
     public function index($nav_menus, $location_menus) {
         return $this->view->render(
-            'admin/main.html',
+            'admin/main.html.twig',
             [
                 'options' => $this->manager->all(),
                 'nav_menus' => $nav_menus,
@@ -44,7 +44,7 @@ class AdminController {
         endif;
 
         return $this->view->render(
-            'admin/main.html',
+            'admin/main.html.twig',
             [
                 'options' => $options,
                 'alert' => $alert,
@@ -65,7 +65,7 @@ class AdminController {
             $alert = ['danger' => $e->getMessage()];
         }
         return $this->view->render(
-            'admin/main.html',
+            'admin/main.html.twig',
             [
                 'options' => $options,
                 'alert' => $alert,
@@ -100,7 +100,7 @@ class AdminController {
         endif;
 
         return $this->view->render(
-            'admin/main.html',
+            'admin/main.html.twig',
             [
                 'options' => $options,
                 'alert' => $alert,
