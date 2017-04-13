@@ -321,7 +321,7 @@ button#responsive-menu-button,
     {% endif %}
 
     {% if options.page_wrapper %}
-        html.responsive-menu-open {{ options.page_wrapper }} {
+        {{ options.page_wrapper }} {
             transition: transform {{ options.animation_speed }}s;
         }
 
