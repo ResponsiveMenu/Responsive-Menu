@@ -1,0 +1,27 @@
+{% import 'admin/macros.html.twig' as macros %}
+
+<div class='panel panel-default'>
+    <div class='panel-body'>Scripts</div>
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('external_files', 'Use external files?', 'checkbox', options, errors, '', '', '', '', 'This will create external files for CSS and JavaScript') }}
+        {{ macros.row('minify_scripts', 'Minify scripts?', 'checkbox', options, errors, '', '', '', '', 'This will minify the CSS and JavaScript output') }}
+        {{ macros.row('scripts_in_footer', 'Place scripts in footer?', 'checkbox', options, errors, '', '', '', '', 'This will place the JavaScript in the footer') }}
+    </table>
+</div>
+
+<div class='panel panel-default'>
+    <div class='panel-body'>Menu</div>
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('custom_walker', 'Custom Walker', 'input', options, errors, '', '', '', '', 'Warning: For extremely advanced use only') }}
+        {{ macros.row('mobile_only', 'Show on mobile devices only?', 'checkbox', options, errors, '', 'pro', '', '', 'This will make it not a responsive menu but a "mobile menu"') }}
+        {{ macros.row('shortcode', 'Use Shortcode?', 'checkbox', options, errors, '', '', '', '', 'Please place [responsive_menu] in your files to use. Full documentation can be found <a href="https://responsive.menu/docs/advanced-setup/shortcode/" target="_blank">here</a>') }}
+    </table>
+</div>
+
+<div class='panel panel-default'>
+    <div class='panel-body'>Animation Speeds</div>
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('animation_speed', 'Animation Speed', 'input', options, errors, '', '', '', '', '', 's') }}
+        {{ macros.row('transition_speed', 'Transition Speed', 'input', options, errors, '', '', '', '', '', 's') }}
+</table>
+</div>

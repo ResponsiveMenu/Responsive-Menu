@@ -1,0 +1,9 @@
+<div id="responsive-menu-container" class="{{ options.animation_type }}-{{ options.menu_appear_from }}">
+    <div id="responsive-menu-wrapper">
+        {% for key, selected in options.items_order|json_decode %}
+            {% if selected == 'on' %}
+                {% include 'app/%s.html.twig'|format(key|replace(' ', '-')) %}
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

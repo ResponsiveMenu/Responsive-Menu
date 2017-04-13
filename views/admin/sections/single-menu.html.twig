@@ -1,0 +1,58 @@
+{% import 'admin/macros.html.twig' as macros %}
+
+<div class='panel panel-default'>
+    <div class='panel-body'>Use Single Menu</div>
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('use_single_menu', 'Use Single Menu', 'checkbox', options, errors, '', 'pro', '', '', 'To use this option you must turn the Shortcode option on and use the shortcode in your theme where you want the menu to appear.') }}
+    </table>
+</div>
+
+<div class='panel panel-default'>
+    <div class='panel-body'>Top Level Link Colours</div>
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('single_menu_item_background_colour', 'Background', 'colour', options, errors, '', 'pro') }}
+        {{ macros.row('single_menu_item_background_colour_hover', 'Background hover', 'colour', options, errors, '', 'pro') }}
+        {{ macros.row('single_menu_item_link_colour', 'Text', 'colour', options, errors, '', 'pro') }}
+        {{ macros.row('single_menu_item_link_colour_hover', 'Text hover', 'colour', options, errors, '', 'pro') }}
+    </table>
+</div>
+
+<div class='panel panel-default'>
+    <div class='panel-body'>Sub-Menu Link Colours</div>
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('single_menu_item_submenu_background_colour', 'Background', 'colour', options, errors, '', 'pro') }}
+        {{ macros.row('single_menu_item_submenu_background_colour_hover', 'Background hover', 'colour', options, errors, '', 'pro') }}
+        {{ macros.row('single_menu_item_submenu_link_colour', 'Text', 'colour', options, errors, '', 'pro') }}
+        {{ macros.row('single_menu_item_submenu_link_colour_hover', 'Text hover', 'colour', options, errors, '', 'pro') }}
+    </table>
+</div>
+
+<div class='panel panel-default'>
+    <div class='panel-body'>Top Level Styling</div>
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('single_menu_font', 'Font', 'input', options, errors, '', 'pro') }}
+        {{ macros.row('single_menu_font_size', 'Font size', 'input', options, errors, 'has-unit', 'pro', '', 'pixel') }}
+    </table>
+</div>
+
+<div class='panel panel-default'>
+    <div class='panel-body'>Sub-Menu Styling</div>
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('single_menu_submenu_font', 'Font', 'input', options, errors, '', 'pro') }}
+        {{ macros.row('single_menu_submenu_font_size', 'Font size', 'input', options, errors, 'has-unit', 'pro', '', 'pixel') }}
+    </table>
+</div>
+
+<div class='panel panel-default'>
+    <div class='panel-body'>Top Level Sizing</div>
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('single_menu_height', 'Height', 'input', options, errors, 'has-unit', 'pro', '', 'pixel') }}
+    </table>
+</div>
+
+<div class='panel panel-default'>
+    <div class='panel-body'>Sub-Menu Sizing</div>
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('single_menu_submenu_height', 'Height', 'input', options, errors, 'has-unit', 'pro', '', 'pixel') }}
+    </table>
+</div>

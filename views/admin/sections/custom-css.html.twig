@@ -1,0 +1,8 @@
+{% import 'admin/macros.html.twig' as macros %}
+
+<div class='panel panel-default'>
+    <div class='panel-body'>Custom CSS</div>
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('custom_css', 'Custom CSS', 'textarea', options, errors, '', 'pro') }}
+    </table>
+</div>

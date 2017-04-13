@@ -1,0 +1,212 @@
+{% import "admin/macros.html.twig" as macros %}
+
+<div class="panel panel-default">
+    <div class="panel-body">Here you can turn options on or off and re-arrange them accordingly.</div>
+    <table class="table table-bordered table-hover">
+        <tr{% if errors.items_order %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                <label for="items_order" class="control-label">Order of Menu Items</label>
+                <div class="sub-text">Drag the items to re-order and click to turn them on or off.</div>
+            </td>
+            <td>
+                <ul id="menu-sortable">
+                    {% for key, selected in options.items_order|json_decode %}
+                        <li class="draggable">
+                            {{ key|title }}
+                            <input type="text" class="orderable-item" value="{{ selected }}" name="menu[items_order][{{ key }}]" />
+                            <div class="menu-order-option-switch{% if selected == 'on' %} menu-order-option-switch-on{% endif %}"></div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    jQuery(document).ready(function($) {
+        $(document).on('click', '.menu-order-option-switch', function() {
+            var siblings = $(this).siblings('input.orderable-item');
+            if(siblings.val() != 'on') {
+                siblings.val('on');
+                $(this).addClass('menu-order-option-switch-on');
+            } else {
+                siblings.val('');
+                $(this).removeClass('menu-order-option-switch-on');
+            }
+        });
+        $('#menu-sortable').sortable({
+            revert: true
+        });
+        $('#sortable, .draggable').disableSelection();
+    });
+</script>
+
+<div class="panel panel-default">
+    <div class="panel-body">Here you can turn options on or off and re-arrange them accordingly.</div>
+    <table class="table table-bordered table-hover">
+        <tr{% if errors.menu_font_icons %} class="danger"{% endif %}>
+            <td class="well col-md-3">
+                <label for="items_order" class="control-label">Font Icons</label>
+                <div class="sub-text">
+                    Responsive Menu uses the brilliant <a href="http://fontawesome.io/icons/" target="_blank">Font Awesome</a> icons for implementing icons in
+                    your menu - for more info please visit our doc pages <a href="https://responsive.menu/docs/basic-setup/font-icons/" target="_blank">here</a>.
+                </div>
+            </td>
+            <td>
+                <table id='font-icon-container'>
+                    <tr>
+                        <td>Menu Item ID</td>
+                        <td>Icon</td>
+                    </tr>
+                    {% set icons = options.menu_font_icons|json_decode %}
+                    {% if icons is iterable %}
+                        {% set ids_and_icons = combine(icons.id, icons.icon) %}
+                        {% for id, icon in ids_and_icons %}
+                            {% if icon or id %}
+                                <tr>
+                                    <td><input type="text" class="form-control" value="{{ id }}" name="menu[menu_font_icons][id][]" placeholder="32" /></td>
+                                    <td><input type="text" class="form-control" value="{{ icon }}" name="menu[menu_font_icons][icon][]" placeholder="fa-cog" /></td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    <tr>
+                        <td><input type="text" class="form-control" name="menu[menu_font_icons][id][]" placeholder="32" /></td>
+                        <td><input type="text" class="form-control" name="menu[menu_font_icons][icon][]" placeholder="fa-cog" /></td>
+                    </tr>
+                </table>
+                <button id="add-font-icon" class="btn btn-primary" type="button">Add Font Icon</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    jQuery(document).ready(function($) {
+        $(document).on('click', '#add-font-icon', function() {
+            var lastRow = $('#font-icon-container tr').last();
+            var nextRow = lastRow.clone();
+            nextRow.find(':text').val('')
+            lastRow.after(nextRow);
+        });
+    });
+</script>
+
+<div class="panel panel-default">
+    <div class="panel-body">Menu Sizing</div>
+    <table class="table table-bordered table-hover">
+        {{ macros.row('menu_width', 'Width', 'input', options, errors, "has-unit", "", "", "percentage") }}
+        {{ macros.row('menu_maximum_width', 'Maximum width', 'input', options, errors, "has-unit", "", "", "pixel") }}
+        {{ macros.row('menu_minimum_width', 'Minimum width', 'input', options, errors, "has-unit", "", "", "pixel") }}
+        {{ macros.row('menu_links_height', 'Links height', 'input', options, errors, "has-unit", "", "", "pixel") }}
+        {{ macros.row('menu_border_width', 'Border width', 'input', options, errors, "has-unit", "", "", "pixel") }}
+        {{ macros.row('menu_auto_height', 'Auto Height', 'checkbox', options, errors) }}
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">Menu Title</div>
+    <table class="table table-bordered table-hover">
+        {{ macros.row('menu_title', 'Title', 'input', options, errors) }}
+        {{ macros.row('menu_title_link', 'Link', 'input', options, errors) }}
+        {{ macros.row('menu_title_link_location', 'Link location', 'select', options, errors, '', '', 'link_locations') }}
+        {{ macros.row('menu_title_font_size', 'Font size', 'input', options, errors, "has-unit", "", "", "pixel") }}
+        {{ macros.row('menu_title_font_icon', 'Font Icon', 'input', options, errors, "", "pro") }}
+        {{ macros.row('menu_title_image', 'Image', 'image', options, errors) }}
+        {{ macros.row('menu_title_image_alt', 'Image alt Text', 'input', options, errors) }}
+        {{ macros.row('menu_title_background_colour', 'Background colour', 'colour', options, errors, "", "semi-pro") }}
+        {{ macros.row('menu_title_background_hover_colour', 'Background hover colour', 'colour', options, errors, "", "semi-pro") }}
+        {{ macros.row('menu_title_colour', 'Text colour', 'colour', options, errors, "", "semi-pro") }}
+        {{ macros.row('menu_title_hover_colour', 'Text hover colour', 'colour', options, errors, "", "semi-pro") }}
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">Additional Content</div>
+    <table class="table table-bordered table-hover">
+        {{ macros.row('menu_additional_content', 'Content', 'textarea', options, errors, '', '', '', '', 'HTML and shortcodes can be used here.') }}
+        {{ macros.row('menu_additional_content_colour', 'Colour', 'colour', options, errors, '', 'semi-pro') }}
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">Animation</div>
+    <table class="table table-bordered table-hover">
+        {{ macros.row('menu_appear_from', 'Appear From', 'select', options, errors, '', '', 'side') }}
+        {{ macros.row('animation_type', 'Type', 'select', options, errors, '', '', 'animation') }}
+        {{ macros.row('page_wrapper', 'Push Wrapper', 'input', options, errors, '', '', 'animation', '', 'Only needed if you are using the push animation.') }}
+        {{ macros.row('menu_close_on_body_click', 'Close on body click', 'checkbox', options, errors) }}
+        {{ macros.row('menu_close_on_link_click', 'Close on link click', 'checkbox', options, errors) }}
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">Search Box</div>
+    <table class="table table-bordered table-hover">
+        {{ macros.row('menu_search_box_text', 'Text', 'input', options, errors) }}
+        {{ macros.row('menu_search_box_text_colour', 'Text colour', 'colour', options, errors, '', 'semi-pro') }}
+        {{ macros.row('menu_search_box_border_colour', 'Border colour', 'colour', options, errors, '', 'semi-pro') }}
+        {{ macros.row('menu_search_box_background_colour', 'Background colour', 'colour', options, errors, '', 'semi-pro') }}
+        {{ macros.row('menu_search_box_placeholder_colour', 'Placeholder colour', 'colour', options, errors, '', 'semi-pro') }}
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">Background</div>
+    <table class="table table-bordered table-hover">
+        {{ macros.row('menu_background_image', 'Image', 'image', options, errors) }}
+        {{ macros.row('menu_background_colour', 'Background colour', 'colour', options, errors, '', 'semi-pro') }}
+        {{ macros.row('menu_item_background_colour', 'Item background colour', 'colour', options, errors, '', 'semi-pro') }}
+        {{ macros.row('menu_item_background_hover_colour', 'Item background colour hover', 'colour', options, errors, '', 'semi-pro') }}
+        {{ macros.row('menu_current_item_background_colour', 'Current item background colour', 'colour', options, errors, '', 'semi-pro') }}
+        {{ macros.row('menu_current_item_background_hover_colour', 'Current item background colour hover', 'colour', options, errors, '', 'semi-pro') }}
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">Border</div>
+    <table class="table table-bordered table-hover">
+        {{ macros.row('menu_item_border_colour', 'Item border colour', 'colour', options, errors, '', 'semi-pro') }}
+        {{ macros.row('menu_item_border_colour_hover', 'Item border colour hover', 'colour', options, errors, '', 'semi-pro') }}
+        {{ macros.row('menu_current_item_border_colour', 'Current item border colour', 'colour', options, errors, '', 'semi-pro') }}
+        {{ macros.row('menu_current_item_border_hover_colour', 'Current item border colour hover', 'colour', options, errors, '', 'semi-pro') }}
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">Text</div>
+    <table class="table table-bordered table-hover">
+        {{ macros.row('menu_link_colour', 'Link colour', 'colour', options, errors, '', 'semi-pro') }}
+        {{ macros.row('menu_link_hover_colour', 'Link colour hover', 'colour', options, errors, '', 'semi-pro') }}
+        {{ macros.row('menu_current_link_colour', 'Current link colour', 'colour', options, errors, '', 'semi-pro') }}
+        {{ macros.row('menu_current_link_hover_colour', 'Current link colour hover', 'colour', options, errors, '', 'semi-pro') }}
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">Styling</div>
+    <table class="table table-bordered table-hover">
+        {{ macros.row('menu_font', 'Font', 'input', options, errors) }}
+        {{ macros.row('menu_font_size', 'Font size', 'input', options, errors, 'has-unit', '', 'semi-pro', 'pixel') }}
+        {{ macros.row('menu_text_alignment', 'Text alignment', 'select', options, errors, '', '', 'alignment') }}
+        {{ macros.row('menu_word_wrap', 'Word wrap', 'checkbox', options, errors, '', 'pro') }}
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">Page Overlay</div>
+    <table class="table table-bordered table-hover">
+        {{ macros.row('menu_overlay', 'Enable', 'checkbox', options, errors, '', 'pro') }}
+        {{ macros.row('menu_overlay_colour', 'Colour', 'colour', options, errors, '', 'pro') }}
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">Advanced</div>
+    <table class="table table-bordered table-hover">
+        {{ macros.row('menu_depth', 'Depth', 'select', options, errors, '', '', 'depth') }}
+        {{ macros.row('menu_disable_scrolling', 'Disable scrolling', 'checkbox', options, errors, '', 'pro') }}
+        {{ macros.row('theme_location_menu', 'Theme location menu', 'select', options, errors, '', '', 'custom', '', '', '', location_menus) }}
+    </table>
+</div>

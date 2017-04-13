@@ -1,0 +1,13 @@
+{% import "admin/macros.html.twig" as macros %}
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        These are the options you probably want to set first to get you started.
+        You can view the docs for this section by clicking <a href="https://responsive.menu/docs/initial-setup/" target="_blank">here.</a>
+    </div>
+    <table class="table table-bordered table-hover">
+        {{ macros.row('breakpoint', 'Breakpoint', 'input', options, errors, '', '', '', '', 'This is the width of the screen at which point you would like the menu to start showing in pixels.', 'px', '', 'Set to 80000 if you want the menu to appear on all devices.') }}
+        {{ macros.row('menu_to_use', 'Menu to Use', 'select', options, errors, '', '', 'custom', '', 'If no options appear here, make sure you have set them up under <strong>Appearance > Menus</strong> or click <a href="' ~ admin_url ~ 'nav-menus.php">here</a>.', '', nav_menus) }}
+        {{ macros.row('menu_to_hide', 'CSS Selector of Menu to Hide', 'input', options, errors, '', '', '', '', 'Any legal CSS selection criteria is valid here.', '', '', 'e.g: #nav-menu, nav, .other-nav') }}
+    </table>
+</div>
