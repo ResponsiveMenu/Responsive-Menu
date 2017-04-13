@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'ResponsiveMenuTest\\' => array($baseDir . '/app'),
+    'ResponsiveMenu\\' => array($baseDir . '/app'),
 );

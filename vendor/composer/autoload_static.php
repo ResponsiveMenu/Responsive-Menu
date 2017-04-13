@@ -9,12 +9,12 @@ class ComposerStaticInitbe9ac5d85095f467548fb48e989d4a37
     public static $prefixLengthsPsr4 = array (
         'R' => 
         array (
-            'ResponsiveMenuTest\\' => 19,
+            'ResponsiveMenu\\' => 15,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'ResponsiveMenuTest\\' => 
+        'ResponsiveMenu\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
         ),
