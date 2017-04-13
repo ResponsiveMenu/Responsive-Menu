@@ -28,10 +28,15 @@
     text-align: left;
 }
 
+.container-fluid form.form-horizontal #header-bar-items-order-container label {
+    text-align: center;
+}
+
 .container-fluid form.form-horizontal .bootstrap-select,
 .container-fluid form.form-horizontal input,
 .container-fluid form.form-horizontal textarea {
     width: calc(100% - 75px) !important;
+    display: inline-block;
 }
 
 .container-fluid form.form-horizontal .input-group input {
@@ -51,12 +56,21 @@
     vertical-align: middle;
 }
 
+.container-fluid form.form-horizontal td {
+    padding: 15px;
+}
+
 .container-fluid form.form-horizontal ul {
     margin-bottom: 0;
 }
 
 .container-fluid form.form-horizontal .panel {
     border-radius: 0;
+}
+
+.container-fluid form.form-horizontal .panel-body {
+    font-weight: bold;
+    font-size: 16px;
 }
 
 .container-fluid form.form-horizontal .glyphicon.glyphicon-ok {
@@ -129,7 +143,7 @@
 }
 
 .draggable input {
-    display: none;
+    display: none !important;
 }
 
 .menu-order-option-switch,
@@ -317,4 +331,36 @@ li.draggable {
 
 .container-fluid form.form-horizontal td.pro:hover .responsive-menu-pro-overlay {
     display: block;
+}
+
+@media screen and (max-width: 1200px) {
+    .container-fluid #banner-area,
+    .container-fluid #options-area {
+        width: 100%;
+        display: block;
+    }
+    .container-fluid #banner-area {
+        margin: 25px 0 25px 0;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .nav.nav-tabs > li {
+        width: 49%;
+        display: inline-block;
+        float: none;
+        margin: 0;
+        text-align: center;
+    }
+
+    .nav.nav-tabs > li.pull-right {
+        display: none;
+    }
+    .container-fluid form.form-horizontal td {
+        width: 100%;
+        display: block;
+    }
+    .container-fluid form.form-horizontal td.well {
+        margin-bottom: 0;
+    }
 }
