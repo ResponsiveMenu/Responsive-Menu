@@ -3,7 +3,7 @@
 $twig = new Twig_Environment(new Twig_Loader_Filesystem([
     dirname(dirname(__FILE__)) . '/views',
     dirname(dirname(__FILE__)) . '/public',
-]));
+]), ['autoescape' => false]);
 
 $twig->addFilter(new Twig_SimpleFilter('shortcode', function($string) {
     return do_shortcode($string);
