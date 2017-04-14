@@ -25,10 +25,9 @@ class OptionManager {
             $val = is_array($val) ? json_encode($val) : $val;
             $val = stripslashes($val);
             $updated_options[$name] = $val;
-            $updated_options = $this->combineOptions($updated_options);
             $this->db->update('responsive_menu', ['value' => $val], ['name' => $name]);
         endforeach;
-        return new OptionsCollection($updated_options);
+        return new OptionsCollection($this->combineOptions($updated_options));
     }
 
     public function createOptions(array $options) {
@@ -37,10 +36,9 @@ class OptionManager {
             $val = is_array($val) ? json_encode($val) : $val;
             $val = stripslashes($val);
             $updated_options[$name] = $val;
-            $updated_options = $this->combineOptions($updated_options);
             $this->db->insert('responsive_menu', ['name' => $name, 'value' => $val]);
         endforeach;
-        return new OptionsCollection($updated_options);
+        return new OptionsCollection($this->combineOptions($updated_options));
     }
 
     public function removeOptions(array $options) {
@@ -49,17 +47,24 @@ class OptionManager {
             $val = is_array($val) ? json_encode($val) : $val;
             $val = stripslashes($val);
             $updated_options[$name] = $val;
-            $updated_options = $this->combineOptions($updated_options);
             unset($updated_options[$name]);
             $this->db->delete('responsive_menu', ['name' => $name]);
         endforeach;
-        return new OptionsCollection($updated_options);
+        return new OptionsCollection($this->combineOptions($updated_options));
+    }
+
+    public function buildFromArray(array $options) {
+        $new_options = [];
+        foreach($options as $name => $val):
+            $val = is_array($val) ? json_encode($val) : $val;
+            $val = stripslashes($val);
+            $new_options[$name] = $val;
+        endforeach;
+        return new OptionsCollection($this->combineOptions($new_options));
     }
 
     private function combineOptions($new_options) {
-        return array_merge($this->default_options, array_filter($new_options, function ($value) {
-            return ($value !== null && $value !== false && $value !== '');
-        }));
+        return array_merge($this->default_options, $new_options);
     }
 
 }

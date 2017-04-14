@@ -122,9 +122,11 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 = 3.1.0 (13th April 2017) =
 * **Requires PHP 5.4**
 * Massive overhaul of codebase
-* Speed improvements to front end
+* Speed improvements to front end and admin
 * Admin now uses BootStrap
 * Twig templating engine implemented
+* Back to on slide effect now customisable - Pro only
+* Added option to adjust for WP Admin bar - Pro only
 * Bug fixes and compatibility fixes
 
 = 3.0.18 (2nd February 2017) =

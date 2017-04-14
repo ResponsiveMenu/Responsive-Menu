@@ -200,7 +200,8 @@ function get_responsive_menu_default_options() {
         'fade_submenus_delay' => 100,
         'fade_submenus_speed' => 500,
 
-        'use_slide_effect' => 'off'
+        'use_slide_effect' => 'off',
+        'slide_effect_back_to_text' => 'Back'
     ];
 
 };
