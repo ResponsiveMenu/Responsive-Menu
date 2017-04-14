@@ -53,7 +53,12 @@ class FrontController {
 
         if($options['shortcode'] == 'on'):
             add_shortcode('responsive_menu', function($atts) use($options) {
-                $merged_options = array_merge($options->toArray(), $atts);
+
+                if(is_array($atts))
+                    $merged_options = array_merge($options->toArray(), $atts);
+                else
+                    $merged_options = $options->toArray();
+
                 $new_collection = new OptionsCollection($merged_options);
                 return $this->view->render('app.html.twig', ['options' => $new_collection]);
             });
