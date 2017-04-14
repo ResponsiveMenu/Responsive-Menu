@@ -47,6 +47,6 @@ else:
         if(isset($_GET['responsive-menu-preview']) && isset($_POST['menu']))
             echo $controller->preview();
         else
-            $controller->index(plugins_url(), get_current_blog_id());
+            $controller->index();
     });
 endif;

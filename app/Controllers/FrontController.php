@@ -13,17 +13,24 @@ class FrontController {
         $this->view = $view;
     }
 
-    public function index($base_url, $blog_id) {
+    public function index() {
         $options = $this->manager->all();
+        $this->buildFrontEnd($options);
+    }
 
+    public function preview() {
+        return $this->view->render('preview.html.twig');
+    }
+
+    private function buildFrontEnd(OptionsCollection $options) {
         add_filter('body_class', function($classes) use($options) {
             $classes[] = 'responsive-menu-' . $options['animation_type'] . '-' . $options['menu_appear_from'];
             return $classes;
         });
 
         if($options['external_files'] == 'on'):
-            $css_file = $base_url . '/responsive-menu-data/css/responsive-menu-' . $blog_id . '.css';
-            $js_file = $base_url . '/responsive-menu-data/js/responsive-menu-' . $blog_id . '.js';
+            $css_file = plugins_url() . '/responsive-menu-data/css/responsive-menu-' . get_current_blog_id() . '.css';
+            $js_file = plugins_url() . '/responsive-menu-data/js/responsive-menu-' . get_current_blog_id() . '.js';
             wp_enqueue_style('responsive-menu', $css_file, null, false);
             wp_enqueue_script('responsive-menu', $js_file, ['jquery'], false, $options['scripts_in_footer'] == 'on' ? true : false);
         else:
@@ -56,10 +63,6 @@ class FrontController {
             });
         endif;
 
-    }
-
-    public function preview() {
-        return $this->view->render('preview.html.twig');
     }
 
 }
