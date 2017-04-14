@@ -16,50 +16,6 @@
     </select>
 {% endmacro %}
 
-{% macro link_locations(name, value) %}
-    <select id='responsive-menu-{{ name|replace('_', '-') }}' class='selectpicker show-tick' name='menu[{{ name }}]'>
-        <option value='_blank'{% if value == '_blank' %} selected='selected'{% endif %}>New Tab</option>
-        <option value='_self'{% if value == '_self' %} selected='selected'{% endif %}>Same Page</option>
-        <option value='_parent'{% if value == '_parent' %} selected='selected'{% endif %}>Parent Page</option>
-        <option value='_top'{% if value == '_top' %} selected='selected'{% endif %}>Full Window Body</option>
-    </select>
-{% endmacro %}
-
-{% macro side_select(name, value) %}
-    <select id='responsive-menu-{{ name|replace('_', '-') }}' class='selectpicker show-tick' name='menu[{{ name }}]'>
-        <option value='top'{% if value == 'top' %} selected='selected'{% endif %}>Top</option>
-        <option value='left'{% if value == 'left' %} selected='selected'{% endif %}>Left</option>
-        <option value='right'{% if value == 'right' %} selected='selected'{% endif %}>Right</option>
-        <option value='bottom'{% if value == 'bottom' %} selected='selected'{% endif %}>Bottom</option>
-    </select>
-{% endmacro %}
-
-{% macro left_right_select(name, value) %}
-    <select id='responsive-menu-{{ name|replace('_', '-') }}' class='selectpicker show-tick' name='menu[{{ name }}]'>
-        <option value='left'{% if value == 'left' %} selected='selected'{% endif %}>Left</option>
-        <option value='right'{% if value == 'right' %} selected='selected'{% endif %}>Right</option>
-    </select>
-{% endmacro %}
-
-{% macro depth_select(name, value) %}
-    <select id='responsive-menu-{{ name|replace('_', '-') }}' class='selectpicker show-tick' name='menu[{{ name }}]'>
-        <option value='1'{% if value == '1' %} selected='selected'{% endif %}>1</option>
-        <option value='2'{% if value == '2' %} selected='selected'{% endif %}>2</option>
-        <option value='3'{% if value == '3' %} selected='selected'{% endif %}>3</option>
-        <option value='4'{% if value == '4' %} selected='selected'{% endif %}>4</option>
-        <option value='5'{% if value == '5' %} selected='selected'{% endif %}>5</option>
-    </select>
-{% endmacro %}
-
-{% macro alignment_select(name, value) %}
-    <select id='responsive-menu-{{ name|replace('_', '-') }}' class='selectpicker show-tick' name='menu[{{ name }}]'>
-        <option value='left'{% if value == 'left' %} selected='selected'{% endif %}>Left</option>
-        <option value='right'{% if value == 'right' %} selected='selected'{% endif %}>Right</option>
-        <option value='center'{% if value == 'center' %} selected='selected'{% endif %}>Centered</option>
-        <option value='justify'{% if value == 'justify' %} selected='selected'{% endif %}>Justified</option>
-    </select>
-{% endmacro %}
-
 {% macro animation_select(name, value) %}
     <select id='responsive-menu-{{ name|replace('_', '-') }}' class='selectpicker show-tick' name='menu[{{ name }}]'>
         <option value='slide'{% if value == 'slide' %} selected='selected'{% endif %}>Slide</option>
@@ -68,16 +24,8 @@
     </select>
 {% endmacro %}
 
-{% macro position_type_select(name, value) %}
-    <select id='responsive-menu-{{ name|replace('_', '-') }}' class='selectpicker show-tick' name='menu[{{ name }}]'>
-        <option value='fixed'{% if value == 'fixed' %} selected='selected'{% endif %}>Fixed</option>
-        <option value='absolute'{% if value == 'absolute' %} selected='selected'{% endif %}>Absolute</option>
-        <option value='relative'{% if value == 'relative' %} selected='selected'{% endif %}>Relative</option>
-    </select>
-{% endmacro %}
-
-{% macro custom_select(name, value, choices) %}
-    <select id='responsive-menu-{{ name|replace('_', '-') }}' class='selectpicker show-tick' name='menu[{{ name }}]'>
+{% macro select(name, value, choices, class='') %}
+    <select id='responsive-menu-{{ name|replace('_', '-') }}' class='selectpicker show-tick {{ class }}' name='menu[{{ name }}]'>
         {% for key, display in choices %}
             <option value='{{ key }}' {% if key == value %}selected='selected'{% endif %}>
                 {{ display }}
@@ -186,21 +134,55 @@
                 {{ macros.textarea(name, options[name], class) }}
             {% elseif type == 'select' %}
                 {% if select_type == 'side' %}
-                    {{ macros.side_select(name, options[name]) }}
+                    {% set choices = {
+                        'top': 'Top',
+                        'left': 'Left',
+                        'right': 'Right',
+                        'bottom': 'Bottom'
+                    } %}
+                    {{ macros.select(name, options[name], choices) }}
                 {% elseif select_type == 'left_right' %}
-                    {{ macros.left_right_select(name, options[name]) }}
+                    {% set choices = {
+                        'left': 'Left',
+                        'right': 'Right'
+                    } %}
+                    {{ macros.select(name, options[name], choices) }}
                 {% elseif select_type == 'position' %}
-                    {{ macros.position_type_select(name, options[name]) }}
+                    {% set choices = {
+                        'fixed': 'Fixed',
+                        'absolute': 'Absolute',
+                        'relative': 'Relative'
+                    } %}
+                    {{ macros.select(name, options[name], choices) }}
                 {% elseif select_type == 'animation' %}
                     {{ macros.animation_select(name, options[name]) }}
                 {% elseif select_type == 'depth' %}
-                    {{ macros.depth_select(name, options[name]) }}
+                    {% set choices = {
+                        '1': '1',
+                        '2': '2',
+                        '3': '3',
+                        '4': '4',
+                        '5': '5'
+                    } %}
+                    {{ macros.select(name, options[name], choices) }}
                 {% elseif select_type == 'alignment' %}
-                    {{ macros.alignment_select(name, options[name]) }}
+                    {% set choices = {
+                        'left': 'Left',
+                        'right': 'Right',
+                        'center': 'Centered',
+                        'justify': 'Justified'
+                    } %}
+                    {{ macros.select(name, options[name], choices) }}
                 {% elseif select_type == 'link_locations' %}
-                    {{ macros.link_locations(name, options[name]) }}
+                    {% set choices = {
+                        '_blank': 'New Tab',
+                        '_self': 'Same Page',
+                        '_parent': 'Parent Page',
+                        '_top': 'Full Window Body'
+                    } %}
+                    {{ macros.select(name, options[name], choices) }}
                 {% elseif select_type == 'custom' %}
-                    {{ macros.custom_select(name, options[name], choices) }}
+                    {{ macros.select(name, options[name], choices) }}
                 {% elseif select_type == 'button_animation' %}
                     {{ macros.button_animation_select(name, options[name]) }}
                 {% endif %}
