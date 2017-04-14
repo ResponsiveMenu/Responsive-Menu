@@ -4,7 +4,7 @@ function get_responsive_menu_default_options() {
 
     return [
 
-        'breakpoint' => 800,
+        'breakpoint' => 8000,
         'menu_to_hide' => '',
         'menu_depth' => 5,
         'menu_to_use' => '',
@@ -166,13 +166,13 @@ function get_responsive_menu_default_options() {
         'single_menu_submenu_font_size' => '12',
         'single_menu_submenu_font_size_unit' => 'px',
 
-        'single_menu_item_link_colour' => '#ffffff',
-        'single_menu_item_link_colour_hover' => '#ffffff',
+        'single_menu_item_link_colour' => '#000000',
+        'single_menu_item_link_colour_hover' => '#000000',
         'single_menu_item_background_colour' => '#ffffff',
         'single_menu_item_background_colour_hover' => '#ffffff',
 
-        'single_menu_item_submenu_link_colour' => '#ffffff',
-        'single_menu_item_submenu_link_colour_hover' => '#ffffff',
+        'single_menu_item_submenu_link_colour' => '#000000',
+        'single_menu_item_submenu_link_colour_hover' => '#000000',
         'single_menu_item_submenu_background_colour' => '#ffffff',
         'single_menu_item_submenu_background_colour_hover' => '#ffffff',
 

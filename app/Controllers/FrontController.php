@@ -1,6 +1,7 @@
 <?php
 
 namespace ResponsiveMenu\Controllers;
+use ResponsiveMenu\Collections\OptionsCollection;
 use ResponsiveMenu\View\View;
 use ResponsiveMenu\Management\OptionManager;
 use ResponsiveMenu\Formatters\Minifier;
@@ -45,18 +46,20 @@ class FrontController {
 
         if($options['shortcode'] == 'on'):
             add_shortcode('responsive_menu', function($atts) use($options) {
-                return $this->view->render('app.html', ['options' => array_merge($options, $atts)]);
+                $merged_options = array_merge($options->toArray(), $atts);
+                $new_collection = new OptionsCollection($merged_options);
+                return $this->view->render('app.html.twig', ['options' => $new_collection]);
             });
         else:
             add_action('wp_footer', function() use($options) {
-                echo $this->view->render('app.html', ['options' => $options]);
+                echo $this->view->render('app.html.twig', ['options' => $options]);
             });
         endif;
 
     }
 
     public function preview() {
-        return $this->view->render('preview.html');
+        return $this->view->render('preview.html.twig');
     }
 
 }

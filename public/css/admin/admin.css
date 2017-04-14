@@ -333,6 +333,15 @@ li.draggable {
     display: block;
 }
 
+#responsive-menu-header-bar-html-content,
+responsive-menu-menu-additional-content {
+    height: 250px;
+}
+
+#responsive-menu-custom-css {
+    height: 500px
+}
+
 @media screen and (max-width: 1200px) {
     .container-fluid #banner-area,
     .container-fluid #options-area {
