@@ -4,7 +4,7 @@
         {% include 'admin/tabs.html.twig' %}
         <div id='options-area'>
             {% include 'admin/options.html.twig' %}
-            <input type='hidden' id='responsive-menu-current-page' name='responsive-menu-current-page' value="{{ current_page }}" />
+            <input type='hidden' id='responsive-menu-current-page' name='responsive-menu-current-page' value="{{ current_page() }}" />
             <button type='button' id='responsive-menu-preview' name='responsive-menu-preview' class='btn btn-default'>Preview Changes</button>
             <button type='submit' name='responsive-menu-submit' class='btn btn-primary'>Update Options</button>
         </div><!--

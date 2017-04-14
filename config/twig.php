@@ -46,6 +46,7 @@ $twig->addFunction(new Twig_SimpleFunction('build_menu', function($env, $options
 
 $twig->addGlobal('search_url', function_exists('icl_get_home_url') ? icl_get_home_url() : get_home_url());
 $twig->addGlobal('admin_url', get_admin_url());
-$twig->addGlobal('current_page', isset($_POST['responsive-menu-current-page']) ? $_POST['responsive-menu-current-page'] : get_option('responsive_menu_current_page', 'initial-setup'));
-
+$twig->addFunction(new Twig_SimpleFunction('current_page', function() {
+    return get_option('responsive_menu_current_page', 'initial-setup');
+}));
 return $twig;
