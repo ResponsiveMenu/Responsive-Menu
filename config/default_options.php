@@ -118,6 +118,7 @@ function get_responsive_menu_default_options() {
         'menu_maximum_width' => null,
         'menu_maximum_width_unit' => 'px',
         'menu_auto_height' => 'off',
+        'menu_adjust_for_wp_admin_bar' => 'off',
         'menu_additional_content' => null,
         'menu_additional_content_colour' => '#fff',
         'menu_title' => null,
