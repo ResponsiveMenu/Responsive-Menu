@@ -119,7 +119,7 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 
 == Changelog ==
 
-= 3.1.0 (13th April 2017) =
+= 3.1.0 (14th April 2017) =
 * **Requires PHP 5.4**
 * Massive overhaul of codebase
 * Speed improvements to front end and admin
