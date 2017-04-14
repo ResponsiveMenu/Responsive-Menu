@@ -273,7 +273,7 @@ button#responsive-menu-button,
          bottom: {{ (options.button_line_margin + options.button_line_height) * -1 }}px;
     }
 
-    {% include 'css/animations/boring.css.twig' %}
+    {% include 'css/animations/' ~ options.button_click_animation ~ '.css.twig' %}
 
     button#responsive-menu-button {
         width: {{ options.button_width }}px;
