@@ -74,5 +74,4 @@ jQuery(function($) {
         $('#responsive-menu-current-page').val(tab_name);
     });
 
-
 });
