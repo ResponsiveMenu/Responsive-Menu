@@ -7,6 +7,7 @@ class ColourTest extends TestCase {
 
     public function testColourList() {
         return [
+
             // These should fail
             ['foo', false],
             ['bar', false],
@@ -14,12 +15,17 @@ class ColourTest extends TestCase {
             ['#f', false],
             ['#f', false],
             ['#ff', false],
+            ['##fff', false],
+            ['rgba(54,54,54)', false],
 
             // These should pass
             ['#fff', true],
             ['#ffffff', true],
+            ['#333333', true],
+            ['#7f7f7f', true],
             ['rgba(54,54,54,0.5)', true],
-            ['rgba(54,54,54)', true],
+            ['rgba(54, 54, 54, 0.5)', true]
+
         ];
     }
 
