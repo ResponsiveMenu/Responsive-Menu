@@ -15,52 +15,52 @@ class OptionManager {
     }
 
     public function all() {
-        $options = $this->db->all('responsive_menu');
+        $options = $this->db->all('responsive_menu_pro');
         return new OptionsCollection($options);
     }
 
     public function updateOptions(array $options) {
-        $updated_options = [];
-        foreach($options as $name => $val):
+        $updated_options = $this->combineOptions($options);
+        foreach($updated_options as $name => $val):
             $val = is_array($val) ? json_encode($val) : $val;
             $val = stripslashes($val);
             $updated_options[$name] = $val;
-            $this->db->update('responsive_menu', ['value' => $val], ['name' => $name]);
+            $this->db->update('responsive_menu_pro', ['value' => $val], ['name' => $name]);
         endforeach;
-        return new OptionsCollection($this->combineOptions($updated_options));
+        return new OptionsCollection($updated_options);
     }
 
     public function createOptions(array $options) {
-        $updated_options = [];
+        $updated_options = $this->combineOptions($options);
         foreach($options as $name => $val):
             $val = is_array($val) ? json_encode($val) : $val;
             $val = stripslashes($val);
             $updated_options[$name] = $val;
-            $this->db->insert('responsive_menu', ['name' => $name, 'value' => $val]);
+            $this->db->insert('responsive_menu_pro', ['name' => $name, 'value' => $val]);
         endforeach;
-        return new OptionsCollection($this->combineOptions($updated_options));
+        return new OptionsCollection($updated_options);
     }
 
     public function removeOptions(array $options) {
-        $updated_options = $options;
+        $updated_options = $this->combineOptions($options);
         foreach($options as $name => $val):
             $val = is_array($val) ? json_encode($val) : $val;
             $val = stripslashes($val);
             $updated_options[$name] = $val;
             unset($updated_options[$name]);
-            $this->db->delete('responsive_menu', ['name' => $name]);
+            $this->db->delete('responsive_menu_pro', ['name' => $name]);
         endforeach;
-        return new OptionsCollection($this->combineOptions($updated_options));
+        return new OptionsCollection($updated_options);
     }
 
     public function buildFromArray(array $options) {
-        $new_options = [];
+        $new_options = $this->combineOptions($options);
         foreach($options as $name => $val):
             $val = is_array($val) ? json_encode($val) : $val;
             $val = stripslashes($val);
             $new_options[$name] = $val;
         endforeach;
-        return new OptionsCollection($this->combineOptions($new_options));
+        return new OptionsCollection($new_options);
     }
 
     private function combineOptions($new_options) {
