@@ -15,7 +15,7 @@ class OptionManager {
     }
 
     public function all() {
-        $options = $this->db->all('responsive_menu_pro');
+        $options = $this->db->all('responsive_menu');
         return new OptionsCollection($options);
     }
 
@@ -25,7 +25,7 @@ class OptionManager {
             $val = is_array($val) ? json_encode($val) : $val;
             $val = stripslashes($val);
             $updated_options[$name] = $val;
-            $this->db->update('responsive_menu_pro', ['value' => $val], ['name' => $name]);
+            $this->db->update('responsive_menu', ['value' => $val], ['name' => $name]);
         endforeach;
         return new OptionsCollection($updated_options);
     }
@@ -36,7 +36,7 @@ class OptionManager {
             $val = is_array($val) ? json_encode($val) : $val;
             $val = stripslashes($val);
             $updated_options[$name] = $val;
-            $this->db->insert('responsive_menu_pro', ['name' => $name, 'value' => $val]);
+            $this->db->insert('responsive_menu', ['name' => $name, 'value' => $val]);
         endforeach;
         return new OptionsCollection($updated_options);
     }
@@ -48,7 +48,7 @@ class OptionManager {
             $val = stripslashes($val);
             $updated_options[$name] = $val;
             unset($updated_options[$name]);
-            $this->db->delete('responsive_menu_pro', ['name' => $name]);
+            $this->db->delete('responsive_menu', ['name' => $name]);
         endforeach;
         return new OptionsCollection($updated_options);
     }
