@@ -64,6 +64,22 @@
     margin-bottom: 0;
 }
 
+.container-fluid form.form-horizontal #font-icon-container {
+    width: 100%;
+}
+
+.container-fluid form.form-horizontal #font-icon-container td {
+    padding: 0 0 10px 0;
+}
+
+.container-fluid form.form-horizontal #font-icon-container td input {
+    width: 95% !important;
+}
+
+.container-fluid form.form-horizontal #font-icon-container td:first-child {
+    width: 150px;
+}
+
 .container-fluid form.form-horizontal .panel {
     border-radius: 0;
 }

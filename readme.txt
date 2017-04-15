@@ -125,6 +125,7 @@ To view our whole FAQ, please go to https://responsive.menu/faq/
 * Speed improvements to front end and admin
 * Admin now uses BootStrap
 * Twig templating engine implemented
+* Added admin form validation to help catch data errors
 * Back to on slide effect now customisable - Pro only
 * Added option to adjust for WP Admin bar - Pro only
 * Bug fixes and compatibility fixes
