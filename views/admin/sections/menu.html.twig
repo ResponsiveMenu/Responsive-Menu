@@ -77,7 +77,7 @@
                     {% endif %}
                     <tr>
                         <td><input type='text' class='form-control' name='menu[menu_font_icons][id][]' placeholder='32' /></td>
-                        <td><input type='text' class='form-control' name='menu[menu_font_icons][icon][]' placeholder='fa-cog' /></td>
+                        <td><input type='text' class='form-control' name='menu[menu_font_icons][icon][]' placeholder='cog' /></td>
                     </tr>
                 </table>
                 <button id='add-font-icon' class='btn btn-primary' type='button'>Add Font Icon</button>
@@ -98,7 +98,7 @@
 </script>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Menu Sizing</div>
+    <div class='panel-body'>Sizing</div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_width', 'Width', 'input', options, errors, 'has-unit', 'semi-pro', '', 'percentage') }}
         {{ macros.row('menu_maximum_width', 'Maximum Width', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel') }}
@@ -111,7 +111,7 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Menu Title</div>
+    <div class='panel-body'>Title</div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_title', 'Text', 'input', options, errors) }}
         {{ macros.row('menu_title_link', 'Link', 'input', options, errors) }}
