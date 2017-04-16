@@ -11,6 +11,8 @@ if(is_admin()):
             $controller = get_responsive_menu_service('admin_controller');
             echo $controller->export();
             exit();
+        elseif(isset($_POST['responsive-menu-rebuild-db'])):
+            update_option('responsive_menu_version', '2.8.9');
         endif;
         add_menu_page(
             'Responsive Menu',
@@ -35,6 +37,8 @@ if(is_admin()):
                     $file = $_FILES['responsive-menu-import-file'];
                     $file_options = isset($file['tmp_name']) ? (array) json_decode(file_get_contents($file['tmp_name'])) : null;
                     echo $controller->import($file_options, $menus_array, $location_menus);
+                elseif(isset($_POST['responsive-menu-rebuild-db'])):
+                    echo $controller->rebuild($menus_array, $location_menus);
                 else:
                     echo $controller->index($menus_array, $location_menus);
                 endif;

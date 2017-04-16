@@ -25,6 +25,18 @@ class AdminController {
         );
     }
 
+    public function rebuild($nav_menus, $location_menus) {
+        return $this->view->render(
+            'admin/main.html.twig',
+            [
+                'options' => $this->manager->all(),
+                'nav_menus' => $nav_menus,
+                'location_menus' => $location_menus,
+                'alert' => ['success' => 'Responsive Menu Database Rebuilt Successfully.']
+            ]
+        );
+    }
+
     public function update($new_options, $nav_menus, $location_menus) {
         $validator = new Validator();
         $errors = [];
