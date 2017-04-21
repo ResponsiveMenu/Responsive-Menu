@@ -15,7 +15,7 @@ add_action('admin_init', function() {
 
     if($migration->needsTable()) {
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-
+        global $wpdb;
         maybe_create_table(
             $wpdb->prefix . 'responsive_menu',
             "CREATE TABLE " . $wpdb->prefix . "responsive_menu (
