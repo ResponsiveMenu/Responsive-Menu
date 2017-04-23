@@ -67,7 +67,7 @@
 {% endmacro %}
 
 {% macro input(name, value, class='') %}
-    <input type='text' id='responsive-menu-{{ name|replace('_', '-') }}' name='menu[{{ name }}]' value='{{ value }}' class='form-control {{ class }}'>
+    <input type='text' id='responsive-menu-{{ name|replace('_', '-') }}' name='menu[{{ name }}]' value='{{ value|escape }}' class='form-control {{ class }}'>
 {% endmacro %}
 
 {% macro colour(name, value) %}
