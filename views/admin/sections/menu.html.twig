@@ -62,22 +62,17 @@
                     <tr>
                         <td>Menu Item ID</td>
                         <td>Icon</td>
+                        <td>Type</td>
                     </tr>
-                    {% set icons = options.menu_font_icons|json_decode %}
-                    {% if icons is iterable %}
-                        {% set ids_and_icons = combine(icons.id, icons.icon) %}
-                        {% for id, icon in ids_and_icons %}
-                            {% if icon or id %}
-                                <tr>
-                                    <td><input type='text' class='form-control' value='{{ id }}' name='menu[menu_font_icons][id][]' placeholder='32' /></td>
-                                    <td><input type='text' class='form-control' value='{{ icon }}' name='menu[menu_font_icons][icon][]' placeholder='fa-cog' /></td>
-                                </tr>
-                            {% endif %}
-                        {% endfor %}
-                    {% endif %}
                     <tr>
                         <td><input type='text' class='form-control' name='menu[menu_font_icons][id][]' placeholder='32' /></td>
                         <td><input type='text' class='form-control' name='menu[menu_font_icons][icon][]' placeholder='cog' /></td>
+                        <td>
+                            <select class='selectpicker show-tick' name='menu[menu_font_icons][type][]'>
+                                <option value='font-awesome' selected='selected'>FontAwesome</option>
+                                <option value='custom'>Custom</option>
+                            </select>
+                        </td>
                     </tr>
                 </table>
                 <button id='add-font-icon' class='btn btn-primary' type='button'>Add Font Icon</button>
