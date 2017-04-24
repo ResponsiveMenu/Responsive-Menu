@@ -7,10 +7,7 @@ class OptionsCollection implements \ArrayAccess, \Countable {
     private $options;
 
     public function __construct(array $options = []) {
-        $this->options = array_map(function($o) {
-            $val = is_array($o) ? json_encode($o) : $o;
-            return stripslashes($val);
-        }, $options);
+        $this->options = $options;
     }
 
     public function add(array $option) {
@@ -63,9 +60,9 @@ class OptionsCollection implements \ArrayAccess, \Countable {
     public function offsetGet($offset) {
         if(isset($this->options[$offset]))
             if(is_array($this->options[$offset]))
-                return json_encode($this->options[$offset]);
+                return stripslashes(json_encode($this->options[$offset]));
             else
-                return $this->options[$offset];
+                return stripslashes($this->options[$offset]);
 
         return null;
     }
