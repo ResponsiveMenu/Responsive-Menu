@@ -7,7 +7,10 @@ class OptionsCollection implements \ArrayAccess, \Countable {
     private $options;
 
     public function __construct(array $options = []) {
-        $this->options = $options;
+        $this->options = array_map(function($o) {
+            $val = is_array($o) ? json_encode($o) : $o;
+            return stripslashes($val);
+        }, $options);
     }
 
     public function add(array $option) {
