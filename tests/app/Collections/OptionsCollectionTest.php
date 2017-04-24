@@ -55,6 +55,13 @@ class OptionsCollectionTest extends TestCase {
         $this->assertEquals($this->options, $collection->toArray());
     }
 
+    public function testStringIsAlwaysReturnedFromConstructor() {
+        $array = ['array' => ['moon' => 'rise']];
+        $collection = new OptionsCollection($array);
+
+        $this->assertEquals(json_encode($array['array']), $collection['array']);
+    }
+
     public function testStringIsAlwaysReturned() {
         $collection = new OptionsCollection($this->options);
         $array = ['array' => ['moon' => 'rise']];

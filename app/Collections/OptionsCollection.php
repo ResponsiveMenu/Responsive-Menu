@@ -7,11 +7,14 @@ class OptionsCollection implements \ArrayAccess, \Countable {
     private $options;
 
     public function __construct(array $options = []) {
-        $this->options = $options;
+        $this->options = array_map(function($o) {
+            return is_array($o) ? stripslashes(json_encode($o)) : stripslashes($o);
+        }, $options);
     }
 
     public function add(array $option) {
-        $this->options = array_replace($this->options, $option);
+        $value = $option[key($option)];
+        $this->options[key($option)] = is_array($value) ? stripslashes(json_encode($value)) : stripslashes($value);
     }
 
     public function getActiveArrow() {
@@ -54,16 +57,9 @@ class OptionsCollection implements \ArrayAccess, \Countable {
         return array_key_exists($offset, $this->options);
     }
 
-    /*
-     * All items returned must be a string or null
-     */
     public function offsetGet($offset) {
         if(isset($this->options[$offset]))
-            if(is_array($this->options[$offset]))
-                return stripslashes(json_encode($this->options[$offset]));
-            else
-                return stripslashes($this->options[$offset]);
-
+            return $this->options[$offset];
         return null;
     }
 
