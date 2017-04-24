@@ -11,7 +11,7 @@ class Integer extends BaseValidator {
             $valid_integer = true;
 
         if(!$valid_integer)
-            $this->error = 'Invalid integer - it must be a whole number';
+            $this->error = 'Invalid integer - must be a whole number';
 
         return $valid_integer;
     }

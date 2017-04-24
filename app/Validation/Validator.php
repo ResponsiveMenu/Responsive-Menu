@@ -30,6 +30,32 @@ class Validator {
 
     private $validation_map = [
 
+        // Integer Validators
+        'breakpoint' => ['validator' => 'Integer'],
+        'button_line_width' => ['validator' => 'Integer'],
+        'button_line_height' => ['validator' => 'Integer'],
+        'button_line_margin' => ['validator' => 'Integer'],
+        'button_width' => ['validator' => 'Integer'],
+        'button_height' => ['validator' => 'Integer'],
+        'button_top' => ['validator' => 'Integer'],
+        'animation_speed' => ['validator' => 'Integer'],
+        'transition_speed' => ['validator' => 'Integer'],
+        'button_font_size' => ['validator' => 'Integer'],
+        'button_title_line_height' => ['validator' => 'Integer'],
+        'menu_width' => ['validator' => 'Integer'],
+        'menu_title_font_size' => ['validator' => 'Integer'],
+        'menu_border_width' => ['validator' => 'Integer'],
+        'menu_font_size' => ['validator' => 'Integer'],
+        'menu_links_height' => ['validator' => 'Integer'],
+        'submenu_arrow_height' => ['validator' => 'Integer'],
+        'submenu_arrow_width' => ['validator' => 'Integer'],
+        'header_bar_height' => ['validator' => 'Integer'],
+        'header_bar_font_size' => ['validator' => 'Integer'],
+        'single_menu_height' => ['validator' => 'Integer'],
+        'single_menu_font_size' => ['validator' => 'Integer'],
+        'single_menu_submenu_font_size' => ['validator' => 'Integer'],
+        'single_menu_submenu_height' => ['validator' => 'Integer'],
+
         // Colour Validators
         'button_background_colour' => ['validator' => 'Colour'],
         'button_background_colour_hover' => ['validator' => 'Colour'],
