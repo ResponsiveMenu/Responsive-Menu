@@ -7,15 +7,17 @@ class Validator {
     private $errors;
 
     public function validate($options) {
-        foreach($options as $key => $value):
-            if(isset($this->validation_map[$key])):
-                $validator_name = 'ResponsiveMenu\Validation\Validators\\' . $this->validation_map[$key]['validator'];
-                $validator = new $validator_name($value);
-                if(!$validator->validate()):
-                    $nice_name = isset($this->validation_map[$key]['nice_name']) ? $this->validation_map[$key]['nice_name'] : str_replace('_', ' ', ucwords($key));
-                    $this->errors[$key] = 'Validation failed on <a class="validation-error" href="#responsive-menu-' . str_replace('_', '-', $key) . '">'  . $nice_name . '</a>: ' . $validator->getErrorMessage();
+        foreach($this->validation_map as $validator_name => $options_list):
+            foreach($options_list as $option):
+                if(isset($options[$option])):
+                    $validator_obj = 'ResponsiveMenu\Validation\Validators\\' . $validator_name;
+                    $validator = new $validator_obj($options[$option]);
+                    if(!$validator->validate()):
+                        $nice_name = str_replace('_', ' ', ucwords($option));
+                        $this->errors[$option][] = 'Validation failed on <a class="validation-error" href="#responsive-menu-' . str_replace('_', '-', $option) . '">'  . $nice_name . '</a>: ' . $validator->getErrorMessage();
+                    endif;
                 endif;
-            endif;
+            endforeach;
         endforeach;
 
         if(!empty($this->errors))
@@ -31,81 +33,91 @@ class Validator {
     private $validation_map = [
 
         // Numeric Validators
-        'breakpoint' => ['validator' => 'Numeric'],
-        'button_line_width' => ['validator' => 'Numeric'],
-        'button_line_height' => ['validator' => 'Numeric'],
-        'button_line_margin' => ['validator' => 'Numeric'],
-        'button_width' => ['validator' => 'Numeric'],
-        'button_height' => ['validator' => 'Numeric'],
-        'button_top' => ['validator' => 'Numeric'],
-        'animation_speed' => ['validator' => 'Numeric'],
-        'transition_speed' => ['validator' => 'Numeric'],
-        'button_font_size' => ['validator' => 'Numeric'],
-        'button_title_line_height' => ['validator' => 'Numeric'],
-        'menu_width' => ['validator' => 'Numeric'],
-        'menu_title_font_size' => ['validator' => 'Numeric'],
-        'menu_border_width' => ['validator' => 'Numeric'],
-        'menu_font_size' => ['validator' => 'Numeric'],
-        'menu_links_height' => ['validator' => 'Numeric'],
-        'submenu_arrow_height' => ['validator' => 'Numeric'],
-        'submenu_arrow_width' => ['validator' => 'Numeric'],
-        'header_bar_height' => ['validator' => 'Numeric'],
-        'header_bar_font_size' => ['validator' => 'Numeric'],
-        'single_menu_height' => ['validator' => 'Numeric'],
-        'single_menu_font_size' => ['validator' => 'Numeric'],
-        'single_menu_submenu_font_size' => ['validator' => 'Numeric'],
-        'single_menu_submenu_height' => ['validator' => 'Numeric'],
+        'Numeric' => [
+            'breakpoint',
+            'button_line_width',
+            'button_line_height',
+            'button_line_margin',
+            'button_width',
+            'button_height',
+            'button_top',
+            'animation_speed',
+            'transition_speed',
+            'button_font_size',
+            'button_title_line_height',
+            'menu_width',
+            'menu_title_font_size',
+            'menu_border_width',
+            'menu_font_size',
+            'menu_links_height',
+            'submenu_arrow_height',
+            'submenu_arrow_width',
+            'header_bar_height',
+            'header_bar_font_size',
+            'single_menu_height',
+            'single_menu_font_size',
+            'single_menu_submenu_font_size',
+            'single_menu_submenu_height',
+        ],
+
+        // Positive Digits
+        'Positive' => [
+            'breakpoint',
+        ],
 
         // Colour Validators
-        'button_background_colour' => ['validator' => 'Colour'],
-        'button_background_colour_hover' => ['validator' => 'Colour'],
-        'button_line_colour' => ['validator' => 'Colour'],
-        'button_text_colour' => ['validator' => 'Colour'],
-        'menu_background_colour' => ['validator' => 'Colour'],
-        'menu_item_background_colour' => ['validator' => 'Colour'],
-        'menu_item_background_hover_colour' => ['validator' => 'Colour'],
-        'menu_item_border_colour' => ['validator' => 'Colour'],
-        'menu_item_border_colour_hover' => ['validator' => 'Colour'],
-        'menu_title_background_colour' => ['validator' => 'Colour'],
-        'menu_title_background_hover_colour' => ['validator' => 'Colour'],
-        'menu_current_item_background_colour' => ['validator' => 'Colour'],
-        'menu_current_item_background_hover_colour' => ['validator' => 'Colour'],
-        'menu_current_item_border_colour' => ['validator' => 'Colour'],
-        'menu_current_item_border_hover_colour' => ['validator' => 'Colour'],
-        'menu_title_colour' => ['validator' => 'Colour'],
-        'menu_title_hover_colour' => ['validator' => 'Colour'],
-        'menu_link_colour' => ['validator' => 'Colour'],
-        'menu_link_hover_colour' => ['validator' => 'Colour'],
-        'menu_current_link_colour' => ['validator' => 'Colour'],
-        'menu_current_link_hover_colour' => ['validator' => 'Colour'],
-        'menu_sub_arrow_border_colour' => ['validator' => 'Colour'],
-        'menu_sub_arrow_border_hover_colour' => ['validator' => 'Colour'],
-        'menu_sub_arrow_border_colour_active' => ['validator' => 'Colour'],
-        'menu_sub_arrow_border_hover_colour_active' => ['validator' => 'Colour'],
-        'menu_sub_arrow_background_colour' => ['validator' => 'Colour'],
-        'menu_sub_arrow_background_hover_colour' => ['validator' => 'Colour'],
-        'menu_sub_arrow_background_colour_active' => ['validator' => 'Colour'],
-        'menu_sub_arrow_background_hover_colour_active' => ['validator' => 'Colour'],
-        'menu_sub_arrow_shape_colour' => ['validator' => 'Colour'],
-        'menu_sub_arrow_shape_hover_colour' => ['validator' => 'Colour'],
-        'menu_sub_arrow_shape_colour_active' => ['validator' => 'Colour'],
-        'menu_sub_arrow_shape_hover_colour_active' => ['validator' => 'Colour'],
-        'menu_additional_content_colour' => ['validator' => 'Colour'],
-        'menu_overlay_colour' => ['validator' => 'Colour'],
-        'menu_search_box_text_colour' => ['validator' => 'Colour'],
-        'menu_search_box_border_colour' => ['validator' => 'Colour'],
-        'menu_search_box_background_colour' => ['validator' => 'Colour'],
-        'menu_search_box_placeholder_colour' => ['validator' => 'Colour'],
-        'single_menu_item_link_colour' => ['validator' => 'Colour'],
-        'single_menu_item_link_colour_hover' => ['validator' => 'Colour'],
-        'single_menu_item_background_colour' => ['validator' => 'Colour'],
-        'single_menu_item_background_colour_hover' => ['validator' => 'Colour'],
-        'single_menu_item_submenu_link_colour' => ['validator' => 'Colour'],
-        'single_menu_item_submenu_link_colour_hover' => ['validator' => 'Colour'],
-        'single_menu_item_submenu_background_colour' => ['validator' => 'Colour'],
-        'single_menu_item_submenu_background_colour_hover' => ['validator' => 'Colour'],
-        'header_bar_background_color' => ['validator' => 'Colour'],
-        'header_bar_text_color' => ['validator' => 'Colour']
+        'Colour' => [
+            'button_background_colour',
+            'button_background_colour_hover',
+            'button_line_colour',
+            'button_text_colour',
+            'menu_background_colour',
+            'menu_item_background_colour',
+            'menu_item_background_hover_colour',
+            'menu_item_border_colour',
+            'menu_item_border_colour_hover',
+            'menu_title_background_colour',
+            'menu_title_background_hover_colour',
+            'menu_current_item_background_colour',
+            'menu_current_item_background_hover_colour',
+            'menu_current_item_border_colour',
+            'menu_current_item_border_hover_colour',
+            'menu_title_colour',
+            'menu_title_hover_colour',
+            'menu_link_colour',
+            'menu_link_hover_colour',
+            'menu_current_link_colour',
+            'menu_current_link_hover_colour',
+            'menu_sub_arrow_border_colour',
+            'menu_sub_arrow_border_hover_colour',
+            'menu_sub_arrow_border_colour_active',
+            'menu_sub_arrow_border_hover_colour_active',
+            'menu_sub_arrow_background_colour',
+            'menu_sub_arrow_background_hover_colour',
+            'menu_sub_arrow_background_colour_active',
+            'menu_sub_arrow_background_hover_colour_active',
+            'menu_sub_arrow_shape_colour',
+            'menu_sub_arrow_shape_hover_colour',
+            'menu_sub_arrow_shape_colour_active',
+            'menu_sub_arrow_shape_hover_colour_active',
+            'menu_additional_content_colour',
+            'menu_overlay_colour',
+            'menu_search_box_text_colour',
+            'menu_search_box_border_colour',
+            'menu_search_box_background_colour',
+            'menu_search_box_placeholder_colour',
+            'single_menu_item_link_colour',
+            'single_menu_item_link_colour_hover',
+            'single_menu_item_background_colour',
+            'single_menu_item_background_colour_hover',
+            'single_menu_item_submenu_link_colour',
+            'single_menu_item_submenu_link_colour_hover',
+            'single_menu_item_submenu_background_colour',
+            'single_menu_item_submenu_background_colour_hover',
+            'header_bar_background_color',
+            'header_bar_text_color',
+        ]
+
     ];
-    
+
 }
