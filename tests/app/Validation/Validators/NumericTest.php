@@ -3,9 +3,9 @@
 use PHPUnit\Framework\TestCase;
 use ResponsiveMenu\Validation\Validators;
 
-class IntegerTest extends TestCase {
+class NumericTest extends TestCase {
 
-    public function testColourList() {
+    public function testNumberList() {
         return [
 
             // These should fail
@@ -18,22 +18,29 @@ class IntegerTest extends TestCase {
 
             // These should pass
             ['0', true],
+            ['0.2', true],
             ['1', true],
+            ['1.2', true],
             ['-1', true],
+            ['-3.4', true],
             ['44', true],
             [0, true],
+            [0.3, true],
             [1, true],
+            [1.6, true],
             [-1, true],
-            [44, true]
+            [-1.2, true],
+            [44, true],
+            [44.8, true]
 
         ];
     }
 
     /**
-     * @dataProvider testColourList
+     * @dataProvider testNumberList
      */
     public function testIntegerIsValidated($number, $expected) {
-        $validator = new Validators\Integer($number);
+        $validator = new Validators\Numeric($number);
         $this->assertEquals($expected, $validator->validate());
     }
 

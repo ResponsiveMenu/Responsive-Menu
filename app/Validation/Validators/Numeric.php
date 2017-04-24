@@ -2,7 +2,7 @@
 
 namespace ResponsiveMenu\Validation\Validators;
 
-class Integer extends BaseValidator {
+class Numeric extends BaseValidator {
 
     public function validate() {
         $valid_integer = false;
@@ -11,7 +11,7 @@ class Integer extends BaseValidator {
             $valid_integer = true;
 
         if(!$valid_integer)
-            $this->error = 'Invalid integer - must be a whole number';
+            $this->error = 'Invalid number';
 
         return $valid_integer;
     }
