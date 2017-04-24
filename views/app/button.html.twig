@@ -4,7 +4,7 @@
         type="button"
         aria-label="Menu">
 
-    {% if options.button_title_position == 'top' or options.button_title_position == 'left' %}
+    {% if options.button_title_position == 'top' or options.button_title_position == 'left' and options.button_title %}
         <span class="responsive-menu-label responsive-menu-label-{{ options.button_title_position }}">
             {{ options.button_title|translate('button_title') }}
         </span>
@@ -14,7 +14,7 @@
         {{ options.getButtonIcon()|raw }}{{ options.getButtonIconActive()|raw }}
     </span>
 
-    {% if options.button_title_position == 'bottom' or options.button_title_position == 'right' %}
+    {% if options.button_title_position == 'bottom' or options.button_title_position == 'right' and options.button_title %}
         <span class="responsive-menu-label responsive-menu-label-{{ options.button_title_position }}">
             {{ options.button_title|translate('button_title') }}
         </span>
