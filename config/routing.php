@@ -7,7 +7,7 @@ if(is_admin()):
             header('Pragma: no-cache');
             header('Expires: 0');
             header('Content-Type: application/json; charset=utf-8');
-            header('Content-Disposition: attachment; filename=export.json');
+            header('Content-Disposition: attachment; filename=responsive-menu-settings.json');
             $controller = get_responsive_menu_service('admin_controller');
             echo $controller->export();
             exit();

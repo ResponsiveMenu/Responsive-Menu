@@ -50,20 +50,18 @@ class Walker extends \Walker_Nav_Menu {
         $atts['href']   = ! empty( $item->url )        ? $item->url        : '';
         $atts['class']   = 'responsive-menu-item-link';
 
-        $atts = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args, $depth );
+        $atts = apply_filters('nav_menu_link_attributes', $atts, $item, $args, $depth);
 
         $attributes = '';
-        foreach ( $atts as $attr => $value ) {
-            if ( ! empty( $value ) ) {
-                $value = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
+        foreach ($atts as $attr => $value) {
+            if (!empty( $value)) {
+                $value = ('href' === $attr ) ? esc_url( $value) : esc_attr($value);
                 $attributes .= ' ' . $attr . '="' . $value . '"';
             }
         }
 
-        /** This filter is documented in wp-includes/post-template.php */
-        $title = apply_filters( 'the_title', $item->title, $item->ID );
-
-        $title = apply_filters( 'nav_menu_item_title', $title, $item, $args, $depth );
+        $title = apply_filters('the_title', $item->title, $item->ID);
+        $title = apply_filters('nav_menu_item_title', $title, $item, $args, $depth);
 
         /* Calculate which arrow to show */
         if(in_array('responsive-menu-item-has-children', $responsive_menu_classes)):
@@ -91,7 +89,7 @@ class Walker extends \Walker_Nav_Menu {
         $item_output .= $initial_arrow;
         $item_output .= '</a>';
 
-        $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+        $output .= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args);
 
     }
 
