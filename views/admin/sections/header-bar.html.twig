@@ -23,7 +23,7 @@
                        target='_blank'>Click to upgrade now to use</a>
                 </div>
                 <ul id='header-bar-sortable'>
-                    {% for key, selected in options.header_bar_items_order|json_decode %}
+                    {% for key, selected in header_bar_items(options.header_bar_items_order|json_decode) %}
                         <li class='draggable'>
                             {{ key|title }}
                             <input type='text' class='orderable-item' value='{{ selected }}' name='menu[header_bar_items_order][{{ key }}]' />
