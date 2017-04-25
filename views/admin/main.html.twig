@@ -3,6 +3,10 @@
         {% include 'admin/alerts.html.twig' %}
         {% include 'admin/tabs.html.twig' %}
         <div id='options-area'>
+            <div id="filter-options-container">
+                <label for="filter-options">Filter Options</label>
+                <input type="search" class="form-control" name="filter-options" id="filter-options" placeholder="Start typing to filter options" />
+            </div>
             {% include 'admin/options.html.twig' %}
             <input type='hidden' id='responsive-menu-current-page' name='responsive-menu-current-page' value="{{ current_page() }}" />
             <button type='button' id='responsive-menu-preview' name='responsive-menu-preview' class='btn btn-default'>Preview Changes</button>

@@ -77,7 +77,8 @@ jQuery(function($) {
     $(document).on('keyup', '#filter-options', function() {
         var search_query = $(this).val();
         var current_tab = $('.nav-tabs .active').attr('id');
-        $('.nav-tabs').hide();
+        $('#options-area').css('width', '99%');
+        $('.nav-tabs, #banner-area').hide();
         if(search_query) {
            $('.tab-pane').show().css('opacity', '1');
            $('.control-label').closest('tr').hide();
@@ -89,13 +90,15 @@ jQuery(function($) {
            $('#options-area .table-bordered').each(function(i) {
               if($(this).children('tbody').children(':visible').length == 0) {
                   $(this).parents('.panel').hide();
+              } else {
+                  $(this).parents('.panel').show();
               }
            });
         } else {
             $('.tab-pane').css('display', '').css('opacity', '');
             $('.control-label').closest('tr').show();
-            $('.nav-tabs').show();
-            $('.panel').show();
+            $('.nav-tabs, #banner-area, .panel').show();
+            $('#options-area').css('width', '');
         }
     });
 
