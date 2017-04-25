@@ -111,14 +111,15 @@ To view our FAQ, please go to <a href="https://responsive.menu/faq">https://resp
 
 == Changelog ==
 
-= 3.1.0 (14th April 2017) =
+= 3.1.0 (25th April 2017) =
 * **Requires PHP 5.4**
 * Massive overhaul of codebase
-* Speed improvements to front end and admin
+* Speed improvements to front and back end
 * Admin now uses BootStrap
 * Twig templating engine implemented
 * Added admin form validation to help catch data errors
 * Added a rebuild database option
+* Done away with SASS on the fly compilation
 * Back to on slide effect now customisable - Pro only
 * Added option to adjust for WP Admin bar - Pro only
 * Bug fixes and compatibility fixes
