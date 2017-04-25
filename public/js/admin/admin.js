@@ -75,17 +75,17 @@ jQuery(function($) {
     });
 
     $(document).on('keyup', '#filter-options', function() {
-       var search_query = $(this).val();
+        var search_query = $(this).val();
         var current_tab = $('.nav-tabs .active').attr('id');
         if(search_query) {
            $('.tab-pane').show().css('opacity', '1');
            $('.control-label').closest('tr').hide();
            $('.control-label').each(function (i) {
-               if ($(this).text().indexOf(search_query) >= 0) {
+               if ($(this).text().toLowerCase().indexOf(search_query.toLowerCase()) >= 0) {
                    $(this).closest('tr').show();
                }
            });
-       } else {
+        } else {
             $('.tab-pane').css('display', '').css('opacity', '');
             $('.control-label').closest('tr').show();
         }
