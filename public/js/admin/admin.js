@@ -74,4 +74,10 @@ jQuery(function($) {
         $('#responsive-menu-current-page').val(tab_name);
     });
 
+    $(document).on('keyup', '#filter-options', function() {
+       var search_query = $(this).val();
+       var current_tab = $('.nav-tabs .active').attr('id');
+       $('.tab-pane').fadeIn();
+    });
+
 });
