@@ -111,6 +111,11 @@ To view our FAQ, please go to <a href="https://responsive.menu/faq">https://resp
 
 == Changelog ==
 
+= 3.1.1 (25th April 2017) =
+* **Requires PHP 5.4**
+* Added filter box in admin for options
+* Bug fixes and compatibility fixes
+
 = 3.1.0 (25th April 2017) =
 * **Requires PHP 5.4**
 * Massive overhaul of codebase

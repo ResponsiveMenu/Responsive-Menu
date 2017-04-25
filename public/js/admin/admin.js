@@ -79,21 +79,30 @@ jQuery(function($) {
         var current_tab = $('.nav-tabs .active').attr('id');
         $('#options-area').css('width', '99%');
         $('.nav-tabs, #banner-area').hide();
+
         if(search_query) {
            $('.tab-pane').show().css('opacity', '1');
+
            $('.control-label').closest('tr').hide();
            $('.control-label').each(function (i) {
                if ($(this).text().toLowerCase().indexOf(search_query.toLowerCase()) >= 0) {
                    $(this).closest('tr').show();
                }
            });
+
            $('#options-area .table-bordered').each(function(i) {
-              if($(this).children('tbody').children(':visible').length == 0) {
-                  $(this).parents('.panel').hide();
-              } else {
+
+               var visible_rows = $(this).children('tbody').children('tr').filter(function() {
+                   return $(this).css('display') == 'table-row';
+               });
+
+              if(visible_rows.length > 0) {
                   $(this).parents('.panel').show();
+              } else {
+                  $(this).parents('.panel').hide();
               }
            });
+
         } else {
             $('.tab-pane').css('display', '').css('opacity', '');
             $('.control-label').closest('tr').show();
