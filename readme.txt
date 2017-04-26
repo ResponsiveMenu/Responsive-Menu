@@ -4,7 +4,7 @@ Donate link: https://responsive.menu/donate
 Tags: responsive, menu, responsive menu, mobile menu, wordpress responsive menu, wp responsive menu, tablet menu, hamburger menu, hamburger, mobile, tablet, 3 lines, 3 line, three line, three lines
 Requires at least: 3.5.0
 Tested up to: 4.7.3
-Stable tag: 3.1.0
+Stable tag: 3.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -111,14 +111,21 @@ To view our FAQ, please go to <a href="https://responsive.menu/faq">https://resp
 
 == Changelog ==
 
-= 3.1.0 (14th April 2017) =
+= 3.1.1 (25th April 2017) =
+* **Requires PHP 5.4**
+* Added menu container background colour option
+* Bug fixes
+
+
+= 3.1.0 (25th April 2017) =
 * **Requires PHP 5.4**
 * Massive overhaul of codebase
-* Speed improvements to front end and admin
+* Speed improvements to front and back end
 * Admin now uses BootStrap
 * Twig templating engine implemented
 * Added admin form validation to help catch data errors
 * Added a rebuild database option
+* Done away with SASS on the fly compilation
 * Back to on slide effect now customisable - Pro only
 * Added option to adjust for WP Admin bar - Pro only
 * Bug fixes and compatibility fixes

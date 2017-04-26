@@ -93,6 +93,7 @@ class AdminController {
             $errors = [];
             if($validator->validate($imported_options)):
                 try {
+                    unset($imported_options['button_click_trigger']);
                     $options = $this->manager->updateOptions($imported_options);
                     $task = new UpdateOptionsTask;
                     $task->run($options, $this->view);
