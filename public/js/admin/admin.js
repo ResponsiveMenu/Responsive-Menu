@@ -82,6 +82,7 @@ jQuery(function($) {
 
         if(search_query) {
            $('.tab-pane').show().css('opacity', '1');
+           $('.panel-body small').css('display', 'block');
 
            $('.control-label').closest('tr').hide();
            $('.control-label').each(function (i) {
@@ -108,6 +109,7 @@ jQuery(function($) {
             $('.control-label').closest('tr').show();
             $('.nav-tabs, #banner-area, .panel').show();
             $('#options-area').css('width', '');
+            $('.panel-body small').css('display', '');
         }
     });
 

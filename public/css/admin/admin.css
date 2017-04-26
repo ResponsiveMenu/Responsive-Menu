@@ -89,6 +89,14 @@
     font-size: 16px;
 }
 
+.container-fluid form.form-horizontal .panel-body small {
+    display: none;
+    float: right;
+    color: #333;
+    font-weight: normal;
+    line-height: 22px;
+}
+
 .container-fluid form.form-horizontal .glyphicon.glyphicon-ok {
     color: green;
 }
