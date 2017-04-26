@@ -259,6 +259,12 @@ button#responsive-menu-button,
          transition-timing-function: ease;
     }
 
+    .responsive-menu-open .responsive-menu-inner,
+    .responsive-menu-open .responsive-menu-inner::before,
+    .responsive-menu-open .responsive-menu-inner::after {
+        background-color: {{ options.button_line_colour_active }};
+    }
+
     .responsive-menu-inner::before,
     .responsive-menu-inner::after {
          content: "";
@@ -292,12 +298,23 @@ button#responsive-menu-button,
 
     {% if options.button_transparent_background == 'off' %}
         button#responsive-menu-button:hover {
-            background: {{ options.button_background_colour }}
+            background: {{ options.button_background_colour_hover }}
         }
     {% endif %}
 
+    {% if options.button_transparent_background == 'off' %}
+        .responsive-menu-open button#responsive-menu-button {
+            background: {{ options.button_background_colour_active }}
+        }
+    {% endif %}
+
+
     button#responsive-menu-button .responsive-menu-box {
         color: {{ options.button_line_colour }};
+    }
+
+    .responsive-menu-open button#responsive-menu-button .responsive-menu-box {
+        color: {{ options.button_line_colour_active }};
     }
 
     .responsive-menu-label {

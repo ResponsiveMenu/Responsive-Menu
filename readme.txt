@@ -115,6 +115,8 @@ To view our FAQ, please go to <a href="https://responsive.menu/faq">https://resp
 * **Requires PHP 5.4**
 * Added filter box in admin for options
 * Added menu container background colour option
+* Added active line colour option
+* Added option to choose custom Font Icons - Pro Only
 * Bug fixes
 
 = 3.1.0 (25th April 2017) =
