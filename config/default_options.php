@@ -74,6 +74,7 @@ function get_responsive_menu_default_options() {
         'auto_expand_current_submenus' => 'off',
 
         'menu_background_colour' => '#212121',
+        'menu_container_background_colour' => '#212121',
         'menu_background_image' => '',
         'menu_item_background_colour' => '#212121',
         'menu_item_background_hover_colour' => '#3f3f3f',
