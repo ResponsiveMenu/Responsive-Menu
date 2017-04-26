@@ -265,6 +265,15 @@ button#responsive-menu-button,
         background-color: {{ options.button_line_colour_active }};
     }
 
+    .responsive-menu-inner:hover,
+    .responsive-menu-inner:hover::before,
+    .responsive-menu-inner:hover::after
+    .responsive-menu-open .responsive-menu-inner:hover,
+    .responsive-menu-open .responsive-menu-inner:hover::before,
+    .responsive-menu-open .responsive-menu-inner:hover::after {
+        background-color: {{ options.button_line_colour_hover }};
+    }
+
     .responsive-menu-inner::before,
     .responsive-menu-inner::after {
          content: "";
@@ -297,6 +306,7 @@ button#responsive-menu-button,
     }
 
     {% if options.button_transparent_background == 'off' %}
+        .responsive-menu-open button#responsive-menu-button:hover,
         button#responsive-menu-button:hover {
             background: {{ options.button_background_colour_hover }}
         }

@@ -28,6 +28,7 @@ function get_responsive_menu_default_options() {
         'button_background_colour_active' => '#000',
         'button_click_animation' => 'boring',
         'button_line_colour' => '#fff',
+        'button_line_colour_hover' => '#fff',
         'button_line_colour_active' => '#fff',
         'button_text_colour' => '#fff',
         'button_transparent_background' => 'off',
