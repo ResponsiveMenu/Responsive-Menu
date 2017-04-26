@@ -265,12 +265,12 @@ button#responsive-menu-button,
         background-color: {{ options.button_line_colour_active }};
     }
 
-    .responsive-menu-inner:hover,
-    .responsive-menu-inner:hover::before,
-    .responsive-menu-inner:hover::after
-    .responsive-menu-open .responsive-menu-inner:hover,
-    .responsive-menu-open .responsive-menu-inner:hover::before,
-    .responsive-menu-open .responsive-menu-inner:hover::after {
+    button#responsive-menu-button:hover .responsive-menu-inner,
+    button#responsive-menu-button:hover .responsive-menu-inner::before,
+    button#responsive-menu-button:hover .responsive-menu-inner::after,
+    button#responsive-menu-button:hover .responsive-menu-open .responsive-menu-inner,
+    button#responsive-menu-button:hover .responsive-menu-open .responsive-menu-inner::before,
+    button#responsive-menu-button:hover .responsive-menu-open .responsive-menu-inner::after {
         background-color: {{ options.button_line_colour_hover }};
     }
 
