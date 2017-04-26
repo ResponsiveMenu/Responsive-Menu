@@ -98,8 +98,17 @@
     margin-top: 25px;
 }
 
-.container-fluid form.form-horizontal ul.nav-tabs {
-    margin-bottom: 25px;
+.container-fluid form.form-horizontal input#filter-options {
+    padding: 0 15px;
+    width: 100% !important;
+    height: 50px;
+}
+
+.container-fluid form.form-horizontal #filter-options-container {
+    margin: 25px 0;
+    background: #F5F5F5;
+    padding: 15px;
+    border: 1px solid #ddd;
 }
 
 .container-fluid form.form-horizontal ul.nav-tabs .btn-default {
