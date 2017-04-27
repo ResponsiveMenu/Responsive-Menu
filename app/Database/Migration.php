@@ -49,7 +49,6 @@ class Migration {
             uksort($migrations, 'version_compare');
         endif;
         return $migrations;
-
     }
 
 }

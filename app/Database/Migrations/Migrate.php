@@ -32,5 +32,4 @@ class Migrate {
         return explode('_', $versions);
     }
 
-
 }
