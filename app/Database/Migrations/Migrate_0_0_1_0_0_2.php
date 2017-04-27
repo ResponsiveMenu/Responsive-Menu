@@ -6,7 +6,7 @@ use ResponsiveMenu\Collections\OptionsCollection;
 class Migrate_0_0_1_0_0_2 extends Migrate {
 
     protected $migrations = [
-        'baz' => 'foo'
+        'foo' => 'baz'
     ];
 
     protected $migration_scripts = [

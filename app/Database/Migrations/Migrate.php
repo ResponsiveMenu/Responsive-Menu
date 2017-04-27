@@ -7,7 +7,7 @@ class Migrate {
 
     public function migrate(OptionsCollection $options) {
         if(isset($this->migrations))
-            foreach($this->migrations as $copy_from => $copy_to)
+            foreach($this->migrations as $copy_to => $copy_from)
                 $options[$copy_to] = $options[$copy_from];
 
         if(isset($this->migration_scripts))
