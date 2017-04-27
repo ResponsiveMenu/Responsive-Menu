@@ -64,7 +64,7 @@ class OptionsCollection implements \ArrayAccess, \Countable {
     }
 
     public function offsetSet($offset, $value) {
-        $this->options[$offset] = $value;
+        $this->add([$offset => $value]);
     }
 
     public function offsetUnset($offset) {
