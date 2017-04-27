@@ -96,6 +96,14 @@ class MigrationTest extends TestCase {
         $this->assertArrayHasKey('1.1.0', $classes);
     }
 
+    public function testNotUpgradeMigrationScriptsAreReturnedIfNewInstall() {
+        $migration = new Migration($this->manager, '', '1.1.1', $this->defaults);
+        $classes = $migration->getMigrationClasses();
+
+        $this->assertCount(0, $classes);
+        $this->assertArrayNotHasKey('0.0.1', $classes);
+    }
+
     public function testMultipleUpgradeMigrationScriptsAreReturned() {
         $migration = new Migration($this->manager, '0.0.1', '1.1.1', $this->defaults);
         $classes = $migration->getMigrationClasses();
@@ -197,6 +205,23 @@ class MigrationTest extends TestCase {
             [7]
         ];
         $this->assertEquals(json_encode($expected_sun), $options['sun']);
+    }
+
+    public function testNoMigrationScriptsAreNotRunIfNewInstall() {
+        $migration = new Migration($this->manager, '', '1.1.1', $this->defaults);
+
+        $options = new OptionsCollection([
+            'foo' => 'bar',
+            'baz' => 'qux',
+            'moon' => 'rise',
+        ]);
+
+        foreach($migration->getMigrationClasses() as $migration)
+            $migration->migrate($options);
+
+        $this->assertEquals('bar', $options['foo']);
+        $this->assertEquals('qux', $options['baz']);
+        $this->assertEquals('rise', $options['moon']);
     }
 
 }
