@@ -79,4 +79,124 @@ class MigrationTest extends TestCase {
         $collection = new OptionsCollection(['foo' => 'bar', 'river' => 'run']);
         $this->assertEquals($collection, $migration->tidyUpOptions());
     }
+
+    public function testMinorPointUpgradeMigrationScriptsAreReturned() {
+        $migration = new Migration($this->manager, '0.0.1', '0.0.2', $this->defaults);
+        $classes = $migration->getMigrationClasses();
+
+        $this->assertCount(1, $classes);
+        $this->assertArrayHasKey('0.0.1', $classes);
+    }
+
+    public function testMajorPointUpgradeMigrationScriptsAreReturned() {
+        $migration = new Migration($this->manager, '0.8.9', '1.1.1', $this->defaults);
+        $classes = $migration->getMigrationClasses();
+
+        $this->assertCount(1, $classes);
+        $this->assertArrayHasKey('1.1.0', $classes);
+    }
+
+    public function testMultipleUpgradeMigrationScriptsAreReturned() {
+        $migration = new Migration($this->manager, '0.0.1', '1.1.1', $this->defaults);
+        $classes = $migration->getMigrationClasses();
+
+        $this->assertCount(4, $classes);
+        $this->assertArrayHasKey('0.0.1', $classes);
+        $this->assertArrayHasKey('0.0.2', $classes);
+        $this->assertArrayHasKey('0.0.5', $classes);
+        $this->assertArrayHasKey('1.1.0', $classes);
+    }
+
+    public function testMigrationScriptUpdatesOptions() {
+        $migration = new Migration($this->manager, '0.0.1', '0.0.2', $this->defaults);
+
+        $options = new OptionsCollection([
+            'foo' => 'bar',
+            'baz' => 'qux',
+            'moon' => 'rise'
+        ]);
+
+        foreach($migration->getMigrationClasses() as $migration)
+            $migration->migrate($options);
+
+        $this->assertEquals('qux', $options['foo']);
+        $this->assertEquals('qux', $options['baz']);
+        $this->assertEquals('rise', $options['moon']);
+    }
+
+    public function testMigrationScriptChainsUpdatesOptions() {
+        $migration = new Migration($this->manager, '0.0.1', '1.1.1', $this->defaults);
+
+        $options = new OptionsCollection([
+            'foo' => 'bar',
+            'baz' => 'qux',
+            'moon' => 'rise'
+        ]);
+
+        foreach($migration->getMigrationClasses() as $migration)
+            $migration->migrate($options);
+
+        $this->assertEquals('qux', $options['foo']);
+        $this->assertEquals('qux', $options['baz']);
+        $this->assertEquals('qux', $options['moon']);
+    }
+
+    public function testMigrationScriptFunctionsAreCalled() {
+        $migration = new Migration($this->manager, '0.0.1', '0.0.2', $this->defaults);
+
+        $options = new OptionsCollection([
+            'foo' => 'bar',
+            'baz' => 'qux',
+            'moon' => 'rise',
+            'sun' => [
+                [5, 'foo', 'bar'],
+                [6, 'baz', 'qux'],
+                [7, 'moon', 'rise']
+            ]
+        ]);
+
+        foreach($migration->getMigrationClasses() as $migration)
+            $migration->migrate($options);
+
+        $this->assertEquals('qux', $options['foo']);
+        $this->assertEquals('qux', $options['baz']);
+        $this->assertEquals('rise', $options['moon']);
+
+        $expected_sun = [
+            [5, 'foo'],
+            [6, 'baz'],
+            [7, 'moon']
+        ];
+        $this->assertEquals(json_encode($expected_sun), $options['sun']);
+    }
+
+    public function testMigrationScriptFunctionsAreChained() {
+        $migration = new Migration($this->manager, '0.0.1', '1.1.1', $this->defaults);
+
+        $options = new OptionsCollection([
+            'foo' => 'bar',
+            'baz' => 'qux',
+            'moon' => 'rise',
+            'sun' => [
+                [5, 'foo', 'bar'],
+                [6, 'baz', 'qux'],
+                [7, 'moon', 'rise']
+            ]
+        ]);
+
+        foreach($migration->getMigrationClasses() as $migration)
+            $migration->migrate($options);
+
+        $this->assertEquals('qux', $options['foo']);
+        $this->assertEquals('qux', $options['baz']);
+        $this->assertEquals('qux', $options['moon']);
+
+        $expected_sun = [
+            [5],
+            [6],
+            [7]
+        ];
+        $this->assertEquals(json_encode($expected_sun), $options['sun']);
+    }
+
 }

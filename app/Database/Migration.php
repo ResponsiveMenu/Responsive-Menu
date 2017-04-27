@@ -33,4 +33,21 @@ class Migration {
         return $this->manager->removeOptions(array_diff_key($this->manager->all()->toArray(), $this->defaults));
     }
 
+    public function getMigrationClasses() {
+        $migrations = [];
+        foreach(glob(__DIR__ . '/Migrations/Migrate_*.php') as $file) {
+            $class_name = 'ResponsiveMenu\Database\Migrations\\' . basename($file, '.php');
+            $class = new $class_name;
+            if(
+                version_compare($class->getOldVersion(), $this->new_version, '<') &&
+                version_compare($this->old_version, $class->getNewVersion(), '<')
+            )
+                $migrations[$class->getOldVersion()] = $class;
+        }
+
+        uksort($migrations, 'version_compare');
+        return $migrations;
+
+    }
+
 }

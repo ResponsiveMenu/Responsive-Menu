@@ -27,11 +27,21 @@ add_action('admin_init', function() {
     }
 
     if($migration->needsUpdate()) {
+
         $migration->addNewOptions();
         $migration->tidyUpOptions();
+
+        if($migration->getMigrationClasses()):
+            $updated_options = $options_manager->all();
+            foreach($migration->getMigrationClasses() as $migration)
+                $migrated_options = $migration->migrate($updated_options);
+            $options_manager->updateOptions($migrated_options->toArray());
+        endif;
+
         $task = new ResponsiveMenu\Tasks\UpdateOptionsTask();
         $task->run($options_manager->all(), get_responsive_menu_service('view'));
         update_option('responsive_menu_version', $new_version);
+
     }
 
 });
