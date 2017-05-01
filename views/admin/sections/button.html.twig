@@ -1,7 +1,7 @@
 {% import 'admin/macros.html.twig' as macros %}
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Animation</div>
+    <div class='panel-body'>Animation<small>Button</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('button_click_animation', 'Type', 'select', options, errors, '', 'semi-pro', 'button_animation', '', 'To see all animations in action please visit <a href="https://jonsuh.com/hamburgers/" target="_blank">this page</a>.') }}
         {{ macros.row('button_position_type', 'Positioning', 'select', options, errors, '', '', 'position') }}
@@ -10,7 +10,7 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Location</div>
+    <div class='panel-body'>Location<small>Button</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('button_distance_from_side', 'Distance from Side', 'input', options, errors, 'has-unit', 'semi-pro', '', 'percentage') }}
         {{ macros.row('button_left_or_right', 'Side', 'select', options, errors, '', '', 'left_right') }}
@@ -19,7 +19,7 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Container Sizing</div>
+    <div class='panel-body'>Container Sizing<small>Button</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('button_height', 'Height', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel') }}
         {{ macros.row('button_width', 'Width', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel') }}
@@ -27,7 +27,7 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Line Sizing</div>
+    <div class='panel-body'>Line Sizing<small>Button</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('button_line_height', 'Height', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel') }}
         {{ macros.row('button_line_width', 'Width', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel') }}
@@ -36,7 +36,7 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Background Colours</div>
+    <div class='panel-body'>Background Colours<small>Button</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('button_background_colour', 'Colour', 'colour', options, errors, '', 'semi-pro') }}
         {{ macros.row('button_background_colour_hover', 'Hover Colour', 'colour', options, errors, '', 'semi-pro') }}
@@ -46,7 +46,7 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Line Colours</div>
+    <div class='panel-body'>Line Colours<small>Button</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('button_line_colour', 'Colour', 'colour', options, errors, '', 'semi-pro') }}
         {{ macros.row('button_line_colour_hover', 'Hover Colour', 'colour', options, errors, '', 'semi-pro') }}
@@ -55,7 +55,7 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Title</div>
+    <div class='panel-body'>Title<small>Button</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('button_title', 'Text', 'input', options, errors) }}
         {{ macros.row('button_text_colour', 'Colour', 'colour', options, errors, '', 'semi-pro') }}
@@ -67,10 +67,10 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Image</div>
+    <div class='panel-body'>Image<small>Button</small></div>
     <table class='table table-bordered table-hover'>
-        {{ macros.row('button_font_icon', 'Font Icon', 'input', options, errors, '', 'pro') }}
-        {{ macros.row('button_font_icon_when_clicked', 'Font Icon when Clicked', 'input', options, errors, '', 'pro') }}
+        {{ macros.row('button_font_icon', 'Font Icon', 'font-icon', options, errors, '', 'pro') }}
+        {{ macros.row('button_font_icon_when_clicked', 'Font Icon when Clicked', 'font-icon', options, errors, '', 'pro') }}
         {{ macros.row('button_image', 'Image', 'image', options, errors) }}
         {{ macros.row('button_image_alt', 'Alt Text', 'input', options, errors) }}
         {{ macros.row('button_image_when_clicked', 'Image when Clicked', 'image', options, errors) }}
@@ -79,7 +79,7 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Advanced</div>
+    <div class='panel-body'>Advanced<small>Button</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('button_click_trigger', 'Trigger', 'input', options, errors) }}
     </table>

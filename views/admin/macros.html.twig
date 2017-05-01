@@ -34,6 +34,15 @@
     </select>
 {% endmacro %}
 
+{% macro font_icon(name, value, type) %}
+    <input type='text' id='responsive-menu-{{ name|replace('_', '-') }}' name='menu[{{ name }}]' value='{{ value|escape }}' class='form-control font-icon-input {{ class }}'>
+    <select class='selectpicker show-tick font-icon-select' name='menu[{{ name }}_type]'>
+        <option value='font-awesome' selected='selected'>FontAwesome</option>
+        <option value='glyphicon'>GlyphIcon</option>
+        <option value='custom'>Custom</option>
+    </select>
+{% endmacro %}
+
 {% macro button_animation_select(name, value) %}
     <select id='responsive-menu-{{ name|replace('_', '-') }}' class='selectpicker show-tick' name='menu[{{ name }}]'>
         <option value='off'{% if value == 'off' %} selected='selected'{% endif %}>Off</option>
@@ -188,6 +197,8 @@
                 {% endif %}
             {% elseif type == 'image' %}
                 {{ macros.image(name, options[name]) }}
+            {% elseif type == 'font-icon' %}
+                {{ macros.font_icon(name, options[name], options[name ~ '_type']) }}
             {% endif %}
             {% if unit %}
                 <span class='unit'>{{ unit }}</span>

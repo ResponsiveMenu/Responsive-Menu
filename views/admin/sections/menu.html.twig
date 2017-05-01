@@ -43,7 +43,7 @@
 </script>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Add FontAwesome icons to your menu items.</div>
+    <div class='panel-body'>Add FontAwesome icons to your menu items.<small>Menu</small></div>
     <table class='table table-bordered table-hover'>
         <tr{% if errors.menu_font_icons %} class='danger'{% endif %}>
             <td class='well col-md-3'>
@@ -63,6 +63,7 @@
                         <td>Menu Item ID</td>
                         <td>Icon</td>
                         <td>Type</td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td><input type='text' class='form-control' name='menu[menu_font_icons][id][]' placeholder='32' /></td>
@@ -70,9 +71,11 @@
                         <td>
                             <select class='selectpicker show-tick' name='menu[menu_font_icons][type][]'>
                                 <option value='font-awesome' selected='selected'>FontAwesome</option>
+                                <option value='glyphicon'>GlyphIcon</option>
                                 <option value='custom'>Custom</option>
                             </select>
                         </td>
+                        <td><span class="label-danger label delete-font-icon-row">x</span></td>
                     </tr>
                 </table>
                 <button id='add-font-icon' class='btn btn-primary' type='button'>Add Font Icon</button>
@@ -93,7 +96,7 @@
 </script>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Sizing</div>
+    <div class='panel-body'>Sizing<small>Menu</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_width', 'Width', 'input', options, errors, 'has-unit', 'semi-pro', '', 'percentage') }}
         {{ macros.row('menu_maximum_width', 'Maximum Width', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel') }}
@@ -106,13 +109,26 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Title</div>
+    <div class='panel-body'>Background<small>Menu</small></div>
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('menu_background_image', 'Image', 'image', options, errors, '', '', '', '', 'Enabling this will deactivate all other colour options') }}
+        {{ macros.row('menu_background_colour', 'Background Colour', 'colour', options, errors, '', 'semi-pro') }}
+        {{ macros.row('menu_container_background_colour', 'Container Background Colour', 'colour', options, errors, '', 'semi-pro') }}
+        {{ macros.row('menu_item_background_colour', 'Link Background Colour', 'colour', options, errors, '', 'semi-pro') }}
+        {{ macros.row('menu_item_background_hover_colour', 'Link Background Hover Colour', 'colour', options, errors, '', 'semi-pro') }}
+        {{ macros.row('menu_current_item_background_colour', 'Current Link Background Colour', 'colour', options, errors, '', 'semi-pro') }}
+        {{ macros.row('menu_current_item_background_hover_colour', 'Current Link Background Hover Colour', 'colour', options, errors, '', 'semi-pro') }}
+    </table>
+</div>
+
+<div class='panel panel-default'>
+    <div class='panel-body'>Title<small>Menu</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_title', 'Text', 'input', options, errors) }}
         {{ macros.row('menu_title_link', 'Link', 'input', options, errors) }}
         {{ macros.row('menu_title_link_location', 'Link Location', 'select', options, errors, '', '', 'link_locations') }}
         {{ macros.row('menu_title_font_size', 'Font Size', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel') }}
-        {{ macros.row('menu_title_font_icon', 'Font Icon', 'input', options, errors, '', 'pro') }}
+        {{ macros.row('menu_title_font_icon', 'Font Icon', 'font-icon', options, errors, '', 'pro') }}
         {{ macros.row('menu_title_image', 'Image', 'image', options, errors) }}
         {{ macros.row('menu_title_image_alt', 'Alt Text', 'input', options, errors) }}
         {{ macros.row('menu_title_background_colour', 'Background Colour', 'colour', options, errors, '', 'semi-pro') }}
@@ -123,7 +139,7 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Additional Content</div>
+    <div class='panel-body'>Additional Content<small>Menu</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_additional_content', 'Content', 'textarea', options, errors, '', '', '', '', 'HTML and shortcodes can be used here.') }}
         {{ macros.row('menu_additional_content_colour', 'Colour', 'colour', options, errors, '', 'semi-pro') }}
@@ -131,7 +147,7 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Animation</div>
+    <div class='panel-body'>Animation<small>Menu</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_appear_from', 'Appear From', 'select', options, errors, '', '', 'side', '', 'This determines which side the menu slides in from.') }}
         {{ macros.row('animation_type', 'Type', 'select', options, errors, '', 'semi-pro', 'animation') }}
@@ -142,7 +158,7 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Search Box</div>
+    <div class='panel-body'>Search Box<small>Menu</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_search_box_text', 'Placeholder Text', 'input', options, errors, '', 'pro') }}
         {{ macros.row('menu_search_box_text_colour', 'Text Colour', 'colour', options, errors, '', 'semi-pro') }}
@@ -153,20 +169,7 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Background</div>
-    <table class='table table-bordered table-hover'>
-        {{ macros.row('menu_background_image', 'Image', 'image', options, errors, '', '', '', '', 'Enabling this will deactivate all other colour options') }}
-        {{ macros.row('menu_background_colour', 'Background Colour', 'colour', options, errors, '', 'semi-pro') }}
-        {{ macros.row('menu_container_background_colour', 'Wrapper Background Colour', 'colour', options, errors, '', 'semi-pro') }}
-        {{ macros.row('menu_item_background_colour', 'Link Background Colour', 'colour', options, errors, '', 'semi-pro') }}
-        {{ macros.row('menu_item_background_hover_colour', 'Link Background Hover Colour', 'colour', options, errors, '', 'semi-pro') }}
-        {{ macros.row('menu_current_item_background_colour', 'Current Link Background Colour', 'colour', options, errors, '', 'semi-pro') }}
-        {{ macros.row('menu_current_item_background_hover_colour', 'Current Link Background Hover Colour', 'colour', options, errors, '', 'semi-pro') }}
-    </table>
-</div>
-
-<div class='panel panel-default'>
-    <div class='panel-body'>Link Borders</div>
+    <div class='panel-body'>Link Borders<small>Menu</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_item_border_colour', 'Link Border colour', 'colour', options, errors, '', 'semi-pro') }}
         {{ macros.row('menu_item_border_colour_hover', 'Link Border Hover Colour', 'colour', options, errors, '', 'semi-pro') }}
@@ -176,7 +179,7 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Link Colours</div>
+    <div class='panel-body'>Link Colours<small>Menu</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_link_colour', 'Colour', 'colour', options, errors, '', 'semi-pro') }}
         {{ macros.row('menu_link_hover_colour', 'Hover Colour', 'colour', options, errors, '', 'semi-pro') }}
@@ -186,7 +189,7 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Styling</div>
+    <div class='panel-body'>Styling<small>Menu</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_font', 'Font', 'input', options, errors) }}
         {{ macros.row('menu_font_size', 'Font Size', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel') }}
@@ -196,7 +199,7 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Page Overlay</div>
+    <div class='panel-body'>Page Overlay<small>Menu</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_overlay', 'Enable', 'checkbox', options, errors, '', 'pro') }}
         {{ macros.row('menu_overlay_colour', 'Colour', 'colour', options, errors, '', 'pro') }}
@@ -204,7 +207,7 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Advanced</div>
+    <div class='panel-body'>Advanced<small>Menu</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_depth', 'Depth', 'select', options, errors, '', '', 'depth') }}
         {{ macros.row('menu_disable_scrolling', 'Disable Background Scrolling', 'checkbox', options, errors, '', 'pro') }}

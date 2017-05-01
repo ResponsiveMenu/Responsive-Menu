@@ -1,7 +1,7 @@
 {% import 'admin/macros.html.twig' as macros %}
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Initial Setup</div>
+    <div class='panel-body'>Initial Setup<small>Header Bar</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('use_header_bar', 'Use Header Bar', 'checkbox', options, errors, '', 'pro') }}
         {{ macros.row('header_bar_position_type', 'Positioning', 'select', options, errors, '', 'pro', 'position') }}
@@ -10,7 +10,7 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Ordering</div>
+    <div class='panel-body'>Ordering<small>Header Bar</small></div>
     <table class='table table-bordered table-hover' id='header-bar-items-order-container'>
         <tr{% if errors.header_bar_items_order %} class='danger'{% endif %}>
             <td class='well col-md-3'>
@@ -44,7 +44,7 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Logo</div>
+    <div class='panel-body'>Logo<small>Header Bar</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('header_bar_logo', 'Image', 'image', options, errors, '', 'pro') }}
         {{ macros.row('header_bar_logo_alt', 'Alt Text', 'input', options, errors, '', 'pro') }}
@@ -53,21 +53,21 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Title</div>
+    <div class='panel-body'>Title<small>Header Bar</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('header_bar_title', 'Text', 'input', options, errors, '', 'pro') }}
     </table>
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Content</div>
+    <div class='panel-body'>Content<small>Header Bar</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('header_bar_html_content', 'HTML Content', 'textarea', options, errors, '', 'pro', '', '', 'HTML and shortcodes can be used here.') }}
     </table>
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Text</div>
+    <div class='panel-body'>Text<small>Header Bar</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('header_bar_font', 'Font', 'input', options, errors, '', 'pro') }}
         {{ macros.row('header_bar_font_size', 'Font Size', 'input', options, errors, 'has-unit', 'pro', '', 'pixel') }}
@@ -75,14 +75,14 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Sizing</div>
+    <div class='panel-body'>Sizing<small>Header Bar</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('header_bar_height', 'Height', 'input', options, errors, 'has-unit', 'pro', '', 'pixel') }}
     </table>
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Colours</div>
+    <div class='panel-body'>Colours<small>Header Bar</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('header_bar_background_color', 'Background', 'colour', options, errors, '', 'pro') }}
         {{ macros.row('header_bar_text_color', 'Text', 'colour', options, errors, '', 'pro') }}

@@ -1,10 +1,10 @@
 {% import 'admin/macros.html.twig' as macros %}
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Sub-Menu Trigger Icon</div>
+    <div class='panel-body'>Sub-Menu Trigger Icon<small>Sub Menus</small></div>
     <table class='table table-bordered table-hover'>
-        {{ macros.row('active_arrow_font_icon', 'Active Font Icon', 'input', options, errors, '', 'pro') }}
-        {{ macros.row('inactive_arrow_font_icon', 'Inactive Font Icon', 'input', options, errors, '', 'pro') }}
+        {{ macros.row('active_arrow_font_icon', 'Active Font Icon', 'font-icon', options, errors, '', 'pro') }}
+        {{ macros.row('inactive_arrow_font_icon', 'Inactive Font Icon', 'font-icon', options, errors, '', 'pro') }}
         {{ macros.row('active_arrow_shape', 'Active Shape', 'input', options, errors) }}
         {{ macros.row('inactive_arrow_shape', 'Inactive Shape', 'input', options, errors) }}
         {{ macros.row('active_arrow_image', 'Active Image', 'image', options, errors) }}
@@ -16,7 +16,7 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Sub-Menu Trigger Colours</div>
+    <div class='panel-body'>Sub-Menu Trigger Colours<small>Sub Menus</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_sub_arrow_shape_colour', 'Colour', 'colour', options, errors, '', 'semi-pro') }}
         {{ macros.row('menu_sub_arrow_shape_hover_colour', 'Hover Colour', 'colour', options, errors, '', 'semi-pro') }}
@@ -26,7 +26,7 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Sub-Menu Trigger Background</div>
+    <div class='panel-body'>Sub-Menu Trigger Background<small>Sub Menus</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_sub_arrow_background_colour', 'Colour', 'colour', options, errors, '', 'semi-pro') }}
         {{ macros.row('menu_sub_arrow_background_hover_colour', 'Hover Colour', 'colour', options, errors, '', 'semi-pro') }}
@@ -36,7 +36,7 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Sub-Menu Trigger Border</div>
+    <div class='panel-body'>Sub-Menu Trigger Border<small>Sub Menus</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_sub_arrow_border_colour', 'Colour', 'colour', options, errors, '', 'semi-pro') }}
         {{ macros.row('menu_sub_arrow_border_hover_colour', 'Hover Colour', 'colour', options, errors, '', 'semi-pro') }}
@@ -46,7 +46,7 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Sub-Menu Trigger Sizing</div>
+    <div class='panel-body'>Sub-Menu Trigger Sizing<small>Sub Menus</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('submenu_arrow_height', 'Height', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel') }}
         {{ macros.row('submenu_arrow_width', 'Width', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel') }}
@@ -54,7 +54,7 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Animations</div>
+    <div class='panel-body'>Animations<small>Sub Menus</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('accordion_animation', 'Use Accordion', 'checkbox', options, errors) }}
         {{ macros.row('auto_expand_all_submenus', 'Auto Expand all Sub-Menus', 'checkbox', options, errors) }}
@@ -65,14 +65,14 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Slide Effect Options</div>
+    <div class='panel-body'>Slide Effect Options<small>Sub Menus</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('slide_effect_back_to_text', 'Back Text', 'input', options, errors, '', 'pro') }}
     </table>
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Fade in links</div>
+    <div class='panel-body'>Fade in links<small>Sub Menus</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('fade_submenus', 'Enabled', 'checkbox', options, errors, '', 'pro') }}
         {{ macros.row('fade_submenus_side', 'Side to Fade From', 'select', options, errors, '', 'pro', 'left_right') }}

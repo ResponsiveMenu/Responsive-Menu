@@ -48,6 +48,14 @@
     width: calc(100% - 179px) !important;
 }
 
+.container-fluid form.form-horizontal input.font-icon-input {
+    width: 70% !important;
+}
+
+.container-fluid form.form-horizontal .font-icon-select {
+    width: calc(30% - 75px) !important;
+}
+
 .container-fluid form.form-horizontal .bootstrap-select.is-unit {
     width: 100px !important;
 }
@@ -95,6 +103,10 @@
     color: #333;
     font-weight: normal;
     line-height: 22px;
+}
+
+.container-fluid form.form-horizontal .delete-font-icon-row {
+    cursor: pointer;
 }
 
 .container-fluid form.form-horizontal .glyphicon.glyphicon-ok {

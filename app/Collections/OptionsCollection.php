@@ -20,32 +20,32 @@ class OptionsCollection implements \ArrayAccess, \Countable {
     public function getActiveArrow() {
         if($this->options['active_arrow_image'])
             return '<img alt="' . $this->options['active_arrow_image_alt'] .'" src="' . $this->options['active_arrow_image'] .'" />';
-        else
-            return $this->options['active_arrow_shape'];
+
+        return $this->options['active_arrow_shape'];
 
     }
 
     public function getInActiveArrow() {
         if($this->options['inactive_arrow_image'])
             return '<img alt="' . $this->options['inactive_arrow_image_alt'] .'" src="' . $this->options['inactive_arrow_image'] .'" />';
-        else
-            return $this->options['inactive_arrow_shape'];
+
+        return $this->options['inactive_arrow_shape'];
 
     }
 
     public function getTitleImage() {
         if($this->options['menu_title_image'])
             return '<img alt="' . $this->options['menu_title_image_alt'] .'" src="' . $this->options['menu_title_image'] .'" />';
-        else
-            return null;
+
+        return null;
 
     }
 
     public function getButtonIcon() {
         if($this->options['button_image'])
             return '<img alt="' . $this->options['button_image_alt'] .'" src="' . $this->options['button_image'] .'" class="responsive-menu-button-icon responsive-menu-button-icon-active" />';
-        else
-            return '<span class="responsive-menu-inner"></span>';
+
+        return '<span class="responsive-menu-inner"></span>';
     }
 
     public function getButtonIconActive() {

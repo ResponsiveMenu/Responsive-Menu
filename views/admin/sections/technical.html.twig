@@ -1,7 +1,7 @@
 {% import 'admin/macros.html.twig' as macros %}
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Scripts</div>
+    <div class='panel-body'>Scripts<small>Technical</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('external_files', 'Use external files?', 'checkbox', options, errors, '', '', '', '', 'This will create external files for CSS and JavaScript') }}
         {{ macros.row('minify_scripts', 'Minify scripts?', 'checkbox', options, errors, '', '', '', '', 'This will minify the CSS and JavaScript output') }}
@@ -10,7 +10,7 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Menu</div>
+    <div class='panel-body'>Menu<small>Technical</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('custom_walker', 'Custom Walker', 'input', options, errors, '', '', '', '', 'Warning: For extremely advanced use only') }}
         {{ macros.row('mobile_only', 'Show on mobile devices only?', 'checkbox', options, errors, '', 'pro', '', '', 'This will make it not a responsive menu but a "mobile menu"') }}
@@ -19,7 +19,7 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Animation Speeds</div>
+    <div class='panel-body'>Animation Speeds<small>Technical</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('animation_speed', 'Animation Speed', 'input', options, errors, '', '', '', '', '', 's') }}
         {{ macros.row('transition_speed', 'Transition Speed', 'input', options, errors, '', '', '', '', '', 's') }}
