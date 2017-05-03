@@ -120,6 +120,7 @@ To view our FAQ, please go to <a href="https://responsive.menu/faq">https://resp
 * Added active button background colour option
 * Added migration scripts to make data upgrades smoother
 * Added option to choose custom Font Icons - Pro Only
+* Removed browser button outline and enabled focus/active states for better accessibility
 * Bug fixes
 
 = 3.1.0 (25th April 2017) =
