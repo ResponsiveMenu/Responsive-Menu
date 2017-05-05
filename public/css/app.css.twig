@@ -272,20 +272,14 @@ button#responsive-menu-button,
     button#responsive-menu-button:hover .responsive-menu-inner::after,
     button#responsive-menu-button:hover .responsive-menu-open .responsive-menu-inner,
     button#responsive-menu-button:hover .responsive-menu-open .responsive-menu-inner::before,
-    button#responsive-menu-button:hover .responsive-menu-open .responsive-menu-inner::after {
-        background-color: {{ options.button_line_colour_hover }};
-    }
-
+    button#responsive-menu-button:hover .responsive-menu-open .responsive-menu-inner::after,
     button#responsive-menu-button:focus .responsive-menu-inner,
     button#responsive-menu-button:focus .responsive-menu-inner::before,
-    button#responsive-menu-button:focus .responsive-menu-inner::after {
+    button#responsive-menu-button:focus .responsive-menu-inner::after,
+    button#responsive-menu-button:focus .responsive-menu-open .responsive-menu-inner,
+    button#responsive-menu-button:focus .responsive-menu-open .responsive-menu-inner::before,
+    button#responsive-menu-button:focus .responsive-menu-open .responsive-menu-inner::after {
         background-color: {{ options.button_line_colour_hover }};
-    }
-
-    .responsive-menu-open button#responsive-menu-button:focus .responsive-menu-inner,
-    .responsive-menu-open button#responsive-menu-button:focus .responsive-menu-inner::before,
-    .responsive-menu-open button#responsive-menu-button:focus .responsive-menu-inner::after {
-        background-color: {{ options.button_line_colour_active }};
     }
 
     .responsive-menu-inner::before,
@@ -321,13 +315,14 @@ button#responsive-menu-button,
 
     {% if options.button_transparent_background == 'off' %}
         .responsive-menu-open button#responsive-menu-button,
-        .responsive-menu-open button#responsive-menu-button:focus {
+        .responsive-menu-open button#responsive-menu-button:active {
             background: {{ options.button_background_colour_active }}
         }
     {% endif %}
 
     {% if options.button_transparent_background == 'off' %}
         .responsive-menu-open button#responsive-menu-button:hover,
+        .responsive-menu-open button#responsive-menu-button:focus,
         button#responsive-menu-button:hover,
         button#responsive-menu-button:focus {
             background: {{ options.button_background_colour_hover }}

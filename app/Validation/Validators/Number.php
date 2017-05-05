@@ -2,7 +2,7 @@
 
 namespace ResponsiveMenu\Validation\Validators;
 
-class Numeric extends BaseValidator {
+class Number extends BaseValidator {
 
     public function validate() {
         $valid_integer = false;

@@ -3,7 +3,7 @@
 use PHPUnit\Framework\TestCase;
 use ResponsiveMenu\Validation\Validators;
 
-class NumericTest extends TestCase {
+class NumberTest extends TestCase {
 
     public function testNumberList() {
         return [
@@ -40,7 +40,7 @@ class NumericTest extends TestCase {
      * @dataProvider testNumberList
      */
     public function testIntegerIsValidated($number, $expected) {
-        $validator = new Validators\Numeric($number);
+        $validator = new Validators\Number($number);
         $this->assertEquals($expected, $validator->validate());
     }
 

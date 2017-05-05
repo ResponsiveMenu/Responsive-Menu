@@ -33,7 +33,7 @@ class Validator {
     private $validation_map = [
 
         // Numeric Validators
-        'Numeric' => [
+        'Number' => [
             'breakpoint',
             'button_line_width',
             'button_line_height',
@@ -116,6 +116,10 @@ class Validator {
             'single_menu_item_submenu_background_colour_hover',
             'header_bar_background_color',
             'header_bar_text_color',
+            'button_background_colour_active',
+            'button_line_colour_hover',
+            'button_line_colour_active',
+            'menu_container_background_colour'
         ]
 
     ];
