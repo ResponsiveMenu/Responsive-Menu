@@ -230,11 +230,6 @@ button#responsive-menu-button,
         overflow: visible;
     }
 
-    button#responsive-menu-button:hover,
-    button#responsive-menu-button:focus {
-        opacity: 0.7;
-    }
-
     .responsive-menu-box {
         width: {{ options.button_line_width }}px;
         height: {{ options.button_line_height * 3 + options.button_line_margin * 2 }}px;
@@ -314,8 +309,7 @@ button#responsive-menu-button,
     }
 
     {% if options.button_transparent_background == 'off' %}
-        .responsive-menu-open button#responsive-menu-button,
-        .responsive-menu-open button#responsive-menu-button:active {
+        .responsive-menu-open button#responsive-menu-button {
             background: {{ options.button_background_colour_active }}
         }
     {% endif %}
