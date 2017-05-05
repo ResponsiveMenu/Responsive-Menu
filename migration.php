@@ -1,6 +1,6 @@
 <?php
 
-add_action('admin_init', function() {
+add_action('init', function() {
 
     $options_manager = get_responsive_menu_service('option_manager');
     $plugin_data = get_file_data(dirname(__FILE__) . '/responsive-menu.php', ['version']);
