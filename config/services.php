@@ -5,6 +5,7 @@
 * bottom of this file
  *
  */
+global $services_428734872364;
 $services_428734872364 = new ResponsiveMenu\Container\Container;
 
 $services_428734872364['database'] = function($c) {
