@@ -349,6 +349,14 @@ li.draggable {
     text-align: left;
 }
 
+.container-fluid form.form-horizontal td.well .sub-text ul {
+    margin: 15px;
+}
+
+.container-fluid form.form-horizontal td.well .sub-text ul li {
+    list-style: disc;
+}
+
 .container-fluid form.form-horizontal td.pro {
     position: relative;
 }
