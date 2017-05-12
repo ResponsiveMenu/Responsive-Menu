@@ -91,17 +91,6 @@
     </table>
 </div>
 
-<script>
-    jQuery(document).ready(function($) {
-        $(document).on('click', '#add-font-icon', function() {
-            var lastRow = $('#font-icon-container tr').last();
-            var nextRow = lastRow.clone();
-            nextRow.find(':text').val('');
-            lastRow.after(nextRow);
-        });
-    });
-</script>
-
 <div class='panel panel-default'>
     <div class='panel-body'>Sizing<small>Menu</small></div>
     <table class='table table-bordered table-hover'>
