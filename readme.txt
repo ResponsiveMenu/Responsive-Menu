@@ -111,6 +111,10 @@ To view our FAQ, please go to <a href="https://responsive.menu/faq">https://resp
 
 == Changelog ==
 
+= 3.1.3 (11th May 2017) =
+* **Requires PHP 5.4**
+* Fixed twig deprecation notices - thanks to stodorovic for this
+
 = 3.1.2 (11th May 2017) =
 * **Requires PHP 5.4**
 * Updated badge counts
