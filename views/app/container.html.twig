@@ -2,7 +2,7 @@
     <div id="responsive-menu-wrapper">
         {% for key, selected in options.items_order|json_decode %}
             {% if selected == 'on' %}
-                {% include 'app/%s.html.twig'|format(key|replace(' ', '-')) %}
+                {% include 'app/%s.html.twig'|format(key|replace({' ': '-'})) %}
             {% endif %}
         {% endfor %}
     </div>

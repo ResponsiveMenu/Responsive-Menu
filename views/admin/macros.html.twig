@@ -1,5 +1,5 @@
 {% macro percentage_units(name, value) %}
-    <select id='responsive-menu-{{ name|replace('_', '-') }}' class='selectpicker show-tick is-unit' name='menu[{{ name }}]'>
+    <select id='responsive-menu-{{ name|replace({'_': '-'}) }}' class='selectpicker show-tick is-unit' name='menu[{{ name }}]'>
         <option value='%' selected='selected'>%</option>
         <option value='px' disabled data-subtext='[PRO]'>px -</option>
         <option value='em' disabled data-subtext='[PRO]'>em -</option>
@@ -8,7 +8,7 @@
 {% endmacro %}
 
 {% macro pixel_units(name, value) %}
-    <select id='responsive-menu-{{ name|replace('_', '-') }}' id='responsive-menu-{{ name|replace('_', '-') }}'class='selectpicker show-tick is-unit' name='menu[{{ name }}]'>
+    <select id='responsive-menu-{{ name|replace({'_': '-'}) }}' id='responsive-menu-{{ name|replace({'_': '-'}) }}'class='selectpicker show-tick is-unit' name='menu[{{ name }}]'>
         <option value='px' selected='selected'>px</option>
         <option value='%'  disabled data-subtext='[PRO]'>% -</option>
         <option value='em' disabled data-subtext='[PRO]'>em -</option>
@@ -17,7 +17,7 @@
 {% endmacro %}
 
 {% macro animation_select(name, value) %}
-    <select id='responsive-menu-{{ name|replace('_', '-') }}' class='selectpicker show-tick' name='menu[{{ name }}]'>
+    <select id='responsive-menu-{{ name|replace({'_': '-'}) }}' class='selectpicker show-tick' name='menu[{{ name }}]'>
         <option value='slide'{% if value == 'slide' %} selected='selected'{% endif %}>Slide</option>
         <option value='push'{% if value == 'push' %} selected='selected'{% endif %}>Push</option>
         <option value='fade' disabled data-subtext='[PRO]'>Fade -</option>
@@ -25,7 +25,7 @@
 {% endmacro %}
 
 {% macro select(name, value, choices, class='') %}
-    <select id='responsive-menu-{{ name|replace('_', '-') }}' class='selectpicker show-tick {{ class }}' name='menu[{{ name }}]'>
+    <select id='responsive-menu-{{ name|replace({'_': '-'}) }}' class='selectpicker show-tick {{ class }}' name='menu[{{ name }}]'>
         {% for key, display in choices %}
             <option value='{{ key }}' {% if key == value %}selected='selected'{% endif %}>
                 {{ display }}
@@ -35,7 +35,7 @@
 {% endmacro %}
 
 {% macro font_icon(name, value, type) %}
-    <input type='text' id='responsive-menu-{{ name|replace('_', '-') }}' name='menu[{{ name }}]' value='{{ value|escape }}' class='form-control font-icon-input {{ class }}'>
+    <input type='text' id='responsive-menu-{{ name|replace({'_': '-'}) }}' name='menu[{{ name }}]' value='{{ value|escape }}' class='form-control font-icon-input {{ class }}'>
     <select class='selectpicker show-tick font-icon-select' name='menu[{{ name }}_type]'>
         <option value='font-awesome' selected='selected'>FontAwesome</option>
         <option value='glyphicon'>GlyphIcon</option>
@@ -44,7 +44,7 @@
 {% endmacro %}
 
 {% macro button_animation_select(name, value) %}
-    <select id='responsive-menu-{{ name|replace('_', '-') }}' class='selectpicker show-tick' name='menu[{{ name }}]'>
+    <select id='responsive-menu-{{ name|replace({'_': '-'}) }}' class='selectpicker show-tick' name='menu[{{ name }}]'>
         <option value='off'{% if value == 'off' %} selected='selected'{% endif %}>Off</option>
         <option value='boring'{% if value == 'boring' %} selected='selected'{% endif %}>Boring</option>
         <option value='3dx' disabled data-subtext='[PRO]'>3DX -</option>
@@ -76,35 +76,35 @@
 {% endmacro %}
 
 {% macro input(name, value, class='') %}
-    <input type='text' id='responsive-menu-{{ name|replace('_', '-') }}' name='menu[{{ name }}]' value='{{ value|escape }}' class='form-control {{ class }}'>
+    <input type='text' id='responsive-menu-{{ name|replace({'_': '-'}) }}' name='menu[{{ name }}]' value='{{ value|escape }}' class='form-control {{ class }}'>
 {% endmacro %}
 
 {% macro colour(name, value) %}
-    <input type='text' id='responsive-menu-{{ name|replace('_', '-') }}' class='form-control mini-colours' name='menu[{{ name }}]' value='{{ value }}' />
+    <input type='text' id='responsive-menu-{{ name|replace({'_': '-'}) }}' class='form-control mini-colours' name='menu[{{ name }}]' value='{{ value }}' />
 {% endmacro %}
 
 {% macro label(for, title) %}
-    <label for='responsive-menu-{{ for|replace('_', '-') }}' class='control-label'>
+    <label for='responsive-menu-{{ for|replace({'_': '-'}) }}' class='control-label'>
         {{ title }}
     </label>
 {% endmacro %}
 
 {% macro checkbox(name, value) %}
-    <input {% if value == 'on' %}checked='checked' {% endif %} id='responsive-menu-{{ name|replace('_', '-') }}'
+    <input {% if value == 'on' %}checked='checked' {% endif %} id='responsive-menu-{{ name|replace({'_': '-'}) }}'
            name='menu[{{ name }}]' data-toggle='toggle' data-onstyle='success' data-offstyle='danger' type='checkbox' value='on' />
 {% endmacro %}
 
 {% macro image(name, value) %}
     <div class='input-group'>
-        <input type='text' class='form-control' id='responsive-menu-{{ name|replace('_', '-') }}' name='menu[{{ name }}]' value='{{ value }}' />
+        <input type='text' class='form-control' id='responsive-menu-{{ name|replace({'_': '-'}) }}' name='menu[{{ name }}]' value='{{ value }}' />
         <span class='input-group-btn'>
-            <button type='button' class='image_button btn btn-primary' for='responsive-menu-{{ name|replace('_', '-') }}'>Upload Image</button>
+            <button type='button' class='image_button btn btn-primary' for='responsive-menu-{{ name|replace({'_': '-'}) }}'>Upload Image</button>
         </span>
     </div>
 {% endmacro %}
 
 {% macro textarea(name, value) %}
-    <textarea class='form-control' id='responsive-menu-{{ name|replace('_', '-') }}' name='menu[{{ name }}]'>{{ value }}</textarea>
+    <textarea class='form-control' id='responsive-menu-{{ name|replace({'_': '-'}) }}' name='menu[{{ name }}]'>{{ value }}</textarea>
 {% endmacro %}
 
 {% macro row(name, title, type, options, errors, class='', pro='', select_type='', unit_type='', sub_title='', unit='', choices=[], example='') %}
