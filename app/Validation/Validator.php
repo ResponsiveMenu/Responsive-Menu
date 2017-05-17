@@ -58,6 +58,12 @@ class Validator {
             'single_menu_font_size',
             'single_menu_submenu_font_size',
             'single_menu_submenu_height',
+            'menu_depth_0',
+            'menu_depth_1',
+            'menu_depth_2',
+            'menu_depth_3',
+            'menu_depth_4',
+            'menu_depth_5',
         ],
 
         // Positive Digits

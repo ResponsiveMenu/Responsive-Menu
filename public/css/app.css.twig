@@ -124,27 +124,23 @@ button#responsive-menu-button,
     }
 
     #responsive-menu-container #responsive-menu ul.responsive-menu-submenu-depth-1 a.responsive-menu-item-link {
-        padding-{{ options.menu_text_alignment }}: 10%;
+        padding-{{ options.menu_text_alignment }}: {{ options.menu_depth_1 }}%;
     }
 
     #responsive-menu-container #responsive-menu ul.responsive-menu-submenu-depth-2 a.responsive-menu-item-link {
-        padding-{{ options.menu_text_alignment }}: 15%;
+        padding-{{ options.menu_text_alignment }}: {{ options.menu_depth_2 }}%;
     }
 
     #responsive-menu-container #responsive-menu ul.responsive-menu-submenu-depth-3 a.responsive-menu-item-link {
-        padding-{{ options.menu_text_alignment }}: 20%;
+        padding-{{ options.menu_text_alignment }}: {{ options.menu_depth_3 }}%;
     }
 
     #responsive-menu-container #responsive-menu ul.responsive-menu-submenu-depth-4 a.responsive-menu-item-link {
-        padding-{{ options.menu_text_alignment }}: 25%;
+        padding-{{ options.menu_text_alignment }}: {{ options.menu_depth_4 }}%;
     }
 
     #responsive-menu-container #responsive-menu ul.responsive-menu-submenu-depth-5 a.responsive-menu-item-link {
-        padding-{{ options.menu_text_alignment }}: 30%;
-    }
-
-    #responsive-menu-container #responsive-menu ul.responsive-menu-submenu-depth-6 a.responsive-menu-item-link {
-        padding-{{ options.menu_text_alignment }}: 35%;
+        padding-{{ options.menu_text_alignment }}: {{ options.menu_depth_5 }}%;
     }
 
     #responsive-menu-container li.responsive-menu-item {
@@ -156,7 +152,7 @@ button#responsive-menu-button,
         width: 100%;
         display: block;
         text-decoration: none;
-        padding: 0 5%;
+        padding: 0 {{ options.menu_depth_0 }}%;
         position: relative;
     }
 

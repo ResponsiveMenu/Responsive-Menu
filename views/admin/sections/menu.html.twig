@@ -203,9 +203,21 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Advanced<small>Menu</small></div>
+    <div class='panel-body'>Depth<small>Menu</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_depth', 'Depth', 'select', options, errors, '', '', 'depth') }}
+        {{ macros.row('menu_depth_0', 'Depth Level Zero', 'input', options, errors, 'has-unit', 'semi-pro', '', 'percentage') }}
+        {{ macros.row('menu_depth_1', 'Depth Level One', 'input', options, errors, 'has-unit', 'semi-pro', '', 'percentage') }}
+        {{ macros.row('menu_depth_2', 'Depth Level Two', 'input', options, errors, 'has-unit', 'semi-pro', '', 'percentage') }}
+        {{ macros.row('menu_depth_3', 'Depth Level Three', 'input', options, errors, 'has-unit', 'semi-pro', '', 'percentage') }}
+        {{ macros.row('menu_depth_4', 'Depth Level Four', 'input', options, errors, 'has-unit', 'semi-pro', '', 'percentage') }}
+        {{ macros.row('menu_depth_5', 'Depth Level Five', 'input', options, errors, 'has-unit', 'semi-pro', '', 'percentage') }}
+    </table>
+</div>
+
+<div class='panel panel-default'>
+    <div class='panel-body'>Advanced<small>Menu</small></div>
+    <table class='table table-bordered table-hover'>
         {{ macros.row('menu_disable_scrolling', 'Disable Background Scrolling', 'checkbox', options, errors, '', 'pro') }}
         {{ macros.row('theme_location_menu', 'Theme Location Menu', 'select', options, errors, '', '', 'custom', '', '', '', location_menus) }}
     </table>
