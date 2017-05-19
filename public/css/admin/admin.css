@@ -395,6 +395,35 @@ li.draggable {
     height: 500px
 }
 
+.rtl #header-bar-items-order-container .draggable,
+.rtl .container-fluid form.form-horizontal label,
+.rtl .bootstrap-select.btn-group .dropdown-toggle .filter-option,
+.rtl .bootstrap-select.btn-group .dropdown-menu.inner {
+    text-align: right;
+}
+
+.rtl .input-group .form-control:last-child,
+.rtl .input-group-addon:last-child, .input-group-btn:first-child > .btn-group:not(:first-child) > .btn,
+.rtl .input-group-btn:first-child > .btn:not(:first-child),
+.rtl .input-group-btn:last-child > .btn,
+.rtl .input-group-btn:last-child > .btn-group > .btn, .input-group-btn:last-child > .dropdown-toggle {
+    border-radius: 4px 0 0 4px;
+}
+
+.rtl .draggable {
+    padding-right: 25px;
+}
+
+.rtl .btn-group-lg > .btn, .btn-lg,
+.rtl .container-fluid form.form-horizontal .panel-body small {
+    margin-left: 15px;
+}
+
+.rtl .toggle-off {
+    right: -50%;
+    text-align: left !important;
+}
+
 @media screen and (max-width: 1200px) {
     .container-fluid #banner-area,
     .container-fluid #options-area {

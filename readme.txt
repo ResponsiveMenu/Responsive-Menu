@@ -113,6 +113,7 @@ To view our FAQ, please go to <a href="https://responsive.menu/faq">https://resp
 
 = 3.1.3 (11th May 2017) =
 * **Requires PHP 5.4**
+* RTL improvements for admin UI
 * Added options to change the depth level values
 * Fixed twig deprecation notices - thanks to stodorovic for this
 * Fixed bug where having auto-height would break menu scrolling - Pro only
