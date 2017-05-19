@@ -424,6 +424,33 @@ li.draggable {
     text-align: left !important;
 }
 
+.rtl .pro::before,
+.rtl .semi-pro::before {
+    float: left;
+}
+
+.rtl .minicolors-theme-bootstrap .minicolors-swatch {
+    left: 75px;
+}
+
+.rtl .container-fluid form.form-horizontal .minicolors input {
+    width: calc(100% - 125px) !important;
+}
+
+.rtl .container-fluid #banner-area {
+    margin-left: 0;
+    margin-right: 5%;
+}
+
+.rtl .key-container .key span {
+    margin-left: 10px;
+    margin-right: 0;
+}
+
+.rtl .key-container .key {
+    padding-left: 10px;
+}
+
 @media screen and (max-width: 1200px) {
     .container-fluid #banner-area,
     .container-fluid #options-area {
