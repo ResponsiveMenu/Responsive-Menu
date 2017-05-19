@@ -2,7 +2,7 @@
 Contributors: ResponsiveMenu, peterfeatherstone
 Donate link: https://responsive.menu/donate
 Tags: responsive, menu, responsive menu, mobile menu, wordpress responsive menu, wp responsive menu, tablet menu, hamburger menu, hamburger, mobile, tablet, 3 lines, 3 line, three line, three lines
-Requires at least: 3.5.0
+Requires at least: 3.6
 Tested up to: 4.8
 Stable tag: 3.1.3
 License: GPLv2 or later
