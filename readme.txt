@@ -111,7 +111,7 @@ To view our FAQ, please go to <a href="https://responsive.menu/faq">https://resp
 
 == Changelog ==
 
-= 3.1.3 (11th May 2017) =
+= 3.1.3 (19th May 2017) =
 * **Requires PHP 5.4**
 * RTL improvements for admin UI
 * Added options to change the depth level values
