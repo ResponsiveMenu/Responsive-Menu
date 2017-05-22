@@ -16,8 +16,8 @@ class Database {
         return $flattened;
     }
 
-    public function update($table, array $to_update, array $where) {
-        return $this->db->update($this->db->prefix . $table, $to_update, $where);
+    public function update($table, array $to_update) {
+        return $this->db->replace($this->db->prefix . $table, $to_update, ['%s', '%s']);
     }
 
     public function delete($table, $name) {

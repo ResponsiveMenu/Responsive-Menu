@@ -25,7 +25,7 @@ class OptionManager {
             $val = is_array($val) ? json_encode($val) : $val;
             $val = stripslashes($val);
             $updated_options[$name] = $val;
-            $this->db->update('responsive_menu', ['value' => $val], ['name' => $name]);
+            $this->db->update('responsive_menu', ['name' => $name, 'value' => $val]);
         endforeach;
         return new OptionsCollection($updated_options);
     }
