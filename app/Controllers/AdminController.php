@@ -88,9 +88,9 @@ class AdminController {
     }
 
     public function import($imported_options, $nav_menus, $location_menus) {
+        $errors = [];
         if(!empty($imported_options)):
             $validator = new Validator();
-            $errors = [];
             if($validator->validate($imported_options)):
                 try {
                     unset($imported_options['button_click_trigger']);
