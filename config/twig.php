@@ -25,6 +25,10 @@ $twig->addFunction(new Twig_SimpleFunction('header_bar_items', function($items) 
     return $items;
 }));
 
+$twig->addFunction(new Twig_SimpleFunction('csrf', function() {
+    return wp_nonce_field('update', 'responsive-menu-nonce', true, false);
+}));
+
 $twig->addFunction(new Twig_SimpleFunction('build_menu', function($env, $options) {
 
     $translator = $env->getFilter('translate')->getCallable();

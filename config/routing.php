@@ -30,7 +30,8 @@ if(is_admin()):
                     update_option('responsive_menu_current_page', $_POST['responsive-menu-current-page']);
 
                 if(isset($_POST['responsive-menu-submit'])):
-                    echo $controller->update($_POST['menu'], $menus_array, $location_menus);
+                    $valid_nonce = wp_verify_nonce($_POST['responsive-menu-nonce'], 'update');
+                    echo $controller->update($valid_nonce, $_POST['menu'], $menus_array, $location_menus);
                 elseif(isset($_POST['responsive-menu-reset'])):
                     echo $controller->reset(get_responsive_menu_default_options(), $menus_array, $location_menus);
                 elseif(isset($_POST['responsive-menu-import'])):
