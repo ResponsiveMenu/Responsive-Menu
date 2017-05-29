@@ -23,7 +23,6 @@ if(isset($_GET['page']) && $_GET['page'] == 'responsive-menu'):
 
         wp_enqueue_script('responsive-menu-selectize-js', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/js/admin/selectize.js', null, null);
         wp_enqueue_style('responsive-menu-selectize-css', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/css/admin/selectize.css', null, null);
-        wp_enqueue_style('responsive-menu-bootstrap-selectize-css', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/css/admin/bootstrap-selectize.css', null, null);
 
         wp_enqueue_script('jquery-ui-core');
 

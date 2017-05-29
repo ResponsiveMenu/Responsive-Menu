@@ -113,4 +113,18 @@ jQuery(function($) {
         }
     });
 
+    $('#responsive-menu-button-trigger-type').selectize({
+        plugins: ['remove_button'],
+        options: [
+            {
+                value:'click',
+                text:'Click'
+            },
+            {
+                value:'mouseover',
+                text:'Hover'
+            }
+        ]
+    });
+
 });

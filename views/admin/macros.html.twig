@@ -34,6 +34,10 @@
     </select>
 {% endmacro %}
 
+{% macro selectize(name, value, class='') %}
+    <input type="text" value="{{ value }}" id='responsive-menu-{{ name|replace({'_': '-'}) }}' class='selectize {{ class }}' name='menu[{{ name }}]' />
+{% endmacro %}
+
 {% macro font_icon(name, value, type) %}
     <input type='text' id='responsive-menu-{{ name|replace({'_': '-'}) }}' name='menu[{{ name }}]' value='{{ value|escape }}' class='form-control font-icon-input {{ class }}'>
     <select class='selectpicker show-tick font-icon-select' name='menu[{{ name }}_type]'>
@@ -141,6 +145,8 @@
                 {% endif %}
             {% elseif type == 'textarea' %}
                 {{ macros.textarea(name, options[name], class) }}
+            {% elseif type == 'selectize' %}
+                {{ macros.selectize(name, options[name]) }}
             {% elseif type == 'select' %}
                 {% if select_type == 'side' %}
                     {% set choices = {

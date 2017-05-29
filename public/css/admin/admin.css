@@ -32,11 +32,16 @@
     text-align: center;
 }
 
+.container-fluid form.form-horizontal .selectize-input,
 .container-fluid form.form-horizontal .bootstrap-select,
 .container-fluid form.form-horizontal input,
 .container-fluid form.form-horizontal textarea {
     width: calc(100% - 75px) !important;
     display: inline-block;
+}
+
+.container-fluid form.form-horizontal input#responsive-menu-button-trigger-type-selectized {
+    width: auto !important;
 }
 
 .container-fluid form.form-horizontal .input-group input {

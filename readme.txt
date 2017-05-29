@@ -4,7 +4,7 @@ Donate link: https://responsive.menu/donate
 Tags: responsive, menu, responsive menu, mobile menu, wordpress responsive menu, wp responsive menu, tablet menu, hamburger menu, hamburger, mobile, tablet, 3 lines, 3 line, three line, three lines
 Requires at least: 3.6
 Tested up to: 4.8
-Stable tag: 3.1.3
+Stable tag: 3.1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -111,10 +111,12 @@ To view our FAQ, please go to <a href="https://responsive.menu/faq">https://resp
 
 == Changelog ==
 
-= 3.1.4 (26th May 2017) =
+= 3.1.4 (2nd June 2017) =
 * **Requires PHP 5.4**
 * Added CSRF protection using nonces in admin
 * Updated wpdb method to use replace() instead of update() to protect from migration issues
+* Added selectize JS library
+* Allow custom trigger types for button - Pro Only
 
 = 3.1.3 (19th May 2017) =
 * **Requires PHP 5.4**

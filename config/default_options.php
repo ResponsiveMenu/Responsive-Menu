@@ -33,6 +33,7 @@ function get_responsive_menu_default_options() {
         'button_font_icon_type' => 'font-awesome',
         'button_font_icon_when_clicked' => null,
         'button_font_icon_when_clicked_type' => 'font-awesome',
+        'button_trigger_type' => 'click',
         'button_click_trigger' => '#responsive-menu-button',
         'button_title_position' => 'left',
         'button_title_line_height' => '13',
