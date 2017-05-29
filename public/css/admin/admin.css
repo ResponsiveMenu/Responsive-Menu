@@ -140,6 +140,17 @@
     margin-right: 5px;
 }
 
+.selectize-control.multi .selectize-input > div,
+.selectize-control.multi .selectize-input > div.active {
+    background: #5cb85c;
+    color: white;
+}
+
+.selectize-control.multi .selectize-input > div[data-value="mouseover"],
+.selectize-control.multi .selectize-input > div.active[data-value="mouseover"] {
+    background: #DE4B42;
+}
+
 .pro::before,
 .semi-pro::before {
     content: "PRO";
