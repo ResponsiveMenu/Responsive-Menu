@@ -8,13 +8,13 @@ class OptionsCollection implements \ArrayAccess, \Countable {
 
     public function __construct(array $options = []) {
         $this->options = array_map(function($o) {
-            return is_array($o) ? stripslashes(json_encode($o)) : stripslashes($o);
+            return is_array($o) ? json_encode($o) : $o;
         }, $options);
     }
 
     public function add(array $option) {
         $value = $option[key($option)];
-        $this->options[key($option)] = is_array($value) ? stripslashes(json_encode($value)) : stripslashes($value);
+        $this->options[key($option)] = is_array($value) ? json_encode($value) : $value;
     }
 
     public function getActiveArrow() {

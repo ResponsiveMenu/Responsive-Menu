@@ -23,7 +23,6 @@ class OptionManager {
         $updated_options = $this->combineOptions($options);
         foreach($updated_options as $name => $val):
             $val = is_array($val) ? json_encode($val) : $val;
-            $val = stripslashes($val);
             $updated_options[$name] = $val;
             $this->db->update('responsive_menu', ['name' => $name, 'value' => $val]);
         endforeach;
@@ -34,7 +33,6 @@ class OptionManager {
         $updated_options = $this->combineOptions($options);
         foreach($options as $name => $val):
             $val = is_array($val) ? json_encode($val) : $val;
-            $val = stripslashes($val);
             $updated_options[$name] = $val;
             $this->db->insert('responsive_menu', ['name' => $name, 'value' => $val]);
         endforeach;
@@ -45,7 +43,6 @@ class OptionManager {
         $updated_options = $this->combineOptions($options);
         foreach($options as $name => $val):
             $val = is_array($val) ? json_encode($val) : $val;
-            $val = stripslashes($val);
             $updated_options[$name] = $val;
             unset($updated_options[$name]);
             $this->db->delete('responsive_menu', ['name' => $name]);
@@ -57,7 +54,6 @@ class OptionManager {
         $new_options = $this->combineOptions($options);
         foreach($options as $name => $val):
             $val = is_array($val) ? json_encode($val) : $val;
-            $val = stripslashes($val);
             $new_options[$name] = $val;
         endforeach;
         return new OptionsCollection($new_options);
