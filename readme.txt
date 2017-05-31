@@ -117,6 +117,7 @@ To view our FAQ, please go to <a href="https://responsive.menu/faq">https://resp
 * Updated wpdb method to use replace() instead of update() to protect from migration issues
 * Added selectize JS library
 * Allow custom trigger types for button - Pro Only
+* Fixed custom HTML icon bug - Pro Only
 
 = 3.1.3 (19th May 2017) =
 * **Requires PHP 5.4**
