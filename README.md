@@ -3,4 +3,4 @@
 ### Supported by BrowserStack
 Thanks to [BrowserStack](https://browserstack.com/) for their support of this open-source project.
 
-<img src="https://cdn.rawgit.com/davekiss/vimeography/master/browserstack-logo.svg" width="150">
+<img src="https://responsive.menu/wp-content/themes/responsive-menu/imgs/browserstacklogo.svg" width="150">
