@@ -49,7 +49,7 @@ jQuery(function($) {
         form.attr('target', '');
     });
 
-    $(document).on('click', '.validation-error', function(e) {
+    $(document).on('click', '.scroll-to-option', function(e) {
         e.preventDefault();
         var id_to_scroll_to = $(this).attr('href');
         var parent_panel_id = $(id_to_scroll_to).parents('.tab-pane').attr('id');

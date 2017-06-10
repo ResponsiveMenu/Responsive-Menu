@@ -14,7 +14,7 @@ class Validator {
                     $validator = new $validator_obj($options[$option]);
                     if(!$validator->validate()):
                         $nice_name = str_replace('_', ' ', ucwords($option));
-                        $this->errors[$option][] = 'Validation failed on <a class="validation-error" href="#responsive-menu-' . str_replace('_', '-', $option) . '">'  . $nice_name . '</a>: ' . $validator->getErrorMessage();
+                        $this->errors[$option][] = 'Validation failed on <a class="validation-error scroll-to-option" href="#responsive-menu-' . str_replace('_', '-', $option) . '">'  . $nice_name . '</a>: ' . $validator->getErrorMessage();
                     endif;
                 endif;
             endforeach;
