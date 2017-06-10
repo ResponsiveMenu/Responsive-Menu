@@ -111,7 +111,7 @@ To view our FAQ, please go to <a href="https://responsive.menu/faq">https://resp
 
 == Changelog ==
 
-= 3.1.4 (2nd June 2017) =
+= 3.1.4 (10th June 2017) =
 * **Requires PHP 5.4**
 * Added CSRF protection using nonces in admin
 * Updated wpdb method to use replace() instead of update() to protect from migration issues

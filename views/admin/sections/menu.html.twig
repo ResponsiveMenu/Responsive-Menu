@@ -219,6 +219,6 @@
     <div class='panel-body'>Advanced<small>Menu</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_disable_scrolling', 'Disable Background Scrolling', 'checkbox', options, errors, '', 'pro') }}
-        {{ macros.row('theme_location_menu', 'Theme Location Menu', 'select', options, errors, '', '', 'custom', '', '', '', location_menus) }}
+        {{ macros.row('theme_location_menu', 'Theme Location Menu', 'select', options, errors, '', '', 'custom', '', '', '', location_menus, 'Please note that this will overwrite the <a class="validation-error" href="#responsive-menu-menu-to-use">Menu to Use</a> option.') }}
     </table>
 </div>
