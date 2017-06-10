@@ -55,6 +55,7 @@ jQuery(function($) {
         var parent_panel_id = $(id_to_scroll_to).parents('.tab-pane').attr('id');
         var parent_tab = $('a[href="#' + parent_panel_id + '"]').parent('li');
 
+        $('tr').removeClass('option-highlight');
         $('ul.nav-tabs li').removeClass('active');
         parent_tab.addClass('active');
 
@@ -67,6 +68,8 @@ jQuery(function($) {
         $('html, body').animate({
             scrollTop: $(id_to_scroll_to).offset().top - 50
         }, 1000);
+
+        $(id_to_scroll_to).closest('tr').addClass('option-highlight');
     });
 
     $(document).on('click', '.nav-tabs li a', function() {

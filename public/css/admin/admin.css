@@ -190,6 +190,14 @@
     margin-left: 5px;
 }
 
+.option-highlight .well,
+.option-highlight,
+.table-hover > tbody > tr.option-highlight
+.table-hover > tbody > tr.option-highlight:hover,
+.table-hover > tbody > tr.option-highlight td,
+.table-hover > tbody > tr.option-highlight td:hover {
+    background-color: #ffff99 !important;
+}
 
 .draggable {
     border: 1px solid #DADADA;
