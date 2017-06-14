@@ -87,6 +87,10 @@ class Walker extends \Walker_Nav_Menu {
         $item_output = '<a'. $attributes .'>';
         $item_output .= $title;
         $item_output .= $initial_arrow;
+
+        if(isset($item->description) && $item->description)
+            $item_output .= '<span class="responsive-menu-item-description">' . $item->description . '</span>';
+
         $item_output .= '</a>';
 
         $output .= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args);

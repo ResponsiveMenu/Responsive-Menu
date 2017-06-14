@@ -200,15 +200,14 @@
 }
 
 .draggable {
-    border: 1px solid #DADADA;
     border-radius: 2px;
     background: #EFEFEF;
     padding: 10px 0;
-    margin: 0;
+    margin: 4px 0;
     cursor: move;
-    font-weight: bold;
     padding-left: 65px;
     box-sizing: border-box;
+    border: 1px solid #ccc;
 }
 
 .draggable input {
@@ -232,7 +231,7 @@
 
 .menu-order-option-switch.menu-order-option-switch-on,
 .order-option-switch.order-option-switch-on {
-    background: green;
+    background: #5cb85c;
 }
 
 .menu-order-option-switch:after,

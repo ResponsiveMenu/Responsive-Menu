@@ -111,6 +111,10 @@ To view our FAQ, please go to <a href="https://responsive.menu/faq">https://resp
 
 == Changelog ==
 
+= 3.1.5 (10th June 2017) =
+* **Requires PHP 5.4**
+* Added ability to use description in menu items
+
 = 3.1.4 (10th June 2017) =
 * **Requires PHP 5.4**
 * Added CSRF protection using nonces in admin
