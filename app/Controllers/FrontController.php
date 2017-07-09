@@ -29,10 +29,12 @@ class FrontController {
         });
 
         if($options['external_files'] == 'on'):
-            $css_file = plugins_url() . '/responsive-menu-data/css/responsive-menu-' . get_current_blog_id() . '.css';
-            $js_file = plugins_url() . '/responsive-menu-data/js/responsive-menu-' . get_current_blog_id() . '.js';
-            wp_enqueue_style('responsive-menu', $css_file, null, false);
-            wp_enqueue_script('responsive-menu', $js_file, ['jquery'], false, $options['scripts_in_footer'] == 'on' ? true : false);
+            add_action('wp_enqueue_scripts', function() use($options) {
+                $css_file = plugins_url() . '/responsive-menu-data/css/responsive-menu-' . get_current_blog_id() . '.css';
+                $js_file = plugins_url() . '/responsive-menu-data/js/responsive-menu-' . get_current_blog_id() . '.js';
+                wp_enqueue_style('responsive-menu', $css_file, null, false);
+                wp_enqueue_script('responsive-menu', $js_file, ['jquery'], false, $options['scripts_in_footer'] == 'on' ? true : false);
+            });
         else:
             add_action('wp_head', function() use($options)  {
                 $css_data = $this->view->render('css/app.css.twig', ['options' => $options]);
