@@ -1,9 +1,5 @@
 <?php
 
-add_action('plugins_loaded', function() {
-    load_plugin_textdomain('responsive-menu', false, basename(dirname(dirname(dirname(__FILE__)))) . '/translations/');
-});
-
 if(is_admin()):
     add_action('plugins_loaded', function() {
         if(function_exists('pll_register_string')):

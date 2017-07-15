@@ -21,7 +21,7 @@ function check_responsive_menu_php_version() {
 }
 
 function responsive_menu_deactivation_text() {
-    echo '<div class="error"><p>' . sprintf(__('Responsive Menu requires PHP 5.4 or higher to function and has therefore been automatically disabled. You are still on %s.%sPlease speak to your webhost about upgrading your PHP version. For more information please visit %s', 'responsive-menu'), PHP_VERSION, '<br /><br />', '<a target="_blank" href="https://responsive.menu/why-php-5-4/">this page</a>.') . '</p></div>';
+    echo '<div class="error"><p>' . sprintf('Responsive Menu requires PHP 5.4 or higher to function and has therefore been automatically disabled. You are still on %s.%sPlease speak to your webhost about upgrading your PHP version. For more information please visit %s', PHP_VERSION, '<br /><br />', '<a target="_blank" href="https://responsive.menu/why-php-5-4/">this page</a>.') . '</p></div>';
 }
 
 if(version_compare(PHP_VERSION, '5.4', '<'))
