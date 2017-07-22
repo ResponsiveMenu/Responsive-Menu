@@ -173,6 +173,8 @@ function get_responsive_menu_default_options() {
         'minify_scripts' => 'off',
         'scripts_in_footer' => 'off',
         'external_files' => 'off',
+        'remove_fontawesome' => false,
+        'remove_bootstrap' => false,
 
         'shortcode' => 'off',
         'mobile_only' => 'off',

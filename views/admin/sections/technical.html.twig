@@ -6,6 +6,8 @@
         {{ macros.row('external_files', 'Use external files?', 'checkbox', options, errors, '', '', '', '', 'This will create external files for CSS and JavaScript') }}
         {{ macros.row('minify_scripts', 'Minify scripts?', 'checkbox', options, errors, '', '', '', '', 'This will minify the CSS and JavaScript output') }}
         {{ macros.row('scripts_in_footer', 'Place scripts in footer?', 'checkbox', options, errors, '', '', '', '', 'This will place the JavaScript in the footer') }}
+        {{ macros.row('remove_fontawesome', 'Remove FontAwesome scripts', 'checkbox', options, errors, '', 'pro', '', '', 'This will stop the plugins FontAwesome scripts from being loaded. Useful if you want to run your own FontAwesome version or already have it installed.') }}
+        {{ macros.row('remove_bootstrap', 'Remove BootStrap scripts', 'checkbox', options, errors, '', 'pro', '', '', 'This will stop the plugins BootStrap scripts from being loaded. Useful if you want to run your own BootStrap version for GlyphIcons or already have it installed.') }}
     </table>
 </div>
 

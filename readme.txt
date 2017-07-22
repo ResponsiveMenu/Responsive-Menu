@@ -118,6 +118,7 @@ To view our FAQ, please go to <a href="https://responsive.menu/faq">https://resp
 * Added ability to have the menu automatically opened on page load - Pro Only
 * Added ability to use keyboard shortcuts to close the menu - Pro Only
 * Added ability to use keyboard shortcuts to open the menu - Pro Only
+* Added ability to disable plugins FontAwesome and BootStrap scripts in case you want to load your own - Pro Only
 * Improve selection of menu items by menu item drop-down selection rather than by ID - Pro Only
 * Fixed bug with 3Dx animation and hover colours - Pro Only
 
