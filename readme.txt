@@ -121,6 +121,7 @@ To view our FAQ, please go to <a href="https://responsive.menu/faq">https://resp
 * Added ability to disable plugins FontAwesome and BootStrap scripts in case you want to load your own - Pro Only
 * Improve selection of menu items by menu item drop-down selection rather than by ID - Pro Only
 * Fixed bug with 3Dx animation and hover colours - Pro Only
+* Optimised twig imports to only include what is needed.
 
 = 3.1.4 (10th June 2017) =
 * **Requires PHP 5.4**
