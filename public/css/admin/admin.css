@@ -277,6 +277,10 @@ li.draggable {
     line-height: 24px;
 }
 
+#upgrade-banner .glyphicon {
+    margin-right: 5px;
+}
+
 #upgrade-banner li  {
     list-style: none;
     font-weight: bold;
