@@ -4,7 +4,7 @@ Donate link: https://responsive.menu/donate
 Tags: responsive, menu, responsive menu, mobile menu, wordpress responsive menu, wp responsive menu, tablet menu, hamburger menu, hamburger, mobile, tablet, 3 lines, 3 line, three line, three lines
 Requires at least: 3.6
 Tested up to: 4.8
-Stable tag: 3.1.4
+Stable tag: 3.1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -111,9 +111,10 @@ To view our FAQ, please go to <a href="https://responsive.menu/faq">https://resp
 
 == Changelog ==
 
-= 3.1.5 (10th June 2017) =
+= 3.1.5 (22nd July 2017) =
 * **Requires PHP 5.4**
 * Added ability to use description in menu items
+* Added ability to have the menu automatically opened on page load - Pro Only
 
 = 3.1.4 (10th June 2017) =
 * **Requires PHP 5.4**
