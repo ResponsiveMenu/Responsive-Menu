@@ -115,6 +115,7 @@ To view our FAQ, please go to <a href="https://responsive.menu/faq">https://resp
 * **Requires PHP 5.4**
 * Added ability to use description in menu items
 * Added ability to have the menu automatically opened on page load - Pro Only
+* Added ability to use keyboard shortcuts to close the menu - Pro Only
 
 = 3.1.4 (10th June 2017) =
 * **Requires PHP 5.4**

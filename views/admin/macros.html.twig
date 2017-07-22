@@ -146,7 +146,7 @@
             {% elseif type == 'textarea' %}
                 {{ macros.textarea(name, options[name], class) }}
             {% elseif type == 'selectize' %}
-                {{ macros.selectize(name, options[name]) }}
+                {{ macros.selectize(name, options[name], class) }}
             {% elseif type == 'select' %}
                 {% if select_type == 'side' %}
                     {% set choices = {
