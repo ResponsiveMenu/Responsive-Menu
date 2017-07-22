@@ -67,14 +67,20 @@
                 </div>
                 <table id='font-icon-container'>
                     <tr>
-                        <td>Menu Item ID</td>
-                        <td>Icon</td>
-                        <td>Type</td>
+                        <td style="width: 400px;">Menu Item</td>
+                        <td style="width: 200px;">Icon</td>
+                        <td style="width: 250px;">Type</td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td><input type='text' class='form-control' name='menu[menu_font_icons][id][]' placeholder='32' /></td>
-                        <td><input type='text' class='form-control' name='menu[menu_font_icons][icon][]' placeholder='cog' /></td>
+                        <td>
+                            <select class='selectpicker show-tick' name='menu[menu_font_icons][id][]'>
+                                <option value="">Select Menu Item</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type='text' class='form-control' name='menu[menu_font_icons][icon][]' placeholder='cog' />
+                        </td>
                         <td>
                             <select class='selectpicker show-tick' name='menu[menu_font_icons][type][]'>
                                 <option value='font-awesome' selected='selected'>FontAwesome</option>
