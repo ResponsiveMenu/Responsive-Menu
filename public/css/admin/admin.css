@@ -146,6 +146,7 @@
     color: white;
 }
 
+.selectize-control.multi.keyboard-shortcuts .selectize-input .item,
 .selectize-control.multi .selectize-input > div[data-value="mouseover"],
 .selectize-control.multi .selectize-input > div.active[data-value="mouseover"] {
     background: #DE4B42;

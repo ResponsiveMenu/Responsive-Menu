@@ -22,7 +22,7 @@ function get_responsive_menu_default_options() {
         'menu_to_use' => '',
         'theme_location_menu' => '',
         'show_menu_on_page_load' => false,
-        'keyboard_shortcut_close_menu' => '',
+        'keyboard_shortcut_close_menu' => 27,
 
         // Button Settings
         'button_title' => null,

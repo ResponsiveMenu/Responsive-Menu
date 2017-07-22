@@ -130,4 +130,14 @@ jQuery(function($) {
         ]
     });
 
+    $('.keyboard-shortcuts').selectize({
+        plugins: ['remove_button'],
+        options: [
+            {
+                value:27,
+                text:'Esc'
+            }
+        ]
+    });
+
 });
