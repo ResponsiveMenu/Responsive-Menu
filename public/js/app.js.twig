@@ -26,6 +26,7 @@ jQuery(document).ready(function($) {
             $('html').addClass(this.openClass);
             $('.responsive-menu-button-icon-active').hide();
             $('.responsive-menu-button-icon-inactive').show();
+            this.setButtonTextOpen();
             this.setWrapperTranslate();
             this.isOpen = true;
         },
@@ -34,8 +35,21 @@ jQuery(document).ready(function($) {
             $('html').removeClass(this.openClass);
             $('.responsive-menu-button-icon-inactive').hide();
             $('.responsive-menu-button-icon-active').show();
+            this.setButtonText();
             this.clearWrapperTranslate();
             this.isOpen = false;
+        },
+        setButtonText: function() {
+            if($('.responsive-menu-button-text-open').length > 0 && $('.responsive-menu-button-text').length > 0) {
+                $('.responsive-menu-button-text-open').hide();
+                $('.responsive-menu-button-text').show();
+            }
+        },
+        setButtonTextOpen: function() {
+            if($('.responsive-menu-button-text').length > 0 && $('.responsive-menu-button-text-open').length > 0) {
+                $('.responsive-menu-button-text').hide();
+                $('.responsive-menu-button-text-open').show();
+            }
         },
         triggerMenu: function() {
             this.isOpen ? this.closeMenu() : this.openMenu();

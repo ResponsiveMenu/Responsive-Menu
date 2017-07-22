@@ -6,6 +6,7 @@ if(is_admin()):
             $options = get_responsive_menu_service('option_manager')->all();
             pll_register_string('menu_to_use', $options['menu_to_use'], 'Responsive Menu');
             pll_register_string('button_title', $options['button_title'], 'Responsive Menu');
+            pll_register_string('button_title_open', $options['button_title_open'], 'Responsive Menu');
             pll_register_string('menu_title', $options['menu_title'], 'Responsive Menu');
             pll_register_string('menu_title_link', $options['menu_title_link'], 'Responsive Menu');
             pll_register_string('menu_additional_content', $options['menu_additional_content'], 'Responsive Menu');

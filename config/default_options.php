@@ -27,6 +27,7 @@ function get_responsive_menu_default_options() {
 
         // Button Settings
         'button_title' => null,
+        'button_title_open' => null,
         'button_image' => null,
         'button_image_alt' => null,
         'button_image_when_clicked' => null,
