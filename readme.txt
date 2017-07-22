@@ -119,7 +119,7 @@ To view our FAQ, please go to <a href="https://responsive.menu/faq">https://resp
 * Added ability to use keyboard shortcuts to close the menu - Pro Only
 * Added ability to use keyboard shortcuts to open the menu - Pro Only
 * Improve selection of menu items by menu item drop-down selection rather than by ID - Pro Only
-* Bug fixes
+* Fixed bug with 3Dx animation and hover colours - Pro Only
 
 = 3.1.4 (10th June 2017) =
 * **Requires PHP 5.4**
