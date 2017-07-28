@@ -4,7 +4,7 @@ Donate link: https://responsive.menu/donate
 Tags: responsive, menu, responsive menu, mobile menu, wordpress responsive menu, wp responsive menu, tablet menu, hamburger menu, hamburger, mobile, tablet, 3 lines, 3 line, three line, three lines
 Requires at least: 3.6
 Tested up to: 4.8
-Stable tag: 3.1.5
+Stable tag: 3.1.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -110,6 +110,11 @@ To view our FAQ, please go to <a href="https://responsive.menu/faq">https://resp
 7. Fully customisable Admin Screen
 
 == Changelog ==
+
+= 3.1.6 (28th July 2017) =
+* **Requires PHP 5.4**
+* Added more translatable options to PolyLang and WPML
+* Added option to turn sub-menu descriptions on
 
 = 3.1.5 (22nd July 2017) =
 * **Requires PHP 5.4**

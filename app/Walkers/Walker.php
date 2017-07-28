@@ -88,7 +88,7 @@ class Walker extends \Walker_Nav_Menu {
         $item_output .= $title;
         $item_output .= $initial_arrow;
 
-        if(isset($item->description) && $item->description)
+        if(isset($item->description) && $item->description && $this->options['submenu_descriptions_on'])
             $item_output .= '<span class="responsive-menu-item-description">' . $item->description . '</span>';
 
         $item_output .= '</a>';
