@@ -111,10 +111,11 @@ To view our FAQ, please go to <a href="https://responsive.menu/faq">https://resp
 
 == Changelog ==
 
-= 3.1.7 (5th August 2017) =
+= 3.1.7 (22nd September 2017) =
 * **Requires PHP 5.4**
 * Added depth padding side option
 * Enabled touch gestures - Pro Only
+* Fixed fade animation hiding the single menu bug - Pro Only
 
 = 3.1.6 (28th July 2017) =
 * **Requires PHP 5.4**
