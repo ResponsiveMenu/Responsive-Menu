@@ -55,7 +55,7 @@ jQuery(document).ready(function($) {
             this.isOpen ? this.closeMenu() : this.openMenu();
         },
         triggerSubArrow: function(subarrow) {
-            var sub_menu = $(subarrow).parent().next('.responsive-menu-submenu');
+            var sub_menu = $(subarrow).parent().siblings('.responsive-menu-submenu');
             var self = this;
             if(this.accordion == 'on') {
                 /* Get Top Most Parent and the siblings */

@@ -7,6 +7,7 @@ function get_responsive_menu_default_options() {
         'breakpoint' => 8000,
         'menu_to_hide' => '',
         'menu_depth' => 5,
+        'menu_depth_side' => 'left',
         'menu_depth_0' => 5,
         'menu_depth_1' => 10,
         'menu_depth_2' => 15,

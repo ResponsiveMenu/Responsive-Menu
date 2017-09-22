@@ -113,6 +113,7 @@ To view our FAQ, please go to <a href="https://responsive.menu/faq">https://resp
 
 = 3.1.7 (5th August 2017) =
 * **Requires PHP 5.4**
+* Added depth padding side option
 * Enabled touch gestures - Pro Only
 
 = 3.1.6 (28th July 2017) =
