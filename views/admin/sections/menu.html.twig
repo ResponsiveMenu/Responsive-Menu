@@ -42,7 +42,7 @@
     });
 </script>
 
-<div class='panel panel-default'>
+<div class='panel panel-default fully-pro-container'>
     <div class='panel-body'>Font Icons<small>Menu</small></div>
     <table class='table table-bordered table-hover'>
         <tr{% if errors.menu_font_icons %} class='danger'{% endif %}>
@@ -201,7 +201,7 @@
     </table>
 </div>
 
-<div class='panel panel-default'>
+<div class='panel panel-default fully-pro-container'>
     <div class='panel-body'>Keyboard Shortcuts<small>Menu</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('keyboard_shortcut_close_menu', 'Close Menu', 'selectize', options, errors, 'keyboard-shortcuts', 'pro') }}
@@ -209,7 +209,7 @@
     </table>
 </div>
 
-<div class='panel panel-default'>
+<div class='panel panel-default fully-pro-container'>
     <div class='panel-body'>Page Overlay<small>Menu</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_overlay', 'Enable', 'checkbox', options, errors, '', 'pro') }}

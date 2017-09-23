@@ -113,7 +113,7 @@
 
 {% macro row(name, title, type, options, errors, class='', pro='', select_type='', unit_type='', sub_title='', unit='', choices=[], sub_sub_title='') %}
     {% import _self as macros %}
-    <tr{% if errors[name] %} class='danger'{% endif %}>
+    <tr class="{% if errors[name] %} danger {% endif %} {% if pro == 'pro' %} pro-row {% endif %}" >
         <td class='well col-md-3'>
             {{ macros.label(name, title) }}
             {% if sub_title %}

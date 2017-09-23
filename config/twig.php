@@ -50,6 +50,10 @@ else:
 
     $twig->addGlobal('admin_url', get_admin_url());
 
+    $twig->addFunction(new Twig_SimpleFunction('hide_pro_options', function() {
+        return get_option('hide_pro_options', 'no');
+    }));
+
     $twig->addFunction(new Twig_SimpleFunction('csrf', function() {
         return wp_nonce_field('update', 'responsive-menu-nonce', true, false);
     }));

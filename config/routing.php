@@ -2,6 +2,7 @@
 
 if(is_admin()):
     add_action('admin_menu', function() {
+
         if(isset($_POST['responsive-menu-export'])):
             header('Cache-Control: no-cache, no-store, must-revalidate');
             header('Pragma: no-cache');
@@ -11,9 +12,12 @@ if(is_admin()):
             $controller = get_responsive_menu_service('admin_controller');
             echo $controller->export();
             exit();
+
         elseif(isset($_POST['responsive-menu-rebuild-db'])):
             update_option('responsive_menu_version', '2.8.9');
+
         endif;
+
         add_menu_page(
             'Responsive Menu',
             'Responsive Menu',
@@ -30,16 +34,23 @@ if(is_admin()):
                     update_option('responsive_menu_current_page', $_POST['responsive-menu-current-page']);
 
                 if(isset($_POST['responsive-menu-submit'])):
+                    update_option('hide_pro_options', isset($_POST['hide-pro-options']) ? "yes" : "no");
                     $valid_nonce = wp_verify_nonce($_POST['responsive-menu-nonce'], 'update');
                     echo $controller->update($valid_nonce, wp_unslash($_POST['menu']), $menus_array, $location_menus);
+
                 elseif(isset($_POST['responsive-menu-reset'])):
+                    update_option('hide_pro_options', "no");
                     echo $controller->reset(get_responsive_menu_default_options(), $menus_array, $location_menus);
+
                 elseif(isset($_POST['responsive-menu-import'])):
                     $file = $_FILES['responsive-menu-import-file'];
                     $file_options = isset($file['tmp_name']) ? (array) json_decode(file_get_contents($file['tmp_name'])) : null;
                     echo $controller->import($file_options, $menus_array, $location_menus);
+
                 elseif(isset($_POST['responsive-menu-rebuild-db'])):
+                    update_option('hide_pro_options', "no");
                     echo $controller->rebuild($menus_array, $location_menus);
+
                 else:
                     echo $controller->index($menus_array, $location_menus);
                 endif;

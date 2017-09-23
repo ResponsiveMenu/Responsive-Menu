@@ -1,3 +1,17 @@
+{% if hide_pro_options() == 'yes' %}
+    <style>
+        .nav > li.pro-tab,
+        .fully-pro-container,
+        .pro-count,
+        .responsive-menu-preview,
+        .pro-row {
+            display: none;
+        }
+        .free-count {
+            display: block;
+        }
+    </style>
+{% endif %}
 <div class='container-fluid'>
     <form class='form-horizontal form-inline' id='responsive-menu-form' action='' method='post' enctype='multipart/form-data'>
         {{ csrf() }}
@@ -8,9 +22,17 @@
                 <label for="filter-options">Filter Options</label>
                 <input type="search" class="form-control" name="filter-options" id="filter-options" placeholder="Start typing to filter options" />
             </div>
+                <label id="hide-pro-options-label">
+                Hide Pro Options <input type="checkbox" name="hide-pro-options" id="hide-pro-options" {% if hide_pro_options() == 'yes' %}checked="checked"{% endif %} />
+            </label>
             {% include 'admin/options.html.twig' %}
-            <input type='hidden' id='responsive-menu-current-page' name='responsive-menu-current-page' value="{{ current_page() }}" />
-            <button type='button' id='responsive-menu-preview' name='responsive-menu-preview' class='btn btn-default'>Preview Changes</button>
+            <input type='hidden' id='responsive-menu-current-page' name='responsive-menu-current-page' value='{{ current_page() }}' />
+            <button type='button' name='responsive-menu-preview' class='btn btn-default responsive-menu-preview'>
+                Preview Changes
+                <span class='badge progress-bar-danger'>
+                    Pro
+                </span>
+            </button>
             <button type='submit' name='responsive-menu-submit' class='btn btn-primary'>Update Options</button>
         </div><!--
         --><div id='banner-area'>

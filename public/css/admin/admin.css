@@ -130,7 +130,7 @@
 }
 
 .container-fluid form.form-horizontal #filter-options-container {
-    margin: 25px 0;
+    margin: 25px 0 5px 0;
     background: #F5F5F5;
     padding: 15px;
     border: 1px solid #ddd;
@@ -150,6 +150,10 @@
 .selectize-control.multi .selectize-input > div[data-value="mouseover"],
 .selectize-control.multi .selectize-input > div.active[data-value="mouseover"] {
     background: #DE4B42;
+}
+
+.free-count {
+    display: none;
 }
 
 .pro::before,
@@ -421,6 +425,16 @@ li.draggable {
 
 #responsive-menu-custom-css {
     height: 500px
+}
+
+#hide-pro-options-label {
+    text-align: right;
+}
+
+#hide-pro-options {
+    display: inline-block;
+    width: auto !important;
+    vertical-align: sub;
 }
 
 .rtl #header-bar-items-order-container .draggable,
