@@ -196,6 +196,12 @@
                         '_top': 'Full Window Body'
                     } %}
                     {{ macros.select(name, options[name], choices) }}
+                {% elseif select_type == 'theme' %}
+                    {% set choices = {
+                        '': 'Default',
+                        'dark': 'Dark'
+                    } %}
+                    {{ macros.select(name, options[name], choices) }}
                 {% elseif select_type == 'custom' %}
                     {{ macros.select(name, options[name], choices) }}
                 {% elseif select_type == 'button_animation' %}

@@ -1,6 +1,13 @@
 {% import 'admin/macros.html.twig' as macros %}
 
 <div class='panel panel-default'>
+    <div class='panel-body'>Theme<small>Technical</small></div>
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('admin_theme', 'Admin Theme', 'select', options, errors, '', '', 'theme') }}
+    </table>
+</div>
+
+<div class='panel panel-default'>
     <div class='panel-body'>Scripts<small>Technical</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('external_files', 'Use external files?', 'checkbox', options, errors, '', '', '', '', 'This will create external files for CSS and JavaScript') }}
