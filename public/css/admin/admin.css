@@ -550,12 +550,15 @@
     padding-left: 10px;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1600px) {
 
+    #responsive-menu-admin .top-submit-buttons,
+    #responsive-menu-admin ul.nav-tabs,
     #responsive-menu-admin #banner-area,
     #responsive-menu-admin #options-area {
         width: 100%;
         display: block;
+        float: none;
     }
 
     #responsive-menu-admin #banner-area {
@@ -564,7 +567,7 @@
 
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1100px) {
 
     #responsive-menu-admin .nav.nav-tabs > li {
         width: 49%;
