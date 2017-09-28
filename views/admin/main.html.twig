@@ -4,6 +4,8 @@
         .fully-pro-container,
         .pro-count,
         .responsive-menu-preview,
+        .key-container,
+        #upgrade-banner,
         .pro-row {
             display: none;
         }
@@ -17,6 +19,17 @@
         {{ csrf() }}
         {% include 'admin/alerts.html.twig' %}
         {% include 'admin/tabs.html.twig' %}
+        <div class="col-md-3 top-submit-buttons">
+            <button type='submit' name='responsive-menu-submit' class='btn btn-primary pull-right'>
+                Update Options
+            </button>
+            <button type='button' name='responsive-menu-preview' class='btn btn-default pull-right responsive-menu-preview'>
+                Preview Changes
+                <span class='badge progress-bar-danger'>
+                Pro
+            </span>
+            </button>
+        </div>
         <div id='options-area'>
             <div class='panel panel-default' id='filter-options-container'>
                 <div class='panel-body'><span class="glyphicon glyphicon-search"></span>Filter Options</div>

@@ -136,9 +136,43 @@
     color: green;
 }
 
+.container-fluid .top-submit-buttons,
 .container-fluid .alert,
 .container-fluid ul.nav-tabs {
     margin-top: 25px;
+}
+
+.container-fluid .top-submit-buttons {
+    padding: 0;
+}
+
+.container-fluid .top-submit-buttons button {
+    margin-left: 5px;
+}
+
+.nav-tabs {
+    border: none;
+}
+
+#responsive-menu-form .nav-tabs > li > a {
+    background: none;
+    border: 0;
+    border-radius: 0;
+}
+
+#responsive-menu-form .nav-tabs > li.active > a,
+#responsive-menu-form .nav-tabs > li.active > a:focus,
+#responsive-menu-form .nav-tabs > li.active > a:hover {
+    border: 0;
+    border-radius: 0;
+}
+
+#responsive-menu-form .nav-tabs .label {
+    margin: 0 10px;
+}
+
+#responsive-menu-form .nav > li > a {
+    padding: 10px 0 10px 10px;
 }
 
 .container-fluid form.form-horizontal input#filter-options {
