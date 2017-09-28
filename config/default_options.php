@@ -235,7 +235,7 @@ function get_responsive_menu_default_options() {
         'use_slide_effect' => 'off',
         'slide_effect_back_to_text' => 'Back',
 
-        'admin_theme' => ''
+        'admin_theme' => 'dark'
 
     ];
 

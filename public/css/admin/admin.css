@@ -115,6 +115,11 @@
     font-size: 16px;
 }
 
+.container-fluid form.form-horizontal .panel-header .glyphicon,
+.container-fluid form.form-horizontal .panel-body .glyphicon {
+    margin-right: 10px;
+}
+
 .container-fluid form.form-horizontal .panel-body small {
     display: none;
     float: right;

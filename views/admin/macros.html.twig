@@ -198,7 +198,7 @@
                     {{ macros.select(name, options[name], choices) }}
                 {% elseif select_type == 'theme' %}
                     {% set choices = {
-                        '': 'Default',
+                        'light': 'Light',
                         'dark': 'Dark'
                     } %}
                     {{ macros.select(name, options[name], choices) }}

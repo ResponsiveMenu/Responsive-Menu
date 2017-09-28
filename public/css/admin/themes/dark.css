@@ -1,10 +1,14 @@
-#wpcontent {
+#wpwrap {
     background: #7D7F8C;
 }
 
 #wpfooter,
 #wpfooter a {
     color: white;
+}
+
+#responsive-menu-form a {
+    color: #15A4FA;
 }
 
 #responsive-menu-form .panel-body {
@@ -39,6 +43,10 @@
 
 #responsive-menu-form .panel td.well .sub-text {
     color: #8795AC;
+}
+
+#responsive-menu-form .panel td.well .sub_sub_title {
+    color: white;
 }
 
 #responsive-menu-form .btn-primary {
