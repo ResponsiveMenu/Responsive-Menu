@@ -233,7 +233,10 @@ function get_responsive_menu_default_options() {
         'fade_submenus_speed' => 500,
 
         'use_slide_effect' => 'off',
-        'slide_effect_back_to_text' => 'Back'
+        'slide_effect_back_to_text' => 'Back',
+
+        'admin_theme' => ''
+
     ];
 
 };

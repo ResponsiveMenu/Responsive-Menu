@@ -1,0 +1,46 @@
+#wpcontent {
+    background: #7D7F8C;
+}
+
+#wpfooter,
+#wpfooter a {
+    color: white;
+}
+
+#responsive-menu-form .panel-body {
+    color: white;
+    background: #3E4960;
+}
+
+#responsive-menu-form .panel {
+    border: 0;
+}
+
+#responsive-menu-form .panel table,
+#responsive-menu-form .panel table td,
+#responsive-menu-form .panel table th {
+    border: 0;
+}
+
+#responsive-menu-form .panel td {
+    background: #E9F0FA;
+}
+
+#responsive-menu-form .panel td.well {
+    background: #333C4E;
+    border-radius: 0;
+    border: 0;
+}
+
+#responsive-menu-form .panel td.well label {
+    color: white;
+    font-weight: normal;
+}
+
+#responsive-menu-form .panel td.well .sub-text {
+    color: #8795AC;
+}
+
+#responsive-menu-form .btn-primary {
+    background: #15A4FA;
+}
