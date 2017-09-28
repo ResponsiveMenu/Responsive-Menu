@@ -43,23 +43,19 @@ jQuery(function($) {
         if($(this).is(':checked')) {
             $('.nav > li.pro-tab, ' +
                 '.fully-pro-container, ' +
-                '.pro-count, ' +
                 '.key-container, ' +
                 '#upgrade-banner, ' +
                 '.responsive-menu-preview, ' +
                 '.pro-row'
             ).hide();
-            $('.free-count').show();
        } else {
             $('.nav > li.pro-tab, ' +
                 '.fully-pro-container, ' +
-                '.pro-count, ' +
                 '.key-container, ' +
                 '#upgrade-banner, ' +
                 '.responsive-menu-preview, ' +
                 '.pro-row'
             ).show();
-            $('.free-count').hide();
         }
     });
 

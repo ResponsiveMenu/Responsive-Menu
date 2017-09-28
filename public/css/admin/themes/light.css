@@ -1,0 +1,25 @@
+#responsive-menu-admin .nav-tabs {
+    background: #F5F5F5;
+    border: 1px solid #e3e3e3;
+}
+
+#responsive-menu-admin .nav-tabs > li > a {
+    color: #333;
+}
+
+#responsive-menu-admin .nav-tabs > li > a:focus,
+#responsive-menu-admin .nav-tabs > li > a:hover {
+    background: #337ab7;
+    color: white;
+}
+
+#responsive-menu-admin .nav-tabs > li.active > a,
+#responsive-menu-admin .nav-tabs > li.active > a:focus,
+#responsive-menu-admin .nav-tabs > li.active > a:hover {
+    background: #337ab7;
+    color: white;
+}
+
+#responsive-menu-admin .label-info {
+    background: #337ab7;
+}

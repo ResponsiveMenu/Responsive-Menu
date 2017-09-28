@@ -7,48 +7,48 @@
     color: white;
 }
 
-#responsive-menu-form a {
+#responsive-menu-admin a {
     color: #15A4FA;
 }
 
-#responsive-menu-form .panel-body {
+#responsive-menu-admin .panel-body {
     color: white;
     background: #3E4960;
 }
 
-#responsive-menu-form .panel {
+#responsive-menu-admin .panel {
     border: 0;
 }
 
-#responsive-menu-form .panel table,
-#responsive-menu-form .panel table td,
-#responsive-menu-form .panel table th {
+#responsive-menu-admin .panel table,
+#responsive-menu-admin .panel table td,
+#responsive-menu-admin .panel table th {
     border: 0;
 }
 
-#responsive-menu-form .panel td {
+#responsive-menu-admin .panel td {
     background: #E9F0FA;
 }
 
-#responsive-menu-form .panel td.well {
+#responsive-menu-admin .panel td.well {
     background: #333C4E;
     border-radius: 0;
     border: 0;
 }
 
-#responsive-menu-form .panel td.well label {
+#responsive-menu-admin .panel td.well label {
     color: white;
     font-weight: normal;
 }
 
-#responsive-menu-form .panel td.well .sub-text {
+#responsive-menu-admin .panel td.well .sub-text {
     color: #8795AC;
 }
 
-#responsive-menu-form .panel td.well .sub_sub_title {
+#responsive-menu-admin .panel td.well .sub_sub_title {
     color: white;
 }
 
-#responsive-menu-form .btn-primary {
+#responsive-menu-admin .btn-primary {
     background: #15A4FA;
 }
