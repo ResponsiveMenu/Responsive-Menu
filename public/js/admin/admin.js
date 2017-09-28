@@ -44,6 +44,8 @@ jQuery(function($) {
             $('.nav > li.pro-tab, ' +
                 '.fully-pro-container, ' +
                 '.pro-count, ' +
+                '.key-container, ' +
+                '#upgrade-banner, ' +
                 '.responsive-menu-preview, ' +
                 '.pro-row'
             ).hide();
@@ -52,6 +54,8 @@ jQuery(function($) {
             $('.nav > li.pro-tab, ' +
                 '.fully-pro-container, ' +
                 '.pro-count, ' +
+                '.key-container, ' +
+                '#upgrade-banner, ' +
                 '.responsive-menu-preview, ' +
                 '.pro-row'
             ).show();

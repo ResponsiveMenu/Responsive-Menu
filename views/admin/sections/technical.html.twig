@@ -25,5 +25,12 @@
     <table class='table table-bordered table-hover'>
         {{ macros.row('animation_speed', 'Animation Speed', 'input', options, errors, '', '', '', '', '', 's') }}
         {{ macros.row('transition_speed', 'Transition Speed', 'input', options, errors, '', '', '', '', '', 's') }}
-</table>
+    </table>
+</div>
+
+<div class='panel panel-default fully-pro-container'>
+    <div class='panel-body'>Custom CSS<small>Technical</small></div>
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('custom_css', 'Custom CSS', 'textarea', options, errors, '', 'pro') }}
+    </table>
 </div>
