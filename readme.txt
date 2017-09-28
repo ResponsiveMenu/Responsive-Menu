@@ -4,7 +4,7 @@ Donate link: https://responsive.menu/donate
 Tags: responsive, menu, responsive menu, mobile menu, wordpress responsive menu, wp responsive menu, tablet menu, hamburger menu, hamburger, mobile, tablet, 3 lines, 3 line, three line, three lines
 Requires at least: 3.6
 Tested up to: 4.8
-Stable tag: 3.1.7
+Stable tag: 3.1.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -110,6 +110,13 @@ To view our FAQ, please go to <a href="https://responsive.menu/faq">https://resp
 7. Fully customisable Admin Screen
 
 == Changelog ==
+
+= 3.1.8 (22nd September 2017) =
+* **Requires PHP 5.4**
+* Added a new dark admin theme
+* Added a "hide pro options" button to remove some of the clutter
+* Improved UI interface
+* Complete overhaul of the Desktop Menu options including Mega Menus and more - Pro Only
 
 = 3.1.7 (22nd September 2017) =
 * **Requires PHP 5.4**

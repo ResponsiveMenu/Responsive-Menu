@@ -19,7 +19,7 @@ class Migrate_0_0_2_0_0_3 extends Migrate {
             endforeach;
             $options['sun'] = $new_sun;
         endif;
-
+        return $options;
     }
 
 }

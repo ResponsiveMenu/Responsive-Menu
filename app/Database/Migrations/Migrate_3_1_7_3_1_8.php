@@ -11,6 +11,7 @@ class Migrate_3_1_7_3_1_8 extends Migrate {
 
     protected function setOldTheme(OptionsCollection $options) {
         $options['admin_theme'] = 'light';
+        return $options;
     }
 
 }
