@@ -100,7 +100,6 @@ jQuery(function($) {
     $(document).on('keyup', '#filter-options', function() {
 
         var search_query = $(this).val();
-        var current_tab = $('.nav-tabs .active').attr('id');
 
         $('#options-area').css('width', '99%');
         $('.nav-tabs, #banner-area').hide();
@@ -110,13 +109,13 @@ jQuery(function($) {
            $('.panel-body small').css('display', 'block');
 
            $('.control-label').closest('tr').hide();
-           $('.control-label').each(function (i) {
+           $('.control-label').each(function() {
                if ($(this).text().toLowerCase().indexOf(search_query.toLowerCase()) >= 0) {
                    $(this).closest('tr').show();
                }
            });
 
-           $('#options-area .table-bordered').each(function(i) {
+           $('#options-area .table-bordered').each(function() {
 
                var visible_rows = $(this).children('tbody').children('tr').filter(function() {
                    return $(this).css('display') == 'table-row';

@@ -8,6 +8,7 @@
 .container-fluid #banner-area {
     width: 20%;
     margin-left: 5%;
+    margin-top: 25px;
 }
 
 .container-fluid form.form-horizontal .input-group {
@@ -130,10 +131,7 @@
 }
 
 .container-fluid form.form-horizontal #filter-options-container {
-    margin: 25px 0 5px 0;
-    background: #F5F5F5;
-    padding: 15px;
-    border: 1px solid #ddd;
+    margin-top: 25px;
 }
 
 .container-fluid form.form-horizontal ul.nav-tabs .btn-default {

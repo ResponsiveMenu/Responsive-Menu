@@ -18,11 +18,15 @@
         {% include 'admin/alerts.html.twig' %}
         {% include 'admin/tabs.html.twig' %}
         <div id='options-area'>
-            <div id="filter-options-container">
-                <label for="filter-options">Filter Options</label>
-                <input type="search" class="form-control" name="filter-options" id="filter-options" placeholder="Start typing to filter options" />
+            <div class='panel panel-default' id='filter-options-container'>
+                <div class='panel-body'>Filter Options</div>
+                <table class='table table-hover'>
+                    <td class='well col-md-3'>
+                        <input type="search" class="form-control" name="filter-options" id="filter-options" placeholder="Start typing to filter options" />
+                    </td>
+                </table>
             </div>
-                <label id="hide-pro-options-label">
+            <label id="hide-pro-options-label">
                 Hide Pro Options <input type="checkbox" name="hide-pro-options" id="hide-pro-options" {% if hide_pro_options() == 'yes' %}checked="checked"{% endif %} />
             </label>
             {% include 'admin/options.html.twig' %}
