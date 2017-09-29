@@ -16,14 +16,12 @@
         {% include 'admin/alerts.html.twig' %}
         {% include 'admin/tabs.html.twig' %}
         <div class="col-md-3 text-right top-submit-buttons">
-            <button type='submit' name='responsive-menu-submit' class='btn btn-primary'>
-                Update Options
-            </button>
             <button type='button' name='responsive-menu-preview' class='btn btn-default responsive-menu-preview'>
                 Preview Changes
-                <span class='badge progress-bar-danger'>
-                Pro
-            </span>
+                <span class='label label-danger'>Pro</span>
+            </button>
+            <button type='submit' name='responsive-menu-submit' class='btn btn-primary'>
+                Update Options
             </button>
         </div>
         <div id='options-area'>
@@ -36,17 +34,21 @@
                 </table>
             </div>
             {% include 'admin/options.html.twig' %}
-            <label id="hide-pro-options-label">
-                Hide Pro Options <input type="checkbox" name="hide-pro-options" id="hide-pro-options" {% if hide_pro_options() == 'yes' %}checked="checked"{% endif %} />
-            </label>
-            <input type='hidden' id='responsive-menu-current-page' name='responsive-menu-current-page' value='{{ current_page() }}' />
-            <button type='button' name='responsive-menu-preview' class='btn btn-default responsive-menu-preview'>
-                Preview Changes
-                <span class='badge progress-bar-danger'>
-                    Pro
-                </span>
-            </button>
-            <button type='submit' name='responsive-menu-submit' class='btn btn-primary'>Update Options</button>
+            <div class="row">
+                <div class="col-md-8">
+                    <input type='hidden' id='responsive-menu-current-page' name='responsive-menu-current-page' value='{{ current_page() }}' />
+                    <button type='button' name='responsive-menu-preview' class='btn btn-default responsive-menu-preview'>
+                        Preview Changes
+                        <span class='label label-danger'>Pro</span>
+                    </button>
+                    <button type='submit' name='responsive-menu-submit' class='btn btn-primary'>Update Options</button>
+                </div>
+                <div class="col-md-4">
+                    <label id="hide-pro-options-label">
+                        Hide Pro Options <input type="checkbox" name="hide-pro-options" id="hide-pro-options" {% if hide_pro_options() == 'yes' %}checked="checked"{% endif %} />
+                    </label>
+                </div>
+            </div>
         </div><!--
         --><div id='banner-area'>
             {% include 'admin/banners.html.twig' %}
