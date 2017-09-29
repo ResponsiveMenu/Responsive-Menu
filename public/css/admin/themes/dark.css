@@ -34,26 +34,27 @@
     border: 0;
 }
 
-#responsive-menu-admin .panel td {
+#responsive-menu-admin .panel table td {
     background: #E9F0FA;
+    border-bottom: 1px solid #D4E2F5;
 }
 
-#responsive-menu-admin .panel td.well {
+#responsive-menu-admin .panel table td.well {
     background: #333C4E;
     border-radius: 0;
     border: 0;
 }
 
-#responsive-menu-admin .panel td.well label {
+#responsive-menu-admin .panel table td.well label {
     color: white;
     font-weight: normal;
 }
 
-#responsive-menu-admin .panel td.well .sub-text {
+#responsive-menu-admin .panel table td.well .sub-text {
     color: #8795AC;
 }
 
-#responsive-menu-admin .panel td.well .sub_sub_title {
+#responsive-menu-admin .panel table td.well .sub_sub_title {
     color: white;
 }
 

@@ -57,6 +57,7 @@
     display: inline-block;
 }
 
+#responsive-menu-admin .selectize-input input,
 #responsive-menu-admin input#responsive-menu-button-trigger-type-selectized {
     width: auto !important;
 }
@@ -199,6 +200,12 @@
 
 #responsive-menu-admin ul.nav-tabs .btn-default {
     margin-right: 5px;
+}
+
+#responsive-menu-admin .btn.btn-rm {
+    border-radius: 0;
+    border: 0;
+    padding: 12px;
 }
 
 #responsive-menu-admin .selectize-control.multi .selectize-input > div,
