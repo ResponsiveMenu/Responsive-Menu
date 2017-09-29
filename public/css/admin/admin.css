@@ -41,14 +41,6 @@
     text-align: left;
 }
 
-#responsive-menu-admin #header-bar-items-order-container label {
-    text-align: center;
-}
-
-#responsive-menu-admin #header-bar-items-order-container .well {
-    display: none;
-}
-
 #responsive-menu-admin .selectize-input,
 #responsive-menu-admin .bootstrap-select,
 #responsive-menu-admin input,
@@ -202,6 +194,7 @@
     margin-right: 5px;
 }
 
+#responsive-menu-admin .input-group-btn .btn,
 #responsive-menu-admin .btn.btn-rm {
     border-radius: 0;
     border: 0;
@@ -428,15 +421,6 @@
 
 #responsive-menu-admin .mini-colours {
     cursor: pointer;
-}
-
-#responsive-menu-admin #header-bar-items-order-container td {
-    width: 100%;
-    display: block;
-    padding: 20px;
-    border: 0;
-    box-sizing: border-box;
-    text-align: center;
 }
 
 #responsive-menu-admin #header-bar-items-order-container .draggable {
