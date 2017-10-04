@@ -114,7 +114,7 @@
 {% macro row(name, title, type, options, errors, class='', pro='', select_type='', unit_type='', sub_title='', unit='', choices=[], sub_sub_title='') %}
     {% import _self as macros %}
     <tr class="{% if errors[name] %} danger {% endif %} {% if pro == 'pro' %} pro-row {% endif %}" >
-        <td class='well col-md-3'>
+        <td class='col-left col-md-3'>
             {{ macros.label(name, title) }}
             {% if sub_title %}
                 <div class='sub-text'>{{ sub_title|raw }}</div>
@@ -123,7 +123,7 @@
                 <div class='sub_sub_title'><br />{{ sub_sub_title|raw }}</div>
             {% endif %}
         </td>
-        <td{% if pro %} class='{{ pro }}'{% endif %}>
+        <td class='col-right {% if pro %} {{ pro }}{% endif %}'>
             {% if pro == 'pro' %}
                 <div class='responsive-menu-pro-overlay'>
                     <a href='https://responsive.menu/pricing/?utm_source=free-plugin&utm_medium=option&utm_campaign=free-plugin-option-upgrade'

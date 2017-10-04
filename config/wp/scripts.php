@@ -26,8 +26,11 @@ if(isset($_GET['page']) && $_GET['page'] == 'responsive-menu'):
 
         wp_enqueue_script('jquery-ui-core');
 
-        wp_register_style('responsive-menu-admin-css', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/css/admin/admin.css', false, null);
-        wp_enqueue_style('responsive-menu-admin-css');
+        wp_register_style('responsive-menu-base-css', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/css/admin/base.css', false, null);
+        wp_enqueue_style('responsive-menu-base-css');
+
+        wp_register_style('responsive-menu-additional-css', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/css/admin/additional.css', false, null);
+        wp_enqueue_style('responsive-menu-additional-css');
 
         $options = get_responsive_menu_service('option_manager')->all();
         if(isset($options['admin_theme']) || isset($_POST['menu']['admin_theme'])):

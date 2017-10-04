@@ -1,25 +1,151 @@
-#responsive-menu-admin .nav-tabs {
-    background: #F5F5F5;
-    border: 1px solid #e3e3e3;
+#responsive-menu-admin .draggable,
+#responsive-menu-admin #responsive-menu-pro-desktop-menu-container .responsive-menu-pro-desktop-menu-links-container .responsive-menu-pro-desktop-menu-label.responsive-menu-pro-desktop-menu-sub-menu-label,
+#responsive-menu-admin #responsive-menu-pro-desktop-menu-container .responsive-menu-pro-desktop-menu-links-container .responsive-menu-pro-desktop-menu-label.responsive-menu-pro-desktop-menu-sub-sub-menu-label {
+    background: white;
 }
 
-#responsive-menu-admin .nav-tabs > li > a {
+#wpfooter,
+#wpfooter a,
+#responsive-menu-admin .panel-body,
+#responsive-menu-admin .panel table td.col-left label,
+#responsive-menu-admin .nav-tabs > li.active > a,
+#responsive-menu-admin .nav-tabs > li.active > a:focus,
+#responsive-menu-admin .nav-tabs > li.active > a:hover,
+#responsive-menu-admin .nav-tabs > li > a,
+#responsive-menu-admin .nav-tabs > li > a:focus,
+#responsive-menu-admin .nav-tabs > li > a:hover
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-label-active,
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget,
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-top-level-label,
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-sub-menu-label,
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-sub-sub-menu-label,
+#responsive-menu-admin .panel table td.col-left .sub_sub_title,
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-links-container,
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-option-container {
     color: #333;
 }
 
-#responsive-menu-admin .nav-tabs > li > a:focus,
-#responsive-menu-admin .nav-tabs > li > a:hover {
-    background: #337ab7;
-    color: white;
+#responsive-menu-admin .btn-primary,
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-label-active,
+#responsive-menu-admin .label-info {
+    background: #15A4FA;
 }
 
+#responsive-menu-admin a {
+    color: #333;
+}
+
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget {
+    border-color: #CCCCCC;
+}
+
+/*
+   --> Start page background styles
+*/
+#wpwrap {
+    background: #FFFFFF;
+}
+/*
+   <-- End page background styles
+*/
+
+/*
+    --> Start nav tabs styles
+*/
 #responsive-menu-admin .nav-tabs > li.active > a,
 #responsive-menu-admin .nav-tabs > li.active > a:focus,
 #responsive-menu-admin .nav-tabs > li.active > a:hover {
-    background: #337ab7;
-    color: white;
+    background: #FFFFFF;
+}
+/*
+    <-- End nav tabs styles
+*/
+
+/*
+   --> Start Header panel styles
+*/
+#responsive-menu-admin #responsive-menu-pro-desktop-menu-container .responsive-menu-pro-desktop-menu-links-container,
+#responsive-menu-admin .nav-tabs,
+#responsive-menu-admin .panel-body {
+    background: #C4C4C4;
+}
+/*
+   <-- End Header panel styles
+*/
+
+/*
+  --> Start left hand panel styles
+*/
+#responsive-menu-admin .panel table td.col-left,
+#responsive-menu-admin #responsive-menu-pro-desktop-menu-container .responsive-menu-pro-desktop-menu-links-container .responsive-menu-pro-desktop-menu-label,
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-links-container,
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-option-container,
+#responsive-menu-admin .nav-tabs > li > a:focus,
+#responsive-menu-admin .nav-tabs > li > a:hover {
+    background: #F5F5F5;
 }
 
-#responsive-menu-admin .label-info {
-    background: #337ab7;
+#responsive-menu-admin .bootstrap-select a,
+#responsive-menu-admin #responsive-menu-pro-desktop-menu-container .responsive-menu-pro-desktop-menu-links-container .responsive-menu-pro-desktop-menu-label.responsive-menu-pro-desktop-menu-sub-menu-label,
+#responsive-menu-admin #responsive-menu-pro-desktop-menu-container .responsive-menu-pro-desktop-menu-links-container .responsive-menu-pro-desktop-menu-label.responsive-menu-pro-desktop-menu-sub-sub-menu-label,
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget-header {
+    color: #333;
 }
+
+/* --> Sub Text */
+#responsive-menu-admin .panel table td.col-left .sub-text,
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-option-container .sub-text{
+    color: #666666;
+}
+
+#responsive-menu-admin .panel table td.col-left {
+    border-bottom-color: #DCDCDC;
+}
+
+/* --> Hover */
+#responsive-menu-admin .panel tr:hover td.col-left {
+    background: #DCDCDC;
+}
+/*
+  <-- End left hand panel styles
+*/
+
+/*
+  --> Start right hand panel styles
+*/
+#responsive-menu-admin .panel table td.col-right,
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget-body,
+#responsive-menu-admin #responsive-menu-pro-desktop-menu-container,
+#responsive-menu-admin #responsive-menu-pro-desktop-menu-container .responsive-menu-pro-desktop-menu-options-wrapper {
+    background: #FFFFFF;
+}
+
+#responsive-menu-admin .panel table td.col-right {
+    border-bottom-color: #F6F6F6;
+}
+
+/* --> Hover */
+#responsive-menu-admin .panel tr:hover td.col-right {
+    background: #F6F6F6;
+}
+/*
+  <-- End right hand panel styles
+*/
+
+/*
+   --> Start specific theme styles
+*/
+#responsive-menu-admin .btn-primary:hover {
+    background: #1293E1;
+}
+
+#responsive-menu-admin .valid-license {
+    color: #00FF87;
+}
+
+#responsive-menu-admin .panel {
+    border: 1px solid #F6F6F6;
+}
+/*
+   <-- End specific theme styles
+*/

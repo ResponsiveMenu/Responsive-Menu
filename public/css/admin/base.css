@@ -1,13 +1,31 @@
+/* vietnamese */
 @font-face {
-    font-family: 'Open Sans';
+    font-family: 'Montserrat';
     font-style: normal;
     font-weight: 400;
-    src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v14/cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');
+    src: local('Montserrat Regular'), local('Montserrat-Regular'), url(https://fonts.gstatic.com/s/montserrat/v10/SKK6Nusyv8QPNMtI4j9J2yEAvth_LlrfE80CYdSH47w.woff2) format('woff2');
+    unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Montserrat Regular'), local('Montserrat-Regular'), url(https://fonts.gstatic.com/s/montserrat/v10/gFXtEMCp1m_YzxsBpKl68iEAvth_LlrfE80CYdSH47w.woff2) format('woff2');
+    unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Montserrat Regular'), local('Montserrat-Regular'), url(https://fonts.gstatic.com/s/montserrat/v10/zhcz-_WihjSQC0oHJ9TCYPk_vArhqVIZ0nv9q090hN8.woff2) format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 }
 
+
 #responsive-menu-admin {
-    font-family: "Open Sans";
+    font-family: "Montserrat";
 }
 
 #responsive-menu-admin #banner-area,
@@ -50,7 +68,7 @@
 }
 
 #responsive-menu-admin .selectize-input input,
-#responsive-menu-admin input#responsive-menu-button-trigger-type-selectized {
+#responsive-menu-admin input#responsive-menu-pro-button-trigger-type-selectized {
     width: auto !important;
 }
 
@@ -151,10 +169,6 @@
     border: none;
 }
 
-#responsive-menu-admin .nav-tabs > li {
-    margin-bottom: 0;
-}
-
 #responsive-menu-admin .nav-tabs > li > a {
     background: none;
     border: 0;
@@ -172,8 +186,8 @@
     margin: 0 10px;
 }
 
-#responsive-menu-admin .nav > li > a {
-    padding: 10px;
+#responsive-menu-admin .nav-tabs > li {
+    margin-bottom: 0;
 }
 
 #responsive-menu-admin .nav > li > a {
@@ -207,36 +221,12 @@
     color: white;
 }
 
-#responsive-menu-admin .selectize-control.multi.keyboard-shortcuts .selectize-input .item,
-#responsive-menu-admin .selectize-control.multi .selectize-input > div[data-value="mouseover"],
-#responsive-menu-admin .selectize-control.multi .selectize-input > div.active[data-value="mouseover"] {
-    background: #DE4B42;
-}
-
-#responsive-menu-admin .pro::before,
-#responsive-menu-admin .semi-pro::before {
-    content: "PRO";
-    float: right;
-    color: #DE4B42;
-    font-weight: bold;
-    font-size: 9px;
-    margin-top: 10px;
-    border-left: 1px solid #DE4B42;
-    padding-left: 8px;
-    padding-right: 8px;
-}
-
-#responsive-menu-admin .semi-pro::before {
-    content: "SEMI PRO";
-    color: #333;
-    border-color: #333;
-}
-
 #responsive-menu-admin .sub-text {
     color: #777;
     padding-top: 5px;
     font-size: 13px;
     font-weight: normal;
+    margin-bottom: 15px;
 }
 
 #responsive-menu-admin .sub_sub_title {
@@ -252,9 +242,9 @@
     margin-left: 5px;
 }
 
-#responsive-menu-admin .option-highlight .well,
+#responsive-menu-admin .option-highlight .col-left,
 #responsive-menu-admin .option-highlight,
-#responsive-menu-admin .table-hover > tbody > tr.option-highlight
+#responsive-menu-admin .table-hover > tbody > tr.option-highlight,
 #responsive-menu-admin .table-hover > tbody > tr.option-highlight:hover,
 #responsive-menu-admin .table-hover > tbody > tr.option-highlight td,
 #responsive-menu-admin .table-hover > tbody > tr.option-highlight td:hover {
@@ -310,46 +300,17 @@
     position: relative;
 }
 
-#responsive-menu-admin #upgrade-banner {
-    padding: 25px 5%;
-    background: #DE4B42;
-    color: #fff;
-    border: 1px solid #D33C34;
-    border-radius: 2px;
-    text-align: center;
-}
-
-#responsive-menu-admin #upgrade-banner i {
-    margin-right: 5px;
-}
-
 #responsive-menu-admin #docs-banner {
     background: #FAB719;
     padding: 35px;
     color: #333;
-    margin-top: 15px;
     text-align: center;
-}
-
-#responsive-menu-admin #upgrade-banner,
-#responsive-menu-admin #docs-banner {
     font-size: 18px;
     font-weight: bold;
     line-height: 24px;
 }
 
-#responsive-menu-admin #upgrade-banner .glyphicon {
-    margin-right: 5px;
-}
-
-#responsive-menu-admin #upgrade-banner li  {
-    list-style: none;
-    font-weight: bold;
-    font-size: 11px;
-}
-
-#responsive-menu-admin #docs-banner .button,
-#responsive-menu-admin #upgrade-banner .button {
+#responsive-menu-admin #docs-banner .button {
     background: white;
     padding: 0 25px;
     height: 50px;
@@ -361,58 +322,7 @@
     margin: auto;
     width: auto;
     text-align: center;
-}
-
-#responsive-menu-admin #docs-banner .button {
     margin-top: 15px;
-}
-
-#responsive-menu-admin .key-container {
-    margin: 15px 0;
-    background: white;
-    text-align: center;
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 2px;
-}
-
-#responsive-menu-admin .key-container .key-title {
-    font-weight: bold;
-    display: inline-block;
-    margin-right: 10px;
-}
-
-#responsive-menu-admin .key-container .key {
-    display: inline-block;
-    font-size: 9px;
-    border: 1px solid #DADADA;
-    border-radius: 2px;
-    padding: 5px 15px 5px 5px;
-    background: white;
-}
-
-#responsive-menu-admin .key-container .key span {
-    border-right: 1px solid #de4b42;
-    display: inline-block;
-    padding-right: 5px;
-    margin-right: 10px;
-    color: #de4b42;
-    font-size: 9px;
-    font-weight: bold;
-}
-
-#responsive-menu-admin .key-container .key.key-semi-pro span {
-    color: #333;
-    border-color: #333;
-}
-
-#responsive-menu-admin .key-container .key.key-pro {
-    margin-bottom: 15px;
-}
-
-#responsive-menu-admin .key-container a {
-    text-decoration: none;
-    color: #333;
 }
 
 #responsive-menu-admin #add-font-icon {
@@ -429,64 +339,61 @@
     text-align: left;
 }
 
-#responsive-menu-admin td.well .sub-text ul {
+#responsive-menu-admin td.col-left .sub-text ul {
     margin: 15px;
 }
 
-#responsive-menu-admin td.well .sub-text ul li {
+#responsive-menu-admin td.col-left .sub-text ul li {
     list-style: disc;
 }
 
-#responsive-menu-admin td.pro {
-    position: relative;
+#responsive-menu-admin .panel,
+#responsive-menu-admin .panel table,
+#responsive-menu-admin .panel table td,
+#responsive-menu-admin .panel table th,
+#responsive-menu-admin .panel table td.col-left {
+    border: 0;
 }
 
-#responsive-menu-admin td.pro .responsive-menu-pro-overlay {
-    display: none;
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    background: rgba(222, 75, 66, 0.6);
-    text-align: center;
-    z-index: 3;
-}
-
-#responsive-menu-admin td.pro .responsive-menu-pro-overlay a {
-    top: 50%;
-    transform: translateY(-50%);
-    position: relative;
+#responsive-menu-admin a.remove {
     color: white;
-    font-size: 17px;
-    display: block;
 }
 
-#responsive-menu-admin td.pro:hover .responsive-menu-pro-overlay {
-    display: block;
+#responsive-menu-admin .panel table td.col-left {
+    border-radius: 0;
+    box-shadow: none;
 }
 
-#responsive-menu-admin #responsive-menu-header-bar-html-content,
-#responsive-menu-admin #responsive-menu-menu-additional-content {
+#responsive-menu-admin .panel table td.col-left,
+#responsive-menu-admin .panel table td.col-right {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+#responsive-menu-admin .panel table td.col-left label {
+    font-weight: normal;
+}
+
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget {
+    border-width: 1px;
+    border-style: solid;
+}
+
+#responsive-menu-admin .panel #font-icon-container td {
+    border-bottom: 0;
+}
+
+#responsive-menu-admin #responsive-menu-pro-header-bar-html-content,
+#responsive-menu-admin #responsive-menu-pro-menu-additional-content {
     height: 250px;
 }
 
-#responsive-menu-admin #responsive-menu-custom-css {
+#responsive-menu-admin #responsive-menu-pro-custom-css {
     height: 500px
 }
 
-#responsive-menu-admin #hide-pro-options-label {
-    text-align: right;
-}
-
-#responsive-menu-admin #hide-pro-options {
-    display: inline-block;
-    width: auto !important;
-    vertical-align: sub;
-}
-
 .rtl #responsive-menu-admin #header-bar-items-order-container .draggable,
-.rtl #responsive-menu-admin #responsive-menu-admin label,
+.rtl #responsive-menu-admin label,
 .rtl #responsive-menu-admin .bootstrap-select.btn-group .dropdown-toggle .filter-option,
 .rtl #responsive-menu-admin .bootstrap-select.btn-group .dropdown-menu.inner {
     text-align: right;
@@ -514,31 +421,195 @@
     text-align: left !important;
 }
 
-.rtl #responsive-menu-admin .pro::before,
-.rtl #responsive-menu-admin .semi-pro::before {
-    float: left;
-}
-
-.rtl #responsive-menu-admin .minicolors-theme-bootstrap .minicolors-swatch {
-    left: 75px;
-}
-
-.rtl #responsive-menu-admin .minicolors input {
-    width: calc(100% - 125px) !important;
-}
-
 .rtl #responsive-menu-admin #banner-area {
     margin-left: 0;
     margin-right: 5%;
 }
 
-.rtl #responsive-menu-admin .key-container .key span {
-    margin-left: 10px;
-    margin-right: 0;
+#responsive-menu-admin #responsive-menu-pro-desktop-menu-container {
+    border-top: 1px solid #ddd;
 }
 
-.rtl #responsive-menu-admin .key-container .key {
-    padding-left: 10px;
+#responsive-menu-admin #responsive-menu-pro-desktop-menu-container .responsive-menu-pro-desktop-menu-links-container {
+    background: #F5F5F5;
+    padding: 0;
+}
+
+#responsive-menu-admin #responsive-menu-pro-desktop-menu-container .responsive-menu-pro-desktop-menu-links-container,
+#responsive-menu-admin #responsive-menu-pro-desktop-menu-container .responsive-menu-pro-desktop-menu-options-wrapper {
+    max-height: 800px;
+    min-height: 600px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget-header,
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-top-level-label,
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-sub-menu-label,
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-sub-sub-menu-label {
+    cursor: pointer;
+}
+
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-top-level-label,
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-sub-menu-label,
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-sub-sub-menu-label,
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget-body,
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget-header {
+    padding: 10px;
+}
+
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget-body {
+    background: white;
+    padding: 25px 0;
+}
+
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget-body input,
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget-body textarea {
+    padding: 10px;
+}
+
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget-header {
+    border-bottom: 1px solid #ddd;
+    font-weight: bold;
+}
+
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget {
+    border-left: 1px solid #ddd;
+    width: 100%;
+    background: #F5F5F5;
+    margin-bottom: 10px;
+}
+
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-sub-menu-label {
+    padding-left: 25px;
+}
+
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-sub-sub-menu-label {
+    padding-left: 45px;
+}
+
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-sub-menu-label,
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-sub-sub-menu-label,
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-sub-sub-sub-menu-label {
+    background: white;
+    border-bottom: 0;
+    border-top: 0;
+    display: block;
+}
+
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-options-container,
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget-container {
+    display: none;
+}
+
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget-container {
+    background: white;
+    padding: 15px;
+    border: 1px solid #DDDDDD;
+}
+
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-options-container {
+    padding: 15px 0;
+}
+
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-options-container:first-child {
+    display: block;
+}
+
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-label-active {
+    background: #0073AA;
+    color: white;
+}
+
+#responsive-menu-admin .docs {
+    float: right;
+    margin-left: 15px;
+}
+
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-option-container-grid {
+    border: 2px solid #DDDDDD;
+    padding: 25px;
+    text-align: center;
+    background: white;
+    min-height: 136px;
+}
+
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-option-container-grid:empty:after {
+    content: "Drag widgets here to begin";
+    color: #8c8c8c;
+    position: relative;
+    font-size: 18px;
+    font-weight: bold;
+    top: 25px;
+}
+
+#responsive-menu-admin .label-info {
+    border-radius: 0;
+}
+
+#responsive-menu-admin #responsive-menu-pro-desktop-menu-container {
+    border: 0;
+}
+
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-option-container-grid .responsive-menu-pro-desktop-menu-widget {
+    width: 100% !important;
+    background: #F5F5F5;
+    margin-bottom: 15px;
+}
+
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-option-container-grid .responsive-menu-pro-desktop-menu-widget {
+    height: auto !important;
+}
+
+#responsive-menu-admin .dropdown-menu {
+    padding: 0;
+    margin: 0;
+}
+
+#responsive-menu-admin .dropdown-menu li {
+    margin: 0;
+}
+
+#responsive-menu-admin .dropdown-menu > li > a {
+    padding: 10px 15px;
+}
+
+#responsive-menu-admin .dropdown-menu > li > a .glyphicon {
+    top: 9px;
+}
+
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget-container .responsive-menu-pro-desktop-menu-widget .responsive-menu-pro-desktop-menu-widget-header .glyphicon,
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget .responsive-menu-pro-desktop-menu-widget-body {
+    display: none;
+}
+
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget .responsive-menu-pro-desktop-menu-widget-header {
+    position: relative;
+    text-align: center;
+}
+
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget .responsive-menu-pro-desktop-menu-widget-header .glyphicon {
+    position: absolute;
+    top: 13px;
+    font-size: 12px;
+    right: 11px;
+    color: #333;
+}
+
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-option-container {
+    margin-bottom: 15px;
+    background: #F5F5F5;
+    padding: 15px;
+    border: 1px solid #DDDDDD;
+    border-radius: 2px;
+}
+
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-widgets-container {
+    margin-top: 25px;
+}
+
+#responsive-menu-admin .responsive-menu-pro-desktop-menu-option-badges {
+    margin-right: 8px;
 }
 
 @media screen and (max-width: 1600px) {
@@ -577,7 +648,7 @@
         display: block;
     }
 
-    #responsive-menu-admin td.well {
+    #responsive-menu-admin td.col-left {
         margin-bottom: 0;
     }
 
