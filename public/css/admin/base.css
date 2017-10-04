@@ -184,6 +184,7 @@
 
 #responsive-menu-admin .nav-tabs .label {
     margin: 0 10px;
+    vertical-align: middle;
 }
 
 #responsive-menu-admin .nav-tabs > li {
@@ -374,7 +375,7 @@
     font-weight: normal;
 }
 
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget {
+#responsive-menu-admin .responsive-menu-desktop-menu-widget {
     border-width: 1px;
     border-style: solid;
 }
@@ -426,97 +427,97 @@
     margin-right: 5%;
 }
 
-#responsive-menu-admin #responsive-menu-pro-desktop-menu-container {
+#responsive-menu-admin #responsive-menu-desktop-menu-container {
     border-top: 1px solid #ddd;
 }
 
-#responsive-menu-admin #responsive-menu-pro-desktop-menu-container .responsive-menu-pro-desktop-menu-links-container {
+#responsive-menu-admin #responsive-menu-desktop-menu-container .responsive-menu-desktop-menu-links-container {
     background: #F5F5F5;
     padding: 0;
 }
 
-#responsive-menu-admin #responsive-menu-pro-desktop-menu-container .responsive-menu-pro-desktop-menu-links-container,
-#responsive-menu-admin #responsive-menu-pro-desktop-menu-container .responsive-menu-pro-desktop-menu-options-wrapper {
+#responsive-menu-admin #responsive-menu-desktop-menu-container .responsive-menu-desktop-menu-links-container,
+#responsive-menu-admin #responsive-menu-desktop-menu-container .responsive-menu-desktop-menu-options-wrapper {
     max-height: 800px;
     min-height: 600px;
     overflow-x: hidden;
     overflow-y: auto;
 }
 
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget-header,
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-top-level-label,
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-sub-menu-label,
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-sub-sub-menu-label {
+#responsive-menu-admin .responsive-menu-desktop-menu-widget-header,
+#responsive-menu-admin .responsive-menu-desktop-menu-top-level-label,
+#responsive-menu-admin .responsive-menu-desktop-menu-sub-menu-label,
+#responsive-menu-admin .responsive-menu-desktop-menu-sub-sub-menu-label {
     cursor: pointer;
 }
 
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-top-level-label,
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-sub-menu-label,
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-sub-sub-menu-label,
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget-body,
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget-header {
+#responsive-menu-admin .responsive-menu-desktop-menu-top-level-label,
+#responsive-menu-admin .responsive-menu-desktop-menu-sub-menu-label,
+#responsive-menu-admin .responsive-menu-desktop-menu-sub-sub-menu-label,
+#responsive-menu-admin .responsive-menu-desktop-menu-widget-body,
+#responsive-menu-admin .responsive-menu-desktop-menu-widget-header {
     padding: 10px;
 }
 
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget-body {
+#responsive-menu-admin .responsive-menu-desktop-menu-widget-body {
     background: white;
     padding: 25px 0;
 }
 
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget-body input,
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget-body textarea {
+#responsive-menu-admin .responsive-menu-desktop-menu-widget-body input,
+#responsive-menu-admin .responsive-menu-desktop-menu-widget-body textarea {
     padding: 10px;
 }
 
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget-header {
+#responsive-menu-admin .responsive-menu-desktop-menu-widget-header {
     border-bottom: 1px solid #ddd;
     font-weight: bold;
 }
 
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget {
+#responsive-menu-admin .responsive-menu-desktop-menu-widget {
     border-left: 1px solid #ddd;
     width: 100%;
     background: #F5F5F5;
     margin-bottom: 10px;
 }
 
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-sub-menu-label {
+#responsive-menu-admin .responsive-menu-desktop-menu-sub-menu-label {
     padding-left: 25px;
 }
 
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-sub-sub-menu-label {
+#responsive-menu-admin .responsive-menu-desktop-menu-sub-sub-menu-label {
     padding-left: 45px;
 }
 
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-sub-menu-label,
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-sub-sub-menu-label,
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-sub-sub-sub-menu-label {
+#responsive-menu-admin .responsive-menu-desktop-menu-sub-menu-label,
+#responsive-menu-admin .responsive-menu-desktop-menu-sub-sub-menu-label,
+#responsive-menu-admin .responsive-menu-desktop-menu-sub-sub-sub-menu-label {
     background: white;
     border-bottom: 0;
     border-top: 0;
     display: block;
 }
 
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-options-container,
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget-container {
+#responsive-menu-admin .responsive-menu-desktop-menu-options-container,
+#responsive-menu-admin .responsive-menu-desktop-menu-widget-container {
     display: none;
 }
 
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget-container {
+#responsive-menu-admin .responsive-menu-desktop-menu-widget-container {
     background: white;
     padding: 15px;
     border: 1px solid #DDDDDD;
 }
 
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-options-container {
+#responsive-menu-admin .responsive-menu-desktop-menu-options-container {
     padding: 15px 0;
 }
 
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-options-container:first-child {
+#responsive-menu-admin .responsive-menu-desktop-menu-options-container:first-child {
     display: block;
 }
 
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-label-active {
+#responsive-menu-admin .responsive-menu-desktop-menu-label-active {
     background: #0073AA;
     color: white;
 }
@@ -526,7 +527,7 @@
     margin-left: 15px;
 }
 
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-option-container-grid {
+#responsive-menu-admin .responsive-menu-desktop-menu-option-container-grid {
     border: 2px solid #DDDDDD;
     padding: 25px;
     text-align: center;
@@ -534,7 +535,7 @@
     min-height: 136px;
 }
 
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-option-container-grid:empty:after {
+#responsive-menu-admin .responsive-menu-desktop-menu-option-container-grid:empty:after {
     content: "Drag widgets here to begin";
     color: #8c8c8c;
     position: relative;
@@ -547,17 +548,17 @@
     border-radius: 0;
 }
 
-#responsive-menu-admin #responsive-menu-pro-desktop-menu-container {
+#responsive-menu-admin #responsive-menu-desktop-menu-container {
     border: 0;
 }
 
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-option-container-grid .responsive-menu-pro-desktop-menu-widget {
+#responsive-menu-admin .responsive-menu-desktop-menu-option-container-grid .responsive-menu-desktop-menu-widget {
     width: 100% !important;
     background: #F5F5F5;
     margin-bottom: 15px;
 }
 
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-option-container-grid .responsive-menu-pro-desktop-menu-widget {
+#responsive-menu-admin .responsive-menu-desktop-menu-option-container-grid .responsive-menu-desktop-menu-widget {
     height: auto !important;
 }
 
@@ -578,17 +579,21 @@
     top: 9px;
 }
 
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget-container .responsive-menu-pro-desktop-menu-widget .responsive-menu-pro-desktop-menu-widget-header .glyphicon,
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget .responsive-menu-pro-desktop-menu-widget-body {
+#responsive-menu-admin .dropdown-menu > li > a:focus {
+    box-shadow: none;
+}
+
+#responsive-menu-admin .responsive-menu-desktop-menu-widget-container .responsive-menu-desktop-menu-widget .responsive-menu-desktop-menu-widget-header .glyphicon,
+#responsive-menu-admin .responsive-menu-desktop-menu-widget .responsive-menu-desktop-menu-widget-body {
     display: none;
 }
 
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget .responsive-menu-pro-desktop-menu-widget-header {
+#responsive-menu-admin .responsive-menu-desktop-menu-widget .responsive-menu-desktop-menu-widget-header {
     position: relative;
     text-align: center;
 }
 
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-widget .responsive-menu-pro-desktop-menu-widget-header .glyphicon {
+#responsive-menu-admin .responsive-menu-desktop-menu-widget .responsive-menu-desktop-menu-widget-header .glyphicon {
     position: absolute;
     top: 13px;
     font-size: 12px;
@@ -596,7 +601,7 @@
     color: #333;
 }
 
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-option-container {
+#responsive-menu-admin .responsive-menu-desktop-menu-option-container {
     margin-bottom: 15px;
     background: #F5F5F5;
     padding: 15px;
@@ -604,11 +609,11 @@
     border-radius: 2px;
 }
 
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-widgets-container {
+#responsive-menu-admin .responsive-menu-desktop-menu-widgets-container {
     margin-top: 25px;
 }
 
-#responsive-menu-admin .responsive-menu-pro-desktop-menu-option-badges {
+#responsive-menu-admin .responsive-menu-desktop-menu-option-badges {
     margin-right: 8px;
 }
 

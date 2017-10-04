@@ -4,11 +4,11 @@
     <div class='panel-body'>Ordering<small>Menu</small></div>
     <table class='table table-bordered table-hover'>
         <tr{% if errors.items_order %} class='danger'{% endif %}>
-            <td class='well col-md-3'>
+            <td class='col-left col-md-3'>
                 <label for='items_order' class='control-label'>Order of Menu Items</label>
                 <div class='sub-text'>Drag the items to re-order and click to turn them on or off.</div>
             </td>
-            <td>
+            <td class="col-right">
                 <ul id='menu-sortable'>
                     {% for key, selected in options.items_order|json_decode %}
                         <li class='draggable'>
@@ -46,7 +46,7 @@
     <div class='panel-body'>Font Icons<small>Menu</small></div>
     <table class='table table-bordered table-hover'>
         <tr{% if errors.menu_font_icons %} class='danger'{% endif %}>
-            <td class='well col-md-3'>
+            <td class='col-left col-md-3'>
                 <label for='items_order' class='control-label'>Font Icons</label>
                 <div class='sub-text'>
                     Responsive Menu gives you the opportunity to use a selection of brilliant font icon packages or to
@@ -60,7 +60,7 @@
                     <a href='https://responsive.menu/docs/basic-setup/font-icons/' target='_blank'>here</a>.
                 </div>
             </td>
-            <td class='pro'>
+            <td class='col-right pro'>
                 <div class='responsive-menu-pro-overlay'>
                     <a href='https://responsive.menu/pricing/?utm_source=free-plugin&utm_medium=option&utm_campaign=free-plugin-option-upgrade'
                        target='_blank'>Click to upgrade now to use</a>
