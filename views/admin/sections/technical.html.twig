@@ -1,14 +1,16 @@
 {% import 'admin/macros.html.twig' as macros %}
 
+{% set section = 'Technical' %}
+
 <div class='panel panel-default'>
-    <div class='panel-body'>Theme<small>Technical</small></div>
+    <div class='panel-body'>Theme<small>{{ section }}</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('admin_theme', 'Admin Theme', 'select', options, errors, '', '', 'theme') }}
     </table>
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Scripts<small>Technical</small></div>
+    <div class='panel-body'>Scripts<small>{{ section }}</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('external_files', 'Use external files?', 'checkbox', options, errors, '', '', '', '', 'This will create external files for CSS and JavaScript') }}
         {{ macros.row('minify_scripts', 'Minify scripts?', 'checkbox', options, errors, '', '', '', '', 'This will minify the CSS and JavaScript output') }}
@@ -19,25 +21,58 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Menu<small>Technical</small></div>
-    <table class='table table-bordered table-hover'>
-        {{ macros.row('custom_walker', 'Custom Walker', 'input', options, errors, '', '', '', '', 'Warning: For extremely advanced use only') }}
-        {{ macros.row('mobile_only', 'Show on mobile devices only?', 'checkbox', options, errors, '', 'pro', '', '', 'This will make it not a responsive menu but a "mobile menu"') }}
-        {{ macros.row('shortcode', 'Use Shortcode?', 'checkbox', options, errors, '', '', '', '', 'Please place [responsive_menu] in your files to use. Full documentation can be found <a href="https://responsive.menu/docs/advanced-setup/shortcode/" target="_blank">here</a>') }}
-    </table>
-</div>
-
-<div class='panel panel-default'>
-    <div class='panel-body'>Animation Speeds<small>Technical</small></div>
+    <div class='panel-body'>Animation Speeds<small>{{ section }}</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('animation_speed', 'Animation Speed', 'input', options, errors, '', '', '', '', '', 's') }}
         {{ macros.row('transition_speed', 'Transition Speed', 'input', options, errors, '', '', '', '', '', 's') }}
     </table>
 </div>
 
-<div class='panel panel-default fully-pro-container'>
-    <div class='panel-body'>Custom CSS<small>Technical</small></div>
+<div class='panel panel-default'>
+    <div class='panel-body'>Import/Export<small>{{ section }}</small></div>
     <table class='table table-bordered table-hover'>
-        {{ macros.row('custom_css', 'Custom CSS', 'textarea', options, errors, '', 'pro') }}
+        <tr>
+            <td class="col-left col-md-3">
+                <label class="control-label">Import</label>
+                <div class="sub-text">Warning: This is a destructive process and can't be undone.</div>
+            </td>
+            <td class="col-right text-right">
+                <input type='file' name='responsive-menu-pro-import-file' />
+                <button name='responsive-menu-pro-import' type='submit' class='btn btn-primary btn-lg btn-rm'>Import</button>
+            </td>
+        </tr>
+        <tr>
+            <td class="col-left col-md-3">
+                <label class="control-label">Export</label>
+                <div class="sub-text">This will create an export file for transferring to other sites.</div>
+            </td>
+            <td class="col-right text-right">
+                <button name='responsive-menu-pro-export' type='submit' class='btn btn-primary btn-lg btn-rm'>Export</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class='panel panel-default'>
+    <div class='panel-body'>Rebuild<small>{{ section }}</small></div>
+    <table class='table table-bordered table-hover'>
+        <tr>
+            <td class="col-left col-md-3">
+                <label class="control-label">Reset</label>
+                <div class="sub-text">Warning: This is a destructive process and can't be undone.</div>
+            </td>
+            <td class="col-right text-right">
+                <button name='responsive-menu-pro-reset' type='submit' class='btn btn-danger btn-lg btn-rm'>Reset Options</button>
+            </td>
+        </tr>
+        <tr>
+            <td class="col-left col-md-3">
+                <label class="control-label">Rebuild database</label>
+                <div class="sub-text">This will rebuild the database table if you are having issues.</div>
+            </td>
+            <td class="col-right text-right">
+                <button name='responsive-menu-pro-rebuild-db' type='submit' class='btn btn-danger btn-lg btn-rm'>Rebuild Database</button>
+            </td>
+        </tr>
     </table>
 </div>

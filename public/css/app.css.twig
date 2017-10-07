@@ -470,6 +470,9 @@ button#responsive-menu-button,
         border-bottom: {{ options.menu_border_width }}px solid {{ options.menu_item_border_colour }};
         color: {{ options.menu_link_colour }};
         background-color: {{ options.menu_item_background_colour }};
+        {% if options.menu_word_wrap != 'off' %}
+            word-wrap: break-word;
+        {% endif %}
     }
 
     #responsive-menu-container #responsive-menu li.responsive-menu-item a:hover {

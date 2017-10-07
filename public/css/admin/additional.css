@@ -99,7 +99,7 @@
     display: block;
 }
 
-#responsive-menu-admin td.pro:hover .responsive-menu-pro-overlay {
+#responsive-menu-admin tr.pro-row:hover .responsive-menu-pro-overlay {
     display: block;
 }
 
@@ -145,4 +145,8 @@
     list-style: none;
     font-weight: bold;
     font-size: 11px;
+}
+
+#responsive-menu-admin .nav-tabs > li:first-child {
+    display: none;
 }

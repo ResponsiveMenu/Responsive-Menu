@@ -1,7 +1,41 @@
 {% import 'admin/macros.html.twig' as macros %}
 
+{% set section = 'Sub Menus' %}
+
 <div class='panel panel-default'>
-    <div class='panel-body'>Sub-Menu Trigger Icon<small>Sub Menus</small></div>
+    <div class='panel-body'>Padding<small>{{ section }}</small></div>
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('menu_depth_side', 'Depth Padding Side', 'select', options, errors, '', '', 'left_right') }}
+        {{ macros.row('menu_depth_0', 'Depth Level Zero Padding', 'input', options, errors, 'has-unit', 'semi-pro', '', 'percentage') }}
+        {{ macros.row('menu_depth_1', 'Depth Level One Padding', 'input', options, errors, 'has-unit', 'semi-pro', '', 'percentage') }}
+        {{ macros.row('menu_depth_2', 'Depth Level Two Padding', 'input', options, errors, 'has-unit', 'semi-pro', '', 'percentage') }}
+        {{ macros.row('menu_depth_3', 'Depth Level Three Padding', 'input', options, errors, 'has-unit', 'semi-pro', '', 'percentage') }}
+        {{ macros.row('menu_depth_4', 'Depth Level Four Padding', 'input', options, errors, 'has-unit', 'semi-pro', '', 'percentage') }}
+        {{ macros.row('menu_depth_5', 'Depth Level Five Padding', 'input', options, errors, 'has-unit', 'semi-pro', '', 'percentage') }}
+    </table>
+</div>
+
+<div class='panel panel-default'>
+    <div class='panel-body'>Animations<small>{{ section }}</small></div>
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('accordion_animation', 'Use Accordion', 'checkbox', options, errors) }}
+        {{ macros.row('auto_expand_all_submenus', 'Auto Expand all Sub-Menus', 'checkbox', options, errors) }}
+        {{ macros.row('auto_expand_current_submenus', 'Auto Expand Current Page Sub-Menus', 'checkbox', options, errors) }}
+        {{ macros.row('menu_item_click_to_trigger_submenu', 'Make Whole Sub-Menu bar Clickable', 'checkbox', options, errors) }}
+        {{ macros.row('use_slide_effect', 'Use Slide Effect', 'checkbox', options, errors, '', 'pro', '', '', '<span class="label label-warning">beta</span>') }}
+    </table>
+</div>
+
+<div class='panel panel-default'>
+    <div class='panel-body'>Slide Effect<small>{{ section }}</small></div>
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('use_slide_effect', 'Enabled', 'checkbox', options, errors, '', 'pro', '', '', 'The slide effect changes the way that sub-menus open and close. Instead of the standard drop-down animation they will slide over the top of eachother as in the demo site <a href="https://demo.responsive.menu/pro-example-one/" target="_blank">here</a>.<br /><br /><span class="label label-warning">beta</span>') }}
+        {{ macros.row('slide_effect_back_to_text', 'Back Text', 'input', options, errors, '', 'pro', '', '', 'You can specify the text used for clicking to get back to the previous level when using the slide effect.') }}
+    </table>
+</div>
+
+<div class='panel panel-default'>
+    <div class='panel-body'>Sub-Menu Trigger Icon<small>{{ section }}</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('active_arrow_font_icon', 'Active Font Icon', 'font-icon', options, errors, '', 'pro') }}
         {{ macros.row('inactive_arrow_font_icon', 'Inactive Font Icon', 'font-icon', options, errors, '', 'pro') }}
@@ -16,7 +50,7 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Sub-Menu Trigger Colours<small>Sub Menus</small></div>
+    <div class='panel-body'>Sub-Menu Trigger Colours<small>{{ section }}</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_sub_arrow_shape_colour', 'Colour', 'colour', options, errors, '', 'semi-pro') }}
         {{ macros.row('menu_sub_arrow_shape_hover_colour', 'Hover Colour', 'colour', options, errors, '', 'semi-pro') }}
@@ -26,7 +60,7 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Sub-Menu Trigger Background<small>Sub Menus</small></div>
+    <div class='panel-body'>Sub-Menu Trigger Background<small>{{ section }}</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_sub_arrow_background_colour', 'Colour', 'colour', options, errors, '', 'semi-pro') }}
         {{ macros.row('menu_sub_arrow_background_hover_colour', 'Hover Colour', 'colour', options, errors, '', 'semi-pro') }}
@@ -36,7 +70,7 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Sub-Menu Trigger Border<small>Sub Menus</small></div>
+    <div class='panel-body'>Sub-Menu Trigger Border<small>{{ section }}</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_sub_arrow_border_colour', 'Colour', 'colour', options, errors, '', 'semi-pro') }}
         {{ macros.row('menu_sub_arrow_border_hover_colour', 'Hover Colour', 'colour', options, errors, '', 'semi-pro') }}
@@ -46,44 +80,9 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Sub-Menu Trigger Sizing<small>Sub Menus</small></div>
+    <div class='panel-body'>Sub-Menu Trigger Sizing<small>{{ section }}</small></div>
     <table class='table table-bordered table-hover'>
         {{ macros.row('submenu_arrow_height', 'Height', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel') }}
         {{ macros.row('submenu_arrow_width', 'Width', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel') }}
-    </table>
-</div>
-
-<div class='panel panel-default'>
-    <div class='panel-body'>Animations<small>Sub Menus</small></div>
-    <table class='table table-bordered table-hover'>
-        {{ macros.row('accordion_animation', 'Use Accordion', 'checkbox', options, errors) }}
-        {{ macros.row('auto_expand_all_submenus', 'Auto Expand all Sub-Menus', 'checkbox', options, errors) }}
-        {{ macros.row('auto_expand_current_submenus', 'Auto Expand Current Page Sub-Menus', 'checkbox', options, errors) }}
-        {{ macros.row('menu_item_click_to_trigger_submenu', 'Make Whole Sub-Menu bar Clickable', 'checkbox', options, errors) }}
-        {{ macros.row('use_slide_effect', 'Use Slide Effect', 'checkbox', options, errors, '', 'pro', '', '', '<span class="label label-warning">beta</span>') }}
-    </table>
-</div>
-
-<div class='panel panel-default fully-pro-container'>
-    <div class='panel-body'>Slide Effect Options<small>Sub Menus</small></div>
-    <table class='table table-bordered table-hover'>
-        {{ macros.row('slide_effect_back_to_text', 'Back Text', 'input', options, errors, '', 'pro') }}
-    </table>
-</div>
-
-<div class='panel panel-default fully-pro-container'>
-    <div class='panel-body'>Fade in links<small>Sub Menus</small></div>
-    <table class='table table-bordered table-hover'>
-        {{ macros.row('fade_submenus', 'Enabled', 'checkbox', options, errors, '', 'pro') }}
-        {{ macros.row('fade_submenus_side', 'Side to Fade From', 'select', options, errors, '', 'pro', 'left_right') }}
-        {{ macros.row('fade_submenus_delay', 'Delay', 'input', options, errors, '', 'pro', '', '', '', 'ms') }}
-        {{ macros.row('fade_submenus_speed', 'Speed', 'input', options, errors, '', 'pro', '', '', '', 'ms') }}
-    </table>
-</div>
-
-<div class='panel panel-default'>
-    <div class='panel-body'>Descriptions<small>Sub Menus</small></div>
-    <table class='table table-bordered table-hover'>
-        {{ macros.row('submenu_descriptions_on', 'Enabled', 'checkbox', options, errors, '', '', '', '', 'If you have set descriptions for your menu items, you can turn them on here.') }}
     </table>
 </div>

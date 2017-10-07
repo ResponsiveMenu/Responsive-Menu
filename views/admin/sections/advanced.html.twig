@@ -1,0 +1,30 @@
+{% import 'admin/macros.html.twig' as macros %}
+
+{% set section = 'Advanced' %}
+
+<div class='panel panel-default'>
+    <div class='panel-body'>Custom CSS<small>Advanced</small></div>
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('custom_css', 'Custom CSS', 'textarea', options, errors, '', 'pro') }}
+    </table>
+</div>
+
+<div class='panel panel-default'>
+    <div class='panel-body'>Menu<small>Advanced</small></div>
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('custom_walker', 'Custom Walker', 'input', options, errors, '', '', '', '', 'Warning: For extremely advanced use only') }}
+        {{ macros.row('mobile_only', 'Show on mobile devices only?', 'checkbox', options, errors, '', 'pro', '', '', 'This will make it not a responsive menu but a "mobile menu"') }}
+        {{ macros.row('shortcode', 'Use Shortcode?', 'checkbox', options, errors, '', '', '', '', 'Please place [responsive_menu_pro] in your files to use. Full documentation can be found <a href="https://responsive.menu/docs/advanced-setup/shortcode/" target="_blank">here</a>') }}
+        {{ macros.row('menu_adjust_for_wp_admin_bar', 'Adjust for WP Admin Bar', 'checkbox', options, errors, '', 'pro', '', '', 'If you use the WP Admin bar when logged in, this will bring the menus elements down so they are not hidden behind it.') }}
+        {{ macros.row('menu_disable_scrolling', 'Disable Background Scrolling', 'checkbox', options, errors, '', 'pro', '', '', 'Please ensure your theme follows WordPress theme development guidelines for this to work. Specifically that the html tag includes the language_attributes() function call.') }}
+        {{ macros.row('show_menu_on_page_load', 'Show Menu on Page Load', 'checkbox', options, errors, '', 'pro') }}
+    </table>
+</div>
+
+<div class='panel panel-default fully-pro-container'>
+    <div class='panel-body'>Page Overlay<small>{{ section }}</small></div>
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('menu_overlay', 'Enable', 'checkbox', options, errors, '', 'pro') }}
+        {{ macros.row('menu_overlay_colour', 'Colour', 'colour', options, errors, '', 'pro') }}
+    </table>
+</div>
