@@ -68,6 +68,7 @@ else:
     }));
 
     $twig->addGlobal('admin_url', get_admin_url());
+    $twig->addGlobal('shortcode', '[responsive_menu]');
 
     $twig->addFunction(new Twig_SimpleFunction('hide_pro_options', function() {
         return get_option('hide_pro_options', 'no');

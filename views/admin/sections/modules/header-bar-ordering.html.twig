@@ -1,0 +1,19 @@
+<table class='table table-bordered table-hover' id='header-bar-items-order-container'>
+    <tr{% if errors.header_bar_items_order %} class='danger'{% endif %}>
+        <td class='col-left col-md-3'>
+            <label for='items_order' class='control-label'>Order of Header Bar Items</label>
+            <div class='sub-text'>Drag the items to re-order and click to turn them on or off.</div>
+        </td>
+        <td class="col-right text-center">
+            <ul id='header-bar-sortable'>
+                {% for key, selected in header_bar_items(options.header_bar_items_order|json_decode) %}
+                    <li class='draggable'>
+                        {{ key|title }}
+                        <input type='text' class='orderable-item' value='{{ selected }}' name='menu[header_bar_items_order][{{ key }}]' />
+                        <div class='menu-order-option-switch{% if selected == 'on' %} menu-order-option-switch-on{% endif %}'></div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </td>
+    </tr>
+</table>

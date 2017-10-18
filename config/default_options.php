@@ -184,7 +184,8 @@ function get_responsive_menu_default_options() {
         'custom_walker' => null,
         'custom_css' => null,
 
-        'use_single_menu' => 'off',
+        'use_desktop_menu' => false,
+        'desktop_menu_options' => '{}',
 
         'single_menu_height' => '80',
         'single_menu_height_unit' => 'px',

@@ -43,16 +43,12 @@ jQuery(function($) {
         if($(this).is(':checked')) {
             $('.nav > li.pro-tab, ' +
                 '.fully-pro-container, ' +
-                '.key-container, ' +
-                '#upgrade-banner, ' +
                 '.responsive-menu-preview, ' +
                 '.pro-row'
             ).hide();
        } else {
             $('.nav > li.pro-tab, ' +
                 '.fully-pro-container, ' +
-                '.key-container, ' +
-                '#upgrade-banner, ' +
                 '.responsive-menu-preview, ' +
                 '.pro-row'
             ).show();
