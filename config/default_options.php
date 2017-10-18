@@ -186,6 +186,9 @@ function get_responsive_menu_default_options() {
 
         'use_desktop_menu' => false,
         'desktop_menu_options' => '{}',
+        'desktop_menu_positioning' => 'fixed',
+        'desktop_menu_width' => '',
+        'desktop_menu_width_unit' => 'px',
 
         'single_menu_height' => '80',
         'single_menu_height_unit' => 'px',

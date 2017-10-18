@@ -167,12 +167,11 @@
                     } %}
                     {{ macros.select(name, options[name], choices) }}
                 {% elseif select_type == 'position' %}
-                    {% set choices = {
-                        'fixed': 'Fixed',
-                        'absolute': 'Absolute',
-                        'relative': 'Relative'
-                    } %}
-                    {{ macros.select(name, options[name], choices) }}
+                    <select id='responsive-menu-{{ name|replace({'_': '-'}) }}' class='selectpicker show-tick' name='menu[{{ name }}]'>
+                        <option data-subtext='Will stay in position as you scroll down the page.' value='fixed' {% if options[name] == 'fixed' %}selected='selected'{% endif %}>Fixed</option>
+                        <option data-subtext='Will disappear as you scroll down the page.' value='absolute' {% if options[name] == 'absolute' %}selected='selected'{% endif %}>Absolute</option>
+                        <option data-subtext='Will stay in a specific position on your page.' value='relative' {% if options[name] == 'Fixed' %}selected='selected'{% endif %} >Relative</option>
+                    </select>
                 {% elseif select_type == 'animation' %}
                     {{ macros.animation_select(name, options[name]) }}
                 {% elseif select_type == 'depth' %}
