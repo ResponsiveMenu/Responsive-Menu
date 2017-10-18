@@ -166,6 +166,13 @@
                         'right': 'Right'
                     } %}
                     {{ macros.select(name, options[name], choices) }}
+                {% elseif select_type == 'left_right_with_none' %}
+                    {% set choices = {
+                        '': 'None',
+                        'left': 'Left',
+                        'right': 'Right'
+                    } %}
+                    {{ macros.select(name, options[name], choices) }}
                 {% elseif select_type == 'position' %}
                     <select id='responsive-menu-{{ name|replace({'_': '-'}) }}' class='selectpicker show-tick' name='menu[{{ name }}]'>
                         <option data-subtext='Will stay in position as you scroll down the page.' value='fixed' {% if options[name] == 'fixed' %}selected='selected'{% endif %}>Fixed</option>

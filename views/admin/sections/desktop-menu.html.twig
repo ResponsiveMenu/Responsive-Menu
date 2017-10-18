@@ -7,6 +7,8 @@
     <table class='table table-bordered table-hover'>
         {{ macros.row('use_desktop_menu', 'Use Desktop Menu', 'checkbox', options, errors, '', 'pro', '', '', 'To position the menu in a specific location in your theme you must turn the Shortcode option on and place the shortcode in your template where you want the menu to appear.') }}
         {{ macros.row('desktop_menu_positioning', 'Positioning', 'select', options, errors, '', 'pro', 'position', '', '', '', '', 'Using relative positioning is useful when combined with the shortcode.') }}
+        {{ macros.row('desktop_menu_width', 'Width', 'input', options, errors, 'has-unit', 'pro', '', 'pixel', 'Leave black to keep the width auto.') }}
+        {{ macros.row('desktop_menu_side', 'Side', 'select', options, errors, '', 'pro', 'left_right_with_none', '', 'Leave black to keep the width auto.') }}
     </table>
 </div>
 
