@@ -169,3 +169,14 @@
 /*
   <-- End button styles
 */
+
+/*
+   --> Start specific theme styles
+*/
+#responsive-menu-admin #hide-pro-options-label {
+    background: #3E4960;
+    color: white;
+}
+/*
+   <-- End specific theme styles
+*/
