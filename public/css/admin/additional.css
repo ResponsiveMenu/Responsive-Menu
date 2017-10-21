@@ -17,63 +17,6 @@
     border-color: #333;
 }
 
-#responsive-menu-admin .key-container .key.key-semi-pro span {
-    color: #333;
-    border-color: #333;
-}
-
-#responsive-menu-admin .key-container .key.key-pro {
-    margin-bottom: 15px;
-}
-
-#responsive-menu-admin .key-container a {
-    text-decoration: none;
-    color: #333;
-}
-
-#responsive-menu-admin .key-container {
-    margin: 15px 0;
-    background: white;
-    text-align: center;
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 2px;
-}
-
-#responsive-menu-admin .key-container .key-title {
-    font-weight: bold;
-    display: inline-block;
-    margin-right: 10px;
-}
-
-#responsive-menu-admin .key-container .key {
-    display: inline-block;
-    font-size: 9px;
-    border: 1px solid #DADADA;
-    border-radius: 2px;
-    padding: 5px 15px 5px 5px;
-    background: white;
-}
-
-#responsive-menu-admin .key-container .key span {
-    border-right: 1px solid #de4b42;
-    display: inline-block;
-    padding-right: 5px;
-    margin-right: 10px;
-    color: #de4b42;
-    font-size: 9px;
-    font-weight: bold;
-}
-
-.rtl #responsive-menu-admin .key-container .key span {
-    margin-left: 10px;
-    margin-right: 0;
-}
-
-.rtl #responsive-menu-admin .key-container .key {
-    padding-left: 10px;
-}
-
 #responsive-menu-admin tr.pro-row:hover {
     position: relative;
 }

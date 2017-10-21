@@ -46,6 +46,35 @@
     margin-top: 25px;
 }
 
+#responsive-menu-admin #banner-area #guide-banner {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    height: 250px;
+}
+
+#responsive-menu-admin #banner-area #guide-banner #guide-button {
+    height: 50px;
+    width: 50px;
+    background: #3E4960;
+    padding-top: 10px;
+    float: right;
+}
+
+#responsive-menu-admin #banner-area #guide-banner #guide-button .guide-button-line {
+    background: white;
+    width: 75%;
+    height: 3px;
+    margin: 0 auto 10px auto;
+}
+
+#responsive-menu-admin #banner-area #guide-banner #guide-container {
+    background: #3E4960;
+    padding: 10px;
+    width: 75%;
+    height: 200px;
+}
+
 #responsive-menu-admin .input-group {
     width:100%;
 }

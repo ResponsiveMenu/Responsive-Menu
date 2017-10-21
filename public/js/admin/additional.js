@@ -34,14 +34,12 @@ jQuery(function($) {
                 $('.nav > li.pro-tab, ' +
                     '.fully-pro-container, ' +
                     '.responsive-menu-preview, ' +
-                    '.key-container, ' +
                     '.pro-row'
                 ).hide();
             } else {
                 $('.nav > li.pro-tab, ' +
                     '.fully-pro-container, ' +
                     '.responsive-menu-preview, ' +
-                    '.key-container, ' +
                     '.pro-row'
                 ).show();
             }
