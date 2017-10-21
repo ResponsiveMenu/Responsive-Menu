@@ -1,8 +1,6 @@
 {#
     Responsive Menu Jinja template file.
-    NOT Safe to Copy
-
-    Do Not Copy
+    Safe to Copy
 #}
 
 <div id="upgrade-banner">
@@ -22,15 +20,39 @@
 </div>
 
 <div id="guide-banner">
+    <div id="guide-title">
+        Mini Admin Guide<br />
+        <small>Hover the items to find their sections</small>
+    </div>
     <div id="guide-wrapper">
-        <div id="guide-button">
-            <div class="guide-button-line"></div>
-            <div class="guide-button-line"></div>
-            <div class="guide-button-line"></div>
+        <div id="guide-button" class="guide-helper-container">
+            <div class="guide-helper">Button</div>
+            <div id="guide-button-wrapper">
+                <div class="guide-button-line"></div>
+                <div class="guide-button-line"></div>
+                <div class="guide-button-line"></div>
+            </div>
         </div>
-        <div id="guide-container">
-            <div id="guide-menu">
-                <div id="guide-sub-menus"></div>
+        <div id="guide-container" class="guide-helper-container">
+            <div id="guide-helper-container" class="guide-helper">Container</div>
+            <div id="guide-container-wrapper">
+                <div class="guide-menu-text">Title</div>
+                <div id="guide-menu" class="guide-helper-container">
+                    <div class="guide-helper">Menu</div>
+                    <div id="guide-menu-wrapper">
+                        <div class="guide-menu-item">Menu Item</div>
+                        <div class="guide-menu-item">Menu Item</div>
+                        <div class="guide-helper-container">
+                            <div class="guide-helper guide-helper-submenus">Sub Menus</div>
+                            <div id="guide-submenu-wrapper">
+                                <div class="guide-menu-item guide-submenu-item">Sub Menu Item</div>
+                                <div class="guide-menu-item guide-submenu-item">Sub Menu Item</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="guide-menu-text">Additional Content</div>
+                <div class="guide-menu-text">Search</div>
             </div>
         </div>
     </div>

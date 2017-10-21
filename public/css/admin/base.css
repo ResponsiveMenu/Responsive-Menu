@@ -50,14 +50,25 @@
     background: white;
     padding: 15px;
     margin-bottom: 15px;
-    height: 250px;
 }
 
-#responsive-menu-admin #banner-area #guide-banner #guide-button {
+#responsive-menu-admin #banner-area #guide-banner .active-wrapper:hover,
+#responsive-menu-admin #banner-area #guide-banner #guide-menu-wrapper:hover,
+#responsive-menu-admin #banner-area #guide-banner #guide-submenu-wrapper:hover,
+#responsive-menu-admin #banner-area #guide-banner #guide-container-wrapper:hover,
+#responsive-menu-admin #banner-area #guide-banner #guide-button-wrapper:hover {
+    outline: 4px solid #15A4FA;
+}
+
+#responsive-menu-admin #banner-area #guide-banner #guide-button-wrapper {
     height: 50px;
     width: 50px;
     background: #3E4960;
     padding-top: 10px;
+}
+
+#responsive-menu-admin #banner-area #guide-banner #guide-button {
+
     float: right;
 }
 
@@ -69,10 +80,63 @@
 }
 
 #responsive-menu-admin #banner-area #guide-banner #guide-container {
+    width: 75%;
+}
+
+#responsive-menu-admin #banner-area #guide-banner #guide-container-wrapper {
     background: #3E4960;
     padding: 10px;
-    width: 75%;
-    height: 200px;
+}
+
+#responsive-menu-admin #banner-area #guide-banner #guide-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#responsive-menu-admin #banner-area #guide-banner #guide-title small {
+    font-weight: normal;
+}
+
+#responsive-menu-admin #banner-area #guide-banner #guide-menu {
+    background: #E9F0FA;
+}
+
+#responsive-menu-admin #banner-area #guide-banner #guide-container .guide-menu-text {
+    color: white;
+    padding: 5px 0;
+}
+
+#responsive-menu-admin #banner-area #guide-banner #guide-menu .guide-menu-item {
+    border-bottom: 1px solid #D4E2F5;
+    padding: 5px;
+}
+
+#responsive-menu-admin #banner-area #guide-banner #guide-menu .guide-menu-item.guide-submenu-item {
+    padding-left: 25px;
+    background: #D4E2F5;
+    border-color: #E9F0FA;
+}
+
+#responsive-menu-admin #banner-area #guide-banner .guide-helper-container {
+    position: relative;
+}
+
+#responsive-menu-admin #banner-area #guide-banner .guide-helper {
+    position: absolute;
+    top: -35px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px;
+    display: none;
+    left: -5px;
+}
+
+#responsive-menu-admin #banner-area #guide-banner .guide-helper.guide-helper-submenus {
+    left: 0;
+}
+
+#responsive-menu-admin #banner-area #guide-banner .guide-helper-container:hover > .guide-helper {
+    display: block;
 }
 
 #responsive-menu-admin .input-group {
