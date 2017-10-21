@@ -169,9 +169,7 @@
   <-- End button styles
 */
 
-/*
-   --> Start specific theme styles
-*/
+/* --> Start specific theme styles */
 #responsive-menu-admin .panel {
     border: 1px solid #C4C4C4;
 }
@@ -183,6 +181,14 @@
 #responsive-menu-admin #hide-pro-options-label {
     padding-right: 0;
 }
-/*
-   <-- End specific theme styles
-*/
+/* <-- End specific theme styles */
+
+/* --> Start Mini Admin guide theme styles */
+    #responsive-menu-admin #guide-banner {
+        border: 1px solid #C4C4C4;
+    }
+    #responsive-menu-admin #banner-area #guide-banner #guide-container-wrapper,
+    #responsive-menu-admin #banner-area #guide-banner #guide-button-wrapper {
+        background: #DE4B42;
+    }
+/* <-- End Mini Admin guide theme styles */
