@@ -1,3 +1,8 @@
+/**
+    Responsive Menu CSS file.
+    Safe to Copy
+**/
+
 /* vietnamese */
 @font-face {
     font-family: 'Montserrat';
@@ -68,7 +73,7 @@
 }
 
 #responsive-menu-admin .selectize-input input,
-#responsive-menu-admin input#responsive-menu-pro-button-trigger-type-selectized {
+#responsive-menu-admin input#responsive-menu-button-trigger-type-selectized {
     width: auto !important;
 }
 
@@ -138,7 +143,6 @@
 #responsive-menu-admin .panel-body small {
     display: none;
     float: right;
-    color: #333;
     font-weight: normal;
     line-height: 22px;
 }
@@ -167,6 +171,7 @@
 
 #responsive-menu-admin .nav-tabs {
     border: none;
+    padding: 0;
 }
 
 #responsive-menu-admin .nav-tabs > li > a {
@@ -371,6 +376,15 @@
     border-bottom-style: solid;
 }
 
+#responsive-menu-admin .panel table td.col-left {
+    border-right-width: 1px;
+    border-right-style: solid;
+}
+
+#responsive-menu-admin .panel table tr:last-child td.col-left {
+    border-bottom: 0;
+}
+
 #responsive-menu-admin .panel table td.col-left label {
     font-weight: normal;
 }
@@ -380,16 +394,20 @@
     border-style: solid;
 }
 
+#responsive-menu-admin .responsive-menu-desktop-menu-widget.responsive-menu-desktop-menu-image-widget .responsive-menu-desktop-menu-widget-body {
+    padding-left: 37.5px;
+}
+
 #responsive-menu-admin .panel #font-icon-container td {
     border-bottom: 0;
 }
 
-#responsive-menu-admin #responsive-menu-pro-header-bar-html-content,
-#responsive-menu-admin #responsive-menu-pro-menu-additional-content {
+#responsive-menu-admin #responsive-menu-header-bar-html-content,
+#responsive-menu-admin #responsive-menu-menu-additional-content {
     height: 250px;
 }
 
-#responsive-menu-admin #responsive-menu-pro-custom-css {
+#responsive-menu-admin #responsive-menu-custom-css {
     height: 500px
 }
 
@@ -438,10 +456,7 @@
 
 #responsive-menu-admin #responsive-menu-desktop-menu-container .responsive-menu-desktop-menu-links-container,
 #responsive-menu-admin #responsive-menu-desktop-menu-container .responsive-menu-desktop-menu-options-wrapper {
-    max-height: 800px;
     min-height: 600px;
-    overflow-x: hidden;
-    overflow-y: auto;
 }
 
 #responsive-menu-admin .responsive-menu-desktop-menu-widget-header,
@@ -467,6 +482,7 @@
 #responsive-menu-admin .responsive-menu-desktop-menu-widget-body input,
 #responsive-menu-admin .responsive-menu-desktop-menu-widget-body textarea {
     padding: 10px;
+    color: #333;
 }
 
 #responsive-menu-admin .responsive-menu-desktop-menu-widget-header {
@@ -525,6 +541,7 @@
 #responsive-menu-admin .docs {
     float: right;
     margin-left: 15px;
+    font-weight: 100;
 }
 
 #responsive-menu-admin .responsive-menu-desktop-menu-option-container-grid {
@@ -550,6 +567,7 @@
 
 #responsive-menu-admin #responsive-menu-desktop-menu-container {
     border: 0;
+    position: relative;
 }
 
 #responsive-menu-admin .responsive-menu-desktop-menu-option-container-grid .responsive-menu-desktop-menu-widget {

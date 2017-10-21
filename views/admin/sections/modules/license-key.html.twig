@@ -1,0 +1,33 @@
+{#
+    Responsive Menu Jinja template file.
+    Safe to Copy
+#}
+
+<tr>
+    <td class='col-left col-md-3'>
+        <label for='responsive-menu-pro-license-key' class='control-label'>
+            License Key
+        </label>
+        <div class="sub-text">
+            {% if license_type() %}
+                <span class='valid-license'>Valid {{ license_type() }}</span>
+            {% else %}
+                <span class='invalid-license'>Invalid license</span>
+            {% endif %}
+            {% if not license_type() %}
+                <div class="sub_sub_title">
+                    <br />Don't panic. The plugin will still function 100%, it is only automatic updates that will be affected.<br /><br />
+                    You can read about troubleshooting license issues <a href="https://responsive.menu/faq/license-activation-issues/" target="_blank">here</a>.
+                </div>
+            {% endif %}
+        </div>
+    </td>
+    <td class="col-right">
+        <div class='input-group'>
+            <input type='password' name='responsive-menu-pro-license-key' value='{{ license_key() }}' class='form-control'>
+            <span class='input-group-btn'>
+                <button type='submit' name='responsive-menu-pro-add-license-key' class='btn btn-primary btn-rm'>Add License Key</button>
+            </span>
+        </div>
+    </td>
+</tr>

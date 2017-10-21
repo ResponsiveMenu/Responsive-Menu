@@ -1,3 +1,10 @@
+{#
+    Responsive Menu Jinja template file.
+    NOT Safe to Copy
+
+    Do Not Copy
+#}
+
 {% if hide_pro_options() == 'yes' %}
     <style>
         .nav > li.pro-tab,
@@ -8,6 +15,7 @@
         }
     </style>
 {% endif %}
+
 <div id="responsive-menu-admin"  class='container-fluid'>
     <form class='form-horizontal form-inline' id='responsive-menu-form' action='' method='post' enctype='multipart/form-data'>
         {{ csrf() }}

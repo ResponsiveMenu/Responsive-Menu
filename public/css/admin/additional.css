@@ -78,7 +78,7 @@
     position: relative;
 }
 
-#responsive-menu-admin td.pro .responsive-menu-pro-overlay {
+#responsive-menu-admin .responsive-menu-pro-overlay {
     display: none;
     position: absolute;
     top: 0;
@@ -90,7 +90,7 @@
     z-index: 3;
 }
 
-#responsive-menu-admin td.pro .responsive-menu-pro-overlay a {
+#responsive-menu-admin .responsive-menu-pro-overlay a {
     top: 50%;
     transform: translateY(-50%);
     position: relative;
@@ -99,6 +99,7 @@
     display: block;
 }
 
+#responsive-menu-admin .pro-container:hover .responsive-menu-pro-overlay,
 #responsive-menu-admin tr.pro-row:hover .responsive-menu-pro-overlay {
     display: block;
 }

@@ -3,7 +3,7 @@
 if(is_admin()):
     add_action('admin_menu', function() {
 
-        if(isset($_POST['responsive-menu-export'])):
+        if(isset($_POST['responsive-menu-export']) && isset($_GET['page']) && $_GET['page'] == 'responsive-menu'):
             header('Cache-Control: no-cache, no-store, must-revalidate');
             header('Pragma: no-cache');
             header('Expires: 0');
@@ -13,7 +13,7 @@ if(is_admin()):
             echo $controller->export();
             exit();
 
-        elseif(isset($_POST['responsive-menu-rebuild-db'])):
+        elseif(isset($_POST['responsive-menu-rebuild-db']) && isset($_GET['page']) && $_GET['page'] == 'responsive-menu'):
             update_option('responsive_menu_version', '2.8.9');
 
         endif;
@@ -53,6 +53,7 @@ if(is_admin()):
 
                 else:
                     echo $controller->index($menus_array, $location_menus);
+
                 endif;
             },
             'dashicons-menu');

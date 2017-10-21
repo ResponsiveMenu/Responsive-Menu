@@ -1,3 +1,8 @@
+/**
+    Responsive Menu CSS file.
+    Safe to Copy
+**/
+
 #responsive-menu-admin .draggable,
 #responsive-menu-admin #responsive-menu-desktop-menu-container .responsive-menu-desktop-menu-links-container .responsive-menu-desktop-menu-label.responsive-menu-desktop-menu-sub-menu-label,
 #responsive-menu-admin #responsive-menu-desktop-menu-container .responsive-menu-desktop-menu-links-container .responsive-menu-desktop-menu-label.responsive-menu-desktop-menu-sub-sub-menu-label {
@@ -7,14 +12,14 @@
 #wpfooter,
 #wpfooter a,
 #responsive-menu-admin .panel-body,
+#responsive-menu-admin .panel-body small,
 #responsive-menu-admin .panel table td.col-left label,
 #responsive-menu-admin .nav-tabs > li.active > a,
 #responsive-menu-admin .nav-tabs > li.active > a:focus,
 #responsive-menu-admin .nav-tabs > li.active > a:hover,
 #responsive-menu-admin .nav-tabs > li > a,
 #responsive-menu-admin .nav-tabs > li > a:focus,
-#responsive-menu-admin .nav-tabs > li > a:hover
-#responsive-menu-admin .responsive-menu-desktop-menu-label-active,
+#responsive-menu-admin .nav-tabs > li > a:hover,
 #responsive-menu-admin .responsive-menu-desktop-menu-widget,
 #responsive-menu-admin .responsive-menu-desktop-menu-top-level-label,
 #responsive-menu-admin .responsive-menu-desktop-menu-sub-menu-label,
@@ -25,18 +30,23 @@
     color: #333;
 }
 
-#responsive-menu-admin .btn-primary,
-#responsive-menu-admin .responsive-menu-desktop-menu-label-active,
+#responsive-menu-admin #responsive-menu-desktop-menu-container .responsive-menu-desktop-menu-links-container .responsive-menu-desktop-menu-label.responsive-menu-desktop-menu-label-active,
 #responsive-menu-admin .label-info {
     background: #15A4FA;
 }
 
 #responsive-menu-admin a {
-    color: #333;
+    color: #15A4FA;
 }
 
 #responsive-menu-admin .responsive-menu-desktop-menu-widget {
     border-color: #CCCCCC;
+}
+
+#responsive-menu-admin #responsive-menu-desktop-menu-container .responsive-menu-desktop-menu-links-container .responsive-menu-desktop-menu-label.responsive-menu-desktop-menu-label-active,
+#responsive-menu-admin #responsive-menu-desktop-menu-container .responsive-menu-desktop-menu-links-container .responsive-menu-desktop-menu-label.responsive-menu-desktop-menu-sub-menu-label.responsive-menu-desktop-menu-label-active,
+#responsive-menu-admin #responsive-menu-desktop-menu-container .responsive-menu-desktop-menu-links-container .responsive-menu-desktop-menu-label.responsive-menu-desktop-menu-sub-sub-menu-label.responsive-menu-desktop-menu-label-active {
+    color: white;
 }
 
 #responsive-menu-admin .valid-license {
@@ -59,7 +69,7 @@
 #responsive-menu-admin .nav-tabs > li.active > a,
 #responsive-menu-admin .nav-tabs > li.active > a:focus,
 #responsive-menu-admin .nav-tabs > li.active > a:hover {
-    background: #FFFFFF;
+    background: #F5F5F5;
 }
 /*
     <-- End nav tabs styles
@@ -71,7 +81,7 @@
 #responsive-menu-admin #responsive-menu-desktop-menu-container .responsive-menu-desktop-menu-links-container,
 #responsive-menu-admin .nav-tabs,
 #responsive-menu-admin .panel-body {
-    background: #C4C4C4;
+    background: #FFFFFF;
 }
 /*
    <-- End Header panel styles
@@ -104,6 +114,7 @@
 
 #responsive-menu-admin .panel table td.col-left {
     border-bottom-color: #DCDCDC;
+    border-right-color: #DCDCDC;
 }
 
 /* --> Hover */
@@ -137,14 +148,36 @@
 */
 
 /*
-   --> Start specific theme styles
+   --> Start button styles
 */
-#responsive-menu-admin .btn-primary:hover {
+#responsive-menu-admin .btn.btn-rm.btn-primary {
+    background: #15A4FA;
+}
+
+#responsive-menu-admin .btn.btn-rm.btn-primary:hover {
     background: #1293E1;
 }
 
+#responsive-menu-admin .btn.btn-rm.btn-default {
+    background: #F5F5F5;
+}
+
+#responsive-menu-admin .btn.btn-rm.btn-default:hover {
+    background: #E6E6E6;
+}
+/*
+  <-- End button styles
+*/
+
+/*
+   --> Start specific theme styles
+*/
 #responsive-menu-admin .panel {
-    border: 1px solid #F6F6F6;
+    border: 1px solid #C4C4C4;
+}
+
+#responsive-menu-admin .panel .panel-body {
+    border-bottom: 1px solid #C4C4C4;
 }
 /*
    <-- End specific theme styles

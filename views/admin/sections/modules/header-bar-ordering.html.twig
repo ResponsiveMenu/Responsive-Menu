@@ -1,10 +1,16 @@
+{#
+    Responsive Menu Jinja template file.
+    Safe to Copy
+#}
+
 <table class='table table-bordered table-hover' id='header-bar-items-order-container'>
-    <tr{% if errors.header_bar_items_order %} class='danger'{% endif %}>
+    <tr class='pro-row{% if errors.header_bar_items_order %} danger{% endif %}'>
         <td class='col-left col-md-3'>
             <label for='items_order' class='control-label'>Order of Header Bar Items</label>
-            <div class='sub-text'>Drag the items to re-order and click to turn them on or off.</div>
+            <div class='sub-text'>Drag the header bar items left and right to re-order how they appear on the front end. You can also click to turn them on or off.</div>
+            <div class='sub_sub_title'>Leaving the relevant options empty below will effectively turn them off.</div>
         </td>
-        <td class="col-right text-center">
+        <td class="col-right pro text-center">
             <ul id='header-bar-sortable'>
                 {% for key, selected in header_bar_items(options.header_bar_items_order|json_decode) %}
                     <li class='draggable'>

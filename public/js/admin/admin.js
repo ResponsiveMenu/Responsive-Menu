@@ -1,5 +1,13 @@
 jQuery(function($) {
 
+    $('.pro-row td.col-right, .pro-container').append(
+        '<div class="responsive-menu-pro-overlay">' +
+        '<a href="https://responsive.menu/pricing/?utm_source=free-plugin' +
+        '&utm_medium=option&utm_campaign=free-plugin-option-upgrade"' +
+        'target="_blank">Click to upgrade now to use</a>' +
+        '</div>'
+    );
+
     $.minicolors.defaults = $.extend($.minicolors.defaults, {
         format: 'hex',
         opacity: false,
@@ -11,7 +19,7 @@ jQuery(function($) {
     
     var custom_uploader;
 
-    $('.image_button').click(function (e) {
+    $(document).on('click', '.image_button', function(e) {
         e.preventDefault();
         window.imgFor = $(this).attr('for');
         //If the uploader object has already been created, reopen the dialog

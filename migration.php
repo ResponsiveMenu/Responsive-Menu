@@ -22,7 +22,7 @@ add_action('init', function() {
             $wpdb->prefix . 'responsive_menu',
             "CREATE TABLE " . $wpdb->prefix . "responsive_menu (
               name varchar(50) NOT NULL,
-              value varchar(5000) DEFAULT NULL,
+              value LONGTEXT DEFAULT NULL,
               PRIMARY KEY (name)
            ) " . $wpdb->get_charset_collate() . ";"
         );

@@ -1,3 +1,10 @@
+{#
+    Responsive Menu Jinja template file.
+    NOT Safe to Copy
+
+    Do Not Copy
+#}
+
 {% macro percentage_units(name, value) %}
     <select id='responsive-menu-{{ name|replace({'_': '-'}) }}' class='selectpicker show-tick is-unit' name='menu[{{ name }}]'>
         <option value='%' selected='selected'>%</option>
@@ -106,7 +113,7 @@
     <div class='input-group'>
         <input type='text' class='form-control' id='responsive-menu-{{ name|replace({'_': '-'}) }}' name='menu[{{ name }}]' value='{{ value }}' />
         <span class='input-group-btn'>
-            <button type='button' class='image_button btn btn-primary' for='responsive-menu-{{ name|replace({'_': '-'}) }}'>Upload Image</button>
+            <button type='button' class='image_button btn btn-primary btn-rm' for='responsive-menu-{{ name|replace({'_': '-'}) }}'>Upload Image</button>
         </span>
     </div>
 {% endmacro %}
@@ -128,12 +135,6 @@
             {% endif %}
         </td>
         <td class='col-right {% if pro %} {{ pro }}{% endif %}'>
-            {% if pro == 'pro' %}
-                <div class='responsive-menu-pro-overlay'>
-                    <a href='https://responsive.menu/pricing/?utm_source=free-plugin&utm_medium=option&utm_campaign=free-plugin-option-upgrade'
-                    target='_blank'>Click to upgrade now to use</a>
-                </div>
-            {% endif %}
             {% if type == 'checkbox' %}
                 {{ macros.checkbox(name, options[name]) }}
             {% elseif type == 'colour' %}
@@ -229,10 +230,12 @@
     </tr>
 {% endmacro %}
 
-{% macro header(title, section, url) %}
+{% macro header(title, section, url=false) %}
     <div class='panel-body'>
         {{ title }}
-        <a class="docs" href="https://responsive.menu/docs/{{ url }}/" target="_blank">Docs</a>
+        {% if url %}
+            <a class="docs" href="https://responsive.menu/docs/{{ url }}" target="_blank">Docs</a>
+        {% endif %}
         <small>{{ section }}</small>
     </div>
 {% endmacro %}

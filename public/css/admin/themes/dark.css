@@ -1,3 +1,8 @@
+/**
+    Responsive Menu CSS file.
+    Safe to Copy
+**/
+
 #responsive-menu-admin .draggable,
 #responsive-menu-admin #responsive-menu-desktop-menu-container .responsive-menu-desktop-menu-links-container .responsive-menu-desktop-menu-label.responsive-menu-desktop-menu-sub-menu-label,
 #responsive-menu-admin #responsive-menu-desktop-menu-container .responsive-menu-desktop-menu-links-container .responsive-menu-desktop-menu-label.responsive-menu-desktop-menu-sub-sub-menu-label {
@@ -7,14 +12,14 @@
 #wpfooter,
 #wpfooter a,
 #responsive-menu-admin .panel-body,
+#responsive-menu-admin .panel-body small,
 #responsive-menu-admin .panel table td.col-left label,
 #responsive-menu-admin .nav-tabs > li.active > a,
 #responsive-menu-admin .nav-tabs > li.active > a:focus,
 #responsive-menu-admin .nav-tabs > li.active > a:hover,
 #responsive-menu-admin .nav-tabs > li > a,
 #responsive-menu-admin .nav-tabs > li > a:focus,
-#responsive-menu-admin .nav-tabs > li > a:hover
-#responsive-menu-admin .responsive-menu-desktop-menu-label-active,
+#responsive-menu-admin .nav-tabs > li > a:hover,
 #responsive-menu-admin .responsive-menu-desktop-menu-widget,
 #responsive-menu-admin .responsive-menu-desktop-menu-top-level-label,
 #responsive-menu-admin .responsive-menu-desktop-menu-sub-menu-label,
@@ -25,8 +30,7 @@
     color: white;
 }
 
-#responsive-menu-admin .btn-primary,
-#responsive-menu-admin .responsive-menu-desktop-menu-label-active,
+#responsive-menu-admin #responsive-menu-desktop-menu-container .responsive-menu-desktop-menu-links-container .responsive-menu-desktop-menu-label.responsive-menu-desktop-menu-label-active,
 #responsive-menu-admin .label-info {
     background: #15A4FA;
 }
@@ -38,6 +42,13 @@
 #responsive-menu-admin .responsive-menu-desktop-menu-widget {
     border-color: #CCCCCC;
 }
+
+#responsive-menu-admin #responsive-menu-desktop-menu-container .responsive-menu-desktop-menu-links-container .responsive-menu-desktop-menu-label.responsive-menu-desktop-menu-label-active,
+#responsive-menu-admin #responsive-menu-desktop-menu-container .responsive-menu-desktop-menu-links-container .responsive-menu-desktop-menu-label.responsive-menu-desktop-menu-sub-menu-label.responsive-menu-desktop-menu-label-active,
+#responsive-menu-admin #responsive-menu-desktop-menu-container .responsive-menu-desktop-menu-links-container .responsive-menu-desktop-menu-label.responsive-menu-desktop-menu-sub-sub-menu-label.responsive-menu-desktop-menu-label-active {
+    color: white;
+}
+
 
 #responsive-menu-admin .valid-license {
     color: #00FF87;
@@ -104,6 +115,7 @@
 
 #responsive-menu-admin .panel table td.col-left {
     border-bottom-color: #28303E;
+    border-right-color: #28303E;
 }
 
 /* --> Hover */
@@ -136,6 +148,24 @@
   --> End Right hand panel styles
 */
 
-#responsive-menu-admin .btn-primary:hover {
+/*
+   --> Start button styles
+*/
+#responsive-menu-admin .btn.btn-rm.btn-primary {
+    background: #15A4FA;
+}
+
+#responsive-menu-admin .btn.btn-rm.btn-primary:hover {
     background: #1293E1;
 }
+
+#responsive-menu-admin .btn.btn-rm.btn-default {
+    background: #FFFFFF;
+}
+
+#responsive-menu-admin .btn.btn-rm.btn-default:hover {
+    background: #E6E6E6;
+}
+/*
+  <-- End button styles
+*/

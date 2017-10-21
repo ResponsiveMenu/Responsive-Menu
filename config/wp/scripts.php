@@ -25,6 +25,8 @@ if(isset($_GET['page']) && $_GET['page'] == 'responsive-menu'):
         wp_enqueue_style('responsive-menu-selectize-css', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/css/admin/selectize.css', null, null);
 
         wp_enqueue_script('jquery-ui-core');
+        wp_enqueue_script('jquery-ui-sortable');
+        wp_enqueue_script('jquery-ui-draggable');
 
         wp_register_style('responsive-menu-base-css', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/css/admin/base.css', false, null);
         wp_enqueue_style('responsive-menu-base-css');

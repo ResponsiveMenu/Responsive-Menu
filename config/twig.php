@@ -67,6 +67,18 @@ else:
         return wp_get_nav_menu_items($menu);
     }));
 
+    $twig->addFunction(new Twig_SimpleFunction('font_icons', function($array) {
+        $new_array = [];
+        for($i=0; $i < count($array['id']); $i++):
+            $new_array[$i] = [
+                'id' => $array['id'][$i],
+                'icon' => $array['icon'][$i],
+                'type' => $array['type'][$i]
+            ];
+        endfor;
+        return $new_array;
+    }));
+
     $twig->addGlobal('admin_url', get_admin_url());
     $twig->addGlobal('shortcode', '[responsive_menu]');
 

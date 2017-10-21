@@ -1,88 +1,92 @@
+{#
+    Responsive Menu Jinja template file.
+    Safe to Copy
+#}
+
 {% import 'admin/macros.html.twig' as macros %}
 
 {% set section = 'Sub Menus' %}
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Padding<small>{{ section }}</small></div>
+    {{ macros.header('Trigger Icon', section) }}
     <table class='table table-bordered table-hover'>
-        {{ macros.row('menu_depth_side', 'Depth Padding Side', 'select', options, errors, '', '', 'left_right') }}
-        {{ macros.row('menu_depth_0', 'Depth Level Zero Padding', 'input', options, errors, 'has-unit', 'semi-pro', '', 'percentage') }}
-        {{ macros.row('menu_depth_1', 'Depth Level One Padding', 'input', options, errors, 'has-unit', 'semi-pro', '', 'percentage') }}
-        {{ macros.row('menu_depth_2', 'Depth Level Two Padding', 'input', options, errors, 'has-unit', 'semi-pro', '', 'percentage') }}
-        {{ macros.row('menu_depth_3', 'Depth Level Three Padding', 'input', options, errors, 'has-unit', 'semi-pro', '', 'percentage') }}
-        {{ macros.row('menu_depth_4', 'Depth Level Four Padding', 'input', options, errors, 'has-unit', 'semi-pro', '', 'percentage') }}
-        {{ macros.row('menu_depth_5', 'Depth Level Five Padding', 'input', options, errors, 'has-unit', 'semi-pro', '', 'percentage') }}
+        {{ macros.row('arrow_position', 'Position', 'select', options, errors, '', '', 'left_right', '', 'Set the side of the menu item that the sub menu trigger will appear.') }}
+        {{ macros.row('active_arrow_shape', 'Active Shape', 'input', options, errors, '', '', '', '', 'Set the trigger shape you want to use for the active state. A selection of shapes can be found <a href="https://responsive.menu/html-geometric-shapes/" target="_blank">here</a>.') }}
+        {{ macros.row('inactive_arrow_shape', 'Inactive Shape', 'input', options, errors, '', '', '', '', 'Set the trigger shape you want to use for the inactive state. A selection of shapes can be found <a href="https://responsive.menu/html-geometric-shapes/" target="_blank">here</a>.') }}
+        {{ macros.row('active_arrow_image', 'Active Image', 'image', options, errors, '', '', '', '', 'You can set an image for your active sub menu trigger instead if you would like. This will take precedence over the shape option above.') }}
+        {{ macros.row('active_arrow_image_alt', 'Alt Text', 'input', options, errors, '', '', '', '', 'If you use an image as your active sub menu trigger, you can set it\'s alt text here.') }}
+        {{ macros.row('inactive_arrow_image', 'Inactive Image', 'image', options, errors, '', '', '', '', 'You can set an image for your inactive sub menu trigger instead if you would like. This will take precedence over the shape option above.') }}
+        {{ macros.row('inactive_arrow_image_alt', 'Alt Text', 'input', options, errors, '', '', '', '', 'If you use an image as your inactive sub menu trigger, you can set it\'s alt text here.') }}
+        {{ macros.row('active_arrow_font_icon', 'Active Font Icon', 'font-icon', options, errors, '', 'pro', '', '', 'You can set an icon as your active sub menu trigger instead if you would like. This will take precedence over the image option above.') }}
+        {{ macros.row('inactive_arrow_font_icon', 'Inactive Font Icon', 'font-icon', options, errors, '', 'pro', '', '', 'You can set an icon as your inactive sub menu trigger instead if you would like. This will take precedence over the image option above.') }}
     </table>
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Animations<small>{{ section }}</small></div>
+    {{ macros.header('Trigger Sizing', section) }}
     <table class='table table-bordered table-hover'>
-        {{ macros.row('accordion_animation', 'Use Accordion', 'checkbox', options, errors) }}
-        {{ macros.row('auto_expand_all_submenus', 'Auto Expand all Sub-Menus', 'checkbox', options, errors) }}
-        {{ macros.row('auto_expand_current_submenus', 'Auto Expand Current Page Sub-Menus', 'checkbox', options, errors) }}
-        {{ macros.row('menu_item_click_to_trigger_submenu', 'Make Whole Sub-Menu bar Clickable', 'checkbox', options, errors) }}
-        {{ macros.row('use_slide_effect', 'Use Slide Effect', 'checkbox', options, errors, '', 'pro', '', '', '<span class="label label-warning">beta</span>') }}
+        {{ macros.row('submenu_arrow_height', 'Height', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel', 'Set the height of the menu trigger items and their units.') }}
+        {{ macros.row('submenu_arrow_width', 'Width', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel', 'Set the width of the menu trigger items and their units.') }}
     </table>
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Slide Effect<small>{{ section }}</small></div>
+    {{ macros.header('Trigger Colours', section) }}
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('menu_sub_arrow_shape_colour', 'Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the colour of the sub menu trigger.') }}
+        {{ macros.row('menu_sub_arrow_shape_hover_colour', 'Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the hover colour of the sub menu trigger.') }}
+        {{ macros.row('menu_sub_arrow_shape_colour_active', 'Active Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the colour of the sub menu trigger when active.') }}
+        {{ macros.row('menu_sub_arrow_shape_hover_colour_active', 'Active Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the hover colour of the sub menu trigger when active.') }}
+    </table>
+</div>
+
+<div class='panel panel-default'>
+    {{ macros.header('Trigger Background', section) }}
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('menu_sub_arrow_background_colour', 'Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the background colour of the sub menu trigger.') }}
+        {{ macros.row('menu_sub_arrow_background_hover_colour', 'Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the hover background colour of the sub menu trigger.') }}
+        {{ macros.row('menu_sub_arrow_background_colour_active', 'Active Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the background colour of the sub menu trigger when active.') }}
+        {{ macros.row('menu_sub_arrow_background_hover_colour_active', 'Active Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the hover background colour of the sub menu trigger when active.') }}
+    </table>
+</div>
+
+<div class='panel panel-default'>
+    {{ macros.header('Trigger Border', section) }}
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('menu_sub_arrow_border_colour', 'Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the border colour of the sub menu trigger.') }}
+        {{ macros.row('menu_sub_arrow_border_hover_colour', 'Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the hover border colour of the sub menu trigger.') }}
+        {{ macros.row('menu_sub_arrow_border_colour_active', 'Active Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the border colour of the sub menu trigger when active.') }}
+        {{ macros.row('menu_sub_arrow_border_hover_colour_active', 'Active Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the hover border colour of the sub menu trigger when active.') }}
+    </table>
+</div>
+
+<div class='panel panel-default'>
+    {{ macros.header('Padding', section) }}
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('menu_depth_side', 'Side', 'select', options, errors, '', '', 'left_right', '', 'You can set which side of the menu items the padding should be on.') }}
+        {{ macros.row('menu_depth_0', 'Top Level', 'input', options, errors, 'has-unit', 'semi-pro', '', 'percentage', 'Set the padding size of the top level menu items and their unit.') }}
+        {{ macros.row('menu_depth_1', 'Child Level 1', 'input', options, errors, 'has-unit', 'semi-pro', '', 'percentage', 'Set the padding size of the sub menu child level menu items and their unit.') }}
+        {{ macros.row('menu_depth_2', 'Child Level 2', 'input', options, errors, 'has-unit', 'semi-pro', '', 'percentage', 'Set the padding size of the second sub menu child level menu items and their unit.') }}
+        {{ macros.row('menu_depth_3', 'Child Level 3', 'input', options, errors, 'has-unit', 'semi-pro', '', 'percentage', 'Set the padding size of the third sub menu child level menu items and their unit.') }}
+        {{ macros.row('menu_depth_4', 'Child Level 4', 'input', options, errors, 'has-unit', 'semi-pro', '', 'percentage', 'Set the padding size of the fourth sub menu child level menu items and their unit.') }}
+        {{ macros.row('menu_depth_5', 'Child Level 5', 'input', options, errors, 'has-unit', 'semi-pro', '', 'percentage', 'Set the padding size of the fifth sub menu child level menu items and their unit.') }}
+    </table>
+</div>
+
+<div class='panel panel-default'>
+    {{ macros.header('Animations', section) }}
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('accordion_animation', 'Use Accordion', 'checkbox', options, errors, '', '', '', '', 'Expanding one sub menu level will close all the others in an accordion style.') }}
+        {{ macros.row('auto_expand_all_submenus', 'Auto Expand All Sub Menus', 'checkbox', options, errors, '', '', '', '', 'All sub menus will be opened on page load automatically.') }}
+        {{ macros.row('auto_expand_current_submenus', 'Auto Expand Current Page Sub Menus', 'checkbox', options, errors, '', '', '', '', 'All child sub menus of the current parent will be opened on page load automatically.') }}
+        {{ macros.row('menu_item_click_to_trigger_submenu', 'Expand Sub Menus on Parent Item Click', 'checkbox', options, errors, '', '', '', '', 'Clicking anywhere on a parent item with sub menu children will trigger the sub menu to open.', '', 'This will disable the links of all parent items.') }}
+    </table>
+</div>
+
+<div class='panel panel-default fully-pro-container'>
+    {{ macros.header('Slide Effect', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('use_slide_effect', 'Enabled', 'checkbox', options, errors, '', 'pro', '', '', 'The slide effect changes the way that sub-menus open and close. Instead of the standard drop-down animation they will slide over the top of eachother as in the demo site <a href="https://demo.responsive.menu/pro-example-one/" target="_blank">here</a>.<br /><br /><span class="label label-warning">beta</span>') }}
         {{ macros.row('slide_effect_back_to_text', 'Back Text', 'input', options, errors, '', 'pro', '', '', 'You can specify the text used for clicking to get back to the previous level when using the slide effect.') }}
-    </table>
-</div>
-
-<div class='panel panel-default'>
-    <div class='panel-body'>Sub-Menu Trigger Icon<small>{{ section }}</small></div>
-    <table class='table table-bordered table-hover'>
-        {{ macros.row('active_arrow_font_icon', 'Active Font Icon', 'font-icon', options, errors, '', 'pro') }}
-        {{ macros.row('inactive_arrow_font_icon', 'Inactive Font Icon', 'font-icon', options, errors, '', 'pro') }}
-        {{ macros.row('active_arrow_shape', 'Active Shape', 'input', options, errors) }}
-        {{ macros.row('inactive_arrow_shape', 'Inactive Shape', 'input', options, errors) }}
-        {{ macros.row('active_arrow_image', 'Active Image', 'image', options, errors) }}
-        {{ macros.row('active_arrow_image_alt', 'Alt Text', 'input', options, errors) }}
-        {{ macros.row('inactive_arrow_image', 'Inactive Image', 'image', options, errors) }}
-        {{ macros.row('inactive_arrow_image_alt', 'Alt Text', 'input', options, errors) }}
-        {{ macros.row('arrow_position', 'Position', 'select', options, errors, '', '', 'left_right') }}
-    </table>
-</div>
-
-<div class='panel panel-default'>
-    <div class='panel-body'>Sub-Menu Trigger Colours<small>{{ section }}</small></div>
-    <table class='table table-bordered table-hover'>
-        {{ macros.row('menu_sub_arrow_shape_colour', 'Colour', 'colour', options, errors, '', 'semi-pro') }}
-        {{ macros.row('menu_sub_arrow_shape_hover_colour', 'Hover Colour', 'colour', options, errors, '', 'semi-pro') }}
-        {{ macros.row('menu_sub_arrow_shape_colour_active', 'Active Colour', 'colour', options, errors, '', 'semi-pro') }}
-        {{ macros.row('menu_sub_arrow_shape_hover_colour_active', 'Active Hover Colour', 'colour', options, errors, '', 'semi-pro') }}
-    </table>
-</div>
-
-<div class='panel panel-default'>
-    <div class='panel-body'>Sub-Menu Trigger Background<small>{{ section }}</small></div>
-    <table class='table table-bordered table-hover'>
-        {{ macros.row('menu_sub_arrow_background_colour', 'Colour', 'colour', options, errors, '', 'semi-pro') }}
-        {{ macros.row('menu_sub_arrow_background_hover_colour', 'Hover Colour', 'colour', options, errors, '', 'semi-pro') }}
-        {{ macros.row('menu_sub_arrow_background_colour_active', 'Active Colour', 'colour', options, errors, '', 'semi-pro') }}
-        {{ macros.row('menu_sub_arrow_background_hover_colour_active', 'Active Hover Colour', 'colour', options, errors, '', 'semi-pro') }}
-    </table>
-</div>
-
-<div class='panel panel-default'>
-    <div class='panel-body'>Sub-Menu Trigger Border<small>{{ section }}</small></div>
-    <table class='table table-bordered table-hover'>
-        {{ macros.row('menu_sub_arrow_border_colour', 'Colour', 'colour', options, errors, '', 'semi-pro') }}
-        {{ macros.row('menu_sub_arrow_border_hover_colour', 'Hover Colour', 'colour', options, errors, '', 'semi-pro') }}
-        {{ macros.row('menu_sub_arrow_border_colour_active', 'Active Colour', 'colour', options, errors, '', 'semi-pro') }}
-        {{ macros.row('menu_sub_arrow_border_hover_colour_active', 'Active Hover Colour', 'colour', options, errors, '', 'semi-pro') }}
-    </table>
-</div>
-
-<div class='panel panel-default'>
-    <div class='panel-body'>Sub-Menu Trigger Sizing<small>{{ section }}</small></div>
-    <table class='table table-bordered table-hover'>
-        {{ macros.row('submenu_arrow_height', 'Height', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel') }}
-        {{ macros.row('submenu_arrow_width', 'Width', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel') }}
     </table>
 </div>

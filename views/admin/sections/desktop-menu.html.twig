@@ -1,14 +1,16 @@
+{#
+    Responsive Menu Jinja template file.
+    Safe to Copy
+#}
+
 {% import 'admin/macros.html.twig' as macros %}
 
 {% set section = 'Desktop Menu' %}
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Use Desktop Menu<small>{{ section }}</small></div>
+    <div class='panel-body'>Enable<small>{{ section }}</small></div>
     <table class='table table-bordered table-hover'>
-        {{ macros.row('use_desktop_menu', 'Use Desktop Menu', 'checkbox', options, errors, '', 'pro', '', '', 'To position the menu in a specific location in your theme you must turn the Shortcode option on and place the shortcode in your template where you want the menu to appear.') }}
-        {{ macros.row('desktop_menu_positioning', 'Positioning', 'select', options, errors, '', 'pro', 'position', '', '', '', '', 'Using relative positioning is useful when combined with the shortcode.') }}
-        {{ macros.row('desktop_menu_width', 'Width', 'input', options, errors, 'has-unit', 'pro', '', 'pixel', 'Leave black to keep the width auto.') }}
-        {{ macros.row('desktop_menu_side', 'Side', 'select', options, errors, '', 'pro', 'left_right_with_none', '', 'Leave black to keep the width auto.') }}
+        {{ macros.row('use_desktop_menu', 'Enable', 'checkbox', options, errors, '', 'pro', '', '', 'Enable the Desktop Menu.') }}
     </table>
 </div>
 
@@ -18,51 +20,48 @@
 </div>
 
 <div class='panel panel-default'>
+    <div class='panel-body'>General Setup<small>{{ section }}</small></div>
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('desktop_menu_positioning', 'Positioning', 'select', options, errors, '', 'pro', 'position', '', 'Specify how you want the menu to stick to your page.', '', '', 'Using relative positioning is useful when combined with the shortcode.') }}
+        {{ macros.row('desktop_menu_width', 'Width', 'input', options, errors, 'has-unit', 'pro', '', 'percentage', 'Set the width of the desktop menu and it\'s unit.', '', '', 'Leave blank to keep the width auto.') }}
+        {{ macros.row('desktop_menu_side', 'Side', 'select', options, errors, '', 'pro', 'left_right_with_none', '', 'Set which side of the screen the desktop menu will show on.') }}
+    </table>
+</div>
+
+<div class='panel panel-default'>
     <div class='panel-body'>Top Level Link Colours<small>{{ section }}</small></div>
     <table class='table table-bordered table-hover'>
-        {{ macros.row('single_menu_item_background_colour', 'Background', 'colour', options, errors, '', 'pro') }}
-        {{ macros.row('single_menu_item_background_colour_hover', 'Background Hover', 'colour', options, errors, '', 'pro') }}
-        {{ macros.row('single_menu_item_link_colour', 'Text', 'colour', options, errors, '', 'pro') }}
-        {{ macros.row('single_menu_item_link_colour_hover', 'Text Hover', 'colour', options, errors, '', 'pro') }}
+        {{ macros.row('single_menu_item_background_colour', 'Background', 'colour', options, errors, '', 'pro', '', '', 'Set the background colour for the top level menu items.') }}
+        {{ macros.row('single_menu_item_background_colour_hover', 'Background Hover', 'colour', options, errors, '', 'pro', '', '', 'Set the background hover colour for the top level menu items.') }}
+        {{ macros.row('single_menu_item_link_colour', 'Text', 'colour', options, errors, '', 'pro', '', '', 'Set the text colour for the top level menu items.') }}
+        {{ macros.row('single_menu_item_link_colour_hover', 'Text Hover', 'colour', options, errors, '', 'pro', '', '', 'Set the text hover colour for the top level menu items.') }}
     </table>
 </div>
 
 <div class='panel panel-default'>
     <div class='panel-body'>Sub-Menu Link Colours<small>{{ section }}</small></div>
     <table class='table table-bordered table-hover'>
-        {{ macros.row('single_menu_item_submenu_background_colour', 'Background', 'colour', options, errors, '', 'pro') }}
-        {{ macros.row('single_menu_item_submenu_background_colour_hover', 'Background Hover', 'colour', options, errors, '', 'pro') }}
-        {{ macros.row('single_menu_item_submenu_link_colour', 'Text', 'colour', options, errors, '', 'pro') }}
-        {{ macros.row('single_menu_item_submenu_link_colour_hover', 'Text Hover', 'colour', options, errors, '', 'pro') }}
+        {{ macros.row('single_menu_item_submenu_background_colour', 'Background', 'colour', options, errors, '', 'pro', '', '', 'Set the background colour for the sub menu items.') }}
+        {{ macros.row('single_menu_item_submenu_background_colour_hover', 'Background Hover', 'colour', options, errors, '', 'pro', '', '', 'Set the background hover colour for the sub menu items.') }}
+        {{ macros.row('single_menu_item_submenu_link_colour', 'Text', 'colour', options, errors, '', 'pro', '', '', 'Set the text colour for the sub menu items.') }}
+        {{ macros.row('single_menu_item_submenu_link_colour_hover', 'Text Hover', 'colour', options, errors, '', 'pro', '', '', 'Set the text hover colour for the sub menu items.') }}
     </table>
 </div>
 
 <div class='panel panel-default'>
     <div class='panel-body'>Top Level Styling<small>{{ section }}</small></div>
     <table class='table table-bordered table-hover'>
-        {{ macros.row('single_menu_font', 'Font', 'input', options, errors, '', 'pro') }}
-        {{ macros.row('single_menu_font_size', 'Font size', 'input', options, errors, 'has-unit', 'pro', '', 'pixel') }}
+        {{ macros.row('single_menu_font', 'Font', 'input', options, errors, '', 'pro', '', '', 'Set the font for the menu items. The font must already be installed as part of your theme or a browser inbuilt one.', '', '', 'For example "Open Sans"') }}
+        {{ macros.row('single_menu_font_size', 'Font size', 'input', options, errors, 'has-unit', 'pro', '', 'pixel', 'Set the text size of the menu items and their unit.') }}
+        {{ macros.row('single_menu_height', 'Height', 'input', options, errors, 'has-unit', 'pro', '', 'pixel', 'Set the height of the top level menu items and their unit.') }}
     </table>
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Sub-Menu Styling<small>{{ section }}</small></div>
+    <div class='panel-body'>Sub Menu Styling<small>{{ section }}</small></div>
     <table class='table table-bordered table-hover'>
-        {{ macros.row('single_menu_submenu_font', 'Font', 'input', options, errors, '', 'pro') }}
-        {{ macros.row('single_menu_submenu_font_size', 'Font size', 'input', options, errors, 'has-unit', 'pro', '', 'pixel') }}
-    </table>
-</div>
-
-<div class='panel panel-default'>
-    <div class='panel-body'>Top Level Sizing<small>{{ section }}</small></div>
-    <table class='table table-bordered table-hover'>
-        {{ macros.row('single_menu_height', 'Height', 'input', options, errors, 'has-unit', 'pro', '', 'pixel') }}
-    </table>
-</div>
-
-<div class='panel panel-default'>
-    <div class='panel-body'>Sub-Menu Sizing<small>{{ section }}</small></div>
-    <table class='table table-bordered table-hover'>
-        {{ macros.row('single_menu_submenu_height', 'Height', 'input', options, errors, 'has-unit', 'pro', '', 'pixel') }}
+        {{ macros.row('single_menu_submenu_font', 'Font', 'input', options, errors, '', 'pro', '', '', 'Set the font for the sub menu items. The font must already be installed as part of your theme or a browser inbuilt one.', '', '', 'For example "Open Sans"') }}
+        {{ macros.row('single_menu_submenu_font_size', 'Font size', 'input', options, errors, 'has-unit', 'pro', '', 'pixel', 'Set the text size of the sub menu items and their unit.') }}
+        {{ macros.row('single_menu_submenu_height', 'Height', 'input', options, errors, 'has-unit', 'pro', '', 'pixel', 'Set the height of the sub menu items and their unit.') }}
     </table>
 </div>

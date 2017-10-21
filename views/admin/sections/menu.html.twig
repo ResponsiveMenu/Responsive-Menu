@@ -1,32 +1,39 @@
+{#
+    Responsive Menu Jinja template file.
+    Safe to Copy
+#}
+
 {% import 'admin/macros.html.twig' as macros %}
 
 {% set section = 'Menu' %}
 
-<div class='panel panel-default'>
-    <div class='panel-body'>Styling<small>{{ section }}</small></div>
+<div class='panel panel-default fully-pro-container'>
+    {{ macros.header('Font Icons', section) }}
     <table class='table table-bordered table-hover'>
-        {{ macros.row('menu_font', 'Font', 'input', options, errors, '', '', '', '', 'Set the font for the menu items. The font must already be installed as part of your theme or a browser inbuilt one.', '', '', 'For example "Open Sans"') }}
-        {{ macros.row('menu_font_size', 'Font Size', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel', 'Set the text size of the menu items and the unit used.') }}
-        {{ macros.row('menu_links_height', 'Item Height', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel', 'Set the height of each menu item and it\'s unit.') }}
-        {{ macros.row('menu_text_alignment', 'Text Alignment', 'select', options, errors, '', '', 'alignment', '', 'Set the alignment of the text for the menu items.') }}
-        {{ macros.row('menu_word_wrap', 'Word Wrap', 'checkbox', options, errors, '', '', '', '', 'Allow the menu items to wrap around to the next line.', '', '', 'Useful if you have particularly long menu item titles.') }}
+        {% include 'admin/sections/modules/font-icons.html.twig' %}
     </table>
 </div>
 
-<div class='panel panel-default fully-pro-container'>
-    <div class='panel-body'>Font Icons<small>{{ section }}</small></div>
-    {% include 'admin/sections/modules/font-icons.html.twig' %}
-</div>
-
 <div class='panel panel-default'>
-    <div class='panel-body'>Depth<small>{{ section }}</small></div>
+    {{ macros.header('Depth', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_depth', 'Depth', 'select', options, errors, '', '', 'depth', '', 'This determines how many levels deep your menu will go.') }}
     </table>
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Border<small>{{ section }}</small></div>
+    {{ macros.header('Styling', section) }}
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('menu_font', 'Font', 'input', options, errors, '', '', '', '', 'Set the font for the menu items. The font must already be installed as part of your theme or a browser inbuilt one.', '', '', 'For example "Open Sans"') }}
+        {{ macros.row('menu_font_size', 'Font Size', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel', 'Set the text size of the menu items and it\'s unit.') }}
+        {{ macros.row('menu_links_height', 'Item Height', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel', 'Set the height of each menu item and it\'s unit.') }}
+        {{ macros.row('menu_text_alignment', 'Text Alignment', 'select', options, errors, '', '', 'alignment', '', 'Set the alignment of the text for the menu items.') }}
+        {{ macros.row('menu_word_wrap', 'Word Wrap', 'checkbox', options, errors, '', '', '', '', 'Allow the menu items to wrap around to the next line.', '', '', 'Useful if you have particularly long menu item titles.') }}
+    </table>
+</div>
+
+<div class='panel panel-default'>
+    {{ macros.header('Item Borders', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_border_width', 'Width', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel', 'Set the border size for each menu link and it\'s unit.') }}
         {{ macros.row('menu_item_border_colour', 'Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the border colour for each of the menu items.') }}
@@ -37,7 +44,7 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Text<small>{{ section }}</small></div>
+    {{ macros.header('Item Text', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_link_colour', 'Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the text colour for each of the menu items.') }}
         {{ macros.row('menu_link_hover_colour', 'Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the text colour when the mouse rolls over each menu item.') }}
@@ -47,7 +54,7 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Background<small>{{ section }}</small></div>
+    {{ macros.header('Item Background', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_item_background_colour', 'Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the background colour for each of the menu items.') }}
         {{ macros.row('menu_item_background_hover_colour', 'Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the background colour when the mouse rolls over each menu item.') }}
@@ -56,8 +63,15 @@
     </table>
 </div>
 
+<div class='panel panel-default'>
+    {{ macros.header('Descriptions', section) }}
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('submenu_descriptions_on', 'Enabled', 'checkbox', options, errors, '', '', '', '', 'If you have set descriptions for your menu items, you can turn them on here.') }}
+    </table>
+</div>
+
 <div class='panel panel-default fully-pro-container'>
-    <div class='panel-body'>Fade Items In<small>{{ section }}</small></div>
+    {{ macros.header('Fade Items In', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('fade_submenus', 'Enabled', 'checkbox', options, errors, '', 'pro', '', '', 'When enabled this makes the indidvidual menu items fade in when the button is clicked rather than simply appearing all at once.') }}
         {{ macros.row('fade_submenus_side', 'Side', 'select', options, errors, '', 'pro', 'left_right', '', 'You can specify which side the items fade in from.') }}
@@ -67,15 +81,9 @@
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Descriptions<small>{{ section }}</small></div>
+    {{ macros.header('Advanced', section) }}
     <table class='table table-bordered table-hover'>
-        {{ macros.row('submenu_descriptions_on', 'Enabled', 'checkbox', options, errors, '', '', '', '', 'If you have set descriptions for your menu items, you can turn them on here. This simply means they will show as part of each menu item.') }}
-    </table>
-</div>
-
-<div class='panel panel-default'>
-    <div class='panel-body'>Advanced<small>{{ section }}</small></div>
-    <table class='table table-bordered table-hover'>
-        {{ macros.row('theme_location_menu', 'Theme Location Menu', 'select', options, errors, '', '', 'custom', '', 'If you want to use a theme location menu rather than a specific menu then you can select that here.', '', location_menus, 'Please note that this will overwrite the <a class="scroll-to-option" href="#responsive-menu-pro-menu-to-use">Menu to Use</a> option.') }}
+        {{ macros.row('theme_location_menu', 'Theme Location Menu', 'select', options, errors, '', '', 'custom', '', 'If you want to use a theme location menu rather than a specific menu then you can select that here.', '', location_menus, 'Please note that this will overwrite the <a class="scroll-to-option" href="#responsive-menu-menu-to-use">Menu to Use</a> option.') }}
+        {{ macros.row('custom_walker', 'Custom Walker', 'input', options, errors, '', '', '', '', 'Set your own Walker class for customising the links HTML output.', '', '', 'Warning: For extremely advanced use only') }}
     </table>
 </div>

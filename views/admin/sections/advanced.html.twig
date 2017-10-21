@@ -1,30 +1,42 @@
+{#
+    Responsive Menu Jinja template file.
+    Safe to Copy
+#}
+
 {% import 'admin/macros.html.twig' as macros %}
 
 {% set section = 'Advanced' %}
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Custom CSS<small>Advanced</small></div>
+    {{ macros.header('Animation Speeds', section) }}
     <table class='table table-bordered table-hover'>
-        {{ macros.row('custom_css', 'Custom CSS', 'textarea', options, errors, '', 'pro') }}
+        {{ macros.row('animation_speed', 'Animation Speed', 'input', options, errors, '', '', '', '', 'Specify the speed at which the container slides in and sub menus open among other things.', 's') }}
+        {{ macros.row('transition_speed', 'Transition Speed', 'input', options, errors, '', '', '', '', 'Specify the speed at which background colours transition from dormant to active or hover states.', 's') }}
     </table>
 </div>
 
 <div class='panel panel-default'>
-    <div class='panel-body'>Menu<small>Advanced</small></div>
+    {{ macros.header('Technical', section) }}
     <table class='table table-bordered table-hover'>
-        {{ macros.row('custom_walker', 'Custom Walker', 'input', options, errors, '', '', '', '', 'Warning: For extremely advanced use only') }}
-        {{ macros.row('mobile_only', 'Show on mobile devices only?', 'checkbox', options, errors, '', 'pro', '', '', 'This will make it not a responsive menu but a "mobile menu"') }}
-        {{ macros.row('shortcode', 'Use Shortcode?', 'checkbox', options, errors, '', '', '', '', 'Please place [responsive_menu_pro] in your files to use. Full documentation can be found <a href="https://responsive.menu/docs/advanced-setup/shortcode/" target="_blank">here</a>') }}
-        {{ macros.row('menu_adjust_for_wp_admin_bar', 'Adjust for WP Admin Bar', 'checkbox', options, errors, '', 'pro', '', '', 'If you use the WP Admin bar when logged in, this will bring the menus elements down so they are not hidden behind it.') }}
-        {{ macros.row('menu_disable_scrolling', 'Disable Background Scrolling', 'checkbox', options, errors, '', 'pro', '', '', 'Please ensure your theme follows WordPress theme development guidelines for this to work. Specifically that the html tag includes the language_attributes() function call.') }}
-        {{ macros.row('show_menu_on_page_load', 'Show Menu on Page Load', 'checkbox', options, errors, '', 'pro') }}
+        {{ macros.row('shortcode', 'Use Shortcode?', 'checkbox', options, errors, '', '', '', '', 'Please place ' ~ shortcode ~ ' in your files to use. Full documentation can be found <a href="https://responsive.menu/docs/advanced-setup/shortcode/" target="_blank">here</a>') }}
+        {{ macros.row('mobile_only', 'Show on mobile devices only?', 'checkbox', options, errors, '', 'pro', '', '', 'This will make it not a responsive menu but a "mobile menu". No HTML, CSS or JavaScript will be output unless the user is on a mobile specific device.') }}
+        {{ macros.row('show_menu_on_page_load', 'Show Menu on Page Load', 'checkbox', options, errors, '', 'pro', '', '', 'This will mean the menu container will show as opened and the button will be set to active on each page load.') }}
+        {{ macros.row('menu_adjust_for_wp_admin_bar', 'Adjust for WP Admin Bar', 'checkbox', options, errors, '', 'pro', '', '', 'If you use the WP Admin bar when logged in, this will bring the various elements down so they are not hidden behind it.') }}
+        {{ macros.row('menu_disable_scrolling', 'Disable Background Scrolling', 'checkbox', options, errors, '', 'pro', '', '', 'When the menu is open the background of the page cannot be scrolled.', '', '', 'Please ensure your theme follows WordPress theme development guidelines for this to work. Specifically that the html tag includes the language_attributes() function call.') }}
     </table>
 </div>
 
 <div class='panel panel-default fully-pro-container'>
-    <div class='panel-body'>Page Overlay<small>{{ section }}</small></div>
+    {{ macros.header('Page Overlay', section) }}
     <table class='table table-bordered table-hover'>
-        {{ macros.row('menu_overlay', 'Enable', 'checkbox', options, errors, '', 'pro') }}
-        {{ macros.row('menu_overlay_colour', 'Colour', 'colour', options, errors, '', 'pro') }}
+        {{ macros.row('menu_overlay', 'Enable', 'checkbox', options, errors, '', 'pro', '', '', 'When the menu is open the page will have an overlay covering all but the opened menu and button.') }}
+        {{ macros.row('menu_overlay_colour', 'Colour', 'colour', options, errors, '', 'pro', '', '', 'Set the colour of the page overlay when enabled.', '', '', 'Works nicely with a slight transparency.') }}
+    </table>
+</div>
+s
+<div class='panel panel-default'>
+    {{ macros.header('Custom CSS', section) }}
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('custom_css', 'Custom CSS', 'textarea', options, errors, '', 'pro', '', '', 'You can place any Custom CSS you want here. Very useful if you want to make minor tweaks to some margins, paddings or colours or even for whole new layouts or designs.', '', '', 'Accepts any valid CSS rules, including media queries.') }}
     </table>
 </div>
