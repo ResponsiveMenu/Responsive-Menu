@@ -52,7 +52,7 @@
     margin-bottom: 15px;
 }
 
-#responsive-menu-admin #banner-area #guide-banner .active-wrapper:hover,
+#responsive-menu-admin #banner-area #guide-banner .guide-active > .guide-wrapper,
 #responsive-menu-admin #banner-area #guide-banner #guide-menu-wrapper:hover,
 #responsive-menu-admin #banner-area #guide-banner #guide-submenu-wrapper:hover,
 #responsive-menu-admin #banner-area #guide-banner #guide-container-wrapper:hover,
@@ -67,19 +67,19 @@
     padding-top: 10px;
 }
 
-#responsive-menu-admin #banner-area #guide-banner #guide-button {
+#responsive-menu-admin #banner-area #guide-banner #guide-button-container {
 
     float: right;
 }
 
-#responsive-menu-admin #banner-area #guide-banner #guide-button .guide-button-line {
+#responsive-menu-admin #banner-area #guide-banner #guide-button-container .guide-button-line {
     background: white;
     width: 75%;
     height: 3px;
     margin: 0 auto 10px auto;
 }
 
-#responsive-menu-admin #banner-area #guide-banner #guide-container {
+#responsive-menu-admin #banner-area #guide-banner #guide-container-container {
     width: 75%;
 }
 
@@ -97,21 +97,21 @@
     font-weight: normal;
 }
 
-#responsive-menu-admin #banner-area #guide-banner #guide-menu {
+#responsive-menu-admin #banner-area #guide-banner #guide-menu-container {
     background: #E9F0FA;
 }
 
-#responsive-menu-admin #banner-area #guide-banner #guide-container .guide-menu-text {
+#responsive-menu-admin #banner-area #guide-banner #guide-container-container .guide-menu-text {
     color: white;
     padding: 5px 0;
 }
 
-#responsive-menu-admin #banner-area #guide-banner #guide-menu .guide-menu-item {
+#responsive-menu-admin #banner-area #guide-banner #guide-menu-container .guide-menu-item {
     border-bottom: 1px solid #D4E2F5;
     padding: 5px;
 }
 
-#responsive-menu-admin #banner-area #guide-banner #guide-menu .guide-menu-item.guide-submenu-item {
+#responsive-menu-admin #banner-area #guide-banner #guide-menu-container .guide-menu-item.guide-submenu-item {
     padding-left: 25px;
     background: #D4E2F5;
     border-color: #E9F0FA;
@@ -135,6 +135,7 @@
     left: 0;
 }
 
+#responsive-menu-admin #banner-area #guide-banner .guide-active > .guide-helper,
 #responsive-menu-admin #banner-area #guide-banner .guide-helper-container:hover > .guide-helper {
     display: block;
 }

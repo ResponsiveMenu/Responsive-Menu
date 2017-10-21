@@ -25,26 +25,26 @@
         <small>Hover the items to find their sections</small>
     </div>
     <div id="guide-wrapper">
-        <div id="guide-button" class="guide-helper-container">
+        <div id="guide-button-container" class="guide-helper-container{% if current_page() == 'button' %} guide-active{% endif %}">
             <div class="guide-helper">Button</div>
-            <div id="guide-button-wrapper">
+            <div id="guide-button-wrapper" class="guide-wrapper">
                 <div class="guide-button-line"></div>
                 <div class="guide-button-line"></div>
                 <div class="guide-button-line"></div>
             </div>
         </div>
-        <div id="guide-container" class="guide-helper-container">
+        <div id="guide-container-container" class="guide-helper-container{% if current_page() == 'container' %} guide-active{% endif %}">
             <div id="guide-helper-container" class="guide-helper">Container</div>
-            <div id="guide-container-wrapper">
+            <div id="guide-container-wrapper" class="guide-wrapper">
                 <div class="guide-menu-text">Title</div>
-                <div id="guide-menu" class="guide-helper-container">
+                <div id="guide-menu-container" class="guide-helper-container{% if current_page() == 'menu' %} guide-active{% endif %}">
                     <div class="guide-helper">Menu</div>
-                    <div id="guide-menu-wrapper">
+                    <div id="guide-menu-wrapper" class="guide-wrapper">
                         <div class="guide-menu-item">Menu Item</div>
                         <div class="guide-menu-item">Menu Item</div>
-                        <div class="guide-helper-container">
+                        <div id="guide-submenu-container" class="guide-helper-container{% if current_page() == 'sub-menus' %} guide-active{% endif %}">
                             <div class="guide-helper guide-helper-submenus">Sub Menus</div>
-                            <div id="guide-submenu-wrapper">
+                            <div id="guide-submenu-wrapper" class="guide-wrapper">
                                 <div class="guide-menu-item guide-submenu-item">Sub Menu Item</div>
                                 <div class="guide-menu-item guide-submenu-item">Sub Menu Item</div>
                             </div>
