@@ -7,19 +7,19 @@
 
 {% set section = 'Desktop Menu' %}
 
-<div class='panel panel-default'>
+<div class='panel panel-default fully-pro-container'>
     {{ macros.header('Enable', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('use_desktop_menu', 'Enable', 'checkbox', options, errors, '', 'pro', '', '', 'Enable the Desktop Menu.') }}
     </table>
 </div>
 
-<div class="panel panel-default">
+<div class="panel panel-default fully-pro-container">
     {{ macros.header('Settings', section) }}
     {% include 'admin/sections/modules/desktop-menu-settings.html.twig' %}
 </div>
 
-<div class='panel panel-default'>
+<div class='panel panel-default fully-pro-container'>
     {{ macros.header('General Setup', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('desktop_menu_positioning', 'Positioning', 'select', options, errors, '', 'pro', 'position', '', 'Specify how you want the menu to stick to your page.', '', '', 'Using relative positioning is useful when combined with the shortcode.') }}
@@ -28,7 +28,7 @@
     </table>
 </div>
 
-<div class='panel panel-default'>
+<div class='panel panel-default fully-pro-container'>
     {{ macros.header('Top Level Link Colours', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('single_menu_item_background_colour', 'Background', 'colour', options, errors, '', 'pro', '', '', 'Set the background colour for the top level menu items.') }}
@@ -38,7 +38,7 @@
     </table>
 </div>
 
-<div class='panel panel-default'>
+<div class='panel panel-default fully-pro-container'>
     {{ macros.header('Sub Menu Link Colours', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('single_menu_item_submenu_background_colour', 'Background', 'colour', options, errors, '', 'pro', '', '', 'Set the background colour for the sub menu items.') }}
