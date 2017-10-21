@@ -86,10 +86,15 @@
     margin-right: 5px;
 }
 
+#responsive-menu-admin #upgrade-banner ul  {
+    margin: 25px 0 35px 0;
+}
+
 #responsive-menu-admin #upgrade-banner li  {
     list-style: none;
     font-weight: bold;
-    font-size: 11px;
+    font-size: 12px;
+    line-height: 18px;
 }
 
 #responsive-menu-admin .nav-tabs > li:first-child {
