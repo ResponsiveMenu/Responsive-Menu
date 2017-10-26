@@ -457,6 +457,15 @@ button#responsive-menu-button,
         margin-right: 15px;
     }
 
+    {# --> Stop items being tabbed when hidden #}
+    #responsive-menu-container #responsive-menu > li {
+        display: none;
+    }
+
+    .responsive-menu-open #responsive-menu-container #responsive-menu > li {
+        display: block;
+    }
+
     #responsive-menu-container #responsive-menu > li.responsive-menu-item:first-child > a {
         border-top: {{ options.menu_border_width }}px solid {{ options.menu_item_border_colour }};
     }

@@ -17,7 +17,7 @@
 </div>
 
 <div class='panel panel-default'>
-    {{ macros.header('Location', section) }}
+    {{ macros.header('Location', section, '/basic-setup/button/#animation') }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('button_position_type', 'Positioning', 'select', options, errors, '', '', 'position', '', 'Specify how you want the button to stick to your page.', '', '', 'Using relative positioning is useful when combined with the shortcode.') }}
         {{ macros.row('button_left_or_right', 'Side', 'select', options, errors, '', '', 'left_right', '', 'Specify which side of the page you want the button to be displayed on.', '', '', 'Won\'t work if you have Relative positioning set.') }}
@@ -27,7 +27,7 @@
 </div>
 
 <div class='panel panel-default'>
-    {{ macros.header('Container Sizing', section) }}
+    {{ macros.header('Container Sizing', section, '/basic-setup/button/#location') }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('button_height', 'Height', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel', 'Set the height of the buttons containing element and it\'s unit.') }}
         {{ macros.row('button_width', 'Width', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel', 'Set the width of the buttons containing element and it\'s unit.') }}
@@ -35,7 +35,7 @@
 </div>
 
 <div class='panel panel-default'>
-    {{ macros.header('Line Sizing', section) }}
+    {{ macros.header('Line Sizing', section, '/basic-setup/button/#container-sizing') }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('button_line_height', 'Height', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel', 'Set the height of each individual button line and it\'s unit') }}
         {{ macros.row('button_line_width', 'Width', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel', 'Set the width of each individual button line and it\'s unit') }}
@@ -44,7 +44,7 @@
 </div>
 
 <div class='panel panel-default'>
-    {{ macros.header('Container Background', section) }}
+    {{ macros.header('Container Background', section, '/basic-setup/button/#line-sizing') }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('button_background_colour', 'Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the background colour of the button container.') }}
         {{ macros.row('button_background_colour_hover', 'Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the hover background colour of the button container.') }}
@@ -54,7 +54,7 @@
 </div>
 
 <div class='panel panel-default'>
-    {{ macros.header('Line Colours', section) }}
+    {{ macros.header('Line Colours', section, '/basic-setup/button/#line-colours') }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('button_line_colour', 'Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the individual line colour of the button.') }}
         {{ macros.row('button_line_colour_hover', 'Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the individual hover line colour of the button.') }}
@@ -63,7 +63,7 @@
 </div>
 
 <div class='panel panel-default'>
-    {{ macros.header('Title', section) }}
+    {{ macros.header('Title', section, '/basic-setup/button/#title') }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('button_title', 'Text', 'input', options, errors, '', '', '', '', 'Set the button title text.') }}
         {{ macros.row('button_title_open', 'Active Text', 'input', options, errors, '', '', '', '', 'Set the active button title text.') }}
@@ -76,7 +76,7 @@
 </div>
 
 <div class='panel panel-default'>
-    {{ macros.header('Image', section) }}
+    {{ macros.header('Image', section, '/basic-setup/button/#image') }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('button_image', 'Image', 'image', options, errors, '', '', '', '', 'You can set a button image instead of the default 3 lines if desired.') }}
         {{ macros.row('button_image_alt', 'Alt Text', 'input', options, errors, '', '', '', '', 'Button image alt text.') }}
@@ -88,7 +88,7 @@
 </div>
 
 <div class='panel panel-default'>
-    {{ macros.header('Advanced', section) }}
+    {{ macros.header('Advanced', section, '/basic-setup/button/#advanced') }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('button_click_trigger', 'Trigger', 'input', options, errors, '', '', '', '', 'If you don\'t want to use the button that comes with the menu, you can specify your own container trigger here. Any CSS selector is accepted.', '', '', 'For example "#my-custom-trigger"') }}
     </table>

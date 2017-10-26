@@ -8,7 +8,7 @@
 {% set section = 'Sub Menus' %}
 
 <div class='panel panel-default'>
-    {{ macros.header('Trigger Icon', section) }}
+    {{ macros.header('Trigger Icon', section, '/basic-setup/sub-menus/#trigger-icon') }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('arrow_position', 'Position', 'select', options, errors, '', '', 'left_right', '', 'Set the side of the menu item that the sub menu trigger will appear.') }}
         {{ macros.row('active_arrow_shape', 'Active Shape', 'input', options, errors, '', '', '', '', 'Set the trigger shape you want to use for the active state. A selection of shapes can be found <a href="https://responsive.menu/html-geometric-shapes/" target="_blank">here</a>.') }}
@@ -23,7 +23,7 @@
 </div>
 
 <div class='panel panel-default'>
-    {{ macros.header('Trigger Sizing', section) }}
+    {{ macros.header('Trigger Sizing', section, '/basic-setup/sub-menus/#trigger-sizing') }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('submenu_arrow_height', 'Height', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel', 'Set the height of the menu trigger items and their units.') }}
         {{ macros.row('submenu_arrow_width', 'Width', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel', 'Set the width of the menu trigger items and their units.') }}
@@ -31,7 +31,7 @@
 </div>
 
 <div class='panel panel-default'>
-    {{ macros.header('Trigger Colours', section) }}
+    {{ macros.header('Trigger Colours', section, '/basic-setup/sub-menus/#trigger-colours') }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_sub_arrow_shape_colour', 'Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the colour of the sub menu trigger.') }}
         {{ macros.row('menu_sub_arrow_shape_hover_colour', 'Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the hover colour of the sub menu trigger.') }}
@@ -41,7 +41,7 @@
 </div>
 
 <div class='panel panel-default'>
-    {{ macros.header('Trigger Background', section) }}
+    {{ macros.header('Trigger Background', section, '/basic-setup/sub-menus/#trigger-background') }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_sub_arrow_background_colour', 'Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the background colour of the sub menu trigger.') }}
         {{ macros.row('menu_sub_arrow_background_hover_colour', 'Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the hover background colour of the sub menu trigger.') }}
@@ -51,7 +51,7 @@
 </div>
 
 <div class='panel panel-default'>
-    {{ macros.header('Trigger Border', section) }}
+    {{ macros.header('Trigger Border', section, '/basic-setup/sub-menus/#trigger-border') }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_sub_arrow_border_colour', 'Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the border colour of the sub menu trigger.') }}
         {{ macros.row('menu_sub_arrow_border_hover_colour', 'Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the hover border colour of the sub menu trigger.') }}
@@ -61,7 +61,7 @@
 </div>
 
 <div class='panel panel-default'>
-    {{ macros.header('Padding', section) }}
+    {{ macros.header('Padding', section, '/basic-setup/sub-menus/#padding') }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_depth_side', 'Side', 'select', options, errors, '', '', 'left_right', '', 'You can set which side of the menu items the padding should be on.') }}
         {{ macros.row('menu_depth_0', 'Top Level', 'input', options, errors, 'has-unit', 'semi-pro', '', 'percentage', 'Set the padding size of the top level menu items and their unit.') }}
@@ -74,7 +74,7 @@
 </div>
 
 <div class='panel panel-default'>
-    {{ macros.header('Animations', section) }}
+    {{ macros.header('Animations', section, '/basic-setup/sub-menus/#animations') }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('accordion_animation', 'Use Accordion', 'checkbox', options, errors, '', '', '', '', 'Expanding one sub menu level will close all the others in an accordion style.') }}
         {{ macros.row('auto_expand_all_submenus', 'Auto Expand All Sub Menus', 'checkbox', options, errors, '', '', '', '', 'All sub menus will be opened on page load automatically.') }}
@@ -84,7 +84,7 @@
 </div>
 
 <div class='panel panel-default fully-pro-container'>
-    {{ macros.header('Slide Effect', section) }}
+    {{ macros.header('Slide Effect', section, '/basic-setup/sub-menus/#slide-effect') }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('use_slide_effect', 'Enabled', 'checkbox', options, errors, '', 'pro', '', '', 'The slide effect changes the way that sub-menus open and close. Instead of the standard drop-down animation they will slide over the top of eachother as in the demo site <a href="https://demo.responsive.menu/pro-example-one/" target="_blank">here</a>.<br /><br /><span class="label label-warning">beta</span>') }}
         {{ macros.row('slide_effect_back_to_text', 'Back Text', 'input', options, errors, '', 'pro', '', '', 'You can specify the text used for clicking to get back to the previous level when using the slide effect.') }}

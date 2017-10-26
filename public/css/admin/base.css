@@ -49,7 +49,7 @@
 #responsive-menu-admin #banner-area #guide-banner {
     background: white;
     padding: 15px;
-    margin-bottom: 15px;
+    margin-top: 15px;
 }
 
 #responsive-menu-admin #banner-area #guide-banner .guide-active > .guide-wrapper,
@@ -58,6 +58,10 @@
 #responsive-menu-admin #banner-area #guide-banner #guide-container-wrapper:hover,
 #responsive-menu-admin #banner-area #guide-banner #guide-button-wrapper:hover {
     outline: 4px solid #15A4FA;
+}
+
+#responsive-menu-admin #banner-area #guide-banner .guide-active > .guide-wrapper {
+    outline-color: yellow;
 }
 
 #responsive-menu-admin #banner-area #guide-banner #guide-button-wrapper {
@@ -349,6 +353,13 @@
 #responsive-menu-admin .table-hover > tbody > tr.option-highlight td,
 #responsive-menu-admin .table-hover > tbody > tr.option-highlight td:hover {
     background-color: #ffff99 !important;
+}
+
+#responsive-menu-admin .panel table tr.option-highlight td.col-right,
+#responsive-menu-admin .panel table tr.option-highlight td.col-left label,
+#responsive-menu-admin .panel table tr.option-highlight td.col-left .sub-text,
+#responsive-menu-admin .panel table tr.option-highlight td.col-left .sub_sub_title {
+    color: #333;
 }
 
 #responsive-menu-admin .draggable {

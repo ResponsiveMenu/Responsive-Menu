@@ -8,19 +8,19 @@
 {% set section = 'Desktop Menu' %}
 
 <div class='panel panel-default fully-pro-container'>
-    {{ macros.header('Enable', section) }}
+    {{ macros.header('Enable', section, '/advanced-setup/desktop-menu/#enable') }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('use_desktop_menu', 'Enable', 'checkbox', options, errors, '', 'pro', '', '', 'Enable the Desktop Menu.') }}
     </table>
 </div>
 
 <div class="panel panel-default fully-pro-container">
-    {{ macros.header('Settings', section) }}
+    {{ macros.header('Settings', section, '/advanced-setup/desktop-menu/#settings') }}
     {% include 'admin/sections/modules/desktop-menu-settings.html.twig' %}
 </div>
 
 <div class='panel panel-default fully-pro-container'>
-    {{ macros.header('General Setup', section) }}
+    {{ macros.header('General Setup', section, '/advanced-setup/desktop-menu/#general-setup') }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('desktop_menu_positioning', 'Positioning', 'select', options, errors, '', 'pro', 'position', '', 'Specify how you want the menu to stick to your page.', '', '', 'Using relative positioning is useful when combined with the shortcode.') }}
         {{ macros.row('desktop_menu_width', 'Width', 'input', options, errors, 'has-unit', 'pro', '', 'percentage', 'Set the width of the desktop menu and it\'s unit.', '', '', 'Leave blank to keep the width auto.') }}
@@ -29,7 +29,7 @@
 </div>
 
 <div class='panel panel-default fully-pro-container'>
-    {{ macros.header('Top Level Link Colours', section) }}
+    {{ macros.header('Top Level Link Colours', section, '/advanced-setup/desktop-menu/#top-level-link-colours') }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('single_menu_item_background_colour', 'Background', 'colour', options, errors, '', 'pro', '', '', 'Set the background colour for the top level menu items.') }}
         {{ macros.row('single_menu_item_background_colour_hover', 'Background Hover', 'colour', options, errors, '', 'pro', '', '', 'Set the background hover colour for the top level menu items.') }}
@@ -39,7 +39,7 @@
 </div>
 
 <div class='panel panel-default fully-pro-container'>
-    {{ macros.header('Sub Menu Link Colours', section) }}
+    {{ macros.header('Sub Menu Link Colours', section, '/advanced-setup/desktop-menu/#sub-menu-link-colours') }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('single_menu_item_submenu_background_colour', 'Background', 'colour', options, errors, '', 'pro', '', '', 'Set the background colour for the sub menu items.') }}
         {{ macros.row('single_menu_item_submenu_background_colour_hover', 'Background Hover', 'colour', options, errors, '', 'pro', '', '', 'Set the background hover colour for the sub menu items.') }}
@@ -49,7 +49,7 @@
 </div>
 
 <div class='panel panel-default'>
-    {{ macros.header('Top Level Styling', section) }}
+    {{ macros.header('Top Level Styling', section, '/advanced-setup/desktop-menu/#top-level-styling') }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('single_menu_font', 'Font', 'input', options, errors, '', 'pro', '', '', 'Set the font for the menu items. The font must already be installed as part of your theme or a browser inbuilt one.', '', '', 'For example "Open Sans"') }}
         {{ macros.row('single_menu_font_size', 'Font size', 'input', options, errors, 'has-unit', 'pro', '', 'pixel', 'Set the text size of the menu items and their unit.') }}
@@ -58,7 +58,7 @@
 </div>
 
 <div class='panel panel-default'>
-    {{ macros.header('Sub Menu Styling', section) }}
+    {{ macros.header('Sub Menu Styling', section, '/advanced-setup/desktop-menu/#sub-menu-styling') }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('single_menu_submenu_font', 'Font', 'input', options, errors, '', 'pro', '', '', 'Set the font for the sub menu items. The font must already be installed as part of your theme or a browser inbuilt one.', '', '', 'For example "Open Sans"') }}
         {{ macros.row('single_menu_submenu_font_size', 'Font size', 'input', options, errors, 'has-unit', 'pro', '', 'pixel', 'Set the text size of the sub menu items and their unit.') }}

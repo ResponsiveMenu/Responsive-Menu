@@ -8,7 +8,7 @@
 {% set section = 'Advanced' %}
 
 <div class='panel panel-default'>
-    {{ macros.header('Animation Speeds', section) }}
+    {{ macros.header('Animation Speeds', section, '/advanced-setup/advanced/#animation-speeds') }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('animation_speed', 'Animation Speed', 'input', options, errors, '', '', '', '', 'Specify the speed at which the container slides in and sub menus open among other things.', 's') }}
         {{ macros.row('transition_speed', 'Transition Speed', 'input', options, errors, '', '', '', '', 'Specify the speed at which background colours transition from dormant to active or hover states.', 's') }}
@@ -16,7 +16,7 @@
 </div>
 
 <div class='panel panel-default'>
-    {{ macros.header('Technical', section) }}
+    {{ macros.header('Technical', section, '/advanced-setup/advanced/#technical') }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('shortcode', 'Use Shortcode?', 'checkbox', options, errors, '', '', '', '', 'Please place ' ~ shortcode ~ ' in your files to use. Full documentation can be found <a href="https://responsive.menu/docs/advanced-setup/shortcode/" target="_blank">here</a>') }}
         {{ macros.row('mobile_only', 'Show on mobile devices only?', 'checkbox', options, errors, '', 'pro', '', '', 'This will make it not a responsive menu but a "mobile menu". No HTML, CSS or JavaScript will be output unless the user is on a mobile specific device.') }}
@@ -27,7 +27,7 @@
 </div>
 
 <div class='panel panel-default fully-pro-container'>
-    {{ macros.header('Page Overlay', section) }}
+    {{ macros.header('Page Overlay', section, '/advanced-setup/advanced/#page-overlay') }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_overlay', 'Enable', 'checkbox', options, errors, '', 'pro', '', '', 'When the menu is open the page will have an overlay covering all but the opened menu and button.') }}
         {{ macros.row('menu_overlay_colour', 'Colour', 'colour', options, errors, '', 'pro', '', '', 'Set the colour of the page overlay when enabled.', '', '', 'Works nicely with a slight transparency.') }}
@@ -35,7 +35,7 @@
 </div>
 
 <div class='panel panel-default fully-pro-container'>
-    {{ macros.header('Custom CSS', section) }}
+    {{ macros.header('Custom CSS', section, '/advanced-setup/advanced/#custom-css') }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('custom_css', 'Custom CSS', 'textarea', options, errors, '', 'pro', '', '', 'You can place any Custom CSS you want here. Very useful if you want to make minor tweaks to some margins, paddings or colours or even for whole new layouts or designs.', '', '', 'Accepts any valid CSS rules, including media queries.') }}
     </table>
