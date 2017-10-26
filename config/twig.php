@@ -3,8 +3,9 @@
 $twig = new Twig_Environment(new Twig_Loader_Filesystem([
     dirname(dirname(__FILE__)) . '/views',
     dirname(dirname(__FILE__)) . '/public',
-]), ['autoescape' => false]);
+]), ['autoescape' => false, 'debug' => false]);
 
+//$twig->addExtension(new Twig_Extension_Debug());
 if(!is_admin()):
 
     $twig->addFilter(new Twig_SimpleFilter('shortcode', function($string) {
@@ -57,6 +58,7 @@ else:
     }));
 
     $twig->addFunction(new Twig_SimpleFunction('menu_items', function($options) {
+
         if($options['theme_location_menu'])
             $menu = get_term(get_nav_menu_locations()[$options['theme_location_menu']], 'nav_menu')->name;
         elseif($options['menu_to_use'])
