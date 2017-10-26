@@ -117,7 +117,6 @@ To view our FAQ, please go to <a href="https://responsive.menu/faq">https://resp
 * **Requires PHP 5.4**
 * Added a new dark admin theme
 * Updated the old light admin theme
-* Stop links being tabbable when menu is hidden
 * Added a "hide pro options" button to remove some of the clutter
 * Improved UI interface
 * Made the Word Wrap option a free feature
