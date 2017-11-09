@@ -118,6 +118,7 @@ To view our FAQ, please go to <a href="https://responsive.menu/faq">https://resp
 * Fix for drop-downs not saving their information.
 * Fix for Desktop Menu with 3rd level drop-down items.
 * Fix for Touch Gestures stopping the Search box being selectable.
+* Fix for Touch Gestures stopping menu scrolling.
 * Center Desktop Menu option added. - Pro
 
 = 3.1.8 (26th October 2017) =
