@@ -174,11 +174,19 @@
                         'right': 'Right'
                     } %}
                     {{ macros.select(name, options[name], choices) }}
+                {% elseif select_type == 'left_right_centre_with_none' %}
+                    {% set choices = {
+                        '': 'None',
+                        'left': 'Left',
+                        'right': 'Right',
+                        'centre': 'Centre'
+                    } %}
+                    {{ macros.select(name, options[name], choices) }}
                 {% elseif select_type == 'position' %}
                     <select id='responsive-menu-{{ name|replace({'_': '-'}) }}' class='selectpicker show-tick' name='menu[{{ name }}]'>
                         <option data-subtext='Will stay in position as you scroll down the page.' value='fixed' {% if options[name] == 'fixed' %}selected='selected'{% endif %}>Fixed</option>
                         <option data-subtext='Will disappear as you scroll down the page.' value='absolute' {% if options[name] == 'absolute' %}selected='selected'{% endif %}>Absolute</option>
-                        <option data-subtext='Will stay in a specific position on your page.' value='relative' {% if options[name] == 'Fixed' %}selected='selected'{% endif %} >Relative</option>
+                        <option data-subtext='Will stay in a specific position on your page.' value='relative' {% if options[name] == 'relative' %}selected='selected'{% endif %} >Relative</option>
                     </select>
                 {% elseif select_type == 'animation' %}
                     {{ macros.animation_select(name, options[name]) }}

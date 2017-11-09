@@ -3,8 +3,8 @@ Contributors: ResponsiveMenu, peterfeatherstone
 Donate link: https://responsive.menu/donate
 Tags: responsive, menu, responsive menu, mobile menu, wordpress responsive menu, wp responsive menu, tablet menu, hamburger menu, hamburger, mobile, tablet, 3 lines, 3 line, three line, three lines
 Requires at least: 3.6
-Tested up to: 4.8
-Stable tag: 3.1.8
+Tested up to: 4.9
+Stable tag: 3.1.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -112,6 +112,13 @@ To view our FAQ, please go to <a href="https://responsive.menu/faq">https://resp
 15. Admin Desktop Menu Section
 
 == Changelog ==
+
+= 3.1.9 (8th November 2017) =
+* **Requires PHP 5.4**
+* Fix for drop-downs not saving their information.
+* Fix for Desktop Menu with 3rd level drop-down items.
+* Fix for Touch Gestures stopping the Search box being selectable.
+* Center Desktop Menu option added. - Pro
 
 = 3.1.8 (26th October 2017) =
 * **Requires PHP 5.4**
