@@ -487,6 +487,12 @@ button#responsive-menu-button,
         background-color: {{ options.menu_sub_arrow_background_hover_colour }};
     }
 
+    #responsive-menu-container #responsive-menu li.responsive-menu-item a:hover .responsive-menu-subarrow.responsive-menu-subarrow-active {
+        color: {{ options.menu_sub_arrow_shape_hover_colour_active }};
+        border-color: {{ options.menu_sub_arrow_border_hover_colour_active }};
+        background-color: {{ options.menu_sub_arrow_background_hover_colour_active }};
+    }
+
     #responsive-menu-container #responsive-menu li.responsive-menu-item a .responsive-menu-subarrow {
         {{ options.arrow_position }}: 0;
         height: {{ options.submenu_arrow_height }}px;
