@@ -113,7 +113,7 @@ To view our FAQ, please go to <a href="https://responsive.menu/faq">https://resp
 
 == Changelog ==
 
-= 3.1.9 (8th November 2017) =
+= 3.1.9 (17th November 2017) =
 * **Requires PHP 5.4**
 * Fix for drop-downs not saving their information.
 * Fix for Desktop Menu with 3rd level drop-down items.
