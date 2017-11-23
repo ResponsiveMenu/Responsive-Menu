@@ -17,7 +17,7 @@
     border-color: #333;
 }
 
-#responsive-menu-admin tr.pro-row:hover {
+#responsive-menu-admin tr.pro-row {
     position: relative;
 }
 

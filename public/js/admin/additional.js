@@ -18,16 +18,6 @@ jQuery(function($) {
         $('.mini-colours').minicolors();
     /* <-- End Colour Select Options */
 
-    /* --> Upgrade Message Overlay */
-        $('.pro-row td.col-right, .pro-container').append(
-            '<div class="responsive-menu-pro-overlay">' +
-            '<a href="https://responsive.menu/pricing/?utm_source=free-plugin' +
-            '&utm_medium=option&utm_campaign=free-plugin-option-upgrade"' +
-            'target="_blank">Click to upgrade now to use</a>' +
-            '</div>'
-        );
-    /* <-- End Upgrade Message Overlay */
-
     /* --> Hide Pro Options */
         $(document).on('change', '#hide-pro-options', function() {
             if($(this).is(':checked')) {
