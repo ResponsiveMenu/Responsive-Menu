@@ -4,7 +4,7 @@ Donate link: https://responsive.menu/donate
 Tags: responsive, menu, responsive menu, mobile menu, wordpress responsive menu, wp responsive menu, tablet menu, hamburger menu, hamburger, mobile, tablet, 3 lines, 3 line, three line, three lines
 Requires at least: 3.6
 Tested up to: 4.9
-Stable tag: 3.1.9
+Stable tag: 3.1.10
 Requires PHP: 5.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -113,6 +113,11 @@ To view our FAQ, please go to <a href="https://responsive.menu/faq">https://resp
 15. Admin Desktop Menu Section
 
 == Changelog ==
+
+= 3.1.10 (28th November 2017) =
+* **Requires PHP 5.4**
+* Remove annoying pro overlay
+* Fix for double scrollbars on disable background scrolling - Pro
 
 = 3.1.9 (17th November 2017) =
 * **Requires PHP 5.4**
