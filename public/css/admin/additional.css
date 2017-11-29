@@ -17,10 +17,6 @@
     border-color: #333;
 }
 
-#responsive-menu-admin tr.pro-row {
-    position: relative;
-}
-
 #responsive-menu-admin .responsive-menu-pro-overlay {
     display: none;
     position: absolute;

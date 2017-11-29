@@ -488,6 +488,10 @@
     border-right-style: solid;
 }
 
+#responsive-menu-admin .panel table td.col-right {
+    position: relative;
+}
+
 #responsive-menu-admin .panel table tr:last-child td.col-left {
     border-bottom: 0;
 }
