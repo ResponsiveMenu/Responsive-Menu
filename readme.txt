@@ -1,6 +1,5 @@
 === Responsive Menu ===
 Contributors: ResponsiveMenu, peterfeatherstone
-Donate link: https://responsive.menu/donate
 Tags: responsive, menu, responsive menu, mobile menu, wordpress responsive menu, wp responsive menu, tablet menu, hamburger menu, hamburger, mobile, tablet, 3 lines, 3 line, three line, three lines
 Requires at least: 3.6
 Tested up to: 4.9
@@ -69,7 +68,7 @@ PHP 5.4+
 * Integrated header bar
 * Let the plugin provide and style your main menu as well as hamburger menu
 
-For more reasons to go Pro, please visit [this page](https://responsive.menu/why-go-pro/).
+For more reasons to go Pro, please visit [this page](https://responsive.menu#why-go-pro).
 
 [youtube https://www.youtube.com/watch?v=aj6ba0tGKPg]
 
