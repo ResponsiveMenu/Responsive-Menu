@@ -198,7 +198,8 @@ jQuery(function($) {
         });
 
         $('#menu-sortable').sortable({
-            revert: true
+            revert: true,
+            placeholder: 'dashed-placeholder'
         });
 
         $('#sortable, .draggable').disableSelection();

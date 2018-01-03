@@ -110,6 +110,12 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 
 == Changelog ==
 
+= 3.1.12 (4th January 2018) =
+* Added "Minus" button animation.
+* Added option to adjust the page to account for the Header Bar.
+* Added image height options for Header Bar.
+* Fix for Slide effect on Desktop Menu.
+
 = 3.1.11 (28th November 2017) =
 * Hotfix to remove annoying pro overlay
 

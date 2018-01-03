@@ -22,10 +22,10 @@ function check_responsive_menu_php_version() {
 
 function responsive_menu_deactivation_text() {
     echo '<div class="error"><p>' . sprintf(
-        'Responsive Menu requires PHP 5.4 or higher to function and has therefore been automatically disabled. 
-        You are still on %s.%sPlease speak to your webhost about upgrading your PHP version.',
-        PHP_VERSION,
-        '<br /><br />'
+            'Responsive Menu requires PHP 5.4 or higher to function and has therefore been automatically disabled. 
+            You are still on %s.%sPlease speak to your web host about upgrading your PHP version.',
+            PHP_VERSION,
+            '<br /><br />'
         ) . '</p></div>';
 }
 

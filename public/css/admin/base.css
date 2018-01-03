@@ -377,6 +377,11 @@
     display: none !important;
 }
 
+#responsive-menu-admin .dashed-placeholder {
+    border: 3px #CCC dashed;
+    height: 50px;
+}
+
 #responsive-menu-admin .menu-order-option-switch,
 #responsive-menu-admin .order-option-switch {
     background: #DE4B42;

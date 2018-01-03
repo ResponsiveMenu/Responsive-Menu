@@ -25,6 +25,8 @@
     {{ macros.header('Logo', section, '/advanced-setup/header-bar/#logo') }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('header_bar_logo', 'Image', 'image', options, errors, '', 'pro', '', '', 'Set a logo image for use on the header bar.') }}
+        {{ macros.row('header_bar_logo_height', 'Height', 'input', options, errors, 'has-unit', 'pro', '', 'percentage', 'Set a height for the logo image.') }}
+        {{ macros.row('header_bar_logo_width', 'Width', 'input', options, errors, 'has-unit', 'pro', '', 'percentage', 'Set a width for the logo image.') }}
         {{ macros.row('header_bar_logo_alt', 'Alt Text', 'input', options, errors, '', 'pro', '', '', 'Set the alt text for the logo image.') }}
         {{ macros.row('header_bar_logo_link', 'Link', 'input', options, errors, '', 'pro', '', '', 'Set a link for the logo image.') }}
     </table>
@@ -56,6 +58,7 @@
     {{ macros.header('Sizing', section, '/advanced-setup/header-bar/#sizing') }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('header_bar_height', 'Height', 'input', options, errors, 'has-unit', 'pro', '', 'pixel', 'Set the height of the header bar and it\'s unit.') }}
+        {{ macros.row('header_bar_adjust_page', 'Adjust Page', 'checkbox', options, errors, '', 'pro', '', '', 'Turning this on will automatically adjust your page to bring the content down inline with the header bar.') }}
     </table>
 </div>
 
