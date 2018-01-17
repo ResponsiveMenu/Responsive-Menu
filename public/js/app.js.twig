@@ -21,6 +21,7 @@ jQuery(document).ready(function($) {
         closeOnLinkClick: '{{ options.menu_close_on_link_click }}',
         itemTriggerSubMenu: '{{ options.menu_item_click_to_trigger_submenu }}',
         linkElement: '.responsive-menu-item-link',
+        subMenuTransitionTime: {{ options.sub_menu_speed * 1000 }},
         openMenu: function() {
             $(this.trigger).addClass(this.activeClass);
             $('html').addClass(this.openClass);
@@ -62,25 +63,25 @@ jQuery(document).ready(function($) {
                 var top_siblings = sub_menu.parents('.responsive-menu-item-has-children').last().siblings('.responsive-menu-item-has-children');
                 var first_siblings = sub_menu.parents('.responsive-menu-item-has-children').first().siblings('.responsive-menu-item-has-children');
                 /* Close up just the top level parents to key the rest as it was */
-                top_siblings.children('.responsive-menu-submenu').slideUp(200, 'linear').removeClass('responsive-menu-submenu-open');
+                top_siblings.children('.responsive-menu-submenu').slideUp(self.subMenuTransitionTime, 'linear').removeClass('responsive-menu-submenu-open');
                 /* Set each parent arrow to inactive */
                 top_siblings.each(function() {
                     $(this).find('.responsive-menu-subarrow').first().html(self.inactiveArrow);
                     $(this).find('.responsive-menu-subarrow').first().removeClass('responsive-menu-subarrow-active');
                 });
                 /* Now Repeat for the current item siblings */
-                first_siblings.children('.responsive-menu-submenu').slideUp(200, 'linear').removeClass('responsive-menu-submenu-open');
+                first_siblings.children('.responsive-menu-submenu').slideUp(self.subMenuTransitionTime, 'linear').removeClass('responsive-menu-submenu-open');
                 first_siblings.each(function() {
                     $(this).find('.responsive-menu-subarrow').first().html(self.inactiveArrow);
                     $(this).find('.responsive-menu-subarrow').first().removeClass('responsive-menu-subarrow-active');
                 });
             }
             if(sub_menu.hasClass('responsive-menu-submenu-open')) {
-                sub_menu.slideUp(200, 'linear').removeClass('responsive-menu-submenu-open');
+                sub_menu.slideUp(self.subMenuTransitionTime, 'linear').removeClass('responsive-menu-submenu-open');
                 $(subarrow).html(this.inactiveArrow);
                 $(subarrow).removeClass('responsive-menu-subarrow-active');
             } else {
-                sub_menu.slideDown(200, 'linear').addClass('responsive-menu-submenu-open');
+                sub_menu.slideDown(self.subMenuTransitionTime, 'linear').addClass('responsive-menu-submenu-open');
                 $(subarrow).html(this.activeArrow);
                 $(subarrow).addClass('responsive-menu-subarrow-active');
             }

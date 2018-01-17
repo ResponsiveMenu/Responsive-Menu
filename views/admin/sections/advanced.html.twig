@@ -10,8 +10,9 @@
 <div class='panel panel-default'>
     {{ macros.header('Animation Speeds', section, '/advanced-setup/advanced/#animation-speeds') }}
     <table class='table table-bordered table-hover'>
-        {{ macros.row('animation_speed', 'Animation Speed', 'input', options, errors, '', '', '', '', 'Specify the speed at which the container slides in and sub menus open among other things.', 's') }}
-        {{ macros.row('transition_speed', 'Transition Speed', 'input', options, errors, '', '', '', '', 'Specify the speed at which background colours transition from dormant to active or hover states.', 's') }}
+        {{ macros.row('animation_speed', 'Container', 'input', options, errors, '', '', '', '', 'Specify the speed at which the container slides in.', 's') }}
+        {{ macros.row('transition_speed', 'Colours', 'input', options, errors, '', '', '', '', 'Specify the speed at which colours transition from standard to active or hover states.', 's') }}
+        {{ macros.row('sub_menu_speed', 'Sub Menus', 'input', options, errors, '', '', '', '', 'Specify the speed at which the sub menus transition.', 's') }}
     </table>
 </div>
 

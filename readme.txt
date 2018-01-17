@@ -3,7 +3,7 @@ Contributors: ResponsiveMenu, peterfeatherstone
 Tags: responsive, menu, responsive menu, mobile menu, wordpress responsive menu, wp responsive menu, tablet menu, hamburger menu, hamburger, mobile, tablet, 3 lines, 3 line, three line, three lines
 Requires at least: 3.6
 Tested up to: 4.9
-Stable tag: 3.1.11
+Stable tag: 3.1.12
 Requires PHP: 5.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -110,10 +110,12 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 
 == Changelog ==
 
-= 3.1.12 (4th January 2018) =
+= 3.1.12 (17th January 2018) =
+* Added option to control sub-menu speed.
 * Added "Minus" button animation.
 * Added option to adjust the page to account for the Header Bar.
 * Added image height options for Header Bar.
+* Updated FontAwesome version to get latest icons.
 * Fix for Slide effect on Desktop Menu.
 
 = 3.1.11 (28th November 2017) =

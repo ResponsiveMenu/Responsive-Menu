@@ -77,6 +77,7 @@ function get_responsive_menu_default_options() {
         'page_wrapper' => null,
         'animation_speed' => 0.5,
         'transition_speed' => 0.5,
+        'sub_menu_speed' => 0.2,
 
         // Menu Settings
         'active_arrow_shape' => '▲',
