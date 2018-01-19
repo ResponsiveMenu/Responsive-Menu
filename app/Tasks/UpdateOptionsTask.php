@@ -22,7 +22,7 @@ class UpdateOptionsTask {
          */
         if($options['external_files'] == 'on'):
 
-            $base_dir = dirname(dirname(dirname(dirname(__FILE__)))) . '/responsive-menu-data';
+            $base_dir = wp_upload_dir()['basedir'] . '/responsive-menu';
 
             if(!is_dir($base_dir))
                 if(!mkdir($base_dir))

@@ -30,8 +30,8 @@ class FrontController {
 
         if($options['external_files'] == 'on'):
             add_action('wp_enqueue_scripts', function() use($options) {
-                $css_file = plugins_url() . '/responsive-menu-data/css/responsive-menu-' . get_current_blog_id() . '.css';
-                $js_file = plugins_url() . '/responsive-menu-data/js/responsive-menu-' . get_current_blog_id() . '.js';
+                $css_file = wp_upload_dir()['baseurl'] . '/responsive-menu/css/responsive-menu-' . get_current_blog_id() . '.css';
+                $js_file = wp_upload_dir()['baseurl'] . '/responsive-menu/js/responsive-menu-' . get_current_blog_id() . '.js';
                 wp_enqueue_style('responsive-menu', $css_file, null, false);
                 wp_enqueue_script('responsive-menu', $js_file, ['jquery'], false, $options['scripts_in_footer'] == 'on' ? true : false);
             });
