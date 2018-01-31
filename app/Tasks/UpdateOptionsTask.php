@@ -24,17 +24,11 @@ class UpdateOptionsTask {
 
             $base_dir = wp_upload_dir()['basedir'] . '/responsive-menu';
 
-            if(!is_dir($base_dir))
-                if(!mkdir($base_dir))
-                    throw new \Exception('You don\'t have permissions to create data folder - please check permissions.');
+            if(!wp_mkdir_p($base_dir . '/css'))
+                throw new \Exception('You don\'t have permissions to create CSS data folder - please check permissions.');
 
-            if(!is_dir($base_dir . '/css'))
-                if(!mkdir($base_dir . '/css'))
-                    throw new \Exception('You don\'t have permissions to create CSS data folder - please check permissions.');
-
-            if(!is_dir($base_dir . '/js'))
-                if(!mkdir($base_dir . '/js'))
-                    throw new \Exception('You don\'t have permissions to create JS data folder - please check permissions.');
+            if(!wp_mkdir_p($base_dir . '/js'))
+                throw new \Exception('You don\'t have permissions to create JS data folder - please check permissions.');
 
             $css_file = $base_dir . '/css/responsive-menu-' . get_current_blog_id() . '.css';
             $css_data = $view->render('css/app.css.twig', ['options' => $options]);
