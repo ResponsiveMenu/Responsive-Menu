@@ -10,6 +10,7 @@ if(is_admin()):
             pll_register_string('menu_title', $options['menu_title'], 'Responsive Menu');
             pll_register_string('menu_title_link', $options['menu_title_link'], 'Responsive Menu');
             pll_register_string('menu_additional_content', $options['menu_additional_content'], 'Responsive Menu');
+            pll_register_string('menu_search_box_text', $options['menu_search_box_text'], 'Responsive Menu');
         endif;
     });
 endif;

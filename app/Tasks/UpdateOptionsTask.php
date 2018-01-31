@@ -12,7 +12,8 @@ class UpdateOptionsTask {
         'button_title',
         'menu_title',
         'menu_title_link',
-        'menu_additional_content'
+        'menu_additional_content',
+        'menu_search_box_text'
     ];
 
     public function run(OptionsCollection $options, View $view) {
