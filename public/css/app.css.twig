@@ -539,6 +539,9 @@ button#responsive-menu-button,
         }
 
         #responsive-menu-container #responsive-menu ul.responsive-menu-submenu li.responsive-menu-item .responsive-menu-item-link {
+            {% if options.submenu_font %}
+                font-family: {{ "'" ~ options.submenu_font ~ "'" }};
+            {% endif %}
             font-size: {{ options.submenu_font_size }}px;
         }
 
