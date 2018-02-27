@@ -533,6 +533,81 @@ button#responsive-menu-button,
         border-color: {{ options.menu_current_item_border_hover_colour }};
     }
 
+    {# ---> Sub Menu Styles #}
+        #responsive-menu-container #responsive-menu ul.responsive-menu-submenu > li.responsive-menu-item:first-child > a {
+            border-top: {{ options.submenu_border_width }}px solid {{ options.submenu_item_border_colour }};
+        }
+
+        #responsive-menu-container #responsive-menu ul.responsive-menu-submenu li.responsive-menu-item .responsive-menu-item-link {
+            font-size: {{ options.submenu_font_size }}px;
+        }
+
+        #responsive-menu-container #responsive-menu ul.responsive-menu-submenu li.responsive-menu-item a {
+            line-height: {{ options.submenu_links_height }}px;
+            border-bottom: {{ options.submenu_border_width }}px solid {{ options.submenu_item_border_colour }};
+            color: {{ options.submenu_link_colour }};
+            background-color: {{ options.submenu_item_background_colour }};
+        }
+
+        #responsive-menu-container #responsive-menu ul.responsive-menu-submenu li.responsive-menu-item a:hover {
+            color: {{ options.submenu_link_hover_colour }};
+            background-color: {{ options.submenu_item_background_hover_colour }};
+            border-color: {{ options.submenu_item_border_colour_hover }};
+        }
+
+        #responsive-menu-container #responsive-menu ul.responsive-menu-submenu li.responsive-menu-item a:hover .responsive-menu-subarrow {
+            color: {{ options.submenu_sub_arrow_shape_hover_colour }};
+            border-color: {{ options.submenu_sub_arrow_border_hover_colour }};
+            background-color: {{ options.submenu_sub_arrow_background_hover_colour }};
+        }
+
+        #responsive-menu-container #responsive-menu ul.responsive-menu-submenu li.responsive-menu-item a:hover .responsive-menu-subarrow.responsive-menu-subarrow-active {
+            color: {{ options.submenu_sub_arrow_shape_hover_colour_active }};
+            border-color: {{ options.submenu_sub_arrow_border_hover_colour_active }};
+            background-color: {{ options.submenu_sub_arrow_background_hover_colour_active }};
+        }
+
+        #responsive-menu-container #responsive-menu ul.responsive-menu-submenu li.responsive-menu-item a .responsive-menu-subarrow {
+            {{ options.submenu_arrow_position }}: 0;
+            height: {{ options.submenu_submenu_arrow_height }}px;
+            line-height: {{ options.submenu_sub_submenu_arrow_height }}px;
+            width: {{ options.submenu_submenu_arrow_width }}px;
+            color: {{ options.submenu_sub_arrow_shape_colour }};
+            border-left: {{ options.submenu_border_width }}px solid {{ options.submenu_sub_arrow_border_colour }};
+            background-color: {{ options.submenu_sub_arrow_background_colour }};
+        }
+
+        #responsive-menu-container #responsive-menu ul.responsive-menu-submenu li.responsive-menu-item a .responsive-menu-subarrow.responsive-menu-subarrow-active {
+            color: {{ options.submenu_sub_arrow_shape_colour_active }};
+            border-color: {{ options.submenu_sub_arrow_border_colour_active }};
+            background-color: {{ options.submenu_sub_arrow_background_colour_active }};
+        }
+
+        #responsive-menu-container #responsive-menu ul.responsive-menu-submenu li.responsive-menu-item a .responsive-menu-subarrow.responsive-menu-subarrow-active:hover {
+            color: {{ options.submenu_sub_arrow_shape_hover_colour_active }};
+            border-color: {{ options.submenu_sub_arrow_border_hover_colour_active }};
+            background-color: {{ options.submenu_sub_arrow_background_hover_colour_active }};
+        }
+
+        #responsive-menu-container #responsive-menu ul.responsive-menu-submenu li.responsive-menu-item a .responsive-menu-subarrow:hover {
+            color: {{ options.submenu_sub_arrow_shape_hover_colour }};
+            border-color: {{ options.submenu_sub_arrow_border_hover_colour }};
+            background-color: {{ options.submenu_sub_arrow_background_hover_colour }};
+        }
+
+        #responsive-menu-container #responsive-menu ul.responsive-menu-submenu li.responsive-menu-current-item > .responsive-menu-item-link {
+            background-color: {{ options.submenu_current_item_background_colour }};
+            color: {{ options.submenu_current_link_colour }};
+            border-color: {{ options.submenu_current_item_border_colour }};
+        }
+
+        #responsive-menu-container #responsive-menu ul.responsive-menu-submenu li.responsive-menu-current-item > .responsive-menu-item-link:hover {
+            background-color: {{ options.submenu_current_item_background_hover_colour }};
+            color: {{ options.submenu_current_link_hover_colour }};
+            border-color: {{ options.submenu_current_item_border_hover_colour }};
+        }
+    {# <-- End Sub-Menu Styles #}
+
     {% if options.menu_background_image %}
         #responsive-menu-container #responsive-menu-title,
         #responsive-menu-container #responsive-menu-title:hover,
@@ -541,8 +616,23 @@ button#responsive-menu-button,
         #responsive-menu-container #responsive-menu li.responsive-menu-item a .responsive-menu-subarrow,
         #responsive-menu-container #responsive-menu li.responsive-menu-item a .responsive-menu-subarrow:hover,
         #responsive-menu-container #responsive-menu li.responsive-menu-item a:hover .responsive-menu-subarrow,
+        #responsive-menu-container #responsive-menu li.responsive-menu-item a:hover .responsive-menu-subarrow.responsive-menu-subarrow-active,
+        #responsive-menu-container #responsive-menu li.responsive-menu-item a .responsive-menu-subarrow.responsive-menu-subarrow-active,
+        #responsive-menu-container #responsive-menu li.responsive-menu-item a .responsive-menu-subarrow.responsive-menu-subarrow-active:hover,
         #responsive-menu-container #responsive-menu li.responsive-menu-item.responsive-menu-current-item > .responsive-menu-item-link,
         #responsive-menu-container #responsive-menu li.responsive-menu-item.responsive-menu-current-item > .responsive-menu-item-link:hover,
+        #responsive-menu-container #responsive-menu > li.responsive-menu-item:first-child > a,
+        #responsive-menu-container #responsive-menu ul.responsive-menu-submenu li.responsive-menu-item a,
+        #responsive-menu-container #responsive-menu ul.responsive-menu-submenu li.responsive-menu-item a:hover,
+        #responsive-menu-container #responsive-menu ul.responsive-menu-submenu li.responsive-menu-item a .responsive-menu-subarrow,
+        #responsive-menu-container #responsive-menu ul.responsive-menu-submenu li.responsive-menu-item a .responsive-menu-subarrow:hover,
+        #responsive-menu-container #responsive-menu ul.responsive-menu-submenu li.responsive-menu-item a:hover .responsive-menu-subarrow,
+        #responsive-menu-container #responsive-menu ul.responsive-menu-submenu li.responsive-menu-item a:hover .responsive-menu-subarrow.responsive-menu-subarrow-active,
+        #responsive-menu-container #responsive-menu ul.responsive-menu-submenu li.responsive-menu-item a .responsive-menu-subarrow.responsive-menu-subarrow-active,
+        #responsive-menu-container #responsive-menu ul.responsive-menu-submenu li.responsive-menu-item a .responsive-menu-subarrow.responsive-menu-subarrow-active:hover,
+        #responsive-menu-container #responsive-menu ul.responsive-menu-submenu li.responsive-menu-item.responsive-menu-current-item > .responsive-menu-item-link,
+        #responsive-menu-container #responsive-menu ul.responsive-menu-submenu li.responsive-menu-item.responsive-menu-current-item > .responsive-menu-item-link:hover,
+        #responsive-menu-container #responsive-menu ul.responsive-menu-submenu > li.responsive-menu-item:first-child > a,
         #responsive-menu-container #responsive-menu-wrapper {
             background: none;
             border: 0;

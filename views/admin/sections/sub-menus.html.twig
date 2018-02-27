@@ -8,55 +8,88 @@
 {% set section = 'Sub Menus' %}
 
 <div class='panel panel-default'>
+    {{ macros.header('Styling', section, '/basic-setup/sub-menus/#styling') }}
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('submenu_font', 'Font', 'input', options, errors, '', '', '', '', 'Set the font for the submenu items. The font must already be installed as part of your theme or a browser inbuilt one.', '', '', 'For example "Open Sans"') }}
+        {{ macros.row('submenu_font_size', 'Font Size', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel', 'Set the text size of the submenu items and it\'s unit.') }}
+        {{ macros.row('submenu_links_height', 'Item Height', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel', 'Set the height of each submenu item and it\'s unit.') }}
+        {{ macros.row('submenu_text_alignment', 'Text Alignment', 'select', options, errors, '', '', 'alignment', '', 'Set the alignment of the text for the submenu items.') }}
+   </table>
+</div>
+
+<div class='panel panel-default'>
+    {{ macros.header('Item Borders', section, '/basic-setup/sub-menus/#item-borders') }}
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('submenu_border_width', 'Width', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel', 'Set the border size for each submenu link and it\'s unit.') }}
+        {{ macros.row('submenu_item_border_colour', 'Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the border colour for each of the submenu items.') }}
+        {{ macros.row('submenu_item_border_colour_hover', 'Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the border colour when the mouse rolls over each submenu item.') }}
+        {{ macros.row('submenu_current_item_border_colour', 'Current Item Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the border colour for the current submenu item.') }}
+        {{ macros.row('submenu_current_item_border_hover_colour', 'Current Item Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the border colour when the mouse rolls over the current submenu item.') }}
+    </table>
+</div>
+
+<div class='panel panel-default'>
+    {{ macros.header('Item Text', section, '/basic-setup/sub-menus/#item-text') }}
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('submenu_link_colour', 'Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the text colour for each of the submenu items.') }}
+        {{ macros.row('submenu_link_hover_colour', 'Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the text colour when the mouse rolls over each submenu item.') }}
+        {{ macros.row('submenu_current_link_colour', 'Current Item Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the text colour for the current submenu item.') }}
+        {{ macros.row('submenu_current_link_hover_colour', 'Current Item Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the text colour when the mouse rolls over the current submenu item.') }}
+    </table>
+</div>
+
+<div class='panel panel-default'>
+    {{ macros.header('Item Background', section, '/basic-setup/sub-menus/#item-background') }}
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('submenu_item_background_colour', 'Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the background colour for each of the submenu items.') }}
+        {{ macros.row('submenu_item_background_hover_colour', 'Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the background colour when the mouse rolls over each submenu item.') }}
+        {{ macros.row('submenu_current_item_background_colour', 'Current Item Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the background colour for the current submenu item.') }}
+        {{ macros.row('submenu_current_item_background_hover_colour', 'Current Item Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the background colour when the mouse rolls over the current submenu item.') }}
+    </table>
+</div>
+
+<div class='panel panel-default'>
     {{ macros.header('Trigger Icon', section, '/basic-setup/sub-menus/#trigger-icon') }}
     <table class='table table-bordered table-hover'>
-        {{ macros.row('arrow_position', 'Position', 'select', options, errors, '', '', 'left_right', '', 'Set the side of the menu item that the sub menu trigger will appear.') }}
-        {{ macros.row('active_arrow_shape', 'Active Shape', 'input', options, errors, '', '', '', '', 'Set the trigger shape you want to use for the active state. A selection of shapes can be found <a href="https://responsive.menu/html-geometric-shapes/?utm_source=free-plugin&utm_medium=page&utm_campaign=geo-shapes" target="_blank">here</a>.') }}
-        {{ macros.row('inactive_arrow_shape', 'Inactive Shape', 'input', options, errors, '', '', '', '', 'Set the trigger shape you want to use for the inactive state. A selection of shapes can be found <a href="https://responsive.menu/html-geometric-shapes/" target="_blank">here</a>.') }}
-        {{ macros.row('active_arrow_image', 'Active Image', 'image', options, errors, '', '', '', '', 'You can set an image for your active sub menu trigger instead if you would like. This will take precedence over the shape option above.') }}
-        {{ macros.row('active_arrow_image_alt', 'Alt Text', 'input', options, errors, '', '', '', '', 'If you use an image as your active sub menu trigger, you can set it\'s alt text here.') }}
-        {{ macros.row('inactive_arrow_image', 'Inactive Image', 'image', options, errors, '', '', '', '', 'You can set an image for your inactive sub menu trigger instead if you would like. This will take precedence over the shape option above.') }}
-        {{ macros.row('inactive_arrow_image_alt', 'Alt Text', 'input', options, errors, '', '', '', '', 'If you use an image as your inactive sub menu trigger, you can set it\'s alt text here.') }}
-        {{ macros.row('active_arrow_font_icon', 'Active Font Icon', 'font-icon', options, errors, '', 'pro', '', '', 'You can set an icon as your active sub menu trigger instead if you would like. This will take precedence over the image option above.') }}
-        {{ macros.row('inactive_arrow_font_icon', 'Inactive Font Icon', 'font-icon', options, errors, '', 'pro', '', '', 'You can set an icon as your inactive sub menu trigger instead if you would like. This will take precedence over the image option above.') }}
+        {{ macros.row('submenu_arrow_position', 'Position', 'select', options, errors, '', '', 'left_right', '', 'Set the side of the menu item that the sub menu trigger will appear.') }}
     </table>
 </div>
 
 <div class='panel panel-default'>
     {{ macros.header('Trigger Sizing', section, '/basic-setup/sub-menus/#trigger-sizing') }}
     <table class='table table-bordered table-hover'>
-        {{ macros.row('submenu_arrow_height', 'Height', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel', 'Set the height of the menu trigger items and their units.') }}
-        {{ macros.row('submenu_arrow_width', 'Width', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel', 'Set the width of the menu trigger items and their units.') }}
+        {{ macros.row('submenu_submenu_arrow_height', 'Height', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel', 'Set the height of the menu trigger items and their units.') }}
+        {{ macros.row('submenu_submenu_arrow_width', 'Width', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel', 'Set the width of the menu trigger items and their units.') }}
     </table>
 </div>
 
 <div class='panel panel-default'>
     {{ macros.header('Trigger Colours', section, '/basic-setup/sub-menus/#trigger-colours') }}
     <table class='table table-bordered table-hover'>
-        {{ macros.row('menu_sub_arrow_shape_colour', 'Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the colour of the sub menu trigger.') }}
-        {{ macros.row('menu_sub_arrow_shape_hover_colour', 'Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the hover colour of the sub menu trigger.') }}
-        {{ macros.row('menu_sub_arrow_shape_colour_active', 'Active Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the colour of the sub menu trigger when active.') }}
-        {{ macros.row('menu_sub_arrow_shape_hover_colour_active', 'Active Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the hover colour of the sub menu trigger when active.') }}
+        {{ macros.row('submenu_sub_arrow_shape_colour', 'Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the colour of the sub menu trigger.') }}
+        {{ macros.row('submenu_sub_arrow_shape_hover_colour', 'Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the hover colour of the sub menu trigger.') }}
+        {{ macros.row('submenu_sub_arrow_shape_colour_active', 'Active Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the colour of the sub menu trigger when active.') }}
+        {{ macros.row('submenu_sub_arrow_shape_hover_colour_active', 'Active Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the hover colour of the sub menu trigger when active.') }}
     </table>
 </div>
 
 <div class='panel panel-default'>
     {{ macros.header('Trigger Background', section, '/basic-setup/sub-menus/#trigger-background') }}
     <table class='table table-bordered table-hover'>
-        {{ macros.row('menu_sub_arrow_background_colour', 'Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the background colour of the sub menu trigger.') }}
-        {{ macros.row('menu_sub_arrow_background_hover_colour', 'Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the hover background colour of the sub menu trigger.') }}
-        {{ macros.row('menu_sub_arrow_background_colour_active', 'Active Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the background colour of the sub menu trigger when active.') }}
-        {{ macros.row('menu_sub_arrow_background_hover_colour_active', 'Active Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the hover background colour of the sub menu trigger when active.') }}
+        {{ macros.row('submenu_sub_arrow_background_colour', 'Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the background colour of the sub menu trigger.') }}
+        {{ macros.row('submenu_sub_arrow_background_hover_colour', 'Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the hover background colour of the sub menu trigger.') }}
+        {{ macros.row('submenu_sub_arrow_background_colour_active', 'Active Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the background colour of the sub menu trigger when active.') }}
+        {{ macros.row('submenu_sub_arrow_background_hover_colour_active', 'Active Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the hover background colour of the sub menu trigger when active.') }}
     </table>
 </div>
 
 <div class='panel panel-default'>
     {{ macros.header('Trigger Border', section, '/basic-setup/sub-menus/#trigger-border') }}
     <table class='table table-bordered table-hover'>
-        {{ macros.row('menu_sub_arrow_border_colour', 'Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the border colour of the sub menu trigger.') }}
-        {{ macros.row('menu_sub_arrow_border_hover_colour', 'Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the hover border colour of the sub menu trigger.') }}
-        {{ macros.row('menu_sub_arrow_border_colour_active', 'Active Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the border colour of the sub menu trigger when active.') }}
-        {{ macros.row('menu_sub_arrow_border_hover_colour_active', 'Active Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the hover border colour of the sub menu trigger when active.') }}
+        {{ macros.row('submenu_sub_arrow_border_colour', 'Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the border colour of the sub menu trigger.') }}
+        {{ macros.row('submenu_sub_arrow_border_hover_colour', 'Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the hover border colour of the sub menu trigger.') }}
+        {{ macros.row('submenu_sub_arrow_border_colour_active', 'Active Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the border colour of the sub menu trigger when active.') }}
+        {{ macros.row('submenu_sub_arrow_border_hover_colour_active', 'Active Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the hover border colour of the sub menu trigger when active.') }}
     </table>
 </div>
 

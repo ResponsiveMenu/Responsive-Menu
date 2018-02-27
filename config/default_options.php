@@ -131,6 +131,62 @@ function get_responsive_menu_default_options() {
         'menu_sub_arrow_shape_hover_colour' => '#fff',
         'menu_sub_arrow_shape_colour_active' => '#fff',
         'menu_sub_arrow_shape_hover_colour_active' => '#fff',
+
+        // Sub Menus > Styling
+        'submenu_font' => null,
+        'submenu_font_size' => 13,
+        'submenu_font_size_unit' => 'px',
+        'submenu_links_height' => 40,
+        'submenu_links_height_unit' => 'px',
+        'submenu_text_alignment' => 'left',
+
+        // Sub Menus > Item Borders
+        'submenu_border_width' => 1,
+        'submenu_border_width_unit' => 'px',
+        'submenu_item_border_colour' => '#212121',
+        'submenu_item_border_colour_hover' => '#212121',
+        'submenu_current_item_border_colour' => '#212121',
+        'submenu_current_item_border_hover_colour' => '#3f3f3f',
+
+        // Sub Menus > Item Text
+        'submenu_link_colour' => '#fff',
+        'submenu_link_hover_colour' => '#fff',
+        'submenu_current_link_colour' => '#fff',
+        'submenu_current_link_hover_colour' => '#fff',
+
+        // Sub Menus > Item Background
+        'submenu_item_background_colour' => '#212121',
+        'submenu_item_background_hover_colour' => '#3f3f3f',
+        'submenu_current_item_background_colour' => '#212121',
+        'submenu_current_item_background_hover_colour' => '#3f3f3f',
+
+        // Sub Menus > Trigger Icon
+        'submenu_arrow_position' => 'right',
+
+        // Sub Menus > Trigger Sizing
+        'submenu_submenu_arrow_height' => '40',
+        'submenu_submenu_arrow_height_unit' => 'px',
+        'submenu_submenu_arrow_width' => '40',
+        'submenu_submenu_arrow_width_unit' => 'px',
+
+        // Sub Menus > Trigger Colours
+        'submenu_sub_arrow_shape_colour' => '#fff',
+        'submenu_sub_arrow_shape_hover_colour' => '#fff',
+        'submenu_sub_arrow_shape_colour_active' => '#fff',
+        'submenu_sub_arrow_shape_hover_colour_active' => '#fff',
+
+        // Sub Menus > Trigger Background
+        'submenu_sub_arrow_background_colour' => '#212121',
+        'submenu_sub_arrow_background_hover_colour' => '#3f3f3f',
+        'submenu_sub_arrow_background_colour_active' => '#212121',
+        'submenu_sub_arrow_background_hover_colour_active' => '#3f3f3f',
+
+        // Sub Menus > Trigger Border
+        'submenu_sub_arrow_border_colour' => '#212121',
+        'submenu_sub_arrow_border_hover_colour' => '#3f3f3f',
+        'submenu_sub_arrow_border_colour_active' => '#212121',
+        'submenu_sub_arrow_border_hover_colour_active' => '#3f3f3f',
+
         'menu_font' => null,
         'menu_font_size' => 13,
         'menu_font_size_unit' => 'px',
@@ -141,6 +197,7 @@ function get_responsive_menu_default_options() {
         'menu_links_height_unit' => 'px',
         'menu_border_width' => 1,
         'menu_border_width_unit' => 'px',
+
         'menu_minimum_width' => null,
         'menu_minimum_width_unit' => 'px',
         'menu_maximum_width' => null,
