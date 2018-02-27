@@ -79,6 +79,7 @@ jQuery(function($) {
             if(search_query) {
                 $('.tab-pane').show().css('opacity', '1');
                 $('.panel-body small').css('display', 'block');
+                $('#responsive-menu-desktop-menu-container').parent('.panel').hide();
 
                 $('.control-label').closest('tr').hide();
                 $('.control-label').each(function() {

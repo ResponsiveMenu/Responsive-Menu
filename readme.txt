@@ -112,7 +112,9 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 == Changelog ==
 
 = 3.1.14 (31st January 2018) =
-* Added Height and Width options to Title Image
+* Improvements for admin option filtering.
+* Added Height and Width options to Title Image.
+* Added inner Header Bar HTML element for easier customisation.
 * Added customisable options for sub-menus.
 * Allow translation of search placeholder text.
 
