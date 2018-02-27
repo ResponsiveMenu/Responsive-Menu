@@ -207,10 +207,17 @@ function get_responsive_menu_default_options() {
         'menu_additional_content' => null,
         'menu_additional_content_colour' => '#fff',
         'menu_title' => null,
+
+        // Container > Title Image
         'menu_title_image' => null,
         'menu_title_image_alt' => null,
+        'menu_title_image_height' => null,
+        'menu_title_image_height_unit' => 'px',
+        'menu_title_image_width' => null,
+        'menu_title_image_width_unit' => '%',
         'menu_title_font_icon' => null,
         'menu_title_font_icon_type' => 'font-awesome',
+
         'menu_appear_from' => 'left',
         'menu_title_link' => null,
         'menu_title_link_location' => '_self',
@@ -276,7 +283,7 @@ function get_responsive_menu_default_options() {
         'header_bar_breakpoint' => '800',
         'header_bar_logo' => null,
         'header_bar_logo_height' => null,
-        'header_bar_logo_height_unit' => '%',
+        'header_bar_logo_height_unit' => 'px',
         'header_bar_logo_width' => null,
         'header_bar_logo_width_unit' => '%',
         'header_bar_logo_alt' => '',

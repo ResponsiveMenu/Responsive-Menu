@@ -111,6 +111,7 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 == Changelog ==
 
 = 3.1.14 (31st January 2018) =
+* Added Height and Width options to Title Image
 * Added customisable options for sub-menus.
 * Allow translation of search placeholder text.
 

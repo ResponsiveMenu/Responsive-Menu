@@ -57,6 +57,8 @@
     {{ macros.header('Title Image', section, '/basic-setup/container/#title-image') }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_title_image', 'Image', 'image', options, errors, '', '', '', '', 'Specify an image to show alongside the title.') }}
+        {{ macros.row('menu_title_image_height', 'Height', 'input', options, errors, 'has-unit', '', '', 'pixel', 'Set a height for the title image.') }}
+        {{ macros.row('menu_title_image_width', 'Width', 'input', options, errors, 'has-unit', '', '', 'percentage', 'Set a width for the title image.') }}
         {{ macros.row('menu_title_image_alt', 'Alt Text', 'input', options, errors, '', '', '', '', 'Specify the alt text used with the title image if selected.') }}
         {{ macros.row('menu_title_font_icon', 'Font Icon', 'font-icon', options, errors, '', 'pro', '', '', 'Specify a font icon to go alongside the title.', '', '', 'This will overwrite the image option above.') }}
     </table>
