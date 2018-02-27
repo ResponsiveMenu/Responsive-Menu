@@ -24,9 +24,10 @@ Highly customisable Responsive Menu Plugin for WordPress. With over 150 customis
 
 PHP 5.4+
 
-**Fully documented:**
+**Full Knowledgebase and dedicated support forum:**
 
-[https://responsive.menu/docs/](https://responsive.menu/docs/)
+[https://responsive.menu/knowledgebase/](https://responsive.menu/knowledgebase/)
+[https://responsive.menu/forums/forum/pro-support/](https://responsive.menu/forums/forum/pro-support/)
 
 **Fully unit tested:**
 
