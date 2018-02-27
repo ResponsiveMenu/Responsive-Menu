@@ -8,7 +8,7 @@
 {% set section = 'Header Bar' %}
 
 <div class='panel panel-default fully-pro-container'>
-    {{ macros.header('Initial Setup', section, '/advanced-setup/header-bar/#initial-setup') }}
+    {{ macros.header('Initial Setup', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('use_header_bar', 'Enabled', 'checkbox', options, errors, '', 'pro', '', '', 'Turning this on will make the Header Bar show on your site automatically.') }}
         {{ macros.row('header_bar_position_type', 'Positioning', 'select', options, errors, '', 'pro', 'position', '', 'Specify how you want the button to stick to your page.', '', '', 'Using relative positioning is useful when combined with the shortcode.') }}
@@ -17,12 +17,12 @@
 </div>
 
 <div class='panel panel-default fully-pro-container'>
-    {{ macros.header('Ordering', section, '/advanced-setup/header-bar/#header-bar-ordering') }}
+    {{ macros.header('Ordering', section) }}
     {% include 'admin/sections/modules/header-bar-ordering.html.twig' %}
 </div>
 
 <div class='panel panel-default fully-pro-container'>
-    {{ macros.header('Logo', section, '/advanced-setup/header-bar/#logo') }}
+    {{ macros.header('Logo', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('header_bar_logo', 'Image', 'image', options, errors, '', 'pro', '', '', 'Set a logo image for use on the header bar.') }}
         {{ macros.row('header_bar_logo_height', 'Height', 'input', options, errors, 'has-unit', 'pro', '', 'pixel', 'Set a height for the logo image.') }}
@@ -33,21 +33,21 @@
 </div>
 
 <div class='panel panel-default fully-pro-container'>
-    {{ macros.header('Title', section, '/advanced-setup/header-bar/#title') }}
+    {{ macros.header('Title', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('header_bar_title', 'Text', 'input', options, errors, '', 'pro', '', '', 'Set a text title for use on the header bar.') }}
     </table>
 </div>
 
 <div class='panel panel-default fully-pro-container'>
-    {{ macros.header('Content', section, '/advanced-setup/header-bar/#content') }}
+    {{ macros.header('Content', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('header_bar_html_content', 'HTML Content', 'textarea', options, errors, '', 'pro', '', '', 'This section allows you to put any custom HTML, shortcodes, text or anything you like to the header bar.<br /><br />It\'s particularly useful if you have social media icons, shopping cart information or anything else custom to your site.', '', '', 'HTML and shortcodes can be used here.') }}
     </table>
 </div>
 
 <div class='panel panel-default fully-pro-container'>
-    {{ macros.header('Text', section, '/advanced-setup/header-bar/#text') }}
+    {{ macros.header('Text', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('header_bar_font', 'Font', 'input', options, errors, '', 'pro', '', '', 'Set the font for the header bar text. The font must already be installed as part of your theme or a browser inbuilt one.', '', '', 'For example "Open Sans"') }}
         {{ macros.row('header_bar_font_size', 'Font Size', 'input', options, errors, 'has-unit', 'pro', '', 'pixel', 'Set the text size of the header bar and it\'s unit.') }}
@@ -55,7 +55,7 @@
 </div>
 
 <div class='panel panel-default fully-pro-container'>
-    {{ macros.header('Sizing', section, '/advanced-setup/header-bar/#sizing') }}
+    {{ macros.header('Sizing', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('header_bar_height', 'Height', 'input', options, errors, 'has-unit', 'pro', '', 'pixel', 'Set the height of the header bar and it\'s unit.') }}
         {{ macros.row('header_bar_adjust_page', 'Adjust Page', 'checkbox', options, errors, '', 'pro', '', '', 'Turning this on will automatically adjust your page to bring the content down inline with the header bar.') }}
@@ -63,7 +63,7 @@
 </div>
 
 <div class='panel panel-default fully-pro-container'>
-    {{ macros.header('Colours', section, '/advanced-setup/header-bar/#colours') }}
+    {{ macros.header('Colours', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('header_bar_background_color', 'Background', 'colour', options, errors, '', 'pro', '', '', 'Set the background colour for the header bar.') }}
         {{ macros.row('header_bar_text_color', 'Text', 'colour', options, errors, '', 'pro', '', '', 'Set the text colour for the header bar text.') }}

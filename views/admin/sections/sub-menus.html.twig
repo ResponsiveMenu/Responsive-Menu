@@ -8,7 +8,7 @@
 {% set section = 'Sub Menus' %}
 
 <div class='panel panel-default'>
-    {{ macros.header('Styling', section, '/basic-setup/sub-menus/#styling') }}
+    {{ macros.header('Styling', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('submenu_font', 'Font', 'input', options, errors, '', '', '', '', 'Set the font for the submenu items. The font must already be installed as part of your theme or a browser inbuilt one.', '', '', 'For example "Open Sans"') }}
         {{ macros.row('submenu_font_size', 'Font Size', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel', 'Set the text size of the submenu items and it\'s unit.') }}
@@ -18,7 +18,7 @@
 </div>
 
 <div class='panel panel-default'>
-    {{ macros.header('Item Borders', section, '/basic-setup/sub-menus/#item-borders') }}
+    {{ macros.header('Item Borders', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('submenu_border_width', 'Width', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel', 'Set the border size for each submenu link and it\'s unit.') }}
         {{ macros.row('submenu_item_border_colour', 'Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the border colour for each of the submenu items.') }}
@@ -29,7 +29,7 @@
 </div>
 
 <div class='panel panel-default'>
-    {{ macros.header('Item Text', section, '/basic-setup/sub-menus/#item-text') }}
+    {{ macros.header('Item Text', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('submenu_link_colour', 'Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the text colour for each of the submenu items.') }}
         {{ macros.row('submenu_link_hover_colour', 'Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the text colour when the mouse rolls over each submenu item.') }}
@@ -39,7 +39,7 @@
 </div>
 
 <div class='panel panel-default'>
-    {{ macros.header('Item Background', section, '/basic-setup/sub-menus/#item-background') }}
+    {{ macros.header('Item Background', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('submenu_item_background_colour', 'Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the background colour for each of the submenu items.') }}
         {{ macros.row('submenu_item_background_hover_colour', 'Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the background colour when the mouse rolls over each submenu item.') }}
@@ -49,14 +49,14 @@
 </div>
 
 <div class='panel panel-default'>
-    {{ macros.header('Trigger Icon', section, '/basic-setup/sub-menus/#trigger-icon') }}
+    {{ macros.header('Trigger Icon', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('submenu_arrow_position', 'Position', 'select', options, errors, '', '', 'left_right', '', 'Set the side of the menu item that the sub menu trigger will appear.') }}
     </table>
 </div>
 
 <div class='panel panel-default'>
-    {{ macros.header('Trigger Sizing', section, '/basic-setup/sub-menus/#trigger-sizing') }}
+    {{ macros.header('Trigger Sizing', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('submenu_submenu_arrow_height', 'Height', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel', 'Set the height of the menu trigger items and their units.') }}
         {{ macros.row('submenu_submenu_arrow_width', 'Width', 'input', options, errors, 'has-unit', 'semi-pro', '', 'pixel', 'Set the width of the menu trigger items and their units.') }}
@@ -64,7 +64,7 @@
 </div>
 
 <div class='panel panel-default'>
-    {{ macros.header('Trigger Colours', section, '/basic-setup/sub-menus/#trigger-colours') }}
+    {{ macros.header('Trigger Colours', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('submenu_sub_arrow_shape_colour', 'Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the colour of the sub menu trigger.') }}
         {{ macros.row('submenu_sub_arrow_shape_hover_colour', 'Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the hover colour of the sub menu trigger.') }}
@@ -74,7 +74,7 @@
 </div>
 
 <div class='panel panel-default'>
-    {{ macros.header('Trigger Background', section, '/basic-setup/sub-menus/#trigger-background') }}
+    {{ macros.header('Trigger Background', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('submenu_sub_arrow_background_colour', 'Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the background colour of the sub menu trigger.') }}
         {{ macros.row('submenu_sub_arrow_background_hover_colour', 'Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the hover background colour of the sub menu trigger.') }}
@@ -84,7 +84,7 @@
 </div>
 
 <div class='panel panel-default'>
-    {{ macros.header('Trigger Border', section, '/basic-setup/sub-menus/#trigger-border') }}
+    {{ macros.header('Trigger Border', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('submenu_sub_arrow_border_colour', 'Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the border colour of the sub menu trigger.') }}
         {{ macros.row('submenu_sub_arrow_border_hover_colour', 'Hover Colour', 'colour', options, errors, '', 'semi-pro', '', '', 'Set the hover border colour of the sub menu trigger.') }}
@@ -94,7 +94,7 @@
 </div>
 
 <div class='panel panel-default'>
-    {{ macros.header('Padding', section, '/basic-setup/sub-menus/#padding') }}
+    {{ macros.header('Padding', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('menu_depth_side', 'Side', 'select', options, errors, '', '', 'left_right', '', 'You can set which side of the menu items the padding should be on.') }}
         {{ macros.row('menu_depth_0', 'Top Level', 'input', options, errors, 'has-unit', 'semi-pro', '', 'percentage', 'Set the padding size of the top level menu items and their unit.') }}
@@ -107,7 +107,7 @@
 </div>
 
 <div class='panel panel-default'>
-    {{ macros.header('Animations', section, '/basic-setup/sub-menus/#animations') }}
+    {{ macros.header('Animations', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('accordion_animation', 'Use Accordion', 'checkbox', options, errors, '', '', '', '', 'Expanding one sub menu level will close all the others in an accordion style.') }}
         {{ macros.row('auto_expand_all_submenus', 'Auto Expand All Sub Menus', 'checkbox', options, errors, '', '', '', '', 'All sub menus will be opened on page load automatically.') }}
@@ -117,7 +117,7 @@
 </div>
 
 <div class='panel panel-default fully-pro-container'>
-    {{ macros.header('Slide Effect', section, '/basic-setup/sub-menus/#slide-effect') }}
+    {{ macros.header('Slide Effect', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('use_slide_effect', 'Enabled', 'checkbox', options, errors, '', 'pro', '', '', 'The slide effect changes the way that sub-menus open and close. Instead of the standard drop-down animation they will slide over the top of eachother as in the demo site <a href="https://demo.responsive.menu/pro-example-one/" target="_blank">here</a>.<br /><br /><span class="label label-warning">beta</span>') }}
         {{ macros.row('slide_effect_back_to_text', 'Back Text', 'input', options, errors, '', 'pro', '', '', 'You can specify the text used for clicking to get back to the previous level when using the slide effect.') }}
