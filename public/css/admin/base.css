@@ -524,7 +524,8 @@
 }
 
 #responsive-menu-admin #responsive-menu-custom-css {
-    height: 500px
+    height: 500px;
+    font-family: 'monospace';
 }
 
 .rtl #responsive-menu-admin #header-bar-items-order-container .draggable,
