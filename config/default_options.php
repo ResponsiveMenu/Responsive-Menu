@@ -138,6 +138,8 @@ function get_responsive_menu_default_options() {
         'submenu_font_size_unit' => 'px',
         'submenu_links_height' => 40,
         'submenu_links_height_unit' => 'px',
+        'submenu_links_line_height' => 40,
+        'submenu_links_line_height_unit' => 'px',
         'submenu_text_alignment' => 'left',
 
         // Sub Menus > Item Borders
@@ -195,6 +197,8 @@ function get_responsive_menu_default_options() {
         'menu_text_alignment' => 'left',
         'menu_links_height' => 40,
         'menu_links_height_unit' => 'px',
+        'menu_links_line_height' => 40,
+        'menu_links_line_height_unit' => 'px',
         'menu_border_width' => 1,
         'menu_border_width_unit' => 'px',
 
@@ -258,12 +262,16 @@ function get_responsive_menu_default_options() {
 
         'single_menu_height' => '80',
         'single_menu_height_unit' => 'px',
+        'single_menu_line_height' => '80',
+        'single_menu_line_height_unit' => 'px',
         'single_menu_font' => null,
         'single_menu_font_size' => '14',
         'single_menu_font_size_unit' => 'px',
 
         'single_menu_submenu_height' => '40',
         'single_menu_submenu_height_unit' => 'px',
+        'single_menu_submenu_line_height' => '40',
+        'single_menu_submenu_line_height_unit' => 'px',
         'single_menu_submenu_font' => null,
         'single_menu_submenu_font_size' => '12',
         'single_menu_submenu_font_size_unit' => 'px',

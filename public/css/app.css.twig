@@ -474,7 +474,8 @@ button#responsive-menu-button,
     }
 
     #responsive-menu-container #responsive-menu li.responsive-menu-item a {
-        line-height: {{ options.menu_links_height }}px;
+        height: {{ options.menu_links_height }}px;
+        line-height: {{ options.menu_links_line_height }}px;
         border-bottom: {{ options.menu_border_width }}px solid {{ options.menu_item_border_colour }};
         color: {{ options.menu_link_colour }};
         background-color: {{ options.menu_item_background_colour }};
@@ -554,7 +555,8 @@ button#responsive-menu-button,
         }
 
         #responsive-menu-container #responsive-menu ul.responsive-menu-submenu li.responsive-menu-item a {
-            line-height: {{ options.submenu_links_height }}px;
+            height: {{ options.submenu_links_height }}px;
+            line-height: {{ options.submenu_links_line_height }}px;
             border-bottom: {{ options.submenu_border_width }}px solid {{ options.submenu_item_border_colour }};
             color: {{ options.submenu_link_colour }};
             background-color: {{ options.submenu_item_background_colour }};

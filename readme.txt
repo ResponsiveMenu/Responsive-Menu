@@ -112,11 +112,13 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 == Changelog ==
 
 = 3.1.14 (30th March January 2018) =
+* Added line height options for all menu items.
+* Added title to Search element to meet WCAG accessibility requirements.
 * Improvements for admin option filtering.
 * Added Height and Width options to Title Image.
-* Added inner Header Bar HTML element for easier customisation.
 * Added customisable options for sub-menus.
 * Allow translation of search placeholder text.
+* [PRO] Added inner Header Bar HTML element for easier customisation.
 
 = 3.1.13 (19th January 2018) =
 * Move custom data to the uploads folder.
