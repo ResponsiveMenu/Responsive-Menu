@@ -44,6 +44,7 @@ class Validator {
             'animation_speed',
             'transition_speed',
             'sub_menu_speed',
+            'smooth_scroll_speed',
             'button_font_size',
             'button_title_line_height',
             'menu_width',

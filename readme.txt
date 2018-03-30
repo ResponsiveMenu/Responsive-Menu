@@ -118,6 +118,7 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 * Added Height and Width options to Title Image.
 * Added customisable options for sub-menus.
 * Allow translation of search placeholder text.
+* Fixed bug with Adjust Header Bar option.
 * [PRO] Added inner Header Bar HTML element for easier customisation.
 * [PRO] Option to close menu on page scroll.
 * [PRO] Option to smooth scroll same page links.
