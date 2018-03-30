@@ -27,7 +27,7 @@
     </select>
 {% endmacro %}
 
-{% macro pixel_units_with_auto(name, value) %}
+{% macro pixel_units_auto(name, value) %}
     <select id='responsive-menu-{{ name|replace({'_': '-'}) }}' id='responsive-menu-{{ name|replace({'_': '-'}) }}'class='selectpicker show-tick is-unit' name='menu[{{ name }}]'>
         <option value='auto' selected='selected'>auto</option>
         <option value='px' disabled data-subtext='[PRO]'>px</option>
