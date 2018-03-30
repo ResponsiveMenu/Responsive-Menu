@@ -314,6 +314,11 @@ function get_responsive_menu_default_options() {
         'items_order' => '{"title":"on","menu":"on","search":"on","additional content":"on"}',
         'header_bar_items_order' => '{"logo":"on","title":"on","search":"on","html content":"on"}',
 
+        // Menu > Animations
+        'smooth_scroll_on' => 'off',
+        'smooth_scroll_speed' => 500,
+
+        // Menu > Fade Items In
         'fade_submenus' => 'off',
         'fade_submenus_side' => 'left',
         'fade_submenus_delay' => 100,

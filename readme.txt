@@ -120,6 +120,7 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 * Allow translation of search placeholder text.
 * [PRO] Added inner Header Bar HTML element for easier customisation.
 * [PRO] Option to close menu on page scroll.
+* [PRO] Option to smooth scroll same page links.
 
 = 3.1.13 (19th January 2018) =
 * Move custom data to the uploads folder.

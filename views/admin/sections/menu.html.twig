@@ -134,6 +134,14 @@
     </table>
 </div>
 
+<div class='panel panel-default fully-pro-container'>
+    {{ macros.header('Animations', section) }}
+    <table class='table table-bordered table-hover'>
+        {{ macros.row('smooth_scroll_on', 'Enabled', 'checkbox', options, errors, '', 'pro', '', '', 'When enabled this makes any same page links smooth scroll to their destination.') }}
+        {{ macros.row('smooth_scroll_speed', 'Speed', 'input', options, errors, '', 'pro', '', '', 'Set the speed at which same page links will scroll.', 'ms') }}
+    </table>
+</div>
+
 <div class='panel panel-default'>
     {{ macros.header('Advanced', section) }}
     <table class='table table-bordered table-hover'>
