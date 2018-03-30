@@ -70,9 +70,6 @@ class Migrate_3_1_13_3_1_14 extends Migrate {
         'single_menu_line_height' => 'single_menu_height',
         'single_menu_line_height_unit' => 'single_menu_height_unit',
 
-        // Desktop Menu > Sub Menu Styling
-        'single_menu_submenu_line_height' => 'single_menu_submenu_height',
-        'single_menu_submenu_line_height_unit' => 'single_menu_submenu_height_unit',
     ];
 
 }

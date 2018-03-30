@@ -272,8 +272,8 @@ function get_responsive_menu_default_options() {
         'single_menu_font_size' => '14',
         'single_menu_font_size_unit' => 'px',
 
-        'single_menu_submenu_height' => '40',
-        'single_menu_submenu_height_unit' => 'px',
+        'single_menu_submenu_height' => null,
+        'single_menu_submenu_height_unit' => 'auto',
         'single_menu_submenu_line_height' => '40',
         'single_menu_submenu_line_height_unit' => 'px',
         'single_menu_submenu_font' => null,

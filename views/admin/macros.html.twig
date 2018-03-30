@@ -27,6 +27,18 @@
     </select>
 {% endmacro %}
 
+{% macro pixel_units_with_auto(name, value) %}
+    <select id='responsive-menu-{{ name|replace({'_': '-'}) }}' id='responsive-menu-{{ name|replace({'_': '-'}) }}'class='selectpicker show-tick is-unit' name='menu[{{ name }}]'>
+        <option value='auto' selected='selected'>auto</option>
+        <option value='px' disabled data-subtext='[PRO]'>px</option>
+        <option value='%'  disabled data-subtext='[PRO]'>% -</option>
+        <option value='em' disabled data-subtext='[PRO]'>em -</option>
+        <option value='rem' disabled data-subtext='[PRO]'>rem -</option>
+        <option value='vw' disabled data-subtext='[PRO]'>vw -</option>
+        <option value='vh' disabled data-subtext='[PRO]'>vh -</option>
+    </select>
+{% endmacro %}
+
 {% macro animation_select(name, value) %}
     <select id='responsive-menu-{{ name|replace({'_': '-'}) }}' class='selectpicker show-tick' name='menu[{{ name }}]'>
         <option value='slide'{% if value == 'slide' %} selected='selected'{% endif %}>Slide</option>
@@ -151,6 +163,8 @@
                 {% if class == 'has-unit' %}
                     {% if unit_type == 'pixel' %}
                         {{ macros.pixel_units(name ~ '_unit', options[name ~ '_unit']) }}
+                    {% elseif unit_type == 'pixel_auto' %}
+                        {{ macros.pixel_units_auto(name ~ '_unit', options[name ~ '_unit']) }}
                     {% elseif unit_type == 'percentage' %}
                         {{ macros.percentage_units(name ~ '_unit', options[name ~ '_unit']) }}
                     {% endif %}

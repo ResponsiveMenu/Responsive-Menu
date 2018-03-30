@@ -61,7 +61,6 @@ class Validator {
             'single_menu_line_height',
             'single_menu_font_size',
             'single_menu_submenu_font_size',
-            'single_menu_submenu_height',
             'single_menu_submenu_line_height',
             'menu_depth_0',
             'menu_depth_1',
