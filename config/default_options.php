@@ -227,9 +227,13 @@ function get_responsive_menu_default_options() {
         'menu_title_link_location' => '_self',
         'menu_width' => 75,
         'menu_width_unit' => '%',
+
+        // Container > Technical
         'menu_close_on_link_click' => 'off',
         'menu_close_on_body_click' => 'off',
+        'menu_close_on_scroll' => 'off',
         'enable_touch_gestures' => false,
+
         'menu_item_click_to_trigger_submenu' => 'off',
         'menu_disable_scrolling' => 'off',
         'menu_overlay' => 'off',
