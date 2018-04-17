@@ -59,13 +59,19 @@
 }
 
 #responsive-menu-admin #upgrade-banner {
-    padding: 25px 5%;
-    background: #DE4B42;
     color: #fff;
-    border: 1px solid #D33C34;
     border-radius: 2px;
     text-align: center;
     margin-bottom: 15px;
+    background-color: #0d2446;
+    background-repeat: no-repeat;
+    background-image: url('../../img/banner.jpg');
+    padding-top: 105px;
+    background-position: center top;
+}
+
+#responsive-menu-admin #upgrade-banner .button {
+    background: #fab719;
 }
 
 #responsive-menu-admin #upgrade-banner i {
