@@ -115,22 +115,6 @@ jQuery(function($) {
         $(document).on('click', '.nav-tabs li a', function() {
             var tab_name = $(this).attr('href').replace('#', '');
             $('#responsive-menu-current-page').val(tab_name);
-
-            $('.guide-active').removeClass('guide-active');
-            switch(tab_name) {
-                case 'sub-menus':
-                    $('#guide-submenu-container').addClass('guide-active');
-                    break;
-                case 'menu':
-                    $('#guide-menu-container').addClass('guide-active');
-                    break;
-                case 'button':
-                    $('#guide-button-container').addClass('guide-active');
-                    break;
-                case 'container':
-                    $('#guide-container-container').addClass('guide-active');
-                    break;
-            }
         });
     /* <-- End Navigation Tabs */
 

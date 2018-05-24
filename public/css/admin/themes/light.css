@@ -182,13 +182,3 @@
     padding-right: 0;
 }
 /* <-- End specific theme styles */
-
-/* --> Start Mini Admin guide theme styles */
-    #responsive-menu-admin #guide-banner {
-        border: 1px solid #C4C4C4;
-    }
-    #responsive-menu-admin #banner-area #guide-banner #guide-container-wrapper,
-    #responsive-menu-admin #banner-area #guide-banner #guide-button-wrapper {
-        background: #DE4B42;
-    }
-/* <-- End Mini Admin guide theme styles */
