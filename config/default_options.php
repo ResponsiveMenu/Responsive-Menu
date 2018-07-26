@@ -253,6 +253,7 @@ function get_responsive_menu_default_options() {
         'remove_bootstrap' => false,
 
         'shortcode' => 'off',
+        'mobile_only' => 'off',
         'hide_on_mobile' => 'off',
         'hide_on_desktop' => 'off',
         'custom_walker' => null,

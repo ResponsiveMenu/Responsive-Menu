@@ -3,7 +3,7 @@ Contributors: ResponsiveMenu, peterfeatherstone
 Tags: responsive, menu, responsive menu, mobile menu, wordpress responsive menu, wp responsive menu, tablet menu, hamburger menu, hamburger, mobile, tablet, 3 lines, 3 line, three line, three lines
 Requires at least: 3.6
 Tested up to: 4.9.7
-Stable tag: 3.1.14
+Stable tag: 3.1.15
 Requires PHP: 5.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
