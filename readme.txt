@@ -2,7 +2,7 @@
 Contributors: ResponsiveMenu, peterfeatherstone
 Tags: responsive, menu, responsive menu, mobile menu, wordpress responsive menu, wp responsive menu, tablet menu, hamburger menu, hamburger, mobile, tablet, 3 lines, 3 line, three line, three lines
 Requires at least: 3.6
-Tested up to: 4.9.4
+Tested up to: 4.9.7
 Stable tag: 3.1.14
 Requires PHP: 5.4
 License: GPLv2 or later
@@ -111,9 +111,12 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 
 == Changelog ==
 
-= 3.1.15 (30th March 2018) =
+= 3.1.15 (26th July 2018) =
 * Fixed Sub Menu line height bug.
 * Removed Min Admin Guide.
+* Upgrade to FontAwesome 5.2 (Pro)
+* Fix search placeholder colour issue (Pro)
+* Added options to hide on mobile or desktop devices (Pro)
 
 = 3.1.14 (30th March 2018) =
 * Added line height options for all menu items.
