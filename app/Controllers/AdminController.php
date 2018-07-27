@@ -14,30 +14,23 @@ class AdminController {
         $this->view = $view;
     }
 
-    public function index($nav_menus, $location_menus) {
+    public function index() {
         return $this->view->render(
-            'admin/main.html.twig',
-            [
-                'options' => $this->manager->all(),
-                'nav_menus' => $nav_menus,
-                'location_menus' => $location_menus
-            ]
+            'admin/main.html.twig', ['options' => $this->manager->all()]
         );
     }
 
-    public function rebuild($nav_menus, $location_menus) {
+    public function rebuild() {
         return $this->view->render(
             'admin/main.html.twig',
             [
                 'options' => $this->manager->all(),
-                'nav_menus' => $nav_menus,
-                'location_menus' => $location_menus,
                 'alert' => ['success' => 'Responsive Menu Database Rebuilt Successfully.']
             ]
         );
     }
 
-    public function update($valid_nonce, $new_options, $nav_menus, $location_menus) {
+    public function update($valid_nonce, $new_options) {
         $validator = new Validator();
         $errors = [];
         if(!$valid_nonce):
@@ -63,14 +56,12 @@ class AdminController {
             [
                 'options' => $options,
                 'alert' => $alert,
-                'nav_menus' => $nav_menus,
-                'location_menus' => $location_menus,
                 'errors' => $errors
             ]
         );
     }
 
-    public function reset($default_options, $nav_menus, $location_menus) {
+    public function reset($default_options) {
         try {
             $options = $this->manager->updateOptions($default_options);
             $task = new UpdateOptionsTask;
@@ -83,14 +74,12 @@ class AdminController {
             'admin/main.html.twig',
             [
                 'options' => $options,
-                'alert' => $alert,
-                'nav_menus' => $nav_menus,
-                'location_menus' => $location_menus
+                'alert' => $alert
             ]
         );
     }
 
-    public function import($imported_options, $nav_menus, $location_menus) {
+    public function import($imported_options) {
         $errors = [];
         if(!empty($imported_options)):
             $validator = new Validator();
@@ -120,8 +109,6 @@ class AdminController {
             [
                 'options' => $options,
                 'alert' => $alert,
-                'nav_menus' => $nav_menus,
-                'location_menus' => $location_menus,
                 'errors' => $errors
             ]
         );

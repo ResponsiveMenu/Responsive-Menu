@@ -11,7 +11,7 @@
     {{ macros.header('Initial Setup', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('breakpoint', 'Breakpoint', 'input', options, errors, '', '', '', '', 'This is the width of the screen in pixels at which point you would like the hamburger button to start showing.', 'px', '', 'Set to 80000 if you want the menu to appear on all devices.') }}
-        {{ macros.row('menu_to_use', 'Menu to Use', 'select', options, errors, '', '', 'custom', '', 'If no options appear here, make sure you have set them up under <strong>Appearance > Menus</strong> or click <a href="' ~ admin_url ~ 'nav-menus.php">here</a>.', '', nav_menus, 'Please note that the <a class="scroll-to-option" href="#responsive-menu-theme-location-menu">Theme Location</a> option will take precedence over this.') }}
-        {{ macros.row('menu_to_hide', 'Original Menu to Hide', 'input', options, errors, '', '', '', '', 'To hide your current theme menu you need to put the CSS sleAny legal CSS selection criteria is valid here.', '', '', 'For example #nav-menu, nav, .other-nav') }}
+        {{ macros.row('menu_to_use', 'Menu to Use', 'select', options, errors, '', '', 'custom', '', 'If no options appear here, make sure you have set them up under <strong>Appearance > Menus</strong> or click <a href="' ~ admin_url ~ 'nav-menus.php">here</a>.', '', nav_menus(), 'Please note that the <a class="scroll-to-option" href="#responsive-menu-theme-location-menu">Theme Location</a> option will take precedence over this.') }}
+        {{ macros.row('menu_to_hide', 'Original Menu to Hide', 'input', options, errors, '', '', '', '', 'To hide your current theme menu you need to put the CSS selector here. Any legal CSS selection criteria is valid.', '', '', 'For example #nav-menu, nav, .other-nav') }}
     </table>
 </div>

@@ -88,6 +88,22 @@ else:
         return get_option('hide_pro_options', 'no');
     }));
 
+    $twig->addFunction(new Twig_SimpleFunction('nav_menus', function() {
+        $menus_array = [];
+        foreach(get_terms('nav_menu') as $menu)
+            $menus_array[$menu->slug] = $menu->name;
+
+        return $menus_array;
+    }));
+
+    $twig->addFunction(new Twig_SimpleFunction('location_menus', function() {
+        $location_menus = ['' => 'None'];
+        foreach(get_registered_nav_menus() as $location => $menu)
+            $location_menus[$location] = $menu;
+
+        return $location_menus;
+    }));
+
 endif;
 
 $twig->addFilter(new Twig_SimpleFilter('json_decode', function($string) {

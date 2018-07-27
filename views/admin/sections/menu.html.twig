@@ -145,7 +145,7 @@
 <div class='panel panel-default'>
     {{ macros.header('Advanced', section) }}
     <table class='table table-bordered table-hover'>
-        {{ macros.row('theme_location_menu', 'Theme Location Menu', 'select', options, errors, '', '', 'custom', '', 'If you want to use a theme location menu rather than a specific menu then you can select that here.', '', location_menus, 'Please note that this will overwrite the <a class="scroll-to-option" href="#responsive-menu-menu-to-use">Menu to Use</a> option.') }}
+        {{ macros.row('theme_location_menu', 'Theme Location Menu', 'select', options, errors, '', '', 'custom', '', 'If you want to use a theme location menu rather than a specific menu then you can select that here.', '', location_menus(), 'Please note that this will overwrite the <a class="scroll-to-option" href="#responsive-menu-menu-to-use">Menu to Use</a> option.') }}
         {{ macros.row('custom_walker', 'Custom Walker', 'input', options, errors, '', '', '', '', 'Set your own Walker class for customising the links HTML output.', '', '', 'Warning: For extremely advanced use only') }}
     </table>
 </div>
