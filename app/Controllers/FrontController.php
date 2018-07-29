@@ -6,22 +6,87 @@ use ResponsiveMenu\View\View;
 use ResponsiveMenu\Management\OptionManager;
 use ResponsiveMenu\Formatters\Minifier;
 
+/**
+* Entry point for all front end functionality.
+*
+* All routing for the front end comes through the functions below. When a
+* front end page is loaded in the browser it will come through here.
+*
+* @author Peter Featherstone <peter@featherstone.me>
+*
+* @since 3.0
+*/
 class FrontController {
 
+    /**
+    * Constructor for setting up the FrontController.
+    *
+    * The constructor allows us to switch implementations for managing options
+    * and for rendering views. Useful for switching out mocked or stubbed
+    * classes during testing.
+    *
+    * @author Peter Featherstone <peter@featherstone.me>
+    *
+    * @since 3.0
+    *
+    * @param OptionManager  $manager    Instance of a Management options class.
+    * @param View           $view       Instance of a View class for rendering.
+    */
     public function __construct(OptionManager $manager, View $view) {
         $this->manager = $manager;
         $this->view = $view;
     }
 
+    /**
+    * Main route for the front end.
+    *
+    * This is the default view for the plugin on an initial GET request to the
+    * front end page.
+    *
+    * @author Peter Featherstone <peter@featherstone.me>
+    *
+    * @since 3.0
+    *
+    * @return string    Output HTML from rendered view.
+    */
     public function index() {
         $options = $this->manager->all();
         $this->buildFrontEnd($options);
     }
 
+    /**
+    * Preview route for the front end.
+    *
+    * This is the preview view for the plugin when the preview admin option is
+    * pressed.
+    *
+    * @author Peter Featherstone <peter@featherstone.me>
+    *
+    * @since 3.0
+    *
+    * @return string    Output HTML from rendered view.
+    */
     public function preview() {
         return $this->view->render('preview.html.twig');
     }
 
+    /**
+    * Helper private method to setup and build the front end.
+    *
+    * This is the preview view for the plugin when the preview admin option is
+    * pressed. We turn external files off to enable the preview options to
+    * take effect.
+    *
+    * TODO: This is a horrible method that really needs to be broken up in some
+    * way. There is a lot of setup and WordPress specific functionality going
+    * on here that would ideally be abstracted away.
+    *
+    * @author Peter Featherstone <peter@featherstone.me>
+    *
+    * @since 3.0
+    *
+    * @param OptionsCollection  $options    A OptionsCollection object.
+    */
     private function buildFrontEnd(OptionsCollection $options) {
         add_filter('body_class', function($classes) use($options) {
             $classes[] = 'responsive-menu-' . $options['animation_type'] . '-' . $options['menu_appear_from'];

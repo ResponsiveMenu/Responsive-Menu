@@ -43,6 +43,7 @@ if(isset($_GET['page']) && $_GET['page'] == 'responsive-menu'):
 
         wp_register_script('responsive-menu-base-js', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/js/admin/base.js', 'jquery', null);
         wp_localize_script('responsive-menu-base-js', 'WP_HOME_URL', home_url('/'));
+        wp_localize_script('responsive-menu-base-js', 'THEMES_FOLDER_URL', wp_upload_dir()['baseurl'] . '/responsive-menu-themes/');
         wp_enqueue_script('responsive-menu-base-js');
 
         wp_register_script('responsive-menu-additional-js', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/js/admin/additional.js', 'jquery', null);

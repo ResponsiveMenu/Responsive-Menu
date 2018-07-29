@@ -190,4 +190,13 @@ jQuery(function($) {
         $('#sortable, .draggable').disableSelection();
     /* <-- End Menu Order Scripts */
 
+    /* --> Theme Selector Script */
+        $('#responsive-menu-menu-theme').on('changed.bs.select', function() {
+            var selected_theme_key = $(this).val();
+            var preview_image_url = THEMES_FOLDER_URL + selected_theme_key + '/preview.png';
+            var $preview_image = $('#responsive-menu-theme-preview');
+
+            $preview_image.attr('src', preview_image_url);
+        });
+    /* <-- End Theme Selector Script */
 });

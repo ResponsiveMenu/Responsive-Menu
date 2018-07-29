@@ -24,13 +24,16 @@
     <div id="technical" class="tab-pane fade{% if current_page() == 'technical' %} in active{% endif %}">
         {% include 'admin/sections/technical.html.twig' %}
     </div>
+    <div id="advanced" class="tab-pane fade{% if current_page() == 'advanced' %} in active{% endif %}">
+        {% include 'admin/sections/advanced.html.twig' %}
+    </div>
     <div id="header-bar" class="tab-pane fade{% if current_page() == 'header-bar' %} in active{% endif %}">
         {% include 'admin/sections/header-bar.html.twig' %}
     </div>
     <div id="desktop-menu" class="tab-pane fade{% if current_page() == 'desktop-menu' %} in active{% endif %}">
         {% include 'admin/sections/desktop-menu.html.twig' %}
     </div>
-    <div id="advanced" class="tab-pane fade{% if current_page() == 'advanced' %} in active{% endif %}">
-        {% include 'admin/sections/advanced.html.twig' %}
+    <div id="themes" class="tab-pane fade{% if current_page() == 'themes' %} in active{% endif %}">
+        {% include 'admin/sections/themes.html.twig' %}
     </div>
 </div>

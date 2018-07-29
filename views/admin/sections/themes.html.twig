@@ -1,0 +1,58 @@
+{#
+    Responsive Menu Jinja template file.
+    Safe to Copy
+#}
+
+{% import 'admin/macros.html.twig' as macros %}
+
+{% set section = 'Themes' %}
+
+<div class='panel panel-default'>
+    {{ macros.header('Theme', section) }}
+    <table class='table table-bordered table-hover'>
+        {% set themes = get_available_themes() %}
+        {{ macros.row('menu_theme', 'Menu Theme', 'select', options, errors, '', '', 'menu_theme', '', 'Pre-designed themes to help you get started.') }}
+        <tr>
+            <td class="col-left col-md-3"></td>
+            <td class="col-right text-right">
+                {% if themes %}
+                    {% if options.menu_theme %}
+                        {% set theme_slug = options.menu_theme %}
+                    {% else %}
+                        {% set theme_slug = themes|keys|first %}
+                    {% endif %}
+                    <div class="text-left">
+                        <img id="responsive-menu-theme-preview" src="{{ themes_folder_url }}/{{ theme_slug }}/preview.png" />
+                    </div>
+                    <div id="responsive-menu-theme-container" class="text-center">
+                        <p class="alert alert-info text-center">
+                            Applying a theme will overwrite some of your current settings. Please <a class="scroll-to-option" href="#responsive-menu-export">export</a> current settings before applying new theme.
+                        </p>
+                        <button style="margin-left: 0;" name='responsive-menu-theme' id='responsive-menu-theme' type='submit' class='btn btn-primary btn-lg btn-rm'>Apply Theme</button>
+                    </div>
+                {% else %}
+                    <div class="text-center">
+                        <p class="alert alert-warning text-center">
+                            You don't appear to have any themes installed under <code>{{ themes_folder_dir }}</code> currently. Please check your file path or download some using the button below:<br /><br />
+                            <a href="https://responsive.menu/themes" target="_blank" style="color: white; margin-left: 0;" class='btn btn-primary btn-lg btn-rm'>Get Themes</a>
+                        </p>
+                    </div>
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td class="col-left col-md-3">
+                <label class="control-label">Upload Theme</label>
+                <div class="sub-text">Import a zip file of a theme you have downloaded from <a href="https://responsive.menu/themes" target="_blank">https://responsive.menu/themes</a>.</div>
+                <div class="sub_sub_title">This will upload files to {{ themes_folder_dir }}.</div>
+            </td>
+            <td class="col-right text-right" style="padding-right: 90px;">
+                <input type='file' name='responsive-menu-import-theme-file' />
+                <button name='responsive-menu-import-theme' type='submit' class='btn btn-primary btn-lg btn-rm'>Upload</button>
+                <div class="alert alert-danger text-center">
+                    Always be careful when uploading files from external locations. Ensure that the theme was downloaded directly from <a href="https://responsive.menu" target="_blank">https://responsive.menu</a>. All themes are checked by us before submission to the <a href="https://responsive.menu/themes" target="_blank">theme store</a>.
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>

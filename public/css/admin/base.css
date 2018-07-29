@@ -319,7 +319,8 @@
 }
 
 #responsive-menu-admin #upgrade-banner,
-#responsive-menu-admin #docs-banner {
+#responsive-menu-admin #docs-banner,
+#responsive-menu-admin #themes-banner {
     background: #FAB719;
     padding: 35px;
     color: #333;
@@ -330,7 +331,8 @@
 }
 
 #responsive-menu-admin #upgrade-banner .button,
-#responsive-menu-admin #docs-banner .button {
+#responsive-menu-admin #docs-banner .button,
+#responsive-menu-admin #themes-banner .button {
     background: white;
     padding: 0 25px;
     height: 50px;
@@ -343,6 +345,12 @@
     width: auto;
     text-align: center;
     margin-top: 15px;
+}
+
+#responsive-menu-admin #themes-banner {
+    background: #d9534f;
+    color: white;
+    margin-bottom: 15px;
 }
 
 #responsive-menu-admin #add-font-icon {
@@ -390,13 +398,13 @@
     border-bottom-style: solid;
 }
 
+#responsive-menu-admin .panel table td.col-right {
+    position: relative;
+}
+
 #responsive-menu-admin .panel table td.col-left {
     border-right-width: 1px;
     border-right-style: solid;
-}
-
-#responsive-menu-admin .panel table td.col-right {
-    position: relative;
 }
 
 #responsive-menu-admin .panel table tr:last-child td.col-left {
@@ -652,6 +660,15 @@
 
 #responsive-menu-admin .responsive-menu-desktop-menu-option-badges {
     margin-right: 8px;
+}
+
+#responsive-menu-admin #responsive-menu-theme-container {
+    margin-top: 15px;
+    margin-right: 75px;
+}
+
+#responsive-menu-admin img#responsive-menu-theme-preview {
+    width: calc(100% - 75px);
 }
 
 @media screen and (max-width: 1600px) {

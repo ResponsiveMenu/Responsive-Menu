@@ -84,6 +84,23 @@ else:
     $twig->addGlobal('admin_url', get_admin_url());
     $twig->addGlobal('shortcode', '[responsive_menu]');
 
+    $twig->addFunction(new Twig_SimpleFunction('get_available_themes', function() {
+        $theme_folder_path = wp_upload_dir()['basedir'] . '/responsive-menu-themes';
+        $theme_folders = glob($theme_folder_path . '/*' , GLOB_ONLYDIR);
+
+        $themes = [];
+        foreach($theme_folders as $theme_folder):
+            $config = json_decode(file_get_contents($theme_folder . '/config.json'), true);
+            $themes[basename($theme_folder)]['version'] = $config['version'];
+            $themes[basename($theme_folder)]['name'] = $config['name'];
+        endforeach;
+
+        return $themes;
+    }));
+
+    $twig->addGlobal('themes_folder_url', wp_upload_dir()['baseurl'] . '/responsive-menu-themes/');
+    $twig->addGlobal('themes_folder_dir', wp_upload_dir()['basedir'] . '/responsive-menu-themes/');
+
     $twig->addFunction(new Twig_SimpleFunction('hide_pro_options', function() {
         return get_option('hide_pro_options', 'no');
     }));

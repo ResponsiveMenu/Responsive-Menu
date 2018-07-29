@@ -246,6 +246,13 @@
                     {{ macros.select(name, options[name], choices) }}
                 {% elseif select_type == 'button_animation' %}
                     {{ macros.button_animation_select(name, options[name]) }}
+                {% elseif select_type == 'menu_theme' %}
+                    {% set themes = get_available_themes() %}
+                    {% set choices = [] %}
+                    {% for theme, config in themes %}
+                        {% set choices = choices|merge({(theme): config.name ~ ' (' ~ theme ~ ')'}) %}
+                    {% endfor %}
+                    {{ macros.select(name, options[name], choices) }}
                 {% endif %}
             {% elseif type == 'image' %}
                 {{ macros.image(name, options[name]) }}

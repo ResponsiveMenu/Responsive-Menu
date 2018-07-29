@@ -13,9 +13,6 @@ if(is_admin()):
             echo $controller->export();
             exit();
 
-        elseif(isset($_POST['responsive-menu-rebuild-db']) && isset($_GET['page']) && $_GET['page'] == 'responsive-menu'):
-            update_option('responsive_menu_version', '2.8.9');
-
         endif;
 
         add_menu_page(
@@ -30,21 +27,29 @@ if(is_admin()):
                     update_option('responsive_menu_current_page', $_POST['responsive-menu-current-page']);
 
                 if(isset($_POST['responsive-menu-submit'])):
-                    update_option('hide_pro_options', isset($_POST['hide-pro-options']) ? "yes" : "no");
+                    update_option('hide_pro_options', isset($_POST['hide-pro-options']) ? 'yes' : 'no');
                     $valid_nonce = wp_verify_nonce($_POST['responsive-menu-nonce'], 'update');
                     echo $controller->update($valid_nonce, wp_unslash($_POST['menu']));
 
                 elseif(isset($_POST['responsive-menu-reset'])):
-                    update_option('hide_pro_options', "no");
                     echo $controller->reset(get_responsive_menu_default_options());
+
+                elseif(isset($_POST['responsive-menu-theme'])):
+                    echo $controller->apply_theme($_POST['menu']['menu_theme']);
 
                 elseif(isset($_POST['responsive-menu-import'])):
                     $file = $_FILES['responsive-menu-import-file'];
                     $file_options = isset($file['tmp_name']) ? (array) json_decode(file_get_contents($file['tmp_name'])) : null;
                     echo $controller->import($file_options);
 
+
+                elseif(isset($_POST['responsive-menu-import-theme'])):
+                    $file = $_FILES['responsive-menu-import-theme-file'];
+                    $theme = isset($file['tmp_name']) && $file['tmp_name'] ? $file['tmp_name'] : null;
+
+                    echo $controller->import_theme($theme);
+
                 elseif(isset($_POST['responsive-menu-rebuild-db'])):
-                    update_option('hide_pro_options', "no");
                     echo $controller->rebuild();
 
                 else:
