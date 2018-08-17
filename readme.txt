@@ -111,6 +111,9 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 
 == Changelog ==
 
+= 3.1.17 (15th August 2018) =
+* Improve logic around word wrap.
+
 = 3.1.16 (15th August 2018) =
 * Added ability to upload and use themes.
 
