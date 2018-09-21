@@ -452,6 +452,8 @@ button#responsive-menu-button,
     #responsive-menu-container #responsive-menu-title #responsive-menu-title-image {
         display: inline-block;
         vertical-align: middle;
+        max-width: 100%;
+        margin-bottom: 15px;
     }
 
     #responsive-menu-container #responsive-menu-title #responsive-menu-title-image img {
@@ -461,6 +463,7 @@ button#responsive-menu-button,
         {% if options.menu_title_image_width %}
             width: {{ options.menu_title_image_width }}{{ options.menu_title_image_width_unit }};
         {% endif %}
+        max-width: 100%;
     }
 
     #responsive-menu-container #responsive-menu > li.responsive-menu-item:first-child > a {
