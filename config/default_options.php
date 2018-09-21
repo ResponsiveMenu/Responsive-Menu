@@ -211,6 +211,7 @@ function get_responsive_menu_default_options() {
         'menu_additional_content' => null,
         'menu_additional_content_colour' => '#fff',
         'menu_title' => null,
+        'menu_title_alignment' => 'left',
 
         // Container > Title Image
         'menu_title_image' => null,

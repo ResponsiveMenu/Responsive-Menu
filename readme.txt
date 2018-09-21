@@ -3,7 +3,7 @@ Contributors: ResponsiveMenu, peterfeatherstone
 Tags: responsive, menu, responsive menu, mobile menu, wordpress responsive menu, wp responsive menu, tablet menu, hamburger menu, hamburger, mobile, tablet, 3 lines, 3 line, three line, three lines
 Requires at least: 3.6
 Tested up to: 4.9.7
-Stable tag: 3.1.16
+Stable tag: 3.1.17
 Requires PHP: 5.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -111,8 +111,11 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 
 == Changelog ==
 
-= 3.1.17 (15th August 2018) =
+= 3.1.17 (21st September 2018) =
 * Improve logic around word wrap.
+* Change approach to disabling background scrolling.
+* Improvements to smooth scrolling across different URLs.
+* Added menu title text alignment option.
 
 = 3.1.16 (15th August 2018) =
 * Added ability to upload and use themes.
