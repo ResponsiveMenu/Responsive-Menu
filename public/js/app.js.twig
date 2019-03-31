@@ -129,6 +129,7 @@ jQuery(document).ready(function($) {
         init: function() {
             var self = this;
             $(this.trigger).on(this.triggerTypes, function(e){
+                e.stopPropagation();
                 self.triggerMenu();
             });
             $(this.trigger).mouseup(function(){
@@ -136,6 +137,7 @@ jQuery(document).ready(function($) {
             });
             $('.responsive-menu-subarrow').on('click', function(e) {
                 e.preventDefault();
+                e.stopPropagation();
                 self.triggerSubArrow(this);
             });
             $(window).resize(function() {
