@@ -3,7 +3,7 @@ Contributors: ResponsiveMenu, peterfeatherstone
 Tags: responsive, menu, responsive menu, mobile menu, wordpress responsive menu, wp responsive menu, tablet menu, hamburger menu, hamburger, mobile, tablet, 3 lines, 3 line, three line, three lines
 Requires at least: 3.6
 Tested up to: 5.1.1
-Stable tag: 3.1.18
+Stable tag: 3.1.19
 Requires PHP: 5.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -110,6 +110,10 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 15. Admin Desktop Menu Section
 
 == Changelog ==
+
+= 3.1.19 (31st March 2019) =
+* Update tested up to flag for WordPress 5.1.1
+* Updated noscroll js file.
 
 = 3.1.18 (19th January 2019) =
 * Update tested up to flag for WordPress 5
