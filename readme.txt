@@ -111,7 +111,7 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 
 == Changelog ==
 
-= 3.1.19 (31st March 2019) =
+= 3.1.19 (1st April 2019) =
 * Update tested up to flag for WordPress 5.1.1
 * Updated noscroll js file.
 
