@@ -80,13 +80,13 @@
 }
 
 #responsive-menu-admin #upgrade-banner .button {
-    background: #f80768;
-    color: #ffffff;
+    background: #ffcf00;
+    color: #f80768;
 }
 
 #responsive-menu-admin #upgrade-banner .button:hover {
-    background: #ffcf00;
-    color: #f80768;
+    background: #f80768;
+    color: #ffffff;
 }
 
 #responsive-menu-admin #upgrade-banner i {
