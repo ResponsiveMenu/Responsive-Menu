@@ -6,6 +6,7 @@ use ResponsiveMenu\Collections\OptionsCollection;
 class OptionsCollectionTest extends TestCase {
 
     private $options = [
+        'menu_theme' => false,
         'foo' => 'bar',
         'baz' => 'moo'
     ];
