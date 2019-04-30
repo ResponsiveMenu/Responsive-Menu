@@ -3,25 +3,25 @@
 # WordPress Responsive Menu Plugin
 Highly customisable Responsive Menu Plugin for WordPress. With over 150 customisable options you get a combination of 22,500 options. No coding experience or knowledge is needed with an easy to use interface you can get it looking exactly as you want with minimal fuss.
 
-**See it in action:**
+### See it in action
 
 * [https://responsive.menu](https://responsive.menu)
 * [https://demo.responsive.menu](https://demo.responsive.menu)
 
-**Requirements:**
+### Requirements
 
-PHP 5.4+
+* PHP 5.4+
 
-**Full Knowledgebase and dedicated support forum:**
+### Full Knowledgebase and dedicated support forum
 
 * [https://responsive.menu/knowledgebase/](https://responsive.menu/knowledgebase/)
 * [https://responsive.menu/forums/forum/pro-support/](https://responsive.menu/forums/forum/pro-support/)
 
-**Fully unit tested:**
+### Fully unit tested
 
-100% unit test coverage with tests included in the plugin so you can run them yourself for peace of mind
+* 100% unit test coverage with tests included in the plugin so you can run them yourself for peace of mind
 
-**Basic Functionality:**
+### Basic Functionality
 
 * Change every text, background and border colour
 * Set the fonts, font sizes and text alignment you want to use
@@ -46,7 +46,7 @@ PHP 5.4+
 * RTL Support
 * Plus much, much more!
 
-**Advanced & Pro Functionality:**
+### Advanced & Pro Functionality
 
 * Preview your changes before implementing
 * Animate the menu items when menu is opened
@@ -59,12 +59,12 @@ PHP 5.4+
 
 ### Installation
 
-From source:
+#### From source:
 1. Upload `responsive-menu` to your sites `/wp-content/plugins/` directory.
 2. Activate the plugin through the `Plugins` menu in WordPress.
 3. Set your options from the Responsive Menu admin area.
 
-From the WordPress UI:
+#### From the WordPress UI
 
 1. Login to your WordPress admin area
 2. Search for `Responsive Menu`
@@ -77,6 +77,7 @@ From the WordPress UI:
 To view the FAQ, please go to [https://responsive.menu/faq/](https://responsive.menu/faq/).
 
 ### Supported by BrowserStack
+
 Thanks to [BrowserStack](https://browserstack.com/) for their support of this open-source project.
 
 <img src="https://responsive.menu/wp-content/themes/responsive-menu/static/imgs/browserstacklogo.svg" width="150">
