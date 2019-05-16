@@ -181,4 +181,8 @@
 #responsive-menu-admin #hide-pro-options-label {
     padding-right: 0;
 }
+
+#responsive-menu-admin #upgrade-bottom-banner a {
+    color: #333;
+}
 /* <-- End specific theme styles */
