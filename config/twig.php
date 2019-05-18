@@ -69,6 +69,10 @@ else:
         return wp_get_nav_menu_items($menu);
     }));
 
+    $twig->addFunction(new Twig_SimpleFunction('all_pages', function() {
+        return get_pages();
+    }));
+
     $twig->addFunction(new Twig_SimpleFunction('font_icons', function($array) {
         $new_array = [];
         for($i=0; $i < count($array['id']); $i++):

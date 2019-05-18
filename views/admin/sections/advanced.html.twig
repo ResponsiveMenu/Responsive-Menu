@@ -8,6 +8,13 @@
 {% set section = 'Advanced' %}
 
 <div class='panel panel-default'>
+    {{ macros.header('Excluded Pages', section) }}
+    <table class='table table-bordered table-hover'>
+        {% include 'admin/sections/modules/excluded-pages.html.twig' %}
+    </table>
+</div>
+
+<div class='panel panel-default'>
     {{ macros.header('Animation Speeds', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('animation_speed', 'Container', 'input', options, errors, '', '', '', '', 'Specify the speed at which the container slides in.', 's') }}

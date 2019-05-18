@@ -257,6 +257,7 @@ function get_responsive_menu_default_options() {
         'mobile_only' => 'off',
         'hide_on_mobile' => 'off',
         'hide_on_desktop' => 'off',
+        'excluded_pages' => null,
         'custom_walker' => null,
         'custom_css' => null,
 
