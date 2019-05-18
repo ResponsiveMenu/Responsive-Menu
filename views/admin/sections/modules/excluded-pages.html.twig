@@ -1,0 +1,20 @@
+<tr class='pro-row'>
+    <td class='col-left col-md-3'>
+        <label for='items_order' class='control-label'>Excluded Pages</label>
+        <div class='sub-text'>
+            Select one or more pages that will be excluded from displaying the plugin.
+        </div>
+    </td>
+    <td class='col-right pro'>
+        <div class="responsive-menu-pro-overlay">
+            <a href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=free-plugin-option-upgrade"
+               target="_blank">Click to upgrade now to use</a>
+        </div>
+        {% set excluded_pages = options.excluded_pages|json_decode %}
+        <select class='selectpicker show-tick' name='menu[excluded_pages][]' multiple>
+            {% for page in all_pages() %}
+                <option value='{{ page.ID }}' {% if page.ID in excluded_pages %}selected='selected'{% endif %}>{{ page.post_title }}</option>
+            {% endfor %}
+        </select>
+    </td>
+</tr>
