@@ -112,6 +112,7 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 == Changelog ==
 
 = 3.1.23 (13th Aug 2019) =
+* Added option to hide the original desktop theme menu.
 * Drop support for PHP 5.5
 * Update Twig to the 1.42.2
 * Fix bug with pre IE10 javascript when disabling background scrolling.

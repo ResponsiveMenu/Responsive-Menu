@@ -262,6 +262,7 @@ function get_responsive_menu_default_options() {
         'custom_css' => null,
 
         'use_desktop_menu' => false,
+        'desktop_menu_to_hide' => '',
         'desktop_menu_options' => '{}',
         'desktop_menu_positioning' => 'fixed',
         'desktop_menu_width' => '',

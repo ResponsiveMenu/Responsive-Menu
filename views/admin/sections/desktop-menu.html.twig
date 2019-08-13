@@ -8,9 +8,10 @@
 {% set section = 'Desktop Menu' %}
 
 <div class='panel panel-default fully-pro-container'>
-    {{ macros.header('Enable', section) }}
+    {{ macros.header('Initial Setup', section) }}
     <table class='table table-bordered table-hover'>
         {{ macros.row('use_desktop_menu', 'Enable', 'checkbox', options, errors, '', 'pro', '', '', 'Enable the Desktop Menu.') }}
+        {{ macros.row('desktop_menu_to_hide', 'Original Menu to Hide', 'input', options, errors, '', 'pro', '', '', 'To hide your current theme menu you need to put the CSS selector here. Any legal CSS selection criteria is valid.', '', '', 'For example #nav-menu, nav, .other-nav') }}
     </table>
 </div>
 
