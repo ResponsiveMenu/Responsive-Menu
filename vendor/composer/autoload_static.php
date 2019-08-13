@@ -6,7 +6,19 @@ namespace Composer\Autoload;
 
 class ComposerStaticInitbe9ac5d85095f467548fb48e989d4a37
 {
+    public static $files = array (
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
+        'T' => 
+        array (
+            'Twig\\' => 5,
+        ),
+        'S' => 
+        array (
+            'Symfony\\Polyfill\\Ctype\\' => 23,
+        ),
         'R' => 
         array (
             'ResponsiveMenu\\' => 15,
@@ -14,6 +26,14 @@ class ComposerStaticInitbe9ac5d85095f467548fb48e989d4a37
     );
 
     public static $prefixDirsPsr4 = array (
+        'Twig\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/twig/twig/src',
+        ),
+        'Symfony\\Polyfill\\Ctype\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
+        ),
         'ResponsiveMenu\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
