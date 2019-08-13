@@ -2,9 +2,9 @@
 Contributors: peterfeatherstone
 Tags: responsive, menu, responsive menu, mobile menu, wordpress responsive menu, wp responsive menu, tablet menu, hamburger menu, hamburger, mobile, tablet, 3 lines, 3 line, three line, three lines
 Requires at least: 3.6
-Tested up to: 5.2.1
+Tested up to: 5.2.2
 Stable tag: 3.1.22
-Requires PHP: 5.4
+Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -110,6 +110,11 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 15. Admin Desktop Menu Section
 
 == Changelog ==
+
+= 3.1.23 (13th Aug 2019) =
+* Drop support for PHP 5.5
+* Update Twig to the 1.42.2
+* Fix bug with pre IE10 javascript when disabling background scrolling.
 
 = 3.1.22 (30th May 2019) =
 * Expand Exclude Pages option to include all post types.
