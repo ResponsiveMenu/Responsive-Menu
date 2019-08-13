@@ -7,7 +7,7 @@ Description: Highly Customisable Responsive Menu Plugin for WordPress
 Version: 3.1.22
 Author: Peter Featherstone
 Text Domain: responsive-menu
-Author URI: https://peterfeatherstone.com
+Author URI: https://responsive.menu
 License: GPL2
 Tags: responsive, menu, responsive menu
 */

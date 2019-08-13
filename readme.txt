@@ -1,5 +1,5 @@
 === Responsive Menu ===
-Contributors: ResponsiveMenu, peterfeatherstone
+Contributors: peterfeatherstone
 Tags: responsive, menu, responsive menu, mobile menu, wordpress responsive menu, wp responsive menu, tablet menu, hamburger menu, hamburger, mobile, tablet, 3 lines, 3 line, three line, three lines
 Requires at least: 3.6
 Tested up to: 5.2.1
