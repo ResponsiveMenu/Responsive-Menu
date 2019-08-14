@@ -1,10 +1,10 @@
 === Responsive Menu ===
 Contributors: peterfeatherstone
-Tags: responsive, menu, responsive menu, mobile menu, wordpress responsive menu, wp responsive menu, tablet menu, hamburger menu, hamburger, mobile, tablet, 3 lines, 3 line, three line, three lines
+Tags: responsive, menu, navigation, mobile, hamburger
 Requires at least: 3.6
 Tested up to: 5.2.2
-Stable tag: 3.1.23
-Requires PHP: 5.6
+Stable tag: 3.1.24
+Requires PHP: 5.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,7 +22,7 @@ Highly customisable Responsive Menu Plugin for WordPress. With over 150 customis
 
 **Requirements:**
 
-PHP 5.4+
+PHP 5.5+
 
 **Full Knowledgebase and dedicated support forum:**
 
@@ -111,10 +111,14 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 
 == Changelog ==
 
+= 3.1.24 (14th Aug 2019) =
+* Allow support for PHP 5.5 again.
+* Downgrade Twig back to 1.33.0 as it doesn't play nicely with other plugins.
+
 = 3.1.23 (13th Aug 2019) =
 * Added option to hide the original desktop theme menu.
 * Drop support for PHP 5.5
-* Update Twig to the 1.42.2
+* Update Twig to 1.42.2
 * Fix bug with pre IE10 javascript when disabling background scrolling.
 
 = 3.1.22 (30th May 2019) =
