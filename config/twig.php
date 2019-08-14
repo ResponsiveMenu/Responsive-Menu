@@ -1,24 +1,24 @@
 <?php
 
-$twig = new Twig_Environment(new Twig_Loader_Filesystem([
+$twig = new Twig\Environment(new Twig\Loader\FilesystemLoader([
     dirname(dirname(__FILE__)) . '/views',
     dirname(dirname(__FILE__)) . '/public',
 ]), ['autoescape' => false, 'debug' => false]);
 
-//$twig->addExtension(new Twig_Extension_Debug());
+
 if(!is_admin()):
 
-    $twig->addFilter(new Twig_SimpleFilter('shortcode', function($string) {
+    $twig->addFilter(new Twig\TwigFilter('shortcode', function($string) {
         return do_shortcode($string);
     }));
 
-    $twig->addFilter(new Twig_SimpleFilter('translate', function($string, $key) {
+    $twig->addFilter(new Twig\TwigFilter('translate', function($string, $key) {
         $translated = apply_filters('wpml_translate_single_string', $string, 'Responsive Menu', $key);
         $translated = function_exists('pll__') ? pll__($translated) : $translated;
         return $translated;
     }));
 
-    $twig->addFunction(new Twig_SimpleFunction('build_menu', function($env, $options) {
+    $twig->addFunction(new Twig\TwigFunction('build_menu', function($env, $options) {
 
         $translator = $env->getFilter('translate')->getCallable();
         $menu = $translator($options['menu_to_use'], 'menu_to_use');
@@ -43,21 +43,21 @@ if(!is_admin()):
 
 else:
 
-    $twig->addFunction(new Twig_SimpleFunction('csrf', function() {
+    $twig->addFunction(new Twig\TwigFunction('csrf', function() {
         return wp_nonce_field('update', 'responsive-menu-nonce', true, false);
     }));
 
-    $twig->addFunction(new Twig_SimpleFunction('current_page', function() {
+    $twig->addFunction(new Twig\TwigFunction('current_page', function() {
         return get_option('responsive_menu_current_page', 'initial-setup');
     }));
 
-    $twig->addFunction(new Twig_SimpleFunction('header_bar_items', function($items) {
+    $twig->addFunction(new Twig\TwigFunction('header_bar_items', function($items) {
         if(isset($items['button']))
             unset($items['button']);
         return $items;
     }));
 
-    $twig->addFunction(new Twig_SimpleFunction('menu_items', function($options) {
+    $twig->addFunction(new Twig\TwigFunction('menu_items', function($options) {
 
         if($options['theme_location_menu'])
             $menu = get_term(get_nav_menu_locations()[$options['theme_location_menu']], 'nav_menu')->name;
@@ -69,11 +69,11 @@ else:
         return wp_get_nav_menu_items($menu);
     }));
 
-    $twig->addFunction(new Twig_SimpleFunction('all_pages', function() {
+    $twig->addFunction(new Twig\TwigFunction('all_pages', function() {
         return get_pages();
     }));
 
-    $twig->addFunction(new Twig_SimpleFunction('font_icons', function($array) {
+    $twig->addFunction(new Twig\TwigFunction('font_icons', function($array) {
         $new_array = [];
         for($i=0; $i < count($array['id']); $i++):
             $new_array[$i] = [
@@ -88,7 +88,7 @@ else:
     $twig->addGlobal('admin_url', get_admin_url());
     $twig->addGlobal('shortcode', '[responsive_menu]');
 
-    $twig->addFunction(new Twig_SimpleFunction('get_available_themes', function() {
+    $twig->addFunction(new Twig\TwigFunction('get_available_themes', function() {
         $theme_folder_path = wp_upload_dir()['basedir'] . '/responsive-menu-themes';
         $theme_folders = glob($theme_folder_path . '/*' , GLOB_ONLYDIR);
 
@@ -105,11 +105,11 @@ else:
     $twig->addGlobal('themes_folder_url', wp_upload_dir()['baseurl'] . '/responsive-menu-themes/');
     $twig->addGlobal('themes_folder_dir', wp_upload_dir()['basedir'] . '/responsive-menu-themes/');
 
-    $twig->addFunction(new Twig_SimpleFunction('hide_pro_options', function() {
+    $twig->addFunction(new Twig\TwigFunction('hide_pro_options', function() {
         return get_option('hide_pro_options', 'no');
     }));
 
-    $twig->addFunction(new Twig_SimpleFunction('nav_menus', function() {
+    $twig->addFunction(new Twig\TwigFunction('nav_menus', function() {
         $menus_array = [];
         foreach(get_terms('nav_menu') as $menu)
             $menus_array[$menu->slug] = $menu->name;
@@ -117,7 +117,7 @@ else:
         return $menus_array;
     }));
 
-    $twig->addFunction(new Twig_SimpleFunction('location_menus', function() {
+    $twig->addFunction(new Twig\TwigFunction('location_menus', function() {
         $location_menus = ['' => 'None'];
         foreach(get_registered_nav_menus() as $location => $menu)
             $location_menus[$location] = $menu;
@@ -127,7 +127,7 @@ else:
 
 endif;
 
-$twig->addFilter(new Twig_SimpleFilter('json_decode', function($string) {
+$twig->addFilter(new Twig\TwigFilter('json_decode', function($string) {
     return json_decode($string, true);
 }));
 
