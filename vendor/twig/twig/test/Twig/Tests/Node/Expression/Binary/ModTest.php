@@ -9,17 +9,13 @@
  * file that was distributed with this source code.
  */
 
-use Twig\Node\Expression\Binary\ModBinary;
-use Twig\Node\Expression\ConstantExpression;
-use Twig\Test\NodeTestCase;
-
-class Twig_Tests_Node_Expression_Binary_ModTest extends NodeTestCase
+class Twig_Tests_Node_Expression_Binary_ModTest extends Twig_Test_NodeTestCase
 {
     public function testConstructor()
     {
-        $left = new ConstantExpression(1, 1);
-        $right = new ConstantExpression(2, 1);
-        $node = new ModBinary($left, $right, 1);
+        $left = new Twig_Node_Expression_Constant(1, 1);
+        $right = new Twig_Node_Expression_Constant(2, 1);
+        $node = new Twig_Node_Expression_Binary_Mod($left, $right, 1);
 
         $this->assertEquals($left, $node->getNode('left'));
         $this->assertEquals($right, $node->getNode('right'));
@@ -27,12 +23,12 @@ class Twig_Tests_Node_Expression_Binary_ModTest extends NodeTestCase
 
     public function getTests()
     {
-        $left = new ConstantExpression(1, 1);
-        $right = new ConstantExpression(2, 1);
-        $node = new ModBinary($left, $right, 1);
+        $left = new Twig_Node_Expression_Constant(1, 1);
+        $right = new Twig_Node_Expression_Constant(2, 1);
+        $node = new Twig_Node_Expression_Binary_Mod($left, $right, 1);
 
-        return [
-            [$node, '(1 % 2)'],
-        ];
+        return array(
+            array($node, '(1 % 2)'),
+        );
     }
 }

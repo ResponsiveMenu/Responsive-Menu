@@ -9,83 +9,59 @@
  * file that was distributed with this source code.
  */
 
-use Twig\Loader\ArrayLoader;
-
-class Twig_Tests_Loader_ArrayTest extends \PHPUnit\Framework\TestCase
+class Twig_Tests_Loader_ArrayTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @group legacy
      */
     public function testGetSource()
     {
-        $loader = new ArrayLoader(['foo' => 'bar']);
+        $loader = new Twig_Loader_Array(array('foo' => 'bar'));
 
         $this->assertEquals('bar', $loader->getSource('foo'));
     }
 
     /**
      * @group legacy
-     * @expectedException \Twig\Error\LoaderError
+     * @expectedException Twig_Error_Loader
      */
     public function testGetSourceWhenTemplateDoesNotExist()
     {
-        $loader = new ArrayLoader([]);
+        $loader = new Twig_Loader_Array(array());
 
         $loader->getSource('foo');
     }
 
     /**
-     * @expectedException \Twig\Error\LoaderError
+     * @expectedException Twig_Error_Loader
      */
     public function testGetSourceContextWhenTemplateDoesNotExist()
     {
-        $loader = new ArrayLoader([]);
+        $loader = new Twig_Loader_Array(array());
 
         $loader->getSourceContext('foo');
     }
 
     public function testGetCacheKey()
     {
-        $loader = new ArrayLoader(['foo' => 'bar']);
+        $loader = new Twig_Loader_Array(array('foo' => 'bar'));
 
-        $this->assertEquals('foo:bar', $loader->getCacheKey('foo'));
-    }
-
-    public function testGetCacheKeyWhenTemplateHasDuplicateContent()
-    {
-        $loader = new ArrayLoader([
-            'foo' => 'bar',
-            'baz' => 'bar',
-        ]);
-
-        $this->assertEquals('foo:bar', $loader->getCacheKey('foo'));
-        $this->assertEquals('baz:bar', $loader->getCacheKey('baz'));
-    }
-
-    public function testGetCacheKeyIsProtectedFromEdgeCollisions()
-    {
-        $loader = new ArrayLoader([
-            'foo__' => 'bar',
-            'foo' => '__bar',
-        ]);
-
-        $this->assertEquals('foo__:bar', $loader->getCacheKey('foo__'));
-        $this->assertEquals('foo:__bar', $loader->getCacheKey('foo'));
+        $this->assertEquals('bar', $loader->getCacheKey('foo'));
     }
 
     /**
-     * @expectedException \Twig\Error\LoaderError
+     * @expectedException Twig_Error_Loader
      */
     public function testGetCacheKeyWhenTemplateDoesNotExist()
     {
-        $loader = new ArrayLoader([]);
+        $loader = new Twig_Loader_Array(array());
 
         $loader->getCacheKey('foo');
     }
 
     public function testSetTemplate()
     {
-        $loader = new ArrayLoader([]);
+        $loader = new Twig_Loader_Array(array());
         $loader->setTemplate('foo', 'bar');
 
         $this->assertEquals('bar', $loader->getSourceContext('foo')->getCode());
@@ -93,16 +69,16 @@ class Twig_Tests_Loader_ArrayTest extends \PHPUnit\Framework\TestCase
 
     public function testIsFresh()
     {
-        $loader = new ArrayLoader(['foo' => 'bar']);
+        $loader = new Twig_Loader_Array(array('foo' => 'bar'));
         $this->assertTrue($loader->isFresh('foo', time()));
     }
 
     /**
-     * @expectedException \Twig\Error\LoaderError
+     * @expectedException Twig_Error_Loader
      */
     public function testIsFreshWhenTemplateDoesNotExist()
     {
-        $loader = new ArrayLoader([]);
+        $loader = new Twig_Loader_Array(array());
 
         $loader->isFresh('foo', time());
     }
@@ -110,12 +86,12 @@ class Twig_Tests_Loader_ArrayTest extends \PHPUnit\Framework\TestCase
     public function testTemplateReference()
     {
         $name = new Twig_Test_Loader_TemplateReference('foo');
-        $loader = new ArrayLoader(['foo' => 'bar']);
+        $loader = new Twig_Loader_Array(array('foo' => 'bar'));
 
         $loader->getCacheKey($name);
         $loader->getSourceContext($name);
         $loader->isFresh($name, time());
-        $loader->setTemplate($name, 'foo:bar');
+        $loader->setTemplate($name, 'foobar');
 
         // add a dummy assertion here to satisfy PHPUnit, the only thing we want to test is that the code above
         // can be executed without crashing PHP

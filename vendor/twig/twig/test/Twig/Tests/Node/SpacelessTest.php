@@ -9,34 +9,29 @@
  * file that was distributed with this source code.
  */
 
-use Twig\Node\Node;
-use Twig\Node\SpacelessNode;
-use Twig\Node\TextNode;
-use Twig\Test\NodeTestCase;
-
-class Twig_Tests_Node_SpacelessTest extends NodeTestCase
+class Twig_Tests_Node_SpacelessTest extends Twig_Test_NodeTestCase
 {
     public function testConstructor()
     {
-        $body = new Node([new TextNode('<div>   <div>   foo   </div>   </div>', 1)]);
-        $node = new SpacelessNode($body, 1);
+        $body = new Twig_Node(array(new Twig_Node_Text('<div>   <div>   foo   </div>   </div>', 1)));
+        $node = new Twig_Node_Spaceless($body, 1);
 
         $this->assertEquals($body, $node->getNode('body'));
     }
 
     public function getTests()
     {
-        $body = new Node([new TextNode('<div>   <div>   foo   </div>   </div>', 1)]);
-        $node = new SpacelessNode($body, 1);
+        $body = new Twig_Node(array(new Twig_Node_Text('<div>   <div>   foo   </div>   </div>', 1)));
+        $node = new Twig_Node_Spaceless($body, 1);
 
-        return [
-            [$node, <<<EOF
+        return array(
+            array($node, <<<EOF
 // line 1
-ob_start(function () { return ''; });
+ob_start();
 echo "<div>   <div>   foo   </div>   </div>";
 echo trim(preg_replace('/>\s+</', '><', ob_get_clean()));
 EOF
-            ],
-        ];
+            ),
+        );
     }
 }

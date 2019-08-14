@@ -9,13 +9,11 @@
  * file that was distributed with this source code.
  */
 
-use Twig\Profiler\Dumper\BlackfireDumper;
-
 class Twig_Tests_Profiler_Dumper_BlackfireTest extends Twig_Tests_Profiler_Dumper_AbstractTest
 {
     public function testDump()
     {
-        $dumper = new BlackfireDumper();
+        $dumper = new Twig_Profiler_Dumper_Blackfire();
 
         $this->assertStringMatchesFormat(<<<EOF
 file-format: BlackfireProbe

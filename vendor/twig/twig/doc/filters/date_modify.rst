@@ -6,7 +6,7 @@
 
 The ``date_modify`` filter modifies a date with a given modifier string:
 
-.. code-block:: twig
+.. code-block:: jinja
 
     {{ post.published_at|date_modify("+1 day")|date("m/d/Y") }}
 
@@ -19,5 +19,5 @@ Arguments
 
 * ``modifier``: The modifier
 
-.. _`strtotime`: https://secure.php.net/strtotime
-.. _`DateTime`:  https://secure.php.net/DateTime
+.. _`strtotime`: http://www.php.net/strtotime
+.. _`DateTime`:  http://www.php.net/DateTime

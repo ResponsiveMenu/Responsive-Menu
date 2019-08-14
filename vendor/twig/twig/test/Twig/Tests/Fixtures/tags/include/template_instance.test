@@ -1,10 +1,10 @@
 --TEST--
-"include" tag accepts \Twig\TemplateWrapper instance
+"include" tag accepts Twig_Template instance
 --TEMPLATE--
 {% include foo %} FOO
 --TEMPLATE(foo.twig)--
 BAR
 --DATA--
-return ['foo' => $twig->load('foo.twig')]
+return array('foo' => $twig->loadTemplate('foo.twig'))
 --EXPECT--
 BAR FOO

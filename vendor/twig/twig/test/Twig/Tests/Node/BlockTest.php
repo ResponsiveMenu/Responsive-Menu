@@ -9,16 +9,12 @@
  * file that was distributed with this source code.
  */
 
-use Twig\Node\BlockNode;
-use Twig\Node\TextNode;
-use Twig\Test\NodeTestCase;
-
-class Twig_Tests_Node_BlockTest extends NodeTestCase
+class Twig_Tests_Node_BlockTest extends Twig_Test_NodeTestCase
 {
     public function testConstructor()
     {
-        $body = new TextNode('foo', 1);
-        $node = new BlockNode('foo', $body, 1);
+        $body = new Twig_Node_Text('foo', 1);
+        $node = new Twig_Node_Block('foo', $body, 1);
 
         $this->assertEquals($body, $node->getNode('body'));
         $this->assertEquals('foo', $node->getAttribute('name'));
@@ -26,18 +22,18 @@ class Twig_Tests_Node_BlockTest extends NodeTestCase
 
     public function getTests()
     {
-        $body = new TextNode('foo', 1);
-        $node = new BlockNode('foo', $body, 1);
+        $body = new Twig_Node_Text('foo', 1);
+        $node = new Twig_Node_Block('foo', $body, 1);
 
-        return [
-            [$node, <<<EOF
+        return array(
+            array($node, <<<EOF
 // line 1
-public function block_foo(\$context, array \$blocks = [])
+public function block_foo(\$context, array \$blocks = array())
 {
     echo "foo";
 }
 EOF
-            ],
-        ];
+            ),
+        );
     }
 }

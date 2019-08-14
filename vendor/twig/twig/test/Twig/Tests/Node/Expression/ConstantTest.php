@@ -9,24 +9,21 @@
  * file that was distributed with this source code.
  */
 
-use Twig\Node\Expression\ConstantExpression;
-use Twig\Test\NodeTestCase;
-
-class Twig_Tests_Node_Expression_ConstantTest extends NodeTestCase
+class Twig_Tests_Node_Expression_ConstantTest extends Twig_Test_NodeTestCase
 {
     public function testConstructor()
     {
-        $node = new ConstantExpression('foo', 1);
+        $node = new Twig_Node_Expression_Constant('foo', 1);
 
         $this->assertEquals('foo', $node->getAttribute('value'));
     }
 
     public function getTests()
     {
-        $tests = [];
+        $tests = array();
 
-        $node = new ConstantExpression('foo', 1);
-        $tests[] = [$node, '"foo"'];
+        $node = new Twig_Node_Expression_Constant('foo', 1);
+        $tests[] = array($node, '"foo"');
 
         return $tests;
     }

@@ -1,13 +1,13 @@
 <?php
 
 namespace ResponsiveMenu\View;
-use \Twig\Environment;
+use \Twig_Environment;
 
 class View {
 
     protected $twig;
 
-    public function __construct(Environment $twig) {
+    public function __construct(Twig_Environment $twig) {
         $this->twig = $twig;
     }
 

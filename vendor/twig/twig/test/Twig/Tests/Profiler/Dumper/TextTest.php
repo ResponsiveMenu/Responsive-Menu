@@ -9,13 +9,11 @@
  * file that was distributed with this source code.
  */
 
-use Twig\Profiler\Dumper\TextDumper;
-
 class Twig_Tests_Profiler_Dumper_TextTest extends Twig_Tests_Profiler_Dumper_AbstractTest
 {
     public function testDump()
     {
-        $dumper = new TextDumper();
+        $dumper = new Twig_Profiler_Dumper_Text();
         $this->assertStringMatchesFormat(<<<EOF
 main %d.%dms/%d%
 └ index.twig %d.%dms/%d%

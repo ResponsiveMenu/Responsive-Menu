@@ -9,9 +9,9 @@
 --TEMPLATE(index.txt.twig)--
 {{ br -}}
 --DATA--
-return ['br' => '<br />']
+return array('br' => '<br />')
 --CONFIG--
-return ['autoescape' => 'filename']
+return array('autoescape' => 'filename')
 --EXPECT--
 &lt;br /&gt;
 &lt;br /&gt;

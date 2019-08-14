@@ -9,7 +9,7 @@
 
 The ``source`` function returns the content of a template without rendering it:
 
-.. code-block:: twig
+.. code-block:: jinja
 
     {{ source('template.html') }}
     {{ source(some_var) }}
@@ -17,7 +17,7 @@ The ``source`` function returns the content of a template without rendering it:
 When you set the ``ignore_missing`` flag, Twig will return an empty string if
 the template does not exist:
 
-.. code-block:: twig
+.. code-block:: jinja
 
     {{ source('template.html', ignore_missing = true) }}
 

@@ -9,38 +9,35 @@
  * file that was distributed with this source code.
  */
 
-use Twig\Node\SandboxNode;
-use Twig\Node\TextNode;
-use Twig\Test\NodeTestCase;
-
-class Twig_Tests_Node_SandboxTest extends NodeTestCase
+class Twig_Tests_Node_SandboxTest extends Twig_Test_NodeTestCase
 {
     public function testConstructor()
     {
-        $body = new TextNode('foo', 1);
-        $node = new SandboxNode($body, 1);
+        $body = new Twig_Node_Text('foo', 1);
+        $node = new Twig_Node_Sandbox($body, 1);
 
         $this->assertEquals($body, $node->getNode('body'));
     }
 
     public function getTests()
     {
-        $tests = [];
+        $tests = array();
 
-        $body = new TextNode('foo', 1);
-        $node = new SandboxNode($body, 1);
+        $body = new Twig_Node_Text('foo', 1);
+        $node = new Twig_Node_Sandbox($body, 1);
 
-        $tests[] = [$node, <<<EOF
+        $tests[] = array($node, <<<EOF
 // line 1
-if (!\$alreadySandboxed = \$this->sandbox->isSandboxed()) {
-    \$this->sandbox->enableSandbox();
+\$sandbox = \$this->env->getExtension('Twig_Extension_Sandbox');
+if (!\$alreadySandboxed = \$sandbox->isSandboxed()) {
+    \$sandbox->enableSandbox();
 }
 echo "foo";
 if (!\$alreadySandboxed) {
-    \$this->sandbox->disableSandbox();
+    \$sandbox->disableSandbox();
 }
 EOF
-        ];
+        );
 
         return $tests;
     }

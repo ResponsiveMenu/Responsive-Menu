@@ -9,9 +9,7 @@
  * file that was distributed with this source code.
  */
 
-use Twig\Extension\ExtensionInterface;
-
-@trigger_error('The Twig_Test_Method class is deprecated since version 1.12 and will be removed in 2.0. Use \Twig\TwigTest instead.', E_USER_DEPRECATED);
+@trigger_error('The Twig_Test_Method class is deprecated since version 1.12 and will be removed in 2.0. Use Twig_SimpleTest instead.', E_USER_DEPRECATED);
 
 /**
  * Represents a method template test.
@@ -25,9 +23,9 @@ class Twig_Test_Method extends Twig_Test
     protected $extension;
     protected $method;
 
-    public function __construct(ExtensionInterface $extension, $method, array $options = [])
+    public function __construct(Twig_ExtensionInterface $extension, $method, array $options = array())
     {
-        $options['callable'] = [$extension, $method];
+        $options['callable'] = array($extension, $method);
 
         parent::__construct($options);
 
@@ -37,6 +35,6 @@ class Twig_Test_Method extends Twig_Test
 
     public function compile()
     {
-        return sprintf('$this->env->getExtension(\'%s\')->%s', \get_class($this->extension), $this->method);
+        return sprintf('$this->env->getExtension(\'%s\')->%s', get_class($this->extension), $this->method);
     }
 }
