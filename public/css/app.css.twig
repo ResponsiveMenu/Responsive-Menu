@@ -149,8 +149,31 @@ button#responsive-menu-button,
         width: 100%;
         display: block;
         text-decoration: none;
-        padding: 0 {{ options.menu_depth_0 }}%;
+        
         position: relative;
+    }
+
+
+     #responsive-menu-container #responsive-menu li.responsive-menu-item a {
+        {% if options.menu_text_alignment == 'left' and options.arrow_position == 'left' %}
+            padding-left: {{options.submenu_arrow_width + 5}}px;
+        {% elseif options.menu_text_alignment == 'right' and options.arrow_position == 'right' %}
+            padding-right: {{options.submenu_arrow_width + 5}}px;
+        {% else %}
+            padding: 0 {{ options.menu_depth_0 }}%;
+        {% endif %}
+    }
+
+    #responsive-menu-container .responsive-menu-submenu li.responsive-menu-item a {
+        {% if options.submenu_text_alignment == 'left' and options.submenu_arrow_position == 'left' %}
+            padding-left: {{options.submenu_submenu_arrow_width + 5}}px !important;
+            padding-right:unset !important;
+        {% elseif options.submenu_text_alignment == 'right' and options.submenu_arrow_position == 'right' %}
+            padding-right: {{options.submenu_submenu_arrow_width + 5}}px  !important;
+            padding-left:unset  !important;
+        {% else %}
+            padding: 0 {{ options.menu_depth_0 }}%;
+        {% endif %}
     }
 
     #responsive-menu-container li.responsive-menu-item a .fa {
@@ -512,7 +535,13 @@ button#responsive-menu-button,
         line-height: {{ options.submenu_arrow_height }}px;
         width: {{ options.submenu_arrow_width }}px;
         color: {{ options.menu_sub_arrow_shape_colour }};
-        border-left: {{ options.menu_border_width }}px solid {{ options.menu_sub_arrow_border_colour }};
+        {% if options.arrow_position == 'left' %}
+        border-right: {{ options.menu_border_width }}px
+        {% endif %}
+        {% if options.arrow_position == 'right' %}
+        border-left: {{ options.menu_border_width }}px 
+        {% endif %}
+        solid {{ options.menu_sub_arrow_border_colour }};
         background-color: {{ options.menu_sub_arrow_background_colour }};
     }
 
@@ -552,6 +581,7 @@ button#responsive-menu-button,
                 font-family: {{ "'" ~ options.submenu_font ~ "'" }};
             {% endif %}
             font-size: {{ options.submenu_font_size }}px;
+            text-align: {{ options.submenu_text_alignment }};
         }
 
         #responsive-menu-container #responsive-menu ul.responsive-menu-submenu li.responsive-menu-item a {
@@ -587,12 +617,26 @@ button#responsive-menu-button,
         }
 
         #responsive-menu-container #responsive-menu ul.responsive-menu-submenu li.responsive-menu-item a .responsive-menu-subarrow {
-            {{ options.submenu_arrow_position }}: 0;
+            {% if options.submenu_arrow_position == 'left' %}
+                left:0;
+                right:unset;
+            {% endif %}
+            {% if options.submenu_arrow_position == 'right' %}
+                left:unset;
+                right:0;
+            {% endif %}
             height: {{ options.submenu_submenu_arrow_height }}px;
             line-height: {{ options.submenu_submenu_arrow_height }}px;
             width: {{ options.submenu_submenu_arrow_width }}px;
             color: {{ options.submenu_sub_arrow_shape_colour }};
-            border-left: {{ options.submenu_border_width }}px solid {{ options.submenu_sub_arrow_border_colour }};
+            {% if options.submenu_arrow_position == 'left' %}
+                border-right: {{ options.submenu_border_width }}px solid {{ options.submenu_sub_arrow_border_colour }}  !important;
+                border-left:unset !important;
+            {% endif %}
+            {% if options.submenu_arrow_position == 'right' %}
+                border-left: {{ options.submenu_border_width }}px solid {{ options.submenu_sub_arrow_border_colour }}  !important;
+                border-right:unset  !important;
+            {% endif %}
             background-color: {{ options.submenu_sub_arrow_background_colour }};
         }
 
