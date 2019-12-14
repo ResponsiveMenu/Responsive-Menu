@@ -1,9 +1,9 @@
 === Responsive Menu ===
-Contributors: peterfeatherstone
+Contributors: expresstech,responsivemenu
 Tags: responsive, menu, navigation, mobile, hamburger
 Requires at least: 3.6
-Tested up to: 5.2.2
-Stable tag: 3.1.24
+Tested up to: 5.3.1
+Stable tag: 3.1.25
 Requires PHP: 5.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -110,6 +110,12 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 15. Admin Desktop Menu Section
 
 == Changelog ==
+
+= 3.1.25 (14th Dec 2019) =
+* Fix: Sub Menus -> Text Alignment Option does not work
+* Fix: Trigger Icon Position
+* Fix: Trigger Icon Border CSS code
+* Fix: Menu Text goes under Trigger Icon
 
 = 3.1.24 (14th Aug 2019) =
 * Allow support for PHP 5.5 again.
