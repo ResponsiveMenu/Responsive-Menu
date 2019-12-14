@@ -4,12 +4,12 @@
 Plugin Name: Responsive Menu
 Plugin URI: https://responsive.menu
 Description: Highly Customisable Responsive Menu Plugin for WordPress
-Version: 3.1.24
-Author: Peter Featherstone
+Version: 3.1.25
+Author: ExpressTech
 Text Domain: responsive-menu
-Author URI: https://responsive.menu
+Author URI: https://expresstech.io
 License: GPL2
-Tags: responsive, menu, responsive menu
+Tags: responsive, menu, responsive menu, mega menu, max mega menu, max menu
 */
 
 add_action('admin_init', 'check_responsive_menu_php_version');
