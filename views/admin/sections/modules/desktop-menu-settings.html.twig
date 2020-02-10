@@ -34,7 +34,7 @@
             {% if continue %}
                 <div
                         data-id="{{ item.ID }}"
-                        class="{% if loop.first %}responsive-menu-desktop-menu-label-active {% endif %}responsive-menu-desktop-menu-label {{ class }}">
+                        class="{% if loop.first %} responsive-menu-desktop-menu-label-active {% endif %} responsive-menu-desktop-menu-label {{ ' ' ~ class }}">
                     {{ item.title }}
                     <div class="pull-right">
                         <span class="label label-info">
