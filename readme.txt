@@ -1,8 +1,8 @@
-=== Responsive Menu ===
+=== Responsive Menu - Create Mobile-Friendly Menu ===
 Contributors: expresstech,responsivemenu
-Tags: responsive, menu, navigation, mobile, hamburger
+Tags: responsive, menu, navigation, mobile, hamburger, mobile menu, responsive menu
 Requires at least: 3.6
-Tested up to: 5.3.1
+Tested up to: 5.3.2
 Stable tag: 3.1.25
 Requires PHP: 5.5
 License: GPLv2 or later
