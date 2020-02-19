@@ -3,7 +3,7 @@ Contributors: expresstech,responsivemenu
 Tags: responsive, menu, navigation, mobile, hamburger, mobile menu, responsive menu
 Requires at least: 3.6
 Tested up to: 5.3.2
-Stable tag: 3.1.25
+Stable tag: 3.1.26
 Requires PHP: 5.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -17,8 +17,8 @@ Highly customisable Responsive Menu Plugin for WordPress. With over 150 customis
 
 **See it in action:**
 
-[https://responsive.menu](https://responsive.menu)
-[https://demo.responsive.menu](https://demo.responsive.menu)
+[https://responsive.menu](https://responsive.menu/?utm_source=readme&utm_medium=plugin&utm_campaign=reponsivemenu_plugin)
+[https://demo.responsive.menu](https://demo.responsive.menu/?utm_source=readme&utm_medium=plugin&utm_campaign=reponsivemenu_plugin)
 
 **Requirements:**
 
@@ -26,8 +26,8 @@ PHP 5.5+
 
 **Full Knowledgebase and dedicated support forum:**
 
-[https://responsive.menu/knowledgebase/](https://responsive.menu/knowledgebase/)
-[https://responsive.menu/forums/forum/pro-support/](https://responsive.menu/forums/forum/pro-support/)
+[https://responsive.menu/knowledgebase/](https://responsive.menu/knowledgebase/?utm_source=readme&utm_medium=plugin&utm_campaign=reponsivemenu_plugin)
+[https://responsive.menu/forums/forum/pro-support/](https://responsive.menu/forums/forum/pro-support/?utm_source=readme&utm_medium=plugin&utm_campaign=reponsivemenu_plugin)
 
 **Fully unit tested:**
 
@@ -89,7 +89,7 @@ Alternatively:
 
 == Frequently Asked Questions ==
 
-To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.menu/faq/).
+To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.menu/faq/?utm_source=readme&utm_medium=plugin&utm_campaign=reponsivemenu_plugin).
 
 == Screenshots ==
 
@@ -110,6 +110,10 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 15. Admin Desktop Menu Section
 
 == Changelog ==
+
+= 3.1.26 (19th Feb 2020) = 
+* Fix: WordPress 5.3 Compatibility 
+* Fix: PHP v7.4 Compatibility
 
 = 3.1.25 (14th Dec 2019) =
 * Fix: Sub Menus -> Text Alignment Option does not work
