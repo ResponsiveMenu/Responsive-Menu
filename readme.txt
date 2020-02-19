@@ -111,6 +111,10 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 
 == Changelog ==
 
+= v3.1.26 (19/02/2020) = 
+* Fix: WordPress 5.3 Compatibility 
+* Fix: PHP v7.4 Compatibility
+
 = 3.1.25 (14th Dec 2019) =
 * Fix: Sub Menus -> Text Alignment Option does not work
 * Fix: Trigger Icon Position
