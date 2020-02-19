@@ -2,8 +2,8 @@
 Contributors: expresstech,responsivemenu
 Tags: responsive, menu, navigation, mobile, hamburger
 Requires at least: 3.6
-Tested up to: 5.3.1
-Stable tag: 3.1.25
+Tested up to: 5.3.2
+Stable tag: 3.1.26
 Requires PHP: 5.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
