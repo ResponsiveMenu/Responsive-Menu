@@ -17,8 +17,8 @@ Highly customisable Responsive Menu Plugin for WordPress. With over 150 customis
 
 **See it in action:**
 
-[https://responsive.menu](https://responsive.menu)
-[https://demo.responsive.menu](https://demo.responsive.menu)
+[https://responsive.menu](https://responsive.menu/?utm_source=readme&utm_medium=plugin&utm_campaign=reponsivemenu_plugin)
+[https://demo.responsive.menu](https://demo.responsive.menu/?utm_source=readme&utm_medium=plugin&utm_campaign=reponsivemenu_plugin)
 
 **Requirements:**
 
@@ -26,8 +26,8 @@ PHP 5.5+
 
 **Full Knowledgebase and dedicated support forum:**
 
-[https://responsive.menu/knowledgebase/](https://responsive.menu/knowledgebase/)
-[https://responsive.menu/forums/forum/pro-support/](https://responsive.menu/forums/forum/pro-support/)
+[https://responsive.menu/knowledgebase/](https://responsive.menu/knowledgebase/?utm_source=readme&utm_medium=plugin&utm_campaign=reponsivemenu_plugin)
+[https://responsive.menu/forums/forum/pro-support/](https://responsive.menu/forums/forum/pro-support/?utm_source=readme&utm_medium=plugin&utm_campaign=reponsivemenu_plugin)
 
 **Fully unit tested:**
 
@@ -89,7 +89,7 @@ Alternatively:
 
 == Frequently Asked Questions ==
 
-To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.menu/faq/).
+To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.menu/faq/?utm_source=readme&utm_medium=plugin&utm_campaign=reponsivemenu_plugin).
 
 == Screenshots ==
 
