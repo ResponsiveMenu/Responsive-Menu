@@ -111,7 +111,7 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 
 == Changelog ==
 
-= v3.1.26 (19/02/2020) = 
+= v3.1.26 (19th Feb 2020) = 
 * Fix: WordPress 5.3 Compatibility 
 * Fix: PHP v7.4 Compatibility
 
