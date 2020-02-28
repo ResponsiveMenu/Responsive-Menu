@@ -630,11 +630,11 @@ button#responsive-menu-button,
             width: {{ options.submenu_submenu_arrow_width }}px;
             color: {{ options.submenu_sub_arrow_shape_colour }};
             {% if options.submenu_arrow_position == 'left' %}
-                border-right: {{ options.submenu_border_width }}px solid {{ options.submenu_sub_arrow_border_colour }}  !important;
+                border-right: {{ options.submenu_border_width }}px solid {{ ' ' ~ options.submenu_sub_arrow_border_colour }}  !important;
                 border-left:unset !important;
             {% endif %}
             {% if options.submenu_arrow_position == 'right' %}
-                border-left: {{ options.submenu_border_width }}px solid {{ options.submenu_sub_arrow_border_colour }}  !important;
+                border-left: {{ options.submenu_border_width }}px solid {{ ' ' ~ options.submenu_sub_arrow_border_colour }}  !important;
                 border-right:unset  !important;
             {% endif %}
             background-color: {{ options.submenu_sub_arrow_background_colour }};
