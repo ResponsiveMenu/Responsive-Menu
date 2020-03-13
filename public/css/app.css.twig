@@ -536,10 +536,10 @@ button#responsive-menu-button,
         width: {{ options.submenu_arrow_width }}px;
         color: {{ options.menu_sub_arrow_shape_colour }};
         {% if options.arrow_position == 'left' %}
-        border-right: {{ options.menu_border_width }}px
+        border-right: {{ options.menu_border_width }}px {{' '}}
         {% endif %}
         {% if options.arrow_position == 'right' %}
-        border-left: {{ options.menu_border_width }}px 
+        border-left: {{ options.menu_border_width }}px {{' '}}
         {% endif %}
         solid {{ ' ' ~ options.menu_sub_arrow_border_colour }};
         background-color: {{ options.menu_sub_arrow_background_colour }};
