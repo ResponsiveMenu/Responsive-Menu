@@ -160,7 +160,7 @@ button#responsive-menu-button,
         {% elseif options.menu_text_alignment == 'right' and options.arrow_position == 'right' %}
             padding-right: {{options.submenu_arrow_width + 5}}px;
         {% else %}
-            padding: 0 {{ ' ' ~ options.menu_depth_0 }}%;
+            padding: 0 {{ ' ' }} {{ options.menu_depth_0 }}%;
         {% endif %}
     }
 
@@ -172,7 +172,7 @@ button#responsive-menu-button,
             padding-right: {{options.submenu_submenu_arrow_width + 5}}px  !important;
             padding-left:unset  !important;
         {% else %}
-            padding: 0 {{ ' ' ~ options.menu_depth_0 }}%;
+            padding: 0 {{ ' ' }} {{ options.menu_depth_0 }}%;
         {% endif %}
     }
 
@@ -362,7 +362,7 @@ button#responsive-menu-button,
 
     button#responsive-menu-button {
         display: inline-block;
-        transition: transform {{ ' ' ~ options.animation_speed }}s, background-color {{ ' ' ~ options.transition_speed }}s;
+        transition: transform {{ ' ' }} {{ options.animation_speed }}s, background-color {{ ' ' }} {{ options.transition_speed }}s;
     }
 
     {% if options.menu_close_on_body_click == 'on' %}
@@ -377,7 +377,7 @@ button#responsive-menu-button,
 
     {% if options.page_wrapper %}
         {{ options.page_wrapper }} {
-            transition: transform {{ ' ' ~ options.animation_speed }}s;
+            transition: transform {{ ' ' }} {{ options.animation_speed }}s;
         }
 
         html.responsive-menu-open,
@@ -389,7 +389,7 @@ button#responsive-menu-button,
     #responsive-menu-container {
         width: {{ options.menu_width }}%;
         {{ options.menu_appear_from }}: 0;
-        transition: transform {{ ' ' ~ options.animation_speed }}s;
+        transition: transform {{ ' ' }} {{ options.animation_speed }}s;
         text-align: {{ options.menu_text_alignment }};
         {% if options.menu_maximum_width %}
             max-width: {{ options.menu_maximum_width }}px;
@@ -418,7 +418,7 @@ button#responsive-menu-button,
 
     #responsive-menu-container .responsive-menu-search-box {
         background: {{ options.menu_search_box_background_colour }};
-        border: 2px solid {{ ' ' ~ options.menu_search_box_border_colour }};
+        border: 2px solid {{ ' ' }} {{ options.menu_search_box_border_colour }};
         color: {{ options.menu_search_box_text_colour }};
     }
 
@@ -443,7 +443,7 @@ button#responsive-menu-button,
     #responsive-menu-container .responsive-menu-item-link,
     #responsive-menu-container #responsive-menu-title,
     #responsive-menu-container .responsive-menu-subarrow {
-        transition: background-color {{ ' ' ~ options.transition_speed }}s, border-color {{ ' ' ~ options.transition_speed }}s, color {{ ' ' ~  options.transition_speed }}s;
+        transition: background-color {{ ' ' }} {{ options.transition_speed }}s, border-color {{ ' ' }} {{ options.transition_speed }}s, color {{ ' ' }} {{ options.transition_speed }}s;
     }
 
     #responsive-menu-container #responsive-menu-title {
@@ -490,7 +490,7 @@ button#responsive-menu-button,
     }
 
     #responsive-menu-container #responsive-menu > li.responsive-menu-item:first-child > a {
-        border-top: {{ options.menu_border_width }}px solid {{ options.menu_item_border_colour }};
+        border-top: {{ options.menu_border_width }}px solid {{ ' ' }} {{ options.menu_item_border_colour }};
     }
 
     #responsive-menu-container #responsive-menu li.responsive-menu-item .responsive-menu-item-link {
@@ -499,7 +499,7 @@ button#responsive-menu-button,
 
     #responsive-menu-container #responsive-menu li.responsive-menu-item a {
         line-height: {{ options.menu_links_line_height }}px;
-        border-bottom: {{ options.menu_border_width }}px solid {{ ' ' ~ options.menu_item_border_colour }};
+        border-bottom: {{ options.menu_border_width }}px solid {{ ' ' }} {{ options.menu_item_border_colour }};
         color: {{ options.menu_link_colour }};
         background-color: {{ options.menu_item_background_colour }};
         {% if options.menu_word_wrap != 'off' %}
@@ -536,12 +536,12 @@ button#responsive-menu-button,
         width: {{ options.submenu_arrow_width }}px;
         color: {{ options.menu_sub_arrow_shape_colour }};
         {% if options.arrow_position == 'left' %}
-        border-right: {{ options.menu_border_width }}px
+        border-right: {{ options.menu_border_width ~ 'px solid ' ~ options.menu_sub_arrow_border_colour }};
         {% endif %}
         {% if options.arrow_position == 'right' %}
-        border-left: {{ options.menu_border_width }}px 
+        border-left: {{ options.menu_border_width ~ 'px solid ' ~ options.menu_sub_arrow_border_colour }};
         {% endif %}
-        solid {{ options.menu_sub_arrow_border_colour }};
+
         background-color: {{ options.menu_sub_arrow_background_colour }};
     }
 
@@ -593,7 +593,7 @@ button#responsive-menu-button,
                 height: {{ options.menu_links_height }}px;
             {% endif %}
             line-height: {{ options.submenu_links_line_height }}px;
-            border-bottom: {{ options.submenu_border_width }}px solid {{ ' ' ~ options.submenu_item_border_colour }};
+            border-bottom: {{ options.submenu_border_width }}px solid {{ ' ' }} {{ options.submenu_item_border_colour }};
             color: {{ options.submenu_link_colour }};
             background-color: {{ options.submenu_item_background_colour }};
         }
@@ -630,11 +630,11 @@ button#responsive-menu-button,
             width: {{ options.submenu_submenu_arrow_width }}px;
             color: {{ options.submenu_sub_arrow_shape_colour }};
             {% if options.submenu_arrow_position == 'left' %}
-                border-right: {{ options.submenu_border_width }}px solid {{ options.submenu_sub_arrow_border_colour }}  !important;
+                border-right: {{ options.submenu_border_width }}px solid {{ ' ' }} {{ options.submenu_sub_arrow_border_colour }}  !important;
                 border-left:unset !important;
             {% endif %}
             {% if options.submenu_arrow_position == 'right' %}
-                border-left: {{ options.submenu_border_width }}px solid {{ options.submenu_sub_arrow_border_colour }}  !important;
+                border-left: {{ options.submenu_border_width }}px solid {{ ' ' }} {{ options.submenu_sub_arrow_border_colour }}  !important;
                 border-right:unset  !important;
             {% endif %}
             background-color: {{ options.submenu_sub_arrow_background_colour }};
