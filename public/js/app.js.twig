@@ -187,6 +187,93 @@ jQuery(document).ready(function($) {
                     self.triggerSubArrow($(this).children('.responsive-menu-subarrow').first());
                 });
             }
+
+            {# Handle accessibility for slidebar menu. #}
+            if (jQuery('#responsive-menu-button').css('display') != 'none') {
+                $('#responsive-menu-button,#responsive-menu a.responsive-menu-item-link, #responsive-menu-wrapper input').focus( function() {
+                    $(this).addClass('is-active');
+                    $('html').addClass('responsive-menu-open');
+                    $('#responsive-menu li').css({"opacity": "1", "margin-left": "0"});
+                });
+
+                $('#responsive-menu-button, a.responsive-menu-item-link,#responsive-menu-wrapper input').focusout( function() {
+                    if ( $(this).last('#responsive-menu-button a.responsive-menu-item-link') ) {
+                        $(this).removeClass('is-active');
+                        $('html').removeClass('responsive-menu-open');
+                    }
+                });
+            }
+
+            {# Handling menu with arrow keys #}
+            $('#responsive-menu a.responsive-menu-item-link').keydown(function(event) {
+                console.log( event.keyCode );
+                if ( [13,27,32,35,36,37,38,39,40].indexOf( event.keyCode) == -1) {
+                    return;
+                }
+                var link = $(this);
+                switch(event.keyCode) {
+                    case 13:
+                        {# Press enter key to activate the link. #}
+                        link.click();
+                        break;
+                    case 27:
+                        {# Escape key to close the active submenu. #}
+                        var dropdown = link.parent('li').parents('.responsive-menu-submenu');
+                        if ( dropdown.length > 0 ) {
+                            dropdown.hide();
+                            dropdown.prev().focus();
+                        }
+                        break;
+
+                    case 32:
+                        {# Space enter key to open submenu. #}
+                        var dropdown = link.parent('li').find('.responsive-menu-submenu');
+                        if ( dropdown.length > 0 ) {
+                            dropdown.show();
+                            dropdown.find('a, input, button, textarea').first().focus();
+                        }
+                        break;
+
+                    case 35:
+                        {# End key to move the focus on last menu item. #}
+                        var dropdown = link.parent('li').find('.responsive-menu-submenu');
+                        if ( dropdown.length > 0 ) {
+                            dropdown.hide();
+                        }
+                        $(this).parents('#responsive-menu').find('a.responsive-menu-item-link').filter(':visible').last().focus();
+                        break;
+                    case 36:
+                        {# Home key move the focus on first element of menu. #}
+                        var dropdown = link.parent('li').find('.responsive-menu-submenu');
+                        if( dropdown.length > 0 ) {
+                            dropdown.hide();
+                        }
+                        $(this).parents('#responsive-menu').find('a.responsive-menu-item-link').filter(':visible').first().focus();
+                        break;
+                    case 37:
+                    case 38:
+                        event.preventDefault();
+                        event.stopPropagation();
+                        {# Handle left/up arrow key event. #}
+                        if ( link.parent('li').prevAll('li').filter(':visible').first().length == 0) {
+                            link.parent('li').nextAll('li').filter(':visible').last().find('a').first().focus();
+                        } else {
+                            link.parent('li').prevAll('li').filter(':visible').first().find('a').first().focus();
+                        }
+                        break;
+                    case 39:
+                    case 40:
+                        event.preventDefault();
+                        event.stopPropagation();
+                        {# Handle right/down arrow key event. #}
+                        if( link.parent('li').nextAll('li').filter(':visible').first().length == 0) {
+                            link.parent('li').prevAll('li').filter(':visible').last().find('a').first().focus();
+                        } else {
+                            link.parent('li').nextAll('li').filter(':visible').first().find('a').first().focus();
+                        }
+                        break;
+                }
+            });
         }
     };
     ResponsiveMenu.init();
