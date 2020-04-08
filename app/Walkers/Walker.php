@@ -41,7 +41,7 @@ class Walker extends \Walker_Nav_Menu {
 
         $id = ' id="responsive-menu-item-' . esc_attr( $item->ID ) . '"';
 
-        $output .= '<li' . $id . $class_names .'>';
+        $output .= '<li' . $id . $class_names .'  role="none">';
 
         $atts = array();
         $atts['title']  = ! empty( $item->attr_title ) ? $item->attr_title : '';
@@ -49,7 +49,8 @@ class Walker extends \Walker_Nav_Menu {
         $atts['rel']    = ! empty( $item->xfn )        ? $item->xfn        : '';
         $atts['href']   = ! empty( $item->url )        ? $item->url        : '';
         $atts['class']   = 'responsive-menu-item-link';
-
+        $atts['tabindex'] = 1;
+        $atts['role']= "menuitem";
         $atts = apply_filters('nav_menu_link_attributes', $atts, $item, $args, $depth);
 
         $attributes = '';
@@ -98,7 +99,7 @@ class Walker extends \Walker_Nav_Menu {
     }
 
     public function start_lvl(&$output, $depth = 0, $args = array()) {
-        $output .= "<ul class='responsive-menu-submenu responsive-menu-submenu-depth-" . ($depth + 1) . $this->getSubmenuClassOpenOrNot() . "'>";
+        $output .= "<ul aria-label='". esc_attr( $this->current_item->title) ."' role='menu' class='responsive-menu-submenu responsive-menu-submenu-depth-" . ($depth + 1) . $this->getSubmenuClassOpenOrNot() . "'>";
     }
 
     public function end_el(&$output, $item, $depth = 0, $args = array()) {
