@@ -3,7 +3,7 @@ Contributors: expresstech,responsivemenu
 Tags: responsive, mega menu, navigation, mobile, hamburger
 Requires at least: 3.6
 Tested up to: 5.4
-Stable tag: 3.1.27
+Stable tag: 3.1.28
 Requires PHP: 5.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -110,6 +110,9 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 15. Admin Desktop Menu Section
 
 == Changelog ==
+
+= 3.1.28 (13th April 2020) =
+* Feature: Added keyboard accessibility
 
 = 3.1.27 (19th Mar 2020) =
 * Fix: PHP v7.4 Compatibility
