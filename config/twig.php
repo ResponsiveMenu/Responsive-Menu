@@ -32,6 +32,7 @@ if(!is_admin()):
                 'depth' => $options['menu_depth'] ? $options['menu_depth'] : 0,
                 'theme_location' => $options['theme_location_menu'] ? $options['theme_location_menu'] : null,
                 'walker' => $walker,
+                'items_wrap' => '<ul id="%1$s" role="menubar" aria-label="'. $menu .'">%3$s</ul>',
                 'echo' => false
             ]
         );

@@ -48,7 +48,7 @@
 {% endmacro %}
 
 {% macro select(name, value, choices, class='') %}
-    <select id='responsive-menu-{{ name|replace({'_': '-'}) }}' class='selectpicker show-tick {{ class }}' name='menu[{{ name }}]'>
+    <select id='responsive-menu-{{ name|replace({'_': '-'}) }}' class='selectpicker show-tick {{' '}} {{ class }}' name='menu[{{ name }}]'>
         {% for key, display in choices %}
             <option value='{{ key }}' {% if key == value %}selected='selected'{% endif %}>
                 {{ display }}
@@ -203,6 +203,27 @@
                         'centre': 'Centre'
                     } %}
                     {{ macros.select(name, options[name], choices) }}
+                 {% elseif select_type == 'mega_standard_menu_animation' %}
+                      {% set choices = {
+                        'fade': 'Fade',
+                        'fadeUp': 'FadeUp',
+                        'slideDown': 'SlideDown',
+                        'slideUp': 'SlideUp'
+                    } %}
+                    {{ macros.select(name, options[name], choices, 'is-animation-input') }}
+                     {% set choices = {
+                        '100ms': '100ms',
+                        '200ms': '200ms',
+                        '300ms': '300ms',
+                        '400ms': '400ms',
+                        '500ms': '500ms',
+                        '600ms': '600ms',
+                        '700ms': '700ms',
+                        '800ms': '800ms',
+                        '900ms': '900ms',
+                        '1000ms': '1000ms',
+                    } %}
+                    {{ macros.select(name ~ '_speed', options[name ~ '_speed'], choices, 'is-animation-input') }}
                 {% elseif select_type == 'position' %}
                     <select id='responsive-menu-{{ name|replace({'_': '-'}) }}' class='selectpicker show-tick' name='menu[{{ name }}]'>
                         <option data-subtext='Will stay in position as you scroll down the page.' value='fixed' {% if options[name] == 'fixed' %}selected='selected'{% endif %}>Fixed</option>
