@@ -112,7 +112,7 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 == Changelog ==
 
 = 3.1.29 (1st May 2020) =
-* Fix: Menu broken when import the settings
+* Bug: Fix Menu import functionality when menu names do not match
 
 = 3.1.28 (13th April 2020) =
 * Feature: Added keyboard accessibility
