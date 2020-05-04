@@ -23,6 +23,15 @@ if(!is_admin()):
         $menu = $translator($options['menu_to_use'], 'menu_to_use');
         $walker = $options['custom_walker'] ? new $options['custom_walker']($options) : new ResponsiveMenu\Walkers\Walker($options);
 
+        /** Check menu is exist or not */
+        $menu_arial_label = '';
+        foreach( get_terms('nav_menu') as $nav_menu ) {
+            if ( $nav_menu->slug === $menu ) {
+                $menu_arial_label = "aria-label= " . $menu;
+                break;
+            }
+        }
+
         return wp_nav_menu(
             [
                 'container' => '',
@@ -32,7 +41,7 @@ if(!is_admin()):
                 'depth' => $options['menu_depth'] ? $options['menu_depth'] : 0,
                 'theme_location' => $options['theme_location_menu'] ? $options['theme_location_menu'] : null,
                 'walker' => $walker,
-                'items_wrap' => '<ul id="%1$s" role="menubar" aria-label="'. $menu .'">%3$s</ul>',
+                'items_wrap' => '<ul id="%1$s" role="menubar" "'. $menu_arial_label .'" >%3$s</ul>',
                 'echo' => false
             ]
         );
