@@ -2,8 +2,8 @@
 Contributors: expresstech,responsivemenu
 Tags: responsive, mega menu, navigation, mobile, hamburger
 Requires at least: 3.6
-Tested up to: 5.4
-Stable tag: 3.1.29
+Tested up to: 5.4.2
+Stable tag: 3.1.30
 Requires PHP: 5.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -110,6 +110,9 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 15. Admin Desktop Menu Section
 
 == Changelog ==
+
+= 3.1.30 (23rd July 2020) =
+* Bug: Fixed menu arial-label
 
 = 3.1.29 (4th May 2020) =
 * Bug: Fix Menu import functionality when menu names do not match
