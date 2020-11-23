@@ -1,0 +1,929 @@
+/*  Menu Trigger Boring Animation */
+
+.rmp-menu-trigger-boring {
+    .responsive-menu-pro-inner {
+        transition-property: none;
+        &::after,
+        &::before{
+            transition-property: none;
+        }
+    }
+
+    &.is-active {
+        .responsive-menu-pro-inner {
+            transform: rotate(45deg);
+            &:before{
+                top: 0;
+                opacity: 0;
+            }
+            &:after{
+                bottom: 0;
+                transform: rotate(-90deg);
+            }
+        }
+    }
+}
+
+/*  Menu Trigger Spin Animation */
+
+.rmp-menu-trigger-spin .responsive-menu-pro-inner {
+    transition-duration: 0.3s;
+    transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.rmp-menu-trigger-spin .responsive-menu-pro-inner::before {
+    transition: top 0.1s 0.34s ease-in,
+                opacity 0.1s ease-in;
+}
+
+.rmp-menu-trigger-spin .responsive-menu-pro-inner::after {
+    transition: bottom 0.1s 0.34s ease-in,
+                transform 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.rmp-menu-trigger-spin.is-active .responsive-menu-pro-inner {
+    transform: rotate(225deg);
+    transition-delay: 0.14s;
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.rmp-menu-trigger-spin.is-active .responsive-menu-pro-inner::before {
+    top: 0;
+    opacity: 0;
+    transition: top 0.1s ease-out,
+                opacity 0.1s 0.14s ease-out;
+}
+
+.rmp-menu-trigger-spin.is-active .responsive-menu-pro-inner::after {
+    bottom: 0;
+    transform: rotate(-90deg);
+    transition: bottom 0.1s ease-out,
+                transform 0.3s 0.14s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+
+/*  Menu Trigger Spin Reverse Animation */
+.rmp-menu-trigger-spin-r .responsive-menu-pro-inner {
+    transition-duration: 0.3s;
+    transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.rmp-menu-trigger-spin-r .responsive-menu-pro-inner::before {
+    transition: top 0.1s 0.34s ease-in,
+                opacity 0.1s ease-in;
+}
+
+.rmp-menu-trigger-spin-r .responsive-menu-pro-inner::after {
+    transition: bottom 0.1s 0.34s ease-in,
+                transform 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.rmp-menu-trigger-spin-r.is-active .responsive-menu-pro-inner {
+    transform: rotate(-225deg);
+    transition-delay: 0.14s;
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.rmp-menu-trigger-spin-r.is-active .responsive-menu-pro-inner::before {
+    top: 0;
+    opacity: 0;
+    transition: top 0.1s ease-out,
+                opacity 0.1s 0.14s ease-out;
+}
+
+.rmp-menu-trigger-spin-r.is-active .responsive-menu-pro-inner::after {
+    bottom: 0;
+    transform: rotate(-90deg);
+    transition: bottom 0.1s ease-out,
+                transform 0.3s 0.14s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+/*  Menu Trigger Minus Animation */
+
+.rmp-menu-trigger-minus .responsive-menu-pro-inner::before,
+.rmp-menu-trigger-minus .responsive-menu-pro-inner::after {
+     transition: bottom 0.08s 0s ease-out,
+     top 0.08s 0s ease-out,
+     opacity 0s linear;
+ }
+
+.rmp-menu-trigger-minus.is-active::before,
+.rmp-menu-trigger-minus.is-active::after {
+     opacity: 0;
+     transition: bottom 0.08s ease-out,
+     top 0.08s ease-out,
+     opacity 0s 0.08s linear;
+}
+
+.rmp-menu-trigger-minus.is-active .responsive-menu-pro-inner::before {
+     top: 0;
+ }
+
+.rmp-menu-trigger-minus.is-active .responsive-menu-pro-inner::after {
+     bottom: 0;
+ }
+
+/*  Menu Trigger Vortex Animation */
+
+.rmp-menu-trigger-vortex .responsive-menu-pro-inner {
+    transition-duration: 0.3s;
+    transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.rmp-menu-trigger-vortex .responsive-menu-pro-inner::before,
+.rmp-menu-trigger-vortex .responsive-menu-pro-inner::after {
+    transition-duration: 0s;
+    transition-delay: 0.1s;
+    transition-timing-function: linear;
+}
+
+.rmp-menu-trigger-vortex .responsive-menu-pro-inner::before {
+    transition-property: top, opacity;
+}
+
+.rmp-menu-trigger-vortex .responsive-menu-pro-inner::after {
+    transition-property: bottom, transform;
+}
+
+button.rmp_menu_trigger.rmp-menu-trigger-vortex.is-active:hover .responsive-menu-pro-inner,
+.rmp-menu-trigger-vortex.is-active .responsive-menu-pro-inner {
+    transform: rotate(765deg);
+    transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.rmp-menu-trigger-vortex.is-active .responsive-menu-pro-inner&::before,
+.rmp-menu-trigger-vortex.is-active .responsive-menu-pro-inner::after {
+    transition-delay: 0s;
+}
+
+.rmp-menu-trigger-vortex.is-active .responsive-menu-pro-inner::before {
+    top: 0;
+    opacity: 0;
+}
+
+.rmp-menu-trigger-vortex.is-active .responsive-menu-pro-inner::after {
+    bottom: 0;
+    transform: rotate(90deg);
+}
+
+
+/*  Menu Trigger Vortex Reverse Animation */
+.rmp-menu-trigger-vortex-r .responsive-menu-pro-inner {
+    transition-duration: 0.3s;
+    transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.rmp-menu-trigger-vortex-r .responsive-menu-pro-inner::before,
+.rmp-menu-trigger-vortex-r .responsive-menu-pro-inner::after {
+    transition-duration: 0s;
+    transition-delay: 0.1s;
+    transition-timing-function: linear;
+}
+
+.rmp-menu-trigger-vortex-r .responsive-menu-pro-inner::before {
+    transition-property: top, opacity;
+}
+
+.rmp-menu-trigger-vortex-r .responsive-menu-pro-inner::after {
+    transition-property: bottom, transform;
+}
+
+.rmp-menu-trigger-vortex-r.is-active .responsive-menu-pro-inner {
+    transform: rotate(-765deg);
+    transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.rmp-menu-trigger-vortex-r.is-active .responsive-menu-pro-inner::before,
+.rmp-menu-trigger-vortex-r.is-active .responsive-menu-pro-inner::after {
+    transition-delay: 0s;
+}
+
+.rmp-menu-trigger-vortex-r.is-active .responsive-menu-pro-inner::before {
+    top: 0;
+    opacity: 0;
+}
+
+.rmp-menu-trigger-vortex-r.is-active .responsive-menu-pro-inner::after {
+    bottom: 0;
+    transform: rotate(-90deg);
+}
+
+/*  Menu Trigger Stand  Animation */
+
+.rmp-menu-trigger-stand .responsive-menu-pro-inner {
+    transition: transform 0.1s 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19),
+                background-color 0s 0.1s linear;
+}
+
+.rmp-menu-trigger-stand .responsive-menu-pro-inner::before {
+    transition: top 0.1s 0.1s ease-in,
+                transform 0.1s 0s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.rmp-menu-trigger-stand .responsive-menu-pro-inner::after {
+    transition: bottom 0.1s 0.1s ease-in,
+                transform 0.1s 0s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.rmp_menu_trigger.rmp-menu-trigger-stand.is-active:hover .responsive-menu-pro-inner,
+.rmp_menu_trigger.rmp-menu-trigger-stand.is-active .responsive-menu-pro-inner {
+    transform: rotate(90deg);
+    background-color: transparent !important;
+    transition: transform 0.1s 0s cubic-bezier(0.215, 0.61, 0.355, 1),
+                background-color 0s 0.22s linear;
+}
+
+.rmp-menu-trigger-stand.is-active .responsive-menu-pro-inner::before {
+    top: 0;
+    transform: rotate(-45deg);
+    transition: top 0.1s 0.12s ease-out,
+                transform 0.1s 0.22s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.rmp-menu-trigger-stand.is-active .responsive-menu-pro-inner::after {
+    bottom: 0;
+    transform: rotate(45deg);
+    transition: bottom 0.1s 0.12s ease-out,
+                transform 0.1s 0.22s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+/*  Menu Trigger Stand Reverse Animation */
+.rmp-menu-trigger-stand-r .responsive-menu-pro-inner {
+    transition: transform 0.1s 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19),
+                background-color 0s 0.1s linear;
+}
+
+.rmp-menu-trigger-stand-r .responsive-menu-pro-inner::before {
+    transition: top 0.1s 0.1s ease-in,
+                transform 0.1s 0s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.rmp-menu-trigger-stand-r .responsive-menu-pro-inner::after {
+    transition: bottom 0.1s 0.1s ease-in,
+                transform 0.1s 0s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.rmp-menu-trigger-stand-r.is-active:hover .responsive-menu-pro-inner,
+.rmp-menu-trigger-stand-r.is-active .responsive-menu-pro-inner {
+    transform: rotate(-90deg);
+    background-color: transparent !important;
+    transition: transform 0.1s 0s cubic-bezier(0.215, 0.61, 0.355, 1),
+                background-color 0s 0.22s linear;
+}
+
+.rmp-menu-trigger-stand-r.is-active .responsive-menu-pro-inner::before {
+    top: 0;
+    transform: rotate(-45deg);
+    transition: top 0.1s 0.12s ease-out,
+                transform 0.1s 0.22s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.rmp-menu-trigger-stand-r.is-active .responsive-menu-pro-inner::after {
+    bottom: 0;
+    transform: rotate(45deg);
+    transition: bottom 0.1s 0.12s ease-out,
+                transform 0.1s 0.22s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+/*  Menu Trigger squeeze animation */
+.rmp-menu-trigger-squeeze .responsive-menu-pro-inner {
+    transition-duration: 0.1s;
+    transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.rmp-menu-trigger-squeeze .responsive-menu-pro-inner::before {
+    transition: top 0.1s 0.14s ease,
+                opacity 0.1s ease;
+}
+
+.rmp-menu-trigger-squeeze .responsive-menu-pro-inner::after {
+    transition: bottom 0.1s 0.14s ease,
+                transform 0.1s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.rmp-menu-trigger-squeeze.is-active .responsive-menu-pro-inner {
+    transform: rotate(45deg);
+    transition-delay: 0.14s;
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.rmp-menu-trigger-squeeze.is-active .responsive-menu-pro-inner::before {
+    top: 0;
+    opacity: 0;
+    transition: top 0.1s ease,
+                opacity 0.1s 0.14s ease;
+}
+
+.rmp-menu-trigger-squeeze.is-active .responsive-menu-pro-inner::after {
+    bottom: 0;
+    transform: rotate(-90deg);
+    transition: bottom 0.1s ease,
+                transform 0.1s 0.14s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+/*  Menu Trigger spring animation */
+
+.rmp-menu-trigger-spring .responsive-menu-pro-inner {
+    top: ( $menu_trigger_line_margin / 2 ) + $menu_trigger_line_margin_unit;
+    transition: background-color 0s 0.15s linear;
+}
+
+.rmp-menu-trigger-spring .responsive-menu-pro-inner::before {
+    top: ( $menu_trigger_line_height + $menu_trigger_line_margin ) + $menu_trigger_line_height_unit;
+    transition: top 0.12s 0.3s cubic-bezier(0.33333, 0.66667, 0.66667, 1),
+                transform 0.15s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.rmp-menu-trigger-spring .responsive-menu-pro-inner::after {
+    top: ($menu_trigger_line_height * 2) + ($menu_trigger_line_margin * 2) + $menu_trigger_line_height_unit;
+    transition: top 0.3s 0.3s cubic-bezier(0.33333, 0.66667, 0.66667, 1),
+    transform 0.15s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.rmp-menu-trigger-spring.is-active:hover .responsive-menu-pro-inner,
+.rmp-menu-trigger-spring.is-active .responsive-menu-pro-inner {
+    transition-delay: 0.32s;
+    background-color: transparent !important;
+}
+
+.rmp-menu-trigger-spring.is-active .responsive-menu-pro-inner::before {
+    top: 0;
+    transition: top 0.12s 0.18s cubic-bezier(0.33333, 0, 0.66667, 0.33333),
+    transform 0.15s 0.32s cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: translate3d(0, ($menu_trigger_line_margin + $menu_trigger_line_height) + ( $menu_trigger_line_margin_unit ), 0) rotate(45deg);
+}
+
+.rmp-menu-trigger-spring.is-active .responsive-menu-pro-inner::after {
+    top: 0;
+    transition: top 0.3s cubic-bezier(0.33333, 0, 0.66667, 0.33333),
+    transform 0.15s 0.32s cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: translate3d(0, ($menu_trigger_line_margin + $menu_trigger_line_height) + ( $menu_trigger_line_margin_unit ), 0) rotate(-45deg);
+}
+
+/*  Menu Trigger spring reverse animation */
+.rmp-menu-trigger-spring-r .responsive-menu-pro-inner {
+    top: auto;
+    bottom: 0;
+    transition-duration: 0.15s;
+    transition-delay: 0s;
+    transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.rmp-menu-trigger-spring-r .responsive-menu-pro-inner::before {
+    transition: top 0.12s 0.3s cubic-bezier(0.33333, 0.66667, 0.66667, 1),
+                transform 0.15s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.rmp-menu-trigger-spring-r .responsive-menu-pro-inner::after {
+    top: ( ( $menu_trigger_line_margin * 2 + $menu_trigger_line_height * 2) * -1 ) + $menu_trigger_line_margin_unit;
+    transition: top 0.3s 0.3s cubic-bezier(0.33333, 0.66667, 0.66667, 1),
+                opacity 0s linear;
+}
+
+.rmp-menu-trigger-spring-r.is-active .responsive-menu-pro-inner {
+    transform: translate3d(0, ( ( $menu_trigger_line_margin * 2 + $menu_trigger_line_height * 2) * -1 ) + $menu_trigger_line_margin_unit, 0) rotate(-45deg);
+    transition-delay: 0.32s;
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.rmp-menu-trigger-spring-r.is-active .responsive-menu-pro-inner::after {
+    top: 0;
+    opacity: 0;
+    transition: top 0.3s cubic-bezier(0.33333, 0, 0.66667, 0.33333),
+                opacity 0s 0.32s linear;
+}
+
+.rmp-menu-trigger-spring-r.is-active .responsive-menu-pro-inner::before {
+    top: 0;
+    transform: rotate(90deg);
+    transition: top 0.12s 0.18s cubic-bezier(0.33333, 0, 0.66667, 0.33333),
+                transform 0.15s 0.32s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+/*  Menu Trigger slider animation */
+
+.rmp-menu-trigger-slider .responsive-menu-pro-inner {
+    top: ( $menu_trigger_line_height / 2 ) + $menu_trigger_line_height_unit;
+}
+
+.rmp-menu-trigger-slider .responsive-menu-pro-inner::before {
+    top: ( $menu_trigger_line_height + $menu_trigger_line_margin ) + ( $menu_trigger_line_height_unit );
+    transition-property: transform, opacity;
+    transition-timing-function: ease;
+    transition-duration: 0.2s;
+}
+
+.rmp-menu-trigger-slider .responsive-menu-pro-inner::after {
+    top: ( ($menu_trigger_line_height * 2) + ($menu_trigger_line_margin * 2) )( $menu_trigger_line_height_unit );
+}
+
+.rmp-menu-trigger-slider.is-active .responsive-menu-pro-inner {
+    transform: translate3d(0, ( $menu_trigger_line_margin + $menu_trigger_line_height )( $menu_trigger_line_margin_unit ), 0) rotate(45deg);
+}
+
+.rmp-menu-trigger-slider.is-active .responsive-menu-pro-inner::before {
+    transform: rotate(-45deg) translate3d(( $menu_trigger_line_width / -7 )( $menu_trigger_line_width_unit ), ( $menu_trigger_line_margin * -1 )( $menu_trigger_line_margin_unit ), 0);
+    opacity: 0;
+}
+
+.rmp-menu-trigger-slider.is-active .responsive-menu-pro-inner::after {
+    transform: translate3d(0, ( ($menu_trigger_line_margin + $menu_trigger_line_height) * -2 )( $menu_trigger_line_margin_unit ), 0) rotate(-90deg);
+}
+
+/*  Menu Trigger slider reverse animation */
+
+.rmp-menu-trigger-slider-r .responsive-menu-pro-inner {
+    top: ( $menu_trigger_line_height / 2 )( $menu_trigger_line_height_unit );
+}
+
+.rmp-menu-trigger-slider-r .responsive-menu-pro-inner::before {
+    top: ( $menu_trigger_line_height + $menu_trigger_line_margin )( $menu_trigger_line_height_unit );
+    transition-property: transform, opacity;
+    transition-timing-function: ease;
+    transition-duration: 0.2s;
+}
+
+.rmp-menu-trigger-slider-r .responsive-menu-pro-inner::after {
+    top: ( ($menu_trigger_line_height * 2) + ($menu_trigger_line_margin * 2) )( $menu_trigger_line_height_unit );
+}
+
+.rmp-menu-trigger-slider-r.is-active .responsive-menu-pro-inner {
+    transform: translate3d(0, ( $menu_trigger_line_margin + $menu_trigger_line_height )( $menu_trigger_line_margin_unit ), 0) rotate(-45deg);
+}
+
+.rmp-menu-trigger-slider-r.is-active .responsive-menu-pro-inner::before {
+    transform: rotate(45deg) translate3d(( $menu_trigger_line_width / -7 )( $menu_trigger_line_width_unit ), ( $menu_trigger_line_margin * -1 )( $menu_trigger_line_margin_unit ), 0);
+    opacity: 0;
+}
+
+.rmp-menu-trigger-slider-r.is-active .responsive-menu-pro-inner::after {
+    transform: translate3d(0, ( ($menu_trigger_line_margin + $menu_trigger_line_height) * -2 )( $menu_trigger_line_margin_unit ), 0) rotate(90deg);
+}
+
+/*  Menu Trigger emphatic animation */
+
+.rmp-menu-trigger-emphatic {
+    overflow: hidden;
+}
+
+.rmp-menu-trigger-emphatic .responsive-menu-pro-inner {
+    transition: background-color 0.2s 0.25s ease-in;
+}
+
+.rmp-menu-trigger-emphatic .responsive-menu-pro-inner::before {
+    left: 0;
+    transition: transform 0.2s cubic-bezier(0.6, 0.04, 0.98, 0.335),
+                top 0.05s 0.2s linear,
+                left 0.2s 0.25s ease-in;
+}
+
+.rmp-menu-trigger-emphatic .responsive-menu-pro-inner::after {
+    top: ( $menu_trigger_line_height + $menu_trigger_line_margin )( $menu_trigger_line_height_unit );
+    right: 0;
+    transition: transform 0.2s cubic-bezier(0.6, 0.04, 0.98, 0.335),
+                top 0.05s 0.2s linear,
+                right 0.2s 0.25s ease-in;
+}
+
+button.rmp_menu_trigger .rmp-menu-trigger-emphatic.is-active:hover .responsive-menu-pro-inner,
+.rmp-menu-trigger-emphatic.is-active .responsive-menu-pro-inner {
+    transition-delay: 0s;
+    transition-timing-function: ease-out;
+    background-color: transparent;
+}
+
+.rmp-menu-trigger-emphatic.is-active .responsive-menu-pro-inner::before {
+    left: ( $menu_trigger_line_width * -2 )( $menu_trigger_line_width_unit );
+    top: ( $menu_trigger_line_width * -2 )( $menu_trigger_line_width_unit );
+    transform: translate3d(( $menu_trigger_line_width * 2 )( $menu_trigger_line_width_unit ), ( $menu_trigger_line_width * 2 )( $menu_trigger_line_width_unit ), 0) rotate(45deg);
+    transition: left 0.2s ease-out,
+        top 0.05s 0.2s linear,
+        transform 0.2s 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.rmp-menu-trigger-emphatic.is-active .responsive-menu-pro-inner::after {
+    right: ( $menu_trigger_line_width * -2 )( $menu_trigger_line_width_unit );
+    top: ( $menu_trigger_line_width * -2 )( $menu_trigger_line_width_unit );
+    transform: translate3d(( $menu_trigger_line_width * -2 )( $menu_trigger_line_width_unit ), ( $menu_trigger_line_width * 2 )( $menu_trigger_line_width_unit ), 0) rotate(-45deg);
+    transition: right 0.2s ease-out,
+                top 0.05s 0.2s linear,
+                transform 0.2s 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+/*  Menu Trigger emphatic reverese animation */
+
+.rmp-menu-trigger-emphatic-r {
+    overflow: hidden;
+}
+
+.rmp-menu-trigger-emphatic-r .responsive-menu-pro-inner {
+    transition: background-color 0.2s 0.25s ease-in;
+}
+
+.rmp-menu-trigger-emphatic-r .responsive-menu-pro-inner::before {
+    left: 0;
+    transition: transform 0.2s cubic-bezier(0.6, 0.04, 0.98, 0.335),
+                top 0.05s 0.2s linear,
+                left 0.2s 0.25s ease-in;
+}
+
+.rmp-menu-trigger-emphatic-r .responsive-menu-pro-inner::after {
+    top: ( $menu_trigger_line_height + $menu_trigger_line_margin )( $menu_trigger_line_height_unit );
+    right: 0;
+    transition: transform 0.2s cubic-bezier(0.6, 0.04, 0.98, 0.335),
+                top 0.05s 0.2s linear,
+                right 0.2s 0.25s ease-in;
+}
+
+button.rmp_menu_trigger .rmp-menu-trigger-emphatic-r.is-active:hover .responsive-menu-pro-inner,
+.rmp-menu-trigger-emphatic-r.is-active .responsive-menu-pro-inner {
+    transition-delay: 0s;
+    transition-timing-function: ease-out;
+    background-color: transparent;
+}
+
+.rmp-menu-trigger-emphatic-r.is-active .responsive-menu-pro-inner::before {
+    left: ( $menu_trigger_line_width * -2 )( $menu_trigger_line_width_unit );
+    top: ( $menu_trigger_line_width * 2 )( $menu_trigger_line_width_unit );
+    transform: translate3d(( $menu_trigger_line_width * 2 )( $menu_trigger_line_width_unit ), ( $menu_trigger_line_width * -2 )( $menu_trigger_line_width_unit ), 0) rotate(-45deg);
+    transition: left 0.2s ease-out,
+                top 0.05s 0.2s linear,
+                transform 0.2s 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.rmp-menu-trigger-emphatic-r.is-active .responsive-menu-pro-inner::after {
+    right: ( $menu_trigger_line_width * -2 )( $menu_trigger_line_width_unit );
+    top: ( $menu_trigger_line_width * 2 )( $menu_trigger_line_width_unit );
+    transform: translate3d(( $menu_trigger_line_width * -2 )( $menu_trigger_line_width_unit ), ( $menu_trigger_line_width * -2 )( $menu_trigger_line_width_unit ), 0) rotate(45deg);
+    transition: right 0.2s ease-out,
+                top 0.05s 0.2s linear,
+                transform 0.2s 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+/*  Menu Trigger  elastic animation */
+
+.rmp-menu-trigger-elastic .responsive-menu-pro-inner {
+    top: ( $menu_trigger_line_height / 2 )( $menu_trigger_line_height_unit );
+    transition-duration: 0.4s;
+    transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.rmp-menu-trigger-elastic .responsive-menu-pro-inner::before {
+    top: ( $menu_trigger_line_height + $menu_trigger_line_margin )( $menu_trigger_line_height_unit );
+    transition: opacity 0.15s 0.4s ease;
+}
+
+.rmp-menu-trigger-elastic .responsive-menu-pro-inner::after {
+    top: ( ($menu_trigger_line_height * 2) + ($menu_trigger_line_margin * 2) )( $menu_trigger_line_height_unit );
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.rmp-menu-trigger-elastic.is-active .responsive-menu-pro-inner {
+    transform: translate3d(0, ( $menu_trigger_line_margin + $menu_trigger_line_height )( $menu_trigger_line_margin_unit ), 0) rotate(135deg);
+    transition-delay: 0.1s;
+}
+
+.rmp-menu-trigger-elastic.is-active .responsive-menu-pro-inner::before {
+    transition-delay: 0s;
+    opacity: 0;
+}
+
+.rmp-menu-trigger-elastic.is-active .responsive-menu-pro-inner::after {
+    transform: translate3d(0, ( ($menu_trigger_line_margin + $menu_trigger_line_height) * -2 )( $menu_trigger_line_margin_unit ), 0) rotate(-270deg);
+    transition-delay: 0.1s;
+}
+
+/*  Menu Trigger  elastic reverse animation */
+.rmp-menu-trigger-elastic-r.responsive-menu-pro-inner {
+    top: ( $menu_trigger_line_height / 2 )( $menu_trigger_line_height_unit );
+    transition-duration: 0.4s;
+    transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.rmp-menu-trigger-elastic-r.responsive-menu-pro-inner::before {
+    top: ( $menu_trigger_line_height + $menu_trigger_line_margin )( $menu_trigger_line_height_unit );
+    transition: opacity 0.15s 0.4s ease;
+}
+
+.rmp-menu-trigger-elastic-r.responsive-menu-pro-inner::after {
+    top: ( ($menu_trigger_line_height * 2) + ($menu_trigger_line_margin * 2) )( $menu_trigger_line_height_unit );
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.responsive-menu-pro-elastic-r.is-active .responsive-menu-pro-inner {
+    transform: translate3d(0, ( $menu_trigger_line_margin + $menu_trigger_line_height )( $menu_trigger_line_margin_unit ), 0) rotate(-135deg);
+    transition-delay: 0.1s;
+}
+
+.responsive-menu-pro-elastic-r.is-active .responsive-menu-pro-inner::before {
+    transition-delay: 0s;
+    opacity: 0;
+}
+
+.responsive-menu-pro-elastic-r.is-active .responsive-menu-pro-inner::after {
+    transform: translate3d(0, ( ($menu_trigger_line_margin + $menu_trigger_line_height) * -2 )( $menu_trigger_line_margin_unit ), 0) rotate(270deg);
+    transition-delay: 0.1s;
+}
+
+/*  Menu Trigger  collapse animation */
+
+.rmp-menu-trigger-collapse .responsive-menu-pro-inner {
+    top: auto;
+    bottom: 0;
+    transition-duration: 0.15s;
+    transition-delay: 0.15s;
+    transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.rmp-menu-trigger-collapse .responsive-menu-pro-inner::after {
+    top: ( ($menu_trigger_line_margin * 2 + $menu_trigger_line_height * 2) * -1 )( $menu_trigger_line_margin_unit );
+    transition: top 0.3s 0.3s cubic-bezier(0.33333, 0.66667, 0.66667, 1),
+                opacity 0.1s linear;
+}
+
+.rmp-menu-trigger-collapse .responsive-menu-pro-inner::before {
+    transition: top 0.12s 0.3s cubic-bezier(0.33333, 0.66667, 0.66667, 1),
+                transform 0.15s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.rmp-menu-trigger-collapse.is-active .responsive-menu-pro-inner {
+    transform: translate3d(0, ( ($menu_trigger_line_margin + $menu_trigger_line_height) * -1 )( $menu_trigger_line_margin_unit ), 0) rotate(-45deg);
+    transition-delay: 0.32s;
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.rmp-menu-trigger-collapse.is-active .responsive-menu-pro-inner::after {
+    top: 0;
+    opacity: 0;
+    transition: top 0.3s cubic-bezier(0.33333, 0, 0.66667, 0.33333),
+                opacity 0.1s 0.27s linear;
+}
+
+.rmp-menu-trigger-collapse.is-active .responsive-menu-pro-inner::before {
+    top: 0;
+    transform: rotate(-90deg);
+    transition: top 0.12s 0.18s cubic-bezier(0.33333, 0, 0.66667, 0.33333),
+                transform 0.15s 0.42s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+/*  Menu Trigger  collapse reverse animation */
+
+.rmp-menu-trigger-collapse-r .responsive-menu-pro-inner {
+    top: auto;
+    bottom: 0;
+    transition-duration: 0.15s;
+    transition-delay: 0.15s;
+    transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.rmp-menu-trigger-collapse-r .responsive-menu-pro-inner::after {
+    top: ( ($menu_trigger_line_margin * 2 + $menu_trigger_line_height * 2) * -1 )( $menu_trigger_line_margin_unit );
+    transition: top 0.3s 0.3s cubic-bezier(0.33333, 0.66667, 0.66667, 1),
+                opacity 0.1s linear;
+}
+
+.rmp-menu-trigger-collapse-r .responsive-menu-pro-inner::before {
+    transition: top 0.12s 0.3s cubic-bezier(0.33333, 0.66667, 0.66667, 1),
+                transform 0.15s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.rmp-menu-trigger-collapse-r.is-active .responsive-menu-pro-inner {
+    transform: translate3d(0, ( ($menu_trigger_line_margin + $menu_trigger_line_height) * -1 )( $menu_trigger_line_margin_unit ), 0) rotate(45deg);
+    transition-delay: 0.32s;
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.rmp-menu-trigger-collapse-r.is-active .responsive-menu-pro-inner::after {
+    top: 0;
+    opacity: 0;
+    transition: top 0.3s cubic-bezier(0.33333, 0, 0.66667, 0.33333),
+                opacity 0.1s 0.27s linear;
+}
+
+.rmp-menu-trigger-collapse-r.is-active .responsive-menu-pro-inner::before {
+    top: 0;
+    transform: rotate(90deg);
+    transition: top 0.12s 0.18s cubic-bezier(0.33333, 0, 0.66667, 0.33333),
+                transform 0.15s 0.42s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+/*  Menu Trigger  arrowalt animation */
+
+.rmp-menu-trigger-arrowalt .responsive-menu-pro-inner::before {
+    transition: top 0.1s 0.15s ease,
+                transform 0.15s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.rmp-menu-trigger-arrowalt .responsive-menu-pro-inner::after {
+    transition: bottom 0.1s 0.15s ease,
+                transform 0.15s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.rmp-menu-trigger-arrowalt.is-active .responsive-menu-pro-inner::before {
+    top: 0;
+    transform: translate3d(( $menu_trigger_line_width * -0.2 )( $menu_trigger_line_width_unit ), ( $menu_trigger_line_width * -0.25 )( $menu_trigger_line_width_unit ), 0) rotate(-45deg) scale(0.7, 1);
+    transition: top 0.1s ease,
+                transform 0.15s 0.1s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+}
+
+.rmp-menu-trigger-arrowalt.is-active .responsive-menu-pro-inner::after {
+    bottom: 0;
+    transform: translate3d(( $menu_trigger_line_width * -0.2 )( $menu_trigger_line_width_unit ), ( $menu_trigger_line_width * 0.25 )( $menu_trigger_line_width_unit ), 0) rotate(45deg) scale(0.7, 1);
+    transition: bottom 0.1s ease,
+                transform 0.15s 0.1s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+}
+
+/*  Menu Trigger  arrowalt reverse animation */
+
+.rmp-menu-trigger-arrowalt-r .responsive-menu-pro-inner::before {
+    transition: top 0.1s 0.15s ease,
+                transform 0.15s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.rmp-menu-trigger-arrowalt-r .responsive-menu-pro-inner::after {
+    transition: bottom 0.1s 0.15s ease,
+                transform 0.15s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.rmp-menu-trigger-arrowalt-r .is-active .responsive-menu-pro-inner::before {
+    top: 0;
+    transform: translate3d(( $menu_trigger_line_width * 0.2 )( $menu_trigger_line_width_unit ), ( $menu_trigger_line_width * -0.25 )( $menu_trigger_line_width_unit ), 0) rotate(45deg) scale(0.7, 1);
+    transition: top 0.1s ease,
+                transform 0.15s 0.1s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+}
+
+.rmp-menu-trigger-arrowalt-r .is-active .responsive-menu-pro-inner::after {
+    bottom: 0;
+    transform: translate3d(( $menu_trigger_line_width * 0.2 )( $menu_trigger_line_width_unit ), ( $menu_trigger_line_width * 0.25 )( $menu_trigger_line_width_unit ), 0) rotate(-45deg) scale(0.7, 1);
+    transition: bottom 0.1s ease,
+                transform 0.15s 0.1s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+}
+
+/*  Menu Trigger  arrow  animation */
+.rmp-menu-trigger-arrow.is-active .responsive-menu-pro-inner::before {
+    transform: translate3d(( $menu_trigger_line_width * -0.2 )( $menu_trigger_line_width_unit ), 0, 0) rotate(-45deg) scale(0.7, 1);
+}
+
+.rmp-menu-trigger-arrow.is-active .responsive-menu-pro-inner::after {
+    transform: translate3d(( $menu_trigger_line_width * -0.2 )( $menu_trigger_line_width_unit ), 0, 0) rotate(45deg) scale(0.7, 1);
+}
+
+/*  Menu Trigger  arrow reverse  animation */
+.rmp-menu-trigger-arrow-r.is-active .responsive-menu-pro-inner::before {
+    transform: translate3d(( $menu_trigger_line_width * 0.2 )( $menu_trigger_line_width_unit ), 0, 0) rotate(45deg) scale(0.7, 1);
+}
+
+.rmp-menu-trigger-arrow-r.is-active .responsive-menu-pro-inner::after {
+    transform: translate3d(( $menu_trigger_line_width * 0.2 )( $menu_trigger_line_width_unit ), 0, 0) rotate(-45deg) scale(0.7, 1);
+}
+
+/*  Menu Trigger  3dy  animation */
+.rmp-menu-trigger-3dy .responsive-menu-pro-box {
+    perspective: ( $menu_trigger_line_width * 2 )( $menu_trigger_line_width_unit );
+}
+
+.rmp-menu-trigger-3dy .responsive-menu-pro-inner {
+    transition: transform 0.2s cubic-bezier(0.645, 0.045, 0.355, 1),
+                background-color 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.rmp-menu-trigger-3dy .responsive-menu-pro-inner::before,
+.rmp-menu-trigger-3dy .responsive-menu-pro-inner::after {
+ transition: transform 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+button.rmp_menu_trigger .rmp-menu-trigger-3dy.is-active:hover .responsive-menu-pro-inner,
+.rmp-menu-trigger-3dy .responsive-menu-pro-inner.is-active .responsive-menu-pro-inner {
+    background-color: transparent;
+    transform: rotateX(-180deg);
+}
+
+button.rmp_menu_trigger .rmp-menu-trigger-3dy.is-active:hover .responsive-menu-pro-inner::before,
+.rmp-menu-trigger-3dy .responsive-menu-pro-inner.is-active .responsive-menu-pro-inner::before {
+    transform: translate3d(0, ( $menu_trigger_line_height + $menu_trigger_line_margin )( $menu_trigger_line_height_unit ), 0) rotate(45deg);
+}
+
+button.rmp_menu_trigger .rmp-menu-trigger-3dy.is-active:hover .responsive-menu-pro-inner::after,
+.rmp-menu-trigger-3dy .responsive-menu-pro-inner.is-active .responsive-menu-pro-inner::after {
+    transform: translate3d(0, ( ($menu_trigger_line_height + $menu_trigger_line_margin) * -1 )( $menu_trigger_line_height_unit ), 0) rotate(-45deg);
+}
+
+/*  Menu Trigger  3dy  reverse animation */
+.rmp-menu-trigger-3dy-r .responsive-menu-pro-box {
+    perspective: ( $menu_trigger_line_width * 2 )( $menu_trigger_line_width_unit );
+}
+
+.rmp-menu-trigger-3dy-r .responsive-menu-pro-inner {
+    transition: transform 0.2s cubic-bezier(0.645, 0.045, 0.355, 1),
+                background-color 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.rmp-menu-trigger-3dy-r .responsive-menu-pro-inner::before,
+.rmp-menu-trigger-3dy-r .responsive-menu-pro-inner::after {
+    transition: transform 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+button.rmp_menu_trigger .rmp-menu-trigger-3dy-r.is-active:hover .responsive-menu-pro-inner,
+.rmp-menu-trigger-3dy-r.is-active .responsive-menu-pro-inner {
+    background-color: transparent;
+    transform: rotateX(180deg);
+}
+
+.rmp-menu-trigger-3dy-r.is-active .responsive-menu-pro-inner::before {
+    transform: translate3d(0, ( $menu_trigger_line_height + $menu_trigger_line_margin )( $menu_trigger_line_height_unit ), 0) rotate(45deg);
+}
+
+.rmp-menu-trigger-3dy-r.is-active .responsive-menu-pro-inner::after {
+    transform: translate3d(0, ( ($menu_trigger_line_height + $menu_trigger_line_margin) * -1 )( $menu_trigger_line_height_unit ), 0) rotate(-45deg);
+}
+
+/*  Menu Trigger  3dx  animation */
+.rmp-menu-trigger-3dx .responsive-menu-pro-box {
+    perspective: ( $menu_trigger_line_width * 2 )( $menu_trigger_line_width_unit );
+}
+
+.rmp-menu-trigger-3dx .responsive-menu-pro-inner {
+    transition: transform 0.2s cubic-bezier(0.645, 0.045, 0.355, 1),
+                background-color 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.rmp-menu-trigger-3dx .responsive-menu-pro-inner::before,
+.rmp-menu-trigger-3dx .responsive-menu-pro-inner::after {
+     transition: transform 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+button.rmp_menu_trigger .rmp-menu-trigger-3dx.is-active:hover .responsive-menu-pro-inner,
+.rmp-menu-trigger-3dx.is-active .responsive-menu-pro-inner {
+    background-color: transparent;
+    transform: rotateY(180deg);
+}
+
+// .rmp-menu-trigger-3dx.is-active .responsive-menu-pro-inner::before {
+//      transform: translate3d(0, ( $menu_trigger_line_height + $menu_trigger_line_margin )( $menu_trigger_line_height_unit ), 0) rotate(45deg);
+// }
+
+// .rmp-menu-trigger-3dx.is-active .responsive-menu-pro-inner::after {
+//      transform: translate3d(0, ( ($menu_trigger_line_height + $menu_trigger_line_margin) * -1 )( $menu_trigger_line_height_unit ), 0) rotate(-45deg);
+// }
+
+/*  Menu Trigger  3dx reverse  animation */
+.rmp-menu-trigger-3dx-r .responsive-menu-pro-box {
+    perspective: ( $menu_trigger_line_width * 2 )( $menu_trigger_line_width_unit );
+}
+
+.rmp-menu-trigger-3dx-r .responsive-menu-pro-inner {
+    transition: transform 0.2s cubic-bezier(0.645, 0.045, 0.355, 1),
+                background-color 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.rmp-menu-trigger-3dx-r .responsive-menu-pro-inner::before,
+.rmp-menu-trigger-3dx-r .responsive-menu-pro-inner:after {
+ transition: transform 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+button.rmp_menu_trigger .rmp-menu-trigger-3dx-r.is-active:hover .responsive-menu-pro-inner,
+.rmp-menu-trigger-3dx-r.is-active .responsive-menu-pro-inner {
+    background-color: transparent;
+    transform: rotateY(-180deg);
+}
+
+.rmp-menu-trigger-3dx-r.is-active .responsive-menu-pro-inner::before {
+    transform: translate3d(0, ( $menu_trigger_line_height + $menu_trigger_line_margin )( $menu_trigger_line_height_unit ), 0) rotate(45deg);
+}
+
+.rmp-menu-trigger-3dx-r.is-active .responsive-menu-pro-inner::after {
+     transform: translate3d(0, ( ($menu_trigger_line_height + $menu_trigger_line_margin) * -1 )( $menu_trigger_line_height_unit ), 0) rotate(-45deg);
+}
+
+
+// Desktop menu animation effects.
+
+@keyframes slideDown {
+    0%   { transform: translateY(-20px); }
+    25%  { transform: translateY(-18px); }
+    50%  { transform: translateY(-15px); }
+    75%  { transform: translateY(-12px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes slideUp {
+    0%   { transform: translateY(10px); }
+    25%  { transform: translateY(8px); }
+    50%  { transform: translateY(7px); }
+    75%  { transform: translateY(5px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes fade {
+    0%   { opacity : 0;  }
+    25%  { opacity : 0.2; }
+    50%  { opacity : 0.3; }
+    75%  { opacity : 0.5; }
+    100% { opacity : 1; }
+}
+
+@keyframes fadeUp {
+    0%   { transform: translateY(10px); opacity : 0 ;  }
+    25%  { transform: translateY(8px);  opacity : 0.25 ; }
+    50%  { transform: translateY(7px); opacity : 0.5 ; }
+    75%  { transform: translateY(5px); opacity : 0.75 ; }
+    100% {  transform: translateY(0);  opacity : 1 ; }
+}

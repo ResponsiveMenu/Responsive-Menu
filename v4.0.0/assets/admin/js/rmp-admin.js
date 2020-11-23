@@ -1,0 +1,1024 @@
+/**
+ * This is admin scripts file which contain the admin actions.
+ *
+ * @version 4.0.0
+ *
+ * @author Expresstech System
+ *
+ */
+
+jQuery( document ).ready( function( jQuery ) {
+
+	/**
+	 * Open new create menu wizard on click event.
+	 *
+	 * @since 4.0.0
+	 *
+	 * @fires Click
+	 */
+	jQuery( document ).on( 'click', 'a.page-title-action', function( e ) {
+		e.preventDefault();
+		jQuery( '#rmp-new-menu-wizard' ).show();
+	} );
+
+	/**
+	 * Close the new menu wizard.
+	 * 
+	 * @since 4.0.0
+	 * 
+	 * @fires Click
+	 */
+	jQuery( '#rmp-new-menu-wizard .rmp-dialog-header button.close' ).click( function() {
+		jQuery( '#rmp-new-menu-wizard' ).hide();
+	} );
+
+	jQuery( '#rmp-new-menu-wizard' ).on( 'change', '.rmp-menu-display-option', function( e ) {
+
+		const optionValue = jQuery( this ).val();
+
+		if ( 'exclude-pages' === optionValue || 'include-pages' === optionValue ) {
+			jQuery( '#rmp-menu-page-selector' ).show();
+
+			return;
+		}
+
+		jQuery( '#rmp-menu-page-selector' ).hide();
+	} );
+
+	/**
+	 * Move on next tab content for theme selection.
+	 */
+	jQuery( '#rmp-create-menu-first-step' ).on( 'click', () => {
+		jQuery( '#rmp-create-menu-first-step' ).hide();
+		jQuery( '#rmp-create-new-menu' ).show();
+		jQuery( 'a[href="#select-themes"]' ).trigger( 'click' );
+	} );
+
+	// Handle next and create button visibility.
+	jQuery( 'a[href="#select-themes"]' ).on( 'click', ()=> {
+		jQuery( '#rmp-create-new-menu' ).show();
+		jQuery( '#rmp-create-menu-first-step' ).hide();
+	} );
+
+	// Handle next and create button visibility.
+	jQuery( 'a[href="#menu-settings"]' ).on( 'click', () => {
+		jQuery( '#rmp-create-new-menu' ).hide();
+		jQuery( '#rmp-create-menu-first-step' ).show();
+	} );
+
+	/**
+	 * Call ajax to save the new create menu.
+	 *
+	 * @version 4.0.0
+	 *
+	 * @fires Click
+	 */
+	jQuery( '#rmp-create-new-menu' ).click( function( e ) {
+		e.preventDefault();
+		let menuName  = jQuery( '#rmp-menu-name' );
+		let themeName = jQuery( '.rmp-theme-option:checked' ).val();
+
+		if ( themeName == undefined ) {
+			themeName = '';
+		}
+
+		let useInDesktop = 'off';
+		if ( jQuery( '#rmp-menu-display-device-desktop' ).is( ':checked' )  ) {
+			useInDesktop = 'on';
+		}
+
+		let useInTablet = 'off';
+		if ( jQuery( '#rmp-menu-display-device-tablet' ).is( ':checked' )  ) {
+			useInTablet = 'on';
+		}
+
+		let useInMobile = 'off';
+		if ( jQuery( '#rmp-menu-display-device-mobile' ).is( ':checked' )  ) {
+			useInMobile = 'on';
+		}
+
+		jQuery.ajax( {
+			url: rmpObject.ajaxURL,
+			data: {
+				'action': 'rmp_create_new_menu',
+				'ajax_nonce': rmpObject.ajax_nonce,
+				'menu_name': menuName.val(),
+				'menu_to_use': jQuery( '#rmp-menu-to-use' ).val(),
+				'menu_show_on_pages': jQuery( '#rmp-menu-display-on-pages' ).val(),
+				'menu_show_on': jQuery( '.rmp-menu-display-option' ).val(),
+				'menu_theme': themeName,
+				'theme_type': jQuery( '.rmp-theme-option:checked' ).attr( 'theme-type' ),
+				'use_in_desktop': useInDesktop,
+				'use_in_tablet': useInTablet,
+				'use_in_mobile': useInMobile
+			},
+			type: 'POST',
+			dataType: 'json',
+			beforeSend: function() {
+				jQuery( '#rmp-create-new-menu' ).prop( 'disabled', true );
+				jQuery( '.spinner' ).addClass( 'is-active' );
+			},
+			error: function( error ) {
+				console.log( 'Internal Error !' );
+				jQuery( '#rmp-create-new-menu' ).prop( 'disabled', false );
+				jQuery( '.spinner' ).removeClass( 'is-active' );
+			},
+			success: function( response ) {
+				jQuery( '#rmp-create-new-menu' ).prop( 'disabled', false );
+				noticeClass = 'notice-error';
+				if ( true == response.success ) {
+					isSuccess = 'notice-success';
+				}
+
+				jQuery( '.rmp-new-menu-elements' ).prepend(
+					'<div class="notice ' + noticeClass + ' settings-error is-dismissible"> <p>' + response.data.message + '</p></div>'
+				);
+
+				setTimeout( function() {
+					jQuery( '.rmp-new-menu-elements' ).find( '.notice' ).remove();
+				}, 3000 );
+			}
+		} ).always( function( response ) {
+			jQuery( '.spinner' ).removeClass( 'is-active' );
+		} ).done( function( response ) {
+			if ( response.success ) {
+				location.reload();
+			}
+		} );
+
+	} );
+
+	/**
+	 * Rollback the plugin version.
+	 *
+	 * @version 4.0.0
+	 *
+	 * @fires Click
+	 */
+	jQuery( '#rmp-rollback-version' ).click( function( e ) {
+		e.preventDefault();
+
+		const version = jQuery( '#rmp-versions' ).val();
+
+		if ( '3.1.29' === version ) {
+			jQuery.ajax( {
+				url: rmpObject.ajaxURL,
+				data: { action: 'rmp_rollback_version' },
+				type: 'POST',
+				dataType: 'json',
+				error: function( error ) {
+					jQuery( this ).prop( 'disabled', false );
+				},
+				success: function( response ) {
+					if ( response.data.redirect ) {
+						location.href = response.data.redirect;    
+					}
+				}
+			} );
+		}
+	} );
+
+	/**
+	 * Iframe loader and contents show/hide.
+	 */
+	jQuery('#rmp-preview-iframe').on('load', function() {
+		jQuery( '#rmp-preview-iframe-loader' ).hide();
+		jQuery( '#rmp-menu-update-notification').remove();
+		jQuery('#rmp-preview-iframe').show();
+
+		jQuery('#rmp-preview-iframe').contents().find( 'a' ).click( function(e) {
+			e.stopPropagation();
+			e.preventDefault();
+			var url = jQuery(this).attr('href');
+			var device_mode = jQuery('#rmp_device_mode').val();
+			jQuery('#rmp-preview-iframe').attr('src', url + '?rmp_device_mode=' + device_mode ); 
+		});
+
+	});
+
+	/**
+	 * Save the theme as template.
+	 *
+	 * @since 4.0.0
+	 *
+	 * @fires Click
+	 */
+	jQuery( 'button#rmp-save-theme' ).on( 'click', function( e ) {
+		e.stopPropagation();
+		e.preventDefault();
+
+		const themeName = jQuery( '#rmp-save-theme-name' ).val();
+
+		if ( 3 > themeName.length ) {
+			alert( 'Please give meaning full name to this theme' );
+			return;
+		}
+
+		jQuery.ajax( {
+			url: rmpObject.ajaxURL,
+			data: {
+				'action': 'rmp_save_theme',
+				'ajax_nonce': rmpObject.ajax_nonce,
+				'theme_name': themeName,
+				'menu_id': jQuery( '#menu_id' ).val(),
+				'form': jQuery( '#rmp-editor-form' ).serialize()
+			},
+			type: 'POST',
+			dataType: 'json',
+			error: function( error ) {
+				console.log( error.statusText );
+			},
+			success: function( response ) {
+				jQuery( e.target ).parents( '.rmp-dialog-contents' )
+					.append( '<div class="notice notice-success settings-error is-dismissible"><p>' + response.data.message + '</p></div>' );
+			}
+		} );
+	} );
+
+	/**
+	 * Ajax call to save the menu settings when click on update.
+	 *
+	 * @version 4.0.0
+	 *
+	 * @fires click
+	 */
+	jQuery(document).on( 'click', 'button#rmp-save-menu-options,#rmp-menu-quick-update-button', function( e ) {
+
+		jQuery.ajax( {
+			url: rmpObject.ajaxURL,
+			data: {
+				'action': 'rmp_save_menu_action',
+				'ajax_nonce': rmpObject.ajax_nonce,
+				'form': jQuery( '#rmp-editor-form' ).serialize()
+			},
+			type: 'POST',
+			dataType: 'json',
+			beforeSend: function() {
+				jQuery( '#rmp-preview-iframe-loader' ).show();
+			},
+			error: function( error ) {
+				console.log( error.statusText );
+				jQuery( '#rmp-preview-iframe-loader' ).hide();
+			},
+			success: function( response ) {
+				// If options is updated successfully then reload the iframe.
+				if ( response.success ) {
+					const url = jQuery( '#rmp-preview-iframe' ).attr('src');
+					jQuery('#rmp-preview-iframe').attr('src', url );
+				}
+			}
+		} );
+	} );
+
+	// Initiate the color picker instances.
+	jQuery( '.rmp-color-input' ).wpColorPicker();
+
+	// Fix events glitch on color textbox.
+	jQuery('.rmp-color-input').removeAttr( 'style' );
+	jQuery('.rmp-color-input').off( 'focus' );
+
+	/**
+	 * Change color selector backgroud when paste the color in color textbox.
+	 */
+	jQuery( '.rmp-color-input' ).on( 'paste', function( e ) {
+		let color = jQuery( this ).val();
+		jQuery( this ).parents( '.wp-picker-container' ).find( 'span.color-alpha' ).css( 'background-color', color );
+	} );
+
+	// Initiate the tab elements.
+	jQuery( '.tabs,#rmp-setting-tabs' ).tabs( {
+		hide: { effect: 'explode', duration: 1000 },
+		show: { effect: 'explode', duration: 800 },
+		active: 0
+	} );
+
+	// Active tabs under ordering elements.
+	jQuery( '.nav-tab-wrapper' ).on( 'click', '.nav-tab', function( e ) {
+		jQuery( '.nav-tab-wrapper .nav-tab' ).removeClass( 'nav-tab-active' );
+		jQuery( this ) .addClass( 'nav-tab-active' );
+	} );
+
+	/**
+	  * Handle the device preview and multi device options features.
+	  *
+	  * @version 4.0.0
+	  *
+	  * @fires Click
+	  */
+	jQuery( '#rmp-preview-mobile, #rmp-preview-tablet,#rmp-preview-desktop' ).click( function( e ) {
+
+		e.preventDefault();
+
+		const moveOnDevice  = jQuery( this ).attr( 'data-device' );
+		let menuOptions     = jQuery( '[multi-device="true"]' );
+		const saveForDevice = jQuery( '#rmp_device_mode' ).val();
+		jQuery( '#rmp_device_mode' ).attr( 'value', moveOnDevice );
+
+		if( moveOnDevice == saveForDevice ) {
+			return;
+		}
+
+		// Collect options which are device wise.
+		let options = {};
+		menuOptions.each( ( index, element ) => {
+			const name    = jQuery( element ).attr( 'name' ).replace( 'menu[', '' ).replace( ']', '' );
+			options[name] = jQuery( element ).val();
+		} );
+
+		jQuery.ajax( {
+			url: rmpObject.ajaxURL,
+			data: {
+				'action': 'rmp_save_draft_options',
+				'ajax_nonce': rmpObject.ajax_nonce,
+				'save_for_device': saveForDevice,
+				'move_on_device': moveOnDevice,
+				'options': options,
+				'menu_id': jQuery( '#menu_id' ).val()
+			},
+			type: 'POST',
+			dataType: 'json',
+			async: false,
+			beforeSend: function() {
+				jQuery( '#rmp-preview-iframe-loader' ).show();
+			},
+			error: function( error ) {
+				console.log( 'Internal Error !' );
+				jQuery( '#rmp-preview-iframe-loader' ).hide();
+			},
+			success: function( response ) {
+				// Set the values of device wise option which is currently active.
+				menuOptions.each( function( e ) {
+					let name = jQuery( this ).attr( 'name' ).replace( 'menu[', '' ).replace( ']', '' );
+					if ( response.data[name] ) {
+						jQuery( this ).val( response.data[name] );
+						let classes = jQuery( this ).attr( 'class' );
+						if ( classes.includes( 'rmp-color-input' ) ) {
+							jQuery( this ).trigger( 'paste' );
+						}
+					} else {
+						jQuery( this ).val( '' );
+					}
+				} );
+
+				var iframe = jQuery('#rmp-preview-iframe');
+				var url = iframe.attr('src').split('?')[0];
+				//if( jQuery('#rmp-menu-different-menu-for-mobile').is(':checked') ) {
+					// Change device mode before load the iframe contents.
+					iframe.attr('src', url + '?rmp_device_mode=' + moveOnDevice );
+				//}
+			}
+		} );
+
+	} );
+
+	/**
+	 * Check open/close of device options switcher.
+	 *
+	 * @version 4.0.0
+	 *
+	 * @fires click
+	 */
+	jQuery( '.rmp-device-switcher' ).click( function() {
+		var isOpen = jQuery( this ).hasClass( 'open' );
+
+		if ( isOpen ) {
+			jQuery( this ).removeClass( 'open' );
+		} else {
+			jQuery( '.rmp-device-switcher' ).removeClass( 'open' );
+			jQuery( this ).addClass( 'open' );
+		}
+
+	} );
+
+	/**
+	 * Change the option when select a device.
+	 *
+	 * @version 4.0.0
+	 *
+	 * @fires click
+	 */
+	jQuery( '.rmp-device-switcher li' ).click( function() {
+		var  selectedDevice = jQuery( this ).attr( 'data-device' );
+		var  firstDevice    = jQuery( '.rmp-device-switcher li:first-child' ).attr( 'data-device' );
+		if ( selectedDevice != firstDevice ) {
+			activeDeviceOptions( selectedDevice );
+			if ( 'desktop' == selectedDevice ) {
+				jQuery( '#rmp-preview-desktop' ).trigger( 'click' ); 
+			} else if ( 'tablet' == selectedDevice ) {
+				jQuery( '#rmp-preview-tablet' ).trigger( 'click' );
+			} else {
+				jQuery( '#rmp-preview-mobile' ).trigger( 'click' ); 
+			}
+		}
+	} );
+
+	/**
+	 * Change device as mobile when click on mobile setting option nav.
+	 * 
+	 * @fires click
+	 */
+	jQuery('#rmp-tab-item-mobile-menu').on( 'click', function() {
+
+		const activeDevice = jQuery( '#rmp_device_mode' ).val();
+		if ( 'mobile' != activeDevice ) {
+			jQuery( '#rmp-preview-mobile' ).trigger( 'click' );
+		}
+
+	} );
+
+	/**
+	 * Change device as desktop when click on desktop setting option nav.
+	 * 
+	 * @fires click
+	 */
+	jQuery('#rmp-tab-item-desktop-menu').on( 'click', function() {
+
+		const activeDevice = jQuery( '#rmp_device_mode' ).val();
+		if ( 'desktop' != activeDevice ) {
+			jQuery( '#rmp-preview-desktop' ).trigger( 'click' );
+		}
+
+	});
+
+
+
+	/**
+	 * Active all the device options in editor.
+	 *
+	 * @version 4.0.0;
+	 * @param {string} selectedDevice This device name which is active.
+	 */
+	function activeDeviceOptions( selectedDevice ) {
+		const firstDevice   = jQuery( '.rmp-device-switcher li:first-child' ).attr( 'data-device' );
+		const selectedIcon  = jQuery( '.rmp-device-switcher li[data-device=' + selectedDevice + ']' ).html();
+		const firstIcon     = jQuery( '.rmp-device-switcher li:first-child' ).html();
+
+		jQuery( '.rmp-device-switcher li' ).each( function() {
+			if ( jQuery( this ).attr( 'data-device' ) === selectedDevice ) {
+				jQuery( this ).html( firstIcon );
+				jQuery( this ).attr( 'data-device', firstDevice );
+			} else if ( jQuery( this ).attr( 'data-device' ) === firstDevice ) {
+				jQuery( this ).html( selectedIcon );
+				jQuery( this ).attr( 'data-device', selectedDevice );
+			}
+		} );
+	}
+
+	/**
+	 * Close the device switcher when mouseup other places.
+	 *
+	 * @version 4.0.0
+	 *
+	 * @fires mouseup
+	 */
+	jQuery( document ).mouseup( function( event ) {
+		var target = event.target;
+		var deviceSwitcher = jQuery( '.rmp-device-switcher' );
+
+		if ( ! deviceSwitcher.is( target ) && 0 === deviceSwitcher.has( target ).length ) {
+			deviceSwitcher.removeClass( 'open' );
+		}
+
+	} );
+
+	/**
+	 * Active preview as per clicked device.
+	 *
+	 * @version 4.0.0
+	 *
+	 * @fires Click
+	 */
+	jQuery( '#rmp-editor-footer .rmp-preview-device-wrapper' ).on( 'click', 'button', function( e ) {
+		jQuery( '#rmp-editor-footer' ).find( '.rmp-preview-device-wrapper button' ).removeClass( 'active' );
+		jQuery( '#rmp-editor-footer' ).find( '.rmp-preview-device-wrapper button' ).attr( 'aria-pressed', 'false' );
+		jQuery( this ).addClass( 'active' );
+		jQuery( this ).attr( 'aria-pressed', 'true' );
+		const device = jQuery( this ).data( 'device' );
+		const deviceEditor = jQuery( '#rmp-editor-wrapper' );
+		const allClasses = deviceEditor.attr( 'class' ).split( ' ' );
+
+		allClasses.forEach( function( value ) {
+			if ( value.includes( 'rmp-preview-' ) ) {
+				deviceEditor.removeClass( value );
+			}
+		} );
+
+		deviceEditor.addClass( 'rmp-preview-' + device );
+		activeDeviceOptions( device );
+	} );
+
+	/**
+	 * Instantiate the accordion elements.
+	 * @version 4.0.0
+	 */
+	jQuery( '.rmp-accordion-container,.rmp-sub-accordion-container' ).accordion( {
+		collapsible: true,
+		heightStyle: 'content',
+		animate: 200,
+		active: 0,
+	} );
+
+	/**
+	 * Instantiate the draggable and sortable menu item order elements.
+	 * 	@version 4.0.0
+	 */
+	jQuery( '#rmp-menu-ordering-items,#rmp-header-ordering-items' ).accordion().sortable( {
+		placeholder: 'sortable-placeholder',
+		opacity: 0.9,
+		cursor: 'move',
+		delay: 150,
+		forcePlaceholderSize: true,
+		active: false
+	} );
+
+	/**
+	 * Stop propagating when click on item control element.
+	 */
+	jQuery( '#tab-container .item-controls, #tab-header-bar .item-controls' ).on( 'click', function( event ) {
+		event.stopPropagation();
+	} );
+
+	/**
+	 * Show/Hide tooltip for option description.
+	 *
+	 * @version 4.0.0
+	 *
+	 * @fires click,mouseleave
+	 */
+	jQuery( '.rmp-tooltip-icon' ).on( 'click', function(e) {
+
+		if ( jQuery(this).hasClass('show-tooltip') ) {
+			return;
+		} else {
+			jQuery( this ).addClass('show-tooltip');
+		}
+
+		var toolTipContents = jQuery( this ).find( '.rmp-tooltip-content' );
+		toolTipContents.css({
+			'left': e.pageX - ( ( toolTipContents.width() / 100 ) * 60 ),
+			'position': 'fixed',
+			'top':  ( e.pageY - toolTipContents.height() - 10 ),
+			'bottom': 'unset'
+		});
+
+		toolTipContents.fadeIn();
+
+	} ).mouseleave( function() {
+		jQuery(this).removeClass('show-tooltip');
+		jQuery( this ).find( '.rmp-tooltip-content' ).fadeOut();
+	} );
+
+	/**
+	 * Remove image from image picker
+	 *
+	 * @version 4.0.0
+	 *
+	 * @fires Click
+	 */
+	jQuery( '.rmp-image-picker ' ).on( 'click', '.rmp-image-picker-trash', function( e ) {
+		e.stopPropagation();
+		e.preventDefault();
+		jQuery( this ).parent( '.rmp-image-picker' ).siblings( 'input.rmp-image-url-input' ).val( '' );
+		jQuery( this ).parent( '.rmp-image-picker' ).removeAttr( 'style' );
+		jQuery( this ).remove();
+	} );
+
+	/**
+	 * Show/Hide the theme uploader section in theme page.
+	 */
+	jQuery( '#rmp-upload-new-theme' ).click( function() {
+		jQuery( '#rmp-menu-library-import' ).toggleClass( 'hide' );
+	} );
+
+	/**
+	 * Hide theme uploader section when click on cancel.
+	 */
+	jQuery( '#rmp-menu-library-import-form' ).on( 'click', '.cancel', function( e ) {
+		jQuery( '#rmp-menu-library-import' ).addClass( 'hide' );
+	} );
+
+
+	/**
+	 * Upload the theme file using dropzone.
+	 *
+	 * @version 4.0.0
+	 */
+	jQuery( '#rmp-menu-library-import-form' ).dropzone( {
+		clickable: true,
+		acceptedFiles: '.zip',
+		uploadMultiple: false,
+		success: function ( file, response ) {
+			location.reload();
+		}
+	} );
+
+	/**
+	 * Open theme options in editor footer.
+	 */
+	jQuery( '#rmp-theme-action' ).click( function( e ) {
+		jQuery( '#rmp-footer-theme-options' ).toggleClass('open');
+	} );
+
+	/**
+	 * Show/Hide the save theme wizard.
+	 */
+	jQuery( '.rmp-theme-save-button, #rmp-menu-save-theme-wizard .rmp-dialog-wrap .close' ).click( function( e ) {
+		jQuery( '#rmp-menu-save-theme-wizard' ).toggle();
+	} );
+
+	/**
+	 * Show/Hide change theme wizard.
+	 */
+	jQuery( '.rmp-theme-change-button' ).click( function( e ) {
+		jQuery( '#rmp-new-menu-wizard' ).toggle();
+	} );
+
+	/**
+	 * Delete the theme from theme page.
+	 */
+	jQuery( '.rmp-theme-delete' ).click( function( e ) {
+		e.preventDefault();
+
+		/** Ask for delete confirmation */
+		const isConfirm = confirm( 'Are you sure, you want delete this theme ?' );
+
+		if ( ! isConfirm ) {
+			return;
+		}
+
+		let themeName = jQuery( this ).attr( 'data-theme' );
+		let themeType = jQuery( this ).attr( 'data-theme-type' ).toLowerCase();
+
+		jQuery.ajax( {
+			url: rmpObject.ajaxURL,
+			data: {
+				'action': 'rmp_theme_delete',
+				'ajax_nonce': rmpObject.ajax_nonce,
+				'theme_name': themeName,
+				'theme_type': themeType
+			},
+			type: 'POST',
+			dataType: 'json',
+			error: function( error ) {
+				console.log( error.statusText );
+			},
+			success: function( response ) {
+				location.reload();
+			}
+		} );
+
+	} );
+
+	/**
+	 * download the theme from theme page.
+	 */
+	jQuery( '.rmp-theme-download' ).click( function( e ) {
+		e.preventDefault();
+
+		let themeName = jQuery( this ).attr( 'data-theme' );
+		let themeType = jQuery( this ).attr( 'data-theme-type' ).toLowerCase();
+
+		jQuery.ajax( {
+			url: rmpObject.ajaxURL,
+			data: {
+				'action': 'rmp_theme_download',
+				'ajax_nonce': rmpObject.ajax_nonce,
+				'theme_name': themeName,
+				'theme_type': themeType
+			},
+			type: 'POST',
+			dataType: 'json',
+			error: function( error ) {
+				console.log( error.statusText );
+			},
+			success: function( response ) {
+				//location.reload();
+			}
+		} );
+
+	} );
+
+	/**
+	 * Apply the selected theme in current active menu in editor.
+	 *
+	 * @version 4.0.0
+	 *
+	 * @fires 4.0.0
+	 */
+	jQuery( '.rmp-theme-apply' ).click( function( e ) {
+
+		jQuery.ajax( {
+			url: rmpObject.ajaxURL,
+			data: {
+				'action': 'rmp_theme_apply',
+				'ajax_nonce': rmpObject.ajax_nonce,
+				'theme_name': jQuery( this ).attr( 'theme-name' ),
+				'theme_type': jQuery( this ).attr( 'theme-type' ).toLowerCase(),
+				'menu_id': jQuery( '#menu_id' ).val()
+			},
+			type: 'POST',
+			dataType: 'json',
+			error: function( error ) {
+				console.log( error.statusText );
+			},
+			success: function( response ) {
+				location.reload();
+			}
+		} );
+
+	} );
+
+	/**
+	 * Save the global settings on click.
+	 * 
+	 * @version 4.0.0
+	 * 
+	 * @fires click
+	 */
+	jQuery( '.rmp-save-global-settings-button' ).click( function( e ) {
+		e.preventDefault();
+
+		jQuery.ajax( {
+			url: rmpObject.ajaxURL,
+			data: {
+				'action': 'rmp_save_global_settings',
+				'ajax_nonce': rmpObject.ajax_nonce,
+				'form': jQuery( '#rmp-global-settings' ).serialize()
+			},
+			type: 'POST',
+			dataType: 'json',
+			beforeSend: function() {
+				jQuery( this ).prop( 'disabled', true );
+				jQuery( '.spinner' ).addClass( 'is-active' );
+			},
+			error: function( error ) {
+				console.log( 'Internal Error !' + error );
+			},
+			success: function( response ) {
+				jQuery( '.spinner' ).removeClass( 'is-active' );  
+				jQuery( this ).prop( 'disabled', false );
+			}
+		} );
+	} );
+
+	/**
+	 * Initiate multiple selectize option of editor.
+	 */
+	jQuery( '#rmp-keyboard-shortcut-close-menu,#rmp-keyboard-shortcut-open-menu,#rmp-menu-display-on-pages' ).selectize( {
+		plugins: [ 'remove_button' ]
+	} );
+
+	/**
+	 * Check to validate the license key in setting page.
+	 * 
+	 * @version 4.0.0
+	 * 
+	 * @fires Click
+	 */
+	jQuery( '#rmp-license-checker' ).click( function( e ) {
+		e.preventDefault();
+
+		jQuery.ajax( {
+			url: rmpObject.ajaxURL,
+			data: {
+				'action': 'rmp_license_key_validation',
+				'ajax_nonce': rmpObject.ajax_nonce,
+				'rmp_license_key': jQuery( '#rmp-license-key' ).val()
+			},
+			type: 'POST',
+			dataType: 'json',
+			beforeSend: function() {
+				jQuery( this ).prop( 'disabled', true );
+			},
+			error: function( error ) {
+				console.log( 'Internal Error !' + error );
+			},
+			success: function( response ) {
+				if ( response.data.alert.success ) {
+					alert( 'Success : ' + response.data.alert.success );
+				} else {
+					alert( response.data.alert.danger );
+				}
+
+				location.reload();
+			}
+		});
+
+	} );
+
+	/**
+	 * Event to linked the group inputs.
+	 * 
+	 * @fires Click
+	 */
+	jQuery( document ).on( 'click', 'button.rmp-group-input-linked',  function() {
+		jQuery(this).toggleClass( 'is-linked' );
+	});
+
+	/**
+	 * Event to type on all sibblings input if linked.
+	 * 
+	 * @fires keyup
+	 */
+	jQuery( document ).on( 'keyup', 'input.rmp-group-input', function( event ) {
+		var pressedKeys  = this.value.toLocaleLowerCase();
+		const parent     = jQuery(this).parents('.rmp-input-group-control');
+		const isLinked   = parent.find( '.is-linked' );
+
+		if ( isLinked.length ) {
+			parent.find( 'input.rmp-group-input' ).val( pressedKeys);
+		} else {
+			jQuery( this ).val(pressedKeys);	
+		}
+
+	});
+
+	/**
+	 * Header options hide and show.
+	 */
+	if ( jQuery('#rmp-menu-header-bar').is(':checked') ) {
+		hideShowHeaderOptions( jQuery('#rmp-menu-header-bar') );
+	} else {
+		hideShowHeaderOptions( jQuery('#rmp-menu-header-bar') );
+	}
+
+	jQuery('#rmp-menu-header-bar').change( function() {
+		hideShowHeaderOptions( this );
+	});
+
+	function hideShowHeaderOptions( element ) {
+		jQuery(element).parents('.item-controls').css('right','10px');
+		var parent = jQuery(element).parents('.rmp-accordion-item'); 
+		if ( jQuery(element).is(':checked') ) {
+			parent.siblings().show();
+			jQuery('.rmp-header-bar-description').show();
+		} else {
+			parent.siblings().hide();
+			jQuery('.rmp-header-bar-description').hide();
+		}
+	}
+
+	/**
+	 * Function to add the notification and update button.
+	 */
+	function addUpdateNotification() {
+
+		if ( ! jQuery('#rmp-editor-main').find('#rmp-menu-update-notification').length ) {
+			jQuery( '#rmp-editor-main' ).prepend(
+				'<div id="rmp-menu-update-notification" class="rmp-order-item rmp-order-item-description">' +
+					'<span> <span class="rmp-font-icon dashicons dashicons-warning "></span> Update Required </span>' +
+					'<a href="javascript:void(0)" id="rmp-menu-quick-update-button">UPDATE</a>' +
+				'</div>'
+			);
+		}
+	}
+
+	jQuery( 'form#rmp-editor-form' ).on(
+		'keyup change paste',
+		'input, select, textarea, radio, checkbox',
+		function() {
+			if (  ! jQuery(this).hasClass('no-updates') ) {
+				addUpdateNotification();
+			}
+		}
+	);
+
+	jQuery(document).on(
+		'click',
+		'#rmp-icon-dialog-select,.media-button-select,.rmp-icon-picker,.rmp-image-picker',
+		function() {
+			if ( ! jQuery('#rmp-editor-main').find('#rmp-menu-update-notification').length ) {
+				addUpdateNotification();	
+			}
+	});
+
+	/** Call ajax to hide admin notice permanent. */
+	jQuery( '.notice-responsive-menu' ).on( 'click', '.notice-dismiss', function( event ) {
+		event.preventDefault();
+		jQuery.ajax( {
+			type: "POST",
+			url: rmpObject.ajaxURL,
+			data: 'action=rmp_license_admin_notice_dismiss',
+		});
+	});
+
+	/**
+	 * Event to download exported menu settings as json file.
+	 *
+	 * @version 4.0.0 
+	 */
+	jQuery( '#rmp-export-menu-button' ).click( function( e ) {
+		e.preventDefault();
+
+		let menu_id   = jQuery('#rmp_export_menu_list').val();
+
+		jQuery.ajax( {
+			url: rmpObject.ajaxURL,
+			data: {
+				'action': 'rmp_export_menu',
+				'ajax_nonce': rmpObject.ajax_nonce,
+				'menu_id': menu_id
+			},
+			type: 'POST',
+			dataType: 'json',
+			beforeSend: function() {
+				jQuery( '#rmp-export-menu-button' ).prop( 'disabled', true );
+			},
+			error: function( error ) {
+				console.log( error.statusText );
+				jQuery( '#rmp-export-menu-button' ).prop( 'disabled', false );
+			},
+			success: function( response ) {
+				jQuery( '#rmp-export-menu-button' ).prop( 'disabled', false );
+				if( response.data ) {
+					let menu_name = jQuery('#rmp_export_menu_list').children(":selected").text().trim().toLocaleLowerCase().split(' ').join('-');
+					download_file( response.data , menu_name + '.json' , 'application/json' );
+				}
+			}
+		});
+
+	});
+
+	/**
+	 * Function to download the content as file.
+	 * 
+	 * @since 4.0.0
+	 * 
+	 * @param {String} content Contents for file
+	 * @param {String} name    Name of the file. 
+	 * @param {String} type    File type
+	 */
+	function download_file(content, name, type ) {
+		const link = document.body.appendChild( document.createElement('a') );
+		const file = new Blob([content], {
+			type: type
+		});
+		link.href = URL.createObjectURL(file);
+		link.download = name;
+		link.click();
+	}
+
+	/**
+	 * Event to download exported menu settings as json file.
+	 *
+	 * @version 4.0.0 
+	 */
+	jQuery( '#rmp-import-menu-button' ).click( function( e ) {
+		e.preventDefault();
+
+		let menu_id   = jQuery('#rmp_import_menu_list').val();
+
+		if( ! menu_id ) {
+			alert( 'Please create menu first ! ');
+			return;
+		}
+
+		let file_data = jQuery('#rmp_input_import_file')[0].files[0];
+
+		if( ! file_data ) {
+			alert( 'Choose export file ! ');
+			return;
+		}
+
+		var form_data = new FormData();
+		form_data.append( 'file', file_data );
+		form_data.append( 'ajax_nonce', rmpObject.ajax_nonce );
+		form_data.append( 'menu_id', menu_id );
+		form_data.append( 'action', 'rmp_import_menu' );
+
+		jQuery.ajax( {
+			url: rmpObject.ajaxURL,
+			data: form_data,
+			type: 'POST',
+			cache: false,
+			contentType: false,
+			processData: false,
+			dataType: 'json',
+			beforeSend: function() {
+				jQuery( '#rmp-import-menu-button' ).prop( 'disabled', true );
+			},
+			error: function( error ) {
+				console.log( error.statusText );
+				jQuery( '#rmp-import-menu-button' ).prop( 'disabled', false );
+			},
+			success: function( response ) {
+				jQuery( '#rmp-import-menu-button' ).prop( 'disabled', false );
+				noticeClass = 'notice-error';
+				if ( response.success ) {
+					noticeClass = 'notice-success';
+					jQuery('#rmp_input_import_file').val('');
+				}
+
+				jQuery( '#rmp-global-settings' ).before(
+					'<div class="notice ' + noticeClass + ' settings-error is-dismissible"> <p>' + response.data.message + '</p></div>'
+				);
+
+				setTimeout( function() {
+					jQuery( '#rmp-global-settings' ).parent().find( '.notice' ).remove();
+				}, 3000 );
+			}
+		});
+
+	});
+
+} );

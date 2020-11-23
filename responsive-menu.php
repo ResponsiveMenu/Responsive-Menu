@@ -32,6 +32,8 @@ function responsive_menu_deactivation_text() {
 if(version_compare(PHP_VERSION, '5.4', '<'))
     return;
 
+if ( empty( get_option( 'is_rmp_new_version') ) && ! empty( get_option('responsive_menu_version') ) ) {
+
 add_action( 'admin_notices', 'og_pro_deactivate_pro_version_notice');
 
 function og_pro_deactivate_pro_version_notice() {
@@ -68,3 +70,90 @@ include dirname(__FILE__) . '/config/wp/scripts.php';
 include dirname(__FILE__) . '/config/routing.php';
 include dirname(__FILE__) . '/migration.php';
 include dirname(__FILE__) . '/config/polylang.php';
+
+} else {
+
+    // If this file called directly then abort.
+    if ( ! defined( 'WPINC' ) ) {
+        die;
+    }
+
+    /**
+     * Constant as plugin version.
+     */
+    if ( ! defined( 'RMP_PLUGIN_VERSION' ) ) {
+        define( 'RMP_PLUGIN_VERSION', '4.0.0' );
+    }
+
+    /**
+     * Constant as plugin file.
+     */
+    if ( ! defined( 'RMP_PLUGIN_FILE' ) ) {
+        define('RMP_PLUGIN_FILE', plugin_dir_path( __FILE__ ) . 'responsive-menu-pro.php');
+    }
+
+    /**
+     * Constant as dir of plugin.
+     */
+    if ( ! defined( 'RMP_PLUGIN_DIR_NAME' ) ) {
+        define( 'RMP_PLUGIN_DIR_NAME', untrailingslashit ( dirname( plugin_basename( __FILE__ ) ) ) );
+    }
+
+    /**
+     * Constant as plugin path.
+     */
+    if ( ! defined( 'RMP_PLUGIN_PATH' ) ) {
+        define( 'RMP_PLUGIN_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
+    }
+
+    /**
+     * Constant as plugin URL.
+     */
+    if ( ! defined( 'RMP_PLUGIN_URL' ) ) {
+        define( 'RMP_PLUGIN_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
+    }
+
+    /**
+     * Constant as URI of assets build.
+     */
+    if ( ! defined( 'RMP_PLUGIN_BUILD_URI' ) ) {
+        define( 'RMP_PLUGIN_BUILD_URI', untrailingslashit( plugin_dir_url( __FILE__ ) ) . '/assets/build' );
+    }
+
+    /**
+     * Constant as dir of assets build.
+     */
+    if ( ! defined( 'RMP_PLUGIN_BUILD_DIR' ) ) {
+        define( 'RMP_PLUGIN_BUILD_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) . '/assets/build' );
+    }
+
+    /**
+     * Constant as path of template file.
+     */
+    if ( ! defined( 'RMP_PLUGIN_TEMPLATE_PATH' ) ) {
+        define( 'RMP_PLUGIN_TEMPLATE_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) . '/templates/' );
+    }
+
+    define ( 'RMP_PLUGIN_PATH_V4', RMP_PLUGIN_PATH . '/v4.0.0' );
+    define ( 'RMP_PLUGIN_URL_V4', RMP_PLUGIN_URL . '/v4.0.0' );
+
+
+    /** Include the required files only*/
+    require_once RMP_PLUGIN_PATH_V4 . '/inc/helpers/autoloader.php';
+    require_once RMP_PLUGIN_PATH_V4 . '/inc/helpers/custom-functions.php';
+    require_once RMP_PLUGIN_PATH_V4 . '/inc/helpers/default-options.php';
+    require_once RMP_PLUGIN_PATH_V4 . '/libs/scssphp/vendor/autoload.php';
+    require_once RMP_PLUGIN_PATH_V4 . '/inc/license/Check.php';
+
+    /**
+     * To load plugin manifest class.
+     *
+     * @return void
+     */
+    function rmp_features_plugin_loader() {
+        \RMP\Features\Inc\Plugin::get_instance();
+    }
+
+    rmp_features_plugin_loader();
+
+}
