@@ -324,10 +324,19 @@ class Control_Manager {
                 $is_selected = 'selected';
             }
 
+            $feature_label = '';
+            $is_disabled = '';
+            if ( ! empty( $param['default'] ) && $param['default'] !== $unit ) {
+                $is_disabled = 'disabled';
+                $feature_label = __( ' (PRO)', 'responsive-menu-pro' );
+            }
+
             $options .= sprintf(
-                '<option value="%1$s" %2$s >%1$s</option>',
+                '<option %s value="%s" %s >%s</option>',
+                esc_attr( $is_disabled ),
                 esc_attr($unit),
-                esc_attr( $is_selected )
+                esc_attr( $is_selected ),
+                esc_attr( $unit . $feature_label )
             );
         }
 

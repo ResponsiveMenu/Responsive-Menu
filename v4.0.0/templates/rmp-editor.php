@@ -73,9 +73,12 @@ $options = $option_manager->get_options( $menu_id );
 								<span class="rmp-tab-item-icon">
 									<?php echo file_get_contents( RMP_PLUGIN_PATH_V4 .'/assets/admin/icons/svg/desktop.svg' ); ?>
 								</span>
-								<h3 class="rmp-tab-item-title"><?php esc_html_e( 'Desktop Menu', 'responsive-menu-pro' ); ?></h3>
+								<h3 class="rmp-tab-item-title">
+									<span> <?php esc_html_e( 'Desktop Menu', 'responsive-menu-pro' ); ?></span>
+									<a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > <?php echo __('Pro','responsive-menu-pro'); ?> </a>
+								</h3>
 							</li>
-							
+
 							<li id="rmp-tab-item-dropdowns" class="rmp-tab-item" aria-owns="tab-menu-styling">
 								<span class="rmp-tab-item-icon">
 									<?php echo file_get_contents( RMP_PLUGIN_PATH_V4 .'/assets/admin/icons/svg/dropdowns.svg' ); ?>
@@ -87,8 +90,10 @@ $options = $option_manager->get_options( $menu_id );
 								<span class="rmp-tab-item-icon">
 									<?php echo file_get_contents( RMP_PLUGIN_PATH_V4 .'/assets/admin/icons/svg/header.svg' ); ?>
 								</span>
-								<h3 class="rmp-tab-item-title"><?php esc_html_e( 'Header Bar', 'responsive-menu-pro' ); ?></h3>
-								
+								<h3 class="rmp-tab-item-title">
+									<span><?php esc_html_e( 'Header Bar', 'responsive-menu-pro' ); ?></span>
+									<a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > <?php echo __('Pro','responsive-menu-pro'); ?> </a>
+								</h3>
 							</li>
 
 							<li id="rmp-tab-item-themes" class="rmp-tab-item" aria-owns="tab-themes">
@@ -1777,11 +1782,12 @@ $options = $option_manager->get_options( $menu_id );
 									'name'   => 'menu[button_width]',
 									'class' => 'no-updates',
 									'value'    => rmp_get_value($options,'button_width'),
-									
+
 									'has_unit' => [
 										'unit_type' => 'all',
 										'id' => 'rmp-menu-button-width-unit',
 										'name' => 'menu[button_width_unit]',
+										'default' => 'px',
 										'classes' => 'is-unit no-updates',
 										'value' => rmp_get_value($options,'button_width_unit'),
 									],
@@ -1798,6 +1804,7 @@ $options = $option_manager->get_options( $menu_id );
 									'has_unit' => [
 										'unit_type' => 'all',
 										'id' => 'rmp-menu-button-height-unit',
+										'default' => 'px',
 										'name' => 'menu[button_height_unit]',
 										'classes' => 'is-unit no-updates',
 										'value' => rmp_get_value($options,'button_height_unit'),
@@ -1896,7 +1903,6 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-button-distance-from-side',
 									'name'   => 'menu[button_distance_from_side]',
 									'value'    => rmp_get_value($options,'button_distance_from_side'),
-									
 									'tool_tip' => [
 										'text' => __('Specify how far across from the side you want the button to display and it\'s unit.','responsive-menu-pro')
 									],
@@ -1905,10 +1911,10 @@ $options = $option_manager->get_options( $menu_id );
 										'id' => 'rmp-menu-button-distance-from-side-unit',
 										'name' => 'menu[button_distance_from_side_unit]',
 										'classes' => 'is-unit',
+										'default' => '%',
 										'value' => rmp_get_value($options,'button_distance_from_side_unit')
 									]
 								] );
-
 
 								echo $control_manager->add_text_input_control( [
 									'label'  => __('Distance from Top','responsive-menu-pro'),
@@ -1925,6 +1931,7 @@ $options = $option_manager->get_options( $menu_id );
 										'id' => 'rmp-menu-button-top-unit',
 										'name' => 'menu[button_top_unit]',
 										'classes' => 'is-unit',
+										'default' => 'px',
 										'value' => rmp_get_value($options,'button_top_unit')
 									],
 								] );
@@ -1987,6 +1994,7 @@ $options = $option_manager->get_options( $menu_id );
 									'label'  => __('Animation','responsive-menu-pro'),
 									'id'     => 'rmp-menu-button-click-animation',
 									'class' => 'no-updates',
+									'feature_type' => 'semi-pro',
 									'name'    => 'menu[button_click_animation]',
 									'options' => rmp_hamburger_type_animation_options(),
 									'value'   => rmp_get_value($options,'button_click_animation')
@@ -2008,6 +2016,7 @@ $options = $option_manager->get_options( $menu_id );
 										'id' => 'rmp-menu-button-line-margin-unit',
 										'name' => 'menu[button_line_margin_unit]',
 										'classes' => 'is-unit',
+										'default' => 'px',
 										'value' => rmp_get_value($options,'button_line_margin_unit')
 									],
 								] );
@@ -2030,6 +2039,7 @@ $options = $option_manager->get_options( $menu_id );
 										'id' => 'rmp-menu-button-line-width-unit',
 										'name' => 'menu[button_line_width_unit]',
 										'classes' => 'is-unit',
+										'default' => 'px',
 										'value' => rmp_get_value($options,'button_line_width_unit')
 									]
 								] );
@@ -2050,6 +2060,7 @@ $options = $option_manager->get_options( $menu_id );
 										'id' => 'rmp-menu-button-line-height-unit',
 										'name' => 'menu[button_line_height_unit]',
 										'classes' => 'is-unit',
+										'default' => 'px',
 										'value' => rmp_get_value($options,'button_line_height_unit')
 									]
 								] );
@@ -2227,6 +2238,7 @@ $options = $option_manager->get_options( $menu_id );
 										'id' => 'rmp-menu-button-font-size-unit',
 										'name' => 'menu[button_font_size_unit]',
 										'classes' => 'is-unit no-updates',
+										'default' => 'px',
 										'value' => rmp_get_value($options,'button_font_size_unit'),
 									],
 								] );
@@ -2244,6 +2256,7 @@ $options = $option_manager->get_options( $menu_id );
 										'id' => 'rmp-menu-button-title-line-height-unit',
 										'name' => 'menu[button_title_line_height_unit]',
 										'classes' => 'is-unit no-updates',
+										'default' => 'px',
 										'value' => rmp_get_value($options,'button_title_line_height_unit'),
 									],
 								] );
@@ -2273,6 +2286,7 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-button-trigger-type-click',
 									'class'  => 'rmp-menu-button-trigger-type',
 									'name'   => 'menu[button_trigger_type_click]',
+									'feature_type' => 'semi-pro',
 									'is_checked'   => is_rmp_option_checked('on', $options,'button_trigger_type_click'),
 								] );
 
@@ -2281,6 +2295,7 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-button-trigger-type-hover',
 									'class'  => 'rmp-menu-button-trigger-type',
 									'name'   => 'menu[button_trigger_type_hover]',
+									'feature_type' => 'semi-pro',
 									'is_checked'   => is_rmp_option_checked('on', $options,'button_trigger_type_hover'),
 								] );
 

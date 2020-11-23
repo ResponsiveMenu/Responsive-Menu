@@ -3016,7 +3016,7 @@ div.notice-responsive-menu .notice-responsive-menu-action a:hover {
 
 .upgrade-tooltip {
     background: #f80668;
-    padding: 4px 1rem;
+    padding: 4px 0.5rem;
     color: #fff;
     font-size: 10px;
     border-radius: 3px;
