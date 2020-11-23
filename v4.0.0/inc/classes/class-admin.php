@@ -297,9 +297,6 @@ class Admin {
 			$theme_type  = sanitize_text_field( $_POST['theme_type'] );
 		}
 
-		$use_in_desktop = sanitize_text_field( $_POST['use_in_desktop'] );
-		$use_in_tablet  = sanitize_text_field( $_POST['use_in_tablet'] );
-		$use_in_mobile  = sanitize_text_field( $_POST['use_in_mobile'] );
 		$menu_show_on   = sanitize_text_field( $_POST['menu_show_on'] );
 
 		$menu_show_on_pages = [];
@@ -339,9 +336,6 @@ class Admin {
 			'theme_type'          => $theme_type,
 			'menu_display_on'     => $menu_show_on,
 			'menu_show_on_pages'  => $menu_show_on_pages,
-			'use_desktop_menu'    => $use_in_desktop,
-			'use_tablet_menu'     => $use_in_tablet,
-			'use_mobile_menu'     => $use_in_mobile,
 			'menu_id'             => $menu_id
  		);
 

@@ -169,17 +169,14 @@ class Plugin {
 		}
 	
 		foreach ( $menu_ids as $menu_id ) {
-	
+
 			$menu_show_on = $option_manager->get_option( $menu_id, 'menu_display_on' );
 			$page_ids     = $option_manager->get_option( $menu_id, 'menu_show_on_pages' );
 	
-			if ( ! empty( $menu_show_on ) &&
-				( 'shortcode' === $menu_show_on ||
-				( 'exclude-pages' === $menu_show_on && in_array( get_queried_object_id(), $page_ids ) ) ||
-				( 'include-pages' === $menu_show_on && ! in_array( get_queried_object_id(), $page_ids ) ) ) ) {
+			if ( ! empty( $menu_show_on ) && 'shortcode' === $menu_show_on ) {
 				continue;
 			}
-	
+
 			$menu = new \RMP\Features\Inc\RMP_Menu( $menu_id );
 			$menu->build_new_menu();
 		}

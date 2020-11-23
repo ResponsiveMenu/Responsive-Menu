@@ -32,19 +32,6 @@ jQuery( document ).ready( function( jQuery ) {
 		jQuery( '#rmp-new-menu-wizard' ).hide();
 	} );
 
-	jQuery( '#rmp-new-menu-wizard' ).on( 'change', '.rmp-menu-display-option', function( e ) {
-
-		const optionValue = jQuery( this ).val();
-
-		if ( 'exclude-pages' === optionValue || 'include-pages' === optionValue ) {
-			jQuery( '#rmp-menu-page-selector' ).show();
-
-			return;
-		}
-
-		jQuery( '#rmp-menu-page-selector' ).hide();
-	} );
-
 	/**
 	 * Move on next tab content for theme selection.
 	 */
@@ -82,21 +69,6 @@ jQuery( document ).ready( function( jQuery ) {
 			themeName = '';
 		}
 
-		let useInDesktop = 'off';
-		if ( jQuery( '#rmp-menu-display-device-desktop' ).is( ':checked' )  ) {
-			useInDesktop = 'on';
-		}
-
-		let useInTablet = 'off';
-		if ( jQuery( '#rmp-menu-display-device-tablet' ).is( ':checked' )  ) {
-			useInTablet = 'on';
-		}
-
-		let useInMobile = 'off';
-		if ( jQuery( '#rmp-menu-display-device-mobile' ).is( ':checked' )  ) {
-			useInMobile = 'on';
-		}
-
 		jQuery.ajax( {
 			url: rmpObject.ajaxURL,
 			data: {
@@ -107,10 +79,7 @@ jQuery( document ).ready( function( jQuery ) {
 				'menu_show_on_pages': jQuery( '#rmp-menu-display-on-pages' ).val(),
 				'menu_show_on': jQuery( '.rmp-menu-display-option' ).val(),
 				'menu_theme': themeName,
-				'theme_type': jQuery( '.rmp-theme-option:checked' ).attr( 'theme-type' ),
-				'use_in_desktop': useInDesktop,
-				'use_in_tablet': useInTablet,
-				'use_in_mobile': useInMobile
+				'theme_type': jQuery( '.rmp-theme-option:checked' ).attr( 'theme-type' )
 			},
 			type: 'POST',
 			dataType: 'json',

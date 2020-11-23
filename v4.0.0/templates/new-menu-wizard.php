@@ -69,13 +69,17 @@ $option_manager  = Option_Manager::get_instance();
                 </div>
 
                 <div class="rmp-input-control-wrapper input-group">
-                    <label class="rmp-input-control-label"> <?php esc_html_e('Device Visibility', 'responsive-menu-pro'); ?></label>
+                    <label class="rmp-input-control-label">
+                        <span> <?php esc_html_e('Device Visibility', 'responsive-menu-pro'); ?> </span>
+                        <a class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > PRO </a>
+
+                    </label>
                     <div class="rmp-input-control">
                         <div class="device-icons-group">
                             <div class="device-icon">
-                                <input id="rmp-menu-display-device-mobile" class="rmp-menu-display-device checkbox mobile" checked type="checkbox" rel="&#xf120" name="menu[use_mobile_menu]" value="on"/>
+                                <input disabled class="rmp-menu-display-device checkbox mobile" type="checkbox" rel="&#xf120"/>
                                 <label for="rmp-menu-display-device-mobile" title="mobile" >
-                                    <span class="corner-icon">
+                                  <span class="corner-icon">
                                         <i class="fas fa-check-circle" aria-hidden="true"></i>
                                     </span>
                                     <span class="device">
@@ -88,8 +92,7 @@ $option_manager  = Option_Manager::get_instance();
                             </div>
 
                             <div class="device-icon">
-                                <input id="rmp-menu-display-device-tablet" class="rmp-menu-display-device checkbox tablet"  checked type="checkbox" rel="&#xf120" name="menu[use_tablet_menu]" value="on"/>		
-
+                                <input disabled class="rmp-menu-display-device checkbox tablet"  type="checkbox" rel="&#xf120"/>
                                 <label for="rmp-menu-display-device-tablet" title="tablet" >
                                     <span class="corner-icon">
                                         <i class="fas fa-check-circle" aria-hidden="true"></i>
@@ -105,7 +108,7 @@ $option_manager  = Option_Manager::get_instance();
 
                             <div class="device-icon">
                                 <input type="hidden" name="menu[use_desktop_menu]" value="off"/>
-                                <input id="rmp-menu-display-device-desktop" class="rmp-menu-display-device checkbox desktop"  type="checkbox" rel="&#xf120" value="on"/>													
+                                <input disabled class="rmp-menu-display-device checkbox desktop"  type="checkbox" rel="&#xf120"/>										
                                 <label for="rmp-menu-display-device-desktop" title="desktop" >
                                     <span class="corner-icon">
                                         <i class="fas fa-check-circle" aria-hidden="true"></i>
@@ -123,29 +126,17 @@ $option_manager  = Option_Manager::get_instance();
                     </div>
                 </div>
                 <div class="input-group">
-                    <label for="rmp-menu-display-on-pages"> <?php esc_html_e('Display Condition', 'responsive-menu-pro'); ?> </label>
-                    
+                    <label for="rmp-menu-display-on-pages">
+                        <span> <?php esc_html_e('Display Condition', 'responsive-menu-pro'); ?> </span>
+                        <a class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > SEMI-PRO </a>
+                    </label>
+
                     <div class="rmp-menu-condition-options">
                         <select name="rmp-menu-display-on" class="rmp-menu-display-option">
                             <option  value="all-pages"> <?php esc_html_e('Show on all pages ', 'responsive-menu-pro'); ?></option>
-                            <option  value="exclude-pages"> <?php esc_html_e('Exclude some pages ', 'responsive-menu-pro'); ?></option>
-                            <option  value="include-pages"> <?php esc_html_e('Include only pages ', 'responsive-menu-pro'); ?></option>
+                            <option  value="exclude-pages" disabled="disabled"> <?php esc_html_e('Exclude some pages (Pro) ', 'responsive-menu-pro'); ?></option>
+                            <option  value="include-pages" disabled="disabled"> <?php esc_html_e('Include only pages (Pro)', 'responsive-menu-pro'); ?></option>
                             <option  value="shortcode"> <?php esc_html_e('Use as shortcode', 'responsive-menu-pro'); ?></option>
-                        </select>
-                    </div>
-
-                    <div id="rmp-menu-page-selector">
-                        <select id="rmp-menu-display-on-pages" name="menu-display-condition" placeholder="Select pages..." multiple>
-                            <?php
-                                $pages = rmp_get_list_of_pages();     
-                                foreach( $pages as $id => $page ) {
-                                    printf(
-                                        '<option value="%s"> %s </option>',
-                                        esc_attr( $id ),
-                                        esc_html( $page )                                            
-                                    );
-                                }
-                            ?>
                         </select>
                     </div>
                 </div>

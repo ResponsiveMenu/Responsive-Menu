@@ -773,6 +773,7 @@ input[type="email"]:focus, input[type="month"]:focus, input[type="number"]:focus
     margin-bottom: 10px;
     background: white;
     padding: 3% 4%;
+    position: relative;
 }
 
 
@@ -2473,6 +2474,7 @@ button.menu-save {
 
 .rmp-new-menu-wizard .device-icons-group {
     justify-content: flex-start;
+    margin-top: 10px;
 }
 
 .rmp-new-menu-wizard .device-icons-group .device-icon {
@@ -3007,4 +3009,60 @@ div.notice-responsive-menu .notice-responsive-menu-action a {
 
 div.notice-responsive-menu .notice-responsive-menu-action a:hover {
     opacity: 0.8;
+}
+
+
+/* Free version related */
+
+.upgrade-tooltip {
+    background: #f80668;
+    padding: 5px 10px;
+    color: #fff;
+    font-size: 10px;
+    border-radius: 3px;
+    position: relative;
+    margin-left: 10px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.upgrade-tooltip:hover{
+    color: #fff;
+}
+
+.upgrade-tooltip::before {
+    content: '';
+    height: 4px;
+    width: 0px;
+    border: 7px solid #b7414100;
+    border-bottom-color: #f80668;
+    position: absolute;
+    transform: rotate(270deg);
+    left: -16px;
+    bottom: 1px;
+}
+
+.upgrade-options {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(248, 6, 104 , 0.2);
+    top: 0;
+    left: 0;
+    z-index: 99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.upgrade-options .upgrade-notes .button{
+    color: #fff;
+    background: #f80668;
+    border: solid 1px #f80668;
+    margin-top: 1rem;
+}
+
+.upgrade-options .upgrade-notes p {
+    font-size: 14px;
 }

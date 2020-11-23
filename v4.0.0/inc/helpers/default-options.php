@@ -1689,10 +1689,7 @@ function rmp_get_default_options() {
         //Initial Setup -> Menu settings
         'menu_name'                 => '',
         'menu_to_use'               => '',
-        //'current_theme_location'    => 'off',
-        'use_desktop_menu'          => 'on',
-        'use_mobile_menu'           => 'on',
-        'use_tablet_menu'           => 'on',
+
         'menu_display_on'           => 'all-pages',
         'menu_show_on_pages'        => '',
         'different_menu_for_mobile' => 'off',
