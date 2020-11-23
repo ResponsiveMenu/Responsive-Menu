@@ -71,7 +71,7 @@ $option_manager  = Option_Manager::get_instance();
                 <div class="rmp-input-control-wrapper input-group">
                     <label class="rmp-input-control-label">
                         <span> <?php esc_html_e('Device Visibility', 'responsive-menu-pro'); ?> </span>
-                        <a class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > PRO </a>
+                        <a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > PRO </a>
 
                     </label>
                     <div class="rmp-input-control">
@@ -128,15 +128,15 @@ $option_manager  = Option_Manager::get_instance();
                 <div class="input-group">
                     <label for="rmp-menu-display-on-pages">
                         <span> <?php esc_html_e('Display Condition', 'responsive-menu-pro'); ?> </span>
-                        <a class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > SEMI-PRO </a>
+                        <a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > SEMI-PRO </a>
                     </label>
 
                     <div class="rmp-menu-condition-options">
                         <select name="rmp-menu-display-on" class="rmp-menu-display-option">
                             <option  value="all-pages"> <?php esc_html_e('Show on all pages ', 'responsive-menu-pro'); ?></option>
+                            <option  value="shortcode"> <?php esc_html_e('Use as shortcode', 'responsive-menu-pro'); ?></option>
                             <option  value="exclude-pages" disabled="disabled"> <?php esc_html_e('Exclude some pages (Pro) ', 'responsive-menu-pro'); ?></option>
                             <option  value="include-pages" disabled="disabled"> <?php esc_html_e('Include only pages (Pro)', 'responsive-menu-pro'); ?></option>
-                            <option  value="shortcode"> <?php esc_html_e('Use as shortcode', 'responsive-menu-pro'); ?></option>
                         </select>
                     </div>
                 </div>

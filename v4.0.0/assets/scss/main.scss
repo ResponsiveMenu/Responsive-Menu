@@ -16,71 +16,14 @@
     }
 }
 
-@if( $desktop_menu_to_hide ) {
-    #{$desktop_menu_to_hide} {
-        display: none !important;
-    }
-}
-
 @if( $menu_to_hide ) {
     #{$menu_to_hide} {
         display: none !important;
     }
 }
 
-@if( $header_bar_adjust_page == 'on' ) {
-    body {
-        margin-top : ( $header_bar_height + $header_bar_height_unit );
-    }
-}
-
-#{$header_bar_id} {
-    position: $header_bar_position_type;
-    background-color: $header_bar_background_color;
-    height: ( $header_bar_height + $header_bar_height_unit );
-    color: $header_bar_text_color;
-    font-size: ( $header_bar_font_size + $header_bar_font_size_unit );
-
-    @if( $header_bar_font != '' ) {
-        font-family: $header_bar_font;
-    } @else {
-        font-family: inherit;
-    }
-
-    display: none;
-    .rmp-header-bar-item  {
-        margin-right: 2%;
-        .rmp-menu-header-logo {
-            width: ( $header_bar_logo_width + $header_bar_logo_width_unit );
-            height: ( $header_bar_logo_height + $header_bar_logo_height_unit );
-        }   
-    }
-    a {
-        color: $header_bar_text_color;
-    }
-}   
-
-@media screen and (max-width: $header_bar_breakpoint ) {
-    #{$header_bar_id} {
-        display: block;
-    }
-}
-
 /* Hamburger menu styling */
 @media screen and (max-width: $tablet_breakpoint ) {
-
-    // Style for menu page overlay.
-    @if( $menu_page_overlay  == 'on' ) {
-        #{$menu_page_overlay_id} {
-            background: $menu_overlay_background;
-            transition:visibility $animation_speed linear,opacity $animation_speed linear;
-            &.is-active {
-                visibility:visible;
-                opacity:1;
-                transition:visibility $animation_speed linear,opacity $animation_speed linear;
-            }
-        }
-    }
 
     #{$menu_trigger_id} {
 
@@ -265,19 +208,6 @@
             display: block;
         }
 
-        .rmp-mega-menu-panel{
-            width: 100%;
-        }
-
-        .rmp-mega-menu-row {
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            .rmp-mega-menu-col{
-                width: 100%
-            }
-        }
-        
         .rmp-menu-item {
             width: 100%;
             list-style: none;
@@ -711,49 +641,8 @@
 
 /* Desktop Styling */
 @media screen and (min-width: $tablet_breakpoint ) {
-    #{$menu_container},
-    #{$header_bar_id},
-    #{$menu_trigger_id} {
-        @if( $use_desktop_menu != 'on' ) {
-            display: none;
-        }
-    }
 
-    #{$menu_container} {
-
-        @if( $use_header_bar != 'on' ) {
-
-            @if( $desktop_menu_width != '' ) {
-                width: ( $desktop_menu_width + $desktop_menu_width_unit );
-            }
-            position: $desktop_menu_position;
-            @if $desktop_menu_alignment == center {
-                left: 50%;
-                transform: translate(-50%, 0);
-                text-align: center;
-            } @else if $desktop_menu_alignment == right {
-                right: 0;
-            } @else {
-                left: 0 ;
-            }
-            top:0;
-        }
-
-        padding: 0 5%;
-
-        @if ( $menu_container_background_image != '' ) {
-            background-image: url($menu_container_background_image);
-        }
-
-        z-index: 99997;
-
-        &.rmp-container{
-            transform: translateX(0);
-            -ms-transform: translateX(0);
-            -webkit-transform: translateX(0);
-            -moz-transform: translateX(0);
-        }
-
+       #{$menu_container} {
         #{$menu_trigger_id},
         #{$menu_title_wrap},
         #{$menu_additional_content_wrap},
@@ -826,17 +715,6 @@
             list-style: none;
             margin:0; 
         }
-
-        @if( $desktop_submenu_open_on_click != 'on' ) {
-            .menu-item-has-children:hover >  .rmp-submenu {
-                display: flex;
-                animation: $desktop_submenu_open_animation $desktop_submenu_open_animation_speed;
-                @if $desktop_submenu_open_animation == 'slideDown' {
-                    z-index: -1;
-                }
-            }
-        }
-
         
         .rmp-menu-item-link {
         
@@ -1021,14 +899,6 @@
 
 @media screen and (max-width: $mobile_breakpoint ) {
 
-    #{$menu_container},
-    #{$header_bar_id},
-    #{$menu_trigger_id} {
-        @if( $use_mobile_menu != 'on' ) {
-            display: none;
-        }
-    }
-
     #{$menu_wrap} {
 
         .rmp-menu-item-link {
@@ -1109,14 +979,7 @@
 }
 
 @media screen and (max-width: $tablet_breakpoint) and (min-width : $mobile_breakpoint) {
-    #{$menu_container},
-    #{$header_bar_id},
-    #{$menu_trigger_id} {
-        @if( $use_tablet_menu != 'on' ) {
-            display: none;
-        }    
-    }
-
+  
     #{$menu_wrap} {
 
         .rmp-menu-item-link {
@@ -1203,70 +1066,5 @@
                 }
             }
         }
-    }
-}
-
-.rmp-mega-menu-panel {
-    background: #000;
-    display: block;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    overflow: hidden;
-    // Apply style for mega menu panels.
-    @each $id, $item in $menu_mega {
-        &.rmp-mega-menu-#{$id} {
-            //Panel style
-            @each $key, $panel in $item {
-                @if $key == rows  {
-                    & .rmp-mega-menu-row {
-                        //All row fetching
-                        @each $row_id, $row in $panel {
-                            &:nth-child( #{$row_id} ) {
-                                //Single row style
-                                @each $row_key, $row_value in $row {
-                                    @if $row_key == cols {
-                                        // All cols of a row
-                                        @each $col_id, $col in $row_value {
-                                            & .rmp-mega-menu-col:nth-child( #{$col_id} ) {
-                                                //Single col style
-                                                @each $col_key, $col_value in $col {
-                                                    //Column css
-                                                    @if ( $col_key == background-hover ) {
-                                                        &:hover {
-                                                           background-color : $col_value;    
-                                                        }
-                                                    } @else {
-                                                        #{$col_key} : $col_value;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    } @else {
-                                        //Row css
-                                        #{$row_key} : $row_value;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                } @else {
-                    //Panel css
-                    #{$key} : $panel;
-                }
-            }
-        }
-    }
-}
-
-.rmp-mega-menu-row {
-    display: flex;
-    flex-direction: row;
-    color : #fff;
-    overflow: hidden;
-}
-
-.rmp-submenu-animate-on {
-    animation: $desktop_submenu_open_animation $desktop_submenu_open_animation_speed;
-    @if ( $desktop_submenu_open_animation == 'slideDown' ) {
-        z-index: -1;
     }
 }

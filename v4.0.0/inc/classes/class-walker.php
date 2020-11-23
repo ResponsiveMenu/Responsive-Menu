@@ -237,18 +237,12 @@ class Walker extends \Walker_Nav_Menu {
             return;
 		}
 
-        $extra_class = '';
-        if ( $this->options['use_desktop_menu'] == 'on' ) {
-            $extra_class .= ' rmp-desktop-menu-container ';
-		}
-
         // Add sub-menu item wrap.
         $output .= sprintf( '<ul aria-label="%s" 
             role="menu" data-depth="%s" 
-            class=" %s rmp-submenu rmp-submenu-depth-%s">',
+            class="rmp-submenu rmp-submenu-depth-%s">',
             esc_attr( $this->current_item->title),
             ( $depth + 2 ),
-            $extra_class,
             ($depth + 1) . $this->get_submenu_class_open_or_not()
 		);
 
@@ -272,10 +266,6 @@ class Walker extends \Walker_Nav_Menu {
 	 */
 	public function prepare_mega_menu( $item_id ) {
 
-        $extra_class = '';
-        if ( $this->options['use_desktop_menu'] == 'on' ) {
-            $extra_class .= 'rmp-desktop-menu-container ';
-		}
 
 		$mega_menu_output   = '';
         $mega_menu_settings = get_post_meta( $this->options['menu_id'], '_rmp_mega_menu_' . $item_id );
@@ -322,8 +312,7 @@ class Walker extends \Walker_Nav_Menu {
 
         // Add mega menu items and widgets.
         $output = sprintf(
-            '<ul role="menu" data-depth="1" class="rmp-mega-menu-container %s rmp-submenu rmp-submenu-depth-1 %s"> %s %s </ul>',
-            $extra_class,
+            '<ul role="menu" data-depth="1" class="rmp-mega-menu-container rmp-submenu rmp-submenu-depth-1 %s"> %s %s </ul>',
             $this->get_submenu_class_open_or_not(),
             $output,
             $mega_menu_output

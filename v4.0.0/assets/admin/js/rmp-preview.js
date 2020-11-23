@@ -361,36 +361,6 @@ jQuery(document).ready(function(jQuery) {
 				iframeContents.find( self.menuContainer ).append( menuElement );
 			});
 		},
-		orderHeaderBarElements: function() {
-			var list = [];
-			var self = this;
-			var iframeContents = jQuery(self.iframe).contents();
-			jQuery('#tab-header-bar .item-title').each(function () {
-				var item = jQuery(this).text().toLocaleLowerCase().trim();
-
-				if( 'logo' == item ) {
-					list.push( iframeContents.find( self.headerLogo ) );
-					iframeContents.find( self.headerLogo ).remove();
-				} else if ( item == 'title') {
-					list.push( iframeContents.find( self.headerTitle ) );
-					iframeContents.find( self.headerTitle ).remove();
-				} else if( item == 'search' ) {
-					list.push( iframeContents.find( self.headerSearch ) );
-					iframeContents.find( self.headerSearch ).remove();
-				} else if( item == 'menu' ) {
-					list.push( iframeContents.find( self.headerMenu ) );
-					iframeContents.find( self.headerMenu ).remove();
-				} else {
-					list.push( iframeContents.find( self.headerContents ) );
-					iframeContents.find( self.headerContents ).remove();
-				}
-			} );
-
-			list.forEach( function( menuElement ) {
-				iframeContents.find( self.headerContainer ).append( menuElement );
-			});
-		},
-
 		/**
 		 * Function to bind the color input with option and elements.
 		 * 
@@ -676,22 +646,6 @@ jQuery(document).ready(function(jQuery) {
 			self.menuWrap      = '#rmp-menu-wrap-' + self.menuId;
 			self.menuContents  = '#rmp-menu-additional-content-' + self.menuId;
 
-			//Menu header elements.
-			self.headerContainer = '#rmp-header-bar-'+ self.menuId + ' .rmp-header-bar-items';
-			self.headerTitle     = '#rmp-header-title-' + self.menuId;
-			self.headerSearch    = '#rmp-header-search-box-' + self.menuId;
-			self.headerMenu      = '#rmp-container-'+ self.menuId;
-			self.headerContents  = '#rmp-header-additional-content-' + self.menuId;
-			self.headerLogo      = '#rmp-header-logo-' + self.menuId;
-
-			//Menu overlay background color.
-			self.bindColor(
-				'#rmp-menu-overlay-colour',
-				'#rmp-page-overlay-' + self.menuId ,
-				'background',
-				''
-			);
-
 			//Menu container background color.
 			self.bindColor(
 				'#rmp-container-background-colour',
@@ -740,18 +694,7 @@ jQuery(document).ready(function(jQuery) {
 			self.bindColor('#rmp-menu-button-line-colour-hover', '#rmp_menu_trigger-' + self.menuId + ':hover .responsive-menu-pro-inner,#rmp_menu_trigger-' + self.menuId +':hover .responsive-menu-pro-inner:after,#rmp_menu_trigger-' + self.menuId +':hover .responsive-menu-pro-inner:before', 'background','' );
 			self.bindColor('#rmp-menu-button-text-colour', '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-label', 'color' );
 
-			//Header bar
-			self.bindColor('#rmp-menu-header-background-text-color', '#rmp-header-bar-' + self.menuId , 'background');
-			self.bindColor('#rmp-menu-header-bar-text-color', '#rmp-header-bar-' + self.menuId , 'color' );
-			self.onTyping('#rmp-menu-header-bar-font-size', '#rmp-header-bar-' + self.menuId , 'font-size');
-			self.changeInput('#rmp-header-bar-font', '#rmp-header-bar-' + self.menuId , 'font-family' );
-
-			self.bindImage(
-				'#rmp-header-bar-logo-selector',
-				'#rmp-header-bar-' + self.menuId + ' .rmp-header-bar-logo',
-				'img-src'
-			);
-
+		
 			self.bindImage(
 				'#rmp-mega-menu-panel-image-selector',
 				'#rmp-mega-menu-panel-background-image',
@@ -840,9 +783,6 @@ jQuery(document).ready(function(jQuery) {
 			self.onTyping('#rmp-menu-font-size', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-item-link', 'font-size');
 			self.changeInput('#rmp-menu-font-size-unit', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-item-link', 'font-size');
 
-			self.onTyping('#rmp-menu-header-bar-height', '#rmp-header-bar-' + self.menuId , 'height');
-			self.changeInput('#rmp-menu-header-bar-height-unit', '#rmp-header-bar-' + self.menuId, 'height-unit');
-			self.changeInput('#rmp-menu-header-bar-font-size-unit', '#rmp-header-bar-' + self.menuId, 'font-size');
 
 			self.changeInput('#rmp-menu-font', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-item-link', 'font-family' );
 			self.changeInput('#rmp-menu-font-weight', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-item-link', 'font-weight' );
@@ -943,13 +883,9 @@ jQuery(document).ready(function(jQuery) {
 			self.toggleElements('#rmp-item-order-search','#rmp-search-box-'+ self.menuId);
 			self.toggleElements('#rmp-item-order-menu','#rmp-menu-wrap-' + self.menuId );
 
-			jQuery( '#rmp-menu-ordering-items,#rmp-header-ordering-items' ).sortable( {
+			jQuery( '#rmp-menu-ordering-items' ).sortable( {
 				update: function( event, ui ) {
-					if ( jQuery(this).attr('id').includes('header') ) {
-						self.orderHeaderBarElements();
-					} else {
-						self.orderMenuElements();
-					}	
+					self.orderMenuElements();
 				}
 			});
 

@@ -179,164 +179,9 @@ $options = $option_manager->get_options( $menu_id );
 					?>
 
 					<div id="tab-header-bar" class="rmp-accordions" aria-label="Header Bar">
-						<div class="rmp-order-item rmp-header-bar-description rmp-order-item-description rmp-ignore-accordion">
-							<?php esc_html_e('Drag the header bar items up and down to re-order their appearance on the front end.', 'responsive-menu-pro'); ?> 	
-						</div>
-
-						<ul class="rmp-accordion-container" id="rmp-header-ordering-items">
+						<ul class="rmp-accordion-container">
 							<?php
-								echo $ui_manager->start_accordion_item( [
-									'item_header' => [
-										'item_title' => __('Enable Header Bar','responsive-menu-pro'),
-										'title_class' => 'rmp-item-placeholder',
-										'title_span_class' => 'item-title',
-										'item_control' => [
-											'switcher' => true,
-											'id'         => 'rmp-menu-header-bar',
-											'class'      => 'rmp-menu-header-bar',
-											'name'  => 'menu[use_header_bar]',
-											'is_checked'   => is_rmp_option_checked('on', $options,'use_header_bar')
-										]
-									],
-									'tool_tip'   => [
-										'text'  => __('Turning this on will make the Header Bar show on your site automatically.','responsive-menu-pro'),
-									],
-									'item_class' => 'rmp-order-item',
-									'self_close_item' => true,
-								] );
-								?>
-
-							
-							<?php
-
-								if ( ! empty( $options['header_bar_items_order'] ) ) {
-									foreach( $options['header_bar_items_order'] as $key => $value ) {
-										if( 'title' === $key ) {
-											include_once RMP_PLUGIN_PATH_V4 . '/templates/header-elements/title.php';
-										} elseif( 'menu' === $key ) {
-											include_once RMP_PLUGIN_PATH_V4 . '/templates/header-elements/menu.php';
-										} elseif( 'search' === $key ) {
-											include_once RMP_PLUGIN_PATH_V4 . '/templates/header-elements/search.php';
-										} elseif( 'logo' === $key ) {
-											include_once RMP_PLUGIN_PATH_V4 . '/templates/header-elements/logo.php';
-										} else {
-											include_once RMP_PLUGIN_PATH_V4 . '/templates/header-elements/additional-content.php';
-										}
-									}
-								}
-
-								echo $ui_manager->start_accordion_item( [
-									'item_header' => [
-										'item_title' => __('Appearance','responsive-menu-pro'),
-									]
-								] );
-
-								echo $control_manager->add_text_input_control( [
-									'label'  => __('Height','responsive-menu-pro'),
-									'type'   => 'number',
-									'id'     => 'rmp-menu-header-bar-height',
-									'name'   => 'menu[header_bar_height]',
-									'class' => 'no-updates',
-									'value'    => rmp_get_value($options,'header_bar_height'),
-									'has_unit' => [
-										'unit_type' => 'all',
-										'id' => 'rmp-menu-header-bar-height-unit',
-										'name' => 'menu[header_bar_height_unit]',
-										'classes' => 'is-unit no-updates',
-										'value' => rmp_get_value($options,'header_bar_height_unit'),
-									],
-								] );
-
-								echo $ui_manager->start_group_controls();
-									echo $control_manager->add_text_input_control( [
-										'label'    => __('Font Family','responsive-menu-pro'),
-										'type'     => 'text',
-										'class' => 'no-updates',
-										'placeholder' => __('Enter font','responsive-menu-pro'),
-										'id'       => 'rmp-header-bar-font',
-										'name'     => 'menu[header_bar_font]',
-										'value'    => rmp_get_value($options,'header_bar_font'),
-									] );
-
-									echo $control_manager->add_text_input_control( [
-										'label'  => __('Font Size','responsive-menu-pro'),
-										'type'   => 'number',
-										'id'     => 'rmp-menu-header-bar-font-size',
-										'name'   => 'menu[header_bar_font_size]',
-										'class' => 'no-updates',
-										'value'    => rmp_get_value($options,'header_bar_font_size'),
-										'has_unit' => [
-											'unit_type' => 'all',
-											'id' => 'rmp-menu-header-bar-font-size-unit',
-											'name' => 'menu[header_bar_font_size_unit]',
-											'classes' => 'is-unit no-updates',
-											'value' => rmp_get_value($options,'header_bar_font_size_unit'),
-										],
-									] );
-								echo $ui_manager->end_group_controls();
-
-								echo $ui_manager->start_group_controls();
-									echo $control_manager->add_color_control( [
-										'label'  => __('Text Color','responsive-menu-pro'),
-										'id'     => 'rmp-menu-header-bar-text-color',
-										'name'    => 'menu[header_bar_text_color]',
-										'value'    => rmp_get_value($options,'header_bar_text_color')
-									] );
-
-									echo $control_manager->add_color_control( [
-										'label'  => __('Background Color','responsive-menu-pro'),
-										'id'     => 'rmp-menu-header-background-text-color',
-										'name'    => 'menu[header_bar_background_color]',
-										'value'    => rmp_get_value($options,'header_bar_background_color')
-									] );	
-								echo $ui_manager->end_group_controls();
-
-								echo $ui_manager->end_accordion_item();
-
-								echo $ui_manager->start_accordion_item( [
-									'item_header' => [
-										'item_title' => __('Advance Settings','responsive-menu-pro'),
-									]
-								] );
-
-								echo $ui_manager->start_group_controls();
-									echo $control_manager->add_text_input_control( [
-										'label'  => __('Breakpoint','responsive-menu-pro'),
-										'type'   => 'number',
-										'id' => 'rmp-menu-header-bar-breakpoint',
-										'name'   => 'menu[header_bar_breakpoint]',
-										'value'    => rmp_get_value( $options, 'header_bar_breakpoint' ),
-										'tool_tip' => [
-											'text' => __( 'Show the header bar below this screen resolution', 'responsive-menu-pro'),
-										],
-										'has_unit' => [
-											'unit_type' => 'px',
-										]
-									] );
-
-									echo $control_manager->add_select_control( [
-										'label'  => __('Positioning','responsive-menu-pro'),
-										'id'     => 'rmp-menu-header-bar-positioning',	
-										'name'    => 'menu[header_bar_position_type]',
-										'options' => array( 'fixed' => 'Fixed' , 'absolute' => 'Absolute', 'relative' => 'Relative' ),
-										'value'   => rmp_get_value($options,'header_bar_position_type')
-									] );
-
-								echo $ui_manager->end_group_controls();
-										
-								echo $control_manager->add_switcher_control( [
-									'label'  => __('Adjust Page','responsive-menu-pro'),
-									'id'     => 'rmp-menu-header-bar-adjust-page',
-									'class'  => 'rmp-menu-header-bar-adjust-page',
-									'tool_tip' => [
-										'text' => __('Turning this on will automatically adjust your page to bring the content down inline with the header bar.','responsive-menu-pro'),
-									],
-									'name'   => 'menu[header_bar_adjust_page]',
-									'is_checked'   => is_rmp_option_checked('on', $options,'header_bar_adjust_page'),
-								] );	
-
-								echo $ui_manager->end_accordion_item();
-
+								echo $control_manager->upgrade_notice();
 							?>
 						</ul>
 					</div>
@@ -439,22 +284,22 @@ $options = $option_manager->get_options( $menu_id );
 									'tool_tip' => [
 										'text' => __('The menu will appear in expanded state when the page loads.','responsive-menu-pro'),
 									],
+									'feature_type' => 'pro',
 									'name'   => 'menu[show_menu_on_page_load]',
-									'is_checked'   => is_rmp_option_checked( 'on', $options, 'show_menu_on_page_load' ),
+									'is_checked'   => '',
 									
 								] );
-
 
 								echo $control_manager->add_switcher_control( [
 									'label'  => __('Disable Background Scrolling','responsive-menu-pro'),
 									'id'     => 'rmp-menu-disable-scrolling',
 									'class'  => 'rmp-menu-disable-scrolling',
+									'feature_type' => 'pro',
 									'tool_tip' => [
 										'text' => __('This will disable the background page scrolling.','responsive-menu-pro'),
 									],
 									'name'   => 'menu[menu_disable_scrolling]',
-									'is_checked'   => is_rmp_option_checked('on', $options,'menu_disable_scrolling'),
-									
+									'is_checked'   => ''
 								] );
 
 								echo $ui_manager->end_accordion_item();
@@ -465,25 +310,13 @@ $options = $option_manager->get_options( $menu_id );
 									],
 									'tool_tip' => [
 										'text' => __('Put a backdrop when menu is active.','responsive-menu-pro'),
+									],
+									'item_content' => [
+										'content_class' => 'upgrade-notice-contents'
 									]
 								]);
 
-								echo $control_manager->add_switcher_control( [
-									'label'  => __('Enable','responsive-menu-pro'),
-									'id'     => 'rmp-menu-overlay',
-									'class'  => 'rmp-menu-overlay',
-									'name'   => 'menu[menu_overlay]',
-									'is_checked'   => is_rmp_option_checked('on', $options,'menu_overlay'),
-									
-								] );
-
-								echo $control_manager->add_color_control( [
-									'label'  => __('Color','responsive-menu-pro'),
-									'id'     => 'rmp-menu-overlay-colour',
-									'name'    => 'menu[menu_overlay_colour]',
-									'value'    => rmp_get_value($options,'menu_overlay_colour'),
-									
-								] );
+									echo $control_manager->upgrade_notice();
 
 								echo $ui_manager->end_accordion_item();
 									
@@ -494,140 +327,7 @@ $options = $option_manager->get_options( $menu_id );
 					<div id="tab-desktop-menu" class="rmp-accordions" aria-label="Desktop Menu">
 						<ul class="rmp-accordion-container">
 							<?php
-								echo $ui_manager->start_accordion_item( [
-									'item_header' => [
-										'item_title' => __('General Setup','responsive-menu-pro'),
-									]
-								] );
-
-								echo $control_manager->add_text_input_control( [
-									'label'  => __('Width','responsive-menu-pro'),
-									'type'   => 'number',
-									'id'     => 'rmp-menu-desktop-menu-width',
-									'name'   => 'menu[desktop_menu_width]',
-									'value'    => rmp_get_value($options,'desktop_menu_width'),
-									'group_classes' => 'full-size',
-									'tool_tip' => [
-										'text' => __( 'Desktop menu width will not work if menu inside header bar.', 'responsive-menu-pro' ),
-									],
-									'has_unit' => [
-										'unit_type' => 'all',
-										'id' => 'rmp-menu-desktop-menu-width-unit',
-										'name' => 'menu[desktop_menu_width_unit]',
-										'classes' => 'is-unit',
-										'value' => rmp_get_value($options,'desktop_menu_width_unit'),
-									],
-								] );
-
-								echo $ui_manager->start_group_controls();
-								echo $control_manager->add_select_control( [
-									'label'  => __('Position','responsive-menu-pro'),
-									'id'     => 'rmp-menu-desktop-menu-positioning',
-									'name'    => 'menu[desktop_menu_positioning]',
-									'options' => array( 'fixed' => 'Fixed' , 'absolute' => 'Absolute', 'relative' => 'Relative' ),
-									'value'   => rmp_get_value($options,'desktop_menu_positioning'),
-									'tool_tip' => [
-										'text' => __( 'Desktop menu position will not work if menu inside header bar.', 'responsive-menu-pro' ),
-									]
-								] );
-
-								echo $control_manager->add_select_control( [
-									'label'  => __('Alignment','responsive-menu-pro'),
-									'class'   => 'rmp-menu-desktop-menu-side',
-									'id'     => 'rmp-menu-desktop-menu-side',
-									'name'    => 'menu[desktop_menu_side]',
-									'options' => [ 'left' => 'Left', 'center' => 'Center', 'right' => 'Right' ],
-									'value'   => rmp_get_value($options,'desktop_menu_side'),
-									'tool_tip' => [
-										'text' => __( 'Desktop menu alignment will not work if menu inside header bar.', 'responsive-menu-pro' ),
-									]
-								] );
-								echo $ui_manager->end_group_controls();
-
-								echo $ui_manager->start_group_controls();
-								echo $control_manager->add_select_control( [
-									'label'    => __('Dropdown Effect','responsive-menu-pro'),
-									'id'       => 'rmp-menu-font-weight',
-									'name'     => 'menu[desktop_submenu_open_animation]',
-									'options'  => [
-										'none'      => 'None',
-										'fade'      => 'Fade',
-										'fadeUp'    => 'FadeUp',
-										'slideDown' => 'SlideDown',
-										'slideUp'   => 'SlideUp'
-									],
-									'value'   => rmp_get_value($options,'desktop_submenu_open_animation')
-								] );
-
-								echo $control_manager->add_select_control( [
-									'label'  => __('Transition Delay','responsive-menu-pro'),
-									'id'     => 'rmp-menu-font-weight',
-									'name'    => 'menu[desktop_submenu_open_animation_speed]',
-									'options' => rmp_animation_delay_options(),
-									'value'   => rmp_get_value($options,'desktop_submenu_open_animation_speed'),
-								] );
-								echo $ui_manager->accordion_divider();
-								echo $ui_manager->end_group_controls();
-
-								echo $control_manager->add_text_input_control( [
-									'label'  => __('Hide original menu','responsive-menu-pro'),
-									'group_classes' => 'full-size',
-									'type' => 'text',
-									'placeholder' => __( 'CSS Selector','responsive-menu-pro'),
-									'id'     => 'rmp-menu-desktop-menu-to-hide',
-									'name'   => 'menu[desktop_menu_to_hide]',
-									'value'    => rmp_get_value($options,'desktop_menu_to_hide'),
-									'tool_tip' => [
-										'text' => __( 'Add a valid CSS selector that contains original theme menu.', 'responsive-menu-pro' ),
-									]
-								] );
-
-								echo $ui_manager->end_accordion_item();
-
-								echo $ui_manager->start_accordion_item( [
-									'item_header' => [
-										'item_title' => __('Mega Menu Setup','responsive-menu-pro'),
-									],
-									'item_content' => [
-										'content_class' => 'rmp-mega-menu-item-container',
-									]
-								] );
-
-								include_once RMP_PLUGIN_PATH_V4 . '/templates/mega-menu/top-menu-item.php';
-								echo $ui_manager->end_accordion_item();
-
-								echo $ui_manager->start_accordion_item( [
-									'item_header' => [
-										'item_title' => __('Behaviour','responsive-menu-pro'),
-									]
-								] );
-
-								echo $control_manager->add_switcher_control( [
-									'label'  => __('Click to open dropdown','responsive-menu-pro'),
-									'id'     => 'rmp-menu-desktop-submenu-open-on-click',
-									'class'  => 'rmp-menu-desktop-submenu-open-on-click',
-									'tool_tip' => [
-										'text' => __('Use click event instead of hover event to show dropdowns','responsive-menu-pro')
-									],
-									'name'   => 'menu[desktop_submenu_open_on_click]',
-									'is_checked'   => is_rmp_option_checked('on', $options,'desktop_submenu_open_on_click'),
-									
-								] );
-
-								echo $control_manager->add_switcher_control( [
-									'label'  => __( 'Hide menu on scroll','responsive-menu-pro'),
-									'id'     => 'rmp-menu-desktop-menu-hide-and-show',
-									'class'  => 'rmp-menu-desktop-menu-hide-and-show',
-									'tool_tip' => [
-										'text' => __('Hide on scroll-down / show on scroll-up when menu position fixed.','responsive-menu-pro'),
-									],
-									'name'   => 'menu[desktop_menu_hide_and_show]',
-									'is_checked'   => is_rmp_option_checked('on', $options,'desktop_menu_hide_and_show'),
-									
-								] );
-
-								echo $ui_manager->end_accordion_item();
-								
+								echo $control_manager->upgrade_notice();
 							?>
 						</ul>
 					</div>
@@ -740,21 +440,6 @@ $options = $option_manager->get_options( $menu_id );
 								] );
 								echo $ui_manager->end_group_controls();
 
-								/*
-								// This is theme location based option.
-								echo $control_manager->add_switcher_control( [
-									'label'  => __(' Use theme location ','responsive-menu-pro'),
-									'id'     => 'rmp-menu-current-theme-location',
-									'class'  => 'rmp-menu-current-theme-location',
-									'tool_tip' => [
-										'text' => __('If selected WordPress nav menu is associate with theme location and want to show it on that location then enabled it.','responsive-menu-pro'),
-									],
-									'name'   => 'menu[current_theme_location]',
-									'is_checked'   => is_rmp_option_checked('on', $options,'current_theme_location'),
-								] );
-								
-								*/
-
 								echo $ui_manager->accordion_divider();
 
 								echo $control_manager->add_switcher_control( [
@@ -762,16 +447,8 @@ $options = $option_manager->get_options( $menu_id );
 									'group_classes' => 'full-size',
 									'id'     => 'rmp-menu-different-menu-for-mobile',
 									'class'  => 'rmp-menu-different-menu-for-mobile',
-									'name'   => 'menu[different_menu_for_mobile]',
-									'is_checked'   => is_rmp_option_checked('on', $options,'different_menu_for_mobile'),
-								] );
-
-								echo $control_manager->add_select_control( [
-									'label'  => __('Mobile & Tablet Menu','responsive-menu-pro'),
-									'id'     => 'rmp-menu-to-use-in-mobile',
-									'name'    => 'menu[menu_to_use_in_mobile]',
-									'options' => $wp_menu_list,
-									'value'   => rmp_get_value( $options , 'menu_to_use_in_mobile' ),
+									'feature_type' => 'pro',
+									'name'   => ''
 								] );
 
 								echo $ui_manager->accordion_divider();
@@ -782,30 +459,14 @@ $options = $option_manager->get_options( $menu_id );
 									'label'  => __('Display condition','responsive-menu-pro'),
 									'id'     => 'rmp-menu-display-condition',
 									'name'    => 'menu[menu_display_on]',
+									'feature_type' => 'semi-pro',
 									'options' => [
 										'all-pages'     => __( 'Show on all pages ', 'responsive-menu-pro' ),
-										'exclude-pages' => __( 'Exclude some pages ', 'responsive-menu-pro' ),
-										'include-pages' => __( 'Include only pages ', 'responsive-menu-pro' ),
-										'shortcode'     => __( 'Use as shortcode', 'responsive-menu-pro' ) 
+										'shortcode'     => __( 'Use as shortcode', 'responsive-menu-pro' ),
+										'exclude-pages' => __( 'Exclude some pages (PRO) ', 'responsive-menu-pro' ),
+										'include-pages' => __( 'Include only pages (PRO)', 'responsive-menu-pro' )
 									],
 									'value'   => rmp_get_value( $options, 'menu_display_on' ),
-								] );
-
-								$pages = rmp_get_list_of_pages();  
-								$page_list = [];   
-                                foreach( $pages as $id => $page ) {
-									$page_list[$id] = $page;
-								}
-
-								echo $control_manager->add_select_control( [
-									'label'  => __('Select Pages','responsive-menu-pro'),
-									'id'     => 'rmp-menu-display-on-pages',
-									'class'  => 'rmp-menu-display-on-pages',
-									'group_classes' => 'full-size',
-									'multiple' => true,
-									'name'    => 'menu[menu_show_on_pages][]',
-									'options' => $page_list,
-									'value'   => rmp_get_value( $options, 'menu_show_on_pages' ),
 								] );
 
 								echo $ui_manager->accordion_divider();

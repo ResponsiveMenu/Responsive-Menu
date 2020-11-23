@@ -96,12 +96,6 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 		}
 
 		public function mobile_menu() {
-			/*
-				$menu_location = $this->get_wp_menu_location();
-				if ( ! empty( $menu_location ) ) {
-					return;
-				}
-			*/
 
 			$menu_switcher = $this->menu_trigger();
 			
@@ -138,25 +132,11 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 				$html
 			);
 
-			//If page overlay is enable then show it.
-			if ( 'on' == $this->options['menu_overlay'] ) {
-				$html .= sprintf('<div class="rmp-page-overlay" id="rmp-page-overlay-%s"></div>', esc_attr( $this->menu_id  ) );
-			}
-
 			return $html;
 		}
 
 		public function build_new_menu() {
-
-			$html = '';
-
-			if ( 'on' == $this->options['use_header_bar'] ) {
-				$html = $this->get_rmp_header();
-			} else {
-				$html = $this->mobile_menu();
-			}
-
-			echo  $html;
+			echo  $this->mobile_menu();
 			return;
 		}
 
@@ -252,19 +232,13 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 				$trigger_click_animation = $this->options['button_click_animation'];
 			}
 
-			$open_on_page_load = '';
-			// if ( ! empty ($this->options['show_menu_on_page_load'] ) ) {
-			// 	$open_on_page_load  = 'is-active';
-			// }
-
 			$rmp_menu_trigger = sprintf(
-				'<button type="button" menu-pressed="rmp-container-%s"  aria-controls="navigation" aria-label="Menu Trigger" id="rmp_menu_trigger-%s" class="rmp_menu_trigger rmp-menu-trigger-%s %s">
+				'<button type="button" menu-pressed="rmp-container-%s"  aria-controls="navigation" aria-label="Menu Trigger" id="rmp_menu_trigger-%s" class="rmp_menu_trigger rmp-menu-trigger-%s">
 					%s
 				</button>',
 				$this->menu_id,
 				$this->menu_id,
 				$trigger_click_animation,
-				$open_on_page_load,
 				$menu_trigger_content
 			);
 
@@ -467,13 +441,6 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 
 		public function get_wp_menu_location() {
 
-			// If `show on current theme location`  option is enabled then check associated menu with location.
-			/*
-			if ( empty( $this->options['current_theme_location'] ) || 'off' == $this->options['current_theme_location'] ) {
-				return;
-			}
-			*/
-
 			$menu = $this->get_wp_menu_to_use();
 			if ( empty( $menu ) ) {
 				return;
@@ -489,123 +456,6 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 				}
 			}
 			return $theme_location;
-		}
-
-		public function get_rmp_header() {
-
-			$header_item_html  = '';
-			$header_items = [];
-			if ( ! empty( $this->options['header_bar_items_order'] ) ) {
-				$header_items = $this->options['header_bar_items_order'];
-			}
-
-			foreach( $header_items as $key => $value ) {
-				if ( ! empty( $value ) && $value === 'on' ) {
-					if( 'menu' === $key ) {
-						$header_item_html .= $this->mobile_menu();
-					} elseif ( 'title' === $key ) {
-						$header_item_html .= $this->get_rmp_header_title();
-					} elseif ( 'search' === $key ) {
-						$header_item_html .= $this->get_rmp_header_search();
-					} elseif( 'logo' === $key ) {
-						$header_item_html .= $this->get_rmp_header_logo();
-					} else {
-						$header_item_html .= $this->get_rmp_header_content();
-					}
-				}
-			}
-
-			return sprintf(
-				'<div id="rmp-header-bar-%s" class="rmp-header-bar-container">
-					<div class="rmp-header-bar-items">
-						%s
-					</div>
-				</div>',
-				esc_attr( $this->menu_id),
-				$header_item_html
-			);
-		}
-
-		public function get_rmp_header_title() {
-
-			$menu_title = '';
-			if ( ! empty( $this->options['header_bar_title'] ) ) {
-				$menu_title = esc_html( $this->options['header_bar_title'] );
-			}
-
-			if ( ! empty( $this->options['header_bar_logo_link'] ) ) {
-				$menu_title = sprintf('<a href="%s">%s</a>',
-					esc_url( $this->options['header_bar_logo_link'] ),
-					$menu_title
-				);
-			}
-
-			return sprintf('<div id="rmp-header-title-%s" class="rmp-header-bar-item rmp-header-bar-title">%s</div>',
-				esc_attr( $this->menu_id),
-				$menu_title
-			);
-		}
-
-		public function get_rmp_header_logo() {
-
-			$header_logo = '';
-			if ( ! empty( $this->options['header_bar_logo'] ) ) {
-				$image_alt    = rmp_image_alt_by_url( $this->options['header_bar_logo'] );
-				$header_logo  = sprintf('<img class="rmp-menu-header-logo" src="%1$s" alt="%2$s" title="%2$s"/>',
-					esc_url( $this->options['header_bar_logo'] ),
-					esc_attr( $image_alt )
-				);
-			}
-
-			if ( ! empty( $this->options['header_bar_logo_link'] ) ) {
-				$header_logo = sprintf('<a href="%s">%s</a>',
-					esc_url( $this->options['header_bar_logo_link'] ),
-					$header_logo
-				);
-			}
-
-			return sprintf('<div id="rmp-header-logo-%s" class="rmp-header-bar-item rmp-header-bar-logo">%s</div>',
-				esc_attr( $this->menu_id),
-				$header_logo
-			);
-		}
-
-		public function get_rmp_header_search() {
-
-			$placeholder_text = '';
-			if ( ! empty( $this->options['menu_search_box_text'] ) ) {
-				$placeholder_text = $this->options['menu_search_box_text'];
-			}
-
-			return sprintf('
-				<div id="rmp-header-search-box-%s" class="rmp-header-bar-item rmp-header-bar-search">
-					<form action="%s" class="rmp-search-form" role="search">
-						<input type="search" name="s" title="Search" tabindex="1"
-							placeholder="%s"
-							class="rmp-search-box">
-					</form>
-				</div>',
-				esc_attr( $this->menu_id),
-				esc_url( home_url( '/' ) ),
-				esc_attr( $placeholder_text )
-			);
-
-		}
-
-		public function get_rmp_header_content() {
-
-			$content = '';
-
-			if ( ! empty( $this->options['header_bar_html_content'] ) ) {
-				$content = do_shortcode($this->options['header_bar_html_content']);
-			}
-
-			return sprintf(
-				'<div id="rmp-header-additional-content-%s" class="rmp-header-bar-item rmp-header-bar-contents">%s</div>',
-				esc_attr( $this->menu_id),
-				$content
-			);
-
 		}
 
 	}

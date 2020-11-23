@@ -396,22 +396,6 @@ jQuery( document ).ready( function( jQuery ) {
 	} );
 
 	/**
-	 * Change device as desktop when click on desktop setting option nav.
-	 * 
-	 * @fires click
-	 */
-	jQuery('#rmp-tab-item-desktop-menu').on( 'click', function() {
-
-		const activeDevice = jQuery( '#rmp_device_mode' ).val();
-		if ( 'desktop' != activeDevice ) {
-			jQuery( '#rmp-preview-desktop' ).trigger( 'click' );
-		}
-
-	});
-
-
-
-	/**
 	 * Active all the device options in editor.
 	 *
 	 * @version 4.0.0;
@@ -491,7 +475,7 @@ jQuery( document ).ready( function( jQuery ) {
 	 * Instantiate the draggable and sortable menu item order elements.
 	 * 	@version 4.0.0
 	 */
-	jQuery( '#rmp-menu-ordering-items,#rmp-header-ordering-items' ).accordion().sortable( {
+	jQuery( '#rmp-menu-ordering-items' ).accordion().sortable( {
 		placeholder: 'sortable-placeholder',
 		opacity: 0.9,
 		cursor: 'move',
@@ -738,44 +722,6 @@ jQuery( document ).ready( function( jQuery ) {
 	} );
 
 	/**
-	 * Check to validate the license key in setting page.
-	 * 
-	 * @version 4.0.0
-	 * 
-	 * @fires Click
-	 */
-	jQuery( '#rmp-license-checker' ).click( function( e ) {
-		e.preventDefault();
-
-		jQuery.ajax( {
-			url: rmpObject.ajaxURL,
-			data: {
-				'action': 'rmp_license_key_validation',
-				'ajax_nonce': rmpObject.ajax_nonce,
-				'rmp_license_key': jQuery( '#rmp-license-key' ).val()
-			},
-			type: 'POST',
-			dataType: 'json',
-			beforeSend: function() {
-				jQuery( this ).prop( 'disabled', true );
-			},
-			error: function( error ) {
-				console.log( 'Internal Error !' + error );
-			},
-			success: function( response ) {
-				if ( response.data.alert.success ) {
-					alert( 'Success : ' + response.data.alert.success );
-				} else {
-					alert( response.data.alert.danger );
-				}
-
-				location.reload();
-			}
-		});
-
-	} );
-
-	/**
 	 * Event to linked the group inputs.
 	 * 
 	 * @fires Click
@@ -801,31 +747,6 @@ jQuery( document ).ready( function( jQuery ) {
 		}
 
 	});
-
-	/**
-	 * Header options hide and show.
-	 */
-	if ( jQuery('#rmp-menu-header-bar').is(':checked') ) {
-		hideShowHeaderOptions( jQuery('#rmp-menu-header-bar') );
-	} else {
-		hideShowHeaderOptions( jQuery('#rmp-menu-header-bar') );
-	}
-
-	jQuery('#rmp-menu-header-bar').change( function() {
-		hideShowHeaderOptions( this );
-	});
-
-	function hideShowHeaderOptions( element ) {
-		jQuery(element).parents('.item-controls').css('right','10px');
-		var parent = jQuery(element).parents('.rmp-accordion-item'); 
-		if ( jQuery(element).is(':checked') ) {
-			parent.siblings().show();
-			jQuery('.rmp-header-bar-description').show();
-		} else {
-			parent.siblings().hide();
-			jQuery('.rmp-header-bar-description').hide();
-		}
-	}
 
 	/**
 	 * Function to add the notification and update button.

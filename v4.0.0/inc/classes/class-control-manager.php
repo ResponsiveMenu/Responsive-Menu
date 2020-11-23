@@ -523,36 +523,61 @@ class Control_Manager {
             $tool_tip = $this->get_tool_tip( $param['tool_tip'] );
         }
 
-		// Check label is exist.
+        $is_disabled = '';
+        $feature_label = '';
+        // Check feature type.
+        if( ! empty( $param['feature_type'] ) ) {
+            $is_disabled = 'disabled';
+            $feature_label = sprintf(
+                '<a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > %s </a>',
+                $param['feature_type']
+            );
+        }
+
+        // Check label is exist.
         if ( ! empty( $param['label'] ) ) {
-            $html .= sprintf('<div class="rmp-input-control-label"> <span> %s </span> %s </div>', esc_html( $param['label'] ), $tool_tip );
+            $html .= sprintf( 
+                '<div class="rmp-input-control-label">
+                    <span> %s </span>
+                    <span> %s </span>
+                     %s
+                </div>',
+                esc_html( $param['label'] ),
+                $tool_tip,
+                $feature_label
+            );
         }
 
+        if ( ! empty( $param['name'] ) ) {
 
-        $html .= '<div class="rmp-input-control">';
-		
-		// Check multi device options is enabled.
-        $has_multi_device = '';
-        if ( ! empty( $param['multi_device']) ) {
-            $has_multi_device = 'multi-device=true';
-            $html .= $this->get_device_options();
+            $html .= '<div class="rmp-input-control">';
+            
+            // Check multi device options is enabled.
+            $has_multi_device = '';
+            if ( ! empty( $param['multi_device']) ) {
+                $has_multi_device = 'multi-device=true';
+                $html .= $this->get_device_options();
+            }
+
+            $class = '';
+            if ( ! empty( $param['class'] ) ) {
+                $class = $param['class'];
+            }
+
+            $html .= sprintf( '<input %s type="hidden" value="off" name="%s"/>', esc_attr( $is_disabled ), esc_attr( $param['name'] ) );
+            $html .= sprintf( '<input %s type="checkbox" id="%s" name="%s" %s class="toggle %s" value="on" %s>',
+                esc_attr( $is_disabled ),
+                esc_attr( $param['id'] ),
+                esc_attr( $param['name'] ),
+                esc_attr( $has_multi_device ),
+                esc_attr( $class ),
+                esc_attr( $param['is_checked'] )
+            );
+
+            $html .= '</div>';
         }
 
-        $class = '';
-        if ( ! empty( $param['class'] ) ) {
-            $class = $param['class'];
-        }
-
-        $html .= sprintf( '<input type="hidden" value="off" name="%s"/>', esc_attr( $param['name'] ) );
-        $html .= sprintf( '<input type="checkbox" id="%s" name="%s" %s class="toggle %s" value="on" %s>',
-            esc_attr( $param['id'] ),
-            esc_attr( $param['name'] ),
-            esc_attr( $has_multi_device ),
-            esc_attr( $class ),
-            esc_attr( $param['is_checked'] )
-        );
-
-		$html .= '</div></div>';
+		$html .= '</div>';
 
 		/**
 		 * Filters the switcher input control html.
@@ -608,9 +633,29 @@ class Control_Manager {
             $tool_tip = $this->get_tool_tip( $param['tool_tip'] );
         }
 
+        $is_disabled = '';
+        $feature_label = '';
+        // Check feature type.
+        if( ! empty( $param['feature_type'] ) ) {
+            $is_disabled = 'disabled';
+            $feature_label = sprintf(
+                '<a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > %s </a>',
+                $param['feature_type']
+            );
+        }
+
         // Check label is exist.
         if ( ! empty( $param['label'] ) ) {
-            $html .= sprintf('<div class="rmp-input-control-label"> <span> %s </span> %s </div>', esc_html( $param['label'] ), $tool_tip );
+            $html .= sprintf( 
+                '<div class="rmp-input-control-label">
+                    <span> %s </span>
+                    <span> %s </span>
+                     %s
+                </div>',
+                esc_html( $param['label'] ),
+                $tool_tip,
+                $feature_label
+            );
         }
 
         $html .= '<div class="rmp-input-control">';
@@ -641,10 +686,17 @@ class Control_Manager {
                     }
                 }
 
-                $options .= sprintf('<option value="%s" %s> %s </option>',
+                // Check options is pro.
+                $disabled = '';
+                if ( strpos( strtolower($value) , 'pro' ) ) {
+                    $disabled = 'disabled';
+                }
+
+                $options .= sprintf('<option %s value="%s" %s> %s </option>',
+                    esc_attr( $disabled ),
                     esc_attr( $key ),
                     esc_attr( $is_select ),
-                    esc_html($value )
+                    esc_html( $value )
                 );
             }
         }
@@ -1065,7 +1117,7 @@ class Control_Manager {
 
         $mobile = sprintf(
             '<div class="device-icon">
-                <input id="rmp-menu-display-device-mobile" class="rmp-menu-display-device checkbox mobile"  type="checkbox" rel="&#xf120" name="menu[use_mobile_menu]" value="on" %s />
+                <input disabled class="rmp-menu-display-device checkbox mobile"  type="checkbox"/>
                 <label for="rmp-menu-display-device-mobile" title="mobile" >
                     <span class="corner-icon">
                         <i class="fas fa-check-circle" aria-hidden="true"></i>
@@ -1078,14 +1130,12 @@ class Control_Manager {
                 </label>
                 <span class="rmp-input-control-label device-title"> %s </span>
             </div>',
-            is_rmp_option_checked( 'on', $options, 'use_mobile_menu' ),
             __( 'Mobile', 'responsive-menu-pro' )
         );
 
         $tablet = sprintf(
             '<div class="device-icon">
-                <input id="rmp-menu-display-device-tablet" class="rmp-menu-display-device checkbox tablet"  type="checkbox" rel="&#xf120" name="menu[use_tablet_menu]" value="on" %s/>		
-
+                <input disabled class="rmp-menu-display-device checkbox tablet"  type="checkbox"/>
                 <label for="rmp-menu-display-device-tablet" title="tablet" >
                     <span class="corner-icon">
                         <i class="fas fa-check-circle" aria-hidden="true"></i>
@@ -1098,14 +1148,13 @@ class Control_Manager {
                 </label>
                 <span class="rmp-input-control-label device-title"> %s </span>
             </div>',
-            is_rmp_option_checked( 'on', $options, 'use_tablet_menu' ),
             __( 'Tablet', 'responsive-menu-pro' )
         );
 
         $desktop = sprintf(
             '<div class="device-icon">
                 <input type="hidden" name="menu[use_desktop_menu]" value="off"/>
-                <input id="rmp-menu-display-device-desktop" class="rmp-menu-display-device checkbox desktop"  type="checkbox" rel="&#xf120" name="menu[use_desktop_menu]" value="on" %s/>													
+                <input disabled class="rmp-menu-display-device checkbox desktop"  type="checkbox" />													
                 <label for="rmp-menu-display-device-desktop" title="desktop" >
                     <span class="corner-icon">
                         <i class="fas fa-check-circle" aria-hidden="true"></i>
@@ -1118,15 +1167,17 @@ class Control_Manager {
                 </label>
                 <span class="rmp-input-control-label device-title"> %s </span>
             </div>',
-            is_rmp_option_checked( 'on', $options, 'use_desktop_menu' ),
             __( 'Desktop', 'responsive-menu-pro' )
         );
 
         $device_options = sprintf( '<div class="device-icons-group">%s %s %s</div>', $mobile, $tablet, $desktop );
-	   
+
 		return sprintf(
             '<div class="rmp-input-control-wrapper full-size">
-                <label class="rmp-input-control-label">%s</label>
+                <label class="rmp-input-control-label">
+                    %s 
+                    <a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > PRO </a>
+                </label>
                 <div class="rmp-input-control">
                     %s
                 </div>
@@ -1180,5 +1231,19 @@ class Control_Manager {
             esc_html( $param['text'] ),
             $tool_tip
 		);
-	}
+    }
+
+    public function upgrade_notice() {
+        return sprintf(
+            '<div class="upgrade-options">
+                <div class="upgrade-notes">
+                    <p> %s </p>
+                    <a target="_blank" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" class="button"> %s </a>
+                </div>
+            </div>',
+            __('This feature is not available in free version. <br/> Upgrade now to use', 'responsive-menu-pro'),
+            esc_html__('Upgrade to Pro', 'responsive-menu-pro')
+        );
+    }
+
 }

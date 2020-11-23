@@ -268,14 +268,6 @@ class Style_Manager {
 			true
 		);
 
-		wp_enqueue_script(
-			'rmp_menu_noscroll',
-			'https://cdnjs.cloudflare.com/ajax/libs/body-scroll-lock/3.1.5/bodyScrollLock.min.js',
-			array(),
-			RMP_PLUGIN_VERSION,
-			true
-		);
-
 		wp_register_script(
 			'rmp_menu_scripts',
 			RMP_PLUGIN_URL_V4 . '/assets/js/rmp-menu.js',
@@ -364,8 +356,6 @@ class Style_Manager {
 			if (  ! empty( $options['mega_menu'] ) ) {
 				$menu_items  = $options['mega_menu'];
 			}
-
-			$mega_menu_options  = $this->mega_menu_options_to_scss( $menu_id, $menu_items );
 
 			$mobile_breakpoint = '';
 			if ( ! empty( $options['mobile_breakpoint'] ) ) {
@@ -1255,56 +1245,6 @@ class Style_Manager {
 				$submenu_current_item_toggle_border_color_hover = $options['submenu_sub_arrow_border_hover_colour_active'];
 			}
 
-			$desktop_menu_width = '';
-			if ( ! empty( $options['desktop_menu_width'] ) ) {
-				$desktop_menu_width = $options['desktop_menu_width'];
-			}
-
-			$desktop_menu_width_unit = '';
-			if ( ! empty( $options['desktop_menu_width_unit'] ) ) {
-				$desktop_menu_width_unit = $options['desktop_menu_width_unit'];
-			}
-
-			$desktop_menu_height = '';
-			if ( ! empty( $options['desktop_menu_height'] ) ) {
-				$desktop_menu_height = $options['desktop_menu_height'];
-			}
-
-			$desktop_menu_height_unit = '';
-			if ( ! empty( $options['desktop_menu_height_unit'] ) ) {
-				$desktop_menu_height_unit = $options['desktop_menu_height_unit'];
-			}
-
-			$desktop_menu_position = '';
-			if ( ! empty( $options['desktop_menu_positioning'] ) ) {
-				$desktop_menu_position = $options['desktop_menu_positioning'];
-			}
-
-			$desktop_menu_alignment = '';
-			if ( ! empty( $options['desktop_menu_side'] ) ) {
-				$desktop_menu_alignment = $options['desktop_menu_side'];
-			}
-
-			$use_desktop_menu = '';
-			if ( ! empty( $options['use_desktop_menu'] ) ) {
-				$use_desktop_menu = $options['use_desktop_menu'];
-			}
-
-			$desktop_submenu_open_on_click = 'off';
-			if ( ! empty( $options['desktop_submenu_open_on_click'] ) ) {
-				$desktop_submenu_open_on_click = $options['desktop_submenu_open_on_click'];
-			}
-
-			$desktop_submenu_open_animation = '';
-			if ( ! empty( $options['desktop_submenu_open_animation'] ) ) {
-				$desktop_submenu_open_animation = $options['desktop_submenu_open_animation'];
-			}
-
-			$desktop_submenu_open_animation_speed = '';
-			if ( ! empty( $options['desktop_submenu_open_animation_speed'] ) ) {
-				$desktop_submenu_open_animation_speed = $options['desktop_submenu_open_animation_speed'];
-			}
-
 			$use_tablet_menu = '';
 			if ( ! empty( $options['use_tablet_menu'] ) ) {
 				$use_tablet_menu = $options['use_tablet_menu'];
@@ -1313,87 +1253,6 @@ class Style_Manager {
 			$use_mobile_menu = '';
 			if ( ! empty( $options['use_mobile_menu'] ) ) {
 				$use_mobile_menu = $options['use_mobile_menu'];
-			}
-
-			$header_bar_id = '';
-			if ( ! empty( $options['menu_id'] ) ) {
-				$header_bar_id = '#rmp-header-bar-' . $options['menu_id'];
-			}
-
-			$use_header_bar = 'off';
-			if ( ! empty( $options['use_header_bar'] ) ) {
-				$use_header_bar = $options['use_header_bar'];
-			}
-
-			$header_bar_breakpoint = '';
-			if ( ! empty( $options['header_bar_breakpoint'] ) ) {
-				$header_bar_breakpoint = $options['header_bar_breakpoint'].'px';
-			}
-			
-			$header_bar_position_type = '';
-			if ( ! empty( $options['header_bar_position_type'] ) ) {
-				$header_bar_position_type = $options['header_bar_position_type'];
-			}
-
-			$header_bar_height = '';
-			if ( ! empty( $options['header_bar_height'] ) ) {
-				$header_bar_height = $options['header_bar_height'];
-			}
-
-
-			$header_bar_height_unit = '';
-			if ( ! empty( $options['header_bar_height_unit'] ) ) {
-				$header_bar_height_unit = $options['header_bar_height_unit'];
-			}
-
-			$header_bar_adjust_page = 'off';
-			if ( ! empty( $options['header_bar_adjust_page'] ) ) {
-				$header_bar_adjust_page = $options['header_bar_adjust_page'];
-			}
-
-			$header_bar_font = '';
-			if ( ! empty( $options['header_bar_font'] ) ) {
-				$header_bar_font = $options['header_bar_font'];
-			}
-
-			$header_bar_font_size = '';
-			if ( ! empty( $options['header_bar_font_size'] ) ) {
-				$header_bar_font_size = $options['header_bar_font_size'];
-			}
-
-			$header_bar_font_size_unit = '';
-			if ( ! empty( $options['header_bar_font_size_unit'] ) ) {
-				$header_bar_font_size_unit = $options['header_bar_font_size_unit'];
-			}
-
-			$header_bar_text_color = '';
-			if ( ! empty( $options['header_bar_text_color'] ) ) {
-				$header_bar_text_color = $options['header_bar_text_color'];
-			}
-
-			$header_bar_background_color = '';
-			if ( ! empty( $options['header_bar_background_color'] ) ) {
-				$header_bar_background_color = $options['header_bar_background_color'];
-			}
-
-			$header_bar_logo_width = '';
-			if ( ! empty( $options['header_bar_logo_width'] ) ) {
-				$header_bar_logo_width = $options['header_bar_logo_width'];
-			}
-
-			$header_bar_logo_width_unit = '';
-			if ( ! empty( $options['header_bar_logo_width_unit'] ) ) {
-				$header_bar_logo_width_unit = $options['header_bar_logo_width_unit'];
-			}
-
-			$header_bar_logo_height = '';
-			if ( ! empty( $options['header_bar_logo_height'] ) ) {
-				$header_bar_logo_height = $options['header_bar_logo_height'];
-			}
-
-			$header_bar_logo_height_unit = '';
-			if ( ! empty( $options['header_bar_logo_height_unit'] ) ) {
-				$header_bar_logo_height_unit = $options['header_bar_logo_height_unit'];
 			}
 
 			//Animation delay and times.
@@ -1418,48 +1277,10 @@ class Style_Manager {
 				$menu_to_hide = $options['menu_to_hide'];
 			}
 
-			$desktop_menu_to_hide = '';
-			if ( ! empty( $options['desktop_menu_to_hide'] ) ) {
-				$desktop_menu_to_hide = $options['desktop_menu_to_hide'];
-			}
-
-			$menu_page_overlay_id = 'off';
-			if ( ! empty( $options['menu_id'] ) ) {
-				$menu_page_overlay_id = '#rmp-page-overlay-' . $options['menu_id'];
-			}
-
-			$menu_page_overlay = 'off';
-			if ( ! empty( $options['menu_overlay'] ) ) {
-				$menu_page_overlay = $options['menu_overlay'];
-			}
-
-			$menu_overlay_background = '';
-			if ( ! empty( $options['menu_overlay_colour'] ) ) {
-				$menu_overlay_background = $options['menu_overlay_colour'];
-			}
-
 			$parse_options = array (
 				// Menu breakpoints
 				'mobile_breakpoint'     => $mobile_breakpoint, 
 				'tablet_breakpoint'     => $tablet_breakpoint,
-				'header_bar_breakpoint' => $header_bar_breakpoint,
-
-				//Header bar options.
-				'header_bar_id'             => $header_bar_id,
-				'header_bar_position_type'  => $header_bar_position_type,
-				'header_bar_height'         => $header_bar_height,
-				'header_bar_height_unit'    => $header_bar_height_unit,
-				'header_bar_adjust_page'    => $header_bar_adjust_page,
-				'header_bar_font'           => $header_bar_font,
-				'header_bar_font_size'      => $header_bar_font_size,
-				'header_bar_font_size_unit' => $header_bar_font_size_unit,
-				'header_bar_text_color'     => $header_bar_text_color,
-				'header_bar_background_color' => $header_bar_background_color,
-				'header_bar_logo_width_unit'  => $header_bar_logo_width_unit,
-				'header_bar_logo_width'       => $header_bar_logo_width,
-				'header_bar_logo_height'      => $header_bar_logo_height,
-				'header_bar_logo_height_unit' => $header_bar_logo_height_unit,
-				'use_header_bar'              => $use_header_bar,
 
 				// Menu hamburger toggle options.
 				'menu_trigger_id'                     => $menu_trigger_id,
@@ -1658,28 +1479,9 @@ class Style_Manager {
 				'menu_item_padding_depth_4' => $menu_item_padding_depth_4,
 				'menu_item_padding_depth_4_unit' => $menu_item_padding_depth_4_unit,
 				'menu_word_wrap' => $menu_word_wrap,
-				// Desktop menu options.
-				'desktop_menu_width'       => $desktop_menu_width,
-				'desktop_menu_width_unit'  => $desktop_menu_width_unit,
-				'desktop_menu_height'      => $desktop_menu_height,
-				'desktop_menu_height_unit' => $desktop_menu_height_unit,
-				'desktop_menu_position'    => $desktop_menu_position,
-				'desktop_menu_alignment'   => $desktop_menu_alignment,
-				'menu_mega'              => $mega_menu_options,
-				'desktop_menu_to_hide'    => $desktop_menu_to_hide,
-				'desktop_submenu_open_on_click' => $desktop_submenu_open_on_click,
-				'desktop_submenu_open_animation' => $desktop_submenu_open_animation,
-				'desktop_submenu_open_animation_speed' => $desktop_submenu_open_animation_speed,
-				// Menu device responsive options.
-				'use_desktop_menu' => $use_desktop_menu,
-				'use_tablet_menu'  => $use_tablet_menu,
-				'use_mobile_menu'  => $use_mobile_menu,
 
 				//Animation and transition.
 				'animation_speed' => $animation_speed,
-				'menu_page_overlay_id' => $menu_page_overlay_id,
-				'menu_overlay_background' =>  $menu_overlay_background,
-				'menu_page_overlay'       => $menu_page_overlay,
 				'color_transition_speed'  => $color_transition_speed,
 				'sub_menu_transition_speed' => $sub_menu_transition_speed
 			);

@@ -38,7 +38,6 @@ jQuery( document ).ready( function( jQuery ) {
 			this.container    =  '#rmp-container-' + this.menuId;
 			this.headerBar    =  '#rmp-header-bar-' + this.menuId;
 			this.menuWrap     =  'ul#rmp-menu-'+ this.menuId;
-			this.pageOverlay  =  '#rmp-page-overlay-' + this.menuId;
 			this.subMenuArrow = '.rmp-menu-subarrow';
 			this.wrapper      = '.rmp-container';
 			this.linkElement  = '.rmp-menu-item-link';
@@ -211,14 +210,6 @@ jQuery( document ).ready( function( jQuery ) {
 				});
 			}
 
-			//Show menu on page load section.
-			if ( 'on' == self.options['show_menu_on_page_load'] ) {
-				if ( jQuery(window).width() < self.hamburgerBreakpoint ) {
-					self.openMenu();
-				}
-			}
-
-
 			// Keyboard shortcut menu open/close.            
 			jQuery(document).keyup(function(e) {
 				if ( jQuery(window).width() < self.hamburgerBreakpoint ) {
@@ -250,59 +241,6 @@ jQuery( document ).ready( function( jQuery ) {
 			if ( self.options['smooth_scroll_on'] == 'on' ) { 
 				jQuery( self.linkElement).on( 'click', function(e) {
 					self.smoothScrollToLocation(e);
-				});
-			}
-
-			/*
-			//Open submenu on click.
-			if ( self.options['desktop_submenu_open_on_click'] == 'on' ) {
-				jQuery( self.container + ' li.rmp-menu-item-has-children a.rmp-menu-item-link' ).toggle(
-					function( e ) {
-						e.stopPropagation();
-						e.preventDefault();
-
-						var mega_menu_no_child     = jQuery(this).parents('ul.rmp-desktop-menu-container');
-						var standard_menu_no_child = jQuery(this).siblings('.rmp-submenu');
-						standard_menu_no_child.addClass('.rmp-submenu-animate-on ');
-						if ( mega_menu_no_child.length || ! standard_menu_no_child.length ) {
-							window.location = this.href;
-						}
-						jQuery(this).parent('li.rmp-menu-item-has-children').children('.rmp-submenu').show();
-					},
-					function() {
-						jQuery(this).siblings('.rmp-submenu').removeClass('.rmp-submenu-animate-on ');
-						//jQuery(this).parent('li.rmp-menu-item-has-children').children('.rmp-submenu').hide();
-						//window.location = this.href;
-				});
-			}
-			*/
-
-			/* Desktop menu : Hide on scroll down / Show on scroll Up */
-			if ( self.options['use_desktop_menu'] == 'on' && self.options['desktop_menu_hide_and_show'] == 'on' ) {
-				var lastScrollTop, currentScrollPos = 0;
-				var desktop_header = jQuery(self.container);
-
-				if ( self.options['use_header_bar'] == 'on') {
-					desktop_header = jQuery(self.headerBar);
-				}
-
-				jQuery( window ).scroll( function () {
-
-					if ( jQuery(window).width() > self.hamburgerBreakpoint ) {
-						var desktop_header_height = desktop_header.height();
-						currentScrollPos = jQuery(window).scrollTop();
-						if ( lastScrollTop < currentScrollPos && currentScrollPos > desktop_header_height) {
-							desktop_header.fadeOut(100);
-							desktop_header.css({
-								'transform' : 'translateY( -'+ desktop_header_height +'px )'
-							});
-						} else {
-							desktop_header.fadeIn(100);
-							desktop_header.css( { 'transform' : '' } );
-						}
-
-						lastScrollTop = currentScrollPos;
-					}
 				});
 			}
 		}
@@ -377,10 +315,6 @@ jQuery( document ).ready( function( jQuery ) {
 			jQuery(this.trigger).addClass(RmpMenu.activeToggleClass);
 			jQuery(this.container).addClass(RmpMenu.openContainerClass);
 
-			if ( this.options['menu_overlay'] == 'on') {
-				jQuery(this.pageOverlay).addClass(RmpMenu.activeToggleClass);
-			}
-
 			//this.pushMenuTrigger();
 
 			if ( this.options['animation_type'] == 'fade'){
@@ -423,14 +357,6 @@ jQuery( document ).ready( function( jQuery ) {
 				}
 			}
 
-			// Disable the background scrolling.
-			if ( 'on' == self.options['menu_disable_scrolling'] ) {
-				bodyScrollLock.disableBodyScroll(
-					jQuery(this.container),
-					{reserveScrollBarGap: true}
-				);
-			}
-
 			this.isOpen = true;
 		}
 
@@ -443,19 +369,10 @@ jQuery( document ).ready( function( jQuery ) {
 			jQuery(this.trigger).removeClass(RmpMenu.activeToggleClass);
 			jQuery(this.container).removeClass(RmpMenu.openContainerClass);
 
-			if ( this.options['menu_overlay'] == 'on') {
-				jQuery(this.pageOverlay).removeClass(RmpMenu.activeToggleClass);
-			}
-
 			if ( this.options['animation_type'] == 'fade') {
 				this.fadeMenuOut();
 			} else {
 				this.clearWrapperTranslate();
-			}
-
-			// Release the blocking scrolling.
-			if ( 'on' == this.options['menu_disable_scrolling'] ) {
-				bodyScrollLock.clearAllBodyScrollLocks();
 			}
 
 			this.isOpen = false;

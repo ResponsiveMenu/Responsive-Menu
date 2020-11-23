@@ -20,11 +20,6 @@ if ( ! empty(  $global_settings['rmp_custom_css'] ) ) {
 
 }
 
-$rmp_license_key = get_option( 'responsive_menu_pro_license_key' );
-if ( empty(  $rmp_license_key ) ) {
-    $rmp_license_key = '';
-}
-
 $wp_header = 'none';
 if ( ! empty( $global_settings['menu_adjust_for_wp_admin_bar'] ) )  {
     $wp_header = $global_settings['menu_adjust_for_wp_admin_bar'];    
@@ -45,37 +40,6 @@ if ( ! empty( $global_settings['menu_adjust_for_wp_admin_bar'] ) )  {
             <div id="rmp-settings-general">
                 <table  class="form-table" role="presentation">
                     <tbody>
-                        <tr>
-                            <th scope="row">
-                                <?php
-                                esc_html_e( 'License Key', 'responsive-menu-pro');
-                                $key_type = get_option( 'responsive_menu_pro_license_type' );
-                                if( ! empty( $key_type ) ) {
-                                    echo '<span style="color:green;" class="rmp-icon-license-mark dashicons dashicons-yes "></span>';
-                                } else {
-                                    echo '<span style="color:red; "class="rmp-icon-license-mark dashicons dashicons-no "></span>';
-                                }  
-                                ?>
-                            </th>
-                            <td>
-                                <fieldset>
-                                    <p>
-                                        <input type="password" autocomplete="off" name="rmp_license_key" id="rmp-license-key" class="medium-text" value="<?php echo $rmp_license_key;?>"/>
-                                        <button id="rmp-license-checker" class="button button-primary button-large"><?php esc_html_e( 'Validate', 'responsive-menu-pro'); ?></button>
-                                    </p>
-                                    
-                                    <p class="description">
-                                        <?php 
-                                            printf( '%s </br> %s <a href="%s" target="_blank">here</a>.',
-                                            esc_html__( 'Don\'t panic. The plugin will still function 100%, it is only automatic updates that will be affected.', 'responsive-menu-pro'),
-                                            esc_html__( 'You can read about troubleshooting license issues.','responsive-menu-pro'),
-                                            esc_url('https://responsive.menu/knowledgebase/license-activation-issues/?utm_source=pro-plugin&utm_medium=page&utm_campaign=license-activation-issues')
-                                        );
-                                        ?>
-                                    </p>
-                                </fieldset>
-                            </td>
-                        </tr>
                         <?php
                         if ( ! empty( get_option('responsive_menu_pro_version') ) ) {
                              ?>

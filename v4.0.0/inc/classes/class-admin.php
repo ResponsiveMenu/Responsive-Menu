@@ -54,7 +54,6 @@ class Admin {
 
 		add_action( 'wp_ajax_rmp_save_global_settings', [ $this, 'save_menu_global_settings' ] );
 		add_action( 'wp_ajax_rmp_rollback_version', [ $this, 'rollback_version' ] );
-		add_action( 'wp_ajax_rmp_license_key_validation', [ $this, 'check_license_key_validation' ] );
 		add_action( 'wp_ajax_rmp_create_new_menu', [ $this, 'create_new_menu' ] );
 		add_action( 'wp_ajax_rmp_export_menu', [ $this, 'rmp_export_menu' ] );
 		add_action( 'wp_ajax_rmp_import_menu', [ $this, 'rmp_import_menu' ] );
@@ -145,126 +144,8 @@ class Admin {
 			add_option( 'is_rmp_new_version', 0 );
 		}
 
-		wp_send_json_success( ['redirect' => admin_url('admin.php?page=responsive-menu-pro')] );
+		wp_send_json_success( ['redirect' => admin_url('admin.php?page=responsive-menu')] );
 	}
-
-	/**
-	 * Function to validated the license key in setting page.
-	 * 
-	 * @return json
-	 */
-	public function check_license_key_validation() {
-
-		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
-
-		$rmp_license_key = sanitize_text_field( $_POST['rmp_license_key'] );
-
-		$this->license( $rmp_license_key );
-	}
-
-	/** 
-	 * Check an entered license key and apply it.
-     *
-     * This route is called when the Add License Key button is pressed inside
-     * the admin area. It checks the provided license key for validity and
-     * updates the license status for the account.
-     *
-     * @author Expresstech System
-     *
-     * @since 4.0.0
-     *
-     * @param string     $license_key   Provided license key.
-     *
-     * @return string                   Output HTML from rendered view.
-     */
-    public function license( $license_key ) {
-
-		$license_key = trim($license_key);
-		$alert       = [];
-
-        if ( empty( $license_key ) ) {
-            $alert = ['danger' => 'No license key added'];
-            update_option('responsive_menu_pro_license_type', '');
-            update_option('responsive_menu_pro_license_key', '');
-		} else {
-            /* First Check The Generic License */
-            $response = wp_remote_get('https://responsive.menu/?' . http_build_query(
-                    [
-                        'edd_action'=> 'activate_license',
-                        'license' 	=> $license_key,
-                        'item_name' => urlencode('Responsive Menu Pro'),
-                        'url'       => home_url()
-                    ]
-				), ['decompress' => false]
-			);
-
-            $license_type = 'License';
-
-			if ( is_wp_error( $response ) ) {
-				$alert = ['danger' => $response->get_error_message() . ' - Please <a href="https://responsive.menu/faq/license-activation-issues" target="_blank"> click here</a> for more information.'];
-			} else {
-				$response = json_decode($response['body']);
-			}
-
-            /* Parse Result */
-            if ( empty( $response->success ) ) {
-
-                /* Now Check The Old Multi License */
-                $response = wp_remote_get('https://responsive.menu/?' . http_build_query(
-					[
-						'edd_action'=> 'activate_license',
-						'license' 	=> $license_key,
-						'item_name' => urlencode('Responsive Menu Pro - Multi License'),
-						'url'       => home_url()
-					] ), [ 'decompress' => false ]
-				);
-
-				$license_type = 'Multi License';
-
-                if ( is_wp_error( $response ) ) {
-					$alert = ['danger' => $response->get_error_message() . ' - Please <a href="https://responsive.menu/faq/license-activation-issues" target="_blank"> click here</a> for more information.'];
-				} else {
-					$response = json_decode($response['body']);
-				}
-			}
-
-			/* Parse Result */
-			
-            if ( empty ( $response->success) ) {
-                /* Finally Check The Old Single License */
-                $response = wp_remote_get('https://responsive.menu/?' . http_build_query(
-                        [
-                            'edd_action'=> 'activate_license',
-                            'license' 	=> $license_key,
-                            'item_name' => urlencode('Responsive Menu Pro - Single License'),
-                            'url'       => home_url()
-                        ]
-                    ), ['decompress' => false]);
-			
-					$license_type = 'Single License';
-
-                if ( is_wp_error($response) ) {
-                    $alert = ['danger' => $response->get_error_message() . ' - Please <a href="https://responsive.menu/faq/license-activation-issues" target="_blank"> click here</a> for more information.'];
-				} else {
-					$response = json_decode($response['body'] ); 
-				}
-			}
-
-            if ( ! empty( $response->success ) ) {
-                update_option('responsive_menu_pro_license_type', $license_type);
-                $alert = ['success' => 'License key updated'];
-			} else {
-                update_option('responsive_menu_pro_license_type', '');
-                if ( ! is_wp_error($response) ) {
-					$alert = ['danger' => 'License key invalid' . ' - Please <a href="https://responsive.menu/knowledgebase/license-activation-issues/" target="_blank"> click here</a> for more information.'];
-				}
-			}
-
-            update_option('responsive_menu_pro_license_key', $license_key);
-		}
-
-        return wp_send_json_success( [ 'alert' => $alert ] );
-    }
 
 	/**
 	 * Function to create a new theme.
