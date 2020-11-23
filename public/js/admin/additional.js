@@ -48,4 +48,23 @@ jQuery(function($) {
         });
     /* <-- End Preview Options */
 
+     /** Move to new version */
+     jQuery('#rmp-rollback-version').click( function(e) {
+        e.preventDefault();
+        jQuery.ajax({
+            url: ajaxurl,
+            data: { action : 'rmp_switch_version' },
+            type: 'POST',
+            dataType: 'json',
+            error: function( error ) {
+                jQuery(this).prop('disabled', false);
+            },
+            success: function( response ) {
+                if ( response.data.redirect ) {
+                    location.href = response.data.redirect;    
+                }
+            }
+        });
+    });
+
 });
