@@ -591,19 +591,6 @@ jQuery(document).ready(function(jQuery) {
 						self.inlineCssInjector(css);
 
 					break;
-					case 'height':{
-						var is_checked =  jQuery(this).is(':checked');
-
-						value = '100%';
-
-						if ( true == is_checked ) {
-							value = 'auto';
-						}
-
-						css = outputSelector + '{ height : '+ value +';}';
-						self.inlineCssInjector(css);
-
-					}
 				}
 			});
 		},
@@ -775,7 +762,6 @@ jQuery(document).ready(function(jQuery) {
 			self.changeInput('#rmp-menu-title-link-location', '#rmp-menu-title-' + self.menuId + ' #rmp-menu-title-link','target');
 			self.changeInput('.rmp-menu-title-alignment', '#rmp-menu-title-' + self.menuId ,'text-align');
 			self.changeInput('.rmp-menu-additional-content-alignment', '#rmp-menu-additional-content-'+ self.menuId,'text-align');
-			self.changeInput('#rmp-menu-container-height', '#rmp-container-'+ self.menuId ,'height');
 
 			//Top menu item links
 			self.onTyping('#rmp-menu-links-height', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-item-link', 'height');

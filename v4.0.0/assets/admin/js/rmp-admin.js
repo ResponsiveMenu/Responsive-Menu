@@ -717,7 +717,8 @@ jQuery( document ).ready( function( jQuery ) {
 	/**
 	 * Initiate multiple selectize option of editor.
 	 */
-	jQuery( '#rmp-keyboard-shortcut-close-menu,#rmp-keyboard-shortcut-open-menu,#rmp-menu-display-on-pages' ).selectize( {
+	jQuery( '#rmp-keyboard-shortcut-close-menu,#rmp-keyboard-shortcut-open-menu' ).selectize( {
+		maxItems : 2,
 		plugins: [ 'remove_button' ]
 	} );
 

@@ -149,9 +149,7 @@
             background-image: url($menu_container_background_image);
         }
 
-        @if ( $menu_auto_height == "off" ) {
-            height: 100%;
-        }
+        height: 100%;
 
         @if ( $menu_container_appear_from == "right" ) {
             right:0;

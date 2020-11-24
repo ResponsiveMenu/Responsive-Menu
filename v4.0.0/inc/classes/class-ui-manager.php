@@ -149,12 +149,22 @@ class UI_Manager {
             $tool_tip = $this->control_manager->get_tool_tip( $accordion_attr['tool_tip'] );
 		}
 
+        $feature_label = '';
+        // Check feature type.
+        if( ! empty( $accordion_attr['feature_type'] ) ) {
+            $feature_label = sprintf(
+                '<a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > %s </a>',
+                $accordion_attr['feature_type']
+            );
+        }
+
 		$title_contents = '';
 		if ( ! empty( $accordion_attr['item_header']['item_title'] ) ) {
-			$title_contents .= sprintf('<span class="%s"> %s %s </span>',
+			$title_contents .= sprintf('<span class="%s"> %s %s %s</span>',
 				esc_attr( $title_span_class ),
 				esc_html( $accordion_attr['item_header']['item_title'] ),
-				$tool_tip
+				$tool_tip,
+				$feature_label
 			);
 		}
 

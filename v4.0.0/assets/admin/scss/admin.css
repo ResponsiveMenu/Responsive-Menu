@@ -58,6 +58,17 @@ ol li{
     font-size: 12px;
 }
 
+#rmp-editor-wrapper input[type="checkbox"]:disabled,
+#rmp-editor-wrapper input[type="checkbox"].disabled,
+#rmp-editor-wrapper input[type="radio"]:disabled,
+#rmp-editor-wrapper input[type="radio"].disabled,
+#rmp-editor-wrapper input[type="checkbox"]:disabled:checked:before,
+#rmp-editor-wrapper input[type="checkbox"].disabled:checked:before,
+#rmp-editor-wrapper input[type="radio"]:disabled:checked:before,
+#rmp-editor-wrapper input[type="radio"].disabled:checked:before {
+    opacity: 0.5;
+}
+
 input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="color"]:focus,
@@ -467,7 +478,7 @@ input[type="email"]:focus, input[type="month"]:focus, input[type="number"]:focus
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 10px 25px 5px;
+    padding: 1rem;
     box-sizing: border-box;
     border-top: 1px solid #eee;
 }
@@ -1440,10 +1451,8 @@ input[type="email"]:focus, input[type="month"]:focus, input[type="number"]:focus
     box-shadow: unset;
 }
 
-#rmp-menu-display-on-pages-selectized,
-#rmp-keyboard-shortcut-open-menu-selectized,
-#rmp-keyboard-shortcut-close-menu-selectized {
-    min-width: 260px;
+.rmp-menu-controls .selectize-control{
+    width: 100%
 }
 
 .selectize-control.multi .selectize-input > div,
@@ -2560,9 +2569,9 @@ button.menu-save {
     line-height: inherit;
 }
 
-.rmp-item-card_image img{
+.rmp-item-card_image img {
     width: 100%;
-    max-height: 150px;
+    max-height: 100%;
 }
 
 .rmp-item-card_contents{
@@ -3025,6 +3034,24 @@ div.notice-responsive-menu .notice-responsive-menu-action a:hover {
     font-weight: 600;
     text-decoration: none;
     text-transform: uppercase;
+    line-height: normal;
+}
+
+.rmp-input-control .upgrade-tooltip {
+    position: absolute;
+    top: -30px;
+    right: 5%;
+    display: none;
+}
+
+.rmp-input-control:hover > .upgrade-tooltip {
+    display: inline-block;
+}
+
+.rmp-input-control .upgrade-tooltip::before{
+    left: 10px;
+    bottom: -18px;
+    transform: rotate(180deg);
 }
 
 .upgrade-tooltip:hover{

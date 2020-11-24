@@ -548,19 +548,18 @@ class Control_Manager {
             $html .= sprintf( 
                 '<div class="rmp-input-control-label">
                     <span> %s </span>
-                    <span> %s </span>
                      %s
                 </div>',
                 esc_html( $param['label'] ),
-                $tool_tip,
-                $feature_label
+                $tool_tip
             );
         }
 
         if ( ! empty( $param['name'] ) ) {
 
             $html .= '<div class="rmp-input-control">';
-            
+            $html .= $feature_label;
+
             // Check multi device options is enabled.
             $has_multi_device = '';
             if ( ! empty( $param['multi_device']) ) {

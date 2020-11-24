@@ -74,31 +74,16 @@ jQuery( document ).ready( function( jQuery ) {
 		init() {
 			const self = this;
 
-			// If option is enable from Toggle Button > others >  Toggle menu on click. 
-			if (  'on' == this.options['button_trigger_type_click'] ) {
+			/**
+			 * Register click event of trigger.
+			 * @fires click
+			 */
+			jQuery( this.trigger ).on( 'click', function( e ) {
+				e.stopPropagation();
+				self.triggerMenu();
+			} );
+	
 
-				/**
-				 * Register click event of trigger.
-				 * @fires click
-				 */
-				jQuery( this.trigger ).on( 'click', function( e ) {
-					e.stopPropagation();
-					self.triggerMenu();
-				} );
-			}
-
-			// If option is enable from Toggle Button > others >  Toggle menu on hover.
-			if ( 'on' == this.options['button_trigger_type_hover'] ) {
-
-				/**
-				 * Register mouseover event of trigger.
-				 * @fires mouseover
-				 */
-				jQuery( this.trigger ).on( 'mouseover', function( e ) {
-					e.stopPropagation();
-					self.triggerMenu();
-				} );
-			}
 
 			// Show/Hide sub menu item when click on item toggle.
 			jQuery( self.container ).find( self.subMenuArrow ).on( 'click', function( e ) {
@@ -118,54 +103,6 @@ jQuery( document ).ready( function( jQuery ) {
 						self.closeMenu();
 					}
 				});
-			}
-
-			if ( 'on'  == self.options['menu_close_on_scroll'] ) {
-				jQuery( window ).scroll( function( e ) {
-					if ( jQuery( window ).width() < self.hamburgerBreakpoint ) {
-						const menuSearchBox = jQuery( '.rmp-search-box' );
-
-						// If focus is on search-box then menu will not be close.
-						if ( menuSearchBox && menuSearchBox.is( ':focus' ) ) {
-							return;
-						} else if ( self.isOpen ) {
-							self.closeMenu();
-						}
-					}
-				} );
-			}
-
-			/**
-			 * This scripts enable the touch gestures.
-			 */
-			if ( self.options['enable_touch_gestures'] == 'on' ) {
-
-				// Close menu touch gestures.
-				let close_gesture = self.options['menu_appear_from'];
-
-				if ( self.options['menu_appear_from'] == 'top' ) {
-					close_gesture = 'up';
-				} else if ( self.options['menu_appear_from'] == 'bottom' ) {
-					close_gesture = 'down';
-				}
-
-				let pageScroll = "horizontal";
-				if ( close_gesture == 'left' || close_gesture == 'right' ) {
-					pageScroll = "vertical";
-				}
-
-				jQuery( self.container ).swipe( {
-					swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-						if( jQuery(window).width() < self.hamburgerBreakpoint ) {
-							if ( direction == close_gesture ) {
-								self.closeMenu();
-							}
-						}
-					},
-					threshold: 25,
-					allowPageScroll : pageScroll,
-					excludedElements: "button, input, select, textarea, a, .noSwipe, .rmp-search-box"
-				} );
 			}
 
 			/**
@@ -209,21 +146,6 @@ jQuery( document ).ready( function( jQuery ) {
 					self.backUpSlide(this);
 				});
 			}
-
-			// Keyboard shortcut menu open/close.            
-			jQuery(document).keyup(function(e) {
-				if ( jQuery(window).width() < self.hamburgerBreakpoint ) {
-					let pressedKeyCode = e.keyCode.toString();
-					let openKeyCodes   = self.options['keyboard_shortcut_open_menu'];
-					let closeKeyCodes  = self.options['keyboard_shortcut_close_menu'];
-
-					if ( jQuery.isArray( openKeyCodes ) &&  jQuery.inArray( pressedKeyCode, openKeyCodes ) !== -1 && ! self.isOpen ) {
-						self.openMenu();
-					} else if ( jQuery.isArray( closeKeyCodes ) && jQuery.inArray( pressedKeyCode, closeKeyCodes ) !== -1 && self.isOpen ) {
-						self.closeMenu();
-					}
-				}
-			});
 
 			// Expand Sub items on Parent Item Click.
 			if ( 'on' == self.options['menu_item_click_to_trigger_submenu']  ) {

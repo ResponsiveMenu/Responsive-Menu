@@ -279,7 +279,8 @@ $options = $option_manager->get_options( $menu_id );
 								echo $ui_manager->start_accordion_item( [
 									'item_header' => [
 										'item_title' => __('Technical','responsive-menu-pro'),
-									]
+									],
+									'feature_type' => 'pro'
 								] );
 
 								echo $control_manager->add_switcher_control( [
@@ -316,6 +317,7 @@ $options = $option_manager->get_options( $menu_id );
 									'tool_tip' => [
 										'text' => __('Put a backdrop when menu is active.','responsive-menu-pro'),
 									],
+									'feature_type' => 'pro',
 									'item_content' => [
 										'content_class' => 'upgrade-notice-contents'
 									]
@@ -403,8 +405,9 @@ $options = $option_manager->get_options( $menu_id );
 								echo $ui_manager->start_accordion_item( [
 									'item_header' => [
 										'item_title' => __('Menu Settings','responsive-menu-pro'),
-									]
-								] );
+									],
+									'feature_type' => 'semi-pro'
+								]);
 
 								echo $ui_manager->start_group_controls();
 								
@@ -453,7 +456,8 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-different-menu-for-mobile',
 									'class'  => 'rmp-menu-different-menu-for-mobile',
 									'feature_type' => 'pro',
-									'name'   => ''
+									'name'   => 'mobile_menu_to_use',
+									'is_checked' => false
 								] );
 
 								echo $ui_manager->accordion_divider();
@@ -464,7 +468,6 @@ $options = $option_manager->get_options( $menu_id );
 									'label'  => __('Display condition','responsive-menu-pro'),
 									'id'     => 'rmp-menu-display-condition',
 									'name'    => 'menu[menu_display_on]',
-									'feature_type' => 'semi-pro',
 									'options' => [
 										'all-pages'     => __( 'Show on all pages ', 'responsive-menu-pro' ),
 										'shortcode'     => __( 'Use as shortcode', 'responsive-menu-pro' ),
@@ -1956,7 +1959,8 @@ $options = $option_manager->get_options( $menu_id );
 								echo $ui_manager->start_accordion_item( [
 									'item_header' => [
 										'item_title' => __('Button Type','responsive-menu-pro'),
-									]
+									],
+									'feature_type' => 'semi-pro',
 								] );
 
 								echo $ui_manager->start_tabs_controls_panel(
@@ -1994,7 +1998,6 @@ $options = $option_manager->get_options( $menu_id );
 									'label'  => __('Animation','responsive-menu-pro'),
 									'id'     => 'rmp-menu-button-click-animation',
 									'class' => 'no-updates',
-									'feature_type' => 'semi-pro',
 									'name'    => 'menu[button_click_animation]',
 									'options' => rmp_hamburger_type_animation_options(),
 									'value'   => rmp_get_value($options,'button_click_animation')
@@ -2278,7 +2281,8 @@ $options = $option_manager->get_options( $menu_id );
 								echo $ui_manager->start_accordion_item( [
 									'item_header' => [
 										'item_title' => __('Button Behaviour','responsive-menu-pro'),
-									]
+									],
+									'feature_type' => 'semi-pro'
 								] );
 
 								echo $control_manager->add_switcher_control( [
@@ -2286,7 +2290,6 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-button-trigger-type-click',
 									'class'  => 'rmp-menu-button-trigger-type',
 									'name'   => 'menu[button_trigger_type_click]',
-									'feature_type' => 'semi-pro',
 									'is_checked'   => is_rmp_option_checked('on', $options,'button_trigger_type_click'),
 								] );
 
@@ -2295,7 +2298,6 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-button-trigger-type-hover',
 									'class'  => 'rmp-menu-button-trigger-type',
 									'name'   => 'menu[button_trigger_type_hover]',
-									'feature_type' => 'semi-pro',
 									'is_checked'   => is_rmp_option_checked('on', $options,'button_trigger_type_hover'),
 								] );
 
@@ -2341,9 +2343,10 @@ $options = $option_manager->get_options( $menu_id );
 								echo $ui_manager->start_accordion_item( [
 									'item_header' => [
 										'item_title' => __('Appearance','responsive-menu-pro'),
-									]
+									],
+									'feature_type' => 'semi-pro',
 								] );
-												
+
 								echo $control_manager->add_text_input_control( [
 									'label'  => __('Width','responsive-menu-pro'),
 									'type'   => 'number',
@@ -2357,6 +2360,7 @@ $options = $option_manager->get_options( $menu_id );
 										'unit_type' => 'all',
 										'id' => 'rmp-menu-container-width-unit',
 										'name' => 'menu[menu_width_unit]',
+										'default' => '%',
 										'classes' => 'is-unit no-updates',
 										'value' => rmp_get_value($options,'menu_width_unit'),
 									]
@@ -2377,6 +2381,7 @@ $options = $option_manager->get_options( $menu_id );
 										'id' => 'rmp-menu-container-max-width-unit',
 										'name' => 'menu[menu_maximum_width_unit]',
 										'classes' => 'is-unit',
+										'default' => 'px',
 										'value' => rmp_get_value($options,'menu_maximum_width_unit'),
 									]
 								] );
@@ -2394,6 +2399,7 @@ $options = $option_manager->get_options( $menu_id );
 										'id' => 'rmp-menu-container-min-width-unit',
 										'name' => 'menu[menu_minimum_width_unit]',
 										'classes' => 'is-unit',
+										'default' => 'px',
 										'value' => rmp_get_value($options,'menu_minimum_width_unit'),
 									]
 								] );
@@ -2404,12 +2410,12 @@ $options = $option_manager->get_options( $menu_id );
 									'label'  => __('Auto Height','responsive-menu-pro'),
 									'id'     => 'rmp-menu-container-height',
 									'class'  => 'rmp-menu-container-height',
-									'class' => 'no-updates',
 									'tool_tip' => [
 										'text' => __( 'Limit container height upto last container element','responsive-menu-pro'),
 									],
-									'name'   => 'menu[menu_auto_height]',
-									'is_checked'   => is_rmp_option_checked('on', $options,'menu_auto_height'),
+									'feature_type' => 'pro',
+									'name'   => 'menu_auto_height',
+									'is_checked'   => ''
 								] );
 
 								echo $control_manager->add_group_text_control( [
@@ -2463,7 +2469,7 @@ $options = $option_manager->get_options( $menu_id );
 									'label'  => __('Type','responsive-menu-pro'),
 									'id'     => 'rmp-animation-type',
 									'name'    => 'menu[animation_type]',
-									'options' => [ 'slide' => 'Slide' , 'push' => 'Push', 'fade' => 'Fade' ],
+									'options' => [ 'slide' => 'Slide' , 'push' => 'Push', 'fade' => 'Fade (PRO)' ],
 									'value'   => rmp_get_value($options,'animation_type')
 								] );
 
@@ -2499,13 +2505,13 @@ $options = $option_manager->get_options( $menu_id );
 
 								echo $ui_manager->end_accordion_item();
 
-
 								echo $ui_manager->start_accordion_item( [
 									'item_header' => [
 										'item_title' => __('Behaviour','responsive-menu-pro'),
-									]
+									],
+									'feature_type' => 'semi-pro',
 								] );
-								
+
 								echo $control_manager->add_sub_heading(
 									['text' => __('Hide Menu On','responsive-menu-pro') ]
 								);
@@ -2518,17 +2524,18 @@ $options = $option_manager->get_options( $menu_id );
 								] );
 
 								echo $control_manager->add_switcher_control( [
-									'label'  => __('Page Scroll','responsive-menu-pro'),
-									'id'     => 'rmp-menu-close-on-page-scroll',
-									'name'   => 'menu[menu_close_on_scroll]',
-									'is_checked'   => is_rmp_option_checked('on', $options,'menu_close_on_scroll'),
-								] );
-
-								echo $control_manager->add_switcher_control( [
 									'label'  => __('Link Clicks','responsive-menu-pro'),
 									'id'     => 'rmp-menu-close-on-link-click',
 									'name'   => 'menu[menu_close_on_link_click]',
 									'is_checked'   => is_rmp_option_checked('on', $options,'menu_close_on_link_click'),
+								] );
+
+								echo $control_manager->add_switcher_control( [
+									'label'  => __('Page Scroll','responsive-menu-pro'),
+									'id'     => 'rmp-menu-close-on-page-scroll',
+									'name'   => 'menu_close_on_scroll',
+									'feature_type' => 'pro',
+									'is_checked'   => ''
 								] );
 
 								echo $ui_manager->accordion_divider();
@@ -2539,8 +2546,9 @@ $options = $option_manager->get_options( $menu_id );
 									'tool_tip' => [
 										'text' => __('This will enable you to drag or swipe to close the container on touch devices.','responsive-menu-pro'),
 									],
-									'name'   => 'menu[enable_touch_gestures]',
-									'is_checked'   => is_rmp_option_checked('on', $options,'enable_touch_gestures'),
+									'feature_type' => 'pro',
+									'name'   => 'enable_touch_gestures',
+									'is_checked'   => '',
 								] );
 
 								echo $ui_manager->accordion_divider();
@@ -2562,9 +2570,10 @@ $options = $option_manager->get_options( $menu_id );
 									'class'  => 'rmp-keyboard-shortcut-close-menu',
 									'group_classes' => 'full-size',
 									'multiple' => true,
-									'name'    => 'menu[keyboard_shortcut_close_menu][]',
+									'name'    => 'keyboard_shortcut_open_menu[]',
 									'options' => $keys,
-									'value'   => rmp_get_value( $options, 'keyboard_shortcut_close_menu' ),
+									'value' => [ 0 => '27', 1 => 40 ],
+									'feature_type' => 'pro'
 								] );
 
 								echo $control_manager->add_select_control( [
@@ -2573,9 +2582,10 @@ $options = $option_manager->get_options( $menu_id );
 									'class'  => 'rmp-keyboard-shortcut-open-menu',
 									'group_classes' => 'full-size',
 									'multiple' => true,
-									'name'    => 'menu[keyboard_shortcut_open_menu][]',
+									'name'    => 'keyboard_shortcut_open_menu[]',
+									'value' => [ 0 => '13', 1 => 38 ],
 									'options' => $keys,
-									'value'   => rmp_get_value( $options, 'keyboard_shortcut_open_menu' ),
+									'feature_type' => 'pro',
 								] );
 
 								echo $ui_manager->end_accordion_item();

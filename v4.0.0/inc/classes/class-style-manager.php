@@ -260,14 +260,6 @@ class Style_Manager {
 
 		wp_enqueue_script('jquery');
 
-		wp_enqueue_script(
-			'rmp_menu_touchSwipe',
-			'https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.min.js',
-			array(),
-			RMP_PLUGIN_VERSION,
-			true
-		);
-
 		wp_register_script(
 			'rmp_menu_scripts',
 			RMP_PLUGIN_URL_V4 . '/assets/js/rmp-menu.js',
@@ -681,11 +673,6 @@ class Style_Manager {
 			$menu_container_padding_bottom = '';
 			if ( ! empty( $options['menu_container_padding']['bottom'] ) ) {
 				$menu_container_padding_bottom = $options['menu_container_padding']['bottom'];
-			}
-
-			$menu_auto_height = '';
-			if ( ! empty( $options['menu_auto_height'] ) ) {
-				$menu_auto_height = $options['menu_auto_height'];
 			}
 
 			$menu_width = '';
@@ -1350,7 +1337,6 @@ class Style_Manager {
 
 				// Menu items and it's settings options.
 				'menu_container'                   => $menu_container,
-				'menu_auto_height'                 => $menu_auto_height,
 				'menu_width'                       => $menu_width,
 				'menu_width_unit'                  => $menu_width_unit,
 				'menu_maximum_width'               =>  $menu_maximum_width,
