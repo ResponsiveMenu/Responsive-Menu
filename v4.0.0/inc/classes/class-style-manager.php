@@ -891,10 +891,7 @@ class Style_Manager {
 				$menu_item_padding_unit = $options['menu_depth_0_unit'];
 			}
 
-			$use_slide_effect = 'off';
-			if ( ! empty( $options['use_slide_effect'] ) ) {
-				$use_slide_effect = $options['use_slide_effect'];
-			}
+			
 
 			$menu_depth_side = '';
 			if ( ! empty( $options['menu_depth_side'] ) ) {
@@ -1454,7 +1451,6 @@ class Style_Manager {
 				'submenu_current_item_toggle_border_color'           => $submenu_current_item_toggle_border_color,
 				'submenu_current_item_toggle_border_color_hover'     => $submenu_current_item_toggle_border_color_hover,
 
-				'use_slide_effect' => $use_slide_effect,
 				'menu_depth_side' => $menu_depth_side,
 				'menu_item_padding_depth_1' => $menu_item_padding_depth_1,
 				'menu_item_padding_depth_1_unit' => $menu_item_padding_depth_1_unit,

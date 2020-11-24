@@ -267,78 +267,7 @@ jQuery( document ).ready( function( jQuery ) {
 		jQuery( this ) .addClass( 'nav-tab-active' );
 	} );
 
-	/**
-	  * Handle the device preview and multi device options features.
-	  *
-	  * @version 4.0.0
-	  *
-	  * @fires Click
-	  */
-	jQuery( '#rmp-preview-mobile, #rmp-preview-tablet,#rmp-preview-desktop' ).click( function( e ) {
-
-		e.preventDefault();
-
-		const moveOnDevice  = jQuery( this ).attr( 'data-device' );
-		let menuOptions     = jQuery( '[multi-device="true"]' );
-		const saveForDevice = jQuery( '#rmp_device_mode' ).val();
-		jQuery( '#rmp_device_mode' ).attr( 'value', moveOnDevice );
-
-		if( moveOnDevice == saveForDevice ) {
-			return;
-		}
-
-		// Collect options which are device wise.
-		let options = {};
-		menuOptions.each( ( index, element ) => {
-			const name    = jQuery( element ).attr( 'name' ).replace( 'menu[', '' ).replace( ']', '' );
-			options[name] = jQuery( element ).val();
-		} );
-
-		jQuery.ajax( {
-			url: rmpObject.ajaxURL,
-			data: {
-				'action': 'rmp_save_draft_options',
-				'ajax_nonce': rmpObject.ajax_nonce,
-				'save_for_device': saveForDevice,
-				'move_on_device': moveOnDevice,
-				'options': options,
-				'menu_id': jQuery( '#menu_id' ).val()
-			},
-			type: 'POST',
-			dataType: 'json',
-			async: false,
-			beforeSend: function() {
-				jQuery( '#rmp-preview-iframe-loader' ).show();
-			},
-			error: function( error ) {
-				console.log( 'Internal Error !' );
-				jQuery( '#rmp-preview-iframe-loader' ).hide();
-			},
-			success: function( response ) {
-				// Set the values of device wise option which is currently active.
-				menuOptions.each( function( e ) {
-					let name = jQuery( this ).attr( 'name' ).replace( 'menu[', '' ).replace( ']', '' );
-					if ( response.data[name] ) {
-						jQuery( this ).val( response.data[name] );
-						let classes = jQuery( this ).attr( 'class' );
-						if ( classes.includes( 'rmp-color-input' ) ) {
-							jQuery( this ).trigger( 'paste' );
-						}
-					} else {
-						jQuery( this ).val( '' );
-					}
-				} );
-
-				var iframe = jQuery('#rmp-preview-iframe');
-				var url = iframe.attr('src').split('?')[0];
-				//if( jQuery('#rmp-menu-different-menu-for-mobile').is(':checked') ) {
-					// Change device mode before load the iframe contents.
-					iframe.attr('src', url + '?rmp_device_mode=' + moveOnDevice );
-				//}
-			}
-		} );
-
-	} );
+	
 
 	/**
 	 * Check open/close of device options switcher.
@@ -381,19 +310,6 @@ jQuery( document ).ready( function( jQuery ) {
 		}
 	} );
 
-	/**
-	 * Change device as mobile when click on mobile setting option nav.
-	 * 
-	 * @fires click
-	 */
-	jQuery('#rmp-tab-item-mobile-menu').on( 'click', function() {
-
-		const activeDevice = jQuery( '#rmp_device_mode' ).val();
-		if ( 'mobile' != activeDevice ) {
-			jQuery( '#rmp-preview-mobile' ).trigger( 'click' );
-		}
-
-	} );
 
 	/**
 	 * Active all the device options in editor.

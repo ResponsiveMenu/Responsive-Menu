@@ -47,25 +47,12 @@ jQuery( document ).ready( function( jQuery ) {
 			this.animationSpeed        =  this.options['animation_speed'] * 1000;
 			this.hamburgerBreakpoint   =  this.options['tablet_breakpoint'];
 			this.subMenuTransitionTime =  this.options['sub_menu_speed'] * 1000;
-			this.smoothScrollSpeed     = this.options['smooth_scroll_speed'] * 1000;
 
 			if ( this.options['button_click_trigger'].length > 0 ) {
 				this.trigger = this.trigger +' , '+ this.options['button_click_trigger'];
 			}
 
 			this.init();
-		}
-
-		/**
-		 * Function to smooth scroll.
-		 * @param {Event} event 
-		 */
-		smoothScrollToLocation( event ) {
-			if(event.target.hash) {
-				jQuery('html, body').animate({
-					scrollTop: jQuery(event.target.hash).offset().top
-				}, 500);
-			}
 		}
 
 		/** 
@@ -140,13 +127,6 @@ jQuery( document ).ready( function( jQuery ) {
 				});
 			}
 	
-			/** Multi screen slide effect */
-			if ( self.options['use_slide_effect'] == 'on' ) {
-				jQuery( '.rmp-go-back' ).on( 'click', function() {
-					self.backUpSlide(this);
-				});
-			}
-
 			// Expand Sub items on Parent Item Click.
 			if ( 'on' == self.options['menu_item_click_to_trigger_submenu']  ) {
 				jQuery( '.rmp-menu-item-has-children > ' + self.linkElement ).on( 'click', function(e) {
@@ -156,13 +136,6 @@ jQuery( document ).ready( function( jQuery ) {
 							jQuery(this).children( '.rmp-menu-subarrow' ).first()
 						);
 					}
-				});
-			}
-
-			//Smooth scrolling enable.
-			if ( self.options['smooth_scroll_on'] == 'on' ) { 
-				jQuery( self.linkElement).on( 'click', function(e) {
-					self.smoothScrollToLocation(e);
 				});
 			}
 		}
@@ -245,40 +218,6 @@ jQuery( document ).ready( function( jQuery ) {
 				this.setWrapperTranslate();
 			}
 
-			/**
-			 * Fading items from slid.
-			 */
-			if ( self.options['fade_submenus'] == 'on' ) {
-
-				jQuery( ".rmp-menu > li" ).each( function(index) {
-					jQuery(this).show();
-					jQuery(this).animate( { opacity: 0 }, 0 );
-	
-					if ( self.options['fade_submenus_side'] == 'left' ) {
-						jQuery(this).animate( { 'margin-left':'-150px' } ,0 );
-					}
-
-					if ( self.options['fade_submenus_side'] == 'right' ) {
-						jQuery(this).animate({'margin-left':'150px'},0);
-					}
-	
-					jQuery( this ).delay( self.options[ 'fade_submenus_delay' ] * index ).animate({
-						'margin-left': "0",
-						'opacity': 1
-					}, self.options['fade_submenus_delay'] );
-				});
-			}
-
-
-			if ( self.options['use_slide_effect'] == 'on' ) {
-				if( jQuery(window).width() <= self.hamburgerBreakpoint ) {	
-					jQuery( self.menuWrap ).promise().done( function () {
-						self.originalHeight = jQuery( self.menuWrap ).height();
-						jQuery( self.menuWrap ).css({'height': self.originalHeight});
-					});
-				}
-			}
-
 			this.isOpen = true;
 		}
 
@@ -314,57 +253,42 @@ jQuery( document ).ready( function( jQuery ) {
 			var self = this;
 			var sub_menu = jQuery( subArrow ).parent().siblings( RmpMenu.subMenuClass );
 
+			//Accordion animation.
+			if ( self.options['accordion_animation'] == 'on' ) {
+				// Get Top Most Parent and the siblings.
+				var top_siblings   = sub_menu.parents('.rmp-menu-item-has-children').last().siblings('.rmp-menu-item-has-children');
+				var first_siblings = sub_menu.parents('.rmp-menu-item-has-children').first().siblings('.rmp-menu-item-has-children');
 
-			// Use sliding effect.
-			if ( self.options['use_slide_effect'] == 'on' ) {
-				if( jQuery(window).width() <= self.hamburgerBreakpoint ) {
-					jQuery(self.container).find( '.rmp-submenu-open').removeClass('rmp-submenu-open');
-					sub_menu.addClass('rmp-submenu-open');
-					sub_menu.parentsUntil(self.menuWrap).addClass( 'rmp-submenu-open' );
-					let current_depth = jQuery(subArrow).parents('.rmp-submenu').data('depth');
-					current_depth = typeof current_depth == 'undefined' ? 1 : current_depth;
-					let translation_amount = current_depth * 100;
-					jQuery(self.menuWrap).css({'transform': 'translateX(-' + translation_amount + '%)'});
-					jQuery(self.menuWrap).css({'height': sub_menu.height() + 'px'});
-				}
-			} else {
+				// Close up just the top level parents to key the rest as it was.
+				top_siblings.children('.rmp-submenu').slideUp(self.subMenuTransitionTime, 'linear').removeClass('rmp-submenu-open');
 
-				//Accordion animation.
-				if ( self.options['accordion_animation'] == 'on' ) {
-					// Get Top Most Parent and the siblings.
-					var top_siblings   = sub_menu.parents('.rmp-menu-item-has-children').last().siblings('.rmp-menu-item-has-children');
-					var first_siblings = sub_menu.parents('.rmp-menu-item-has-children').first().siblings('.rmp-menu-item-has-children');
+				// Set each parent arrow to inactive.
+				top_siblings.each(function() {
+					jQuery(this).find(self.subMenuArrow).first().html(self.options['inactive_toggle_contents']);
+					jQuery(this).find(self.subMenuArrow).first().removeClass(RmpMenu.activeSubMenuArrowClass);
+				});
 
-					// Close up just the top level parents to key the rest as it was.
-					top_siblings.children('.rmp-submenu').slideUp(self.subMenuTransitionTime, 'linear').removeClass('rmp-submenu-open');
-
-					// Set each parent arrow to inactive.
-					top_siblings.each(function() {
-						jQuery(this).find(self.subMenuArrow).first().html(self.options['inactive_toggle_contents']);
-						jQuery(this).find(self.subMenuArrow).first().removeClass(RmpMenu.activeSubMenuArrowClass);
-					});
-
-					// Now Repeat for the current item siblings.
-					first_siblings.children('.rmp-submenu').slideUp(self.subMenuTransitionTime, 'linear').removeClass('rmp-submenu-open');
-					first_siblings.each(function() {
-						jQuery(this).find(self.subMenuArrow).first().html(self.options['inactive_toggle_contents']);
-						jQuery(this).find(self.subMenuArrow).first().removeClass(RmpMenu.activeSubMenuArrowClass);
-					});
-				}
-
-				// Active sub menu as default behavior.
-				if( sub_menu.hasClass('rmp-submenu-open') ) {
-					sub_menu.slideUp(self.subMenuTransitionTime, 'linear',function() {
-						jQuery(this).css( 'display', '' );
-					} ).removeClass('rmp-submenu-open');
-					jQuery( subArrow ).html( self.options['inactive_toggle_contents'] );
-					jQuery( subArrow ).removeClass(RmpMenu.activeSubMenuArrowClass);
-				} else {
-					sub_menu.slideDown(self.subMenuTransitionTime, 'linear').addClass( 'rmp-submenu-open' );
-					jQuery( subArrow ).html(self.options['active_toggle_contents'] );
-					jQuery( subArrow ).addClass(RmpMenu.activeSubMenuArrowClass);
-				}
+				// Now Repeat for the current item siblings.
+				first_siblings.children('.rmp-submenu').slideUp(self.subMenuTransitionTime, 'linear').removeClass('rmp-submenu-open');
+				first_siblings.each(function() {
+					jQuery(this).find(self.subMenuArrow).first().html(self.options['inactive_toggle_contents']);
+					jQuery(this).find(self.subMenuArrow).first().removeClass(RmpMenu.activeSubMenuArrowClass);
+				});
 			}
+
+			// Active sub menu as default behavior.
+			if( sub_menu.hasClass('rmp-submenu-open') ) {
+				sub_menu.slideUp(self.subMenuTransitionTime, 'linear',function() {
+					jQuery(this).css( 'display', '' );
+				} ).removeClass('rmp-submenu-open');
+				jQuery( subArrow ).html( self.options['inactive_toggle_contents'] );
+				jQuery( subArrow ).removeClass(RmpMenu.activeSubMenuArrowClass);
+			} else {
+				sub_menu.slideDown(self.subMenuTransitionTime, 'linear').addClass( 'rmp-submenu-open' );
+				jQuery( subArrow ).html(self.options['active_toggle_contents'] );
+				jQuery( subArrow ).addClass(RmpMenu.activeSubMenuArrowClass);
+			}
+			
 		}
 
 		/**

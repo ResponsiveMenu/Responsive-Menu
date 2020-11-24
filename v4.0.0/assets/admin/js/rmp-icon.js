@@ -99,34 +99,7 @@ jQuery( document ).ready( function() {
 			jQuery( document ).on( 'click' , '.delete-menu-item-icon', function() {
 				jQuery(this).closest('.rmp-menu-item-icon-container').remove();
 			} );
-
-			var self = this;
-			jQuery( document ).on( 'click', '#rmp-menu-add-item-icon', function() {
-				var lastRow = jQuery( '.rmp-menu-item-icon-container').last();
-				var nextRow = lastRow.clone();
-
-				if ( ! nextRow.find( '.delete-menu-item-icon' ).length ) {
-					nextRow.append('<span class="delete-menu-item-icon dashicons dashicons-no "></span>' );
-				}
-
-				const iconChooser = nextRow.find( '.rmp-icon-picker' );
-				self.openDialog(iconChooser);
-				self.removeIcon( iconChooser);
-				nextRow.find('.rmp-icon-picker-trash').trigger( 'click' );
-
-				let index = jQuery( '.rmp-menu-item-icon-container').length;
-
-				nextRow.find( '.rmp-icon-hidden-input' )
-					.attr( 'id', 'rmp-menu-item-font-icon-' +  index );
-				nextRow.find( '.rmp-icon-picker' )
-					.attr( 'for', 'rmp-menu-item-font-icon-' +  index );
-				nextRow.find( '.rmp-icon-picker' )
-					.attr( 'id', 'rmp-menu-item-font-icon-selector-' +  index );
-
-				lastRow.after(nextRow);
-
-			} );	
-
+			
 		},
 		searchIcon: function(e) {
 		   

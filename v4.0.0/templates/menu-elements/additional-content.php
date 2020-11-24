@@ -49,6 +49,7 @@
                             'id' => 'rmp-menu-additional-content-font-size-unit',
                             'name' => 'menu[menu_additional_content_font_size_unit]',
                             'classes' => 'is-unit no-updates',
+                            'default' => 'px',
                             'value' => rmp_get_value($options,'menu_additional_content_font_size_unit'),
                         ],
                     ] );

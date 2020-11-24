@@ -503,7 +503,8 @@ $options = $option_manager->get_options( $menu_id );
 							echo $ui_manager->start_accordion_item( [
 								'item_header' => [
 									'item_title' => __('Menu ','responsive-menu-pro'),
-								]
+								],
+								'feature_type' => 'semi-pro'
 							] );
 								echo $ui_manager->start_tabs_controls_panel(
 									[ 'tab_classes' => 'rmp-tab-content',
@@ -593,16 +594,18 @@ $options = $option_manager->get_options( $menu_id );
 										'tool_tip' => [
 											'text' => __('The webpage will scroll smoothly to their target sections on same page.','responsive-menu-pro'),
 										],
-										'name'   => 'menu[smooth_scroll_on]',
-										'is_checked'   => is_rmp_option_checked('on', $options,'smooth_scroll_on'),
+										'name'   => 'smooth_scroll_on',
+										'feature_type' => 'pro',
+										'is_checked'   => ''
 									] );
 					
 									echo $control_manager->add_text_input_control( [
 										'label'  => __('Scroll Speed','responsive-menu-pro'),
 										'type'   => 'number',
 										'id'     => 'rmp-menu-smooth-scroll-speed',
-										'name'   => 'menu[smooth_scroll_speed]',
-										'value'    => rmp_get_value($options,'smooth_scroll_speed'),
+										'name'   => 'smooth_scroll_speed',
+										'feature_type' => 'pro',
+										'value'    => '0',
 										'has_unit' => [
 											'unit_type' => 'ms',
 										],
@@ -614,9 +617,13 @@ $options = $option_manager->get_options( $menu_id );
 							echo $ui_manager->start_accordion_item( [
 								'item_header' => [
 									'item_title' => __('Item Icon','responsive-menu-pro'),
+								],
+								'feature_type' => 'pro',
+								'item_content' => [
+										'content_class' => 'upgrade-notice-contents'
 								]
 							] );
-								include_once RMP_PLUGIN_PATH_V4 . '/templates/menu-elements/menu-item-icons.php';
+								echo $control_manager->upgrade_notice();
 							echo $ui_manager->end_accordion_item();
 
 							echo $ui_manager->start_accordion_item( [
@@ -662,6 +669,7 @@ $options = $option_manager->get_options( $menu_id );
 										'id' => 'rmp-menu-links-height-unit',
 										'name' => 'menu[menu_links_height_unit]',
 										'classes' => 'is-unit',
+										'default' => 'px',
 										'value' => rmp_get_value($options,'menu_links_height_unit'),
 										'multi_device' => true,
 									],
@@ -680,6 +688,7 @@ $options = $option_manager->get_options( $menu_id );
 										'id' => 'rmp-menu-links-line-height-unit',
 										'name' => 'menu[menu_links_line_height_unit]',
 										'classes' => 'is-unit',
+										'default' => 'px',
 										'value' => rmp_get_value($options,'menu_links_line_height_unit'),
 										'multi_device' => true,
 									],
@@ -697,6 +706,7 @@ $options = $option_manager->get_options( $menu_id );
 										'id' => 'rmp-menu-depth-level-0-unit',
 										'name' => 'menu[menu_depth_0_unit]',
 										'classes' => 'is-unit',
+										'default' => '%',
 										'value' => rmp_get_value($options,'menu_depth_0_unit'),
 									],
 								] );
@@ -722,6 +732,7 @@ $options = $option_manager->get_options( $menu_id );
 										'unit_type' => 'all',
 										'id' => 'rmp-menu-font-size-unit',
 										'name' => 'menu[menu_font_size_unit]',
+										'default' => 'px',
 										'classes' => 'is-unit no-updates',
 										'value' => rmp_get_value($options,'menu_font_size_unit'),
 										'multi_device' => true,
@@ -890,6 +901,7 @@ $options = $option_manager->get_options( $menu_id );
 										'id' => 'rmp-menu-border-width-unit',
 										'name' => 'menu[menu_border_width_unit]',
 										'classes' => 'is-unit',
+										'default' => 'px',
 										'value' => rmp_get_value($options,'menu_border_width_unit'),
 									],
 								] );
@@ -957,6 +969,7 @@ $options = $option_manager->get_options( $menu_id );
 										'id' => 'rmp-submenu-links-height-unit',
 										'name' => 'menu[submenu_links_height_unit]',
 										'classes' => 'is-unit',
+										'default' => 'px',
 										'value' => rmp_get_value($options,'submenu_links_height_unit'),
 										'multi_device' => true,
 									],
@@ -975,6 +988,7 @@ $options = $option_manager->get_options( $menu_id );
 										'id' => 'rmp-submenu-links-line-height-unit',
 										'name' => 'menu[submenu_links_line_height_unit]',
 										'classes' => 'is-unit',
+										'default' => 'px',
 										'value' => rmp_get_value($options,'submenu_links_line_height_unit'),
 										'multi_device' => true,
 									],
@@ -1011,6 +1025,7 @@ $options = $option_manager->get_options( $menu_id );
 											'id' => 'rmp-menu-depth-level-1-unit',
 											'name' => 'menu[menu_depth_1_unit]',
 											'classes' => 'is-unit',
+											'default' => '%',
 											'value' => rmp_get_value($options,'menu_depth_1_unit'),
 										],
 									] );
@@ -1027,6 +1042,7 @@ $options = $option_manager->get_options( $menu_id );
 											'id' => 'rmp-menu-depth-level-2-unit',
 											'name' => 'menu[menu_depth_2_unit]',
 											'classes' => 'is-unit',
+											'default' => '%',
 											'value' => rmp_get_value($options,'menu_depth_2_unit'),
 										],
 									] );
@@ -1046,6 +1062,7 @@ $options = $option_manager->get_options( $menu_id );
 											'id' => 'rmp-menu-depth-level-3-unit',
 											'name' => 'menu[menu_depth_3_unit]',
 											'classes' => 'is-unit',
+											'default' => '%',
 											'value' => rmp_get_value($options,'menu_depth_3_unit'),
 										],
 									] );
@@ -1062,6 +1079,7 @@ $options = $option_manager->get_options( $menu_id );
 											'id' => 'rmp-menu-depth-level-4-unit',
 											'name' => 'menu[menu_depth_4_unit]',
 											'classes' => 'is-unit',
+											'default' => '%',
 											'value' => rmp_get_value($options,'menu_depth_4_unit'),
 										],
 									] );
@@ -1189,6 +1207,7 @@ $options = $option_manager->get_options( $menu_id );
 											'id' => 'rmp-submenu-font-size-unit',
 											'name' => 'menu[submenu_font_size_unit]',
 											'classes' => 'is-unit',
+											'default' => 'px',
 											'value' => rmp_get_value($options,'submenu_font_size_unit'),
 											'multi_device' => true,
 										],
@@ -1604,116 +1623,18 @@ $options = $option_manager->get_options( $menu_id );
 								echo $ui_manager->end_sub_accordion();
 
 
-							
 
 							echo $ui_manager->start_accordion_item( [
 								'item_header' => [
 									'item_title' => __('Animation','responsive-menu-pro'),
-								]
-							] );
-
-							echo $ui_manager->start_tabs_controls_panel(
-								[ 'tab_classes' => 'rmp-tab-content',
-									'tab_items'   =>
-									[
-										0 => [
-											'item_class' => 'nav-tab-active',
-											'item_target' => 'top-level-animation',
-											'item_text' => __('Top Level','responsive-menu-pro'),
-										],
-										1 => [
-											'item_class' => '',
-											'item_target' => 'sub-level-animation',
-											'item_text' => __('Sub Menu','responsive-menu-pro'),
-										]
-									]
-								]
-							);
-
-							echo $ui_manager->start_tab_item( 
-								[
-									'item_id'    => 'top-level-animation',
-									'item_class' => 'title-contents',
-								]
-							);
-
-							echo $control_manager->add_switcher_control( [
-								'label'  => __('Enabled','responsive-menu-pro'),
-								'id'     => 'rmp-menu-fade-submenus',
-								'class'  => 'rmp-menu-fade-submenus',
-								'tool_tip' => [
-									'text' => __('When enabled this makes the indidvidual menu items fade in when the button is clicked rather than simply appearing all at once.','responsive-menu-pro'),
 								],
-								'name'   => 'menu[fade_submenus]',
-								'is_checked'   => is_rmp_option_checked('on', $options,'fade_submenus'),
-								
+								'item_content' => [
+									'content_class' => 'upgrade-notice-contents'
+								],
+								'feature_type' => 'pro'
 							] );
 
-							echo $control_manager->add_select_control( [
-								'label'  => __('Appearing Side','responsive-menu-pro'),
-								'id'     => 'rmp-menu-fade-submenus-side',
-								'name'    => 'menu[fade_submenus_side]',
-								'options' => array( 'right' => 'Right' , 'left' => 'Left' ),
-								'value'   => rmp_get_value($options,'fade_submenus_side'),
-							] );
-							
-								echo $ui_manager->start_group_controls();
-									echo $control_manager->add_text_input_control( [
-										'label'  => __('Delay','responsive-menu-pro'),
-										'type'   => 'number',
-										'id'     => 'rmp-menu-fade-submenus-delay',
-										'name'   => 'menu[fade_submenus_delay]',
-										'value'    => rmp_get_value($options,'fade_submenus_delay'),
-										'has_unit' => [
-											'unit_type' => 'ms',
-										],
-									] );
-
-									echo $control_manager->add_text_input_control( [
-										'label'  => __('Speed','responsive-menu-pro'),
-										'type'   => 'number',
-										'id'     => 'rmp-menu-fade-submenus-speed',
-										'name'   => 'menu[fade_submenus_speed]',
-										'value'    => rmp_get_value($options,'fade_submenus_speed'),
-										'has_unit' => [
-											'unit_type' => 'ms',
-										],
-									] );
-								echo $ui_manager->end_group_controls();
-							echo $ui_manager->end_tab_item();
-
-							echo $ui_manager->start_tab_item( 
-								[
-									'item_id'    => 'sub-level-animation',
-									'item_class' => 'title-contents',
-								]
-							);
-								echo $control_manager->add_switcher_control( [
-									'label'  => __('Enabled Sliding','responsive-menu-pro'),
-									'id'     => 'rmp-menu-use-slide-effect',
-									'class'  => 'rmp-menu-use-slide-effect',
-									'tool_tip' => [
-										'text' => __('The slide effect changes the way that sub-menus open and close. Instead of the standard drop-down animation they will slide over the top of each other','responsive-menu-pro'),
-									],
-									'name'   => 'menu[use_slide_effect]',
-									'is_checked'   => is_rmp_option_checked('on', $options,'use_slide_effect'),
-									
-								] );
-
-								echo $control_manager->add_text_input_control( [
-									'label'  => __('Back Text','responsive-menu-pro'),
-									'type' => 'text',
-									'id'     => 'rmp-menu-slide-effect-back-to-text',
-									'name'   => 'menu[slide_effect_back_to_text]',
-									'value'    => rmp_get_value($options,'slide_effect_back_to_text'),
-									
-									'tool_tip' => [
-										'text' => __( 'You can specify the text used for clicking to get back to the previous level when using the slide effect..', 'responsive-menu-pro' ),
-									]
-								] );
-							echo $ui_manager->end_tab_item();
-							echo $ui_manager->end_tabs_controls_panel();
-
+							echo $control_manager->upgrade_notice();
 							echo $ui_manager->end_accordion_item();
 							
 
@@ -2118,6 +2039,7 @@ $options = $option_manager->get_options( $menu_id );
 									'tool_tip'=> [
 										'text' => __( 'Use a custom font icon instead of standard hamburger lines', 'responsive-menu-pro' )
 									],
+									'feature_type' => 'pro',
 									'value'    => rmp_get_value($options,'button_font_icon'),
 									
 								] );
@@ -2130,7 +2052,7 @@ $options = $option_manager->get_options( $menu_id );
 									'picker_id' => "rmp-menu-button-font-icon-when-clicked-selector",
 									'name'    => 'menu[button_font_icon_when_clicked]',
 									'value'    => rmp_get_value($options,'button_font_icon_when_clicked'),
-									
+									'feature_type' => 'pro',
 								] );
 
 
@@ -2290,7 +2212,8 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-button-trigger-type-click',
 									'class'  => 'rmp-menu-button-trigger-type',
 									'name'   => 'menu[button_trigger_type_click]',
-									'is_checked'   => is_rmp_option_checked('on', $options,'button_trigger_type_click'),
+									'feature_type' => 'pro',
+									'is_checked'   => 'checked',
 								] );
 
 								echo $control_manager->add_switcher_control( [
@@ -2298,6 +2221,7 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-button-trigger-type-hover',
 									'class'  => 'rmp-menu-button-trigger-type',
 									'name'   => 'menu[button_trigger_type_hover]',
+									'feature_type' => 'pro',
 									'is_checked'   => is_rmp_option_checked('on', $options,'button_trigger_type_hover'),
 								] );
 

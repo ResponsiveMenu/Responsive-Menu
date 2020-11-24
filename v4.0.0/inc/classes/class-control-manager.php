@@ -93,9 +93,29 @@ class Control_Manager {
             $tool_tip = $this->get_tool_tip( $param['tool_tip'] );
         }
 
+        $is_disabled = '';
+        $feature_label = '';
+        // Check feature type.
+        if( ! empty( $param['feature_type'] ) ) {
+            $is_disabled = 'disabled';
+            $feature_label = sprintf(
+                '<a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > %s </a>',
+                $param['feature_type']
+            );
+        }
+
         // Check label is exist.
         if ( ! empty( $param['label'] ) ) {
-            $html .= sprintf('<div class="rmp-input-control-label"> <span> %s </span> %s </div>', esc_html( $param['label'] ), $tool_tip );
+            $html .= sprintf( 
+                '<div class="rmp-input-control-label">
+                    <span> %s </span>
+                    <span> %s </span>
+                     %s
+                </div>',
+                esc_html( $param['label'] ),
+                $tool_tip,
+                $feature_label
+            );
         }
 
 		$html .= '<div class="rmp-input-control">';
@@ -122,14 +142,15 @@ class Control_Manager {
                 $class = $param['class'];
             }
 
-            $html .= sprintf( '<input type="%s" id="%s" name="%s" %s class="%s" value="%s" placeholder="%s">',
+            $html .= sprintf( '<input type="%s" id="%s" name="%s" %s class="%s" value="%s" placeholder="%s" %s>',
                 esc_attr( $param['type'] ),
                 esc_attr( $param['id'] ),
                 esc_attr( $param['name'] ),
                 esc_attr( $has_multi_device ),
                 esc_attr( $class ),
                 esc_attr( $param['value'] ),
-                esc_attr( $placeholder )
+                esc_attr( $placeholder ),
+                esc_attr( $is_disabled )
             );
         }
 
@@ -406,7 +427,7 @@ class Control_Manager {
             $class = $param['class'];
         }
 
-        $html .= sprintf( '<input type="text" data-alpha="true" id="%s" name="%s" %s class="no-updates rmp-color-input %s" value="%s">',
+        $html .= sprintf( '<input type="text" id="%s" name="%s" %s class="no-updates rmp-color-input %s" value="%s">',
             esc_attr( $param['id'] ),
             esc_attr( $param['name'] ),
             esc_attr( $has_multi_device ),
@@ -802,13 +823,33 @@ class Control_Manager {
             $tool_tip = $this->get_tool_tip( $param['tool_tip'] );
         }
 
+        $is_disabled = '';
+        $feature_label = '';
+        // Check feature type.
+        if( ! empty( $param['feature_type'] ) ) {
+            $is_disabled = 'disabled';
+            $feature_label = sprintf(
+                '<a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > %s </a>',
+                $param['feature_type']
+            );
+        }
+
         // Check label is exist.
         if ( ! empty( $param['label'] ) ) {
-            $html .= sprintf('<div class="rmp-input-control-label"> <span> %s </span> %s </div>', esc_html( $param['label'] ), $tool_tip );
+            $html .= sprintf( 
+                '<div class="rmp-input-control-label">
+                    <span> %s </span>
+                    <span> %s </span>
+                     %s
+                </div>',
+                esc_html( $param['label'] ),
+                $tool_tip,
+                $feature_label
+            );
         }
 
         $html .= sprintf('<div class="rmp-input-control rmp-icon-picker-container">');
-		
+
 		// Check multiple device option enabled.
         $has_multi_device = '';
         if ( ! empty( $param['multi_device']) ) {
@@ -848,7 +889,7 @@ class Control_Manager {
                 %s
                 %s
             </div>',
-            esc_attr( $param['picker_class'] ),
+            esc_attr( $param['picker_class'] . $is_disabled ),
             esc_attr( $param['id'] ),
             esc_attr( $param['picker_id'] ),
             esc_attr( $is_icon_set ),

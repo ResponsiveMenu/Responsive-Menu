@@ -291,23 +291,16 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 		}
 
 		public function menu_search_box() {
-			
-			$placeholder_text = '';
-			if ( ! empty( $this->options['menu_search_box_text'] ) ) {
-				$placeholder_text = $this->options['menu_search_box_text'];
-			}
 
 			$menu_search_wrap = sprintf('
 				<div id="rmp-search-box-%s">
 					<form action="%s" class="rmp-search-form" role="search">
-						<input type="search" name="s" title="Search" tabindex="1"
-							placeholder="%s"
-							class="rmp-search-box">
+						<input type="search" name="s" title="Search" placeholder="%s" class="rmp-search-box">
 					</form>
 				</div>',
 				esc_attr( $this->menu_id),
 				esc_url( home_url( '/' ) ),
-				esc_attr( $placeholder_text )
+				__( 'Search', 'responsive-menu-pro' )
 			);
 
 			return $menu_search_wrap;

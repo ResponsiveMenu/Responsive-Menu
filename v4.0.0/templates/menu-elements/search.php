@@ -18,9 +18,14 @@
 
         <div id="search-contents" class="title">
             <div class="rmp-input-control-wrapper full-size">
-                <label class="rmp-input-control-label"> <?php esc_html_e('Placeholder Text', 'responsive-menu-pro'); ?> </label>
+                <label class="rmp-input-control-label">
+                    <?php esc_html_e('Placeholder Text', 'responsive-menu-pro'); ?>
+                    <span>
+                        <a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > PRO </a>
+                    </span>
+                </label>
                 <div class="rmp-input-control">
-                    <input type="text" id="rmp-menu-search-box-text" name="menu[menu_search_box_text]" class="regular-text" value="<?php echo esc_attr( rmp_get_value( $options, 'menu_search_box_text' ) ); ?>"/>
+                    <input disabled placeholder="Search" type="text" id="rmp-menu-search-box-text" name="menu[menu_search_box_text]" class="regular-text" value="<?php echo esc_attr( rmp_get_value( $options, 'menu_search_box_text' ) ); ?>"/>
                 </div>
             </div>
         </div>
@@ -50,6 +55,7 @@
                         'id' => 'rmp-menu-search-box-height-unit',
                         'name' => 'menu[menu_search_box_height_unit]',
                         'classes' => 'is-unit no-updates',
+                        'default' => 'px',
                         'value' => rmp_get_value( $options, 'menu_search_box_height_unit' ),
                     ],
                 ] );

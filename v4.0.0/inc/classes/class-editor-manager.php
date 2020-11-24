@@ -42,7 +42,6 @@ class Editor_Manager {
 	 */
 	protected function setup_hooks() {
 		add_action('wp_ajax_rmp_save_menu_action', array( $this, 'rmp_save_options' ) );
-		add_action('wp_ajax_rmp_save_draft_options', array( $this, 'rmp_save_draft_options' ) );
 		add_action('wp_ajax_rmp_mega_menu_item_enable', array( $this, 'enable_mega_menu_item' ) );
 		add_action('wp_ajax_rmp_save_mega_menu_item', array( $this, 'rmp_save_mega_menu_item' ) );
 
@@ -264,61 +263,6 @@ class Editor_Manager {
 
 		// Return the response after success.
 		wp_send_json_success();
-	}
-
-	/**
-	 * Temporary store the options for multi device options.
-	 * 
-	 * Draft menu options as per device and also
-	 * Returns the options for selected device.
-	 *
-	 * @since	4.0.0
-	 * 
-	 * @return json
-	 */
-	public function rmp_save_draft_options() {
-
-		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
-
-		$menu_id = filter_input( INPUT_POST, 'menu_id', FILTER_SANITIZE_STRING );
-		if ( empty( $menu_id ) ) {
-			wp_send_json_error( __('Menu ID missing !', 'responsive-menu-pro') );	
-		}
-
-		$save_for_device = filter_input( INPUT_POST, 'save_for_device', FILTER_SANITIZE_STRING );
-		$move_on_device  = filter_input( INPUT_POST, 'move_on_device', FILTER_SANITIZE_STRING );
-
-		$options = array();
-		if ( ! empty( $_POST['options'] ) && is_array( $_POST['options'] ) ) {
-			foreach( $_POST['options'] as $key => $value ) {
-				$options[ $key ] = sanitize_text_field( $value );
-			}	
-		}
-
-		// Save device related options on transient.
-		set_transient( $menu_id . '_'. $save_for_device , $options, 3600 );
-
-		$option_manager = Option_Manager::get_instance();
-
-		if ( 'desktop' === $move_on_device ) {
-			$device_options = $option_manager->get_desktop_options( $menu_id );
-		} elseif( 'tablet' === $move_on_device ) {
-			$device_options = $option_manager->get_tablet_options( $menu_id );
-		} else {
-			$device_options = $option_manager->get_mobile_options( $menu_id );
-		}
-
-		if ( empty( $device_options ) ) {
-			$device_options = [];
-		}
-
-		$draft_options = get_transient( $menu_id . '_'. $move_on_device );
-
-		if ( ! empty( $draft_options ) && is_array( $draft_options ) ) {
-			$device_options = array_merge( $device_options, $draft_options );
-		}
-
-		wp_send_json_success( $device_options );
 	}
 
 }

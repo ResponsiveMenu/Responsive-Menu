@@ -106,22 +106,6 @@ class Walker extends \Walker_Nav_Menu {
 			$rmp_menu_classes[] = 'rmp-menu-sub-level-item';
 		}
 
-		// Avoid item which is already in mega menu contents.
-		$is_mega_menu = $this->is_mega_menu_item( $this->root_item_id );
-        if ( $is_mega_menu && $item->menu_item_parent ) {
-			return;
-		}
-
-		// Add item-has-child class if single top menu item is mega menu.
-		$is_mega_menu = $this->is_mega_menu_item( $item->ID );
-        if ( $is_mega_menu && ! $item->menu_item_parent ) {
-			$has_child = array_search( 'menu-item-has-children', $rmp_menu_classes );
-			if( ! $has_child ) {
-				$rmp_menu_classes[] = 'rmp-menu-item-has-children';
-				$rmp_menu_classes[] = 'menu-item-has-children';
-			}
-		}
-
 		/* Clear child class if we are at the final depth level */
 		if ( isset( $rmp_menu_classes ) ) {
 			$has_child = array_search( 'rmp-menu-item-has-children', $rmp_menu_classes );
@@ -200,7 +184,6 @@ class Walker extends \Walker_Nav_Menu {
 
 		$item_output  = '';
 		$item_output .= sprintf( '<a %s >', $attributes );
-		$item_output .= $this->get_menu_font_icon( $item->ID ); // Set menu item icon.
 		$item_output .= $title;
 		$item_output .= $sub_menu_arrow;
 		$item_output .= '</a>';
@@ -208,11 +191,6 @@ class Walker extends \Walker_Nav_Menu {
 		// If description is enable then add it below of menu item.
 		if ( ! empty( $item->description ) && $this->options['submenu_descriptions_on'] == 'on' ) {
 			$item_output .= sprintf( '<p class="rmp-menu-item-description"> %s </p>', esc_html( $item->description ) );  
-		}
-
-		// Add mega menu contents if item has enabled the mega menu options.
-        if ( $is_mega_menu && ! $item->menu_item_parent ) {
-            $item_output .= $this->prepare_mega_menu($item->ID );
 		}
 
 		/* End Add Desktop Menu Widgets to Sub Items */
@@ -232,11 +210,6 @@ class Walker extends \Walker_Nav_Menu {
 	 */
 	public function start_lvl( &$output, $depth = 0, $args = array() ) {
 
-        $is_mega_menu = $this->is_mega_menu_item( $this->root_item_id );
-        if ( $is_mega_menu ) {
-            return;
-		}
-
         // Add sub-menu item wrap.
         $output .= sprintf( '<ul aria-label="%s" 
             role="menu" data-depth="%s" 
@@ -245,80 +218,6 @@ class Walker extends \Walker_Nav_Menu {
             ( $depth + 2 ),
             ($depth + 1) . $this->get_submenu_class_open_or_not()
 		);
-
-		if ( $this->options['use_slide_effect'] == 'on' ) {
-			$output .= sprintf(
-				'<div class="rmp-go-back"> %s </div>',
-				$this->get_active_arrow() .' '.$this->options['slide_effect_back_to_text']
-			);
-    	}
-	}
-
-	/**
-	 * Function to add the mega menu contents, items and widgets.
-	 * 
-	 * @version 4.0.0
-	 * @access public
-	 * 
-	 * @param int $item_id
-	 * 
-	 * @return string|HTML Mega menu contents.
-	 */
-	public function prepare_mega_menu( $item_id ) {
-
-
-		$mega_menu_output   = '';
-        $mega_menu_settings = get_post_meta( $this->options['menu_id'], '_rmp_mega_menu_' . $item_id );
-
-		if ( ! empty( $mega_menu_settings[0]['rows'] ) )  {
-            $mega_menu_output .= sprintf('<div class="rmp-mega-menu-panel rmp-mega-menu-%s">', $item_id );
-            foreach( $mega_menu_settings[0]['rows'] as $row ) {
-                $mega_menu_output .= sprintf('<div class="rmp-mega-menu-row ">');
-                foreach( $row['columns'] as $col ) {
-                    $col_size = $col['meta']['column_size'];
-                    $mega_menu_output .= sprintf('<div class="rmp-mega-menu-col rmp-mega-menu-col-%s">', $col_size);
-                    if ( empty( $col['menu_items'] ) ) {
-                        $mega_menu_output .= '</div>';
-                        continue;
-                    }
-                    foreach( $col['menu_items'] as $item ) {
-                        if ( ! empty( $item['item_type'] ) && 'widget' === $item['item_type'] ) {
-                            $widget_manager = Widget_Manager::get_instance();
-                            $mega_menu_output .= $widget_manager->show_widget( $item['item_id'] );
-                        } else {
-                            $id = get_post_meta( $item['item_id'], '_menu_item_object_id', true );
-                            $url = get_permalink( $id );
-                            $mega_menu_output .= sprintf(
-                                '<a class="rmp-menu-item-link" href="%s">%s</a>',
-                                esc_url( $url ),
-                                $item['item_title']
-                            );
-                        }
-                    }
-                    $mega_menu_output .= '</div>';
-                }
-                $mega_menu_output .= '</div>';
-            }
-            $mega_menu_output .= '</div>';
-		}
-
-		// Add back options for sub menu sliding features.
-        $output = '';
-		if ( $this->options['use_slide_effect'] == 'on' ) {
-			$output .= sprintf('<div class="rmp-go-back"> %s </div>',
-				$this->get_active_arrow() .' '.$this->options['slide_effect_back_to_text']
-			);
-		}
-
-        // Add mega menu items and widgets.
-        $output = sprintf(
-            '<ul role="menu" data-depth="1" class="rmp-mega-menu-container rmp-submenu rmp-submenu-depth-1 %s"> %s %s </ul>',
-            $this->get_submenu_class_open_or_not(),
-            $output,
-            $mega_menu_output
-		);
-
-        return $output;
 	}
 
 	/**
@@ -347,29 +246,7 @@ class Walker extends \Walker_Nav_Menu {
 	 * @param array       $args
 	 */
 	public function end_lvl( &$output, $depth = 0, $args = array() ) {
-
-		$is_mega_menu = $this->is_mega_menu_item( $this->root_item_id );
-        if ( $is_mega_menu ) {
-            return;
-		}
-
 		$output .= "</ul>";
-	}
-
-	/**
-	 * Function to check the menu item is mega menu.
-	 * 
-	 * @param int $item_id
-	 * 
-	 * @return boolean
-	 */
-	public function is_mega_menu_item( $item_id ) {
-
-		if ( ! empty( $this->options['mega_menu'][ $item_id ] ) && $this->options['mega_menu'][ $item_id ] == 'on' ) {
-			return true;
-		}
-
-		return false;
 	}
 
 	/**
@@ -454,27 +331,4 @@ class Walker extends \Walker_Nav_Menu {
 		return ($this->options['auto_expand_current_submenus'] == 'on')
 			&& ($this->get_current_item()->current_item_ancestor || $this->get_current_item()->current_item_parent);
 	}
-
-	/**
-	 * Function to return menu item icon.
-	 * 
-	 * @param int $id
-	 * 
-	 * @return string   Icon element.
-	 */
-	public function get_menu_font_icon( $id ) {
-
-        if ( ! empty( $this->options['menu_font_icons'] ) ) {
-			$icons = $this->options['menu_font_icons'];
-
-			if ( in_array( $id, $icons['id'] ) ) {
-				$key = array_search( $id, $icons['id'] );
-
-				return $icons['icon'][$key];
-			}
-
-		}
-
-		return '';
-    }
 }

@@ -3037,14 +3037,25 @@ div.notice-responsive-menu .notice-responsive-menu-action a:hover {
     line-height: normal;
 }
 
-.rmp-input-control .upgrade-tooltip {
+.rmp-editor-overlay .rmp-input-control .upgrade-tooltip {
     position: absolute;
     top: -30px;
     right: 5%;
+    
+}
+
+.rmp-editor-overlay .rmp-input-control-label .upgrade-tooltip {
+    position: absolute;
+    top: -2px;
+}
+
+.rmp-editor-overlay .rmp-input-control-label .upgrade-tooltip,
+.rmp-editor-overlay .rmp-input-control .upgrade-tooltip {
     display: none;
 }
 
-.rmp-input-control:hover > .upgrade-tooltip {
+.rmp-editor-overlay .rmp-input-control-wrapper:hover  > .rmp-input-control-label .upgrade-tooltip,
+.rmp-editor-overlay .rmp-input-control-wrapper:hover > .rmp-input-control .upgrade-tooltip {
     display: inline-block;
 }
 
@@ -3054,7 +3065,9 @@ div.notice-responsive-menu .notice-responsive-menu-action a:hover {
     transform: rotate(180deg);
 }
 
-.upgrade-tooltip:hover{
+.upgrade-tooltip:hover,
+.upgrade-tooltip:focus,
+.upgrade-tooltip:active{
     color: #fff;
 }
 

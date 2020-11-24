@@ -65,8 +65,9 @@
                 'group_classes' => 'full-size',
                 'picker_class'  => 'rmp-button-title-icon-picker-button',
                 'picker_id' => "rmp-button-title-icon-selector",
-                'name'    => 'menu[menu_title_font_icon]',
-                'value'    => rmp_get_value($options,'menu_title_font_icon'),
+                'name'    => 'menu_title_font_icon',
+                'feature_type' => 'pro',
+                'value'    => '',
             ] );
 
             ?>
@@ -116,6 +117,7 @@
                             'id' => 'rmp-menu-title-font-size-unit',
                             'name' => 'menu[menu_title_font_size_unit]',
                             'classes' => 'is-unit no-updates',
+                            'default' => 'px',
                             'value' => rmp_get_value($options,'menu_title_font_size_unit'),
                         ],
                     ] );
@@ -162,6 +164,7 @@
                                 'id' => 'rmp-menu-title-image-width-unit',
                                 'name' => 'menu[menu_title_image_width_unit]',
                                 'classes' => 'is-unit',
+                                'default' => '%',
                                 'value' => rmp_get_value($options,'menu_title_image_width_unit'),
                             ],
                         ] );
@@ -178,6 +181,7 @@
                                 'id' => 'rmp-menu-title-image-height-unit',
                                 'name' => 'menu[menu_title_image_height_unit]',
                                 'classes' => 'is-unit',
+                                'default' => 'px',
                                 'value' => rmp_get_value($options,'menu_title_image_height_unit'),
                             ],
                         ] );
