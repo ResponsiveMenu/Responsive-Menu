@@ -59,7 +59,7 @@ class RMP_Migration {
 	 */
 	protected function setup() {
 
-        if ( ! empty( get_option('responsive_menu_pro_version') ) ) {
+        if ( ! empty( get_option('responsive_menu_version') ) ) {
             add_action( 'rmp_after_cpt_registered', array( $this, 'migrate' ) );
         }
 		

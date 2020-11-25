@@ -25,7 +25,7 @@ $option_manager  = Option_Manager::get_instance();
                 <li>
                     <a class="nav-tab" href="#menu-settings">
                         <div class="nav-item-label">
-                            <span class="nav-item-label-icon fas fa-wrench"></span>
+                            <span class="nav-item-label-icon dashicons dashicons-admin-generic "></span>
                             <div class="nav-item-label-content">
                                 <h4><?php esc_html_e( 'Menu Setting', 'responsive-menu-pro'); ?></h4>
                                 <span><?php esc_html_e( 'Fill menu settings and show/hide as per preferences', 'responsive-menu-pro'); ?></span>
@@ -37,7 +37,7 @@ $option_manager  = Option_Manager::get_instance();
                 <li>
                     <a class="nav-tab" href="#select-themes">
                         <div class="nav-item-label">
-                            <span class="nav-item-label-icon material-icons"> view_quilt</span>
+                            <span class="nav-item-label-icon dashicons dashicons-layout "></span>    
                             <div class="nav-item-label-content">
                                 <h4><?php esc_html_e( 'Select Themes', 'responsive-menu-pro' ); ?></h4>
                                 <span><?php esc_html_e( 'Use pre-made theme to speed up the things.', 'responsive-menu-pro'); ?></span>

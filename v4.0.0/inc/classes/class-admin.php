@@ -92,7 +92,7 @@ class Admin {
 				$item_id = 1175;
 
 			$updater = new Check('https://responsive.menu', __FILE__, array(
-				'version' => get_option('responsive_menu_pro_version'),
+				'version' => get_option('responsive_menu_version'),
 				'license' => trim(get_option('responsive_menu_pro_license_key')),
 				'item_id' => $item_id,
 				'author' => 'Responsive Menu',

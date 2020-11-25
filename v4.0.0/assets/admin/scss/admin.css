@@ -2008,8 +2008,9 @@ button.menu-save {
 }
 
 .nav-item-label .nav-item-label-icon {
-    font-size: 30px;
-    margin-right: 10px;
+    font-size: 32px;
+    margin-right: 20px;
+    line-height: 20px;
 }
 
 .nav-item-label .nav-item-label-content span{

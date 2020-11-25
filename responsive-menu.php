@@ -4,7 +4,7 @@
 Plugin Name: Responsive Menu
 Plugin URI: https://expresstech.io
 Description: Highly Customisable Responsive Menu Plugin for WordPress
-Version: 3.1.30
+Version: 4.0.0
 Author: ExpressTech
 Text Domain: responsive-menu
 Author URI: https://responsive.menu

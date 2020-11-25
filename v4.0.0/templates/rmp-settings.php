@@ -41,7 +41,7 @@ if ( ! empty( $global_settings['menu_adjust_for_wp_admin_bar'] ) )  {
                 <table  class="form-table" role="presentation">
                     <tbody>
                         <?php
-                        if ( ! empty( get_option('responsive_menu_pro_version') ) ) {
+                        if ( ! empty( get_option('responsive_menu_version') ) ) {
                              ?>
                         <tr>
                             <th scope="row"> <?php esc_html_e( 'Rollback Version', 'responsive-menu-pro'); ?></th>
