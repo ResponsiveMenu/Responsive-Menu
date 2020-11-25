@@ -328,6 +328,7 @@ class Theme_Manager {
 				$config = json_decode( file_get_contents( $config_file ), true);
 				$themes[basename($theme_dir)]['theme_name']         = $config['name'];
 				$themes[basename($theme_dir)]['theme_version']      = $config['version'];
+				$themes[basename($theme_dir)]['status']             = ! empty( $config['is_paid'] ) ? 'Pro' : 'Free';
 				$themes[basename($theme_dir)]['theme_preview_url'] = $theme_url .'/'. basename($theme_dir) . '/preview.png';
 			}
 		}
@@ -471,9 +472,9 @@ class Theme_Manager {
 		foreach( $themes as $theme ) {
 
 			$action_label = __( 'BUY NOW','responsive-menu-pro' );
-			$status_label  = __( 'PRO','responsive-menu-pro' );
+			$status  = __( 'Pro','responsive-menu-pro' );
 			if ( 0 == $theme['price'] ) {
-				$status_label  = __( 'FREE','responsive-menu-pro' );
+				$status  = __( 'Free','responsive-menu-pro' );
 				$action_label = __( 'DOWNLOAD','responsive-menu-pro' );
 			}
 
@@ -482,7 +483,7 @@ class Theme_Manager {
 					<div class="rmp-item-card">
 						<figure class="rmp-item-card_image">
 							<img src="%1$s" alt="%2$s" loading="lazy"/>
-							<figcaption class="rmp-item-card_label pro">
+							<figcaption class="rmp-item-card_label %3$s">
 								<span class="dashicons dashicons-star-filled "></span> %3$s
 							</figcaption>
 						</figure>
@@ -496,7 +497,7 @@ class Theme_Manager {
 				</li>',
 				esc_url( $theme['preview_url']),
 				esc_attr( $theme['name'] ),
-				$status_label,
+				$status,
 				esc_url( $theme['buy_link'] ),
 				$action_label
 			);	

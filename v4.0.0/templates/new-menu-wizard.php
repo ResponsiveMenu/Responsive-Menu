@@ -174,8 +174,8 @@ $option_manager  = Option_Manager::get_instance();
                                 <div class="rmp-item-card">
                                     <figure class="rmp-item-card_image">
                                         <img src="<?php echo esc_url( $theme['theme_preview_url'] );?>" alt="" loading="lazy"/>
-                                        <figcaption class="rmp-item-card_label pro">
-                                            <span class="dashicons dashicons-star-filled "></span> Pro
+                                        <figcaption class="rmp-item-card_label <?php echo $theme['status']; ?>">
+                                            <span class="dashicons dashicons-star-filled "></span> <?php echo $theme['status']; ?>
                                         </figcaption>
                                     </figure>
                                     <div class="rmp-item-card_contents">
