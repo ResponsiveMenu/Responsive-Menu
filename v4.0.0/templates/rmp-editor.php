@@ -184,11 +184,9 @@ $options = $option_manager->get_options( $menu_id );
 					?>
 
 					<div id="tab-header-bar" class="rmp-accordions" aria-label="Header Bar">
-						<ul class="rmp-accordion-container">
-							<?php
-								echo $control_manager->upgrade_notice();
-							?>
-						</ul>
+						<?php
+							echo $control_manager->upgrade_notice();
+						?>
 					</div>
 
 					<div id="tab-advanced-settings" class="rmp-accordions" aria-label="Advanced">
@@ -316,11 +314,9 @@ $options = $option_manager->get_options( $menu_id );
 					</div>
 
 					<div id="tab-desktop-menu" class="rmp-accordions" aria-label="Desktop Menu">
-						<ul class="rmp-accordion-container">
-							<?php
-								echo $control_manager->upgrade_notice();
-							?>
-						</ul>
+						<?php
+							echo $control_manager->upgrade_notice();
+						?>
 					</div>
 
 					<div id="tab-mobile-menu" class="rmp-accordions" aria-label="Mobile Menu">
