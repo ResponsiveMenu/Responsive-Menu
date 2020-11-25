@@ -178,7 +178,7 @@ $options = $option_manager->get_options( $menu_id );
 					</div>
 
 					<?php 
-					if ( ! empty( get_option('responsive_menu_pro_version') ) ) {
+					if ( ! empty( get_option('responsive_menu_version') ) ) {
 						include_once RMP_PLUGIN_PATH_V4 . '/templates/legacy-settings.php';
 					}
 					?>
@@ -368,7 +368,7 @@ $options = $option_manager->get_options( $menu_id );
 								]
 							] );
 
-							if ( ! empty( get_option('responsive_menu_pro_version') ) ) {
+							if ( ! empty( get_option('responsive_menu_version') ) ) {
 								echo $ui_manager->add_editor_menu_item( [
 									'item_class' => 'is-child-item rmp-tab-item-legacy-settings',
 									'aria_owns'  => 'tab-legacy-settings',
