@@ -65,9 +65,8 @@
                 'group_classes' => 'full-size',
                 'picker_class'  => 'rmp-button-title-icon-picker-button',
                 'picker_id' => "rmp-button-title-icon-selector",
-                'name'    => 'menu_title_font_icon',
-                'feature_type' => 'pro',
-                'value'    => '',
+                'name'    => 'menu[menu_title_font_icon]',
+                'value'    => rmp_get_value($options,'menu_title_font_icon')
             ] );
 
             ?>

@@ -62,7 +62,6 @@ function og_deactivate_responsive_menu_pro() {
 //to check weather another plugin is acivated or not.
 register_activation_hook( __FILE__, 'og_deactivate_responsive_menu_pro');
 
-
 include dirname(__FILE__) . '/vendor/autoload.php';
 include dirname(__FILE__) . '/config/default_options.php';
 include dirname(__FILE__) . '/config/services.php';

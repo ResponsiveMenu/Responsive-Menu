@@ -129,7 +129,6 @@ if ( ! empty( $global_settings['menu_adjust_for_wp_admin_bar'] ) )  {
                                 </fieldset>
                             </td>
                         </tr>
-
                         <tr>
                             <th scope="row"> <?php esc_html_e( 'Remove Dashicons', 'responsive-menu-pro'); ?> </th>
                             <td>
@@ -138,45 +137,6 @@ if ( ! empty( $global_settings['menu_adjust_for_wp_admin_bar'] ) )  {
                                         <input type="checkbox" name="rmp_remove_dashicons" value="on" id="rmp-remove-dashicons" <?php echo is_rmp_option_checked( 'on', $global_settings, 'rmp_remove_dashicons' );?>>
                                         <label for="rmp-remove-dashicons" class="description">
                                             <?php esc_html_e( 'Stop this plugin\'s dashicons scripts from being load at frontend.', 'responsive-menu-pro'); ?>
-                                        </label>
-                                    </p>
-                                </fieldset>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"> <?php esc_html_e( 'Remove FontAwesome Scripts', 'responsive-menu-pro'); ?> </th>
-                            <td>
-                                <fieldset>
-                                    <p>
-                                        <input type="checkbox" name="rmp_remove_fontawesome" value="on" id="rmp-remove-fontawesome" <?php echo is_rmp_option_checked( 'on', $global_settings, 'rmp_remove_fontawesome' );?> >
-                                        <label for="rmp-remove-fontawesome" class="description">
-                                            <?php esc_html_e( 'Stop this plugin\'s FontAwesome scripts from being load. Useful if you want to run your own FontAwesome version or already have it installed.', 'responsive-menu-pro'); ?>
-                                        </label>
-                                    </p>
-                                </fieldset>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"> <?php esc_html_e( 'Remove GlyphIcon Scripts', 'responsive-menu-pro'); ?> </th>
-                            <td>
-                                <fieldset>
-                                    <p>
-                                        <input type="checkbox" name="rmp_remove_glyphicon" value="on" id="rmp-remove-glyphicons" <?php echo is_rmp_option_checked( 'on', $global_settings, 'rmp_remove_glyphicon' );?> >
-                                        <label for="rmp-remove-glyphicons" class="description">
-                                            <?php esc_html_e( 'Stop this  plugin\'s GlyphIcon resource from being load at frontend.', 'responsive-menu-pro'); ?>
-                                        </label>
-                                    </p>
-                                </fieldset>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"> <?php esc_html_e( 'Remove Material Icons Scripts', 'responsive-menu-pro'); ?> </th>
-                            <td>
-                                <fieldset>
-                                    <p>
-                                        <input type="checkbox" name="rmp_remove_material_icons" value="on" id="rmp-remove-material-icons" <?php echo is_rmp_option_checked( 'on', $global_settings, 'rmp_remove_material_icons' );?> >
-                                        <label for="rmp-remove-material-icons" class="description">
-                                            <?php esc_html_e( 'Stop this  plugin\'s Material icons resource from being loaded at frontend.', 'responsive-menu-pro'); ?>
                                         </label>
                                     </p>
                                 </fieldset>

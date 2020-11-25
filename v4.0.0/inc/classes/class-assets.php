@@ -123,19 +123,6 @@ class Assets {
 		);
 
 		wp_enqueue_script(
-			'rmp_mega_menu_scripts',
-			RMP_PLUGIN_URL_V4 . '/assets/admin/js/rmp-mega-menu.js',
-			array(
-				'jquery',
-				'jquery-ui-core',
-				'jquery-ui-sortable',
-				'jquery-ui-accordion'
-			),
-			RMP_PLUGIN_URL_V4,
-			true
-		);
-
-		wp_enqueue_script(
 			'rmp_admin_selectize_scripts',
 			RMP_PLUGIN_URL_V4 . '/assets/admin/js/selectize.js',
 			null,
@@ -205,13 +192,6 @@ class Assets {
 		wp_enqueue_style(
 			'rmp-admin-fontawesome-icons',
 			'https://use.fontawesome.com/releases/v5.13.0/css/all.css',
-			null,
-			RMP_PLUGIN_VERSION
-		);
-
-		wp_enqueue_style(
-			'rmp-admin-material-icons',
-			'https://fonts.googleapis.com/icon?family=Material+Icons',
 			null,
 			RMP_PLUGIN_VERSION
 		);

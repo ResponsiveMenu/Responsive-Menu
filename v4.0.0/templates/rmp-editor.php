@@ -198,27 +198,12 @@ $options = $option_manager->get_options( $menu_id );
 								//Device Breakpoints
 								echo $ui_manager->start_accordion_item( [
 									'item_header' => [
-										'item_title' => __('Device Breakpoints','responsive-menu-pro'),
+										'item_title' => __('Menu Breakpoint','responsive-menu-pro'),
 									]
 								] );
 
-								echo $ui_manager->start_group_controls();
 								echo $control_manager->add_text_input_control( [
-									'label'  => __('Mobile','responsive-menu-pro'),
-									'type'   => 'number',
-									'id'     => 'rmp-menu-mobile-breakpoint',
-									'name'   => 'menu[mobile_breakpoint]',
-									'value'    => rmp_get_value($options,'mobile_breakpoint'),
-									'tool_tip' => [
-										'text' => __( 'Set the breakpoint below which you want mobile menu', 'responsive-menu-pro' ),
-									],
-									'has_unit' => [
-										'unit_type' => 'px',
-									],
-								] );
-
-								echo $control_manager->add_text_input_control( [
-									'label'  => __('Tablet','responsive-menu-pro'),
+									'label'  => __('Breakpoint','responsive-menu-pro'),
 									'type'   => 'number',
 									'id'     => 'rmp-menu-tablet-breakpoint',
 									'name'   => 'menu[tablet_breakpoint]',
@@ -230,7 +215,6 @@ $options = $option_manager->get_options( $menu_id );
 										'unit_type' => 'px',
 									],
 								] );
-								echo $ui_manager->end_group_controls();
 								echo $ui_manager->end_accordion_item();
 
 								echo $ui_manager->start_accordion_item( [
@@ -2039,7 +2023,6 @@ $options = $option_manager->get_options( $menu_id );
 									'tool_tip'=> [
 										'text' => __( 'Use a custom font icon instead of standard hamburger lines', 'responsive-menu-pro' )
 									],
-									'feature_type' => 'pro',
 									'value'    => rmp_get_value($options,'button_font_icon'),
 									
 								] );
@@ -2052,7 +2035,6 @@ $options = $option_manager->get_options( $menu_id );
 									'picker_id' => "rmp-menu-button-font-icon-when-clicked-selector",
 									'name'    => 'menu[button_font_icon_when_clicked]',
 									'value'    => rmp_get_value($options,'button_font_icon_when_clicked'),
-									'feature_type' => 'pro',
 								] );
 
 
@@ -2534,7 +2516,7 @@ $options = $option_manager->get_options( $menu_id );
 			<?php echo $editor->sidebar_drawer(); ?>
 		</div>
 		<?php
-			include_once RMP_PLUGIN_PATH_V4 . '/templates/icon-dialog.php';
+			include_once RMP_PLUGIN_PATH_V4 . '/templates/rmp-wizards.php';
 			do_action( 'admin_print_footer_scripts' );
 			wp_footer();
 		?>

@@ -1121,37 +1121,6 @@ class Control_Manager {
 		echo $html;
     }
 
-	/**
-	 * This function prepare the list of wp core widgets.
-	 * 
-	 * @version 4.0.0
-	 * 
-	 * @return HTML
-	 */
-    public function get_wp_core_widget_list() {
-
-		global $wp_widget_factory;
-
-        $html = '';
-        foreach( $wp_widget_factory->widgets as $widget ) {
-            $disabled_widgets = ['maxmegamenu'];
-            $disabled_widgets = apply_filters( "rmp_incompatible_widgets", $disabled_widgets );
-
-			if ( ! in_array( $widget->id_base, $disabled_widgets ) ) {
-				$html .= sprintf(
-					'<span base-id="%s" class="widget-item">%s</span>',
-					esc_attr( $widget->id_base ),
-					esc_html( $widget->name )
-				);
-            }
-        }
-   
-        return sprintf(
-			'<div id="rmp-widget-container" class="rmp-popup-controls"> %s </div>',
-			$html
-		);
-    }
-
     /**
      * Function to prepare the device visibility control,
 	 * those are mobile, tablet and desktop as options.
@@ -1246,6 +1215,7 @@ class Control_Manager {
 	protected function get_device_options() {
        return sprintf(
             '<div class="rmp-device-switcher-holder">
+                <a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > PRO </a>
                 <ul class="select rmp-device-switcher" >
                     <li data-device="mobile">
                         %s

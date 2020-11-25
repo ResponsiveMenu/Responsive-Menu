@@ -47,10 +47,10 @@
                     'id' => 'rmp-submenu-child-arrow-width-unit',
                     'name' => 'menu[submenu_submenu_arrow_width_unit]',
                     'classes' => 'is-unit',
+                    'default' => 'px',
                     'value' => rmp_get_value($options,'submenu_submenu_arrow_width_unit'),
                 ],
             ] );
-
 
             echo $control_manager->add_text_input_control( [
                 'label'  => __('Height','responsive-menu-pro'),
@@ -58,7 +58,6 @@
                 'id'     => 'rmp-submenu-child-arrow-height',
                 'name'   => 'menu[submenu_submenu_arrow_height]',
                 'value'    => rmp_get_value($options,'submenu_submenu_arrow_height'),
-                
                 'tool_tip' => [
                     'text' => 'Set the height of the menu trigger items and their units.'
                 ],
@@ -67,6 +66,7 @@
                     'id' => 'rmp-submenu-child-arrow-height-unit',
                     'name' => 'menu[submenu_submenu_arrow_height_unit]',
                     'classes' => 'is-unit',
+                    'default' => 'px',
                     'value' => rmp_get_value($options,'submenu_submenu_arrow_height_unit'),
                 ],
             ] );

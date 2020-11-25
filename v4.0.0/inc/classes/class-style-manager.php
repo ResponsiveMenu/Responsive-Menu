@@ -374,12 +374,12 @@ class Style_Manager {
 				$menu_trigger_side = $options['button_left_or_right'];
 			}
 
-			$button_distance_from_side = '';
+			$button_distance_from_side = '0';
 			if ( ! empty( $options['button_distance_from_side'] ) ) {
 				$button_distance_from_side = $options['button_distance_from_side'] .  $options['button_distance_from_side_unit'];
 			}
 
-			$menu_trigger_distance_from_top = '';
+			$menu_trigger_distance_from_top = '0';
 			if ( ! empty( $options['button_top'] ) ) {
 				$menu_trigger_distance_from_top = $options['button_top'] .  $options['button_top_unit'];
 			}
@@ -1468,24 +1468,10 @@ class Style_Manager {
 				'sub_menu_transition_speed' => $sub_menu_transition_speed
 			);
 
-			// Multi device options.
-			$option_manager  = Option_Manager::get_instance();
-			$multi_inputs    = rmp_get_multi_device_options();
-			$mobile_options  = $option_manager->get_mobile_options($menu_id);
-			$tablet_options  = $option_manager->get_tablet_options($menu_id);
-			$desktop_options = $option_manager->get_desktop_options($menu_id);
-
-			foreach( $multi_inputs as $key => $value ) {
-			    $parse_options[ $key.'_mobile' ]  = ! empty( $mobile_options[$key] ) ? $mobile_options[$key] : '';
-		        $parse_options[ $key.'_tablet' ]  = ! empty( $tablet_options[$key] ) ? $tablet_options[$key] : '';
-                $parse_options[ $key.'_desktop' ] = ! empty( $desktop_options[$key] ) ? $desktop_options[$key] : '';
-			}
-
 			$scss = new Compiler();
 			$scss->setImportPaths(  RMP_PLUGIN_PATH_V4 . '/assets/scss/' );
 			$scss->setVariables( $parse_options );
 			$css = $scss->compile( '@import "main.scss";' );
-			$css .= $scss->compile( '@import "animation.scss";' );
 
 			return $css;
 		}
@@ -1523,107 +1509,6 @@ class Style_Manager {
 			return new \WP_Error( "Warning: Common style scss compile failed <br/> <br />" . $e->getMessage() );
 		}
 
-	}
-
-	/**
-	* This function convert the mega menu options to the scss variable and list.
-	* 
-	* @param int   $menu_id     This is menu id.
-	* @param array $menu_items  List of mega menu items.
-	* 
-	* @return string
-	*/
-	public function mega_menu_options_to_scss( $menu_id, $menu_items ) {
-		
-			if ( empty( $menu_items ) || empty( $menu_id ) ) {
-				return;
-			}
-
-			$mega_menu_options = [];
-			foreach( $menu_items as $item_id => $status ) {
-
-				$mega_menu = $this->option_manager->mega_menu_options( $menu_id, $item_id );
-
-				if ( ! empty( $mega_menu ) )  {
-
-					$row_count = 1;
-					$rows      = [];
-					if ( ! empty( $mega_menu['rows'] ) ) {
-						foreach ( $mega_menu['rows'] as $row ) {
-
-							$row_meta  = $row['meta'];
-							$row_options = [
-								"margin-left"     =>  '0px',
-								"margin-top"      =>  '0px',
-								"margin-right"    =>  '0px',
-								"margin-bottom"   =>  '0px',
-							];
-
-							$col_count = 1;
-							$cols      = [];
-							if ( ! empty( $row['columns'] ) ) {
-								foreach( $row['columns'] as $column ) {
-									$column_meta    = $column['meta'];
-									$column_options = [
-										"padding-left"     =>  $column_meta['column_padding']['left'],
-										"padding-top"      =>  $column_meta['column_padding']['top'],
-										"padding-right"    =>  $column_meta['column_padding']['right'],
-										"padding-bottom"   =>  $column_meta['column_padding']['bottom'],
-										"background-color" =>  $column_meta['column_background']['color'],
-										"background-hover" =>  $column_meta['column_background']['hover'],
-									];
-
-									$cols[$col_count++] = $this->convert_php_array_to_scss_list( $column_options );
-								}
-							}
-
-							$row_options["cols"] =  $this->convert_php_array_to_scss_list( $cols );
-							$rows[$row_count++]  = $this->convert_php_array_to_scss_list( $row_options );
-						}
-					}
-
-					$panel_options = [];
-					if ( ! empty( $mega_menu['meta'] ) ) {
-						$panel_meta    = $mega_menu['meta'];
-						$panel_options = [
-							"rows"             =>  $this->convert_php_array_to_scss_list( $rows ),
-							"width"            =>  $panel_meta['panel_width'] . $panel_meta['panel_width_unit'],
-							"padding-left"     =>  $panel_meta['panel_padding']['left'],
-							"padding-top"      =>  $panel_meta['panel_padding']['top'],
-							"padding-right"    =>  $panel_meta['panel_padding']['right'],
-							"padding-bottom"   =>  $panel_meta['panel_padding']['bottom'],
-							"background-color" =>  $panel_meta['panel_background']['color'],
-							"background-image" =>  "url(" . $panel_meta['panel_background']['image'] . ")",
-						];
-					}
-
-					$mega_menu_options[$item_id] = $this->convert_php_array_to_scss_list( $panel_options );
-				}
-			}
-
-		return $this->convert_php_array_to_scss_list( $mega_menu_options );
-	}
-
-	/**
-	* Convert the php array to scss list.
-	* 
-	* @param array $options List of mega menu item option.
-	* 
-	* @return string
-	*/
-	public function convert_php_array_to_scss_list( $options ) {
-
-		if ( empty( $options ) ) {
-			return;
-		}
-
-		array_walk( $options ,
-			function ( &$value, $key ) {
-				$value = '"'. $key.'":'.$value;
-			}
-		);
-
-		return '(' . implode( ',' , $options ) . ')';   
 	}
 
 }

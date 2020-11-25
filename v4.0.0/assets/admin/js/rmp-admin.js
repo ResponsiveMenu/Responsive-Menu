@@ -699,16 +699,6 @@ jQuery( document ).ready( function( jQuery ) {
 			}
 	});
 
-	/** Call ajax to hide admin notice permanent. */
-	jQuery( '.notice-responsive-menu' ).on( 'click', '.notice-dismiss', function( event ) {
-		event.preventDefault();
-		jQuery.ajax( {
-			type: "POST",
-			url: rmpObject.ajaxURL,
-			data: 'action=rmp_license_admin_notice_dismiss',
-		});
-	});
-
 	/**
 	 * Event to download exported menu settings as json file.
 	 *

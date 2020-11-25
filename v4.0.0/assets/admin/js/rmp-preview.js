@@ -94,6 +94,7 @@ jQuery(document).ready(function(jQuery) {
 		mobile_breakpoint : jQuery('#rmp-menu-mobile-breakpoint').val() + 'px',
 		tablet_breakpoint : jQuery('#rmp-menu-tablet-breakpoint').val() + 'px',
 		active_device: jQuery('#rmp_device_mode'),
+		menuContainer : '#rmp-container-'+ self.menuId,
 
 		onTyping: function( inputSelector, outputSelector, type) {
 			var self = this;
@@ -290,6 +291,8 @@ jQuery(document).ready(function(jQuery) {
 		toggleElements: function( inputSelector, outputSelector ) {
 			var self = this;
 			jQuery(inputSelector).change( function(e) {
+				e.preventDefault();
+				e.stopPropagation();
 				var iframe = jQuery(self.iframe);
 				if ( iframe.contents().find(outputSelector).length ) {
 					if ( jQuery(this).is(':checked') ) {
@@ -356,10 +359,11 @@ jQuery(document).ready(function(jQuery) {
 					iframeContents.find( self.menuContents ).remove();
 				}
 			} );
-
+	
 			list.forEach( function( menuElement ) {
 				iframeContents.find( self.menuContainer ).append( menuElement );
 			});
+
 		},
 		/**
 		 * Function to bind the color input with option and elements.
@@ -594,35 +598,7 @@ jQuery(document).ready(function(jQuery) {
 				}
 			});
 		},
-		activeMegaMenuItem : function(e) {
-			var item = jQuery(e.target);
-			var is_checked = 'off';
-			var item_id = item.attr('data-id');
-			var menu_id = jQuery('#menu_id').val();
 
-			if( item.is(':checked') ) {
-				is_checked = 'on';
-			}
-
-			jQuery.ajax({
-				url: rmpObject.ajaxURL,
-				data: {
-					'action'   : 'rmp_mega_menu_item_enable',
-					'ajax_nonce' : rmpObject.ajax_nonce,
-					'menu_id'  : menu_id,
-					'value'    : is_checked,
-					'item_id'  : item_id 
-				},
-				type: 'POST',
-				dataType: 'json',
-				error: function( error ) {
-					console.log(error.statusText);
-				},
-				success: function( response ) {
-				}
-			});
-
-		},
 		init: function() {
 			var self = this;
 
@@ -680,13 +656,6 @@ jQuery(document).ready(function(jQuery) {
 			self.bindColor('#rmp-menu-button-line-colour-active', '.is-active#rmp_menu_trigger-' + self.menuId + ' .responsive-menu-pro-inner,.is-active#rmp_menu_trigger-' + self.menuId +' .responsive-menu-pro-inner:after,.is-active#rmp_menu_trigger-' + self.menuId +' .responsive-menu-pro-inner:before', 'background','' );
 			self.bindColor('#rmp-menu-button-line-colour-hover', '#rmp_menu_trigger-' + self.menuId + ':hover .responsive-menu-pro-inner,#rmp_menu_trigger-' + self.menuId +':hover .responsive-menu-pro-inner:after,#rmp_menu_trigger-' + self.menuId +':hover .responsive-menu-pro-inner:before', 'background','' );
 			self.bindColor('#rmp-menu-button-text-colour', '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-label', 'color' );
-
-		
-			self.bindImage(
-				'#rmp-mega-menu-panel-image-selector',
-				'#rmp-mega-menu-panel-background-image',
-				'img-src'
-			);
 
 			self.onTyping('.rmp-menu-container-padding','#rmp-container-'+ self.menuId , 'section-padding' );
 			self.onTyping('.rmp-menu-title-section-padding','#rmp-menu-title-'+ self.menuId , 'section-padding' );
@@ -875,9 +844,6 @@ jQuery(document).ready(function(jQuery) {
 				}
 			});
 
-			jQuery('.rmp-mega-menu-top-item').on('click', '.toggle.mega-menu-item', function(e){
-				self.activeMegaMenuItem(e);
-			} );
 
 			// Remove adminbar from menu editor page.
 			jQuery('.rmp-editor-active').parent('html').removeClass('wp-toolbar');

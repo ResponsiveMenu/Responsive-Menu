@@ -1,7 +1,6 @@
 /**
-* This file is major compenent of this plugin so please don't try to edit here.
+* This file is major component of this plugin so please don't try to edit here.
 */
-
 
 #{$menu_trigger_id},
 #{$menu_search_box_wrap},
@@ -33,7 +32,7 @@
         top : $menu_trigger_distance_from_top;
         display: block;
 
-        @if ( $menu_trigger_side == 'right' ) {
+        @if ( $menu_trigger_side == right ) {
             right: $menu_trigger_distance_from_side;
         } @else {
             left: $menu_trigger_distance_from_side;
@@ -534,6 +533,10 @@
             &:hover {
                 color:$menu_title_font_color_hover;
             }
+        }
+
+        .rmp-font-icon {
+            font-size: $menu_title_font_size;
         }
 
         .rmp-menu-title-image {

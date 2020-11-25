@@ -6,11 +6,8 @@
  *
  * @package    responsive_menu_pro
  */
-
-$dashicons = rmp_dashicon_selector();
-$glyphicon = rmp_glyphicon_selector();
-
 ?>
+<!--- This is icon picker wizard markups -->
 <section class="rmp-dialog-overlay rmp-menu-icons-dialog" style="display:none">
     <div class="rmp-dialog-backdrop"></div>
     <div class="rmp-dialog-wrap wp-clearfix">
@@ -22,33 +19,111 @@ $glyphicon = rmp_glyphicon_selector();
             <div id="tabs" class="tabs icon-tabs">
                 <ul class="nav-tab-wrapper">
                     <li><a class="nav-tab-active nav-tab" href="#dashicons"><?php esc_html_e('Dashicons', 'responsive-menu-pro'); ?></a></li>
-                    <li><a class="nav-tab" href="#material-icon"><?php esc_html_e('Material Icons (mdi)', 'responsive-menu-pro'); ?></a></li>
-                    <li><a class="nav-tab" href="#fas"><?php esc_html_e('FontAwesome Solid (fas)', 'responsive-menu-pro'); ?></a></li>
-                    <li><a class="nav-tab" href="#fab"><?php esc_html_e('FontAwesome Brand (fab)', 'responsive-menu-pro'); ?></a></li>
-                    <li><a class="nav-tab" href="#far"><?php esc_html_e('FontAwesome Regular (far)', 'responsive-menu-pro'); ?></a></li>
-                    <li><a class="nav-tab" href="#glyphicons"><?php esc_html_e('GlyphIcon', 'responsive-menu-pro'); ?></a></li>
+                    <li>
+                        <a class="nav-tab" href="#material-icon">
+                            <?php esc_html_e('Material Icons (mdi)', 'responsive-menu-pro'); ?>
+                            <span class="upgrade-tooltip"> PRO </span>
+                        </a>
+                    </li> 
+                    <li>
+                        <a class="nav-tab" href="#fas">
+                            <?php esc_html_e('FontAwesome Solid (fas)', 'responsive-menu-pro'); ?>
+                            <span class="upgrade-tooltip"> PRO </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-tab" href="#fab">
+                            <?php esc_html_e('FontAwesome Brand (fab)', 'responsive-menu-pro'); ?>
+                            <span class="upgrade-tooltip"> PRO </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-tab" href="#far">
+                            <?php esc_html_e('FontAwesome Regular (far)', 'responsive-menu-pro'); ?>
+                            <span class="upgrade-tooltip"> PRO </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-tab" href="#glyphicons">
+                            <?php esc_html_e('GlyphIcon', 'responsive-menu-pro'); ?>
+                            <span class="upgrade-tooltip"> PRO </span>
+                        </a>
+                    </li>
                 </ul>
                 <div class="rmp-icon-tab-contents">
-                    <div>
-                        <input type="text" class="medium-text" id="rmp-icon-search" placeholder="Search icons"/>
-                    </div>
-                    <div id="dashicons">
-                       <?php echo $dashicons; ?>
+                    <div id="dashicons" style="padding: 20px;">
+                        <p> <input type="text" class="medium-text" id="rmp-icon-search" placeholder="Search icons"/> </p>   
+                        <?php echo rmp_dashicon_selector(); ?>
                     </div>
                     <div id="fab">
-                        <?php echo rmp_fab_selector(); ?>
+                    <?php
+                        printf(
+                            '<div class="upgrade-options">
+                                <div class="upgrade-notes">
+                                    <p> %s </p>
+                                    <a target="_blank" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" class="button"> %s </a>
+                                </div>
+                            </div>',
+                            __('FontAwesome brand icons are not available in free version. <br/> Upgrade now to use', 'responsive-menu-pro'),
+                            esc_html__('Upgrade to Pro', 'responsive-menu-pro')
+                        );
+                    ?>
                     </div>
                     <div id="fas">
-                        <?php echo rmp_fas_selector(); ?>
+                    <?php
+                        printf(
+                            '<div class="upgrade-options">
+                                <div class="upgrade-notes">
+                                    <p> %s </p>
+                                    <a target="_blank" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" class="button"> %s </a>
+                                </div>
+                            </div>',
+                            __('FontAwesome solid icons are not available in free version. <br/> Upgrade now to use', 'responsive-menu-pro'),
+                            esc_html__('Upgrade to Pro', 'responsive-menu-pro')
+                        );
+                    ?>
                     </div>
                     <div id="glyphicons">
-                        <?php echo $glyphicon; ?>
+                    <?php
+                        printf(
+                            '<div class="upgrade-options">
+                                <div class="upgrade-notes">
+                                    <p> %s </p>
+                                    <a target="_blank" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" class="button"> %s </a>
+                                </div>
+                            </div>',
+                            __('The  glyphicons are not available in free version. <br/> Upgrade now to use', 'responsive-menu-pro'),
+                            esc_html__('Upgrade to Pro', 'responsive-menu-pro')
+                        );
+                    ?>
                     </div>
                     <div id="material-icon">
-                        <?php echo rmp_mdi_selector(); ?>
+                    <?php
+                        printf(
+                            '<div class="upgrade-options">
+                                <div class="upgrade-notes">
+                                    <p> %s </p>
+                                    <a target="_blank" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" class="button"> %s </a>
+                                </div>
+                            </div>',
+                            __('Material icons are not available in free version. <br/> Upgrade now to use', 'responsive-menu-pro'),
+                            esc_html__('Upgrade to Pro', 'responsive-menu-pro')
+                        );
+                    ?>
                     </div>
                     <div id="far">
-                        <div><?php echo rmp_far_selector(); ?></div>
+                    <?php
+                        printf(
+                            '<div class="upgrade-options">
+                                <div class="upgrade-notes">
+                                    <p> %s </p>
+                                    <a target="_blank" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" class="button"> %s </a>
+                                </div>
+                            </div>',
+                            __('FontAwesome regular icons are not available in free version. <br/> Upgrade now to use', 'responsive-menu-pro'),
+                            esc_html__('Upgrade to Pro', 'responsive-menu-pro')
+                        );
+                    ?>
                     </div>
                 </div>
             </div>
@@ -60,7 +135,7 @@ $glyphicon = rmp_glyphicon_selector();
     </div>
 </section>
 
-
+<!--- This is theme saving form wizard markups -->
 <section id="rmp-menu-save-theme-wizard" class="rmp-dialog-overlay" style="display:none">
     <div class="rmp-dialog-backdrop"></div>
     <div class="rmp-dialog-wrap wp-clearfix">
@@ -77,6 +152,7 @@ $glyphicon = rmp_glyphicon_selector();
     </div>
 </section>
 
+<!--- Theme list wizard markups -->
 <section id="rmp-new-menu-wizard" class="rmp-dialog-overlay rmp-new-menu-wizard" style="display:none">
     <div class="rmp-dialog-backdrop"></div>
     <div class="rmp-dialog-wrap wp-clearfix">
