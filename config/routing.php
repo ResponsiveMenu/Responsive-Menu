@@ -59,6 +59,18 @@ if(is_admin()):
             },
             'dashicons-menu');
     });
+
+    /** Function to move to the new version */
+    add_action('wp_ajax_rmp_switch_version', function() {
+
+		if ( empty ( update_option( 'is_rmp_new_version', 1 ) ) ) {
+			add_option( 'is_rmp_new_version', 1 );
+		}
+
+		wp_send_json_success( ['redirect' => admin_url('edit.php?post_type=rmp_menu')] );
+
+    });
+
 else:
     add_action('template_redirect', function() {
         $controller = get_responsive_menu_service('front_controller');
