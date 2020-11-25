@@ -32,7 +32,10 @@ if ( ! empty( $global_settings['menu_adjust_for_wp_admin_bar'] ) )  {
 
         <div id="rmp-setting-tabs">
             <ul class="nav-tab-wrapper">
+                <?php if ( ! empty( get_option('responsive_menu_version') ) ) { ?>
                 <li><a class="nav-tab nav-tab-active" href="#rmp-settings-general"><?php esc_html_e('General', 'responsive-menu-pro'); ?></a></li>
+                <?php } ?>
+
                 <li><a class="nav-tab" href="#rmp-settings-advanced"><?php esc_html_e('Advance', 'responsive-menu-pro'); ?></a></li>
                 <li><a class="nav-tab" href="#rmp-settings-style"><?php esc_html_e('Style', 'responsive-menu-pro'); ?></a></li>
                 <li><a class="nav-tab" href="#rmp-settings-import-and-export"><?php esc_html_e('Import/Export', 'responsive-menu-pro'); ?></a></li>
@@ -40,9 +43,7 @@ if ( ! empty( $global_settings['menu_adjust_for_wp_admin_bar'] ) )  {
             <div id="rmp-settings-general">
                 <table  class="form-table" role="presentation">
                     <tbody>
-                        <?php
-                        if ( ! empty( get_option('responsive_menu_version') ) ) {
-                             ?>
+                     
                         <tr>
                             <th scope="row"> <?php esc_html_e( 'Rollback Version', 'responsive-menu-pro'); ?></th>
                             <td>
@@ -58,7 +59,7 @@ if ( ! empty( $global_settings['menu_adjust_for_wp_admin_bar'] ) )  {
                                 </fieldset>
                             </td>
                         </tr>
-                        <?php } ?>
+                       
                     </tbody>
                 </table>
                 <button class="button button-primary button-large rmp-save-global-settings-button" type="button">
