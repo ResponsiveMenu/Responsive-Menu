@@ -57,11 +57,8 @@ class Admin {
 		add_action( 'wp_ajax_rmp_create_new_menu', [ $this, 'create_new_menu' ] );
 		add_action( 'wp_ajax_rmp_export_menu', [ $this, 'rmp_export_menu' ] );
 		add_action( 'wp_ajax_rmp_import_menu', [ $this, 'rmp_import_menu' ] );
-
 		
-		add_action( 'plugins_loaded', [ $this, 'check_plugin_update' ] );
 		add_shortcode( 'rmp_menu', [ $this, 'register_menu_shortcode' ] );
-
 		add_action( 'init', array($this,'rmp_menu_cpt'), 0 );
 
 		add_filter( 'post_row_actions', array($this,'rmp_menu_row_actions'), 10, 2 );
@@ -73,32 +70,6 @@ class Admin {
 		add_action( 'admin_menu', array( $this, 'rmp_register_submenu_page' ) );
 		add_action( 'admin_menu', [$this, 'remove_default_add_cpt_page']);
 		add_action( 'rmp_create_new_menu', array( $this , 'set_global_options' ), 10 , 0 );
-	}
-
-	/**
-	 * Check the plugin update and add notification on plugin page.
-	 *
-	 * @version 4.0.0
-	 *
-	 * @return void
-	 */
-	public function check_plugin_update() {
-		if ( is_admin() ) {
-			$license_type = get_option('responsive_menu_pro_license_type');
-			$item_id = 58802; // Our default Generic License
-			if($license_type = 'Multi License')
-				$item_id = 1143;
-			elseif($license_type == 'Single License')
-				$item_id = 1175;
-
-			$updater = new Check('https://responsive.menu', __FILE__, array(
-				'version' => get_option('responsive_menu_version'),
-				'license' => trim(get_option('responsive_menu_pro_license_key')),
-				'item_id' => $item_id,
-				'author' => 'Responsive Menu',
-				'url' => home_url()
-			));
-		}		
 	}
 
 	/**

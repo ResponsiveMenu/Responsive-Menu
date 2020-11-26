@@ -2176,7 +2176,6 @@ $options = $option_manager->get_options( $menu_id );
 
 								echo $ui_manager->end_accordion_item();
 
-								
 								//Toggle behaviour
 								echo $ui_manager->start_accordion_item( [
 									'item_header' => [
@@ -2506,7 +2505,7 @@ $options = $option_manager->get_options( $menu_id );
 					<div id="rmp-preview-iframe-loader">
 						<img src="https://demo.responsive.menu/wp-content/themes/demo-main/static/imgs/giphy.webp" alt="loading" />
 					</div>
-					<iframe id="rmp-preview-iframe" src="<?php echo esc_url( get_site_url() . '?rmp_device_mode=mobile' );  ?>"></iframe>
+					<iframe id="rmp-preview-iframe" src="<?php echo esc_url( get_site_url() );  ?>"></iframe>
 				</div>
 			</main>
 			<?php echo $editor->sidebar_drawer(); ?>

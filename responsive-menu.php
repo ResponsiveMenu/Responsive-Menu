@@ -88,7 +88,7 @@ include dirname(__FILE__) . '/config/polylang.php';
      * Constant as plugin file.
      */
     if ( ! defined( 'RMP_PLUGIN_FILE' ) ) {
-        define('RMP_PLUGIN_FILE', plugin_dir_path( __FILE__ ) . 'responsive-menu-pro.php');
+        define('RMP_PLUGIN_FILE', plugin_dir_path( __FILE__ ) . 'responsive-menu.php');
     }
 
     /**
@@ -141,14 +141,11 @@ include dirname(__FILE__) . '/config/polylang.php';
         define ( 'RMP_PLUGIN_URL_V4', RMP_PLUGIN_URL . '/v4.0.0' );
     }
 
-
-
     /** Include the required files only*/
     require_once RMP_PLUGIN_PATH_V4 . '/inc/helpers/autoloader.php';
     require_once RMP_PLUGIN_PATH_V4 . '/inc/helpers/custom-functions.php';
     require_once RMP_PLUGIN_PATH_V4 . '/inc/helpers/default-options.php';
     require_once RMP_PLUGIN_PATH_V4 . '/libs/scssphp/vendor/autoload.php';
-    require_once RMP_PLUGIN_PATH_V4 . '/inc/license/Check.php';
 
     /**
      * To load plugin manifest class.
@@ -160,5 +157,36 @@ include dirname(__FILE__) . '/config/polylang.php';
     }
 
     responsive_menu_features_plugin_loader();
+
+    // Active and de-active plugin hook.
+    register_activation_hook( __FILE__,  'responsive_menu_plugin_activation' );
+    register_deactivation_hook( __FILE__, 'responsive_menu_plugin_deactivation' );
+
+    /**
+	 * Activation of plugin.
+	 * 
+	 * @return void
+	 */
+	function responsive_menu_plugin_activation() {
+
+        $plugin = 'responsive-menu-pro/responsive-menu-pro.php';
+
+        // Check if responsive menu (paid version) is activate then deactivate it.
+		if( is_plugin_active( $plugin ) ) {
+			deactivate_plugins( $plugin );
+			set_transient( 'og-admin-notice-activation-pro', true, 5 );
+		}
+
+		flush_rewrite_rules();
+	}
+
+	/**
+	 * Deactivation of plugin.
+	 * 
+	 * @return void
+	 */
+	function responsive_menu_plugin_deactivation() {
+		flush_rewrite_rules();
+	}
 
 }
