@@ -154,15 +154,6 @@ jQuery( document ).ready( function( jQuery ) {
 		jQuery( '#rmp-preview-iframe-loader' ).hide();
 		jQuery( '#rmp-menu-update-notification').remove();
 		jQuery('#rmp-preview-iframe').show();
-
-		jQuery('#rmp-preview-iframe').contents().find( 'a' ).click( function(e) {
-			e.stopPropagation();
-			e.preventDefault();
-			var url = jQuery(this).attr('href');
-			var device_mode = jQuery('#rmp_device_mode').val();
-			jQuery('#rmp-preview-iframe').attr('src', url + '?rmp_device_mode=' + device_mode ); 
-		});
-
 	});
 
 	/**
@@ -245,14 +236,6 @@ jQuery( document ).ready( function( jQuery ) {
 	// Fix events glitch on color textbox.
 	jQuery('.rmp-color-input').removeAttr( 'style' );
 	jQuery('.rmp-color-input').off( 'focus' );
-
-	/**
-	 * Change color selector backgroud when paste the color in color textbox.
-	 */
-	jQuery( '.rmp-color-input' ).on( 'paste', function( e ) {
-		let color = jQuery( this ).val();
-		jQuery( this ).parents( '.wp-picker-container' ).find( 'span.color-alpha' ).css( 'background-color', color );
-	} );
 
 	// Initiate the tab elements.
 	jQuery( '.tabs,#rmp-setting-tabs' ).tabs( {

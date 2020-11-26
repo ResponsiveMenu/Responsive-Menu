@@ -44,9 +44,6 @@ class Plugin {
 	 */
 	protected function setup_hooks() {
 
-		// Active and de-active plugin hook.
-		register_activation_hook( RMP_PLUGIN_FILE,  [ $this , 'rmp_plugin_activation'] );
-		register_deactivation_hook( RMP_PLUGIN_FILE, [ $this, 'rmp_plugin_deactivation' ] );
 		add_action( 'plugins_loaded', [ $this, 'rmp_load_plugin_text_domain' ] );
 		add_action( 'admin_notices', [ $this, 'rmp_deactivate_paid_version_notice' ] );
 
@@ -57,31 +54,6 @@ class Plugin {
 		} else {
 			add_action( 'wp_footer' , [ $this, 'menu_render_on_frontend'] );
 		}
-	}
-
-	/**
-	 * Activation of plugin.
-	 * 
-	 * @return void
-	 */
-	public function rmp_plugin_activation() {
-
-		// Check if responsive menu (paid version) is activate then deactivate.
-		if( is_plugin_active( 'responsive-menu-pro/responsive-menu-pro.php' ) ) {
-			deactivate_plugins( 'responsive-menu-pro/responsive-menu-pro.php' );
-			set_transient( 'og-admin-notice-activation-pro', true, 5 );
-		}
-
-		flush_rewrite_rules();
-	}
-
-	/**
-	 * Deactivation of plugin.
-	 * 
-	 * @return void
-	 */
-	public function rmp_plugin_deactivation() {
-		flush_rewrite_rules();
 	}
 
 	/**

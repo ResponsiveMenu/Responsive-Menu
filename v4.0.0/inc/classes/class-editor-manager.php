@@ -44,32 +44,6 @@ class Editor_Manager {
 		add_action('wp_ajax_rmp_save_menu_action', array( $this, 'rmp_save_options' ) );
 		add_action('wp_ajax_rmp_mega_menu_item_enable', array( $this, 'enable_mega_menu_item' ) );
 		add_action('wp_ajax_rmp_save_mega_menu_item', array( $this, 'rmp_save_mega_menu_item' ) );
-
-		add_filter( 'wp_is_mobile', [$this, 'check_device_mode'], 10, 1 );
-	}
-
-	/**
-	 * Return the true/false as per request device.
-	 * 
-	 * @return boolean
-	 */
-	public function check_device_mode( $is_mobile ) {
-
-		if ( $is_mobile ) {
-			return true;
-		}
-
-		$rmp_device_mode = '';
-
-		if ( ! empty( $_GET['rmp_device_mode'] ) ) {
-			$rmp_device_mode = $_GET['rmp_device_mode'];
-		}
-
-		if ( empty( $rmp_device_mode) || 'desktop' === $rmp_device_mode ) {
-			return false;
-		}
-
-		return true;
 	}
 
 	/**
