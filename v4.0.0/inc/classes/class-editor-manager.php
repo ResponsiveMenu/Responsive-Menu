@@ -147,85 +147,12 @@ class Editor_Manager {
             wp_send_json_error( [ 'message' => __( 'Menu ID missing !', 'responsive-menu-pro' ) ] );
 		}
 
-		$active_device   = sanitize_text_field( $options['rmp_device_mode'] );
-
 		$options = $options['menu'];
 
-		// Instance of option manager.
-		$option_manager  = Option_Manager::get_instance();
-
-		//Get settings which has multi device options.
-		$device_options  = rmp_get_multi_device_options();
-
-		// Extract the settings which has multi device options and save the settings with a active device.
-		$device_options = array_intersect_key( $options, $device_options );
-
-		//Combine the mobile options and saved.
-		if ( 'mobile' === $active_device ) {
-			update_post_meta( $menu_id, '_mobile', $device_options );
-		} else {
-			$mobile_options  = get_transient( $menu_id . '_mobile' );
-			if ( empty( $mobile_options ) || ! is_array( $mobile_options ) ) {
-				$mobile_options = [];
-			}
-
-			$saved_options  = $option_manager->get_mobile_options( $menu_id );
-			if ( empty( $saved_options ) || ! is_array( $saved_options ) ) {
-				$saved_options = [];
-			}
-
-			$mobile_options = array_merge( $saved_options, $mobile_options );
-			update_post_meta( $menu_id, '_mobile', $mobile_options );
-
-			if ( ! empty( $mobile_options ) && is_array( $mobile_options ) ) {
-				$options = array_merge( $options, $mobile_options );
-			}
-		}
-
-		// Combine tablet options and saved.
-		if ( 'tablet' === $active_device ) {
-			update_post_meta( $menu_id, '_tablet', $device_options );
-		} else {
-
-			$tablet_options  = get_transient( $menu_id . '_tablet' );
-			if ( empty( $tablet_options ) || ! is_array( $tablet_options ) ) {
-				$tablet_options = [];
-			}
-
-			$saved_options  = $option_manager->get_tablet_options( $menu_id );
-			if ( empty( $saved_options ) || ! is_array( $saved_options ) ) {
-				$saved_options = [];
-			}
-
-			$tablet_options = array_merge( $saved_options, $tablet_options );
-
-			update_post_meta( $menu_id, '_tablet', $tablet_options );
-		}
-
-		// Combine tablet options and saved.
-		if ( 'desktop' === $active_device ) {
-			update_post_meta( $menu_id, '_desktop', $device_options );
-		} else {
-
-			$desktop_options  = get_transient( $menu_id . '_desktop' );
-			if ( empty( $desktop_options ) || ! is_array( $desktop_options ) ) {
-				$desktop_options = [];
-			}
-
-			$saved_options  = $option_manager->get_tablet_options( $menu_id );
-			if ( empty( $saved_options ) || ! is_array( $saved_options ) ) {
-				$saved_options = [];
-			}
-
-			$desktop_options = array_merge( $saved_options, $desktop_options );
-			update_post_meta( $menu_id, '_desktop', $desktop_options );
-
-		}
+		// Merge the default and update options.
+		$options = array_merge( rmp_get_default_options() , $options );
 
 		update_post_meta( $menu_id, 'rmp_menu_meta', $options );
-		delete_transient( $menu_id . '_mobile' );
-		delete_transient( $menu_id . '_tablet' );
-		delete_transient( $menu_id . '_desktop' );
 
 		/**
 		 * Fires when saved the options.

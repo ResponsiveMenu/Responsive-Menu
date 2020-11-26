@@ -1135,7 +1135,8 @@ class Control_Manager {
 
         $mobile = sprintf(
             '<div class="device-icon">
-                <input disabled class="rmp-menu-display-device checkbox mobile"  type="checkbox"/>
+                <input type="hidden" name="menu[use_mobile_menu]" value="on"/>													
+                <input disabled class="rmp-menu-display-device checkbox mobile" type="checkbox"/>
                 <label for="rmp-menu-display-device-mobile" title="mobile" >
                     <span class="corner-icon">
                         <i class="fas fa-check-circle" aria-hidden="true"></i>
@@ -1153,6 +1154,8 @@ class Control_Manager {
 
         $tablet = sprintf(
             '<div class="device-icon">
+                <input type="hidden" name="menu[use_tablet_menu]" value="on"/>													
+                <input type="hidden" name="menu[use_tablet_menu]" value="on"/>													
                 <input disabled class="rmp-menu-display-device checkbox tablet"  type="checkbox"/>
                 <label for="rmp-menu-display-device-tablet" title="tablet" >
                     <span class="corner-icon">
