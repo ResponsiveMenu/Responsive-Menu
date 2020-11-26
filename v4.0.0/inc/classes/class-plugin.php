@@ -48,8 +48,9 @@ class Plugin {
 		register_activation_hook( RMP_PLUGIN_FILE,  [ $this , 'rmp_plugin_activation'] );
 		register_deactivation_hook( RMP_PLUGIN_FILE, [ $this, 'rmp_plugin_deactivation' ] );
 		add_action( 'plugins_loaded', [ $this, 'rmp_load_plugin_text_domain' ] );
+		add_action( 'admin_notices', [ $this, 'rmp_deactivate_paid_version_notice' ] );
 
-		// Check current configurtion and environment support wp_body_open or not.
+		// Check current config and environment support wp_body_open or not.
 
 		if( $this->has_support( 'wp_body_open' ) ) {
 			add_action( 'wp_body_open' , [ $this, 'menu_render_on_frontend'] );
@@ -64,6 +65,13 @@ class Plugin {
 	 * @return void
 	 */
 	public function rmp_plugin_activation() {
+
+		// Check if responsive menu (paid version) is activate then deactivate.
+		if( is_plugin_active( 'responsive-menu-pro/responsive-menu-pro.php' ) ) {
+			deactivate_plugins( 'responsive-menu-pro/responsive-menu-pro.php' );
+			set_transient( 'og-admin-notice-activation-pro', true, 5 );
+		}
+
 		flush_rewrite_rules();
 	}
 
@@ -74,6 +82,23 @@ class Plugin {
 	 */
 	public function rmp_plugin_deactivation() {
 		flush_rewrite_rules();
+	}
+
+	/**
+	 * Function to show the admin notice if plugin deactivate.
+	 * 
+	 * @return void
+	 */
+	public function rmp_deactivate_paid_version_notice() {
+		if( get_transient('og-admin-notice-activation') ) {
+			printf(
+				'<div class="notice notice-error is-dismissible">
+				<p>%s</p>
+				</div>',
+				__('Responsive Menu has been deactivated','responsive-menu-pro' )	
+			);
+			delete_transient( 'og-admin-notice-activation-pro' );
+		}
 	}
 
 	/**

@@ -133,8 +133,14 @@ include dirname(__FILE__) . '/config/polylang.php';
         define( 'RMP_PLUGIN_TEMPLATE_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) . '/templates/' );
     }
 
-    define ( 'RMP_PLUGIN_PATH_V4', RMP_PLUGIN_PATH . '/v4.0.0' );
-    define ( 'RMP_PLUGIN_URL_V4', RMP_PLUGIN_URL . '/v4.0.0' );
+    if ( ! defined( 'RMP_PLUGIN_PATH_V4' ) ) {
+        define ( 'RMP_PLUGIN_PATH_V4', RMP_PLUGIN_PATH . '/v4.0.0' );
+    }
+
+    if ( ! defined( 'RMP_PLUGIN_URL_V4' ) ) {
+        define ( 'RMP_PLUGIN_URL_V4', RMP_PLUGIN_URL . '/v4.0.0' );
+    }
+
 
 
     /** Include the required files only*/
@@ -149,10 +155,10 @@ include dirname(__FILE__) . '/config/polylang.php';
      *
      * @return void
      */
-    function rmp_features_plugin_loader() {
+    function responsive_menu_features_plugin_loader() {
         \RMP\Features\Inc\Plugin::get_instance();
     }
 
-    rmp_features_plugin_loader();
+    responsive_menu_features_plugin_loader();
 
 }
