@@ -732,392 +732,395 @@ function rmp_all_glyph_icons() {
 function rmp_get_default_options() {
 
     $default_options =  array (
-        //Initial Setup -> Device breakpoints
-        'mobile_breakpoint' => 600,
-        'tablet_breakpoint' => 8000,
+       //Initial Setup -> Device breakpoints
+       'mobile_breakpoint' => 600,
+       'tablet_breakpoint' => 8000,
 
-        //Initial Setup -> Menu settings
-        'menu_name'                 => '',
-        'menu_to_use'               => '',
+       //Initial Setup -> Menu settings
+       'menu_name'                 => '',
+       'menu_to_use'               => '',
+       //'current_theme_location'    => 'off',
+       'use_desktop_menu'          => 'on',
+       'use_mobile_menu'           => 'on',
+       'use_tablet_menu'           => 'on',
+       'menu_display_on'           => 'all-pages',
+       'menu_show_on_pages'        => '',
+       'different_menu_for_mobile' => 'off',
+       'menu_to_use_in_mobile'     => '',
+       'menu_to_hide'              => '',
 
-        'menu_display_on'           => 'all-pages',
-        'menu_show_on_pages'        => '',
-        'different_menu_for_mobile' => 'off',
-        'menu_to_use_in_mobile'     => '',
-        'menu_to_hide'              => '',
+       //Container -> Title, Image
+       'menu_title' => '',
+       'menu_title_alignment' => 'left',
+       'menu_title_font_size' => 14,
+       'menu_title_font_size_unit' => 'px',
+       'menu_title_colour' => '#fff', 
+       'menu_title_hover_colour' => '#fff',
+       'menu_title_background_colour' => '',
+       'menu_title_background_hover_colour' => '#212121',
+       'menu_title_link' => '#',
+       'menu_title_link_location' => '_self',
+       'menu_title_image_icon' => 'off',
+       'menu_title_font_icon' => null,
+       'menu_title_image' => '',
+       'menu_title_image_alt' => '',
+       'menu_title_image_height' => null,
+       'menu_title_image_height_unit' => 'px',
+       'menu_title_image_width' => null,
+       'menu_title_image_width_unit' => '%',
+       'menu_title_padding'  => [
+           'left' => '0px',
+           'top' => '0px',
+           'right' => '0px',
+           'bottom' => '0px'
+       ],
+       //Container -> Search box
+       'menu_search_box_text'               => 'Search',
+       'menu_search_box_text_colour'        => '#333',
+       'menu_search_box_border_colour'      => '#dadada',
+       'menu_search_box_background_colour'  => '#fff',
+       'menu_search_box_placeholder_colour' => '#c7c7cd',
+       'menu_search_box_height'             => '50',
+       'menu_search_box_height_unit'        => 'px',
+       'menu_search_box_border_radius'      => '0',
+       'menu_search_section_padding'        => [
+           'left' => '0px',
+           'top' => '0px',
+           'right' => '0px',
+           'bottom' => '0px'
+       ],
 
-        //Container -> Title, Image
-        'menu_title' => '',
-        'menu_title_alignment' => 'left',
-        'menu_title_font_size' => 14,
-        'menu_title_font_size_unit' => 'px',
-        'menu_title_colour' => '#fff', 
-        'menu_title_hover_colour' => '#fff',
-        'menu_title_background_colour' => '',
-        'menu_title_background_hover_colour' => '#212121',
-        'menu_title_link' => '#',
-        'menu_title_link_location' => '_self',
-        'menu_title_image_icon' => 'off',
-        'menu_title_font_icon' => null,
-        'menu_title_image' => '',
-        'menu_title_image_alt' => '',
-        'menu_title_image_height' => null,
-        'menu_title_image_height_unit' => 'px',
-        'menu_title_image_width' => null,
-        'menu_title_image_width_unit' => '%',
-        'menu_title_padding'  => [
-            'left' => '0px',
-            'top' => '0px',
-            'right' => '0px',
-            'bottom' => '0px'
-        ],
-        //Container -> Search box
-        'menu_search_box_text'               => 'Search',
-        'menu_search_box_text_colour'        => '#333',
-        'menu_search_box_border_colour'      => '#dadada',
-        'menu_search_box_background_colour'  => '#fff',
-        'menu_search_box_placeholder_colour' => '#c7c7cd',
-        'menu_search_box_height'             => '50',
-        'menu_search_box_height_unit'        => 'px',
-        'menu_search_box_border_radius'      => '0',
-        'menu_search_section_padding'        => [
-            'left' => '0px',
-            'top' => '0px',
-            'right' => '0px',
-            'bottom' => '0px'
-        ],
+       //Container -> Additional
+       'menu_additional_content'                => '',
+       'menu_additional_content_colour'         => '#fff',
+       'menu_additional_content_font_size'      => 16 ,
+       'menu_additional_content_font_size_unit' => 'px',
+       'menu_additional_content_alignment'      => 'left',
+       'menu_additional_section_padding'  => [
+           'left' => '0px',
+           'top' => '0px',
+           'right' => '0px',
+           'bottom' => '0px'
+       ],
+       //Container -> Menu
+       'menu_background_colour' => '',
+       'menu_section_padding'        => [
+           'left' => '0px',
+           'top' => '0px',
+           'right' => '0px',
+           'bottom' => '0px'
+       ],
 
-        //Container -> Additional
-        'menu_additional_content'                => '',
-        'menu_additional_content_colour'         => '#fff',
-        'menu_additional_content_font_size'      => 16 ,
-        'menu_additional_content_font_size_unit' => 'px',
-        'menu_additional_content_alignment'      => 'left',
-        'menu_additional_section_padding'  => [
-            'left' => '0px',
-            'top' => '0px',
-            'right' => '0px',
-            'bottom' => '0px'
-        ],
-        //Container -> Menu
-        'menu_background_colour' => '',
-        'menu_section_padding'        => [
-            'left' => '0px',
-            'top' => '0px',
-            'right' => '0px',
-            'bottom' => '0px'
-        ],
+       'menu_depth' => 5,
+       'submenu_descriptions_on' => 'off',
+       'menu_depth_side' => 'left',
+       'menu_depth_0' => 5,
+       'menu_depth_1' => 10,
+       'menu_depth_2' => 15,
+       'menu_depth_3' => 20,
+       'menu_depth_4' => 25,
+       'menu_depth_5' => 30,
+       'menu_depth_0_unit' => '%',
+       'menu_depth_1_unit' => '%',
+       'menu_depth_2_unit' => '%',
+       'menu_depth_3_unit' => '%',
+       'menu_depth_4_unit' => '%',
+       'menu_depth_5_unit' => '%',
+       'theme_location_menu' => '',
+       'custom_walker' => '',
 
-        'menu_depth' => 5,
-        'submenu_descriptions_on' => 'off',
-        'menu_depth_side' => 'left',
-        'menu_depth_0' => 5,
-        'menu_depth_1' => 10,
-        'menu_depth_2' => 15,
-        'menu_depth_3' => 20,
-        'menu_depth_4' => 25,
-        'menu_depth_5' => 30,
-        'menu_depth_0_unit' => '%',
-        'menu_depth_1_unit' => '%',
-        'menu_depth_2_unit' => '%',
-        'menu_depth_3_unit' => '%',
-        'menu_depth_4_unit' => '%',
-        'menu_depth_5_unit' => '%',
-        'theme_location_menu' => '',
-        'custom_walker' => '',
+       // Container > Appearance
+       'menu_width'         => 75,
+       'menu_width_unit'    => '%',
+       'menu_maximum_width' => '',
+       'menu_maximum_width_unit' => 'px',
+       'menu_minimum_width' => '',
+       'menu_minimum_width_unit' => 'px',
+       'menu_auto_height' => 'off',
+       'menu_container_background_colour' => '#212121',
+       'menu_background_image' => '',
+       'menu_appear_from' => 'left',
+       'animation_type' => 'slide',
+       'page_wrapper' => '',
+       'menu_container_padding'  => [
+           'left' => '0px',
+           'top' => '0px',
+           'right' => '0px',
+           'bottom' => '0px'
+       ],
 
-        // Container > Appearance
-        'menu_width'         => 75,
-        'menu_width_unit'    => '%',
-        'menu_maximum_width' => '',
-        'menu_maximum_width_unit' => 'px',
-        'menu_minimum_width' => '',
-        'menu_minimum_width_unit' => 'px',
-        'menu_auto_height' => 'off',
-        'menu_container_background_colour' => '#212121',
-        'menu_background_image' => '',
-        'menu_appear_from' => 'left',
-        'animation_type' => 'slide',
-        'page_wrapper' => '',
-        'menu_container_padding'  => [
-            'left' => '0px',
-            'top' => '0px',
-            'right' => '0px',
-            'bottom' => '0px'
-        ],
+       // Container > Behaviour
+       'menu_close_on_link_click' => 'off',
+       'menu_close_on_body_click' => 'off',
+       'menu_close_on_scroll' => 'off',
+       'enable_touch_gestures' => 'off',
+       'keyboard_shortcut_open_menu' => '',
+       'keyboard_shortcut_close_menu' => '',
 
-        // Container > Behaviour
-        'menu_close_on_link_click' => 'off',
-        'menu_close_on_body_click' => 'off',
-        'menu_close_on_scroll' => 'off',
-        'enable_touch_gestures' => 'off',
-        'keyboard_shortcut_open_menu' => '',
-        'keyboard_shortcut_close_menu' => '',
+       // Toggle Button > Hamburger Element
+       'button_width' => 55,
+       'button_width_unit' => 'px',
+       'button_height' => 55,
+       'button_height_unit' => 'px',
+       'button_background_colour' => '#000',
+       'button_background_colour_hover' => '#000',
+       'button_background_colour_active' => '#000',
+       'button_transparent_background' => 'off',
 
-        // Toggle Button > Hamburger Element
-        'button_width' => 55,
-        'button_width_unit' => 'px',
-        'button_height' => 55,
-        'button_height_unit' => 'px',
-        'button_background_colour' => '#000',
-        'button_background_colour_hover' => '#000',
-        'button_background_colour_active' => '#000',
-        'button_transparent_background' => 'off',
-
-        // Toggle Button > Positioning
-        'button_left_or_right' => 'right',
-        'button_position_type' => 'fixed',
-        'button_top' => 15,
-        'button_top_unit' => 'px',
-        'button_distance_from_side' => 5,
-        'button_distance_from_side_unit' => '%',
-        'button_push_with_animation' => 'off',
-
-
-        // Toggle BUtton > Hamburger Type	
-        'button_click_animation' => 'boring',
-        'button_line_colour' => '#fff',
-        'button_line_colour_hover' => '#fff',
-        'button_line_colour_active' => '#fff',
-        'button_line_margin' => 5,
-        'button_line_margin_unit' => 'px',
-        'button_line_height' => 3,
-        'button_line_height_unit' => 'px',
-        'button_line_width' => 25,
-        'button_line_width_unit' => 'px',
-        
-
-        // Toggle BUtton > Title	
-        'button_title' => '',
-        'button_title_open' => '',
-        'button_text_colour' => '#fff',
-        'button_font_size' => 14,
-        'button_font_size_unit' => 'px',
-        'button_title_position' => 'left',
-        'button_title_line_height' => '13',
-        'button_title_line_height_unit' => 'px',
-        'button_font' => null,
-
-        // Toggle BUtton > Image
-        'button_image' => null,
-        'button_image_alt' => null,
-        'button_image_when_clicked' => null,
-        'button_image_alt_when_clicked' => null,
-
-        // Toggle BUtton > Font-icons
-        'button_font_icon' => null,
-        'button_font_icon_when_clicked' => null,
-
-        // Toggle Button > Others
-        'button_trigger_type_click' => 'on',
-        'button_trigger_type_hover' => 'off',
-        'button_click_trigger' => '#responsive-menu-pro-button',
-    
+       // Toggle Button > Positioning
+       'button_left_or_right' => 'right',
+       'button_position_type' => 'fixed',
+       'button_top' => 15,
+       'button_top_unit' => 'px',
+       'button_distance_from_side' => 5,
+       'button_distance_from_side_unit' => '%',
+       'button_push_with_animation' => 'off',
 
 
-        // Dropdown -> Top level Menu -> Item Styling
+       // Toggle BUtton > Hamburger Type	
+       'button_click_animation' => 'boring',
+       'button_line_colour' => '#fff',
+       'button_line_colour_hover' => '#fff',
+       'button_line_colour_active' => '#fff',
+       'button_line_margin' => 5,
+       'button_line_margin_unit' => 'px',
+       'button_line_height' => 3,
+       'button_line_height_unit' => 'px',
+       'button_line_width' => 25,
+       'button_line_width_unit' => 'px',
+       
 
-        // Animation Settings
-    
-        'animation_speed' => 0.5,
-        'transition_speed' => 0.5,
-        'sub_menu_speed' => 0.2,
+       // Toggle BUtton > Title	
+       'button_title' => '',
+       'button_title_open' => '',
+       'button_text_colour' => '#fff',
+       'button_font_size' => 14,
+       'button_font_size_unit' => 'px',
+       'button_title_position' => 'left',
+       'button_title_line_height' => '13',
+       'button_title_line_height_unit' => 'px',
+       'button_font' => null,
 
-        // Menu Settings
-        'active_arrow_shape' => '▲',
-        'inactive_arrow_shape' => '▼',
-        'active_arrow_image' => '',
-        'active_arrow_image_alt' => '',
-        'inactive_arrow_image' => '',
-        'inactive_arrow_image_alt' => '',
-        'active_arrow_font_icon' => '',
-        'inactive_arrow_font_icon' => '',
-        'arrow_position' => 'right',
-        'submenu_arrow_width' => '40',
-        'submenu_arrow_width_unit' => 'px',
-        'submenu_arrow_height' => '39',
-        'submenu_arrow_height_unit' => 'px',
-    
-        'accordion_animation' => 'off',
-        'auto_expand_all_submenus' => 'off',
-        'auto_expand_current_submenus' => 'off',
+       // Toggle BUtton > Image
+       'button_image' => null,
+       'button_image_alt' => null,
+       'button_image_when_clicked' => null,
+       'button_image_alt_when_clicked' => null,
 
-        
-        'menu_item_background_colour' => '#212121',
-        'menu_item_background_hover_colour' => '#3f3f3f',
-        'menu_item_border_colour' => '#212121',
-        'menu_item_border_colour_hover' => '#212121',
-        
+       // Toggle BUtton > Font-icons
+       'button_font_icon' => null,
+       'button_font_icon_when_clicked' => null,
 
-        'menu_current_item_background_colour' => '#212121',
-        'menu_current_item_background_hover_colour' => '#3f3f3f',
-        'menu_current_item_border_colour' => '#212121',
-        'menu_current_item_border_hover_colour' => '#3f3f3f',
-        
-        'menu_link_colour' => '#fff',
-        'menu_link_hover_colour' => '#fff',
-        'menu_current_link_colour' => '#fff',
-        'menu_current_link_hover_colour' => '#fff',
-        'menu_sub_arrow_border_colour' => '#212121',
-        'menu_sub_arrow_border_hover_colour' => '#3f3f3f',
-        'menu_sub_arrow_border_colour_active' => '#212121',
-        'menu_sub_arrow_border_hover_colour_active' => '#3f3f3f',
-        'menu_sub_arrow_background_colour' => '#212121',
-        'menu_sub_arrow_background_hover_colour' => '#3f3f3f',
-        'menu_sub_arrow_background_colour_active' => '#212121',
-        'menu_sub_arrow_background_hover_colour_active' => '#3f3f3f',
-        'menu_sub_arrow_shape_colour' => '#fff',
-        'menu_sub_arrow_shape_hover_colour' => '#fff',
-        'menu_sub_arrow_shape_colour_active' => '#fff',
-        'menu_sub_arrow_shape_hover_colour_active' => '#fff',
-
-        // Sub Menus > Styling
-        'submenu_font' => null,
-        'submenu_font_size' => 13,
-        'submenu_font_size_unit' => 'px',
-        'submenu_links_height' => 40,
-        'submenu_links_height_unit' => 'px',
-        'submenu_links_line_height' => 40,
-        'submenu_links_line_height_unit' => 'px',
-        'submenu_text_alignment' => 'left',
-
-        // Sub Menus > Item Borders
-        'submenu_border_width' => 0,
-        'submenu_border_width_unit' => 'px',
-        'submenu_item_border_colour' => '#212121',
-        'submenu_item_border_colour_hover' => '#212121',
-        'submenu_current_item_border_colour' => '#212121',
-        'submenu_current_item_border_hover_colour' => '#3f3f3f',
-
-        // Sub Menus > Item Text
-        'submenu_link_colour' => '#fff',
-        'submenu_link_hover_colour' => '#fff',
-        'submenu_current_link_colour' => '#fff',
-        'submenu_current_link_hover_colour' => '#fff',
-
-        // Sub Menus > Item Background
-        'submenu_item_background_colour' => '#212121',
-        'submenu_item_background_hover_colour' => '#3f3f3f',
-        'submenu_current_item_background_colour' => '#212121',
-        'submenu_current_item_background_hover_colour' => '#3f3f3f',
-
-        // Sub Menus > Trigger Icon
-        'submenu_arrow_position' => 'right',
-
-        // Sub Menus > Trigger Sizing
-        'submenu_submenu_arrow_height' => '39',
-        'submenu_submenu_arrow_height_unit' => 'px',
-        'submenu_submenu_arrow_width' => '40',
-        'submenu_submenu_arrow_width_unit' => 'px',
-
-        // Sub Menus > Trigger Colours
-        'submenu_sub_arrow_shape_colour' => '#fff',
-        'submenu_sub_arrow_shape_hover_colour' => '#fff',
-        'submenu_sub_arrow_shape_colour_active' => '#fff',
-        'submenu_sub_arrow_shape_hover_colour_active' => '#fff',
-
-        // Sub Menus > Trigger Background
-        'submenu_sub_arrow_background_colour' => '#212121',
-        'submenu_sub_arrow_background_hover_colour' => '#3f3f3f',
-        'submenu_sub_arrow_background_colour_active' => '#212121',
-        'submenu_sub_arrow_background_hover_colour_active' => '#3f3f3f',
-
-        // Sub Menus > Trigger Border
-        'submenu_sub_arrow_border_colour' => '#212121',
-        'submenu_sub_arrow_border_hover_colour' => '#3f3f3f',
-        'submenu_sub_arrow_border_colour_active' => '#212121',
-        'submenu_sub_arrow_border_hover_colour_active' => '#3f3f3f',
-
-        'menu_font' => null,
-        'menu_font_size' => 13,
-        'menu_font_size_unit' => 'px',
-        
-        'menu_text_alignment' => 'left',
-        'menu_links_height' => 40,
-        'menu_links_height_unit' => 'px',
-        'menu_links_line_height' => 40,
-        'menu_links_line_height_unit' => 'px',
-        'menu_border_width' => 0,
-        'menu_border_width_unit' => 'px',
+       // Toggle Button > Others
+       'button_trigger_type_click' => 'on',
+       'button_trigger_type_hover' => 'off',
+       'button_click_trigger' => '#responsive-menu-pro-button',
+   
 
 
-        // Container > Technical
-    
+       // Dropdown -> Top level Menu -> Item Styling
 
-        'menu_item_click_to_trigger_submenu' => 'off',
-        'menu_disable_scrolling' => 'off',
-        'menu_overlay' => 'off',
-        'menu_overlay_colour' => 'rgba(0,0,0,0.7)',
-        'menu_font_icons' => '',
-        
-        'menu_word_wrap' => 'off',
+       // Animation Settings
+   
+       'animation_speed' => 0.5,
+       'transition_speed' => 0.5,
+       'sub_menu_speed' => 0.2,
 
-        'desktop_menu_positioning' => 'absolute',
-        'desktop_menu_hide_and_show' => false,
-        'desktop_submenu_open_on_click' => false,
-        'desktop_submenu_open_animation' => '',
-        'desktop_submenu_open_animation_speed' => '0ms',
-        'desktop_menu_width' => '',
-        'desktop_menu_width_unit' => '%',
-        'desktop_menu_side' => 'left',
+       // Menu Settings
+       'active_arrow_shape' => '▲',
+       'inactive_arrow_shape' => '▼',
+       'active_arrow_image' => '',
+       'active_arrow_image_alt' => '',
+       'inactive_arrow_image' => '',
+       'inactive_arrow_image_alt' => '',
+       'active_arrow_font_icon' => '',
+       'inactive_arrow_font_icon' => '',
+       'arrow_position' => 'right',
+       'submenu_arrow_width' => '40',
+       'submenu_arrow_width_unit' => 'px',
+       'submenu_arrow_height' => '39',
+       'submenu_arrow_height_unit' => 'px',
+   
+       'accordion_animation' => 'off',
+       'auto_expand_all_submenus' => 'off',
+       'auto_expand_current_submenus' => 'off',
 
-        'use_header_bar' => 'off',
-        'header_bar_adjust_page' => null,
-        'header_bar_breakpoint' => '8000',
-        'header_bar_logo' => null,
-        'header_bar_logo_height' => null,
-        'header_bar_logo_height_unit' => 'px',
-        'header_bar_logo_width' => null,
-        'header_bar_logo_width_unit' => '%',
-        'header_bar_logo_alt' => '',
-        'header_bar_logo_link' => null,
-        'header_bar_title' => null,
-        'header_bar_html_content' => null,
-        'header_bar_height' => '80',
-        'header_bar_height_unit' => 'px',
-        'header_bar_font_size' => '14',
-        'header_bar_font_size_unit' => 'px',
-        'header_bar_font' => null,
-        'header_bar_background_color' => '#212121',
-        'header_bar_text_color' => '#ffffff',
-        'header_bar_position_type' => 'fixed',
+       
+       'menu_item_background_colour' => '#212121',
+       'menu_item_background_hover_colour' => '#3f3f3f',
+       'menu_item_border_colour' => '#212121',
+       'menu_item_border_colour_hover' => '#212121',
+       
 
-        'header_bar_items_order' => [
-            'title' => 'off',
-            'search' => 'off',
-            'additional content' => 'off',
-            'logo'  => 'on',
-            'menu' => 'on'
-        ],
+       'menu_current_item_background_colour' => '#212121',
+       'menu_current_item_background_hover_colour' => '#3f3f3f',
+       'menu_current_item_border_colour' => '#212121',
+       'menu_current_item_border_hover_colour' => '#3f3f3f',
+       
+       'menu_link_colour' => '#fff',
+       'menu_link_hover_colour' => '#fff',
+       'menu_current_link_colour' => '#fff',
+       'menu_current_link_hover_colour' => '#fff',
+       'menu_sub_arrow_border_colour' => '#212121',
+       'menu_sub_arrow_border_hover_colour' => '#3f3f3f',
+       'menu_sub_arrow_border_colour_active' => '#212121',
+       'menu_sub_arrow_border_hover_colour_active' => '#3f3f3f',
+       'menu_sub_arrow_background_colour' => '#212121',
+       'menu_sub_arrow_background_hover_colour' => '#3f3f3f',
+       'menu_sub_arrow_background_colour_active' => '#212121',
+       'menu_sub_arrow_background_hover_colour_active' => '#3f3f3f',
+       'menu_sub_arrow_shape_colour' => '#fff',
+       'menu_sub_arrow_shape_hover_colour' => '#fff',
+       'menu_sub_arrow_shape_colour_active' => '#fff',
+       'menu_sub_arrow_shape_hover_colour_active' => '#fff',
 
-        'items_order' => [
-            'title' => 'off',
-            'menu'  => 'on',
-            'search' => 'on',
-            'additional content' => 'off'
-        ],
-        // Menu > Animations
-        'smooth_scroll_on' => 'off',
-        'smooth_scroll_speed' => 500,
+       // Sub Menus > Styling
+       'submenu_font' => null,
+       'submenu_font_size' => 13,
+       'submenu_font_size_unit' => 'px',
+       'submenu_links_height' => 40,
+       'submenu_links_height_unit' => 'px',
+       'submenu_links_line_height' => 40,
+       'submenu_links_line_height_unit' => 'px',
+       'submenu_text_alignment' => 'left',
 
-        // Menu > Fade Items In
-        'fade_submenus' => 'off',
-        'fade_submenus_side' => 'left',
-        'fade_submenus_delay' => 100,
-        'fade_submenus_speed' => 500,
+       // Sub Menus > Item Borders
+       'submenu_border_width' => 0,
+       'submenu_border_width_unit' => 'px',
+       'submenu_item_border_colour' => '#212121',
+       'submenu_item_border_colour_hover' => '#212121',
+       'submenu_current_item_border_colour' => '#212121',
+       'submenu_current_item_border_hover_colour' => '#3f3f3f',
 
-        'use_slide_effect' => 'off',
-        'slide_effect_back_to_text' => 'Back',
+       // Sub Menus > Item Text
+       'submenu_link_colour' => '#fff',
+       'submenu_link_hover_colour' => '#fff',
+       'submenu_current_link_colour' => '#fff',
+       'submenu_current_link_hover_colour' => '#fff',
 
-        'theme_type' => 'default',
-        'menu_theme' => null,
+       // Sub Menus > Item Background
+       'submenu_item_background_colour' => '#212121',
+       'submenu_item_background_hover_colour' => '#3f3f3f',
+       'submenu_current_item_background_colour' => '#212121',
+       'submenu_current_item_background_hover_colour' => '#3f3f3f',
 
-        'menu_display_device' => '',
-        'menu_display_condition' => '',
-        'menu_font_weight' => 'normal',
-        'submenu_font_weight' => 'normal',
-        'menu_text_letter_spacing' => '0',
-        'submenu_text_letter_spacing' => '0',
+       // Sub Menus > Trigger Icon
+       'submenu_arrow_position' => 'right',
+
+       // Sub Menus > Trigger Sizing
+       'submenu_submenu_arrow_height' => '39',
+       'submenu_submenu_arrow_height_unit' => 'px',
+       'submenu_submenu_arrow_width' => '40',
+       'submenu_submenu_arrow_width_unit' => 'px',
+
+       // Sub Menus > Trigger Colours
+       'submenu_sub_arrow_shape_colour' => '#fff',
+       'submenu_sub_arrow_shape_hover_colour' => '#fff',
+       'submenu_sub_arrow_shape_colour_active' => '#fff',
+       'submenu_sub_arrow_shape_hover_colour_active' => '#fff',
+
+       // Sub Menus > Trigger Background
+       'submenu_sub_arrow_background_colour' => '#212121',
+       'submenu_sub_arrow_background_hover_colour' => '#3f3f3f',
+       'submenu_sub_arrow_background_colour_active' => '#212121',
+       'submenu_sub_arrow_background_hover_colour_active' => '#3f3f3f',
+
+       // Sub Menus > Trigger Border
+       'submenu_sub_arrow_border_colour' => '#212121',
+       'submenu_sub_arrow_border_hover_colour' => '#3f3f3f',
+       'submenu_sub_arrow_border_colour_active' => '#212121',
+       'submenu_sub_arrow_border_hover_colour_active' => '#3f3f3f',
+
+       'menu_font' => null,
+       'menu_font_size' => 13,
+       'menu_font_size_unit' => 'px',
+       
+       'menu_text_alignment' => 'left',
+       'menu_links_height' => 40,
+       'menu_links_height_unit' => 'px',
+       'menu_links_line_height' => 40,
+       'menu_links_line_height_unit' => 'px',
+       'menu_border_width' => 0,
+       'menu_border_width_unit' => 'px',
+
+
+       // Container > Technical
+   
+
+       'menu_item_click_to_trigger_submenu' => 'off',
+       'menu_disable_scrolling' => 'off',
+       'menu_overlay' => 'off',
+       'menu_overlay_colour' => 'rgba(0,0,0,0.7)',
+       'menu_font_icons' => '',
+       
+       'menu_word_wrap' => 'off',
+
+       'desktop_menu_positioning' => 'absolute',
+       'desktop_menu_hide_and_show' => false,
+       'desktop_submenu_open_on_click' => false,
+       'desktop_submenu_open_animation' => '',
+       'desktop_submenu_open_animation_speed' => '0ms',
+       'desktop_menu_width' => '',
+       'desktop_menu_width_unit' => '%',
+       'desktop_menu_side' => 'left',
+
+       'use_header_bar' => 'off',
+       'header_bar_adjust_page' => null,
+       'header_bar_breakpoint' => '8000',
+       'header_bar_logo' => null,
+       'header_bar_logo_height' => null,
+       'header_bar_logo_height_unit' => 'px',
+       'header_bar_logo_width' => null,
+       'header_bar_logo_width_unit' => '%',
+       'header_bar_logo_alt' => '',
+       'header_bar_logo_link' => null,
+       'header_bar_title' => null,
+       'header_bar_html_content' => null,
+       'header_bar_height' => '80',
+       'header_bar_height_unit' => 'px',
+       'header_bar_font_size' => '14',
+       'header_bar_font_size_unit' => 'px',
+       'header_bar_font' => null,
+       'header_bar_background_color' => '#212121',
+       'header_bar_text_color' => '#ffffff',
+       'header_bar_position_type' => 'fixed',
+
+       'header_bar_items_order' => [
+           'title' => 'off',
+           'search' => 'off',
+           'additional content' => 'off',
+           'logo'  => 'on',
+           'menu' => 'on'
+       ],
+
+       'items_order' => [
+           'title' => 'off',
+           'menu'  => 'on',
+           'search' => 'on',
+           'additional content' => 'off'
+       ],
+       // Menu > Animations
+       'smooth_scroll_on' => 'off',
+       'smooth_scroll_speed' => 500,
+
+       // Menu > Fade Items In
+       'fade_submenus' => 'off',
+       'fade_submenus_side' => 'left',
+       'fade_submenus_delay' => 100,
+       'fade_submenus_speed' => 500,
+
+       'use_slide_effect' => 'off',
+       'slide_effect_back_to_text' => 'Back',
+
+       'theme_type' => 'default',
+       'menu_theme' => null,
+
+       'menu_display_device' => '',
+       'menu_display_condition' => '',
+       'menu_font_weight' => 'normal',
+       'submenu_font_weight' => 'normal',
+       'menu_text_letter_spacing' => '0',
+       'submenu_text_letter_spacing' => '0',
     );
 
     return $default_options;
