@@ -201,6 +201,22 @@
             padding: 0;
         }
 
+        .rmp-submenu-depth-1 .rmp-menu-item-link {
+            padding-#{$menu_depth_side} : ( $menu_item_padding_depth_1 + $menu_item_padding_depth_1_unit);
+        }
+
+        .rmp-submenu-depth-2 .rmp-menu-item-link {
+            padding-#{$menu_depth_side} : ( $menu_item_padding_depth_2 + $menu_item_padding_depth_2_unit);
+        }
+
+        .rmp-submenu-depth-3 .rmp-menu-item-link {
+            padding-#{$menu_depth_side} : ( $menu_item_padding_depth_3 + $menu_item_padding_depth_3_unit);
+        }
+
+        .rmp-submenu-depth-4 .rmp-menu-item-link {
+            padding-#{$menu_depth_side} : ( $menu_item_padding_depth_4 + $menu_item_padding_depth_4_unit);
+        }
+
         .rmp-submenu.rmp-submenu-open {
             display: block;
         }
@@ -276,6 +292,7 @@
                 font-size: ( $menu_item_font_size + $menu_item_font_size_unit );
             }
         }
+
 
         .rmp-menu-current-item {
             .rmp-menu-item-link {
