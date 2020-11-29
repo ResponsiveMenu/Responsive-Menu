@@ -49,21 +49,6 @@ jQuery(document).ready(function(jQuery) {
 	};
 
 	/**
-	 * Register function to call the the preview.
-	 * 
-	 * @since 4.0.0
-	 * 
-	 */
-	rmpHook.register( 'rmp_preview_menu', function ( args ) {
-
-		if ( ! args ) {
-			return false;
-		}
-
-		return false;
-	} );
-
-	/**
 	 * Register function to color the menu elements.
 	 * 
 	 * @since 4.0.0
@@ -135,6 +120,7 @@ jQuery(document).ready(function(jQuery) {
 								iframe.contents().find( '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-box' ).before('<div class="rmp-trigger-label rmp-trigger-label-top"><span class="rmp-trigger-text">"'+ this.value + '"</span></div>')
 							}
 					break;
+
 					case 'trigger-text-open':
 							if ( iframe.contents().find(outputSelector).length ) {
 								iframe.contents().find(outputSelector).html(this.value);        
@@ -142,9 +128,11 @@ jQuery(document).ready(function(jQuery) {
 								iframe.contents().find( '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-box' ).before('<div class="rmp-trigger-label rmp-trigger-label-top"><span class="rmp-trigger-text-open">"'+ this.value + '"</span></div>')
 							}
 					break;
+
 					case 'text' :
 						iframe.contents().find( outputSelector ).html(this.value);
 					break;
+
 					case 'placeholder' :
 						iframe.contents().find(outputSelector).attr('placeholder', this.value );
 					break;
@@ -672,7 +660,7 @@ jQuery(document).ready(function(jQuery) {
 			self.onTyping('#rmp-menu-search-box-border-radius','#rmp-search-box-'+ self.menuId + ' .rmp-search-box','border-radius' );
 
 
-			self.onTyping('#rmp-menu-menu-title','#rmp-menu-title-'+ self.menuId +' #rmp-menu-title-link', 'text' );
+			self.onTyping('#rmp-menu-menu-title','#rmp-menu-title-'+ self.menuId +' #rmp-menu-title-link span', 'text' );
 			self.onTyping('#rmp-menu-additional-content','#rmp-menu-additional-content-'+ self.menuId,'text');
 			self.onTyping('#rmp-menu-search-box-text','#rmp-search-box-'+ self.menuId + ' .rmp-search-box','placeholder');
 			self.onTyping('#rmp-menu-title-link', '#rmp-menu-title-' + self.menuId + ' #rmp-menu-title-link','href');

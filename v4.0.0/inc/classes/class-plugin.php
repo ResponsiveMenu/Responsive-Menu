@@ -31,7 +31,6 @@ class Plugin {
 		Option_Manager::get_instance();
 		Style_Manager::get_instance();
 		UI_Manager::get_instance();
-		Widget_Manager::get_instance();
 		RMP_Migration::get_instance();
 
 		$this->setup_hooks();
@@ -85,7 +84,7 @@ class Plugin {
 	}
 
 	/**
-	 * Function to render tthe nenu on frontend.
+	 * Function to render the nenu on frontend.
 	 * 
 	 * @version 4.0.0
 	 */
@@ -107,7 +106,7 @@ class Plugin {
 			}
 
 			$menu = new \RMP\Features\Inc\RMP_Menu( $menu_id );
-			$menu->build_new_menu();
+			$menu->build_menu();
 		}
 	}
 

@@ -1,14 +1,6 @@
 /**
 * This file is major component of this plugin so please don't try to edit here.
 */
-
-#{$menu_trigger_id},
-#{$menu_search_box_wrap},
-#{$menu_title_wrap},
-#{$menu_additional_content_wrap} {  
-    display: none;
-}
-
 @if( $page_wrapper ) {
     #{$page_wrapper} {
         transition: transform $animation_speed;
@@ -30,7 +22,7 @@
         height : $menu_trigger_height;
         position: $menu_trigger_position_type;
         top : $menu_trigger_distance_from_top;
-        display: block;
+        display: inline-block;
 
         @if ( $menu_trigger_side == right ) {
             right: $menu_trigger_distance_from_side;
@@ -129,16 +121,17 @@
         margin: 0;
         transition: transform $animation_speed;
         overflow: auto;
+        display:block;
 
         @if ( $menu_width ) {
             width: $menu_width + $menu_width_unit;
         }
 
-        @if ( $menu_maximum_width ) {
+        @if ( $menu_maximum_width != '' ) {
             max-width: $menu_maximum_width+$menu_maximum_width_unit;
         }
         
-        @if ( $menu_minimum_width ) {
+        @if ( $menu_minimum_width != '' ) {
             min-width: $menu_minimum_width + $menu_minimum_width_unit;
         }
 
@@ -533,8 +526,6 @@
             padding-right : $menu_title_section_padding_right; 
         }
 
-        display: flex;
-        flex-direction: column;
         transition: background-color $color_transition_speed, border-color $color_transition_speed, color $color_transition_speed;
 
         &:hover {
@@ -557,13 +548,8 @@
         }
 
         .rmp-menu-title-image {
-            max-width: 100%;
             width: $menu_title_image_width;
             height: $menu_title_image_height;
-            margin-bottom: 15px;
-            display: inline-block;
-            margin: auto;
-            margin-bottom: 15px;
         }
     }
 
@@ -585,11 +571,18 @@
         @if( $menu_additional_section_padding_right != '' ) {
             padding-right : $menu_additional_section_padding_right; 
         }
+     
+        @if( $menu_additional_content_color != '' ) {
+            color: $menu_additional_content_color;
+        }
 
-        display: block;
-        color: $menu_additional_content_color;
-        text-align: $menu_additional_content_alignment;
-        word-break: break-word;
-        font-size: ($menu_additional_content_font_size + $menu_additional_content_font_size_unit) ;
+        @if( $menu_additional_content_alignment != '' ) {
+            text-align: $menu_additional_content_alignment;
+        }
+
+        @if( $menu_additional_content_font_size != '' ) {
+            font-size: ($menu_additional_content_font_size + $menu_additional_content_font_size_unit) ;
+        }
+     
     }
 }

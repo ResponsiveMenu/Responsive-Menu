@@ -185,6 +185,11 @@ class Editor {
 		return $html;
 	}
 
+	/**
+	 * Function to return the markups for sidebar drawers.
+	 * 
+	 * @return HTML|string
+	 */
 	public function sidebar_drawer() {
 		return (
 			'<button type="button" class="collapse-sidebar" aria-expanded="true" aria-label="Hide Controls">

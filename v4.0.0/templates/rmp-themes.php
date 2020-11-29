@@ -73,11 +73,10 @@ $theme_manager  = Theme_Manager::get_instance();
                     <div class="rmp-item-card_contents">
                         <h4> <?php echo esc_html( $theme['name'] ); ?> </h4>
                     </div>
-                        
+
                     <!-- Theme actions -->
                     <div class="rmp-item-card_action">
                         <button class="button rmp-theme-delete" data-theme="<?php echo $theme['name']; ?>" data-theme-type="<?php echo $theme['type']; ?> "> Delete </button>
-                        <!-- <button class="button rmp-theme-download" data-theme="" data-theme-type=""> Download </button> -->
                     </div>
 
                 </div>

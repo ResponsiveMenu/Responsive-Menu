@@ -9,7 +9,6 @@
  */
 
 namespace RMP\Features\Inc;
-use RMP\Features\Inc\Widget_Manager;
 
 /** Disable the direct access to this class */
 if ( ! defined( 'ABSPATH' ) ) {

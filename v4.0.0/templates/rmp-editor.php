@@ -2508,6 +2508,7 @@ $options = $option_manager->get_options( $menu_id );
 					<iframe id="rmp-preview-iframe" src="<?php echo esc_url( get_site_url() );  ?>"></iframe>
 				</div>
 			</main>
+
 			<?php echo $editor->sidebar_drawer(); ?>
 		</div>
 		<?php

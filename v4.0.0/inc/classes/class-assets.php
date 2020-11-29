@@ -41,9 +41,6 @@ class Assets {
 	protected function setup_hooks() {
 
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_scripts' ] );
-		add_action( 'admin_print_footer_scripts', [ $this, 'admin_print_footer_scripts' ] );
-		add_action( 'admin_print_scripts', [ $this, 'admin_print_scripts' ] );
-		add_action( 'admin_print_styles', [ $this, 'admin_print_styles' ] );
 		add_action('admin_head', [ $this, 'admin_custom_style_inline'] );
 	}
 
@@ -203,41 +200,10 @@ class Assets {
 			RMP_PLUGIN_VERSION
 		);
 
-
 		/**
 		 * Fires after enqueue the scripts.
 		 */
 		do_action( 'after_rmp_enqueue_scripts' );
-	}
-
-	/**
-	 * Print the widgets.php scripts in the footer for core Media Widgets.
-	 *
-	 * @since 4.0.0
-	 */
-	public function admin_print_footer_scripts() {
-		do_action( 'admin_footer-widgets.php' );
-	}
-
-
-	/**
-	 * Print the widgets.php scripts for Core Media Widgets.
-	 *
-	 * @since 4.0.0
-	 */
-	public function admin_print_scripts() {
-		do_action( 'admin_print_scripts-widgets.php' );
-	}
-
-	/**
-	 * Print the widgets.php styles for core Media Widgets.
-	 *
-	 * @since 4.0.0
-	 * 
-	 * @return void
-	 */
-	public function admin_print_styles() {
-		do_action( 'admin_print_styles-widgets.php' );
 	}
 
 }

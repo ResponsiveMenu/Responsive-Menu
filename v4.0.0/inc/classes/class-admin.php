@@ -10,7 +10,6 @@
  */
 
 namespace RMP\Features\Inc;
-use RMP\Features\Inc\License\Check;
 use RMP\Features\Inc\Traits\Singleton;
 use RMP\Features\Inc\RMP_Menu;
 use RMP\Features\Inc\Theme_Manager;
@@ -250,7 +249,7 @@ class Admin {
 		ob_start();
 
 		$menu = new RMP_Menu( $menu_id );
-		$menu->build_new_menu();
+		$menu->build_menu();
 
 		return ob_get_clean();
 	}

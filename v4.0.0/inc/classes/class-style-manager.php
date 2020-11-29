@@ -280,33 +280,6 @@ class Style_Manager {
 
 		wp_enqueue_script( 'rmp_menu_scripts' );
 
-		if ( 'on' != $this->option_manager->get_global_option( 'rmp_remove_material_icons' ) ) {
-			wp_enqueue_style(
-				'rmp-material-icons',
-				'https://fonts.googleapis.com/icon?family=Material+Icons',
-				null,
-				RMP_PLUGIN_VERSION
-			);			
-		}
-
-		if ( 'on' != $this->option_manager->get_global_option( 'rmp_remove_fontawesome' ) ) {
-			wp_enqueue_style(
-				'rmp-font-awesome',
-				'https://use.fontawesome.com/releases/v5.13.0/css/all.css',
-				null,
-				RMP_PLUGIN_VERSION
-			);
-		}
-
-		if ( 'on' != $this->option_manager->get_global_option( 'rmp_remove_glyphicon' ) ) {
-			wp_enqueue_style(
-				'rmp-glyph-icons',
-				RMP_PLUGIN_URL_V4 . '/assets/admin/scss/glyphicons.css',
-				null,
-				RMP_PLUGIN_VERSION
-			);
-		}
-
 		if ( 'on' != $this->option_manager->get_global_option( 'rmp_remove_dashicons' ) ) {
 			wp_enqueue_style( 'dashicons' );
 		}
@@ -343,16 +316,6 @@ class Style_Manager {
 
 		try {
 			$options = $this->option_manager->get_options( $menu_id );
-
-			$menu_items = '';
-			if (  ! empty( $options['mega_menu'] ) ) {
-				$menu_items  = $options['mega_menu'];
-			}
-
-			$mobile_breakpoint = '';
-			if ( ! empty( $options['mobile_breakpoint'] ) ) {
-				$mobile_breakpoint = $options['mobile_breakpoint'].'px';
-			}
 
 			$tablet_breakpoint = '';
 			if ( ! empty( $options['tablet_breakpoint'] ) ) {
@@ -1229,16 +1192,6 @@ class Style_Manager {
 				$submenu_current_item_toggle_border_color_hover = $options['submenu_sub_arrow_border_hover_colour_active'];
 			}
 
-			$use_tablet_menu = '';
-			if ( ! empty( $options['use_tablet_menu'] ) ) {
-				$use_tablet_menu = $options['use_tablet_menu'];
-			}
-
-			$use_mobile_menu = '';
-			if ( ! empty( $options['use_mobile_menu'] ) ) {
-				$use_mobile_menu = $options['use_mobile_menu'];
-			}
-
 			//Animation delay and times.
 
 			$animation_speed = '';
@@ -1263,7 +1216,6 @@ class Style_Manager {
 
 			$parse_options = array (
 				// Menu breakpoints
-				'mobile_breakpoint'     => $mobile_breakpoint, 
 				'tablet_breakpoint'     => $tablet_breakpoint,
 
 				// Menu hamburger toggle options.
