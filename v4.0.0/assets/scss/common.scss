@@ -1,12 +1,8 @@
 /**
 This file contents common styling of menus.
 */
-
-html body {
-    width: 100%;
-}
-
 .rmp-container {
+    display: none;
     visibility: visible;
     padding: 0px 0px 0px 0px;
     z-index: 99998;
@@ -141,6 +137,23 @@ html body {
         white-space: normal;
     }
 
+    .rmp-menu-additional-content {
+        display: block;
+        word-break: break-word;
+    }
+
+    .rmp-menu-title{
+        display: flex;
+        flex-direction: column;
+
+        .rmp-menu-title-image {
+            max-width: 100%;
+            margin-bottom: 15px;
+            display:block;
+            margin: auto;
+            margin-bottom: 15px;
+        }
+    }
 }
 
 
@@ -149,8 +162,8 @@ button.rmp_menu_trigger {
     overflow: hidden;
     outline:none;
     border: 0;
+    display: none;
     margin: 0;
-    display: inline-block;
     transition: transform 0.5s, background-color 0.5s;
     padding: 0;
     .responsive-menu-pro-inner::before,

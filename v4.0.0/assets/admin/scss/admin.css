@@ -804,20 +804,20 @@ input[type="email"]:focus, input[type="month"]:focus, input[type="number"]:focus
     padding: unset;
 }
 
-  /* Spinner */
-  .spinner {
-      float: unset;
-  }
+/* Spinner */
+.spinner {
+    float: unset;
+}
 
-  .notice {
-    margin: 5px 0px 10px;
-  }
-
+.notice {
+margin: 5px 0px 10px;
+}
 
 
 /** New Design style */
 #rmp-preview-wrapper{
     height: 100%;
+    position: relative;
 }
 
 .rmp-preview-mobile #rmp-preview-wrapper,

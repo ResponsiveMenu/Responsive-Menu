@@ -449,7 +449,6 @@ jQuery( document ).ready( function( jQuery ) {
 		jQuery( '#rmp-menu-library-import' ).addClass( 'hide' );
 	} );
 
-
 	/**
 	 * Upload the theme file using dropzone.
 	 *
@@ -516,35 +515,6 @@ jQuery( document ).ready( function( jQuery ) {
 			},
 			success: function( response ) {
 				location.reload();
-			}
-		} );
-
-	} );
-
-	/**
-	 * download the theme from theme page.
-	 */
-	jQuery( '.rmp-theme-download' ).click( function( e ) {
-		e.preventDefault();
-
-		let themeName = jQuery( this ).attr( 'data-theme' );
-		let themeType = jQuery( this ).attr( 'data-theme-type' ).toLowerCase();
-
-		jQuery.ajax( {
-			url: rmpObject.ajaxURL,
-			data: {
-				'action': 'rmp_theme_download',
-				'ajax_nonce': rmpObject.ajax_nonce,
-				'theme_name': themeName,
-				'theme_type': themeType
-			},
-			type: 'POST',
-			dataType: 'json',
-			error: function( error ) {
-				console.log( error.statusText );
-			},
-			success: function( response ) {
-				//location.reload();
 			}
 		} );
 

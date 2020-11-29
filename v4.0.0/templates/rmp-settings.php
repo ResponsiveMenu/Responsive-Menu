@@ -59,7 +59,7 @@ if ( ! empty( $global_settings['menu_adjust_for_wp_admin_bar'] ) )  {
                                 </fieldset>
                             </td>
                         </tr>
-                       
+
                     </tbody>
                 </table>
                 <button class="button button-primary button-large rmp-save-global-settings-button" type="button">
