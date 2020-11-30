@@ -187,6 +187,26 @@ class RMP_Migration {
 
         $new_options['tablet_breakpoint'] = $older_options['breakpoint'];
 
+        $new_options['menu_sub_arrow_border_width'] = 1;
+        if( ! empty( $older_options['menu_border_width'] ) ) {
+            $new_options['menu_sub_arrow_border_width'] = $older_options['menu_border_width'];
+        }
+
+        $new_options['menu_sub_arrow_border_width_unit'] = 'px';
+        if( ! empty( $older_options['menu_border_width_unit'] ) ) {
+            $new_options['menu_sub_arrow_border_width_unit'] = $older_options['menu_border_width_unit'];
+        }
+
+        $new_options['submenu_sub_arrow_border_width'] = 1;
+        if( ! empty( $older_options['submenu_border_width'] ) ) {
+            $new_options['submenu_sub_arrow_border_width'] = $older_options['submenu_border_width'];
+        }
+
+        $new_options['submenu_sub_arrow_border_width_unit'] = 'px';
+        if( ! empty( $older_options['menu_border_width_unit'] ) ) {
+            $new_options['submenu_sub_arrow_border_width_unit'] = $older_options['submenu_border_width_unit'];
+        }
+
         return $new_options;
     }
 

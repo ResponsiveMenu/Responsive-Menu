@@ -1516,6 +1516,22 @@ $options = $option_manager->get_options( $menu_id );
 									]
 								] );
 
+								echo $control_manager->add_text_input_control( [
+									'label'  => __('Border Width','responsive-menu-pro'),
+									'type'   => 'number',
+									'id'     => 'rmp-menu-sub-arrow-border-width',
+									'name'   => 'menu[menu_sub_arrow_border_width]',
+									'value'    => rmp_get_value($options,'menu_sub_arrow_border_width'),
+									'class' => 'no-updates',
+									'has_unit' => [
+										'unit_type' => 'all',
+										'id' => 'rmp-menu-sub-arrow-border-width-unit',
+										'name' => 'menu[menu_sub_arrow_border_width_unit]',
+										'classes' => 'is-unit',
+										'value' => rmp_get_value($options,'menu_sub_arrow_border_width_unit'),
+									],
+								] );
+
 								echo $ui_manager->start_group_controls();
 
 								echo $control_manager->add_color_control( [

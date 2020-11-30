@@ -1132,6 +1132,26 @@ class Style_Manager {
 				$submenu_item_toggle_width_unit = $options['submenu_submenu_arrow_width_unit'];
 			}
 
+			$menu_sub_arrow_border_width = '0';
+			if ( ! empty( $options['menu_sub_arrow_border_width'] ) ) {
+				$menu_sub_arrow_border_width = $options['menu_sub_arrow_border_width'];
+			}
+
+			$menu_sub_arrow_border_width_unit = 'px';
+			if ( ! empty( $options['menu_sub_arrow_border_width_unit'] ) ) {
+				$menu_sub_arrow_border_width_unit = $options['menu_sub_arrow_border_width_unit'];
+			}
+
+			$submenu_sub_arrow_border_width = '0';
+			if ( ! empty( $options['submenu_sub_arrow_border_width'] ) ) {
+				$submenu_sub_arrow_border_width = $options['submenu_sub_arrow_border_width'];
+			}
+
+			$submenu_sub_arrow_border_width_unit = 'px';
+			if ( ! empty( $options['submenu_sub_arrow_border_width_unit'] ) ) {
+				$submenu_sub_arrow_border_width_unit = $options['submenu_sub_arrow_border_width_unit'];
+			}
+
 			$submenu_item_toggle_text_color = '';
 			if ( ! empty( $options['submenu_sub_arrow_shape_colour'] ) ) {
 				$submenu_item_toggle_text_color = $options['submenu_sub_arrow_shape_colour'];
@@ -1356,6 +1376,8 @@ class Style_Manager {
 				'menu_current_item_toggle_border_color'           => $menu_item_toggle_border_color_hover,
 				'menu_current_item_toggle_border_color_hover'     => $menu_current_item_toggle_border_color_hover,
 
+				'menu_item_toggle_border_width'  => $menu_sub_arrow_border_width,
+				'menu_item_toggle_border_width_unit'  => $menu_sub_arrow_border_width_unit,
 
 				// Sub-level menu items options.
 				'submenu_item_height'           => $submenu_item_height,
@@ -1402,6 +1424,9 @@ class Style_Manager {
 				'submenu_item_toggle_border_color_hover'             => $submenu_item_toggle_border_color_hover,
 				'submenu_current_item_toggle_border_color'           => $submenu_current_item_toggle_border_color,
 				'submenu_current_item_toggle_border_color_hover'     => $submenu_current_item_toggle_border_color_hover,
+
+				'submenu_item_toggle_border_width'       => $submenu_sub_arrow_border_width,
+				'submenu_item_toggle_border_width_unit'  => $submenu_sub_arrow_border_width_unit,
 
 				'menu_depth_side' => $menu_depth_side,
 				'menu_item_padding_depth_1' => $menu_item_padding_depth_1,

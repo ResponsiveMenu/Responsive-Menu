@@ -734,7 +734,9 @@ jQuery(document).ready(function(jQuery) {
 			self.changeInput('#rmp-menu-depth-level-0', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-item-link', 'padding', 'lr' );
 
 			self.changeInput('#rmp-menu-border-width', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-item-link', 'border-width' );
-
+			self.changeInput('#rmp-menu-sub-arrow-border-width', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-subarrow', 'border-width' );
+			self.changeInput('#rmp-submenu-sub-arrow-border-width', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-sub-level-item .rmp-menu-subarrow', 'border-width' );
+ 
 			self.bindColor('#rmp-menu-link-color', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-item-link', 'color');
 			self.bindColor('#rmp-menu-link-hover-color', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-item-link', 'color','hover');
 			self.bindColor('#rmp-menu-current-link-active-color', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item.rmp-menu-current-item .rmp-menu-item-link', 'color');

@@ -323,10 +323,10 @@
             overflow: hidden;
             @if ( $menu_item_toggle_position == 'left' ) {
                 left: 0;
-                border-right: ( $menu_item_border_width + $menu_item_border_width_unit ) solid $menu_item_toggle_border_color;
+                border-right: ( $menu_item_toggle_border_width + $menu_item_toggle_border_width_unit ) solid $menu_item_toggle_border_color;
             } @else {
                 right: 0;
-                border-left: ( $menu_item_border_width + $menu_item_border_width_unit ) solid $menu_item_toggle_border_color;
+                border-left: ( $menu_item_toggle_border_width + $menu_item_toggle_border_width_unit ) solid $menu_item_toggle_border_color;
             }
 
             height: ($menu_item_toggle_height + $menu_item_toggle_height_unit);
@@ -412,12 +412,12 @@
 
                 @if ( $submenu_item_toggle_position == 'left' ) {
                     left: 0;
-                    border-right: ( $submenu_item_border_width + $submenu_item_border_width_unit ) solid $submenu_item_toggle_border_color;
+                    border-right: ( $submenu_item_toggle_border_width + $submenu_item_toggle_border_width_unit ) solid $submenu_item_toggle_border_color;
                     border-left: unset;
                 } @else {
                     right: 0;
                     border-right: unset;
-                    border-left: ( $submenu_item_border_width + $submenu_item_border_width_unit ) solid $submenu_item_toggle_border_color;
+                    border-left: ( $submenu_item_toggle_border_width + $submenu_item_toggle_border_width_unit ) solid $submenu_item_toggle_border_color;
                 }
 
                 height: ($submenu_item_toggle_height + $submenu_item_toggle_height_unit);
