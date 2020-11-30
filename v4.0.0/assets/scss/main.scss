@@ -1,13 +1,14 @@
 /**
 * This file is major component of this plugin so please don't try to edit here.
 */
-@if( $page_wrapper ) {
+
+@if( $page_wrapper != '' ) {
     #{$page_wrapper} {
         transition: transform $animation_speed;
     }
 }
 
-@if( $menu_to_hide ) {
+@if( $menu_to_hide != '' ) {
     #{$menu_to_hide} {
         display: none !important;
     }
@@ -113,7 +114,6 @@
         }
     
     }
-
 
     #{$menu_container} {
         position: fixed;
