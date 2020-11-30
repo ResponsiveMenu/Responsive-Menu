@@ -753,7 +753,7 @@ class Style_Manager {
 				$menu_item_letter_spacing = $options['menu_text_letter_spacing'];
 			}
 
-			$menu_item_border_width = '';
+			$menu_item_border_width = '0';
 			if ( ! empty( $options['menu_border_width'] ) ) {
 				$menu_item_border_width = $options['menu_border_width'];
 			}
@@ -1016,7 +1016,7 @@ class Style_Manager {
 				$submenu_item_line_height_unit = $options['submenu_links_line_height_unit'];
 			}
 
-			$submenu_item_border_width = '';
+			$submenu_item_border_width = '0';
 			if ( ! empty( $options['submenu_border_width'] ) ) {
 				$submenu_item_border_width = $options['submenu_border_width'];
 			}
@@ -1046,7 +1046,7 @@ class Style_Manager {
 				$submenu_current_item_border_color_hover = $options['submenu_current_item_border_hover_colour'];
 			}
 
-			$submenu_item_font_size = '';
+			$submenu_item_font_size = '0';
 			if ( ! empty( $options['submenu_font_size'] ) ) {
 				$submenu_item_font_size = $options['submenu_font_size'];
 			}

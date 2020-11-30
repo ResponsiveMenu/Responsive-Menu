@@ -1,13 +1,12 @@
-/**
-* This file is major component of this plugin so please don't try to edit here.
-*/
-@if( $page_wrapper ) {
+/** This file is major component of this plugin so please don't try to edit here. */
+
+@if( $page_wrapper != '' ) {
     #{$page_wrapper} {
         transition: transform $animation_speed;
     }
 }
 
-@if( $menu_to_hide ) {
+@if( $menu_to_hide != '' ) {
     #{$menu_to_hide} {
         display: none !important;
     }
@@ -114,7 +113,6 @@
     
     }
 
-
     #{$menu_container} {
         position: fixed;
         top: 0;
@@ -185,7 +183,10 @@
             padding-right : $menu_section_padding_right; 
         }
 
-        background-color: $menu_background_color;  
+        @if( $menu_background_color != '' ) {
+            background-color: $menu_background_color;  
+        }
+
         .rmp-menu,
         .rmp-submenu {
             width: 100%;
@@ -221,9 +222,19 @@
         }       
 
         .rmp-menu-item-link {
-            height: ( $menu_item_height + $menu_item_height_unit);
-            line-height: ( $menu_item_line_height + $menu_item_line_height_unit );
-            font-size: ( $menu_item_font_size + $menu_item_font_size_unit );
+
+            @if( $menu_item_height != '' ) {
+                height: ( $menu_item_height + $menu_item_height_unit);
+            }
+
+            @if( $menu_item_line_height != '' ) {
+                line-height: ( $menu_item_line_height + $menu_item_line_height_unit );
+            }
+
+            @if( $menu_item_font_size != '' ) {
+                font-size: ( $menu_item_font_size + $menu_item_font_size_unit );
+            }
+
             
             @if( $menu_item_border_width != '' ) {
                 border-bottom: ( $menu_item_border_width + $menu_item_border_width_unit ) solid $menu_item_border_color;
@@ -548,8 +559,14 @@
         }
 
         .rmp-menu-title-image {
-            width: $menu_title_image_width;
-            height: $menu_title_image_height;
+
+            @if( $menu_title_image_width != '' ) {
+                width: $menu_title_image_width;
+            }
+
+            @if( $menu_title_image_height != '' ) {
+                height: $menu_title_image_height;
+            }
         }
     }
 

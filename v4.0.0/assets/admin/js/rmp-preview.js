@@ -770,7 +770,6 @@ jQuery(document).ready(function(jQuery) {
 			 self.changeInput('.rmp-submenu-text-alignment', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link', 'text-align' );
 			 self.changeInput('#rmp-submenu-text-letter-spacing', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link', 'letter-spacing' );
  
-			 
 			 self.changeInput('#rmp-submenu-border-width', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link', 'border-width' );
 			 self.bindColor('#rmp-submenu-item-border-colour', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link', 'border-color');
 
