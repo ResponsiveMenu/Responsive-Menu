@@ -831,7 +831,6 @@ margin: 5px 0px 10px;
     box-shadow: 0px 3px 0 #BBB, 0px 4px 0 #BBB, 0px 5px 0 #BBB, 0px 7px 0 #BBB, 1px 6px 15px #2d405a;
 }
 
-
 #rmp-preview-iframe,
 #rmp-preview-iframe-loader {
     height: 100%;
@@ -842,9 +841,10 @@ margin: 5px 0px 10px;
 
 #rmp-preview-iframe-loader{
     position: absolute;
+    display:none;
 }
 
-#rmp-preview-iframe-loader img{
+#rmp-preview-iframe-loader img {
     position: absolute;
     left: 50%;
     top: 50%;
