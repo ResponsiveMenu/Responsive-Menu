@@ -408,39 +408,43 @@
                 }
             }
 
-            .rmp-menu-subarrow {
+            // If legacy setting is on then add these settings.
+            @if( $is_legacy == 'on' ) {
 
-                @if ( $submenu_item_toggle_position == 'left' ) {
-                    left: 0;
-                    border-right: ( $submenu_item_toggle_border_width + $submenu_item_toggle_border_width_unit ) solid $submenu_item_toggle_border_color;
-                    border-left: unset;
-                } @else {
-                    right: 0;
-                    border-right: unset;
-                    border-left: ( $submenu_item_toggle_border_width + $submenu_item_toggle_border_width_unit ) solid $submenu_item_toggle_border_color;
+                .rmp-menu-subarrow {
+
+                    @if ( $submenu_item_toggle_position == 'left' ) {
+                        left: 0;
+                        border-right: ( $submenu_item_toggle_border_width + $submenu_item_toggle_border_width_unit ) solid $submenu_item_toggle_border_color;
+                        border-left: unset;
+                    } @else {
+                        right: 0;
+                        border-right: unset;
+                        border-left: ( $submenu_item_toggle_border_width + $submenu_item_toggle_border_width_unit ) solid $submenu_item_toggle_border_color;
+                    }
+
+                    height: ($submenu_item_toggle_height + $submenu_item_toggle_height_unit);
+                    line-height: ($submenu_item_toggle_height + $submenu_item_toggle_height_unit);
+                    width: ( $submenu_item_toggle_width + $submenu_item_toggle_width_unit );
+                    color: $submenu_item_toggle_text_color;
+                    background-color: $submenu_item_toggle_background_color;
+
+                    &:hover {
+                        color: $submenu_item_toggle_text_color_hover;
+                        border-color: $submenu_item_toggle_border_color_hover;
+                        background-color: $submenu_item_toggle_background_color_hover;  
+                    }
                 }
 
-                height: ($submenu_item_toggle_height + $submenu_item_toggle_height_unit);
-                line-height: ($submenu_item_toggle_height + $submenu_item_toggle_height_unit);
-                width: ( $submenu_item_toggle_width + $submenu_item_toggle_width_unit );
-                color: $submenu_item_toggle_text_color;
-                background-color: $submenu_item_toggle_background_color;
-
-                &:hover {
-                    color: $submenu_item_toggle_text_color_hover;
-                    border-color: $submenu_item_toggle_border_color_hover;
-                    background-color: $submenu_item_toggle_background_color_hover;  
-                }
-            }
-
-            .rmp-menu-subarrow-active {
-                color: $submenu_current_item_toggle_text_color;
-                border-color: $submenu_current_item_toggle_border_color;
-                background-color: $submenu_current_item_toggle_background_color;
-                &:hover {
-                    color: $submenu_current_item_toggle_text_color_hover;
-                    border-color: $submenu_current_item_toggle_border_color_hover;
-                    background-color: $submenu_current_item_toggle_background_color_hover;
+                .rmp-menu-subarrow-active {
+                    color: $submenu_current_item_toggle_text_color;
+                    border-color: $submenu_current_item_toggle_border_color;
+                    background-color: $submenu_current_item_toggle_background_color;
+                    &:hover {
+                        color: $submenu_current_item_toggle_text_color_hover;
+                        border-color: $submenu_current_item_toggle_border_color_hover;
+                        background-color: $submenu_current_item_toggle_background_color_hover;
+                    }
                 }
             }
         }

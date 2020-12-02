@@ -317,6 +317,11 @@ class Style_Manager {
 		try {
 			$options = $this->option_manager->get_options( $menu_id );
 
+			$is_legacy = 'off';
+			if ( ! empty( get_option('responsive_menu_version') ) ) {
+				$is_legacy = 'on';
+			}
+
 			$tablet_breakpoint = '';
 			if ( ! empty( $options['tablet_breakpoint'] ) ) {
 				$tablet_breakpoint = $options['tablet_breakpoint'].'px';
@@ -1411,6 +1416,7 @@ class Style_Manager {
 				'submenu_item_toggle_height_unit' => $submenu_item_toggle_height_unit,
 				'submenu_item_toggle_width'       => $submenu_item_toggle_width,
 				'submenu_item_toggle_width_unit'  => $submenu_item_toggle_width_unit,
+				'is_legacy' => $is_legacy,
 
 				'submenu_item_toggle_text_color'                     => $submenu_item_toggle_text_color,
 				'submenu_item_toggle_text_color_hover'               => $submenu_item_toggle_text_color_hover,
