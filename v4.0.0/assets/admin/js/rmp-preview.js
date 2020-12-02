@@ -627,6 +627,168 @@ jQuery(document).ready(function(jQuery) {
 				'hover'
 			);
 
+			// Menu item trigger
+
+			self.bindColor(
+				'#rmp-menu-sub-arrow-shape-colour',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-menu-subarrow',
+				'color'
+			);
+
+			self.bindColor(
+				'#rmp-menu-sub-arrow-shape-hover-colour',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-menu-subarrow',
+				'color',
+				'hover'
+			);
+
+			self.bindColor(
+				'#rmp-menu-sub-arrow-shape-colour-active',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-menu-subarrow.rmp-menu-subarrow-active',
+				'color'
+			);
+
+			self.bindColor(
+				'#rmp-menu-sub-arrow-shape-hover-colour-active',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-menu-subarrow.rmp-menu-subarrow-active',
+				'color',
+				'hover'
+			);
+
+			self.bindColor(
+				'#rmp-menu-sub-arrow-border-colour',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-menu-subarrow',
+				'border-color'
+			);
+
+			self.bindColor(
+				'#rmp-menu-sub-arrow-border-hover-colour',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-menu-subarrow',
+				'border-color',
+				'hover'
+			);
+
+			self.bindColor(
+				'#rmp-menu-sub-arrow-border-colour-active',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-menu-subarrow.rmp-menu-subarrow-active',
+				'border-color'
+			);
+
+
+			self.bindColor(
+				'#rmp-menu-sub-arrow-border-hover-colour-active',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-menu-subarrow.rmp-menu-subarrow-active',
+				'border-color',
+				'hover'
+			);
+
+			self.bindColor(
+				'#rmp-menu-sub-arrow-background-color',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-menu-subarrow',
+				'background'
+			);
+
+			self.bindColor(
+				'#rmp-menu-sub-arrow-background-hover-colour',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-menu-subarrow',
+				'background',
+				'hover'
+			);
+
+			self.bindColor(
+				'#rmp-menu-sub-arrow-background-colour-active',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-menu-subarrow.rmp-menu-subarrow-active',
+				'background'
+			);
+
+			self.bindColor(
+				'#rmp-menu-sub-arrow-background-hover-colour-active',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-menu-subarrow.rmp-menu-subarrow-active',
+				'background',
+				'hover'
+			);
+
+			//Legacy options
+			self.bindColor(
+				'#rmp-submenu-sub-arrow-shape-colour',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-subarrow',
+				'color'
+			);
+
+			self.bindColor(
+				'#rmp-submenu-item-border-colour-hover',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-subarrow',
+				'color',
+				'hover'
+			);
+
+
+			self.bindColor(
+				'#rmp-submenu-sub-arrow-shape-colour-active',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-subarrow.rmp-menu-subarrow-active',
+				'color'
+			);
+
+
+			self.bindColor(
+				'#rmp-submenu-sub-arrow-shape-hover-colour-active',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-subarrow.rmp-menu-subarrow-active',
+				'color',
+				'hover'
+			);
+
+			self.bindColor(
+				'#rmp-submenu-sub-arrow-border-colour',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-subarrow',
+				'border-color'
+			);
+
+			self.bindColor(
+				'#rmp-submenu-sub-arrow-border-hover-colour',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-subarrow',
+				'border-color',
+				'hover'
+			);
+
+			self.bindColor(
+				'#rmp-submenu-sub-arrow-border-colour-active',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-subarrow.rmp-menu-subarrow-active',
+				'border-color'
+			);
+
+			self.bindColor(
+				'#rmp-submenu-sub-arrow-border-hover-colour-active',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-subarrow.rmp-menu-subarrow-active',
+				'border-color',
+				'hover'
+			);
+
+			self.bindColor(
+				'#rmp-submenu-sub-arrow-background-color',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-subarrow',
+				'background'
+			);
+
+			self.bindColor(
+				'#rmp-submenu-sub-arrow-background-hover-colour',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-subarrow',
+				'background',
+				'hover'
+			);
+
+			self.bindColor(
+				'#rmp-submenu-sub-arrow-background-colour-active',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-subarrow.rmp-menu-subarrow-active',
+				'background'
+			);
+
+			self.bindColor(
+				'#rmp-submenu-sub-arrow-background-hover-colour-active',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-subarrow.rmp-menu-subarrow-active',
+				'background',
+				'hover'
+			);
+
 			self.bindColor('#rmp-menu-title-colour', '#rmp-menu-title-' + self.menuId + ' > a' , 'color');
 			self.bindColor('#rmp-menu-title-hover-colour', '#rmp-menu-title-' + self.menuId + ' > a' , 'color','hover');
 			self.bindColor('#rmp-menu-additional-content-color', '#rmp-container-'+ self.menuId + ' #rmp-menu-additional-content-' + self.menuId  , 'color');
@@ -753,10 +915,16 @@ jQuery(document).ready(function(jQuery) {
 			self.bindImage('#rmp-menu-inactive-arrow-image-selector', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-subarrow', 'background' );
 			self.bindImage('#rmp-menu-active-arrow-image-selector', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-subarrow-active', 'background' );
 
-			self.onTyping('#rmp-submenu-arrow-height', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-subarrow', 'height');
-			self.onTyping('#rmp-submenu-arrow-width', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-subarrow', 'width');
-			self.changeInput('#rmp-submenu-arrow-width-unit', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-subarrow', 'width-unit');
-			self.changeInput('#rmp-submenu-arrow-height-unit', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-subarrow', 'height-unit');
+			self.onTyping('#rmp-submenu-arrow-height', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-subarrow', 'height');
+			self.onTyping('#rmp-submenu-arrow-width', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-subarrow', 'width');
+			self.changeInput('#rmp-submenu-arrow-width-unit', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-subarrow', 'width-unit');
+			self.changeInput('#rmp-submenu-arrow-height-unit', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-subarrow', 'height-unit');
+
+			self.onTyping('#rmp-submenu-child-arrow-height', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-sub-level-item .rmp-menu-subarrow', 'height');
+			self.onTyping('#rmp-submenu-child-arrow-width', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-sub-level-item .rmp-menu-subarrow', 'width');
+			self.changeInput('#rmp-submenu-child-arrow-width-unit', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-sub-level-item .rmp-menu-subarrow', 'width-unit');
+			self.changeInput('#rmp-submenu-child-arrow-height-unit', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-sub-level-item .rmp-menu-subarrow', 'height-unit');
+
 
 			self.bindColor('#rmp-menu-sub-arrow-background-color', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-subarrow', 'background');
 			self.bindColor('#rmp-menu-sub-arrow-background-hover-colour', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-subarrow', 'background','hover');
