@@ -1481,7 +1481,7 @@ $options = $option_manager->get_options( $menu_id );
 	
 								echo $control_manager->add_color_control( [
 									'label'  => __('Hover','responsive-menu-pro'),
-									'id'     => 'rmp-menu-item-border-colour-hover',
+									'id'     => 'rmp-menu-sub-arrow-shape-hover-colour',
 									'name'    => 'menu[menu_sub_arrow_shape_hover_colour]',
 									'value'    => rmp_get_value($options,'menu_sub_arrow_shape_hover_colour'),
 									
@@ -1562,9 +1562,9 @@ $options = $option_manager->get_options( $menu_id );
 
 								echo $control_manager->add_color_control( [
 									'label'  => __('Active Item Hover','responsive-menu-pro'),
-									'id'     => 'rmp-menu-sub-arrow-background-hover-colour-active',
-									'name'    => 'menu[menu_sub_arrow_background_hover_colour_active]',
-									'value'    => rmp_get_value($options,'menu_sub_arrow_background_hover_colour_active'),
+									'id'     => 'rmp-menu-sub-arrow-border-hover-colour-active',
+									'name'    => 'menu[menu_sub_arrow_border_hover_colour_active]',
+									'value'    => rmp_get_value($options,'menu_sub_arrow_border_hover_colour_active'),
 									
 								] );
 								echo $ui_manager->end_group_controls();

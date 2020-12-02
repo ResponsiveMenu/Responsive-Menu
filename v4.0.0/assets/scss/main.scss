@@ -312,7 +312,6 @@
             }
         }
 
-
         .rmp-menu-subarrow {
             position: absolute;
             top: 0;
@@ -323,9 +322,11 @@
             overflow: hidden;
             @if ( $menu_item_toggle_position == 'left' ) {
                 left: 0;
+                border-right-style:solid;
                 border-right: ( $menu_item_toggle_border_width + $menu_item_toggle_border_width_unit ) solid $menu_item_toggle_border_color;
             } @else {
                 right: 0;
+                border-left-style:solid;
                 border-left: ( $menu_item_toggle_border_width + $menu_item_toggle_border_width_unit ) solid $menu_item_toggle_border_color;
             }
 
