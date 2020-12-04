@@ -108,7 +108,7 @@ class Theme_Manager {
 
 		$theme_type = sanitize_text_field( $_POST['theme_type'] );
 		$menu_id = sanitize_text_field( $_POST['menu_id'] );
-		
+		$menu_to_use  = sanitize_text_field( $_POST['menu_to_use'] );
 
 		if ( 'template' === $theme_type ) {
 			$theme_option = $this->get_saved_theme_options( $theme_name );
@@ -119,12 +119,16 @@ class Theme_Manager {
 		$theme_option['menu_id'] = $menu_id;
 		$theme_option['menu_theme'] = $theme_name;
 		$theme_option['theme_type'] = $theme_type;
+		$theme_option['menu_to_use'] = $menu_to_use;
 
-		$options = get_post_meta( $menu_id, 'rmp_menu_meta' );
-		
-		$options = array_merge( $theme_option , $options );
-		update_post_meta( $menu_id, 'rmp_menu_meta' ,$options );
+		update_post_meta( $menu_id, 'rmp_menu_meta' ,$theme_option );
 
+		/**
+		 * Fires when menu theme applied and options are saved.
+		 * 
+		 * @since 4.0.0
+		 * @param int $menu_id
+		 */
 		do_action('rmp_theme_apply', $menu_id );
 
 		wp_send_json_error( [ 'message' => __( 'Theme applied', 'responsive-menu-pro' ) ] );
