@@ -2530,7 +2530,10 @@ $options = $option_manager->get_options( $menu_id );
 		<?php
 			include_once RMP_PLUGIN_PATH_V4 . '/templates/rmp-wizards.php';
 			do_action( 'admin_print_footer_scripts' );
-			wp_footer();
 		?>
+
+		<div id="rmp-required-footer">
+			<?php wp_footer(); ?>
+		</div>
 	</body>
 </html>

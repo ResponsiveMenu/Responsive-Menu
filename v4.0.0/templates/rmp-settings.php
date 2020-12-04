@@ -40,6 +40,9 @@ if ( ! empty( $global_settings['menu_adjust_for_wp_admin_bar'] ) )  {
                 <li><a class="nav-tab" href="#rmp-settings-style"><?php esc_html_e('Style', 'responsive-menu-pro'); ?></a></li>
                 <li><a class="nav-tab" href="#rmp-settings-import-and-export"><?php esc_html_e('Import/Export', 'responsive-menu-pro'); ?></a></li>
             </ul>
+
+            <?php if ( ! empty( get_option('responsive_menu_version') ) ) { ?>
+
             <div id="rmp-settings-general">
                 <table  class="form-table" role="presentation">
                     <tbody>
@@ -67,6 +70,8 @@ if ( ! empty( $global_settings['menu_adjust_for_wp_admin_bar'] ) )  {
                 </button>
                 <span class="spinner"></span>
             </div>
+
+            <?php } ?>
 
             <div id="rmp-settings-advanced" >
                 <table class="form-table" role="presentation">

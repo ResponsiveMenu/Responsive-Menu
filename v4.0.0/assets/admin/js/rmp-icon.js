@@ -12,19 +12,19 @@ jQuery( document ).ready( function() {
 		closeSelector: '.rmp-menu-icons-dialog .rmp-dialog-header span.close',
 		clear: function () {
 			var self = this;
-			jQuery( self.clearSelector ).click( function() {
+			jQuery( self.clearSelector ).on( 'click', function() {
 				jQuery( self.iconContainer ).find( 'input' ).prop( 'checked', false );
 			} );
 		},
 		closeDialog : function() {
 			var self = this;
-			jQuery(self.closeSelector).click(function(){
+			jQuery(self.closeSelector).on( 'click' ,function(){
 				jQuery(self.iconContainer).hide();
 			});
 		},
 		openDialog : function(iconChooser) {
 			var self = this;
-			jQuery(iconChooser).click(function(e) {
+			jQuery(iconChooser).on( 'click', function(e) {
 				e.stopPropagation();
 				jQuery(self.iconContainer).show();
 				jQuery(self.iconSelect).attr('data-click',jQuery(e.target).attr('id'));
@@ -78,9 +78,9 @@ jQuery( document ).ready( function() {
 			this.clear();
 			this.closeDialog();
 
-			jQuery('#rmp-icon-search').on('keyup', _.debounce( this.searchIcon, 500 ) );
+			jQuery('#rmp-icon-search').on( 'keyup', _.debounce( this.searchIcon, 500 ) );
 
-			jQuery('#rmp-icon-search').on('keyup', function () {
+			jQuery('#rmp-icon-search').on( 'keyup', function () {
 
 				var query_string  = this.value.toLocaleLowerCase();
 				if ( query_string.length ) {

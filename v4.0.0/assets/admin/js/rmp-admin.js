@@ -28,7 +28,7 @@ jQuery( document ).ready( function( jQuery ) {
 	 * 
 	 * @fires Click
 	 */
-	jQuery( '#rmp-new-menu-wizard .rmp-dialog-header button.close' ).click( function() {
+	jQuery( '#rmp-new-menu-wizard .rmp-dialog-header button.close' ).on( 'click', function() {
 		jQuery( '#rmp-new-menu-wizard' ).hide();
 	} );
 
@@ -60,7 +60,7 @@ jQuery( document ).ready( function( jQuery ) {
 	 *
 	 * @fires Click
 	 */
-	jQuery( '#rmp-create-new-menu' ).click( function( e ) {
+	jQuery( '#rmp-create-new-menu' ).on( 'click', function( e ) {
 		e.preventDefault();
 		let menuName  = jQuery( '#rmp-menu-name' );
 		let themeName = jQuery( '.rmp-theme-option:checked' ).val();
@@ -124,7 +124,7 @@ jQuery( document ).ready( function( jQuery ) {
 	 *
 	 * @fires Click
 	 */
-	jQuery( '#rmp-rollback-version' ).click( function( e ) {
+	jQuery( '#rmp-rollback-version' ).on( 'click', function( e ) {
 		e.preventDefault();
 
 		const version = jQuery( '#rmp-versions' ).val();
@@ -259,7 +259,7 @@ jQuery( document ).ready( function( jQuery ) {
 	 *
 	 * @fires click
 	 */
-	jQuery( '.rmp-device-switcher' ).click( function() {
+	jQuery( '.rmp-device-switcher' ).on( 'click', function() {
 		var isOpen = jQuery( this ).hasClass( 'open' );
 
 		if ( isOpen ) {
@@ -278,7 +278,7 @@ jQuery( document ).ready( function( jQuery ) {
 	 *
 	 * @fires click
 	 */
-	jQuery( '.rmp-device-switcher li' ).click( function() {
+	jQuery( '.rmp-device-switcher li' ).on( 'click', function() {
 		var  selectedDevice = jQuery( this ).attr( 'data-device' );
 		var  firstDevice    = jQuery( '.rmp-device-switcher li:first-child' ).attr( 'data-device' );
 		if ( selectedDevice != firstDevice ) {
@@ -323,7 +323,7 @@ jQuery( document ).ready( function( jQuery ) {
 	 *
 	 * @fires mouseup
 	 */
-	jQuery( document ).mouseup( function( event ) {
+	jQuery( document ).on( 'mouseup', function( event ) {
 		var target = event.target;
 		var deviceSwitcher = jQuery( '.rmp-device-switcher' );
 
@@ -415,7 +415,7 @@ jQuery( document ).ready( function( jQuery ) {
 
 		toolTipContents.fadeIn();
 
-	} ).mouseleave( function() {
+	} ).on( 'mouseleave', function() {
 		jQuery(this).removeClass('show-tooltip');
 		jQuery( this ).find( '.rmp-tooltip-content' ).fadeOut();
 	} );
@@ -438,7 +438,7 @@ jQuery( document ).ready( function( jQuery ) {
 	/**
 	 * Show/Hide the theme uploader section in theme page.
 	 */
-	jQuery( '#rmp-upload-new-theme' ).click( function() {
+	jQuery( '#rmp-upload-new-theme' ).on( 'click', function() {
 		jQuery( '#rmp-menu-library-import' ).toggleClass( 'hide' );
 	} );
 
@@ -466,28 +466,28 @@ jQuery( document ).ready( function( jQuery ) {
 	/**
 	 * Open theme options in editor footer.
 	 */
-	jQuery( '#rmp-theme-action' ).click( function( e ) {
+	jQuery( '#rmp-theme-action' ).on( 'click', function( e ) {
 		jQuery( '#rmp-footer-theme-options' ).toggleClass('open');
 	} );
 
 	/**
 	 * Show/Hide the save theme wizard.
 	 */
-	jQuery( '.rmp-theme-save-button, #rmp-menu-save-theme-wizard .rmp-dialog-wrap .close' ).click( function( e ) {
+	jQuery( '.rmp-theme-save-button, #rmp-menu-save-theme-wizard .rmp-dialog-wrap .close' ).on( 'click', function( e ) {
 		jQuery( '#rmp-menu-save-theme-wizard' ).toggle();
 	} );
 
 	/**
 	 * Show/Hide change theme wizard.
 	 */
-	jQuery( '.rmp-theme-change-button' ).click( function( e ) {
+	jQuery( '.rmp-theme-change-button' ).on( 'click', function( e ) {
 		jQuery( '#rmp-new-menu-wizard' ).toggle();
 	} );
 
 	/**
 	 * Delete the theme from theme page.
 	 */
-	jQuery( '.rmp-theme-delete' ).click( function( e ) {
+	jQuery( '.rmp-theme-delete' ).on( 'click', function( e ) {
 		e.preventDefault();
 
 		/** Ask for delete confirmation */
@@ -527,7 +527,7 @@ jQuery( document ).ready( function( jQuery ) {
 	 *
 	 * @fires 4.0.0
 	 */
-	jQuery( '.rmp-theme-apply' ).click( function( e ) {
+	jQuery( '.rmp-theme-apply' ).on( 'click', function( e ) {
 
 		jQuery.ajax( {
 			url: rmpObject.ajaxURL,
@@ -557,7 +557,7 @@ jQuery( document ).ready( function( jQuery ) {
 	 * 
 	 * @fires click
 	 */
-	jQuery( '.rmp-save-global-settings-button' ).click( function( e ) {
+	jQuery( '.rmp-save-global-settings-button' ).on( 'click', function( e ) {
 		e.preventDefault();
 
 		jQuery.ajax( {
@@ -657,7 +657,7 @@ jQuery( document ).ready( function( jQuery ) {
 	 *
 	 * @version 4.0.0 
 	 */
-	jQuery( '#rmp-export-menu-button' ).click( function( e ) {
+	jQuery( '#rmp-export-menu-button' ).on( 'click', function( e ) {
 		e.preventDefault();
 
 		let menu_id   = jQuery('#rmp_export_menu_list').val();
@@ -713,7 +713,7 @@ jQuery( document ).ready( function( jQuery ) {
 	 *
 	 * @version 4.0.0 
 	 */
-	jQuery( '#rmp-import-menu-button' ).click( function( e ) {
+	jQuery( '#rmp-import-menu-button' ).on( 'click', function( e ) {
 		e.preventDefault();
 
 		let menu_id   = jQuery('#rmp_import_menu_list').val();

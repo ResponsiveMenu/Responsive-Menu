@@ -72,19 +72,19 @@ const rmpEditor = {
 		} );
 
 		// Back from inner panel when click on back button.
-		jQuery( self.backButton ).click( function( e ) {
+		jQuery( self.backButton ).on( 'click', function( e ) {
 			e.stopPropagation();
 			self.triggerBack();
 		} );
 
 		// Close the editor and back to menu admin.
-		jQuery( this.closeButton ).click( function( e ) {
+		jQuery( this.closeButton ).on( 'click', function( e ) {
 			e.stopPropagation();
 			self.close();
 		} );
 
 		// Open/Close the editor setting sidebar.
-		jQuery( self.sidebarDrawer ).click( function(e) {
+		jQuery( self.sidebarDrawer ).on( 'click', function(e) {
 			jQuery( self.editorSidebar ).toggleClass( 'expanded collapsed' );
 		} );
 	}
