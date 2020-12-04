@@ -2056,7 +2056,7 @@ button.menu-save {
 
 .default-item {
     width: 165px;
-    height: 280px;
+    height: 295px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -2066,7 +2066,7 @@ button.menu-save {
 }
 
 .rmp-theme-page .rmp-item-card {
-    width: 240px;
+    width: 180px;
     max-width: 100%;
     border: solid 1px #ccc;
     box-shadow: 0 1px 1px -1px rgba(0, 0, 0, 0.1);
@@ -2085,7 +2085,7 @@ button.menu-save {
 
 .rmp-item-card_image img {
     width: 100%;
-    max-height: 240px;
+    height: 210px;
 }
 
 .rmp-item-card_contents{
