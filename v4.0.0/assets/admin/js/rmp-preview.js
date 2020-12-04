@@ -84,7 +84,7 @@ jQuery(document).ready(function(jQuery) {
 		onTyping: function( inputSelector, outputSelector, type) {
 			var self = this;
 			var iframe  = jQuery(self.iframe);
-			jQuery(inputSelector).keyup( function() {
+			jQuery(inputSelector).on( 'keyup change paste', function() {
 				switch( type ) {
 					case 'border-radius':
 						var value = jQuery(this).val();
@@ -278,7 +278,7 @@ jQuery(document).ready(function(jQuery) {
 		},
 		toggleElements: function( inputSelector, outputSelector ) {
 			var self = this;
-			jQuery(inputSelector).change( function(e) {
+			jQuery(inputSelector).on( 'change', function(e) {
 				e.preventDefault();
 				e.stopPropagation();
 				var iframe = jQuery(self.iframe);
@@ -419,7 +419,7 @@ jQuery(document).ready(function(jQuery) {
 		changeInput: function( inputSelector, outputSelector , attr, meta = '' ) {
 			var self = this;
 			var iframe = jQuery(self.iframe);
-			jQuery(inputSelector).change( function(e) {
+			jQuery(inputSelector).on( 'change', function(e) {
 				switch (attr) {
 					case 'height-unit':
 						value = jQuery(this).prev('input').val();
@@ -1000,13 +1000,9 @@ jQuery(document).ready(function(jQuery) {
 					self.orderMenuElements();
 				}
 			});
-
-
-			// Remove adminbar from menu editor page.
-			jQuery('.rmp-editor-active').parent('html').removeClass('wp-toolbar');
-			jQuery('.rmp-editor-active').find( '#wpadminbar' ).remove();
 		}
 	};
+
 	RMP_Preview.init();
 });
 
