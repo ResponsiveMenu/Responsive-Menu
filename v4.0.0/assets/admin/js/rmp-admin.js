@@ -536,7 +536,8 @@ jQuery( document ).ready( function( jQuery ) {
 				'ajax_nonce': rmpObject.ajax_nonce,
 				'theme_name': jQuery( this ).attr( 'theme-name' ),
 				'theme_type': jQuery( this ).attr( 'theme-type' ).toLowerCase(),
-				'menu_id': jQuery( '#menu_id' ).val()
+				'menu_id': jQuery( '#menu_id' ).val(),
+				'menu_to_use' : jQuery('#rmp-menu-to-use').val()
 			},
 			type: 'POST',
 			dataType: 'json',

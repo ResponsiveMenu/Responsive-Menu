@@ -322,12 +322,18 @@
             overflow: hidden;
             @if ( $menu_item_toggle_position == 'left' ) {
                 left: 0;
-                border-right-style:solid;
-                border-right: ( $menu_item_toggle_border_width + $menu_item_toggle_border_width_unit ) solid $menu_item_toggle_border_color;
+                @if( $menu_item_toggle_border_width != 0 ) {
+                    border-right-style:solid;
+                    border-right-color:$menu_item_toggle_border_color;
+                    border-right-width: ( $menu_item_toggle_border_width + $menu_item_toggle_border_width_unit );
+                }
             } @else {
                 right: 0;
-                border-left-style:solid;
-                border-left: ( $menu_item_toggle_border_width + $menu_item_toggle_border_width_unit ) solid $menu_item_toggle_border_color;
+                @if( $menu_item_toggle_border_width != 0 ) {
+                    border-left-style:solid;
+                    border-left-color:$menu_item_toggle_border_color;
+                    border-left-width: ( $menu_item_toggle_border_width + $menu_item_toggle_border_width_unit );
+                }
             }
 
             height: ($menu_item_toggle_height + $menu_item_toggle_height_unit);
@@ -416,12 +422,20 @@
 
                     @if ( $submenu_item_toggle_position == 'left' ) {
                         left: 0;
-                        border-right: ( $submenu_item_toggle_border_width + $submenu_item_toggle_border_width_unit ) solid $submenu_item_toggle_border_color;
                         border-left: unset;
+                        @if( $submenu_item_toggle_border_width != 0 ) {
+                            border-right-style:solid;
+                            border-right-color:$submenu_item_toggle_border_color;
+                            border-right-width: ( $submenu_item_toggle_border_width + $submenu_item_toggle_border_width_unit );
+                        }
                     } @else {
                         right: 0;
                         border-right: unset;
-                        border-left: ( $submenu_item_toggle_border_width + $submenu_item_toggle_border_width_unit ) solid $submenu_item_toggle_border_color;
+                        @if( $submenu_item_toggle_border_width != 0 ) {
+                            border-left-style:solid;
+                            border-left-color:$submenu_item_toggle_border_color;
+                            border-left-width: ( $submenu_item_toggle_border_width + $submenu_item_toggle_border_width_unit );
+                        }
                     }
 
                     height: ($submenu_item_toggle_height + $submenu_item_toggle_height_unit);
