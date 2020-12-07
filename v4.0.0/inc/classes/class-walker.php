@@ -192,6 +192,12 @@ class Walker extends \Walker_Nav_Menu {
 			$item_output .= sprintf( '<p class="rmp-menu-item-description"> %s </p>', esc_html( $item->description ) );  
 		}
 
+		// Theme support for twenty twenty one.
+		if ( function_exists( 'twenty_twenty_one_add_sub_menu_toggle' ) ) {
+			remove_filter( 'walker_nav_menu_start_el', 'twenty_twenty_one_add_sub_menu_toggle', 10 );
+			remove_filter( 'walker_nav_menu_start_el', 'twenty_twenty_one_nav_menu_social_icons', 10 );
+		}
+
 		/* End Add Desktop Menu Widgets to Sub Items */
 		$output .= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 
