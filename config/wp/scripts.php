@@ -28,10 +28,10 @@ if(isset($_GET['page']) && $_GET['page'] == 'responsive-menu'):
         wp_enqueue_script('jquery-ui-sortable');
         wp_enqueue_script('jquery-ui-draggable');
 
-        wp_register_style('responsive-menu-base-css', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/css/admin/base.css', false, null);
+        wp_register_style('responsive-menu-base-css', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/css/admin/base.css', false, RMP_PLUGIN_VERSION );
         wp_enqueue_style('responsive-menu-base-css');
 
-        wp_register_style('responsive-menu-additional-css', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/css/admin/additional.css', false, null);
+        wp_register_style('responsive-menu-additional-css', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/css/admin/additional.css', false, RMP_PLUGIN_VERSION );
         wp_enqueue_style('responsive-menu-additional-css');
 
         $options = get_responsive_menu_service('option_manager')->all();
@@ -41,7 +41,7 @@ if(isset($_GET['page']) && $_GET['page'] == 'responsive-menu'):
             wp_enqueue_style('responsive-menu-admin-css-theme' . $theme);
         endif;
 
-        wp_register_script('responsive-menu-base-js', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/js/admin/base.js', 'jquery', null);
+        wp_register_script('responsive-menu-base-js', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/js/admin/base.js', 'jquery', RMP_PLUGIN_VERSION );
 
         wp_localize_script(
             'responsive-menu-base-js',
@@ -57,7 +57,7 @@ if(isset($_GET['page']) && $_GET['page'] == 'responsive-menu'):
 
         wp_enqueue_script('responsive-menu-base-js');
 
-        wp_register_script('responsive-menu-additional-js', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/js/admin/additional.js', 'jquery', null);
+        wp_register_script('responsive-menu-additional-js', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/js/admin/additional.js', 'jquery', RMP_PLUGIN_VERSION );
         wp_localize_script(
             'responsive-menu-additional-js',
             'WP_RMP',

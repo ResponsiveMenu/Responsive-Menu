@@ -12,6 +12,13 @@ License: GPL2
 Tags: responsive, menu, responsive menu, mega menu, max mega menu, max menu
 */
 
+/**
+ * Constant as plugin version.
+ */
+if ( ! defined( 'RMP_PLUGIN_VERSION' ) ) {
+    define( 'RMP_PLUGIN_VERSION', '4.0.0' );
+}
+
 add_action('admin_init', 'check_responsive_menu_php_version');
 function check_responsive_menu_php_version() {
     if(version_compare(PHP_VERSION, '5.4', '<')):
@@ -75,13 +82,6 @@ include dirname(__FILE__) . '/config/polylang.php';
     // If this file called directly then abort.
     if ( ! defined( 'WPINC' ) ) {
         die;
-    }
-
-    /**
-     * Constant as plugin version.
-     */
-    if ( ! defined( 'RMP_PLUGIN_VERSION' ) ) {
-        define( 'RMP_PLUGIN_VERSION', '4.0.0' );
     }
 
     /**
