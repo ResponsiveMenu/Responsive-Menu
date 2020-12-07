@@ -2,9 +2,9 @@
 Contributors: expresstech,responsivemenu
 Tags: responsive, mega menu, navigation, mobile, hamburger
 Requires at least: 3.6
-Tested up to: 5.5
-Stable tag: 3.1.30
-Requires PHP: 5.5
+Tested up to: 5.6
+Stable tag: 4.0.0
+Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -110,6 +110,16 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 15. Admin Desktop Menu Section
 
 == Changelog ==
+
+= 4.0.0 (7th Dec 2020) =
+* New and improved admin user interface
+* Added menu customizer with live preview features
+* Added feature to create menu templates
+* Improved menu themes
+* Added support for multiple menus
+* Added support for WordPress core version 5.6 and PHP 8.0
+* Added support for twenty twenty one theme
+* Fixed several bugs in older version
 
 = 3.1.30 (23rd July 2020) =
 * Bug: Fixed menu arial-label
