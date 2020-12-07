@@ -112,14 +112,14 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 == Changelog ==
 
 = 4.0.0 (7th Dec 2020) =
-New and improved admin user interface
-Added menu customizer with live preview features
-Added feature to create menu templates
-Improved menu themes
-Added support for multiple menus
-Added support for WordPress core version 5.6 and PHP 8.0
-Added support for twenty twenty one theme
-Fixed several bugs on older version
+* New and improved admin user interface
+* Added menu customizer with live preview features
+* Added feature to create menu templates
+* Improved menu themes
+* Added support for multiple menus
+* Added support for WordPress core version 5.6 and PHP 8.0
+* Added support for twenty twenty one theme
+* Fixed several bugs in older version
 
 = 3.1.30 (23rd July 2020) =
 * Bug: Fixed menu arial-label
