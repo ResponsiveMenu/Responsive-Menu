@@ -1,0 +1,72 @@
+{
+  "name": "rmp-menu",
+  "version": "1.0.0",
+  "description": "Responsive Menu Packages",
+  "author": "Surajkumar Singh",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "clean": "rm -rf build/*",
+    "dev": "cross-env NODE_ENV=development webpack --watch --mode development --progress",
+    "init": "npm install && ./bin/rename.js && npm run pot && rm -rf .git .github ./bin/ languages/rmp-menu.pot",
+    "lint-css": "stylelint sass/**/*.scss --syntax scss",
+    "lint-js": "eslint js/",
+    "pot": "wp-pot --src '**/*.php' --dest-file 'languages/rmp-menu.pot' --domain 'rmp-menu' --package 'rmp-menu' ",
+    "precommit": "npm run lint-css && npm run lint-js && npm run pot",
+    "prod": "cross-env NODE_ENV=production webpack --mode production --progress",
+    "update-deps": "rm -rf node_modules && rm package-lock.json && npm install"
+  },
+  "dependencies": {
+    "jshint": "^2.12.0",
+    "prompt-sync": "^4.1.6",
+    "replace-in-file": "^3.4.2",
+    "webfontloader": "^1.6.28"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "autoprefixer": "^9.1.5",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.4",
+    "babel-preset-env": "^1.7.0",
+    "clean-webpack-plugin": "^0.1.19",
+    "cross-env": "^5.2.0",
+    "css-loader": "^1.0.0",
+    "css-mqpacker": "^7.0.0",
+    "cssnano": "^4.1.4",
+    "eslint": "^5.6.1",
+    "eslint-config-wordpress": "^2.0.0",
+    "eslint-loader": "^2.1.1",
+    "file-loader": "^2.0.0",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "fs-extra": "^7.0.0",
+    "jquery": "^3.5.1",
+    "mini-css-extract-plugin": "^0.4.3",
+    "node-sass": "^4.14.1",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "postcss-assets": "^5.0.0",
+    "postcss-loader": "^3.0.0",
+    "postcss-pxtorem": "^4.0.1",
+    "postcss-scss": "^2.0.0",
+    "sass-loader": "^7.1.0",
+    "sass-mq": "^5.0.0",
+    "slick-carousel": "^1.8.1",
+    "style-loader": "^0.23.1",
+    "stylelint": "^9.6.0",
+    "stylelint-config-wordpress": "^13.1.0",
+    "stylelint-webpack-plugin": "^0.10.5",
+    "uglifyjs-webpack-plugin": "^2.0.1",
+    "webpack": "^4.20.2",
+    "webpack-assets-manifest": "^3.1.0",
+    "webpack-cli": "^3.1.2",
+    "wp-pot": "^1.9.6",
+    "wp-pot-cli": "^1.5.0"
+  },
+  "browserslist": [
+    "defaults"
+  ],
+  "main": "postcss.config.js",
+  "bin": {
+    "test": "rename.js"
+  }
+}

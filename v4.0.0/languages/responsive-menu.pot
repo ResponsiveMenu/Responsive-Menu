@@ -1,0 +1,1546 @@
+# Copyright (C) 2020 responsive-menu
+# This file is distributed under the same license as the responsive-menu package.
+msgid ""
+msgstr ""
+"Project-Id-Version: responsive-menu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+
+#: inc/classes/class-admin.php:279
+msgid "Enter the Menu name !"
+msgstr ""
+
+#: inc/classes/class-admin.php:284
+msgid "Select menu to use !"
+msgstr ""
+
+#: inc/classes/class-admin.php:358
+msgid "Menu is created successfully"
+msgstr ""
+
+#: inc/classes/class-admin.php:361
+msgid "Unable to create new Menu"
+msgstr ""
+
+#: inc/classes/class-admin.php:385
+msgid "Please pass menu id as attribute."
+msgstr ""
+
+#: inc/classes/class-admin.php:398 inc/classes/class-admin.php:594
+msgid "Shortcode deactivated"
+msgstr ""
+
+#: inc/classes/class-admin.php:434 inc/classes/class-admin.php:435
+#: templates/rmp-editor.php:105
+msgid "Settings"
+msgstr ""
+
+#: inc/classes/class-admin.php:443 inc/classes/class-admin.php:444
+#: templates/rmp-editor.php:98 templates/rmp-themes.php:17
+msgid "Themes"
+msgstr ""
+
+#: inc/classes/class-admin.php:521 inc/classes/class-admin.php:585
+msgid "Customize"
+msgstr ""
+
+#: inc/classes/class-admin.php:540
+msgid "Shortcode"
+msgstr ""
+
+#: inc/classes/class-admin.php:541
+msgid "Actions"
+msgstr ""
+
+#: inc/classes/class-admin.php:542
+msgid "Date"
+msgstr ""
+
+#: inc/classes/class-admin.php:610 inc/classes/class-admin.php:612
+#: inc/classes/class-admin.php:626 inc/classes/class-admin.php:627
+#: templates/rmp-settings.php:39
+msgid "Responsive Menu"
+msgstr ""
+
+#: inc/classes/class-admin.php:613
+msgid "Parent Menu"
+msgstr ""
+
+#: inc/classes/class-admin.php:614
+msgid "Menus"
+msgstr ""
+
+#: inc/classes/class-admin.php:615
+msgid "View Menu"
+msgstr ""
+
+#: inc/classes/class-admin.php:616
+msgid "Add New Menu"
+msgstr ""
+
+#: inc/classes/class-admin.php:617 templates/new-menu-wizard.php:20
+msgid "Create New Menu"
+msgstr ""
+
+#: inc/classes/class-admin.php:618
+msgid "Edit Menu"
+msgstr ""
+
+#: inc/classes/class-admin.php:619
+msgid "Update Menu"
+msgstr ""
+
+#: inc/classes/class-admin.php:620
+msgid "Search Menu"
+msgstr ""
+
+#: inc/classes/class-admin.php:621
+msgid "Not Found"
+msgstr ""
+
+#: inc/classes/class-admin.php:622
+msgid "Not found in Trash"
+msgstr ""
+
+#: inc/classes/class-control-manager.php:1055 templates/rmp-editor.php:528
+msgid "Mobile"
+msgstr ""
+
+#: inc/classes/class-control-manager.php:1075 templates/rmp-editor.php:542
+msgid "Tablet"
+msgstr ""
+
+#: inc/classes/class-control-manager.php:1095
+msgid "Desktop"
+msgstr ""
+
+#: inc/classes/class-control-manager.php:1107
+msgid "Device Visibility"
+msgstr ""
+
+#: inc/classes/class-editor-manager.php:63 inc/classes/class-ui-manager.php:71
+msgid "Menu Item ID missing"
+msgstr ""
+
+#: inc/classes/class-editor-manager.php:69
+#: inc/classes/class-editor-manager.php:154
+#: inc/classes/class-editor-manager.php:239
+#: inc/classes/class-theme-manager.php:350
+msgid "Menu ID missing !"
+msgstr ""
+
+#: inc/classes/class-editor-manager.php:73
+msgid "Unable to get mega menu settings"
+msgstr ""
+
+#: inc/classes/class-editor-manager.php:129
+#: inc/classes/class-ui-manager.php:105 inc/classes/class-ui-manager.php:378
+msgid "Success"
+msgstr ""
+
+#: inc/classes/class-editor-manager.php:133
+msgid "Menu not found"
+msgstr ""
+
+#: inc/classes/class-editor.php:90
+msgid "Close the editor and go back to the previous page"
+msgstr ""
+
+#: inc/classes/class-editor.php:121
+msgid "Update"
+msgstr ""
+
+#: inc/classes/class-editor.php:134
+msgid "Save as theme"
+msgstr ""
+
+#: inc/classes/class-editor.php:141
+msgid "Change theme"
+msgstr ""
+
+#: inc/classes/class-editor.php:153
+msgid "Enter mobile preview mode"
+msgstr ""
+
+#: inc/classes/class-editor.php:160
+msgid "Enter tablet preview mode"
+msgstr ""
+
+#: inc/classes/class-editor.php:167
+msgid "Enter desktop preview mode"
+msgstr ""
+
+#: inc/classes/class-theme-manager.php:106
+#: inc/classes/class-theme-manager.php:158
+#: inc/classes/class-theme-manager.php:179
+#: inc/classes/class-theme-manager.php:344
+msgid "Theme Name Missing"
+msgstr ""
+
+#: inc/classes/class-theme-manager.php:130
+msgid "Theme applied"
+msgstr ""
+
+#: inc/classes/class-theme-manager.php:169
+msgid "Theme deleted"
+msgstr ""
+
+#: inc/classes/class-theme-manager.php:474
+msgid "<h2>Coming soon..</h2>"
+msgstr ""
+
+#: inc/classes/class-theme-manager.php:480
+msgid "BUY NOW"
+msgstr ""
+
+#: inc/classes/class-theme-manager.php:481
+msgid "PRO"
+msgstr ""
+
+#: inc/classes/class-theme-manager.php:483
+msgid "FREE"
+msgstr ""
+
+#: inc/classes/class-theme-manager.php:484
+msgid "INSTALL"
+msgstr ""
+
+#: inc/classes/class-ui-manager.php:78
+msgid "Column Sizes Missing !"
+msgstr ""
+
+#: inc/classes/class-ui-manager.php:99
+msgid "Column Size Missing !"
+msgstr ""
+
+#: inc/classes/class-ui-manager.php:364
+msgid "Menu ID is missing !"
+msgstr ""
+
+#: inc/classes/class-ui-manager.php:372
+msgid "Menu item ID is missing !"
+msgstr ""
+
+#: inc/classes/class-ui-manager.php:397
+msgid "Select Structure"
+msgstr ""
+
+#: inc/classes/class-ui-manager.php:484
+msgid "Column Padding"
+msgstr ""
+
+#: inc/classes/class-ui-manager.php:495 inc/classes/class-ui-manager.php:730
+#: templates/rmp-editor.php:242 templates/rmp-editor.php:457
+#: templates/rmp-editor.php:1212 templates/rmp-editor.php:1447
+#: templates/rmp-editor.php:1911 templates/rmp-editor.php:2191
+#: templates/menu-elements/search.php:40
+msgid "Background Color"
+msgstr ""
+
+#: inc/classes/class-ui-manager.php:503 templates/rmp-editor.php:1227
+#: templates/rmp-editor.php:2202
+msgid "Background Hover"
+msgstr ""
+
+#: inc/classes/class-ui-manager.php:715
+msgid "Panel Width"
+msgstr ""
+
+#: inc/classes/class-ui-manager.php:738 templates/rmp-editor.php:2782
+msgid "Background Image"
+msgstr ""
+
+#: inc/classes/class-ui-manager.php:748
+msgid "Panel Padding"
+msgstr ""
+
+#: inc/classes/class-ui-manager.php:759
+msgid "Sync live preview.."
+msgstr ""
+
+#: inc/classes/class-widget-manager.php:114
+#: inc/classes/class-widget-manager.php:177
+msgid "Widget Id is missing"
+msgstr ""
+
+#: inc/classes/class-widget-manager.php:121
+msgid "Base Id is missing"
+msgstr ""
+
+#: inc/classes/class-widget-manager.php:128
+#, php-format
+msgid "Saved %s"
+msgstr ""
+
+#: inc/classes/class-widget-manager.php:130
+#, php-format
+msgid "Failed to save %s"
+msgstr ""
+
+#: inc/classes/class-widget-manager.php:186
+#, php-format
+msgid "Failed to edit %s"
+msgstr ""
+
+#: inc/classes/class-widget-manager.php:207
+#, php-format
+msgid "Deleted %s"
+msgstr ""
+
+#: inc/classes/class-widget-manager.php:314
+msgid "Delete"
+msgstr ""
+
+#: inc/classes/class-widget-manager.php:315
+msgid "Done"
+msgstr ""
+
+#: inc/classes/class-widget-manager.php:318
+msgid "Save"
+msgstr ""
+
+#: inc/classes/class-widget-manager.php:343
+msgid "Widget parameter is missing"
+msgstr ""
+
+#: inc/classes/class-widget-manager.php:352
+#, php-format
+msgid "Failed to add %s to %d"
+msgstr ""
+
+#: inc/classes/class-widget-manager.php:505
+msgid "Responsive Mega Menu Widgets"
+msgstr ""
+
+#: inc/classes/class-widget-manager.php:506
+msgid ""
+"Here it stored all the widgets of responsive mega menu so please add the "
+"widgets from menu"
+msgstr ""
+
+#: inc/helpers/default-options.php:133
+msgid "Off"
+msgstr ""
+
+#: inc/helpers/default-options.php:134
+msgid "Boring"
+msgstr ""
+
+#: inc/helpers/default-options.php:135
+msgid "3DX"
+msgstr ""
+
+#: inc/helpers/default-options.php:136
+msgid "3DX Reverse"
+msgstr ""
+
+#: inc/helpers/default-options.php:137
+msgid "3DY"
+msgstr ""
+
+#: inc/helpers/default-options.php:138
+msgid "3DY Reverse"
+msgstr ""
+
+#: inc/helpers/default-options.php:139
+msgid "Arrow"
+msgstr ""
+
+#: inc/helpers/default-options.php:140
+msgid "Arrow Reverse"
+msgstr ""
+
+#: inc/helpers/default-options.php:141
+msgid "Arrow Alt"
+msgstr ""
+
+#: inc/helpers/default-options.php:142
+msgid "Arrow Alt Reverse"
+msgstr ""
+
+#: inc/license/Check.php:232
+#, php-format
+msgid ""
+"There is a new version of %1$s available. %2$sView version %3$s details%4$s."
+msgstr ""
+
+#: inc/license/Check.php:240
+#, php-format
+msgid ""
+"There is a new version of %1$s available. %2$sView version %3$s details%4$s "
+"or %5$supdate now%6$s."
+msgstr ""
+
+#: inc/license/Check.php:473
+msgid "You do not have permission to install plugin updates"
+msgstr ""
+
+#: inc/license/Check.php:473
+msgid "Error"
+msgstr ""
+
+#: templates/icon-dialog.php:18
+msgid "Select icon"
+msgstr ""
+
+#: templates/icon-dialog.php:24
+msgid "Dashicons"
+msgstr ""
+
+#: templates/icon-dialog.php:25
+msgid "Material Icons (mdi)"
+msgstr ""
+
+#: templates/icon-dialog.php:26
+msgid "FontAwesome Solid (fas)"
+msgstr ""
+
+#: templates/icon-dialog.php:27
+msgid "FontAwesome Brand (fab)"
+msgstr ""
+
+#: templates/icon-dialog.php:28
+msgid "FontAwesome Regular (far)"
+msgstr ""
+
+#: templates/icon-dialog.php:29
+msgid "GlyphIcon"
+msgstr ""
+
+#: templates/icon-dialog.php:30
+msgid "Custom"
+msgstr ""
+
+#: templates/icon-dialog.php:86
+msgid "Use theme"
+msgstr ""
+
+#: templates/icon-dialog.php:93 templates/new-menu-wizard.php:158
+msgid "Premium"
+msgstr ""
+
+#: templates/icon-dialog.php:94 templates/new-menu-wizard.php:157
+msgid "My Downloads"
+msgstr ""
+
+#: templates/icon-dialog.php:95 templates/new-menu-wizard.php:159
+msgid "Templates"
+msgstr ""
+
+#: templates/new-menu-wizard.php:30
+msgid "Menu Setting"
+msgstr ""
+
+#: templates/new-menu-wizard.php:31
+msgid "Fill menu settings and show/hide as per preferences"
+msgstr ""
+
+#: templates/new-menu-wizard.php:42
+msgid "Select Themes"
+msgstr ""
+
+#: templates/new-menu-wizard.php:43
+msgid "Use pre-made theme to speed up the things."
+msgstr ""
+
+#: templates/new-menu-wizard.php:52
+msgid "Enter Menu Name"
+msgstr ""
+
+#: templates/new-menu-wizard.php:56
+msgid "Menu to Use"
+msgstr ""
+
+#: templates/new-menu-wizard.php:126
+msgid "Display Condition"
+msgstr ""
+
+#: templates/new-menu-wizard.php:130 templates/rmp-editor.php:950
+msgid "Show on all pages "
+msgstr ""
+
+#: templates/new-menu-wizard.php:131 templates/rmp-editor.php:951
+msgid "Exclude some pages "
+msgstr ""
+
+#: templates/new-menu-wizard.php:132 templates/rmp-editor.php:952
+msgid "Include only pages "
+msgstr ""
+
+#: templates/new-menu-wizard.php:133 templates/rmp-editor.php:953
+msgid "Use as shortcode"
+msgstr ""
+
+#: templates/new-menu-wizard.php:215
+msgid "Next"
+msgstr ""
+
+#: templates/new-menu-wizard.php:218
+msgid "Create Menu"
+msgstr ""
+
+#: templates/rmp-editor.php:51
+msgid "rmp-menu-editor"
+msgstr ""
+
+#: templates/rmp-editor.php:69
+msgid "Mobile Menu"
+msgstr ""
+
+#: templates/rmp-editor.php:76
+msgid "Desktop Menu"
+msgstr ""
+
+#: templates/rmp-editor.php:83
+msgid "Menu Items"
+msgstr ""
+
+#: templates/rmp-editor.php:90
+msgid "Header Bar"
+msgstr ""
+
+#: templates/rmp-editor.php:115
+msgid "Theme options"
+msgstr ""
+
+#: templates/rmp-editor.php:131
+msgid "Save As Theme"
+msgstr ""
+
+#: templates/rmp-editor.php:140
+msgid "Change Theme"
+msgstr ""
+
+#: templates/rmp-editor.php:158 templates/rmp-editor.php:885
+msgid "Theme Location"
+msgstr ""
+
+#: templates/rmp-editor.php:166
+msgid "Menu from location"
+msgstr ""
+
+#: templates/rmp-editor.php:169
+msgid ""
+"If you want to use a theme location menu rather than a specific menu then "
+"you can select that here."
+msgstr ""
+
+#: templates/rmp-editor.php:180
+msgid "Sub Level Menu Trigger"
+msgstr ""
+
+#: templates/rmp-editor.php:187 templates/rmp-editor.php:675
+#: templates/rmp-editor.php:1775 templates/rmp-editor.php:2707
+msgid "Width"
+msgstr ""
+
+#: templates/rmp-editor.php:208 templates/rmp-editor.php:408
+#: templates/rmp-editor.php:1796
+msgid "Height"
+msgstr ""
+
+#: templates/rmp-editor.php:229 templates/rmp-editor.php:692
+#: templates/rmp-editor.php:1818 templates/rmp-editor.php:2257
+msgid "Position"
+msgstr ""
+
+#: templates/rmp-editor.php:247 templates/rmp-editor.php:287
+#: templates/rmp-editor.php:326 templates/rmp-editor.php:1176
+#: templates/rmp-editor.php:1279 templates/rmp-editor.php:1451
+#: templates/rmp-editor.php:1510 templates/rmp-editor.php:1836
+#: templates/rmp-editor.php:1876 templates/rmp-editor.php:1916
+msgid "Normal"
+msgstr ""
+
+#: templates/rmp-editor.php:255 templates/rmp-editor.php:295
+#: templates/rmp-editor.php:334 templates/rmp-editor.php:1184
+#: templates/rmp-editor.php:1287 templates/rmp-editor.php:1460
+#: templates/rmp-editor.php:1518 templates/rmp-editor.php:1844
+#: templates/rmp-editor.php:1884 templates/rmp-editor.php:1924
+msgid "Hover"
+msgstr ""
+
+#: templates/rmp-editor.php:263 templates/rmp-editor.php:303
+#: templates/rmp-editor.php:342 templates/rmp-editor.php:1193
+#: templates/rmp-editor.php:1295 templates/rmp-editor.php:1469
+#: templates/rmp-editor.php:1526 templates/rmp-editor.php:1852
+#: templates/rmp-editor.php:1892 templates/rmp-editor.php:1932
+msgid "Active Item"
+msgstr ""
+
+#: templates/rmp-editor.php:271 templates/rmp-editor.php:311
+#: templates/rmp-editor.php:350 templates/rmp-editor.php:1201
+#: templates/rmp-editor.php:1303 templates/rmp-editor.php:1477
+#: templates/rmp-editor.php:1534 templates/rmp-editor.php:1634
+#: templates/rmp-editor.php:1860 templates/rmp-editor.php:1900
+#: templates/rmp-editor.php:1940
+msgid "Active Item Hover"
+msgstr ""
+
+#: templates/rmp-editor.php:282 templates/rmp-editor.php:1871
+#: templates/menu-elements/search.php:49
+msgid "Border Color"
+msgstr ""
+
+#: templates/rmp-editor.php:321
+msgid "Arrow Text Color"
+msgstr ""
+
+#: templates/rmp-editor.php:386
+msgid "Enable Header Bar"
+msgstr ""
+
+#: templates/rmp-editor.php:390 templates/rmp-editor.php:1985
+msgid "Enabled"
+msgstr ""
+
+#: templates/rmp-editor.php:394
+msgid ""
+"Turning this on will make the Header Bar show on your site automatically."
+msgstr ""
+
+#: templates/rmp-editor.php:403 templates/rmp-editor.php:2702
+msgid "Appearance"
+msgstr ""
+
+#: templates/rmp-editor.php:424 templates/rmp-editor.php:1116
+#: templates/rmp-editor.php:1568 templates/rmp-editor.php:2582
+msgid "Font Family"
+msgstr ""
+
+#: templates/rmp-editor.php:426 templates/rmp-editor.php:2585
+msgid "Enter font"
+msgstr ""
+
+#: templates/rmp-editor.php:433 templates/rmp-editor.php:1096
+#: templates/rmp-editor.php:1551 templates/rmp-editor.php:2593
+#: templates/menu-elements/additional-content.php:32
+#: templates/menu-elements/title.php:79
+msgid "Font Size"
+msgstr ""
+
+#: templates/rmp-editor.php:450 templates/rmp-editor.php:1170
+#: templates/rmp-editor.php:1606 templates/rmp-editor.php:1831
+#: templates/rmp-editor.php:2629
+#: templates/menu-elements/additional-content.php:56
+#: templates/menu-elements/search.php:33
+msgid "Text Color"
+msgstr ""
+
+#: templates/rmp-editor.php:468
+msgid "Advance Settings"
+msgstr ""
+
+#: templates/rmp-editor.php:474 templates/rmp-editor.php:2127
+msgid "Breakpoint"
+msgstr ""
+
+#: templates/rmp-editor.php:480
+msgid "Show the header bar below this screen resolution"
+msgstr ""
+
+#: templates/rmp-editor.php:488
+msgid "Positioning"
+msgstr ""
+
+#: templates/rmp-editor.php:498
+msgid "Adjust Page"
+msgstr ""
+
+#: templates/rmp-editor.php:502
+msgid ""
+"Turning this on will automatically adjust your page to bring the content "
+"down inline with the header bar."
+msgstr ""
+
+#: templates/rmp-editor.php:522
+msgid "Device Breakpoints"
+msgstr ""
+
+#: templates/rmp-editor.php:534
+msgid "Set the breakpoint below which you want mobile menu"
+msgstr ""
+
+#: templates/rmp-editor.php:548
+msgid "Set the breakpoint below which you want tablet menu"
+msgstr ""
+
+#: templates/rmp-editor.php:559
+msgid "Animation Speeds"
+msgstr ""
+
+#: templates/rmp-editor.php:566
+msgid "Colours"
+msgstr ""
+
+#: templates/rmp-editor.php:573
+msgid ""
+"Specify the speed at which colours transition from standard to active or "
+"hover states."
+msgstr ""
+
+#: templates/rmp-editor.php:581
+msgid "Sub Menus"
+msgstr ""
+
+#: templates/rmp-editor.php:588
+msgid "Specify the speed at which the sub menus transition."
+msgstr ""
+
+#: templates/rmp-editor.php:602
+msgid "Technical"
+msgstr ""
+
+#: templates/rmp-editor.php:607
+msgid "Trigger Menu on page load"
+msgstr ""
+
+#: templates/rmp-editor.php:611
+msgid "The menu will appear in expanded state when the page loads."
+msgstr ""
+
+#: templates/rmp-editor.php:620
+msgid "Disable Background Scrolling"
+msgstr ""
+
+#: templates/rmp-editor.php:624
+msgid "This will disable the background page scrolling."
+msgstr ""
+
+#: templates/rmp-editor.php:635
+msgid "Page Overlay"
+msgstr ""
+
+#: templates/rmp-editor.php:638
+msgid "Put a backdrop when menu is active."
+msgstr ""
+
+#: templates/rmp-editor.php:643
+msgid "Enable"
+msgstr ""
+
+#: templates/rmp-editor.php:652 templates/rmp-editor.php:1610
+msgid "Color"
+msgstr ""
+
+#: templates/rmp-editor.php:670
+msgid "General Setup"
+msgstr ""
+
+#: templates/rmp-editor.php:700
+msgid "Alignment"
+msgstr ""
+
+#: templates/rmp-editor.php:711
+msgid "Dropdown Effect"
+msgstr ""
+
+#: templates/rmp-editor.php:725
+msgid "Transition Delay"
+msgstr ""
+
+#: templates/rmp-editor.php:736
+msgid "Hide original menu"
+msgstr ""
+
+#: templates/rmp-editor.php:739 templates/rmp-editor.php:2844
+msgid "CSS Selector"
+msgstr ""
+
+#: templates/rmp-editor.php:745
+msgid "Add a valid CSS selector that contains original theme menu."
+msgstr ""
+
+#: templates/rmp-editor.php:753
+msgid "Mega Menu Setup"
+msgstr ""
+
+#: templates/rmp-editor.php:765 templates/rmp-editor.php:2069
+#: templates/rmp-editor.php:2856 templates/menu-elements/menu.php:13
+msgid "Behaviour"
+msgstr ""
+
+#: templates/rmp-editor.php:770
+msgid "Click to open dropdown"
+msgstr ""
+
+#: templates/rmp-editor.php:774
+msgid "Use click event instead of hover event to show dropdowns"
+msgstr ""
+
+#: templates/rmp-editor.php:782
+msgid "Hide menu on scroll"
+msgstr ""
+
+#: templates/rmp-editor.php:807
+msgid "Container"
+msgstr ""
+
+#: templates/rmp-editor.php:816
+msgid "Toggle button"
+msgstr ""
+
+#: templates/rmp-editor.php:831
+msgid "General Settings"
+msgstr ""
+
+#: templates/rmp-editor.php:840
+msgid "Advanced Settings"
+msgstr ""
+
+#: templates/rmp-editor.php:849
+msgid "Legacy Settings"
+msgstr ""
+
+#: templates/rmp-editor.php:862
+msgid "Menu Settings"
+msgstr ""
+
+#: templates/rmp-editor.php:869
+msgid "Name"
+msgstr ""
+
+#: templates/rmp-editor.php:879
+msgid "If no options appear here, make sure you have set them up under"
+msgstr ""
+
+#: templates/rmp-editor.php:880
+msgid "Appearance > Menus or"
+msgstr ""
+
+#: templates/rmp-editor.php:882
+msgid "here"
+msgstr ""
+
+#: templates/rmp-editor.php:883
+msgid "Please note that the"
+msgstr ""
+
+#: templates/rmp-editor.php:886
+msgid "option will take precedence over this."
+msgstr ""
+
+#: templates/rmp-editor.php:895
+msgid "Choose WP Menu"
+msgstr ""
+
+#: templates/rmp-editor.php:924
+msgid " Use different menu for mobile & tablet "
+msgstr ""
+
+#: templates/rmp-editor.php:933
+msgid "Mobile & Tablet Menu"
+msgstr ""
+
+#: templates/rmp-editor.php:946
+msgid "Display condition"
+msgstr ""
+
+#: templates/rmp-editor.php:965
+msgid "Select Pages"
+msgstr ""
+
+#: templates/rmp-editor.php:977
+msgid "Hide Theme Menu"
+msgstr ""
+
+#: templates/rmp-editor.php:983
+msgid ""
+"To hide your current theme menu you need to put the CSS selector here. Any "
+"legal CSS selection criteria is valid."
+msgstr ""
+
+#: templates/rmp-editor.php:998
+msgid "Item Icon"
+msgstr ""
+
+#: templates/rmp-editor.php:1006
+msgid "Item Stytling"
+msgstr ""
+
+#: templates/rmp-editor.php:1035 templates/rmp-editor.php:1325
+msgid "Item Height"
+msgstr ""
+
+#: templates/rmp-editor.php:1053 templates/rmp-editor.php:1343
+#: templates/rmp-editor.php:2418 templates/rmp-editor.php:2610
+msgid "Line Height"
+msgstr ""
+
+#: templates/rmp-editor.php:1071
+msgid "Padding"
+msgstr ""
+
+#: templates/rmp-editor.php:1091 templates/rmp-editor.php:1547
+msgid "Typography"
+msgstr ""
+
+#: templates/rmp-editor.php:1125 templates/rmp-editor.php:1577
+msgid "Font Weight"
+msgstr ""
+
+#: templates/rmp-editor.php:1134 templates/rmp-editor.php:1585
+#: templates/menu-elements/additional-content.php:47
+#: templates/menu-elements/title.php:94
+msgid "Text Alignment"
+msgstr ""
+
+#: templates/rmp-editor.php:1143 templates/rmp-editor.php:1593
+msgid "Letter Spacing"
+msgstr ""
+
+#: templates/rmp-editor.php:1155
+msgid "Word Wrap"
+msgstr ""
+
+#: templates/rmp-editor.php:1217
+msgid "Background"
+msgstr ""
+
+#: templates/rmp-editor.php:1236
+msgid "Active Item Background"
+msgstr ""
+
+#: templates/rmp-editor.php:1244
+msgid "Active Item Background Hover"
+msgstr ""
+
+#: templates/rmp-editor.php:1254 templates/rmp-editor.php:1486
+msgid "Border"
+msgstr ""
+
+#: templates/rmp-editor.php:1259 templates/rmp-editor.php:1490
+msgid "Border Width"
+msgstr ""
+
+#: templates/rmp-editor.php:1363
+msgid "Paddings"
+msgstr ""
+
+#: templates/rmp-editor.php:1367 templates/rmp-editor.php:2243
+msgid "Side"
+msgstr ""
+
+#: templates/rmp-editor.php:1378
+msgid "Child Level 1"
+msgstr ""
+
+#: templates/rmp-editor.php:1395
+msgid "Child Level 2"
+msgstr ""
+
+#: templates/rmp-editor.php:1412
+msgid "Child Level 3"
+msgstr ""
+
+#: templates/rmp-editor.php:1429
+msgid "Child Level 4"
+msgstr ""
+
+#: templates/rmp-editor.php:1619
+msgid "Hover Color"
+msgstr ""
+
+#: templates/rmp-editor.php:1627
+msgid "Active Item Color"
+msgstr ""
+
+#: templates/rmp-editor.php:1651
+msgid "Trigger Icon"
+msgstr ""
+
+#: templates/rmp-editor.php:1686
+msgid "Text Shape"
+msgstr ""
+
+#: templates/rmp-editor.php:1695
+msgid "Active Text Shape"
+msgstr ""
+
+#: templates/rmp-editor.php:1714 templates/rmp-editor.php:2477
+msgid "Font Icon"
+msgstr ""
+
+#: templates/rmp-editor.php:1725 templates/rmp-editor.php:2491
+msgid "Active Font Icon"
+msgstr ""
+
+#: templates/rmp-editor.php:1746 templates/rmp-editor.php:2512
+#: templates/header-elements/logo.php:20 templates/menu-elements/title.php:52
+msgid "Image"
+msgstr ""
+
+#: templates/rmp-editor.php:1757 templates/rmp-editor.php:2525
+msgid "Active Image"
+msgstr ""
+
+#: templates/rmp-editor.php:1955 templates/rmp-editor.php:2366
+#: templates/rmp-editor.php:2795
+msgid "Animation"
+msgstr ""
+
+#: templates/rmp-editor.php:1997
+msgid "Appearing Side"
+msgstr ""
+
+#: templates/rmp-editor.php:2007
+msgid "Delay"
+msgstr ""
+
+#: templates/rmp-editor.php:2019
+msgid "Speed"
+msgstr ""
+
+#: templates/rmp-editor.php:2039
+msgid "Enabled Sliding"
+msgstr ""
+
+#: templates/rmp-editor.php:2051
+msgid "Back Text"
+msgstr ""
+
+#: templates/rmp-editor.php:2058
+msgid ""
+"You can specify the text used for clicking to get back to the previous level "
+"when using the slide effect.."
+msgstr ""
+
+#: templates/rmp-editor.php:2074
+msgid "Use Accordion"
+msgstr ""
+
+#: templates/rmp-editor.php:2083
+msgid "Auto Expand All Sub Menus"
+msgstr ""
+
+#: templates/rmp-editor.php:2092
+msgid "Auto Expand Current Sub Menus"
+msgstr ""
+
+#: templates/rmp-editor.php:2101
+msgid "Expand Sub items on Parent Item Click"
+msgstr ""
+
+#: templates/rmp-editor.php:2122
+msgid "Hamburger Breakpoint"
+msgstr ""
+
+#: templates/rmp-editor.php:2133
+msgid "Show the toggle button below this screen resolution."
+msgstr ""
+
+#: templates/rmp-editor.php:2144
+msgid "Button Style"
+msgstr ""
+
+#: templates/rmp-editor.php:2151
+msgid "Container Width"
+msgstr ""
+
+#: templates/rmp-editor.php:2168
+msgid "Container Height"
+msgstr ""
+
+#: templates/rmp-editor.php:2212
+msgid "Active Color"
+msgstr ""
+
+#: templates/rmp-editor.php:2220
+msgid "Transparent Background"
+msgstr ""
+
+#: templates/rmp-editor.php:2236
+msgid "Button Position"
+msgstr ""
+
+#: templates/rmp-editor.php:2271
+msgid "Distance from Side"
+msgstr ""
+
+#: templates/rmp-editor.php:2292
+msgid "Distance from Top"
+msgstr ""
+
+#: templates/rmp-editor.php:2314
+msgid "Push Button with Menu"
+msgstr ""
+
+#: templates/rmp-editor.php:2317
+msgid "The toggle button will slide along with menu container."
+msgstr ""
+
+#: templates/rmp-editor.php:2330
+msgid "Button Type"
+msgstr ""
+
+#: templates/rmp-editor.php:2376
+msgid "Line Spacing"
+msgstr ""
+
+#: templates/rmp-editor.php:2398
+msgid "Line Width"
+msgstr ""
+
+#: templates/rmp-editor.php:2441
+msgid "Line Color"
+msgstr ""
+
+#: templates/rmp-editor.php:2449
+msgid "Line Hover"
+msgstr ""
+
+#: templates/rmp-editor.php:2459
+msgid "Line Active"
+msgstr ""
+
+#: templates/rmp-editor.php:2484
+msgid "Use a custom font icon instead of standard hamburger lines"
+msgstr ""
+
+#: templates/rmp-editor.php:2519
+msgid "Use a custom image instead of standard hamburger lines."
+msgstr ""
+
+#: templates/rmp-editor.php:2541
+msgid "Button Text"
+msgstr ""
+
+#: templates/rmp-editor.php:2548
+msgid "Text"
+msgstr ""
+
+#: templates/rmp-editor.php:2551 templates/rmp-editor.php:2563
+msgid "Enter text"
+msgstr ""
+
+#: templates/rmp-editor.php:2555
+msgid ""
+"Add text along with hamburger icon/image when button is in active state."
+msgstr ""
+
+#: templates/rmp-editor.php:2560
+msgid "Active Text"
+msgstr ""
+
+#: templates/rmp-editor.php:2573
+msgid "Text Position"
+msgstr ""
+
+#: templates/rmp-editor.php:2642
+msgid "Button Behaviour"
+msgstr ""
+
+#: templates/rmp-editor.php:2647
+msgid "Toggle menu on click"
+msgstr ""
+
+#: templates/rmp-editor.php:2655
+msgid "Toggle menu on hover"
+msgstr ""
+
+#: templates/rmp-editor.php:2663
+msgid "Custom Toggle Selector"
+msgstr ""
+
+#: templates/rmp-editor.php:2670
+msgid ""
+"If you don't want to use the button that comes with the menu, you can "
+"specify your own container trigger here. Any CSS selector is accepted."
+msgstr ""
+
+#: templates/rmp-editor.php:2713 templates/rmp-editor.php:2731
+#: templates/rmp-editor.php:2747 templates/header-elements/logo.php:47
+#: templates/header-elements/logo.php:63
+msgid "Enter value"
+msgstr ""
+
+#: templates/rmp-editor.php:2726
+msgid "Maximum Width"
+msgstr ""
+
+#: templates/rmp-editor.php:2742
+msgid "Minimum Width"
+msgstr ""
+
+#: templates/rmp-editor.php:2760
+msgid "Auto Height"
+msgstr ""
+
+#: templates/rmp-editor.php:2764
+msgid "Limit container height upto last container element"
+msgstr ""
+
+#: templates/rmp-editor.php:2774
+msgid "Container Background"
+msgstr ""
+
+#: templates/rmp-editor.php:2800
+msgid "Direction"
+msgstr ""
+
+#: templates/rmp-editor.php:2803
+msgid "Set the viewport side for container entry."
+msgstr ""
+
+#: templates/rmp-editor.php:2812
+msgid "Type"
+msgstr ""
+
+#: templates/rmp-editor.php:2824
+msgid "Transition delay"
+msgstr ""
+
+#: templates/rmp-editor.php:2830
+msgid "Control the speed of animation for container entry and exit."
+msgstr ""
+
+#: templates/rmp-editor.php:2838
+msgid "Push Wrapper"
+msgstr ""
+
+#: templates/rmp-editor.php:2842
+msgid ""
+"Mention the CSS selector of the main element which should be pushed when "
+"using push animations."
+msgstr ""
+
+#: templates/rmp-editor.php:2861
+msgid "Hide Menu On"
+msgstr ""
+
+#: templates/rmp-editor.php:2865
+msgid "Page Clicks"
+msgstr ""
+
+#: templates/rmp-editor.php:2872
+msgid "Page Scroll"
+msgstr ""
+
+#: templates/rmp-editor.php:2879
+msgid "Link Clicks"
+msgstr ""
+
+#: templates/rmp-editor.php:2888
+msgid "Enable Touch Gestures"
+msgstr ""
+
+#: templates/rmp-editor.php:2891
+msgid ""
+"This will enable you to drag or swipe to close the container on touch "
+"devices."
+msgstr ""
+
+#: templates/rmp-editor.php:2901
+msgid "Keyboard Controls"
+msgstr ""
+
+#: templates/rmp-editor.php:2903
+msgid "Select keystrokes to control the menu via keyboard."
+msgstr ""
+
+#: templates/rmp-editor.php:2911
+msgid "Hide Menu"
+msgstr ""
+
+#: templates/rmp-editor.php:2922
+msgid "Show Menu "
+msgstr ""
+
+#: templates/rmp-settings.php:44
+msgid "General"
+msgstr ""
+
+#: templates/rmp-settings.php:45
+msgid "Advance"
+msgstr ""
+
+#: templates/rmp-settings.php:46
+msgid "Style"
+msgstr ""
+
+#: templates/rmp-settings.php:52
+msgid "License Key"
+msgstr ""
+
+#: templates/rmp-settings.php:57
+msgid "Validate"
+msgstr ""
+
+#: templates/rmp-settings.php:63
+msgid ""
+"Don't panic. The plugin will still function 100%, it is only automatic "
+"updates that will be affected."
+msgstr ""
+
+#: templates/rmp-settings.php:64
+msgid "You can read about troubleshooting license issues."
+msgstr ""
+
+#: templates/rmp-settings.php:76
+msgid "Rollback Version"
+msgstr ""
+
+#: templates/rmp-settings.php:84
+msgid "Rollback"
+msgstr ""
+
+#: templates/rmp-settings.php:86
+msgid ""
+"Experiencing an issue with latest version 4.0.0? Rollback to a previous "
+"version before the issue appeared."
+msgstr ""
+
+#: templates/rmp-settings.php:99
+msgid "Adjust for WP Admin Bar"
+msgstr ""
+
+#: templates/rmp-settings.php:104
+msgid "None"
+msgstr ""
+
+#: templates/rmp-settings.php:105
+msgid "Adjust"
+msgstr ""
+
+#: templates/rmp-settings.php:106
+msgid "Hide"
+msgstr ""
+
+#: templates/rmp-settings.php:109
+msgid ""
+"If you use the WP Admin bar when logged in, this will help you to adjust the "
+"admin bar."
+msgstr ""
+
+#: templates/rmp-settings.php:117
+msgid "Use external files"
+msgstr ""
+
+#: templates/rmp-settings.php:123
+msgid ""
+"Create external files for the CSS and JavaScrips created by this plugin."
+msgstr ""
+
+#: templates/rmp-settings.php:131
+msgid "Minify scripts"
+msgstr ""
+
+#: templates/rmp-settings.php:137
+msgid "Minify the CSS and JavaScrips created by this plugin."
+msgstr ""
+
+#: templates/rmp-settings.php:145
+msgid "Place scripts in footer"
+msgstr ""
+
+#: templates/rmp-settings.php:151
+msgid "Place the JavaScrips created by this plugin in the footer."
+msgstr ""
+
+#: templates/rmp-settings.php:159
+msgid "Remove Dashicons"
+msgstr ""
+
+#: templates/rmp-settings.php:165
+msgid "Stop this plugins dashicons scripts from being load at frontend."
+msgstr ""
+
+#: templates/rmp-settings.php:172
+msgid "Remove FontAwesome Scripts"
+msgstr ""
+
+#: templates/rmp-settings.php:178
+msgid ""
+"Stop this plugins FontAwesome scripts from being load. Useful if you want to "
+"run your own FontAwesome version or already have it installed."
+msgstr ""
+
+#: templates/rmp-settings.php:185
+msgid "Remove GlyphIcon Scripts"
+msgstr ""
+
+#: templates/rmp-settings.php:191
+msgid "Stop this plugins GlyphIcon resource from being load at frontend."
+msgstr ""
+
+#: templates/rmp-settings.php:198
+msgid "Remove Material Icons Scripts"
+msgstr ""
+
+#: templates/rmp-settings.php:204
+msgid ""
+"Stop this plugins Material icons resource from being loaded at frontend."
+msgstr ""
+
+#: templates/rmp-settings.php:218
+msgid "Custom CSS"
+msgstr ""
+
+#: templates/rmp-settings.php:221
+msgid ""
+"You can place any Custom CSS you want here. Very useful if you want to make "
+"minor tweaks to some margins, paddings or colours or even for whole new "
+"layouts or designs."
+msgstr ""
+
+#: templates/rmp-settings.php:232
+msgid "Save Settings"
+msgstr ""
+
+#: templates/rmp-themes.php:21
+msgid "Upload theme"
+msgstr ""
+
+#: templates/rmp-themes.php:33
+msgid "Import Menu Theme To Your Library"
+msgstr ""
+
+#: templates/rmp-themes.php:35
+msgid "Drop zip files here or click to upload."
+msgstr ""
+
+#: templates/rmp-themes.php:39
+msgid "Select Files"
+msgstr ""
+
+#: templates/header-elements/additional-content.php:4
+msgid "HTML Content"
+msgstr ""
+
+#: templates/header-elements/additional-content.php:20
+msgid "Additional Contents"
+msgstr ""
+
+#: templates/header-elements/logo.php:4
+msgid "Logo"
+msgstr ""
+
+#: templates/header-elements/logo.php:31
+msgid "Target Link"
+msgstr ""
+
+#: templates/header-elements/logo.php:37
+msgid "Enter link"
+msgstr ""
+
+#: templates/header-elements/logo.php:42 templates/menu-elements/title.php:144
+msgid "Image Width"
+msgstr ""
+
+#: templates/header-elements/logo.php:58 templates/menu-elements/title.php:160
+msgid "Image Height"
+msgstr ""
+
+#: templates/header-elements/menu.php:4 templates/menu-elements/menu.php:3
+msgid "Menu"
+msgstr ""
+
+#: templates/header-elements/search.php:5 templates/menu-elements/search.php:4
+msgid "Search"
+msgstr ""
+
+#: templates/header-elements/title.php:4 templates/menu-elements/title.php:3
+msgid "Title"
+msgstr ""
+
+#: templates/header-elements/title.php:19 templates/menu-elements/title.php:22
+msgid "Title Text "
+msgstr ""
+
+#: templates/menu-elements/additional-content.php:3
+msgid "Additional Content"
+msgstr ""
+
+#: templates/menu-elements/additional-content.php:14
+#: templates/menu-elements/menu.php:12 templates/menu-elements/search.php:15
+#: templates/menu-elements/title.php:15
+msgid "Contents"
+msgstr ""
+
+#: templates/menu-elements/additional-content.php:15
+#: templates/menu-elements/search.php:16 templates/menu-elements/title.php:16
+msgid "Styles"
+msgstr ""
+
+#: templates/menu-elements/menu-item-icons.php:15
+#: templates/menu-elements/menu-item-icons.php:44
+msgid "Select Item"
+msgstr ""
+
+#: templates/menu-elements/menu-item-icons.php:75
+msgid "Add Icon"
+msgstr ""
+
+#: templates/menu-elements/menu.php:20
+msgid "Menu Background"
+msgstr ""
+
+#: templates/menu-elements/menu.php:28
+msgid "Depth Level"
+msgstr ""
+
+#: templates/menu-elements/menu.php:31
+msgid "Set the level of nesting for sub menus."
+msgstr ""
+
+#: templates/menu-elements/menu.php:44
+msgid "Item Descriptions"
+msgstr ""
+
+#: templates/menu-elements/menu.php:47
+msgid ""
+"Show the description text of menu items. Description text should be set "
+"while creating WordPress menus."
+msgstr ""
+
+#: templates/menu-elements/menu.php:59
+msgid "Custom Walker"
+msgstr ""
+
+#: templates/menu-elements/menu.php:64
+msgid "Modify the HTML output by using a custom Walker class."
+msgstr ""
+
+#: templates/menu-elements/menu.php:76
+msgid "Smooth Scroll Enabled"
+msgstr ""
+
+#: templates/menu-elements/menu.php:80
+msgid "The webpage will scroll smoothly to their target sections on same page."
+msgstr ""
+
+#: templates/menu-elements/menu.php:88
+msgid "Scroll Speed"
+msgstr ""
+
+#: templates/menu-elements/search.php:56
+msgid "Placeholder Color"
+msgstr ""
+
+#: templates/menu-elements/title.php:32
+msgid "Link "
+msgstr ""
+
+#: templates/menu-elements/title.php:42
+msgid "Link Target"
+msgstr ""
+
+#: templates/menu-elements/title.php:62
+msgid "Set Font"
+msgstr ""
+
+#: templates/menu-elements/title.php:149
+msgid "Enter width"
+msgstr ""
+
+#: templates/menu-elements/title.php:165
+msgid "Enter height"
+msgstr ""
