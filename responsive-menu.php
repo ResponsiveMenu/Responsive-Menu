@@ -12,6 +12,8 @@ License: GPL2
 Tags: responsive, menu, responsive menu, mega menu, max mega menu, max menu
 */
 
+define('RESPONSIVE_MENU_VERSION', '3.1.30');
+
 add_action('admin_init', 'check_responsive_menu_php_version');
 function check_responsive_menu_php_version() {
     if(version_compare(PHP_VERSION, '5.4', '<')):
