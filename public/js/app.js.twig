@@ -132,15 +132,15 @@ jQuery(document).ready(function($) {
                 e.stopPropagation();
                 self.triggerMenu();
             });
-            $(this.trigger).mouseup(function(){
-                $(self.trigger).blur();
+            $(this.trigger).on( 'mouseup', function(){
+                $(self.trigger).trigger('blur');
             });
             $('.responsive-menu-subarrow').on('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
                 self.triggerSubArrow(this);
             });
-            $(window).resize(function() {
+            $(window).on( 'resize', function() {
                 if($(window).width() > self.breakpoint) {
                     if(self.isOpen){
                         self.closeMenu();
@@ -190,13 +190,13 @@ jQuery(document).ready(function($) {
 
             {# Handle accessibility for slidebar menu. #}
             if (jQuery('#responsive-menu-button').css('display') != 'none') {
-                $('#responsive-menu-button,#responsive-menu a.responsive-menu-item-link, #responsive-menu-wrapper input').focus( function() {
+                $('#responsive-menu-button,#responsive-menu a.responsive-menu-item-link, #responsive-menu-wrapper input').on( 'focus', function() {
                     $(this).addClass('is-active');
                     $('html').addClass('responsive-menu-open');
                     $('#responsive-menu li').css({"opacity": "1", "margin-left": "0"});
                 });
 
-                $('#responsive-menu-button, a.responsive-menu-item-link,#responsive-menu-wrapper input').focusout( function() {
+                $('#responsive-menu-button, a.responsive-menu-item-link,#responsive-menu-wrapper input').on( 'focusout', function() {
                     if ( $(this).last('#responsive-menu-button a.responsive-menu-item-link') ) {
                         $(this).removeClass('is-active');
                         $('html').removeClass('responsive-menu-open');
@@ -205,8 +205,7 @@ jQuery(document).ready(function($) {
             }
 
             {# Handling menu with arrow keys #}
-            $('#responsive-menu a.responsive-menu-item-link').keydown(function(event) {
-                console.log( event.keyCode );
+            $('#responsive-menu a.responsive-menu-item-link').on( 'keydown', function(event) {
                 if ( [13,27,32,35,36,37,38,39,40].indexOf( event.keyCode) == -1) {
                     return;
                 }
