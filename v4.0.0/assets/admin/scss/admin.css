@@ -2620,3 +2620,10 @@ div.notice-responsive-menu .notice-responsive-menu-action a:hover {
 .upgrade-options .upgrade-notes p {
     font-size: 14px;
 }
+
+.rmp-admin-notice {
+    margin-top: 10px;
+    color: #e23f08;
+    font-size: 12px;
+    line-height: 20px;
+}
