@@ -68,12 +68,14 @@ else:
 
     $twig->addFunction(new Twig_SimpleFunction('menu_items', function($options) {
 
-        if($options['theme_location_menu'])
+        $menu = '';
+        if( $options['theme_location_menu'] ) {
             $menu = get_term(get_nav_menu_locations()[$options['theme_location_menu']], 'nav_menu')->name;
-        elseif($options['menu_to_use'])
+        } elseif( $options['menu_to_use'] ) {
             $menu = $options['menu_to_use'];
-        else
+        } elseif( ! empty( get_terms('nav_menu')[0]->slug ) ) {
             $menu = get_terms('nav_menu')[0]->slug;
+        }
 
         return wp_get_nav_menu_items($menu);
     }));

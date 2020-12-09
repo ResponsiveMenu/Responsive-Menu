@@ -19,6 +19,8 @@ if ( ! defined( 'RMP_PLUGIN_VERSION' ) ) {
     define( 'RMP_PLUGIN_VERSION', '4.0.0' );
 }
 
+define('RESPONSIVE_MENU_URL', plugin_dir_url( __FILE__ ) );
+
 add_action('admin_init', 'check_responsive_menu_php_version');
 function check_responsive_menu_php_version() {
     if(version_compare(PHP_VERSION, '5.4', '<')):
@@ -40,6 +42,36 @@ if(version_compare(PHP_VERSION, '5.4', '<'))
     return;
 
 if ( empty( get_option( 'is_rmp_new_version') ) && ! empty( get_option('responsive_menu_version') ) ) {
+
+/**
+ * Add admin notice to upgrade the plugin license.
+ */
+add_action( 'admin_notices', 'rmp_move_new_version_admin_notice' );
+function rmp_move_new_version_admin_notice() {
+
+    if ( ! empty( get_option( 'rm_upgrade_admin_notice' ) ) ) {
+        return;
+    }
+
+    if ( empty( $_GET['page'] ) || 'responsive-menu' !== $_GET['page'] ) {
+        return;
+    }
+?>
+
+    <div class="notice-responsive-menu notice error is-dismissible rmp-version-upgrade-notice">
+        <div class="notice-responsive-menu-logo">
+            <img src="<?php echo RESPONSIVE_MENU_URL;?>/imgs/responsive-menu-logo.png" width="60" height="60" alt="logo" />
+        </div>
+        <div class="notice-responsive-menu-message">
+            <h4 style="font-weight: 700;"><?php _e('Responsive Menu', 'responsive-menu-pro'); ?></h4>
+            <p><?php _e( 'Try out our new version with improved layout, live preview and many more.', 'responsive-menu-pro' ); ?></p>
+        </div>
+        <div class="notice-responsive-menu-action">
+            <a href="javascript:void(0)" class="rmp-upgrade-version" > <?php _e('Try, New version', 'responsive-menu-pro'); ?> </a>
+        </div>
+    </div>
+<?php
+}
 
 add_action( 'admin_notices', 'og_pro_deactivate_pro_version_notice');
 
