@@ -49,7 +49,7 @@ jQuery(function($) {
     /* <-- End Preview Options */
 
      /** Move to new version */
-     jQuery('#rmp-rollback-version').click( function(e) {
+     jQuery('.rmp-upgrade-version').on( 'click', function(e) {
         e.preventDefault();
         jQuery.ajax({
             url: ajaxurl,
@@ -64,6 +64,16 @@ jQuery(function($) {
                     location.href = response.data.redirect;    
                 }
             }
+        });
+    });
+
+    /** Call ajax to hide admin notice permanent. */
+    $( '.rmp-version-upgrade-notice' ).on( 'click', '.notice-dismiss', function( event ) {
+        event.preventDefault();
+        jQuery.ajax( {
+            type: "POST",
+            url:  ajaxurl,
+            data: "action=rmp_version_admin_notice_dismiss",
         });
     });
 
