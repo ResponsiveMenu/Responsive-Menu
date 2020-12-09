@@ -19,6 +19,7 @@ Highly customisable Responsive Menu Plugin for WordPress. With over 150 customis
 
 [https://responsive.menu](https://responsive.menu/?utm_source=readme&utm_medium=plugin&utm_campaign=reponsivemenu_plugin)
 [https://demo.responsive.menu](https://demo.responsive.menu/?utm_source=readme&utm_medium=plugin&utm_campaign=reponsivemenu_plugin)
+Click to see the [Roadmap](https://next.expresstech.io/responsive-menu)
 
 **Requirements:**
 
