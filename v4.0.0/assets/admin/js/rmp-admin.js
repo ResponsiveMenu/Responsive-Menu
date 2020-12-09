@@ -129,7 +129,7 @@ jQuery( document ).ready( function( jQuery ) {
 
 		const version = jQuery( '#rmp-versions' ).val();
 
-		if ( '3.1.29' === version ) {
+		if ( '3.1.30' === version ) {
 			jQuery.ajax( {
 				url: rmpObject.ajaxURL,
 				data: { action: 'rmp_rollback_version' },
