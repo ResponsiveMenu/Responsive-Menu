@@ -2371,6 +2371,15 @@ $options = $option_manager->get_options( $menu_id );
 								);
 
 								echo $ui_manager->start_group_controls();
+
+								echo $control_manager->add_select_control( [
+									'label'  => __('Type','responsive-menu-pro'),
+									'id'     => 'rmp-animation-type',
+									'name'    => 'menu[animation_type]',
+									'options' => [ 'slide' => 'Slide' , 'push' => 'Push', 'fade' => 'Fade (PRO)' ],
+									'value'   => rmp_get_value($options,'animation_type')
+								] );
+
 								echo $control_manager->add_select_control( [
 									'label'  => __('Direction','responsive-menu-pro'),
 									'id'     => 'rmp-menu-appear-from',
@@ -2381,15 +2390,6 @@ $options = $option_manager->get_options( $menu_id );
 									'options' => [ 'left' => 'Left' , 'right' => 'Right', 'top' => 'Top', 'bottom' => 'Bottom' ],
 									'value'   => rmp_get_value($options,'menu_appear_from')
 								] );
-
-								echo $control_manager->add_select_control( [
-									'label'  => __('Type','responsive-menu-pro'),
-									'id'     => 'rmp-animation-type',
-									'name'    => 'menu[animation_type]',
-									'options' => [ 'slide' => 'Slide' , 'push' => 'Push', 'fade' => 'Fade (PRO)' ],
-									'value'   => rmp_get_value($options,'animation_type')
-								] );
-
 
 								echo $ui_manager->end_group_controls();
 

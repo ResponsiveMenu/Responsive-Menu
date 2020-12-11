@@ -772,4 +772,33 @@ jQuery( document ).ready( function( jQuery ) {
 
 	});
 
+	/**
+	 * Function to manage menu container animation options.
+	 *
+	 * @param {String} optionValue 
+	 */
+	function updateMenuContainerAnimationOptions( optionValue ) {
+
+		if ( 'push' === optionValue ) {
+			jQuery( '#rmp-page-wrapper' ).parents('.rmp-input-control-wrapper').fadeIn();
+		} else {
+			jQuery( '#rmp-page-wrapper' ).parents('.rmp-input-control-wrapper').fadeOut();
+		}
+
+		if ( 'fade' === optionValue ) {
+			jQuery('#rmp-menu-appear-from option[value="top"]').hide();
+			jQuery('#rmp-menu-appear-from option[value="bottom"]').hide();
+		} else {
+			jQuery('#rmp-menu-appear-from option[value="top"]').show();
+			jQuery('#rmp-menu-appear-from option[value="bottom"]').show();
+		}
+	}
+
+	// Menu container animation type and their options.
+	updateMenuContainerAnimationOptions( jQuery( '#rmp-animation-type' ).val() );
+	jQuery( '#rmp-editor-wrapper' ).on( 'change', '#rmp-animation-type', function( e ) {
+		const optionValue = jQuery( this ).val();
+		updateMenuContainerAnimationOptions( optionValue );
+	});
+
 } );
