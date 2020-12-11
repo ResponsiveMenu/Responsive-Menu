@@ -42,6 +42,25 @@ class Assets {
 
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_scripts' ] );
 		add_action('admin_head', [ $this, 'admin_custom_style_inline'] );
+		add_action('admin_head', [ $this, 'rmp_menu_editor_style_inline'] );
+	}
+
+	/**
+	 * Add custom css to manage headerbar extra padding.
+	 * 
+	 * @since 4.0.1
+	 */
+	function rmp_menu_editor_style_inline() {
+
+		$editor = filter_input( INPUT_GET, 'editor', FILTER_SANITIZE_STRING );
+		if ( ! empty( $editor ) && get_post_type() == 'rmp_menu' && is_admin() ) {
+			echo '<style>
+			html.wp-toolbar {
+				margin: 0;
+				padding: 0 !important;
+			}
+			</style>';
+		}
 	}
 
 	/**
