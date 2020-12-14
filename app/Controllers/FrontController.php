@@ -130,7 +130,14 @@ class FrontController {
                 return $this->view->render('app.html.twig', ['options' => $new_collection]);
             });
         else:
-            add_action('wp_footer', function() use($options) {
+            $action_hook = 'wp_footer';
+
+            //Check if wp_body_open action is exist then add menu contents in that action.
+            if ( has_action( 'wp_body_open' ) ) {
+                $action_hook = 'wp_body_open';
+            }
+
+            add_action( $action_hook, function() use($options) {
                 echo $this->view->render('app.html.twig', ['options' => $options]);
             });
         endif;
