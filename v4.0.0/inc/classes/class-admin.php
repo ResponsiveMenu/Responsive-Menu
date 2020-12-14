@@ -68,7 +68,6 @@ class Admin {
 		add_action( 'admin_footer' , array($this,'add_new_menu_widget') );
 		add_action( 'admin_menu', array( $this, 'rmp_register_submenu_page' ) );
 		add_action( 'admin_menu', [$this, 'remove_default_add_cpt_page']);
-		add_action( 'admin_menu', [$this, 'add_menu_roadmap_link'] );
 		add_action( 'rmp_create_new_menu', array( $this , 'set_global_options' ), 10 , 0 );
 	}
 
@@ -296,6 +295,29 @@ class Admin {
 			array( $this, 'rmp_theme_admin_page' )
 		);
 
+		add_submenu_page (
+			'edit.php?post_type=rmp_menu',
+			__( 'Roadmap', 'responsive-menu-pro' ),
+			__( 'Roadmap', 'responsive-menu-pro' ),
+			'manage_options',
+			'roadmap',
+			array( $this, 'rmp_roadmap_admin_page' )
+		);
+
+	}
+
+	/**
+	 * Add template for roadmap page.
+	 *
+	 * @since	4.0.1
+	 */
+	public function rmp_roadmap_admin_page() {
+		// Check user capabilities.
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		include_once RMP_PLUGIN_PATH_V4 . '/templates/rmp-roadmap.php';
 	}
 
 	/**
@@ -574,17 +596,4 @@ class Admin {
 		wp_send_json_success( [ 'message' => __( 'Menu settings imported successfully!', 'responsive-menu-pro') ] );
 	}
 
-	/**
-	 * Function to add the menu roadmap link.
-	 * 
-	 * @version 4.0.1
-	 */
-	public function add_menu_roadmap_link() {
-		global $submenu;
-
-		if ( post_type_exists( 'rmp_menu' ) ) {
-			$menu_slug = "edit.php?post_type=rmp_menu";
-			$submenu[$menu_slug][] = array( 'Roadmap', 'manage_options', 'https://next.expresstech.io/responsive-menu' );
-		}
-	}
 }

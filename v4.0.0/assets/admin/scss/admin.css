@@ -2216,8 +2216,15 @@ button.menu-save {
     right: 10px;
 }
 
-.rmp-theme-page {
+.rmp-theme-page,
+.rmp-roadmap-page {
     margin: 2% 0;
+}
+
+#rmp-roadmap-iframe {
+    width: 100%;
+    min-height: 700px;
+    height: 100%;
 }
 
 .rmp-theme-page .pagination {
