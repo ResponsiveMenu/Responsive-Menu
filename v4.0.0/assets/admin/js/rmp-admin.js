@@ -154,6 +154,22 @@ jQuery( document ).ready( function( jQuery ) {
 		jQuery( '#rmp-preview-iframe-loader' ).hide();
 		jQuery( '#rmp-menu-update-notification').remove();
 		jQuery('#rmp-preview-iframe').show();
+
+		jQuery('#rmp-preview-iframe').contents().find( 'a' ).on( 'click', function(e) {
+			e.stopPropagation();
+			e.preventDefault();
+			var url = jQuery(this).attr('href');
+
+			if ( url.indexOf('?') >= 0 ) {
+				url = url + '&rmp_preview_mode=true';
+			} else {
+				url = url + '?rmp_preview_mode=true';
+			}
+
+			jQuery('#rmp-preview-iframe').attr('src', url );
+ 
+		});
+
 	});
 
 	/**
