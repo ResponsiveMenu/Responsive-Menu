@@ -71,12 +71,14 @@ $option_manager  = Option_Manager::get_instance();
                             printf(
                                 '<p class="rmp-admin-notice">
                                     <span class="dashicons dashicons-warning"></span>
-                                    <span>%s</span>
+                                    <span>%s </span>
                                     <a href="%s"> %s </a>
+                                    <span> %s </span>
                                 </p>',
-                                esc_html__( 'Notice : There is no nav menu exists, please create a menu from ', 'responsive-menu-pro'),
+                                esc_html__( 'Notice : You don\'t have any existing WordPress menus, please  ', 'responsive-menu-pro'),
                                 esc_url( admin_url() . 'nav-menus.php' ),
-                                esc_html__( 'here', 'responsive-menu-pro')
+                                esc_html__( 'click here', 'responsive-menu-pro'),
+                                esc_html__( 'to create', 'responsive-menu-pro')
                             );
                         }
                     ?>
