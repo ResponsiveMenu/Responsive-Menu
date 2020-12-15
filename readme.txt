@@ -19,7 +19,6 @@ Highly customisable Responsive Menu Plugin for WordPress. With over 150 customis
 
 [https://responsive.menu](https://responsive.menu/?utm_source=readme&utm_medium=plugin&utm_campaign=reponsivemenu_plugin)
 [https://demo.responsive.menu](https://demo.responsive.menu/?utm_source=readme&utm_medium=plugin&utm_campaign=reponsivemenu_plugin)
-Click to see the [Roadmap](https://next.expresstech.io/responsive-menu)
 
 **Requirements:**
 
@@ -70,7 +69,7 @@ PHP 5.5+
 * Integrated header bar
 * Let the plugin provide and style your main menu as well as hamburger menu
 
-For more reasons to go Pro, please visit [this page](https://responsive.menu#why-go-pro).
+For more reasons to go Pro, please visit [this page](https://responsive.menu#why-go-pro) or check our [roadmap](https://next.expresstech.io/responsive-menu)
 
 [youtube https://www.youtube.com/watch?v=aj6ba0tGKPg]
 
@@ -113,7 +112,6 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 == Changelog ==
 
 = 4.0.1 (15th Dec 2020) =
-* Feature: Added menu roadmap in admin page
 * Enhancement: Hide WordPress admin bar from menu preview
 * Enhancement: Added notice message when WordPress menu doesn't exist
 * Enhancement: Added admin notice banner for new version update
