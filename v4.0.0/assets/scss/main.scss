@@ -293,7 +293,7 @@
                 height: ( $menu_item_height + $menu_item_height_unit);
                 line-height: ( $menu_item_line_height + $menu_item_line_height_unit );
                 margin-right: 10px;
-                font-size: ( $menu_item_font_size + $menu_item_font_size_unit );
+                font-size: ( $menu_item_font_size * 1.5 ) + $menu_item_font_size_unit;
             }
         }
 

@@ -1,0 +1,48 @@
+div.notice-responsive-menu {
+    display: flex;
+    align-items: center;
+    border-left-color: #15a4fa;
+    padding: 10px;
+}
+
+div.notice-responsive-menu .notice-responsive-menu-logo {
+    margin-right: 10px;
+}
+
+div.notice-responsive-menu .notice-responsive-menu-message h4,
+div.notice-responsive-menu .notice-responsive-menu-message p {
+    margin: 0;
+}
+
+div.notice-responsive-menu .notice-responsive-menu-action {
+    position: absolute;
+    right: 40px;
+}
+
+@media screen and (max-width: 1150px) {
+    div.notice-responsive-menu {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    div.notice-responsive-menu .notice-responsive-menu-action {
+        margin-top: 20px;
+    }
+}
+
+div.notice-responsive-menu .notice-responsive-menu-action a {
+    text-decoration: none;
+    color: #fff;
+    padding: 8px 15px;
+    background: #36bef7;
+    font-size: 15px;
+    font-weight: 700;
+    border:1px solid #1d9cd2;
+}
+div.notice-responsive-menu .notice-responsive-menu-action a:hover {
+    opacity: 0.8;
+}
+
+.responsive-menu-license-upgrade-link {
+    color: #f80668;
+    font-weight: 600;
+}

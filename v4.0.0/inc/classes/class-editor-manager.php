@@ -44,6 +44,12 @@ class Editor_Manager {
 		add_action('wp_ajax_rmp_save_menu_action', array( $this, 'rmp_save_options' ) );
 		add_action('wp_ajax_rmp_mega_menu_item_enable', array( $this, 'enable_mega_menu_item' ) );
 		add_action('wp_ajax_rmp_save_mega_menu_item', array( $this, 'rmp_save_mega_menu_item' ) );
+
+		// Hide the wp admin bar from preview iframe.
+		if ( ! empty( $_GET['rmp_preview_mode'] ) ) {
+			add_filter( 'show_admin_bar', '__return_false' );
+		}
+
 	}
 
 	/**

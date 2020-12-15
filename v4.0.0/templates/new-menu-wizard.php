@@ -66,6 +66,20 @@ $option_manager  = Option_Manager::get_instance();
                         }
                         ?>
                     </select>
+                    <?php
+                        if( empty( $menus ) ) {
+                            printf(
+                                '<p class="rmp-admin-notice">
+                                    <span class="dashicons dashicons-warning"></span>
+                                    <span>%s </span>
+                                    <a href="%s"> %s </a>
+                                </p>',
+                                esc_html__( 'Notice : You don\'t have any existing WordPress menus, please ', 'responsive-menu-pro'),
+                                esc_url( admin_url() . 'nav-menus.php' ),
+                                esc_html__( 'create wp menu', 'responsive-menu-pro')
+                            );
+                        }
+                    ?>
                 </div>
 
                 <div class="rmp-input-control-wrapper input-group">

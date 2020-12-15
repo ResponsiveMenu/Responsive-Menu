@@ -53,8 +53,8 @@ if ( ! empty( $global_settings['menu_adjust_for_wp_admin_bar'] ) )  {
                                 <fieldset>
                                     <p>
                                         <select class="" aria-describedby="Rollback Version" id="rmp-versions" name="rmp-versions">
-                                            <option value="4.0.0" selected> v4.0.0</option>
-                                            <option value="3.1.29"> v3.1.29</option>
+                                            <option value="4.0.0" selected> v4.x</option>
+                                            <option value="3.1.30"> v3.1.30</option>
                                         </select>
                                         <button id="rmp-rollback-version" class="button button-primary button-large"><?php esc_html_e( 'Rollback', 'responsive-menu-pro'); ?></button>
                                     </p>

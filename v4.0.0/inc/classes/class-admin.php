@@ -295,6 +295,29 @@ class Admin {
 			array( $this, 'rmp_theme_admin_page' )
 		);
 
+		add_submenu_page (
+			'edit.php?post_type=rmp_menu',
+			__( 'Roadmap', 'responsive-menu-pro' ),
+			__( 'Roadmap', 'responsive-menu-pro' ),
+			'manage_options',
+			'roadmap',
+			array( $this, 'rmp_roadmap_admin_page' )
+		);
+
+	}
+
+	/**
+	 * Add template for roadmap page.
+	 *
+	 * @since	4.0.1
+	 */
+	public function rmp_roadmap_admin_page() {
+		// Check user capabilities.
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		include_once RMP_PLUGIN_PATH_V4 . '/templates/rmp-roadmap.php';
 	}
 
 	/**

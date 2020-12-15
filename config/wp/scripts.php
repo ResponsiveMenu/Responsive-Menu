@@ -65,6 +65,8 @@ if(isset($_GET['page']) && $_GET['page'] == 'responsive-menu'):
         );
         wp_enqueue_script('responsive-menu-additional-js');
 
+        wp_enqueue_style('resposnsive-menu-notice-style', plugin_dir_url(dirname(dirname(__FILE__))) . 'public/css/admin/resposnsive-menu-notice.css', null, RMP_PLUGIN_VERSION );
+
     });
 endif;
 

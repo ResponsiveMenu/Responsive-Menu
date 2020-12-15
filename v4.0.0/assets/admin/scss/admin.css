@@ -1587,7 +1587,7 @@ margin: 5px 0px 10px;
 }
 
 .device-icons-group .device-icon .device {
-    top: 15px;
+    top: 12px;
     right: 0px;
     font-size: 30px;
     position: relative;
@@ -2216,8 +2216,15 @@ button.menu-save {
     right: 10px;
 }
 
-.rmp-theme-page {
+.rmp-theme-page,
+.rmp-roadmap-page {
     margin: 2% 0;
+}
+
+#rmp-roadmap-iframe {
+    width: 100%;
+    min-height: 700px;
+    height: 100%;
 }
 
 .rmp-theme-page .pagination {
@@ -2619,4 +2626,11 @@ div.notice-responsive-menu .notice-responsive-menu-action a:hover {
 
 .upgrade-options .upgrade-notes p {
     font-size: 14px;
+}
+
+.rmp-admin-notice {
+    margin-top: 10px;
+    color: #e23f08;
+    font-size: 12px;
+    line-height: 20px;
 }

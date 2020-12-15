@@ -3,7 +3,7 @@ Contributors: expresstech,responsivemenu
 Tags: responsive, mega menu, navigation, mobile, hamburger
 Requires at least: 3.6
 Tested up to: 5.6
-Stable tag: 4.0.0
+Stable tag: 4.0.1
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -69,7 +69,7 @@ PHP 5.5+
 * Integrated header bar
 * Let the plugin provide and style your main menu as well as hamburger menu
 
-For more reasons to go Pro, please visit [this page](https://responsive.menu#why-go-pro).
+For more reasons to go Pro, please visit [this page](https://responsive.menu#why-go-pro) or check our [roadmap](https://next.expresstech.io/responsive-menu)
 
 [youtube https://www.youtube.com/watch?v=aj6ba0tGKPg]
 
@@ -110,6 +110,13 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 15. Admin Desktop Menu Section
 
 == Changelog ==
+
+= 4.0.1 (15th Dec 2020) =
+* Enhancement: Hide WordPress admin bar from menu preview
+* Enhancement: Added notice message when WordPress menu doesn't exist
+* Enhancement: Added admin notice banner for new version update
+* Enhancement: Improved menu customizer options visibility
+* Bug: Fixed some php notices and errors
 
 = 4.0.0 (7th Dec 2020) =
 * New and improved admin user interface

@@ -67,9 +67,19 @@ if(is_admin()):
 			add_option( 'is_rmp_new_version', 1 );
 		}
 
+        update_option( 'rm_upgrade_admin_notice', true );
 		wp_send_json_success( ['redirect' => admin_url('edit.php?post_type=rmp_menu')] );
 
     });
+
+    add_action( "wp_ajax_rmp_version_admin_notice_dismiss", "rmp_version_admin_notice_dismiss");
+    /**
+     * Function to hide the version upgrade admin notice permanent.
+     */
+    function rmp_version_admin_notice_dismiss() {
+        update_option( 'rm_upgrade_admin_notice', true );
+    }
+
 
 else:
     add_action('template_redirect', function() {

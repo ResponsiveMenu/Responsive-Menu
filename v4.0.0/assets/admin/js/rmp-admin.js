@@ -129,7 +129,7 @@ jQuery( document ).ready( function( jQuery ) {
 
 		const version = jQuery( '#rmp-versions' ).val();
 
-		if ( '3.1.29' === version ) {
+		if ( '3.1.30' === version ) {
 			jQuery.ajax( {
 				url: rmpObject.ajaxURL,
 				data: { action: 'rmp_rollback_version' },
@@ -154,6 +154,22 @@ jQuery( document ).ready( function( jQuery ) {
 		jQuery( '#rmp-preview-iframe-loader' ).hide();
 		jQuery( '#rmp-menu-update-notification').remove();
 		jQuery('#rmp-preview-iframe').show();
+
+		jQuery('#rmp-preview-iframe').contents().find( 'a' ).on( 'click', function(e) {
+			e.stopPropagation();
+			e.preventDefault();
+			var url = jQuery(this).attr('href');
+
+			if ( url.indexOf('?') >= 0 ) {
+				url = url + '&rmp_preview_mode=true';
+			} else {
+				url = url + '?rmp_preview_mode=true';
+			}
+
+			jQuery('#rmp-preview-iframe').attr('src', url );
+ 
+		});
+
 	});
 
 	/**
@@ -770,6 +786,35 @@ jQuery( document ).ready( function( jQuery ) {
 			}
 		});
 
+	});
+
+	/**
+	 * Function to manage menu container animation options.
+	 *
+	 * @param {String} optionValue 
+	 */
+	function updateMenuContainerAnimationOptions( optionValue ) {
+
+		if ( 'push' === optionValue ) {
+			jQuery( '#rmp-page-wrapper' ).parents('.rmp-input-control-wrapper').fadeIn();
+		} else {
+			jQuery( '#rmp-page-wrapper' ).parents('.rmp-input-control-wrapper').fadeOut();
+		}
+
+		if ( 'fade' === optionValue ) {
+			jQuery('#rmp-menu-appear-from option[value="top"]').hide();
+			jQuery('#rmp-menu-appear-from option[value="bottom"]').hide();
+		} else {
+			jQuery('#rmp-menu-appear-from option[value="top"]').show();
+			jQuery('#rmp-menu-appear-from option[value="bottom"]').show();
+		}
+	}
+
+	// Menu container animation type and their options.
+	updateMenuContainerAnimationOptions( jQuery( '#rmp-animation-type' ).val() );
+	jQuery( '#rmp-editor-wrapper' ).on( 'change', '#rmp-animation-type', function( e ) {
+		const optionValue = jQuery( this ).val();
+		updateMenuContainerAnimationOptions( optionValue );
 	});
 
 } );
