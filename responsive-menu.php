@@ -4,7 +4,7 @@
 Plugin Name: Responsive Menu
 Plugin URI: https://expresstech.io
 Description: Highly Customisable Responsive Menu Plugin for WordPress
-Version: 3.1.30
+Version: 3.1.31
 Author: ExpressTech
 Text Domain: responsive-menu
 Author URI: https://responsive.menu
@@ -12,7 +12,7 @@ License: GPL2
 Tags: responsive, menu, responsive menu, mega menu, max mega menu, max menu
 */
 
-define('RESPONSIVE_MENU_VERSION', '3.1.30');
+define('RESPONSIVE_MENU_VERSION', '3.1.31');
 
 add_action('admin_init', 'check_responsive_menu_php_version');
 function check_responsive_menu_php_version() {

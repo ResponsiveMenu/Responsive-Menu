@@ -3,7 +3,7 @@ Contributors: expresstech,responsivemenu
 Tags: responsive, mega menu, navigation, mobile, hamburger
 Requires at least: 3.6
 Tested up to: 5.5
-Stable tag: 3.1.30
+Stable tag: 3.1.31
 Requires PHP: 5.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -110,6 +110,11 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 15. Admin Desktop Menu Section
 
 == Changelog ==
+
+= 3.1.31 (15th Dec 2020) =
+* Bug: Fixed caching issue
+* Bug: Fixed compatibility issues with wp 5.6
+* Bug: Fixed tab indexing on menu items and elements
 
 = 3.1.30 (23rd July 2020) =
 * Bug: Fixed menu arial-label
