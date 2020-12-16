@@ -1,8 +1,8 @@
 <?php
 /**
  * This file contain the Theme_Manager class and it's functionalities for menu.
- * 
- * @version 4.0.0
+ *
+ * @since 4.0.0
  * @author  Expresstech System
  * 
  * @package responsive-menu-pro
@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Class Theme_Manager
  * This class is handling the menu themes and its functionalities.
  * 
- * @version 4.0.0
+ * @since 4.0.0
  */
 class Theme_Manager {
 
@@ -44,7 +44,7 @@ class Theme_Manager {
 	/**
 	 * To setup action/filter.
 	 *
-	 * @version 4.0.0
+	 * @since 4.0.0
 	 * 
 	 * @return void
 	 */
@@ -79,6 +79,7 @@ class Theme_Manager {
 				if ( ! in_array( $product['info']['id'], $exclude_theme_ids ) ) {
 					$pro_themes[] = array(
 						'name'          => $product['info']['title'],
+						'slug'          => $product['info']['slug'],
 						'preview_url'   => $product['info']['thumbnail'],
 						'buy_link'      => $product['info']['link'],
 						'price'         => $product['pricing']['amount']
@@ -317,7 +318,13 @@ class Theme_Manager {
 		return $status;
 	}
 
-
+	/**
+	 * Returns the theme list with meta info.
+	 * 
+	 * @since 4.0.0
+	 *
+	 * @return array $theme
+	 */
 	public function get_themes_from_uploads() {
 
 		$theme_url = wp_upload_dir()['baseurl'] . '/rmp-menu/themes';
@@ -338,6 +345,39 @@ class Theme_Manager {
 		}
 
         return $themes;
+	}
+
+	/**
+	 * Returns the theme dir list to supress the theme which are in downloaded list.
+	 *
+	 * @since 4.0.2
+	 *
+	 * @return array $theme_dirs
+	 */
+	public function get_uploaded_theme_dir() {
+
+		$themes = $this->get_themes_from_uploads();
+
+		if ( empty( $themes ) ) {
+			return;
+		}
+
+		$theme_dirs = [];
+		foreach( $themes as $theme => $theme_meta ) {
+
+			//  Replace the these older themes dir name as slug.
+			if ( 'electric blue theme' == $theme ) {
+				$theme_dirs[] = 'electric-blue-free';
+			} else if( 'full-width-theme' == $theme ) {
+				$theme_dirs[] = 'full-width-free';
+			} else if( 'simple-red-theme' == $theme ) {
+				$theme_dirs[] = 'simple-red-free';
+			} else {
+				$theme_dirs[] = strtolower( $theme );
+			}
+		}
+
+		return $theme_dirs;
 	}
 
     public function rmp_save_theme() {
@@ -465,15 +505,30 @@ class Theme_Manager {
 		return $html;
 	}
 
+	/**
+	 * Design the theme list which are from stored.
+	 *
+	 * @since 4.0.0
+	 * 
+	 * @return HTML|string $html
+	 */
 	public function get_themes_from_theme_store( $in_wizard = false ) {
+
 		$themes = $this->get_themes_by_api();
 
 		if ( empty( $themes ) && $in_wizard ) {
 			return __( '<h2>Coming soon..</h2>', 'responsive-menu-pro' );
 		}
 
+		$uploaded_themes = $this->get_uploaded_theme_dir();
+
 		$html = '';
 		foreach( $themes as $theme ) {
+
+			// Avoid the themes which are already uploaded.
+			if ( in_array( strtolower( $theme['slug'] ), $uploaded_themes ) ) {
+				continue;
+			}
 
 			$action_label = __( 'BUY NOW','responsive-menu-pro' );
 			$status  = __( 'Pro','responsive-menu-pro' );
