@@ -7,6 +7,7 @@
 
 namespace RMP\Features\Inc;
 
+use RMP\Features\Inc\Elementor\Elementor_Manager;
 use RMP\Features\Inc\Traits\Singleton;
 
 /**
@@ -32,6 +33,7 @@ class Plugin {
 		Style_Manager::get_instance();
 		UI_Manager::get_instance();
 		RMP_Migration::get_instance();
+		Elementor_Manager::get_instance();
 
 		$this->setup_hooks();
 	}
