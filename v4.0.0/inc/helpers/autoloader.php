@@ -56,6 +56,7 @@ function autoloader( $resource = '' ) {
 			case 'taxonomies':
 			case 'blocks':
 			case 'meta-boxes':
+			case 'elementor':
 			case 'widgets':
 			case 'plugin-configs':
 				/**

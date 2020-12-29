@@ -70,10 +70,8 @@ jQuery( document ).ready( function( jQuery ) {
 				self.triggerMenu();
 			} );
 	
-
-
 			// Show/Hide sub menu item when click on item toggle.
-			jQuery( self.container ).find( self.subMenuArrow ).on( 'click', function( e ) {
+			jQuery( self.menuWrap ).find( self.subMenuArrow ).on( 'click', function( e ) {
 				e.preventDefault();
 				e.stopPropagation();
 				self.triggerSubArrow( this );
