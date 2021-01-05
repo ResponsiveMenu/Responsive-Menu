@@ -521,6 +521,9 @@ class Theme_Manager {
 		}
 
 		$uploaded_themes = $this->get_uploaded_theme_dir();
+		if ( empty( $uploaded_themes ) || ! is_array( $uploaded_themes ) ) {
+			return;
+		}
 
 		$html = '';
 		foreach( $themes as $theme ) {
