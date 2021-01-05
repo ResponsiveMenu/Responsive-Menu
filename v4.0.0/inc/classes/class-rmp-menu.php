@@ -317,26 +317,17 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 		public function rmp_nav_menu_args( $args = null ) {
 
 			$menu  = $this->get_wp_menu_to_use();
+			$menu_location = $this->get_wp_menu_location();
+			$wp_menu_obj   = wp_get_nav_menu_object( $menu );
 
-			// Check menu exist or not.
-			$is_exist = false;
-			foreach( get_terms('nav_menu') as $nav_menu ) {
-				if ( $nav_menu->slug === $menu ) {
-					$is_exist = true;
-					break;
-				}
-			}
-
-			if ( ! $is_exist ) {
+			// Check menu object is not empty.
+			if ( empty( $wp_menu_obj ) ) {
 				return $args;
 			}
 
-			$menu_location = $this->get_wp_menu_location();
-			$menu_depth    = $this->options['menu_depth'];
-			$wp_menu_obj   = wp_get_nav_menu_object( $menu );
-
-			if ( empty( $menu_depth ) ) {
-				$menu_depth = 0;
+			$menu_depth = 0;
+			if ( ! empty( $this->options['menu_depth'] ) ) {
+				$menu_depth  = $this->options['menu_depth'];
 			}
 
 			$menu_label = ! empty( $this->options['menu_name'] ) ? $this->options['menu_name'] : 'Default';
