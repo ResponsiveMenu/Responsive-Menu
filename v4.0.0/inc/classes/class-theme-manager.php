@@ -56,15 +56,22 @@ class Theme_Manager {
 		add_action('wp_ajax_rmp_theme_download', array( $this, 'rmp_theme_download' ) );
 	}
 
-		
 	/**
 	 * Function to get the list of pro theme from store.
-	 *  
-     * @since 4.0.0
 	 * 
+	 * @since 4.0.0 Added this function to call the menu theme API
+	 * @since 4.0.3 Cached the API response
+	 *
      * @return array $pro_themes
      */
 	public function get_themes_by_api() {
+
+		// If theme list is cached then access it.
+		$pro_themes = get_transient( 'rmp_theme_api_response' );
+		if ( ! empty( $pro_themes ) ) {
+			return $pro_themes;
+		}
+
 		$pro_themes = [];
 
 		//These are older version theme which are not compatible with new version.
@@ -87,6 +94,9 @@ class Theme_Manager {
 				}
 			}
 		}
+
+		// Cache the theme response.
+		set_transient( 'rmp_theme_api_response', $pro_themes, DAY_IN_SECONDS );
 
 		return $pro_themes;
 	}
@@ -522,7 +532,7 @@ class Theme_Manager {
 
 		$uploaded_themes = $this->get_uploaded_theme_dir();
 		if ( empty( $uploaded_themes ) || ! is_array( $uploaded_themes ) ) {
-			return;
+			$uploaded_themes = [];
 		}
 
 		$html = '';
