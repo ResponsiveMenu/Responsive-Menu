@@ -95,6 +95,20 @@ if ( ! empty( $global_settings['menu_adjust_for_wp_admin_bar'] ) )  {
                         </tr>
 
                         <tr>
+                            <th scope="row"> <?php esc_html_e( 'Use wp_footer hook', 'responsive-menu-pro'); ?></th>
+                            <td>
+                                <fieldset>
+                                    <p>
+                                        <input type="checkbox" name="rmp_wp_footer_hook" value="on" id="rmp-wp-footer-hook" <?php echo is_rmp_option_checked( 'on', $global_settings, 'rmp_wp_footer_hook' );?> > 
+                                        <label for="rmp-wp-footer-hook" class="description">
+                                            <?php esc_html_e( 'Enable this option if your theme does not support wp_body_open hook.', 'responsive-menu-pro'); ?>
+                                        </label>
+                                    </p>
+                                </fieldset>
+                            </td>
+                        </tr>
+
+                        <tr>
                             <th scope="row"> <?php esc_html_e( 'Use external files', 'responsive-menu-pro'); ?></th>
                             <td>
                                 <fieldset>
