@@ -122,6 +122,12 @@ class Plugin {
 	 */
 	public function has_support( $hook ) {
 
+		// Check wp footer option is enabled.
+		$option_manager  = Option_Manager::get_instance();
+		if ( 'wp_body_open' == $hook && 'on' == $option_manager->get_global_option( 'rmp_wp_footer_hook' ) ) {
+			return false;
+		}
+
 		// Check wp core support wp_body_open hook or not.
 		if( ! has_action( $hook ) ) {
 			return false;
