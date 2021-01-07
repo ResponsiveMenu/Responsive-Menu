@@ -27,6 +27,7 @@ function rmp_global_default_setting_options() {
         'rmp_remove_glyphicon' => 'off',
         'rmp_remove_dashicons' => 'off',
         'rmp_remove_material_icons' => 'off',
+        'rmp_wp_footer_hook' => 'off'
     ];
 }
 
