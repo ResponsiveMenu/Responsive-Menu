@@ -111,9 +111,9 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 
 == Changelog ==
 = 4.0.3 (07th January 2021) =
-* Enhancement: Improved multi language menu support with WPML
 * Enhancement: Improved caching for API response
-* Bug: Added wp_footer option as wp_body_open hook alternative
+* Bug: Improved multi language menu support with WPML
+* Bug: Fixed theme compatibility issues
 * Bug: Fixed some php notices and errors
 
 = 4.0.2 (29th Dec 2020) =
