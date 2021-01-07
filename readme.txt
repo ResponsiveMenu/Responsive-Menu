@@ -3,7 +3,7 @@ Contributors: expresstech,responsivemenu
 Tags: responsive, mega menu, navigation, mobile, hamburger
 Requires at least: 3.6
 Tested up to: 5.6
-Stable tag: 4.0.2
+Stable tag: 4.0.3
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -110,6 +110,12 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 15. Admin Desktop Menu Section
 
 == Changelog ==
+= 4.0.3 (07th January 2021) =
+* Enhancement: Improved multi language menu support with WPML
+* Enhancement: Improved caching for API response
+* Bug: Added wp_footer option as wp_body_open hook alternative
+* Bug: Fixed some php notices and errors
+
 = 4.0.2 (29th Dec 2020) =
 * Feature: Added responsive menu elementor widget
 * Enhancement: Improved theme visibility in new menu wizard
