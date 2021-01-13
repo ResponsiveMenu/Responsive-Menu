@@ -45,10 +45,12 @@ if(is_admin()):
                     echo $controller->import( $file_options, $valid_nonce );
 
                 elseif(isset($_POST['responsive-menu-import-theme'])):
+                    $valid_nonce = wp_verify_nonce( $_POST['responsive-menu-nonce'], 'update' );
+
                     $file = $_FILES['responsive-menu-import-theme-file'];
                     $theme = isset($file['tmp_name']) && $file['tmp_name'] ? $file['tmp_name'] : null;
 
-                    echo $controller->import_theme($theme);
+                    echo $controller->import_theme( $theme, $valid_nonce );
 
                 elseif(isset($_POST['responsive-menu-rebuild-db'])):
                     echo $controller->rebuild();

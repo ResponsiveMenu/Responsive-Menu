@@ -134,12 +134,17 @@ class AdminController {
     *
     * @since 3.1.16
     *
-    * @param string  $theme     The theme file location to unzip
+    * @param string $theme       The theme file location to unzip
+    * @param bool   $valid_nonce Is the form nonce valid or not.
     *
     * @return string            Output HTML from rendered view.
     */
-    public function import_theme($theme) {
-        if($theme):
+    public function import_theme( $theme, $valid_nonce ) {
+
+       // Check nonce is valid or not.
+        if ( ! $valid_nonce ):
+            $alert = [ 'danger' => 'CSRF token not valid' ];
+        elseif ( ! empty( $theme ) ):
             WP_Filesystem();
             $upload_folder = wp_upload_dir()['basedir'] . '/responsive-menu-themes';
 
