@@ -308,15 +308,29 @@ class Theme_Manager {
 		return false;
 	}
 
+	/**
+	 * Funtion to upload the menu theme zip file.
+	 *
+	 * @since 4.0.0
+	 * @since 4.0.4 Added nonce and user capabilities check.
+	 *
+	 * @since array $status
+	 */
 	public function rmp_upload_theme() {
+
+		// Check nonce to verify the authenticate upload file.
+		check_ajax_referer( 'rmp_nonce', 'rmp_theme_upload_nonce' );
+
+		// Check user capabilities.
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
 
 		status_header(200);
 
 		$theme = $_FILES['file']['tmp_name'];
-	
 		WP_Filesystem();
 		$upload_dir = wp_upload_dir()['basedir'] . '/rmp-menu/themes/';
-
 		$unzip_file = unzip_file( $theme , $upload_dir );
 
 		if ( is_wp_error( $unzip_file ) ) {
