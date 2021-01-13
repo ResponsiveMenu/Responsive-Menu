@@ -66,10 +66,23 @@ class AdminController {
     * @author Peter Featherstone <peter@featherstone.me>
     *
     * @since 3.0
+    * @param bool $valid_nonce Is the form nonce valid or not.
     *
     * @return string    Output HTML from rendered view.
     */
-    public function rebuild() {
+    public function rebuild( $valid_nonce ) {
+
+         // Check form nonce is valid or not.
+         if ( ! $valid_nonce ) {
+            return $this->view->render(
+                'admin/main.html.twig',
+                [
+                    'options' => $this->manager->all(),
+                    'alert' => [ 'danger' => 'CSRF token not valid' ]
+                ]
+            );
+        }
+
         update_option('responsive_menu_version', '2.8.9');
 
         return $this->view->render(
@@ -93,12 +106,24 @@ class AdminController {
     *
     * @since 3.1.16
     *
-    * @param string  $theme     The theme name to apply
+    * @param string  $theme       The theme name to apply
+    * @param bool    $valid_nonce Is the form nonce valid or not.
     *
     * @return string            Output HTML from rendered view.
     */
-    public function apply_theme($theme) {
+    public function apply_theme( $theme, $valid_nonce ) {
         $options = $this->manager->all();
+
+        // Check form nonce is valid or not.
+        if ( ! $valid_nonce ) {
+            return $this->view->render(
+                'admin/main.html.twig',
+                [
+                    'options' => $options,
+                    'alert' => [ 'danger' => 'CSRF token not valid' ]
+                ]
+            );
+        }
 
         $upload_folder = wp_upload_dir()['basedir'];
         $theme_folder = $upload_folder . '/responsive-menu-themes/';
@@ -234,10 +259,23 @@ class AdminController {
     * @since 3.0
     *
     * @param array  $default_options    An array of the default options.
+    * @param bool   $valid_nonce        Is the form nonce valid or not.
     *
     * @return string                    Output HTML from rendered view.
     */
-    public function reset($default_options) {
+    public function reset($default_options, $valid_nonce ) {
+
+        // Check form nonce is valid or not.
+        if ( ! $valid_nonce ) {
+            return $this->view->render(
+                'admin/main.html.twig',
+                [
+                    'options' => $this->manager->all(),
+                    'alert' => [ 'danger' => 'CSRF token not valid' ]
+                ]
+            );
+        }
+
         try {
             $options = $this->manager->updateOptions($default_options);
             $task = new UpdateOptionsTask;

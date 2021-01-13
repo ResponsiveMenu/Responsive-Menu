@@ -32,10 +32,14 @@ if(is_admin()):
                     echo $controller->update($valid_nonce, wp_unslash($_POST['menu']));
 
                 elseif(isset($_POST['responsive-menu-reset'])):
-                    echo $controller->reset(get_responsive_menu_default_options());
+                    $valid_nonce = wp_verify_nonce( $_POST['responsive-menu-nonce'], 'update' );
+
+                    echo $controller->reset(get_responsive_menu_default_options(), $valid_nonce );
 
                 elseif(isset($_POST['responsive-menu-theme'])):
-                    echo $controller->apply_theme($_POST['menu']['menu_theme']);
+                    $valid_nonce = wp_verify_nonce( $_POST['responsive-menu-nonce'], 'update' );
+
+                    echo $controller->apply_theme($_POST['menu']['menu_theme'], $valid_nonce );
 
                 elseif(isset($_POST['responsive-menu-import'])):
                     $valid_nonce = wp_verify_nonce( $_POST['responsive-menu-nonce'], 'update' );
@@ -53,7 +57,9 @@ if(is_admin()):
                     echo $controller->import_theme( $theme, $valid_nonce );
 
                 elseif(isset($_POST['responsive-menu-rebuild-db'])):
-                    echo $controller->rebuild();
+                    $valid_nonce = wp_verify_nonce( $_POST['responsive-menu-nonce'], 'update' );
+
+                    echo $controller->rebuild( $valid_nonce );
 
                 else:
                     echo $controller->index();
