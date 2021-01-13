@@ -38,10 +38,11 @@ if(is_admin()):
                     echo $controller->apply_theme($_POST['menu']['menu_theme']);
 
                 elseif(isset($_POST['responsive-menu-import'])):
+                    $valid_nonce = wp_verify_nonce( $_POST['responsive-menu-nonce'], 'update' );
+
                     $file = $_FILES['responsive-menu-import-file'];
                     $file_options = isset($file['tmp_name']) ? (array) json_decode(file_get_contents($file['tmp_name'])) : null;
-                    echo $controller->import($file_options);
-
+                    echo $controller->import( $file_options, $valid_nonce );
 
                 elseif(isset($_POST['responsive-menu-import-theme'])):
                     $file = $_FILES['responsive-menu-import-theme-file'];

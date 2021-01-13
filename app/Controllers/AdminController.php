@@ -263,12 +263,18 @@ class AdminController {
     * @since 3.0
     *
     * @param array  $imported_options   An array of the imported options.
+    * @param bool   $valid_nonce        Is the form nonce valid or not.
     *
     * @return string                    Output HTML from rendered view.
     */
-    public function import($imported_options) {
+    public function import( $imported_options, $valid_nonce ) {
         $errors = [];
-        if(!empty($imported_options)):
+
+        // Check nonce is valid or not.
+        if ( ! $valid_nonce ) {
+            $alert = [ 'danger' => 'CSRF token not valid' ];
+            $options = $this->manager->all();
+        } elseif( ! empty( $imported_options ) ) {
 
             $validator = new Validator();
             if($validator->validate($imported_options)):
@@ -290,11 +296,11 @@ class AdminController {
 
             endif;
 
-        else:
+        } else {
             $options = $this->manager->all();
             $alert = ['danger' => 'No import file selected'];
 
-        endif;
+        }
 
         return $this->view->render(
             'admin/main.html.twig',
