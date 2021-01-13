@@ -477,6 +477,11 @@ class Admin {
 	 */
 	public function rmp_menu_cpt() {
 
+		// Check user capabilities.
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
 		$labels = array(
 			'name'                => __( 'Responsive Menu', 'responsive-menu-pro' ),
 			'singular_name'       => 'Rmp_Menu',
