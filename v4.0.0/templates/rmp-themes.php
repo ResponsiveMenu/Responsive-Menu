@@ -24,6 +24,7 @@ $theme_manager  = Theme_Manager::get_instance();
     <!-- Theme drop and upload location -->
     <div id="rmp-menu-library-import" class="hide">
         <form action="<?php echo admin_url( 'admin-post.php' ); ?>" id="rmp-menu-library-import-form" method="post" enctype="multipart/form-data">
+            <input type="hidden" id="rmp_theme_upload_nonce" name="rmp_theme_upload_nonce" value="<?php echo wp_create_nonce('rmp_nonce'); ?>"/>
             <a class="cancel">
                 <span class="dashicons dashicons-no-alt "></span>
             </a>
