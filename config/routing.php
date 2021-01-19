@@ -32,25 +32,30 @@ if(is_admin()):
                     echo $controller->update($valid_nonce, wp_unslash($_POST['menu']));
 
                 elseif(isset($_POST['responsive-menu-reset'])):
-                    echo $controller->reset(get_responsive_menu_default_options());
+                    $valid_nonce = wp_verify_nonce( $_POST['responsive-menu-nonce'], 'update' );
+                    echo $controller->reset(get_responsive_menu_default_options(), $valid_nonce );
 
                 elseif(isset($_POST['responsive-menu-theme'])):
-                    echo $controller->apply_theme($_POST['menu']['menu_theme']);
+                    $valid_nonce = wp_verify_nonce( $_POST['responsive-menu-nonce'], 'update' );
+                    echo $controller->apply_theme($_POST['menu']['menu_theme'], $valid_nonce );
 
                 elseif(isset($_POST['responsive-menu-import'])):
-                    $file = $_FILES['responsive-menu-import-file'];
+                    $valid_nonce  = wp_verify_nonce( $_POST['responsive-menu-nonce'], 'update' );
+                    $file         = $_FILES['responsive-menu-import-file'];
                     $file_options = isset($file['tmp_name']) ? (array) json_decode(file_get_contents($file['tmp_name'])) : null;
-                    echo $controller->import($file_options);
 
+                    echo $controller->import( $file_options, $valid_nonce );
 
                 elseif(isset($_POST['responsive-menu-import-theme'])):
                     $file = $_FILES['responsive-menu-import-theme-file'];
                     $theme = isset($file['tmp_name']) && $file['tmp_name'] ? $file['tmp_name'] : null;
+                    $valid_nonce = wp_verify_nonce( $_POST['responsive-menu-nonce'], 'update' );
 
-                    echo $controller->import_theme($theme);
+                    echo $controller->import_theme( $theme, $valid_nonce );
 
                 elseif(isset($_POST['responsive-menu-rebuild-db'])):
-                    echo $controller->rebuild();
+                    $valid_nonce = wp_verify_nonce( $_POST['responsive-menu-nonce'], 'update' );
+                    echo $controller->rebuild( $valid_nonce );
 
                 else:
                     echo $controller->index();
