@@ -110,7 +110,7 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 15. Admin Desktop Menu Section
 
 == Changelog ==
-= 4.0.4 (13th January 2021) =
+= 4.0.4 (19th January 2021) =
 * Bug: Fixed security vulnerabilities
 
 = 4.0.3 (07th January 2021) =
