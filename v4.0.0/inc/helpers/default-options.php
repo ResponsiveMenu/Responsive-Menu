@@ -842,7 +842,7 @@ function rmp_get_default_options() {
        'menu_background_image' => '',
        'menu_appear_from' => 'left',
        'animation_type' => 'slide',
-       'page_wrapper' => '',
+       'page_wrapper' => 'body',
        'menu_container_padding'  => [
            'left' => '0px',
            'top' => '0px',

@@ -141,24 +141,34 @@ jQuery( document ).ready( function( jQuery ) {
 		 * Set push translate for toggle and page wrapper.
 		 */
 		setWrapperTranslate() {
-			let translate = '';
+			let translate,translateContainer;
 			switch( this.options['menu_appear_from'] ) {
 				case 'left':
 					translate = 'translateX(' + this.menuWidth() + 'px)';
+					translateContainer = 'translateX(-' + this.menuWidth() + 'px)';
 					break;
 				case 'right':
 					translate = 'translateX(-' + this.menuWidth() + 'px)';
+					translateContainer = 'translateX(' + this.menuWidth() + 'px)';
 					break;
 				case 'top':
 					translate = 'translateY(' + this.wrapperHeight() + 'px)';
+					translateContainer = 'translateY(-' + this.menuHeight() + 'px)';
 					break;
 				case 'bottom':
 					translate = 'translateY(-' + this.menuHeight() + 'px)';
-						break;
+					translateContainer = 'translateY(' + this.menuHeight() + 'px)';
+					break;
 			}
 
 			if ( this.options['animation_type'] == 'push' ) {
 				jQuery(this.pageWrapper).css( { 'transform':translate } );
+
+				//If push Wrapper has body element then handle menu position.
+				if	( 'body' == this.pageWrapper ) {
+					jQuery( this.container ).css( { 'transform' : translateContainer } );
+				}
+
 			}
 
 			if ( this.options['button_push_with_animation'] == 'on' ) {
