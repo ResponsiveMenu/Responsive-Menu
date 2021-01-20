@@ -257,6 +257,7 @@
             width: 100%;
             text-decoration: none;
             position: relative;
+            overflow: hidden;
             transition: background-color $color_transition_speed, border-color $color_transition_speed, $color_transition_speed;
 
             @if ( $menu_word_wrap == 'on' ) {
