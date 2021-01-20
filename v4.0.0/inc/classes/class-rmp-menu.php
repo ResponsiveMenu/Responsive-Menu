@@ -115,9 +115,23 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 			return;
 		}
 
+		/**
+		 * Function to return the prepared menu items.
+		 *
+		 * @since 4.0.0
+		 *
+		 * @return HTML|string
+		 */
 		public function menu() {
+
 			$param  = $this->rmp_nav_menu_args();
+
+			if ( empty( $param ) ) {
+				return;
+			}
+
 			$param['echo'] = false;
+
 			return wp_nav_menu( $param );
 		}
 
