@@ -45,13 +45,24 @@ $theme_manager  = Theme_Manager::get_instance();
 
     <!--- Theme grids --->
     <div class="rmp-theme-page" >
+        <?php
+            $themes = $theme_manager->all_theme_combine_list();
+            if ( empty( $themes ) ) {
+                //Empty message if theme doesn't exist.
+                printf(
+                    '<div class="rmp-theme-page-empty">
+                        <span class="rmp-menu-library-blank-icon  fas fa-save"></span>
+                        <h3 class="rmp-menu-library-title"> %s </h3>
+                    </div>',
+                    __( 'You have no theme here', 'responsive-menu-pro' )
+                );
+
+                $themes = [];
+            }
+        ?>
+
         <ul class="rmp_theme_grids">
              <?php
-                $themes = $theme_manager->all_theme_combine_list();
-                
-                if ( empty( $themes ) ) {
-                    $themes = [];
-                }
 
                 foreach( $themes as $theme ) {
                     
