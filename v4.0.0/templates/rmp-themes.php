@@ -24,6 +24,12 @@ $theme_manager  = Theme_Manager::get_instance();
     <!-- Theme drop and upload location -->
     <div id="rmp-menu-library-import" class="hide">
         <form action="<?php echo admin_url( 'admin-post.php' ); ?>" id="rmp-menu-library-import-form" method="post" enctype="multipart/form-data">
+
+            <div class="rmp-page-loader">
+                <img class="rmp-loader-image" src="<?php echo RMP_PLUGIN_URL_V4 .'/assets/images/rmp-logo.png'; ?>"/>
+                <h3 class="rmp-loader-message"><?php esc_html_e( 'Uploading zip file...', 'responsive-menu-pro' ); ?> </h3>
+            </div>
+
             <input type="hidden" id="rmp_theme_upload_nonce" name="rmp_theme_upload_nonce" value="<?php echo wp_create_nonce('rmp_nonce'); ?>"/>
             <a class="cancel">
                 <span class="dashicons dashicons-no-alt "></span>
@@ -88,7 +94,9 @@ $theme_manager  = Theme_Manager::get_instance();
 
                     <!-- Theme actions -->
                     <div class="rmp-item-card_action">
-                        <button class="button rmp-theme-delete" data-theme="<?php echo $theme['name']; ?>" data-theme-type="<?php echo $theme['type']; ?> "> Delete </button>
+                        <button class="button rmp-theme-delete" data-theme="<?php echo $theme['name']; ?>" data-theme-type="<?php echo $theme['type']; ?> ">
+                            <?php esc_html_e( 'Delete', 'responsive-menu-pro' ); ?>
+                        </button>
                     </div>
 
                 </div>

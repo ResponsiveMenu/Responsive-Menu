@@ -2652,3 +2652,47 @@ div.notice-responsive-menu .notice-responsive-menu-action a:hover {
 .rmp-theme-page-empty .rmp-menu-library-title {
     font-size: 2rem;
 }
+
+/* Loader styles */
+.rmp-page-loader {
+    background: rgb(255 255 255 / 0.9);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.rmp-page-loader .rmp-loader-message {
+    font-style: italic;
+    font-family: 'Product Sans';
+    color: #555d66;
+    padding: 10px;
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+.rmp-page-loader .rmp-loader-image {
+    max-width: 60px;
+    -webkit-animation:spin 1s linear infinite;
+    -moz-animation:spin 1s linear infinite;
+    animation:spin 1s linear infinite;
+}
+
+.rmp-page-loader .rmp-loader-image.large {
+    max-width: 100px;
+}
+
+.rmp-theme-delete .spinner {
+    margin: 0;
+    position: absolute;
+    right: 2rem;
+    top: 1.2rem;
+}
