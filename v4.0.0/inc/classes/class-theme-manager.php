@@ -423,11 +423,14 @@ class Theme_Manager {
 		parse_str( $_POST['form'], $options );
 		$options = $options['menu']; 
 
-		foreach( $options['mega_menu'] as $key ) {
-			$options['mega_menu_item'][$key] = get_post_meta( $menu_id, '_rmp_mega_menu_' . $key );
-		}
+		if ( ! empty( $options['mega_menu'] ) ) {
 
-		unset( $options['mega_menu'] );
+			foreach( $options['mega_menu'] as $key ) {
+				$options['mega_menu_item'][$key] = get_post_meta( $menu_id, '_rmp_mega_menu_' . $key );
+			}
+
+			unset( $options['mega_menu'] );
+		}
 
 		$rmp_themes = get_option( self::$theme_option );
 		if ( empty( $rmp_themes ) || ! is_array( $rmp_themes ) ) {
