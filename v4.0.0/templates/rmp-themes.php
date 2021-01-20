@@ -24,6 +24,12 @@ $theme_manager  = Theme_Manager::get_instance();
     <!-- Theme drop and upload location -->
     <div id="rmp-menu-library-import" class="hide">
         <form action="<?php echo admin_url( 'admin-post.php' ); ?>" id="rmp-menu-library-import-form" method="post" enctype="multipart/form-data">
+
+            <div class="rmp-page-loader">
+                <img class="rmp-loader-image" src="<?php echo RMP_PLUGIN_URL_V4 .'/assets/images/rmp-logo.png'; ?>"/>
+                <h3 class="rmp-loader-message"><?php esc_html_e( 'Uploading zip file...', 'responsive-menu-pro' ); ?> </h3>
+            </div>
+
             <input type="hidden" id="rmp_theme_upload_nonce" name="rmp_theme_upload_nonce" value="<?php echo wp_create_nonce('rmp_nonce'); ?>"/>
             <a class="cancel">
                 <span class="dashicons dashicons-no-alt "></span>
@@ -45,13 +51,24 @@ $theme_manager  = Theme_Manager::get_instance();
 
     <!--- Theme grids --->
     <div class="rmp-theme-page" >
+        <?php
+            $themes = $theme_manager->all_theme_combine_list();
+            if ( empty( $themes ) ) {
+                //Empty message if theme doesn't exist.
+                printf(
+                    '<div class="rmp-theme-page-empty">
+                        <span class="rmp-menu-library-blank-icon  fas fa-save"></span>
+                        <h3 class="rmp-menu-library-title"> %s </h3>
+                    </div>',
+                    __( 'You have no theme here', 'responsive-menu-pro' )
+                );
+
+                $themes = [];
+            }
+        ?>
+
         <ul class="rmp_theme_grids">
              <?php
-                $themes = $theme_manager->all_theme_combine_list();
-                
-                if ( empty( $themes ) ) {
-                    $themes = [];
-                }
 
                 foreach( $themes as $theme ) {
                     
@@ -77,7 +94,9 @@ $theme_manager  = Theme_Manager::get_instance();
 
                     <!-- Theme actions -->
                     <div class="rmp-item-card_action">
-                        <button class="button rmp-theme-delete" data-theme="<?php echo $theme['name']; ?>" data-theme-type="<?php echo $theme['type']; ?> "> Delete </button>
+                        <button class="button rmp-theme-delete" data-theme="<?php echo $theme['name']; ?>" data-theme-type="<?php echo $theme['type']; ?> ">
+                            <?php esc_html_e( 'Delete', 'responsive-menu-pro' ); ?>
+                        </button>
                     </div>
 
                 </div>

@@ -2535,5 +2535,12 @@ $options = $option_manager->get_options( $menu_id );
 		<div id="rmp-required-footer">
 			<?php wp_footer(); ?>
 		</div>
+
+		<!-- Page loader -->
+		<div class="rmp-page-loader">
+			<img class="rmp-loader-image large" src="<?php echo RMP_PLUGIN_URL_V4 .'/assets/images/rmp-logo.png'; ?>"/>
+			<h3 class="rmp-loader-message"><?php esc_html_e( 'Just a moment, the theme is applying...', 'responsive-menu-pro' ); ?> </h3>
+		</div>
+
 	</body>
 </html>

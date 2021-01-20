@@ -476,7 +476,11 @@ jQuery( document ).ready( function( jQuery ) {
 		uploadMultiple: false,
 		success: function ( file, response ) {
 			location.reload();
+		},
+		totaluploadprogress: function() {
+			jQuery('.rmp-page-loader').css( 'display','flex' );
 		}
+
 	} );
 
 	/**
@@ -513,6 +517,9 @@ jQuery( document ).ready( function( jQuery ) {
 			return;
 		}
 
+		//Show the loader on deleting theme.
+		jQuery(this).append( '<span class="spinner is-active"></span>' );
+
 		let themeName = jQuery( this ).attr( 'data-theme' );
 		let themeType = jQuery( this ).attr( 'data-theme-type' ).toLowerCase();
 
@@ -544,6 +551,9 @@ jQuery( document ).ready( function( jQuery ) {
 	 * @fires 4.0.0
 	 */
 	jQuery( '.rmp-theme-apply' ).on( 'click', function( e ) {
+
+		//Show the overlay with loader.
+		jQuery('.rmp-page-loader').css('display','flex');
 
 		jQuery.ajax( {
 			url: rmpObject.ajaxURL,
