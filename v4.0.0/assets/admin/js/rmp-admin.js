@@ -160,6 +160,13 @@ jQuery( document ).ready( function( jQuery ) {
 			e.preventDefault();
 			var url = jQuery(this).attr('href');
 
+			// Prevent to load the customizer page on preview aria.
+			if ( '#' == url ) {
+				url = jQuery('#rmp-preview-iframe').attr('src');
+				jQuery('#rmp-preview-iframe').attr('src', url );
+				return;
+			}
+
 			if ( url.indexOf('?') >= 0 ) {
 				url = url + '&rmp_preview_mode=true';
 			} else {
