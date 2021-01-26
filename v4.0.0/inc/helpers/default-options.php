@@ -761,7 +761,7 @@ function rmp_get_default_options() {
        'menu_title_hover_colour' => '#fff',
        'menu_title_background_colour' => '',
        'menu_title_background_hover_colour' => '#212121',
-       'menu_title_link' => '#',
+       'menu_title_link' => '',
        'menu_title_link_location' => '_self',
        'menu_title_image_icon' => 'off',
        'menu_title_font_icon' => null,

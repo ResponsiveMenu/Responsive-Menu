@@ -164,12 +164,12 @@
             <div id="select-themes" class="rmp-new-menu-themes">
                 <div id="tabs" class="tabs">
                     <ul class="nav-tab-wrapper">
-                        <li><a class="nav-tab" href="#tabs-1"><?php esc_html_e('Premium', 'responsive-menu-pro'); ?></a></li>
-                        <li><a class="nav-tab" href="#tabs-2"><?php esc_html_e('My Downloads', 'responsive-menu-pro'); ?></a></li>
+                        <li><a class="nav-tab" href="#tabs-1"><?php esc_html_e('My Downloads', 'responsive-menu-pro'); ?></a></li>
+                        <li><a class="nav-tab" href="#tabs-2"><?php esc_html_e('Premium', 'responsive-menu-pro'); ?></a></li>
                         <li><a class="nav-tab" href="#tabs-3"><?php esc_html_e('Templates', 'responsive-menu-pro'); ?></a></li>
                     </ul>
 
-                    <div id="tabs-1" class="rmp-themes"> 
+                    <div id="tabs-2" class="rmp-themes">
                         <ul class="rmp_theme_grids">
                             <?php 
                                 echo $theme_manager->get_themes_from_theme_store( true );
@@ -177,7 +177,7 @@
                         </ul>
                     </div>
 
-                    <div id="tabs-2" class="rmp-themes">
+                    <div id="tabs-1" class="rmp-themes">
                        <ul class="rmp_theme_grids">
                         <?php
                             $downloaded_themes = $theme_manager->get_themes_from_uploads();
