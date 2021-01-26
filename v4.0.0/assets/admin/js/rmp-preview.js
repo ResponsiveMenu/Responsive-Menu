@@ -796,7 +796,9 @@ jQuery(document).ready(function(jQuery) {
 			self.bindColor('#rmp-menu-search-box-background-colour', '#rmp-search-box-'+ self.menuId + ' .rmp-search-box'  , 'background');
 			self.bindColor('#rmp-menu-search-box-border-colour', '#rmp-search-box-'+ self.menuId + ' .rmp-search-box'  , 'border-color');
 			self.bindColor('#rmp-menu-search-box-placeholder-colour', '#rmp-search-box-'+ self.menuId + ' .rmp-search-box'  , 'color', 'placeholder');
-			
+			self.changeInput('#rmp-menu-title-font-weight', '#rmp-menu-title-' + self.menuId +' #rmp-menu-title-link', 'font-weight' );
+			self.changeInput('#rmp-menu-title-font-family', '#rmp-menu-title-' + self.menuId +' #rmp-menu-title-link', 'font-family' );
+
 			//Menu Trigger
 			self.bindColor('#rmp-menu-button-background-colour', '#rmp_menu_trigger-' + self.menuId , 'background', '' );
 			self.bindColor('#rmp-menu-button-background-colour-hover', '#rmp_menu_trigger-' + self.menuId , 'background-color', 'hover' );
