@@ -588,6 +588,16 @@ class Style_Manager {
 				$menu_title_background_hover = $options['menu_title_background_hover_colour'];
 			}
 
+			$menu_title_font_family = '';
+			if ( ! empty( $options['menu_title_font_family'] ) ) {
+				$menu_title_font_family = $options['menu_title_font_family'];
+			}
+
+			$menu_title_font_weight = '';
+			if ( ! empty( $options['menu_title_font_weight'] ) ) {
+				$menu_title_font_weight = $options['menu_title_font_weight'];
+			}
+
 			$menu_title_font_color = '';
 			if ( ! empty( $options['menu_title_colour'] ) ) {
 				$menu_title_font_color = $options['menu_title_colour'];
@@ -1296,6 +1306,8 @@ class Style_Manager {
 
 				// Menu title options.
 				'menu_title_wrap'             => $menu_title_wrap,
+				'menu_title_font_weight'      => $menu_title_font_weight,
+				'menu_title_font_family'      => $menu_title_font_family,
 				'menu_title_background'       => $menu_title_background,
 				'menu_title_background_hover' => $menu_title_background_hover,
 				'menu_title_font_color'       => $menu_title_font_color,

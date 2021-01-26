@@ -755,6 +755,8 @@ function rmp_get_default_options() {
        'menu_title_alignment' => 'left',
        'menu_title_font_size' => 14,
        'menu_title_font_size_unit' => 'px',
+       'menu_title_font_family' => '',
+       'menu_title_font_weight' => 'normal',
        'menu_title_colour' => '#fff', 
        'menu_title_hover_colour' => '#fff',
        'menu_title_background_colour' => '',
