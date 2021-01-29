@@ -834,4 +834,20 @@ jQuery( document ).ready( function( jQuery ) {
 		updateMenuContainerAnimationOptions( optionValue );
 	});
 
+	/**
+	 * Event to back on home page under preview screen.
+	 *
+	 * @since 4.0.5
+	 *
+	 * @fires click
+	 *
+	 * @return void
+	 */
+	jQuery('#rmp-preview-wrapper').on( 'click', () => {
+		let url = window.location.href;
+		url = url.substring( 0, url.indexOf( 'wp-admin' ) ) + '?rmp_preview_mode=true' ;
+		jQuery('#rmp-preview-iframe-loader').show();
+		jQuery('#rmp-preview-iframe').attr('src', url );
+	} );
+
 } );
