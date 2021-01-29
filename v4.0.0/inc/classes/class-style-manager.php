@@ -377,6 +377,11 @@ class Style_Manager {
 				$menu_trigger_active_color = $options['button_background_colour_active'];
 			}
 
+			$toggle_button_border_radius = '0';
+			if ( ! empty( $options['toggle_button_border_radius'] ) ) {
+				$toggle_button_border_radius = $options['toggle_button_border_radius'];
+			}
+
 			$menu_trigger_transparent_background = '';
 			if ( ! empty( $options['button_transparent_background'] ) ) {
 				$menu_trigger_transparent_background = $options['button_transparent_background'];
@@ -1264,6 +1269,7 @@ class Style_Manager {
 				'menu_trigger_background_color'       => $menu_trigger_background_color,
 				'menu_trigger_background_color_hover' => $menu_trigger_background_color_hover,
 				'menu_trigger_active_color'           => $menu_trigger_active_color,
+				'toggle_button_border_radius'         => $toggle_button_border_radius,
 				'menu_trigger_transparent_background' => $menu_trigger_transparent_background,
 				'menu_trigger_line_color'             => $menu_trigger_line_color,
 				'menu_trigger_line_color_hover'       => $menu_trigger_line_color_hover,

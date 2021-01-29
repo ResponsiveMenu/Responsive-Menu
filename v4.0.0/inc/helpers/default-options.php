@@ -869,6 +869,7 @@ function rmp_get_default_options() {
        'button_background_colour_hover' => '#000',
        'button_background_colour_active' => '#000',
        'button_transparent_background' => 'off',
+       'toggle_button_border_radius' => 0,
 
        // Toggle Button > Positioning
        'button_left_or_right' => 'right',

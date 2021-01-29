@@ -21,6 +21,7 @@
         height : $menu_trigger_height;
         position: $menu_trigger_position_type;
         top : $menu_trigger_distance_from_top;
+        border-radius: $toggle_button_border_radius + px;
         display: inline-block;
         text-decoration: none;
 

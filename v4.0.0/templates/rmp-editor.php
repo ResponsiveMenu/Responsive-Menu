@@ -1758,13 +1758,26 @@ $options = $option_manager->get_options( $menu_id );
 
 								echo $ui_manager->end_group_controls();
 
+								echo  $ui_manager->start_group_controls();
 								echo $control_manager->add_color_control( [
 									'label'  => __('Active Color','responsive-menu-pro'),
 									'id'     => 'rmp-menu-button-background-colour-active',
 									'name'   => 'menu[button_background_colour_active]',
-									'value'    => rmp_get_value($options,'button_background_colour_active'),
-									
+									'value'    => rmp_get_value($options,'button_background_colour_active')
 								] );
+
+								echo $control_manager->add_text_input_control( [
+									'label'  => __('Border Radius','responsive-menu-pro'),
+									'type'   => 'number',
+									'class' => 'no-updates',
+									'id'     => 'rmp-menu-toggle-border-radius',
+									'name'   => 'menu[toggle_button_border_radius]',
+									'value'    => rmp_get_value($options,'toggle_button_border_radius'),
+									'has_unit' => [
+										'unit_type' => 'px',
+									]
+								] );
+								echo $ui_manager->end_group_controls();
 
 								echo $control_manager->add_switcher_control( [
 									'label'  => __('Transparent Background','responsive-menu-pro'),
