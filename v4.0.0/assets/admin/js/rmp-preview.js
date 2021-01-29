@@ -808,6 +808,7 @@ jQuery(document).ready(function(jQuery) {
 			self.bindColor('#rmp-menu-button-line-colour-active', '.is-active#rmp_menu_trigger-' + self.menuId + ' .responsive-menu-pro-inner,.is-active#rmp_menu_trigger-' + self.menuId +' .responsive-menu-pro-inner:after,.is-active#rmp_menu_trigger-' + self.menuId +' .responsive-menu-pro-inner:before', 'background','' );
 			self.bindColor('#rmp-menu-button-line-colour-hover', '#rmp_menu_trigger-' + self.menuId + ':hover .responsive-menu-pro-inner,#rmp_menu_trigger-' + self.menuId +':hover .responsive-menu-pro-inner:after,#rmp_menu_trigger-' + self.menuId +':hover .responsive-menu-pro-inner:before', 'background','' );
 			self.bindColor('#rmp-menu-button-text-colour', '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-label', 'color' );
+			self.onTyping('#rmp-menu-toggle-border-radius','#rmp_menu_trigger-' + self.menuId ,'border-radius' );
 
 			self.onTyping('.rmp-menu-container-padding','#rmp-container-'+ self.menuId , 'section-padding' );
 			self.onTyping('.rmp-menu-title-section-padding','#rmp-menu-title-'+ self.menuId , 'section-padding' );
