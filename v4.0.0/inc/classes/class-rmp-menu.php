@@ -309,23 +309,44 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 			return $menu_search_wrap;
 		}
 
+		/**
+		 * Function to prepare the the menu additional content section.
+		 *
+		 * @since 4.0.0
+		 *
+		 * @return HTML|string $content
+		 */
 		public function menu_additional_content() {
 
 			$content = '';
 
 			if ( ! empty( $this->options['menu_additional_content'] ) ) {
-				$content = $this->options['menu_additional_content'];
+
+				//Remove script tags if found in menu contents.
+				$content = preg_replace( '#<script(.*?)>(.*?)</script>#', '', $this->options['menu_additional_content'] );
+				$content = do_shortcode( $content );
 			}
 
-			$menu_content_wrap = sprintf(
+			$content = sprintf(
 				'<div id="rmp-menu-additional-content-%s" class="rmp-menu-additional-content">
 					%s
 				</div>',
-				esc_attr( $this->menu_id),
+				esc_attr( $this->menu_id ),
 				$content
 			);
 
-			return $menu_content_wrap;
+			/**
+			 * Filters the menu additional contents markups.
+			 *
+			 * @since 4.0.5
+			 *
+			 * @param string $content
+			 * @param int    $menu_id
+			 *
+			 */
+			$content = apply_filters( 'menu_additional_content_html', $content, $this->menu_id );
+
+			return $content;
 		}
 
 		public function rmp_nav_menu_args( $args = null ) {
