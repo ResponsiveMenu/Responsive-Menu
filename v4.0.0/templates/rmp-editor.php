@@ -117,7 +117,7 @@ $options = $option_manager->get_options( $menu_id );
 						<?php
 							echo $ui_manager->start_accordion_item( [
 								'item_header' => [
-									'item_title' => __('Theme options','responsive-menu-pro'),
+									'item_title' => __('Theme Details','responsive-menu-pro'),
 								]
 							] );
 
@@ -173,6 +173,17 @@ $options = $option_manager->get_options( $menu_id );
 
 						
 							echo $ui_manager->end_accordion_item();
+
+							/**
+							 * Fires after prepare the theme setting section.
+							 * 
+							 * @since 4.0.5
+							 * 
+							 * @param int   $menu_id
+							 * @param array $options
+							 */
+							do_action( 'rmp_tab_themes', $menu_id, $options );
+
 						?>
 						</ul>
 					</div>
@@ -2389,7 +2400,7 @@ $options = $option_manager->get_options( $menu_id );
 									'label'  => __('Type','responsive-menu-pro'),
 									'id'     => 'rmp-animation-type',
 									'name'    => 'menu[animation_type]',
-									'options' => [ 'slide' => 'Slide' , 'push' => 'Push', 'fade' => 'Fade (PRO)' ],
+									'options' => [ 'slide' => 'Slide' , 'push' => 'Push', 'fade' => 'Fade' ],
 									'value'   => rmp_get_value($options,'animation_type')
 								] );
 

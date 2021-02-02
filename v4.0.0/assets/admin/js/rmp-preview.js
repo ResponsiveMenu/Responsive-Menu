@@ -67,13 +67,17 @@ jQuery(document).ready(function(jQuery) {
 			args.outputSelector = args.outputSelector + ':hover';
 		} else if( 'placeholder' == args.state ) {
 			args.outputSelector = args.outputSelector + '::placeholder';
+		}else if( 'before' == args.state ) {
+			args.outputSelector = args.outputSelector + '::before';
+		} else if( 'after' == args.state ) {
+			args.outputSelector = args.outputSelector + '::after';
 		}
 
 		//Prepare css string and return.
 		return args.outputSelector + '{ ' + args.attr +' : ' +  args.value + ';}';
 	} );
 
-	var RMP_Preview = {
+	window.RMP_Preview = {
 		iframe : '#rmp-preview-iframe',
 		menuId : jQuery('#menu_id').val(),
 		mobile_breakpoint : jQuery('#rmp-menu-mobile-breakpoint').val() + 'px',
