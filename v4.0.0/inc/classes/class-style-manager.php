@@ -288,6 +288,12 @@ class Style_Manager {
 			$this->enqueue_styles_as_file();
 		}
 
+		/**
+		 * Fires after frontend scripts are enqueued.
+		 * 
+		 * @since 4.0.4
+		 */
+		do_action( 'after_rmp_enqueue_frontend_scripts' );
 	}
 
 	/**
@@ -1066,7 +1072,7 @@ class Style_Manager {
 				$submenu_current_item_border_color_hover = $options['submenu_current_item_border_hover_colour'];
 			}
 
-			$submenu_item_font_size = '0';
+			$submenu_item_font_size = '';
 			if ( ! empty( $options['submenu_font_size'] ) ) {
 				$submenu_item_font_size = $options['submenu_font_size'];
 			}
@@ -1469,10 +1475,33 @@ class Style_Manager {
 				'sub_menu_transition_speed' => $sub_menu_transition_speed
 			);
 
+			/**
+			 * Apply before parse the scss to css.
+			 * 
+			 * @since 4.0.5
+			 * 
+			 * @param array  $parse_options  Parsed menu settings.
+			 * @param int    $menu_id        Menu Id.
+			 * @param array  $options        Menu options array.
+			 */
+			$parse_options = apply_filters( 'rmp_before_parse_scss_to_css', $parse_options, $menu_id, $options );
+
 			$scss = new Compiler();
 			$scss->setImportPaths(  RMP_PLUGIN_PATH_V4 . '/assets/scss/' );
 			$scss->setVariables( $parse_options );
 			$css = $scss->compile( '@import "main.scss";' );
+
+			/**
+			 * Apply after parsed the scss to css.
+			 * 
+			 * @since 4.0.5
+			 * 
+			 * @param string $css            Compiled CSS.
+			 * @param int    $menu_id        Menu Id.
+			 * @param array  $parse_options  Parsed menu settings.
+			 * @param array  $options        Menu options array.
+			 */
+			$css = apply_filters( 'rmp_after_parse_scss_to_css', $css, $menu_id, $parse_options, $options );
 
 			return $css;
 		}

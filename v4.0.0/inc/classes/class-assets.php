@@ -220,9 +220,9 @@ class Assets {
 		);
 
 		/**
-		 * Fires after enqueue the scripts.
+		 * Fires after enqueue the admin scripts.
 		 */
-		do_action( 'after_rmp_enqueue_scripts' );
+		do_action( 'after_rmp_enqueue_admin_scripts' );
 	}
 
 }

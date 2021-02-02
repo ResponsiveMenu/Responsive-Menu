@@ -221,4 +221,44 @@ include dirname(__FILE__) . '/config/polylang.php';
 		flush_rewrite_rules();
 	}
 
+    /**
+     * Function to include the menu themes templates.
+     *
+     * @since 4.0.5
+     *
+     * @return void
+     */
+    function rm_includes_menu_theme_template() {
+
+        $theme_manager =  \RMP\Features\Inc\Theme_Manager::get_instance();
+
+        //Check class theme manager has this method or not.
+        if ( ! method_exists( $theme_manager, 'get_menu_active_themes' ) ) {
+            return;
+        }
+
+        $active_themes = $theme_manager->get_menu_active_themes();
+        if ( empty( $active_themes ) ) {
+            return;
+        }
+
+        //Include the file from each theme which has php template.
+        foreach( $active_themes as $key => $theme_name ) {
+
+            $theme_file_path = $theme_manager->get_theme_index_file( $theme_name );
+
+            if ( empty( $theme_file_path ) ) {
+                continue;
+            }
+
+            $theme_index = ABSPATH . 'wp-content/uploads/rmp-menu/themes/' . $theme_file_path;
+
+            if ( file_exists( $theme_index ) ) {
+                require_once $theme_index;
+            }
+        }
+
+    }
+
+    rm_includes_menu_theme_template();
 }

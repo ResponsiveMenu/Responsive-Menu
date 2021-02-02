@@ -97,10 +97,13 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 			}
 
 			$side_animation = 'rmp-' . $this->options['animation_type'] . '-' . $this->options['menu_appear_from'];
+			$menu_container_classes = apply_filters( 'rmp_menu_container_classes', [ 'rmp-container', $side_animation ], $this->menu_id );
+			$menu_container_classes =  implode( ' ' , $menu_container_classes );
+
 			$html = sprintf( '%s<div id="rmp-container-%s" class="rmp-container %s">%s</div>',
 				$menu_switcher,
 				$this->menu_id,
-				esc_attr( $side_animation ),
+				esc_attr( $menu_container_classes ),
 				$html
 			);
 
@@ -111,8 +114,20 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 		 * Function to print the menu markups in webpage.
 		 */
 		public function build_menu() {
-			echo  $this->mobile_menu();
-			return;
+
+			$html = $this->mobile_menu();
+
+			/**
+			 * Filters the menu marksup.
+			 *
+			 * @since 4.0.5
+			 *
+			 * @param HTML|string $html
+			 * @param int         menu_id
+			 */
+			$html = apply_filters( 'rmp_menu_html', $html, $this->menu_id );
+
+			echo  $html;
 		}
 
 		/**
@@ -220,13 +235,21 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 				$trigger_click_animation = $this->options['button_click_animation'];
 			}
 
+			$toggle_theme_class = '';
+			if ( ! empty( $this->options['menu_theme'] ) ) {
+				$toggle_theme_class = 'rmp-' . str_replace( ' ', '-', strtolower( $this->options['menu_theme'] ) ) . '-trigger';
+			}
+
+			$toggle_theme_class = apply_filters( 'rmp_menu_toggle_classes', [ 'rmp_menu_trigger', $trigger_click_animation ], $this->menu_id );
+			$toggle_theme_class =  implode( ' ' , $toggle_theme_class );
+
 			$rmp_menu_trigger = sprintf(
-				'<button type="button" aria-controls="rmp-container-%s" aria-label="Menu Trigger" id="rmp_menu_trigger-%s" class="rmp_menu_trigger rmp-menu-trigger-%s">
+				'<button type="button"  aria-controls="rmp-container-%s" aria-label="Menu Trigger" id="rmp_menu_trigger-%s" class=" %s ">
 					%s
 				</button>',
 				$this->menu_id,
 				$this->menu_id,
-				$trigger_click_animation,
+				esc_attr( $toggle_theme_class ),
 				$menu_trigger_content
 			);
 

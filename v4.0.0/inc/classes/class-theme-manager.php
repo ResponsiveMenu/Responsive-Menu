@@ -650,6 +650,54 @@ class Theme_Manager {
 		}
 	}
 
+	/**
+	 * Returns the theme index file path.
+	 *
+	 * @since 4.0.5
+	 *
+	 * @return string;
+	 */
+	public function get_theme_index_file( $theme_name ) {
+
+		$theme_dir_path = wp_upload_dir()['basedir'] . '/rmp-menu/themes';
+		$theme_dirs     = glob( $theme_dir_path . '/*' , GLOB_ONLYDIR );
+
+		foreach( $theme_dirs as $theme_dir ) {
+			$config_file =  $theme_dir . '/config.json';
+			if ( file_exists( $config_file ) ) {
+				$config = json_decode( file_get_contents( $config_file ), true);
+				if ( $config['name'] == $theme_name && ! empty( $config['index'] ) ) {
+					return basename( $theme_dir ) . '/' . $config['index'];
+				}
+			}
+		}
+
+        return;
+	}
+
+	/**
+	 * Returns all uploaded theme list.
+	 *
+	 * @since 4.0.5
+	 *
+	 * @return array
+	 */
+	public function get_menu_active_themes() {
+
+		$active_themes = [];
+		$themes = $this->get_themes_from_uploads();
+		foreach ( $themes as $key => $theme ) {
+
+			if ( empty(  $theme['theme_name'] ) ) {
+				continue;
+			}
+
+			$active_themes[ $key ] = $theme['theme_name'];
+		}
+
+		return $active_themes;
+	}
+
 }
 
 
