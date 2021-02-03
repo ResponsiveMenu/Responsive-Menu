@@ -203,13 +203,21 @@ class Admin {
 			 */
 			do_action( 'rmp_create_new_menu', $menu_id );
 
-			$status = __('Menu is created successfully', 'responsive-menu-pro');			
+			wp_send_json_success(
+				[
+					'message'       => __('Menu is created successfully', 'responsive-menu-pro'),
+					'customize_url' => sprintf(
+						'%spost.php?post=%s&action=edit&editor=true',
+						get_admin_url(),
+						$menu_id
+					)
+				]
+			);
 
 		} else {
-			$status = __('Unable to create new Menu', 'responsive-menu-pro');
+			wp_send_json_error( [ 'message' => __( 'Unable to create new Menu !', 'responsive-menu-pro' ) ] );
 		}
 
-		wp_send_json_success( ['message' => $status ] );
 	}
 
 	/**

@@ -110,9 +110,13 @@ jQuery( document ).ready( function( jQuery ) {
 		} ).always( function( response ) {
 			jQuery( '.spinner' ).removeClass( 'is-active' );
 		} ).done( function( response ) {
+
 			if ( response.success ) {
-				location.reload();
+				window.location.href = response.data.customize_url;
+			} else {
+				alert( response.data.message );
 			}
+
 		} );
 
 	} );
