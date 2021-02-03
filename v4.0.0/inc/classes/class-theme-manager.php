@@ -164,6 +164,14 @@ class Theme_Manager {
 		return [];
 	}
 
+	/**
+	 * Function to delete the theme.
+	 *
+	 * @since 4.0.0
+	 * @since 4.0.5 Added condition for active theme.
+	 *
+	 * @return json
+	 */
 	public function rmp_theme_delete() {
 
 		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
@@ -174,7 +182,11 @@ class Theme_Manager {
         }
 
         $theme_type = sanitize_text_field( $_POST['theme_type'] );
-		
+
+		if ( $this->is_active_theme( $theme_name, $theme_type ) ) {
+			wp_send_json_error( [ 'message' => __( 'This theme is currently active. Please choose another theme and then try deleting.', 'responsive-menu-pro' ) ] );
+		}
+
 		if ( 'template' === $theme_type ) {
 			$this->delete_template( $theme_name );
 		} else {
@@ -696,6 +708,37 @@ class Theme_Manager {
 		}
 
 		return $active_themes;
+	}
+
+	/**
+	 * Check theme is active or not.
+	 *
+	 * @since 4.0.5
+	 *
+	 * @return bool
+	 */
+	public function is_active_theme( $theme_name, $theme_type ) {
+
+		if ( empty( $theme_name ) || empty( $theme_type ) ) {
+			return false;
+		}
+
+		$option_manager = Option_Manager::get_instance();
+		$menu_ids       = get_all_rmp_menu_ids(); 
+
+		foreach ( $menu_ids as $menu_id ) {
+			$options   = $option_manager->get_options( $menu_id );
+
+			if ( empty( $options['menu_theme'] ) || empty(  $options['theme_type'] ) ) {
+				continue;
+			}
+
+			if ( $options['menu_theme'] == $theme_name &&  $options['theme_type'] == $theme_type ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 }
