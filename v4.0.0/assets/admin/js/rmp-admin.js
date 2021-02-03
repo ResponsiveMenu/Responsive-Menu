@@ -518,14 +518,15 @@ jQuery( document ).ready( function( jQuery ) {
 		e.preventDefault();
 
 		/** Ask for delete confirmation */
-		const isConfirm = confirm( 'Are you sure, you want delete this theme ?' );
+		const isConfirm = confirm( 'Are you sure, You want to delete this theme ?' );
 
 		if ( ! isConfirm ) {
 			return;
 		}
 
 		//Show the loader on deleting theme.
-		jQuery(this).append( '<span class="spinner is-active"></span>' );
+		const current_theme = jQuery(this); 
+		current_theme.append( '<span class="spinner is-active"></span>' );
 
 		let themeName = jQuery( this ).attr( 'data-theme' );
 		let themeType = jQuery( this ).attr( 'data-theme-type' ).toLowerCase();
@@ -544,7 +545,13 @@ jQuery( document ).ready( function( jQuery ) {
 				console.log( error.statusText );
 			},
 			success: function( response ) {
-				location.reload();
+				current_theme.find('.spinner').removeClass('is-active');
+
+				if ( response.success ) {
+					location.reload();
+				} else {
+					alert( response.data.message );
+				}
 			}
 		} );
 
