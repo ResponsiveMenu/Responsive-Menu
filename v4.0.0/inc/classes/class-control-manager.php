@@ -427,7 +427,7 @@ class Control_Manager {
             $class = $param['class'];
         }
 
-        $html .= sprintf( '<input type="text" id="%s" name="%s" %s class="no-updates rmp-color-input %s" value="%s">',
+        $html .= sprintf( '<input type="text" data-alpha="true" id="%s" name="%s" %s class="no-updates rmp-color-input %s" value="%s">',
             esc_attr( $param['id'] ),
             esc_attr( $param['name'] ),
             esc_attr( $has_multi_device ),
