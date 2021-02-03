@@ -152,6 +152,7 @@ class Assets {
 			RMP_PLUGIN_VERSION
 		);
 
+		//Color alpha feature in color input controls by below custom scripts.
 		wp_enqueue_script(
 			'rmp_custom_color_alpha_scripts',
 			RMP_PLUGIN_URL_V4 . '/assets/admin/js/wp-color-alpha.js',
