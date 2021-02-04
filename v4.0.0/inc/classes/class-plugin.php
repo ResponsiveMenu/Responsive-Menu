@@ -50,6 +50,7 @@ class Plugin {
 		add_action( 'admin_notices', [ $this, 'rmp_upgrade_pro_admin_notice'] );
 		add_action( 'plugin_action_links_' . plugin_basename( RMP_PLUGIN_FILE ) , [ $this, 'rmp_upgrade_pro_plugin_link' ] );
 		add_action( "wp_ajax_rmp_upgrade_admin_notice_dismiss", [ $this, 'rmp_upgrade_pro_notice_dismiss'] );
+		add_action( 'admin_notices', [ $this, 'no_menu_admin_notice'] );
 
 		// Check current config and environment support wp_body_open or not.
 		if( $this->has_support( 'wp_body_open' ) ) {
@@ -60,6 +61,49 @@ class Plugin {
 	}
 
 	/**
+	 * Function to show the admin notice when no menu exist.
+	 *
+	 * @since 4.0.5
+	 *
+	 * @return void
+	 */
+	public function no_menu_admin_notice() {
+
+		//Check post type.
+		$post_type = get_post_type();
+		if ( empty( $post_type ) && ! empty( $_GET['post_type'] ) ) {
+			$post_type = $_GET['post_type'];
+		}
+
+		if ( 'rmp_menu' !== $post_type || ! empty( $_GET['page'] ) ) {
+			return;
+		}
+
+		// Count all post which are in list except trash.
+		$post_count = 0;
+		foreach( wp_count_posts( 'rmp_menu' ) as $status => $count ) {
+
+			if ( 'trash' == $status ) {
+				continue;
+			}
+
+			$post_count += $count;
+		}
+
+		if ( $post_count >= 1 ) {
+			return;
+		}
+
+		printf(
+			'<div class="notice notice-error">
+				<p> %s <a href="%s" target="_blank"> documentation </a> </p>
+			</div>',
+			__( 'Responsive menu list is empty. Create a menu by clicking the <b>Create New Menu</b> button. For more details visit ', 'responsive-menu-pro' ),
+			esc_url( 'https://responsive.menu/knowledgebase/responsive-menu-4-0-overview/' )
+		);
+	}
+
+	/**
 	 * Add plugin upgrade link.
 	 *
 	 * Add a link to the settings page on the responsive menu page.
@@ -67,7 +111,7 @@ class Plugin {
 	 * @param  array  $links List of existing plugin action links.
 	 * @return array         List of modified plugin action links.
 	 */
-	function rmp_upgrade_pro_plugin_link( $links ) {
+	public function rmp_upgrade_pro_plugin_link( $links ) {
 
 		$links = array_merge(
 			$links,
@@ -105,7 +149,7 @@ class Plugin {
 	/**
 	 * Function to hide the admin notice permanent.
 	 */
-	function rmp_upgrade_pro_notice_dismiss() {
+	public function rmp_upgrade_pro_notice_dismiss() {
 		$user_id = get_current_user_id();
 		update_user_meta( $user_id, 'rmp_upgrade_pro_admin_notice', true );
 	}
