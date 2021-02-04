@@ -47,14 +47,67 @@ class Plugin {
 
 		add_action( 'plugins_loaded', [ $this, 'rmp_load_plugin_text_domain' ] );
 		add_action( 'admin_notices', [ $this, 'rmp_deactivate_paid_version_notice' ] );
+		add_action( 'admin_notices', [ $this, 'rmp_upgrade_pro_admin_notice'] );
+		add_action( 'plugin_action_links_' . plugin_basename( RMP_PLUGIN_FILE ) , [ $this, 'rmp_upgrade_pro_plugin_link' ] );
+		add_action( "wp_ajax_rmp_upgrade_admin_notice_dismiss", [ $this, 'rmp_upgrade_pro_notice_dismiss'] );
 
 		// Check current config and environment support wp_body_open or not.
-
 		if( $this->has_support( 'wp_body_open' ) ) {
 			add_action( 'wp_body_open' , [ $this, 'menu_render_on_frontend'] );
 		} else {
 			add_action( 'wp_footer' , [ $this, 'menu_render_on_frontend'] );
 		}
+	}
+
+	/**
+	 * Add plugin upgrade link.
+	 *
+	 * Add a link to the settings page on the responsive menu page.
+	 * 
+	 * @param  array  $links List of existing plugin action links.
+	 * @return array         List of modified plugin action links.
+	 */
+	function rmp_upgrade_pro_plugin_link( $links ) {
+
+		$links = array_merge(
+			$links,
+			array( '<a class="responsive-menu-license-upgrade-link" target="_blank" href="https://responsive.menu/pricing/">' . __( 'Upgrade', 'responsive-menu-pro') . '</a>')
+		);
+
+		return $links;
+	}
+
+	/**
+	 * Function to add the admin notice to upgrade as pro.
+	 * 
+	 * @version 4.0.5
+	 * 
+	 */
+	public function rmp_upgrade_pro_admin_notice() {
+
+		$post_type = get_post_type(); 
+		if ( empty( $post_type ) && ! empty( $_GET['post_type'] ) ) {
+			$post_type = $_GET['post_type'];
+		}
+
+		if ( 'rmp_menu' !== $post_type ) {
+			return;
+		}
+
+		$user_id = get_current_user_id();
+		if ( ! empty( get_user_meta( $user_id, 'rmp_upgrade_pro_admin_notice') ) ) {
+			return;
+		}
+
+		include_once RMP_PLUGIN_PATH_V4 . '/templates/admin-notices.php';
+	}
+
+	/**
+	 * Function to hide the admin notice permanent.
+	 */
+	function rmp_upgrade_pro_notice_dismiss() {
+		$user_id = get_current_user_id();
+		update_user_meta( $user_id, 'rmp_upgrade_pro_admin_notice', true );
 	}
 
 	/**

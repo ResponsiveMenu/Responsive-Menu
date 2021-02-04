@@ -861,4 +861,14 @@ jQuery( document ).ready( function( jQuery ) {
 		jQuery('#rmp-preview-iframe').attr('src', url );
 	} );
 
+	/** Call ajax to hide admin notice permanent. */
+	jQuery( '.notice-responsive-menu' ).on( 'click', '.notice-dismiss', function( event ) {
+		event.preventDefault();
+		jQuery.ajax( {
+			type: "POST",
+			url: rmpObject.ajaxURL,
+			data: 'action=rmp_upgrade_admin_notice_dismiss',
+		});
+	});
+
 } );
