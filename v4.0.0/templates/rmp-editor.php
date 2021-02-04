@@ -522,30 +522,6 @@ $options = $option_manager->get_options( $menu_id );
 									]
 								);
 
-								echo $ui_manager->start_group_controls();
-
-								echo $control_manager->add_color_control( [
-									'label'  => __('Menu Background','responsive-menu-pro'),
-									'id'     => 'rmp-menu-background-colour',
-									'name'    => 'menu[menu_background_colour]',
-									'value'    => rmp_get_value($options,'menu_background_colour'),
-								] );
-					
-								echo $control_manager->add_select_control( [
-									'label'  => __('Depth Level','responsive-menu-pro'),
-									'id'     => 'rmp-menu-depth',
-									'tool_tip' => [
-										'text' => __('Set the level of nesting for sub menus.','responsive-menu-pro'),
-									],
-									'name'    => 'menu[menu_depth]',
-									'options' => array( '1'=>1, '2'=>2, '3' => 3, '4'=>4,'5'=>5 ),
-									'value'   => rmp_get_value($options,'menu_depth'),
-								] );
-								
-								echo $ui_manager->end_group_controls();
-
-								echo $ui_manager->accordion_divider();
-					
 								echo $control_manager->add_switcher_control( [
 									'label'  => __('Item Descriptions','responsive-menu-pro'),
 									'id'     => 'rmp-menu-submenu-descriptions-on',
@@ -578,6 +554,29 @@ $options = $option_manager->get_options( $menu_id );
 										'item_class' => 'title-contents',
 									]
 								);
+
+									echo $ui_manager->start_group_controls();
+									echo $control_manager->add_color_control( [
+										'label'  => __('Menu Background','responsive-menu-pro'),
+										'id'     => 'rmp-menu-background-colour',
+										'name'    => 'menu[menu_background_colour]',
+										'value'    => rmp_get_value($options,'menu_background_colour'),
+									] );
+						
+									echo $control_manager->add_select_control( [
+										'label'  => __('Depth Level','responsive-menu-pro'),
+										'id'     => 'rmp-menu-depth',
+										'tool_tip' => [
+											'text' => __('Set the level of nesting for sub menus.','responsive-menu-pro'),
+										],
+										'name'    => 'menu[menu_depth]',
+										'options' => array( '1'=>1, '2'=>2, '3' => 3, '4'=>4,'5'=>5 ),
+										'value'   => rmp_get_value($options,'menu_depth'),
+									] );
+									
+									echo $ui_manager->end_group_controls();
+									echo $ui_manager->accordion_divider();
+
 									echo $control_manager->add_switcher_control( [
 										'label'  => __('Smooth Scroll Enabled','responsive-menu-pro'),
 										'id'     => 'rmp-menu-smooth-scroll-on',
