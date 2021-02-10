@@ -166,8 +166,6 @@ jQuery( document ).ready( function( jQuery ) {
 
 			// Prevent to load the customizer page on preview aria.
 			if ( '#' == url ) {
-				url = jQuery('#rmp-preview-iframe').attr('src');
-				jQuery('#rmp-preview-iframe').attr('src', url );
 				return;
 			}
 
