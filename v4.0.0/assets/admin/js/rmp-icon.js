@@ -47,6 +47,15 @@ jQuery( document ).ready( function() {
 				jQuery(this).siblings('.rmp-font-icon').remove();
 				jQuery(this).parent('.rmp-icon-picker').removeAttr('data-icon');
 				jQuery(this).remove();
+
+				if ( ! jQuery('#rmp-editor-main').find('#rmp-menu-update-notification').length ) {
+					jQuery( '#rmp-editor-main' ).prepend(
+						'<div id="rmp-menu-update-notification" class="rmp-order-item rmp-order-item-description">' +
+							'<span> <span class="rmp-font-icon dashicons dashicons-warning "></span> Update Required </span>' +
+							'<a href="javascript:void(0)" id="rmp-menu-quick-update-button">UPDATE</a>' +
+						'</div>'
+					);	
+				}
 			});
 		},
 		getIcon : function() {

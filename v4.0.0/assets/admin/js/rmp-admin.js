@@ -460,6 +460,11 @@ jQuery( document ).ready( function( jQuery ) {
 		jQuery( this ).parent( '.rmp-image-picker' ).siblings( 'input.rmp-image-url-input' ).val( '' );
 		jQuery( this ).parent( '.rmp-image-picker' ).removeAttr( 'style' );
 		jQuery( this ).remove();
+
+		if ( ! jQuery('#rmp-editor-main').find('#rmp-menu-update-notification').length ) {
+			addUpdateNotification();	
+		}
+
 	} );
 
 	/**

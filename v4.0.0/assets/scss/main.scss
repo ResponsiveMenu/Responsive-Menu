@@ -35,8 +35,7 @@
         background: $menu_trigger_background_color;
 
         &:hover,
-        &:focus,
-        &.is-active:hover {
+        &:focus {
             background: $menu_trigger_background_color_hover;
             text-decoration: unset;
         }
@@ -201,8 +200,15 @@
             padding: 0;
         }
 
-        .rmp-submenu-depth-1 .rmp-menu-item-link {
-            padding-#{$menu_depth_side} : ( $menu_item_padding_depth_1 + $menu_item_padding_depth_1_unit);
+        // If legacy setting is on then add these settings.
+        @if( $is_legacy == 'on' and $submenu_item_toggle_position == left) {
+            .rmp-submenu-depth-1 .rmp-menu-item-link {
+                padding-left: ( $submenu_item_toggle_width + 10 ) + $submenu_item_toggle_width_unit;
+            }
+        }@else{
+            .rmp-submenu-depth-1 .rmp-menu-item-link {
+                padding-#{$menu_depth_side} : ( $menu_item_padding_depth_1 + $menu_item_padding_depth_1_unit);
+            }
         }
 
         .rmp-submenu-depth-2 .rmp-menu-item-link {
@@ -272,12 +278,7 @@
             }
 
             padding: 0 ( $menu_item_padding + $menu_item_padding_unit);
-
-            @if ( $menu_item_toggle_position == 'left' ) {
-                padding-left: ( $menu_item_toggle_width + $menu_item_toggle_width_unit );
-            } @else if( $menu_item_toggle_position == 'right' ) {
-                padding-right: ( $menu_item_toggle_width + $menu_item_toggle_width_unit );
-            }
+            padding-#{$menu_item_toggle_position}: ( $menu_item_toggle_width + 10 ) + $menu_item_toggle_width_unit;
 
             &:after,
             &:before{
@@ -329,18 +330,14 @@
             overflow: hidden;
             @if ( $menu_item_toggle_position == 'left' ) {
                 left: 0;
-                @if( $menu_item_toggle_border_width != 0 ) {
-                    border-right-style:solid;
-                    border-right-color:$menu_item_toggle_border_color;
-                    border-right-width: ( $menu_item_toggle_border_width + $menu_item_toggle_border_width_unit );
-                }
+                border-right-style:solid;
+                border-right-color:$menu_item_toggle_border_color;
+                border-right-width: ( $menu_item_toggle_border_width + $menu_item_toggle_border_width_unit );
             } @else {
                 right: 0;
-                @if( $menu_item_toggle_border_width != 0 ) {
-                    border-left-style:solid;
-                    border-left-color:$menu_item_toggle_border_color;
-                    border-left-width: ( $menu_item_toggle_border_width + $menu_item_toggle_border_width_unit );
-                }
+                border-left-style:solid;
+                border-left-color:$menu_item_toggle_border_color;
+                border-left-width: ( $menu_item_toggle_border_width + $menu_item_toggle_border_width_unit );
             }
 
             height: ($menu_item_toggle_height + $menu_item_toggle_height_unit);
@@ -383,6 +380,7 @@
             .rmp-menu-item-link {
                 height: ( $submenu_item_height + $submenu_item_height_unit);
                 line-height: ( $submenu_item_line_height + $submenu_item_line_height_unit );
+                letter-spacing: ($submenu_text_letter_spacing + px);
 
                 @if( $submenu_item_font_size != '' ) {
                     font-size: ( $submenu_item_font_size + $submenu_item_font_size_unit );    
@@ -433,19 +431,15 @@
                     @if ( $submenu_item_toggle_position == 'left' ) {
                         left: 0;
                         border-left: unset;
-                        @if( $submenu_item_toggle_border_width != 0 ) {
-                            border-right-style:solid;
-                            border-right-color:$submenu_item_toggle_border_color;
-                            border-right-width: ( $submenu_item_toggle_border_width + $submenu_item_toggle_border_width_unit );
-                        }
+                        border-right-style:solid;
+                        border-right-color:$submenu_item_toggle_border_color;
+                        border-right-width: ( $submenu_item_toggle_border_width + $submenu_item_toggle_border_width_unit );
                     } @else {
                         right: 0;
                         border-right: unset;
-                        @if( $submenu_item_toggle_border_width != 0 ) {
-                            border-left-style:solid;
-                            border-left-color:$submenu_item_toggle_border_color;
-                            border-left-width: ( $submenu_item_toggle_border_width + $submenu_item_toggle_border_width_unit );
-                        }
+                        border-left-style:solid;
+                        border-left-color:$submenu_item_toggle_border_color;
+                        border-left-width: ( $submenu_item_toggle_border_width + $submenu_item_toggle_border_width_unit );
                     }
 
                     height: ($submenu_item_toggle_height + $submenu_item_toggle_height_unit);
