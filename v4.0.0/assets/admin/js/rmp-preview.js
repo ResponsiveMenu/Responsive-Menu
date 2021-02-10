@@ -85,7 +85,7 @@ jQuery(document).ready(function(jQuery) {
 		active_device: jQuery('#rmp_device_mode'),
 		menuContainer : '#rmp-container-'+ self.menuId,
 
-		onTyping: function( inputSelector, outputSelector, type) {
+		onTyping: function( inputSelector, outputSelector, type, meta = '' ) {
 			var self = this;
 			var iframe  = jQuery(self.iframe);
 			jQuery(inputSelector).on( 'keyup change paste', function() {
@@ -106,16 +106,6 @@ jQuery(document).ready(function(jQuery) {
 						css = outputSelector + '{ '+ attr +' : '+ ( value ) +';}';
 						self.inlineCssInjector(css);
 
-					break;
-					case 'trigger-line-width':
-						var unit = jQuery(this).next('.is-unit').val();
-						css = outputSelector + '{ width : '+ ( this.value + unit ) +';}';
-						self.inlineCssInjector(css);
-					break;
-					case 'trigger-line-height':
-						var unit = jQuery(this).next('.is-unit').val();
-						css = outputSelector + '{ height : '+ ( this.value + unit ) +';}';
-						self.inlineCssInjector(css);
 					break;
 					case 'trigger-text':
 							if ( iframe.contents().find(outputSelector).length ) {
@@ -152,7 +142,7 @@ jQuery(document).ready(function(jQuery) {
 						}
 
 						var value = jQuery(this).val();
-						css = outputSelector + '{ font-size : '+  ( value + unit ) + '!important;}';
+						css = outputSelector + '{ font-size : '+  ( value + unit ) + ';}';
 
 						if ( jQuery(this).attr( 'multi-device') ) {
 							css = self.mediaQuery( css );
@@ -226,7 +216,47 @@ jQuery(document).ready(function(jQuery) {
 						}
 						css = outputSelector + '{ max-width : '+ (this.value + unit) +';}';
 						self.inlineCssInjector(css);
+					break;
+					case 'trigger-side-position':
 
+						side = jQuery('#rmp-menu-button-left-or-right').val();
+
+						unit  = jQuery('#rmp-menu-button-distance-from-side-unit').val();
+
+						value = jQuery('#rmp-menu-button-distance-from-side').val();
+
+						css = outputSelector + '{ '+ side +' :'+ (value + unit) +' !important;}';
+
+						self.inlineCssInjector(css);
+
+					break;
+
+					case 'top':
+						value = jQuery(this).val();
+						unit  = jQuery('#rmp-menu-button-top-unit').val();
+						css = outputSelector + '{ top :' + (value + unit) +' !important;}';
+						self.inlineCssInjector(css);
+					break;
+
+					case 'border-width':
+						var unit = jQuery(this).next('.is-unit').val();
+						if ( ! unit ) {
+							unit = 'px';
+						}
+						css = outputSelector + '{ border-width : '+ (this.value + unit) +';}';
+						self.inlineCssInjector(css);
+					break;
+
+					case 'padding':
+						var unit = jQuery(this).next('.is-unit').val();
+						if ( ! unit ) {
+							unit = 'px';
+						}
+
+						if ( meta == 'lr') {
+							css = outputSelector + '{ padding : 0 '+ (this.value + unit) +';}';
+						}
+						self.inlineCssInjector(css);
 					break;
 				}
 			});
@@ -391,21 +421,8 @@ jQuery(document).ready(function(jQuery) {
 		mediaQuery: function( css ) {
 
 			var self = this;
-
-			self.mobile_breakpoint = jQuery('#rmp-menu-mobile-breakpoint').val() + 'px';
 			self.tablet_breakpoint = jQuery('#rmp-menu-tablet-breakpoint').val() + 'px';
-			self.active_device = jQuery('#rmp_device_mode');
-
-			if( 'desktop' === self.active_device.val() ) {
-				$css = '@media screen and (min-width: '+ self.tablet_breakpoint +' ) {' + css + '}';
-				return $css; 
-			} else if( 'tablet' === self.active_device.val() ) {
-				$css = '@media screen and (max-width: '+ self.tablet_breakpoint +') and (min-width : '+ self.mobile_breakpoint +') {' + css + '}';
-				return $css; 
-			} else if( 'mobile' === self.active_device.val() ) {
-				$css = '@media screen and (max-width: '+ self.mobile_breakpoint +' ) {' + css + '}';
-				return $css; 
-			}
+			css = '@media screen and (max-width: '+ self.tablet_breakpoint +' ) {' + css + '}';
 
 			return css;
 		},
@@ -449,12 +466,12 @@ jQuery(document).ready(function(jQuery) {
 						self.inlineCssInjector(css);
 					break;
 					case 'width-unit':
-						value = jQuery(this).prev('input').val();
-						unit = jQuery(this).val(); 
-						iframe.contents().find( outputSelector ).css({
-							'width' : value+unit,
-						} );
+						var value = jQuery(this).prev('input').val();
+						var unit = jQuery(this).val(); 
+						css = outputSelector + '{ width : '+ ( value + unit) +';}';
+						self.inlineCssInjector(css);
 					break;
+
 					case 'font-size':
 						value = jQuery(this).prev('input').val();
 						unit = jQuery(this).val(); 
@@ -481,15 +498,15 @@ jQuery(document).ready(function(jQuery) {
 						css = outputSelector + '{ font-weight :' + value +';}';
 						self.inlineCssInjector(css);
 					break;
-					case 'padding':
-						var unit = jQuery(this).next('.is-unit').val();
-
+					case 'padding-unit':
+						var unit = jQuery(this).val();
+						var value = jQuery(this).prev('input').val();
 						if ( ! unit ) {
 							unit = 'px';
 						}
 
 						if( meta == 'lr') {
-							css = outputSelector + '{ padding : 0 '+ (this.value + unit) +';}';
+							css = outputSelector + '{ padding : 0 '+ (value + unit) +';}';
 						}
 
 						self.inlineCssInjector(css);
@@ -525,8 +542,8 @@ jQuery(document).ready(function(jQuery) {
 						});
 					break;
 					case 'top':
-						value = jQuery(this).val();
-						unit  = jQuery('#rmp-menu-button-top-unit').val();
+						var unit = jQuery(this).val();
+						value = jQuery(this).prev('input').val();
 						css = outputSelector + '{ top :' + (value + unit) +' !important;}';
 						self.inlineCssInjector(css);
 					break;
@@ -561,31 +578,23 @@ jQuery(document).ready(function(jQuery) {
 							iframe.contents().find( outputSelector ).attr('style', 'background:unset !important;');
 						} else {
 							iframe.contents().find( outputSelector ).removeAttr( 'style' );
-						}             
+						}    
 					break;
 					case 'target':
-						if ( jQuery(this).is(':checked') ) {
-							iframe.contents().find(outputSelector).attr('target', '_blank' );
-						} else {
-							iframe.contents().find(outputSelector).attr('target', '_self' );
+						var value = jQuery(this).val();
+
+						if( ! value.length ) {
+							value = '_self';
 						}
+
+						iframe.contents().find(outputSelector).attr('target', value );
 					break;
+
 					case 'text-align':
 						var value =  jQuery(this).val();
 						iframe.contents().find( outputSelector ).css({
 							'text-align' : value,
 						} );
-					break;
-					case 'border-width':
-						var unit = jQuery(this).next('.is-unit').val();
-
-						if ( ! unit ) {
-							unit = 'px';
-						}
-
-						css = outputSelector + '{ border-width : '+ (this.value + unit) +';}';
-						self.inlineCssInjector(css);
-
 					break;
 				}
 			});
@@ -674,14 +683,14 @@ jQuery(document).ready(function(jQuery) {
 
 			self.bindColor(
 				'#rmp-menu-sub-arrow-border-colour-active',
-				'#rmp-menu-wrap-' + self.menuId + ' .rmp-menu-subarrow.rmp-menu-subarrow-active',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-menu-subarrow-active',
 				'border-color'
 			);
 
 
 			self.bindColor(
 				'#rmp-menu-sub-arrow-border-hover-colour-active',
-				'#rmp-menu-wrap-' + self.menuId + ' .rmp-menu-subarrow.rmp-menu-subarrow-active',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-menu-subarrow-active',
 				'border-color',
 				'hover'
 			);
@@ -720,7 +729,7 @@ jQuery(document).ready(function(jQuery) {
 			);
 
 			self.bindColor(
-				'#rmp-submenu-item-border-colour-hover',
+				'#rmp-submenu-sub-arrow-shape-colour-hover',
 				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-subarrow',
 				'color',
 				'hover'
@@ -729,14 +738,14 @@ jQuery(document).ready(function(jQuery) {
 
 			self.bindColor(
 				'#rmp-submenu-sub-arrow-shape-colour-active',
-				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-subarrow.rmp-menu-subarrow-active',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-subarrow-active',
 				'color'
 			);
 
 
 			self.bindColor(
 				'#rmp-submenu-sub-arrow-shape-hover-colour-active',
-				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-subarrow.rmp-menu-subarrow-active',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-subarrow-active',
 				'color',
 				'hover'
 			);
@@ -762,7 +771,7 @@ jQuery(document).ready(function(jQuery) {
 
 			self.bindColor(
 				'#rmp-submenu-sub-arrow-border-hover-colour-active',
-				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-subarrow.rmp-menu-subarrow-active',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-subarrow-active',
 				'border-color',
 				'hover'
 			);
@@ -782,13 +791,13 @@ jQuery(document).ready(function(jQuery) {
 
 			self.bindColor(
 				'#rmp-submenu-sub-arrow-background-colour-active',
-				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-subarrow.rmp-menu-subarrow-active',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-subarrow-active',
 				'background'
 			);
 
 			self.bindColor(
 				'#rmp-submenu-sub-arrow-background-hover-colour-active',
-				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-subarrow.rmp-menu-subarrow-active',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-subarrow-active',
 				'background',
 				'hover'
 			);
@@ -823,9 +832,6 @@ jQuery(document).ready(function(jQuery) {
 			// CONTENT BASED ELEMENTS.
 
 			self.onTyping('#rmp-menu-search-box-height','#rmp-search-box-'+ self.menuId + ' .rmp-search-box','height' );
-			self.changeInput('#rmp-menu-search-box-height-unit','#rmp-search-box-'+ self.menuId + ' .rmp-search-box','height-unit' );
-
-
 			self.onTyping('#rmp-menu-search-box-border-radius','#rmp-search-box-'+ self.menuId + ' .rmp-search-box','border-radius' );
 
 
@@ -835,22 +841,15 @@ jQuery(document).ready(function(jQuery) {
 			self.onTyping('#rmp-menu-title-link', '#rmp-menu-title-' + self.menuId + ' #rmp-menu-title-link','href');
 			self.onTyping('#rmp-menu-title-image-alt', '#rmp-menu-title-' + self.menuId + ' .rmp-menu-title-image','alt');
 			self.onTyping('#rmp-menu-title-font-size', '#rmp-menu-title-' + self.menuId + ' > a','font-size');
-			self.changeInput('#rmp-menu-title-font-size-unit', '#rmp-menu-title-' + self.menuId + ' > a','font-size' );
-			self.changeInput('#rmp-menu-additional-content-font-size-unit', '#rmp-menu-additional-content-' + self.menuId ,'font-size' );
 
 			self.onTyping('#rmp-menu-title-image-width', '#rmp-menu-title-' + self.menuId + ' .rmp-menu-title-image','width');
 			self.onTyping('#rmp-menu-title-image-height', '#rmp-menu-title-' + self.menuId + ' .rmp-menu-title-image','height');
+
 			self.bindImage('#rmp-menu-title-image-selector', '#rmp-menu-title-' + self.menuId + ' .rmp-menu-title-image', 'img-src' );
 
 			self.onTyping('#rmp-menu-additional-content-font-size', '#rmp-menu-additional-content-' + self.menuId ,'font-size' );
 
 			self.onTyping('#rmp-menu-container-width', '#rmp-container-'+ self.menuId, 'width' );
-			self.changeInput('#rmp-menu-container-width-unit', '#rmp-container-'+ self.menuId, 'width-unit' );
-			self.changeInput('#rmp-menu-button-width-unit', '#rmp_menu_trigger-' + self.menuId, 'width-unit' );
-
-			self.changeInput('#rmp-menu-button-height-unit', '#rmp_menu_trigger-' + self.menuId , 'height-unit');
-
-
 			self.onTyping('#rmp-menu-container-min-width', '#rmp-container-'+ self.menuId, 'min-width' );
 			self.onTyping('#rmp-menu-container-max-width', '#rmp-container-'+ self.menuId, 'max-width' );
 
@@ -860,21 +859,55 @@ jQuery(document).ready(function(jQuery) {
 			self.onTyping('#rmp-menu-button-title-open', '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-text-open', 'trigger-text-open' );
 			self.onTyping('#rmp-menu-button-title', '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-text', 'trigger-text' );
 			self.onTyping('#rmp-menu-button-font-size', '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-label', 'font-size' );
-			self.changeInput('#rmp-menu-button-font-size-unit', '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-label', 'font-size' );
-
 			self.onTyping('#rmp-menu-button-title-line-height', '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-label', 'line-height' );
-			self.changeInput('#rmp-menu-button-title-line-height-unit', '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-label', 'line-height-unit' );
 
 			//Menu Trigger
-			self.onTyping('#rmp-menu-button-width', '#rmp_menu_trigger-' + self.menuId, 'width' );
-			self.onTyping('#rmp-menu-button-height', '#rmp_menu_trigger-' + self.menuId , 'height');
+			self.onTyping(
+				'#rmp-menu-button-width',
+				'#rmp_menu_trigger-' + self.menuId,
+				'width'
+			);
+			self.onTyping(
+				'#rmp-menu-button-height',
+				'#rmp_menu_trigger-' + self.menuId ,
+				'height'
+			);
 
-			self.onTyping('#rmp-menu-button-line-width', '#rmp_menu_trigger-' + self.menuId +' .responsive-menu-pro-inner', 'trigger-line-width' );
-			self.onTyping('#rmp-menu-button-line-width', '#rmp_menu_trigger-' + self.menuId +' .responsive-menu-pro-inner:after', 'trigger-line-width' );
-			self.onTyping('#rmp-menu-button-line-width', '#rmp_menu_trigger-' + self.menuId +' .responsive-menu-pro-inner:before', 'trigger-line-width' );
-			self.onTyping('#rmp-menu-button-line-height', '#rmp_menu_trigger-' + self.menuId +' .responsive-menu-pro-inner', 'trigger-line-height' );
-			self.onTyping('#rmp-menu-button-line-height', '#rmp_menu_trigger-' + self.menuId +' .responsive-menu-pro-inner:after', 'trigger-line-height' );
-			self.onTyping('#rmp-menu-button-line-height', '#rmp_menu_trigger-' + self.menuId +' .responsive-menu-pro-inner:before', 'trigger-line-height' );
+			self.onTyping(
+				'#rmp-menu-button-line-width',
+				'#rmp_menu_trigger-' + self.menuId +' .responsive-menu-pro-inner',
+				'width'
+			);
+
+			self.onTyping(
+				'#rmp-menu-button-line-width',
+				'#rmp_menu_trigger-' + self.menuId +' .responsive-menu-pro-inner:after',
+				'width'
+			);
+
+			self.onTyping(
+				'#rmp-menu-button-line-width',
+				'#rmp_menu_trigger-' + self.menuId +' .responsive-menu-pro-inner:before',
+				'width'
+			);
+
+			self.onTyping(
+				'#rmp-menu-button-line-height',
+				'#rmp_menu_trigger-' + self.menuId +' .responsive-menu-pro-inner',
+				'height'
+			);
+
+			self.onTyping(
+				'#rmp-menu-button-line-height',
+				'#rmp_menu_trigger-' + self.menuId +' .responsive-menu-pro-inner:after',
+				'height'
+			);
+
+			self.onTyping(
+				'#rmp-menu-button-line-height',
+				'#rmp_menu_trigger-' + self.menuId +' .responsive-menu-pro-inner:before',
+				'height'
+			);
 
 			self.bindImage('#rmp-button-title-image', '#rmp-menu-title-' + self.menuId + ' .rmp-menu-title-image', 'img-src' );
 			self.bindImage('#rmp-menu-background-image-selector', '#rmp-container-'+ self.menuId, 'background' );
@@ -882,56 +915,124 @@ jQuery(document).ready(function(jQuery) {
 			self.bindImage('#rmp-menu-button-image-when-clicked-selector', '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-icon-active', 'trigger-icon-open' );
 			self.bindImage('#rmp-menu-button-image-selector', '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-icon-inactive', 'trigger-icon' );
 
+			self.changeInput(
+				'#rmp-menu-title-link-location',
+				'#rmp-menu-title-' + self.menuId + ' #rmp-menu-title-link',
+				'target'
+			);
 
-			
-
-			self.changeInput('#rmp-menu-title-link-location', '#rmp-menu-title-' + self.menuId + ' #rmp-menu-title-link','target');
 			self.changeInput('.rmp-menu-title-alignment', '#rmp-menu-title-' + self.menuId ,'text-align');
 			self.changeInput('.rmp-menu-additional-content-alignment', '#rmp-menu-additional-content-'+ self.menuId,'text-align');
 
 			//Top menu item links
-			self.onTyping('#rmp-menu-links-height', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-item-link', 'height');
-			self.onTyping('#rmp-menu-links-line-height', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-item-link', 'line-height');
-			self.onTyping('#rmp-menu-font-size', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-item-link', 'font-size');
-			self.changeInput('#rmp-menu-font-size-unit', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-item-link', 'font-size');
+			self.onTyping(
+				'#rmp-menu-links-height',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-menu-item-link',
+				'height'
+			);
 
+			self.onTyping(
+				'#rmp-menu-links-line-height',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-menu-item-link',
+				'line-height'
+			);
+
+			self.onTyping(
+				'#rmp-menu-font-size',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-menu-item-link',
+				'font-size'
+			);
 
 			self.changeInput('#rmp-menu-font', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-item-link', 'font-family' );
 			self.changeInput('#rmp-menu-font-weight', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-item-link', 'font-weight' );
 			self.changeInput('.rmp-menu-text-alignment', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-item-link', 'text-align' );
-			self.changeInput('#rmp-menu-text-letter-spacing', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-item-link', 'letter-spacing' );
-			self.changeInput('#rmp-menu-depth-level-0', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-item-link', 'padding', 'lr' );
 
-			self.changeInput('#rmp-menu-border-width', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-item-link', 'border-width' );
-			self.changeInput('#rmp-menu-sub-arrow-border-width', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-subarrow', 'border-width' );
-			self.changeInput('#rmp-submenu-sub-arrow-border-width', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-sub-level-item .rmp-menu-subarrow', 'border-width' );
- 
-			self.bindColor('#rmp-menu-link-color', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-item-link', 'color');
-			self.bindColor('#rmp-menu-link-hover-color', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-item-link', 'color','hover');
-			self.bindColor('#rmp-menu-current-link-active-color', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item.rmp-menu-current-item .rmp-menu-item-link', 'color');
-			self.bindColor('#rmp-menu-current-link-active-hover-color', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item.rmp-menu-current-item .rmp-menu-item-link', 'color','hover');
+			self.changeInput(
+				'#rmp-menu-text-letter-spacing',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-menu-item-link',
+				'letter-spacing'
+			);
 
-			self.bindColor('#rmp-menu-item-background-colour', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-item-link', 'background');
-			self.bindColor('#rmp-menu-item-background-hover-color', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-item-link', 'background','hover');
-			self.bindColor('#rmp-menu-current-item-background-color', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item.rmp-menu-current-item .rmp-menu-item-link', 'background');
-			self.bindColor('#rmp-menu-current-item-background-hover-color', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item.rmp-menu-current-item .rmp-menu-item-link', 'background','hover');
+			self.onTyping(
+				'#rmp-menu-depth-level-0',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-menu-item-link',
+				'padding',
+				'lr'
+			);
 
-			self.bindColor('#rmp-menu-item-border-colour', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-item-link', 'border-color');
+			self.onTyping(
+				'#rmp-menu-border-width',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-menu-item-link',
+				'border-width'
+			);
+
+			self.onTyping(
+				'#rmp-menu-sub-arrow-border-width',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-menu-subarrow',
+				'border-width'
+			);
+
+			self.onTyping(
+				'#rmp-submenu-sub-arrow-border-width',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-subarrow',
+				'border-width'
+			);
+
+			self.bindColor('#rmp-menu-link-color', '#rmp-menu-wrap-' + self.menuId + ' .rmp-menu-item-link', 'color');
+			self.bindColor('#rmp-menu-link-hover-color', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-item-link', 'color','hover');
+			self.bindColor('#rmp-menu-current-link-active-color', '#rmp-menu-wrap-' + self.menuId + ' .rmp-menu-current-item .rmp-menu-item-link', 'color');
+			self.bindColor('#rmp-menu-current-link-active-hover-color', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-current-item .rmp-menu-item-link', 'color','hover');
+
+			self.bindColor('#rmp-menu-item-background-colour', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-item-link', 'background');
+			self.bindColor('#rmp-menu-item-background-hover-color', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-item-link', 'background','hover');
+			self.bindColor('#rmp-menu-current-item-background-color', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-current-item .rmp-menu-item-link', 'background');
+			self.bindColor('#rmp-menu-current-item-background-hover-color', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-current-item .rmp-menu-item-link', 'background','hover');
+
+			self.bindColor('#rmp-menu-item-border-colour', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-item-link', 'border-color');
+			self.bindColor('#rmp-menu-item-border-colour-hover', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-item-link', 'border-color', 'hover' );
+			self.bindColor('#rmp-menu-current-item-border-hover-colour', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-current-item .rmp-menu-item-link', 'border-color', 'hover' );
+			self.bindColor('#rmp-menu-item-border-colour-active', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-current-item .rmp-menu-item-link', 'border-color');
 
 			// Trigger of top level
 			self.bindImage('#rmp-menu-inactive-arrow-image-selector', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-subarrow', 'background' );
 			self.bindImage('#rmp-menu-active-arrow-image-selector', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-subarrow-active', 'background' );
 
-			self.onTyping('#rmp-submenu-arrow-height', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-subarrow', 'height');
-			self.onTyping('#rmp-submenu-arrow-width', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-subarrow', 'width');
-			self.changeInput('#rmp-submenu-arrow-width-unit', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-subarrow', 'width-unit');
-			self.changeInput('#rmp-submenu-arrow-height-unit', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-subarrow', 'height-unit');
+			self.onTyping(
+				'#rmp-submenu-arrow-height',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-menu-subarrow',
+				'height'
+			);
 
-			self.onTyping('#rmp-submenu-child-arrow-height', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-sub-level-item .rmp-menu-subarrow', 'height');
-			self.onTyping('#rmp-submenu-child-arrow-width', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-sub-level-item .rmp-menu-subarrow', 'width');
-			self.changeInput('#rmp-submenu-child-arrow-width-unit', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-sub-level-item .rmp-menu-subarrow', 'width-unit');
-			self.changeInput('#rmp-submenu-child-arrow-height-unit', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-sub-level-item .rmp-menu-subarrow', 'height-unit');
+			self.onTyping(
+				'#rmp-submenu-arrow-width',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-menu-subarrow',
+				'width'
+			);
 
+			self.onTyping(
+				'#rmp-submenu-child-arrow-height',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-subarrow',
+				'height'
+			);
+
+
+			self.onTyping(
+				'#rmp-submenu-child-arrow-width',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-subarrow',
+				'width'
+			);
+
+			self.changeInput(
+				'#rmp-submenu-child-arrow-width-unit',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-subarrow',
+				'width-unit'
+			);
+
+			self.changeInput(
+				'#rmp-submenu-child-arrow-height-unit',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-subarrow',
+				'height-unit'
+			);
 
 			self.bindColor('#rmp-menu-sub-arrow-background-color', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-subarrow', 'background');
 			self.bindColor('#rmp-menu-sub-arrow-background-hover-colour', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-subarrow', 'background','hover');
@@ -939,33 +1040,150 @@ jQuery(document).ready(function(jQuery) {
 			self.bindColor('#rmp-menu-sub-arrow-background-hover-colour-active', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-subarrow-active', 'background','hover' );
 
 			 //sub menu item links
-			 self.onTyping('#rmp-submenu-links-height', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link', 'height');
-			 self.onTyping('#rmp-submenu-links-line-height', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link', 'line-height');
-			 self.onTyping('#rmp-submenu-font-size', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link', 'font-size');
-			 self.changeInput('#rmp-submenu-font', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link', 'font-family' );
-			 self.changeInput('#rmp-submenu-font-weight', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link', 'font-weight' );
-			 self.changeInput('.rmp-submenu-text-alignment', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link', 'text-align' );
-			 self.changeInput('#rmp-submenu-text-letter-spacing', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link', 'letter-spacing' );
- 
-			 self.changeInput('#rmp-submenu-border-width', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link', 'border-width' );
-			 self.bindColor('#rmp-submenu-item-border-colour', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link', 'border-color');
+			 self.onTyping(
+				'#rmp-submenu-links-height',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link',
+				'height'
+			);
 
-			 self.bindColor('#rmp-submenu-link-color', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link', 'color');
-			 self.bindColor('#rmp-submenu-link-hover-color', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link', 'color','hover');
-			 self.bindColor('#rmp-submenu-link-colour-active', '#rmp-container-' + self.menuId +' #rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-current-item .rmp-menu-item-link', 'color');
-			 self.bindColor('#rmp-submenu-link-active-hover-color', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-current-item .rmp-menu-item-link', 'color','hover');
- 
-			 self.bindColor('#rmp-submenu-item-background-color', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link', 'background');
-			 self.bindColor('#rmp-submenu-item-background-hover-color', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link', 'background','hover');
-			 self.bindColor('#rmp-submenu-current-item-background-color', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-current-item .rmp-menu-item-link', 'background');
-			 self.bindColor('#rmp-submenu-current-item-background-hover-color', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-current-item .rmp-menu-item-link', 'background','hover');
- 
+			self.changeInput(
+				'#rmp-submenu-links-height-unit',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link',
+				'height-unit'
+			);
+
+			self.onTyping(
+				'#rmp-submenu-links-line-height',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link',
+				'line-height'
+			);
+
+			self.changeInput(
+				'#rmp-submenu-links-line-height-unit',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link',
+				'line-height-unit'
+			);
+
+			self.onTyping(
+				'#rmp-submenu-font-size',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link',
+				'font-size'
+			);
+
+			self.changeInput(
+				'#rmp-submenu-font',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link',
+				'font-family'
+			);
+
+			self.changeInput(
+				'#rmp-submenu-font-weight',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link',
+				'font-weight'
+			);
+
+			 self.changeInput(
+				 '.rmp-submenu-text-alignment',
+				 '#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link',
+				 'text-align'
+			);
+			
+			self.changeInput(
+				'#rmp-submenu-text-letter-spacing',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link',
+				'letter-spacing'
+			);
+
+			self.onTyping(
+				'#rmp-submenu-border-width',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link',
+				'border-width'
+			);
+
+			self.bindColor(
+				'#rmp-submenu-item-border-colour',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link',
+				'border-color'
+			);
+
+			self.bindColor(
+				'#rmp-submenu-item-border-colour-hover',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link',
+				'border-color',
+				'hover'
+			);
+
+			self.bindColor(
+				'#rmp-submenu-item-border-colour-active',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-current-item .rmp-menu-item-link',
+				'border-color',
+			);
+
+			self.bindColor(
+				'#rmp-submenu-current-item-border-hover-colour',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-current-item .rmp-menu-item-link',
+				'border-color',
+				'hover'
+			);
+
+			self.bindColor(
+				'#rmp-submenu-link-color',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link',
+				'color'
+			);
+
+			self.bindColor(
+				'#rmp-submenu-link-hover-color',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link',
+				'color',
+				'hover'
+			);
+
+			self.bindColor(
+				'#rmp-submenu-link-colour-active',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-current-item .rmp-menu-item-link',
+				'color'
+			);
+
+			self.bindColor(
+				'#rmp-submenu-link-active-hover-color',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-current-item .rmp-menu-item-link',
+				'color',
+				'hover'
+			);
+
+			self.bindColor(
+				'#rmp-submenu-item-background-color',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link',
+				'background'
+			);
+
+			self.bindColor(
+				'#rmp-submenu-item-background-hover-color',
+				' #rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link',
+				'background',
+				'hover'
+			);
+
+			self.bindColor(
+				'#rmp-submenu-current-item-background-color',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-current-item .rmp-menu-item-link',
+				'background'
+			);
+
+			self.bindColor(
+				'#rmp-submenu-current-item-background-hover-color',
+				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-current-item .rmp-menu-item-link',
+				'background',
+				'hover'
+			);
+
 			//Menu Trigger
 			self.changeInput('.rmp-menu-button-transparent-background', '#rmp_menu_trigger-' + self.menuId , 'background','');
 			self.changeInput('#rmp-menu-button-position-type', '#rmp_menu_trigger-' + self.menuId , 'position');
 			self.changeInput('.rmp-menu-button-left-or-right', '#rmp_menu_trigger-' + self.menuId , 'trigger-side');
-			self.changeInput('#rmp-menu-button-distance-from-side', '#rmp_menu_trigger-' + self.menuId , 'trigger-side-position');
-			self.changeInput('#rmp-menu-button-top', '#rmp_menu_trigger-' + self.menuId , 'top');
+			self.onTyping('#rmp-menu-button-distance-from-side', '#rmp_menu_trigger-' + self.menuId , 'trigger-side-position');
+			self.onTyping('#rmp-menu-button-top', '#rmp_menu_trigger-' + self.menuId , 'top');
 			self.changeInput('#rmp-menu-button-click-animation', '#rmp_menu_trigger-' + self.menuId , 'trigger-animation');
 			self.changeInput('#rmp-menu-button-font', '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-label', 'font-family' );
 			self.changeInput('.rmp-menu-button-title-position', '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-label', 'position-alignment' );

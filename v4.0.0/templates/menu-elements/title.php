@@ -33,6 +33,7 @@
                 'label'  => __('Link ','responsive-menu-pro'),
                 'group_classes' => 'full-size',
                 'type' => 'text',
+                'class' => 'no-updates',
                 'placeholder' => 'Enter Link',
                 'id'     => 'rmp-menu-title-link',
                 'name'   => 'menu[menu_title_link]',
@@ -41,7 +42,8 @@
 
             echo $control_manager->add_select_control( [
                 'label'  => __('Link Target','responsive-menu-pro'),
-                'id'     => 'rmp-menu-title-link-location',	
+                'id'     => 'rmp-menu-title-link-location',
+                'class' => 'no-updates',
                 'name'    => 'menu[menu_title_link_location]',
                 'options' => array( '_blank' => 'New Tab' , '_self' => 'Same Page', '_parent' => 'Parent Page', '_top' => 'Full Window Body' ),
                 'value'   => rmp_get_value($options,'menu_title_link_location'),
@@ -177,6 +179,7 @@
                             'label'  => __('Image Width','responsive-menu-pro'),
                             'type'   => 'number',
                             'id'     => 'rmp-menu-title-image-width',
+                            'class' => 'no-updates',
                             'name'   => 'menu[menu_title_image_width]',
                             'value'    => rmp_get_value($options,'menu_title_image_width'),
                             'placeholder' => __('Enter width','responsive-menu-pro'),
@@ -194,6 +197,7 @@
                             'label'  => __('Image Height','responsive-menu-pro'),
                             'type'   => 'number',
                             'id'     => 'rmp-menu-title-image-height',
+                            'class' => 'no-updates',
                             'name'   => 'menu[menu_title_image_height]',
                             'value'    => rmp_get_value($options,'menu_title_image_height'),
                             'placeholder' => __('Enter height','responsive-menu-pro'),

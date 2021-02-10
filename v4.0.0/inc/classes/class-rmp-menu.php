@@ -229,10 +229,9 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 				$menu_trigger_content .= $menu_trigger_text;
 			}
 
-
 			$trigger_click_animation = '';
 			if ( ! empty( $this->options['button_click_animation'] ) ) {
-				$trigger_click_animation = $this->options['button_click_animation'];
+				$trigger_click_animation = 'rmp-menu-trigger-' . $this->options['button_click_animation'];
 			}
 
 			$toggle_theme_class = '';

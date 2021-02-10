@@ -779,6 +779,11 @@ class Style_Manager {
 				$menu_item_letter_spacing = $options['menu_text_letter_spacing'];
 			}
 
+			$submenu_text_letter_spacing = '0';
+			if ( ! empty( $options['submenu_text_letter_spacing'] ) ) {
+				$submenu_text_letter_spacing = $options['submenu_text_letter_spacing'];
+			}
+
 			$menu_item_border_width = '0';
 			if ( ! empty( $options['menu_border_width'] ) ) {
 				$menu_item_border_width = $options['menu_border_width'];
@@ -1402,11 +1407,10 @@ class Style_Manager {
 				'menu_current_item_toggle_background_color_hover' => $menu_current_item_toggle_background_color_hover,
 				'menu_item_toggle_border_color'                   => $menu_item_toggle_border_color,
 				'menu_item_toggle_border_color_hover'             => $menu_item_toggle_border_color_hover,
-				'menu_current_item_toggle_border_color'           => $menu_item_toggle_border_color_hover,
+				'menu_current_item_toggle_border_color'           => $menu_current_item_toggle_border_color,
 				'menu_current_item_toggle_border_color_hover'     => $menu_current_item_toggle_border_color_hover,
-
-				'menu_item_toggle_border_width'  => $menu_sub_arrow_border_width,
-				'menu_item_toggle_border_width_unit'  => $menu_sub_arrow_border_width_unit,
+				'menu_item_toggle_border_width'                   => $menu_sub_arrow_border_width,
+				'menu_item_toggle_border_width_unit'              => $menu_sub_arrow_border_width_unit,
 
 				// Sub-level menu items options.
 				'submenu_item_height'           => $submenu_item_height,
@@ -1425,7 +1429,8 @@ class Style_Manager {
 				'submenu_item_font_size_unit'  => $submenu_item_font_size_unit,
 				'submenu_item_font_family'     => $submenu_item_font_family,
 				'submenu_item_text_alignment'  => $submenu_item_text_alignment,
-				
+				'submenu_text_letter_spacing'  => $submenu_text_letter_spacing,
+
 				'submenu_item_text_color'                     => $submenu_item_text_color,
 				'submenu_item_text_color_hover'               => $submenu_item_text_color_hover,
 				'submenu_current_item_text_color'             => $submenu_current_item_text_color,
