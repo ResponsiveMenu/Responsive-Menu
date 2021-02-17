@@ -120,7 +120,7 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 			/**
 			 * Filters the menu marksup.
 			 *
-			 * @since 4.0.5
+			 * @since 4.1.0
 			 *
 			 * @param HTML|string $html
 			 * @param int         menu_id
@@ -360,7 +360,7 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 			/**
 			 * Filters the menu additional contents markups.
 			 *
-			 * @since 4.0.5
+			 * @since 4.1.0
 			 *
 			 * @param string $content
 			 * @param int    $menu_id
