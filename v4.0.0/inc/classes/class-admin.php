@@ -138,6 +138,8 @@ class Admin {
 			wp_send_json_error( [ 'message' => __('Select menu to use !', 'responsive-menu-pro') ] );
 		}
 
+		$menu_to_hide = sanitize_text_field( $_POST['menu_to_hide'] );
+
 		$menu_theme = '';
 		if ( ! empty( $_POST['menu_theme'] )  ) {
 			$menu_theme  = sanitize_text_field( $_POST['menu_theme'] );
@@ -187,7 +189,8 @@ class Admin {
 			'theme_type'          => $theme_type,
 			'menu_display_on'     => $menu_show_on,
 			'menu_show_on_pages'  => $menu_show_on_pages,
-			'menu_id'             => $menu_id
+			'menu_id'             => $menu_id,
+			'menu_to_hide'        => $menu_to_hide
  		);
 
 		$new_options  = array_merge( $theme_options , $new_options );

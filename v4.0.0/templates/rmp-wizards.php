@@ -12,8 +12,11 @@
     <div class="rmp-dialog-backdrop"></div>
     <div class="rmp-dialog-wrap wp-clearfix">
         <div class="rmp-dialog-header">
-            <strong class="title"><?php esc_html_e('Select icon', 'responsive-menu-pro'); ?></strong>
-            <span class="close dashicons dashicons-no"></span>
+            <div class="title">
+                <img alt="logo" width="34" height="34" src="<?php echo RMP_PLUGIN_URL_V4 .'/assets/images/rmp-logo.png'; ?>" />
+                <span> <?php esc_html_e('Select Icon', 'responsive-menu-pro'); ?> </span>
+            </div>
+            <button class="close dashicons dashicons-no"></button>
         </div>
         <div class="rmp-dialog-contents wp-clearfix">
             <div id="tabs" class="tabs icon-tabs">
@@ -152,65 +155,52 @@
     </div>
 </section>
 
-<!--- Theme list wizard markups -->
+<!-- Theme wizard in customizer page. -->
 <section id="rmp-new-menu-wizard" class="rmp-dialog-overlay rmp-new-menu-wizard" style="display:none">
     <div class="rmp-dialog-backdrop"></div>
     <div class="rmp-dialog-wrap wp-clearfix">
         <div class="rmp-dialog-header">
-            <strong class="title"><?php esc_html_e('Use theme', 'responsive-menu-pro'); ?></strong>
+            <div class="title">
+                <img alt="logo" width="34" height="34" src="<?php echo RMP_PLUGIN_URL_V4 .'/assets/images/rmp-logo.png'; ?>" />
+                <span> <?php esc_html_e('Use Theme', 'responsive-menu-pro'); ?> </span>
+            </div>
+
             <button class="close dashicons dashicons-no"></button>
         </div>
         <div class="rmp-dialog-contents wp-clearfix tabs" id="tabs" >  
             <div id="select-themes" class="rmp-new-menu-themes">
                 <div id="tabs" class="tabs">
                     <ul class="nav-tab-wrapper">
-                        <li><a class="nav-tab" href="#tabs-1"><?php esc_html_e('My Downloads', 'responsive-menu-pro'); ?></a></li>
-                        <li><a class="nav-tab" href="#tabs-2"><?php esc_html_e('Premium', 'responsive-menu-pro'); ?></a></li>
-                        <li><a class="nav-tab" href="#tabs-3"><?php esc_html_e('Templates', 'responsive-menu-pro'); ?></a></li>
+                        <li><a class="nav-tab rmp-v-divider" href="#tabs-1"><?php esc_html_e('Available Themes', 'responsive-menu-pro'); ?></a></li>
+                        <li><a class="nav-tab rmp-v-divider" href="#tabs-2"><?php esc_html_e('Browse Themes', 'responsive-menu-pro'); ?></a></li>
+                        <li><a class="nav-tab" href="#tabs-3"><?php esc_html_e('Saved Templates', 'responsive-menu-pro'); ?></a></li>
+                        <li style="float:right;"><button id="rmp-upload-new-theme" class="button btn-import-theme"><?php esc_html_e('Import', 'responsive-menu-pro'); ?></button></li>
                     </ul>
+
+                    <!-- This is menu theme upload section -->
+                    <div id="rmp-menu-library-import" class="rmp-theme-upload-container hide" >
+                        <p><?php esc_html_e('If you have a menu theme in a .zip format, you can upload here.', 'responsive-menu-pro'); ?></p>
+                        <form method="post" enctype="multipart/form-data" id="rmp-menu-theme-upload-form" class="wp-upload-form">    
+                            <label class="screen-reader-text" for="themezip">Upload zip</label>
+                            <input type="file" accept=".zip" id="rmp_menu_theme_zip" name="rmp_menu_theme_zip" />
+                            <button id="rmp-theme-upload" class="button" type="button"> Upload Theme </button>
+                        </form>
+                    </div>
 
                     <div id="tabs-2" class="rmp-themes">
                         <ul class="rmp_theme_grids">
-                            <?php 
-                                echo $theme_manager->get_themes_from_theme_store( true );
-                            ?>
+                            <?php echo $theme_manager->get_themes_from_theme_store(); ?>
                         </ul>
                     </div>
 
                     <div id="tabs-1" class="rmp-themes">
-                       <ul class="rmp_theme_grids">
-                        <?php
-                            $downloaded_themes = $theme_manager->get_themes_from_uploads();
-                            foreach( $downloaded_themes as $theme ) {
-                                $id = 'rmp-theme-' . preg_replace('/\s+/', '', $theme['theme_name'] );
-                        ?>
-                            <li class="rmp_theme_grid_item">
-                                <div class="rmp-item-card">
-                                    <figure class="rmp-item-card_image">
-                                        <img src="<?php echo esc_url( $theme['theme_preview_url'] );?>" alt="" loading="lazy"/>
-                                        <figcaption class="rmp-item-card_label <?php echo $theme['status']; ?>">
-                                            <span class="dashicons dashicons-star-filled "></span> <?php echo $theme['status']; ?>
-                                        </figcaption>
-                                    </figure>
-                                    <div class="rmp-item-card_contents">
-                                        <h4> <?php echo esc_html( $theme['theme_name'] ); ?> </h4>
-                                    </div>
-                                    <div class="rmp-item-card_action">
-                                        <button class="button rmp-theme-apply" theme-name="<?php echo esc_attr( $theme['theme_name'] ); ?>" theme-type="downloaded">
-                                         <?php esc_html_e('Apply', 'responsive-menu-pro'); ?>
-                                        </button>
-                                    </div>
-                                </div>
-                            </li>
+                        <?php echo $theme_manager->get_available_themes( true ); ?>  
+                    </div>
 
-                        <?php } ?>
-                        </ul>
-                    </div>
                     <div id="tabs-3" class="rmp-themes">
-                        <?php 
-                            echo $theme_manager->rmp_saves_theme_list_html();
-                        ?>
+                        <?php echo $theme_manager->rmp_saves_theme_template_list( true ); ?>
                     </div>
+
                 </div>
             </div>
         </div>
