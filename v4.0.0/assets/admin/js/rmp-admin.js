@@ -10,118 +10,6 @@
 jQuery( document ).ready( function( jQuery ) {
 
 	/**
-	 * Open new create menu wizard on click event.
-	 *
-	 * @since 4.0.0
-	 *
-	 * @fires Click
-	 */
-	jQuery( document ).on( 'click', 'a.page-title-action', function( e ) {
-		e.preventDefault();
-		jQuery( '#rmp-new-menu-wizard' ).show();
-	} );
-
-	/**
-	 * Close the new menu wizard.
-	 * 
-	 * @since 4.0.0
-	 * 
-	 * @fires Click
-	 */
-	jQuery( '#rmp-new-menu-wizard .rmp-dialog-header button.close' ).on( 'click', function() {
-		jQuery( '#rmp-new-menu-wizard' ).hide();
-	} );
-
-	/**
-	 * Move on next tab content for theme selection.
-	 */
-	jQuery( '#rmp-create-menu-first-step' ).on( 'click', () => {
-		jQuery( '#rmp-create-menu-first-step' ).hide();
-		jQuery( '#rmp-create-new-menu' ).show();
-		jQuery( 'a[href="#select-themes"]' ).trigger( 'click' );
-	} );
-
-	// Handle next and create button visibility.
-	jQuery( 'a[href="#select-themes"]' ).on( 'click', ()=> {
-		jQuery( '#rmp-create-new-menu' ).show();
-		jQuery( '#rmp-create-menu-first-step' ).hide();
-	} );
-
-	// Handle next and create button visibility.
-	jQuery( 'a[href="#menu-settings"]' ).on( 'click', () => {
-		jQuery( '#rmp-create-new-menu' ).hide();
-		jQuery( '#rmp-create-menu-first-step' ).show();
-	} );
-
-	/**
-	 * Call ajax to save the new create menu.
-	 *
-	 * @version 4.0.0
-	 *
-	 * @fires Click
-	 */
-	jQuery( '#rmp-create-new-menu' ).on( 'click', function( e ) {
-		e.preventDefault();
-		let menuName  = jQuery( '#rmp-menu-name' );
-		let themeName = jQuery( '.rmp-theme-option:checked' ).val();
-
-		if ( themeName == undefined ) {
-			themeName = '';
-		}
-
-		jQuery.ajax( {
-			url: rmpObject.ajaxURL,
-			data: {
-				'action': 'rmp_create_new_menu',
-				'ajax_nonce': rmpObject.ajax_nonce,
-				'menu_name': menuName.val(),
-				'menu_to_use': jQuery( '#rmp-menu-to-use' ).val(),
-				'menu_show_on_pages': jQuery( '#rmp-menu-display-on-pages' ).val(),
-				'menu_show_on': jQuery( '.rmp-menu-display-option' ).val(),
-				'menu_theme': themeName,
-				'theme_type': jQuery( '.rmp-theme-option:checked' ).attr( 'theme-type' )
-			},
-			type: 'POST',
-			dataType: 'json',
-			beforeSend: function() {
-				jQuery( '#rmp-create-new-menu' ).prop( 'disabled', true );
-				jQuery( '.spinner' ).addClass( 'is-active' );
-			},
-			error: function( error ) {
-				console.log( 'Internal Error !' );
-				jQuery( '#rmp-create-new-menu' ).prop( 'disabled', false );
-				jQuery( '.spinner' ).removeClass( 'is-active' );
-			},
-			success: function( response ) {
-				jQuery( '#rmp-create-new-menu' ).prop( 'disabled', false );
-				noticeClass = 'notice-error';
-				if ( true == response.success ) {
-					isSuccess = 'notice-success';
-				}
-
-				jQuery( '.rmp-new-menu-elements' ).prepend(
-					'<div class="notice ' + noticeClass + ' settings-error is-dismissible"> <p>' + response.data.message + '</p></div>'
-				);
-
-				setTimeout( function() {
-					jQuery( '.rmp-new-menu-elements' ).find( '.notice' ).remove();
-				}, 3000 );
-			}
-		} ).always( function( response ) {
-			jQuery( '.spinner' ).removeClass( 'is-active' );
-		} ).done( function( response ) {
-
-			if ( response.success ) {
-				window.location.href = response.data.customize_url;
-			} else {
-				alert( response.data.message );
-			}
-
-		} );
-
-	} );
-
-	/**
 	 * Rollback the plugin version.
 	 *
 	 * @version 4.0.0
@@ -259,8 +147,8 @@ jQuery( document ).ready( function( jQuery ) {
 	jQuery( '.rmp-color-input' ).wpColorPicker();
 
 	// Fix events glitch on color textbox.
-	jQuery('.rmp-color-input').removeAttr( 'style' );
-	jQuery('.rmp-color-input').off( 'focus' );
+	jQuery( '.rmp-color-input' ).removeAttr( 'style' );
+	jQuery( document ).find( '.rmp-color-input' ).off( 'focus' );
 
 	// Initiate the tab elements.
 	jQuery( '.tabs,#rmp-setting-tabs' ).tabs( {
@@ -512,13 +400,6 @@ jQuery( document ).ready( function( jQuery ) {
 	} );
 
 	/**
-	 * Show/Hide change theme wizard.
-	 */
-	jQuery( '.rmp-theme-change-button' ).on( 'click', function( e ) {
-		jQuery( '#rmp-new-menu-wizard' ).toggle();
-	} );
-
-	/**
 	 * Delete the theme from theme page.
 	 */
 	jQuery( '.rmp-theme-delete' ).on( 'click', function( e ) {
@@ -569,9 +450,9 @@ jQuery( document ).ready( function( jQuery ) {
 	 *
 	 * @version 4.0.0
 	 *
-	 * @fires 4.0.0
+	 * @fires click
 	 */
-	jQuery( '.rmp-theme-apply' ).on( 'click', function( e ) {
+	jQuery( document ).on( 'click', '.rmp-theme-apply', function( e ) {
 
 		//Show the overlay with loader.
 		jQuery('.rmp-page-loader').css('display','flex');
@@ -590,6 +471,7 @@ jQuery( document ).ready( function( jQuery ) {
 			dataType: 'json',
 			error: function( error ) {
 				console.log( error.statusText );
+				jQuery( '.rmp-page-loader' ).hide();
 			},
 			success: function( response ) {
 				location.reload();
@@ -851,7 +733,7 @@ jQuery( document ).ready( function( jQuery ) {
 	/**
 	 * Event to back on home page under preview screen.
 	 *
-	 * @since 4.0.5
+	 * @since 4.1.0
 	 *
 	 * @fires click
 	 *

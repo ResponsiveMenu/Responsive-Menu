@@ -20,11 +20,6 @@ const rmpEditor = {
 	backButton: '.rmp-editor-header-back',
 	tabId: null,
 	level: 0,
-	close: function () {
-		jQuery( window ).bind( 'beforeunload', function() {
-			return;
-		} );
-	},
 	triggerBack: function() {
 
 		this.level--;
@@ -75,12 +70,6 @@ const rmpEditor = {
 		jQuery( self.backButton ).on( 'click', function( e ) {
 			e.stopPropagation();
 			self.triggerBack();
-		} );
-
-		// Close the editor and back to menu admin.
-		jQuery( this.closeButton ).on( 'click', function( e ) {
-			e.stopPropagation();
-			self.close();
 		} );
 
 		// Open/Close the editor setting sidebar.

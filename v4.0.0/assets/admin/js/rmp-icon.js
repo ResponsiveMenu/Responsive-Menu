@@ -9,7 +9,7 @@ jQuery( document ).ready( function() {
 		iconSelect: '#rmp-icon-dialog-select',
 		iconContainer: '.rmp-menu-icons-dialog',
 		clearSelector: '#rmp-icon-dialog-clear',
-		closeSelector: '.rmp-menu-icons-dialog .rmp-dialog-header span.close',
+		closeSelector: '.rmp-menu-icons-dialog .rmp-dialog-header button.close',
 		clear: function () {
 			var self = this;
 			jQuery( self.clearSelector ).on( 'click', function() {
