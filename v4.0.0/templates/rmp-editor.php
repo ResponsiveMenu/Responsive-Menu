@@ -177,7 +177,7 @@ $options = $option_manager->get_options( $menu_id );
 							/**
 							 * Fires after prepare the theme setting section.
 							 * 
-							 * @since 4.0.5
+							 * @since 4.1.0
 							 * 
 							 * @param int   $menu_id
 							 * @param array $options

@@ -1,8 +1,8 @@
 <?php
 /**
  * This is admin notice template file.
- * 
- * @version 4.0.5
+ *
+ * @since 4.1.0
  */
 ?>
 

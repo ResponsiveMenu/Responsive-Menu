@@ -63,7 +63,7 @@ class Plugin {
 	/**
 	 * Function to show the admin notice when no menu exist.
 	 *
-	 * @since 4.0.5
+	 * @since 4.1.0
 	 *
 	 * @return void
 	 */
@@ -124,7 +124,7 @@ class Plugin {
 	/**
 	 * Function to add the admin notice to upgrade as pro.
 	 * 
-	 * @version 4.0.5
+	 * @version 4.1.0
 	 * 
 	 */
 	public function rmp_upgrade_pro_admin_notice() {

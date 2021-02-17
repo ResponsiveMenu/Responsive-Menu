@@ -6,67 +6,112 @@
  *
  * @package    responsive_menu_pro
  */
-use RMP\Features\Inc\Theme_Manager;
-use RMP\Features\Inc\Option_Manager;
 
-$theme_manager   = Theme_Manager::get_instance();
-$option_manager  = Option_Manager::get_instance();
-
+$theme_manager = RMP\Features\Inc\Theme_Manager::get_instance();
 ?>
 <section id="rmp-new-menu-wizard" class="rmp-dialog-overlay rmp-new-menu-wizard" style="display:none">
     <div class="rmp-dialog-backdrop"></div>
     <div class="rmp-dialog-wrap wp-clearfix">
-        <div class="rmp-dialog-header">
-            <strong class="title"><?php esc_html_e('Create New Menu', 'responsive-menu-pro'); ?></strong>
+
+       <!-- This is new new wizard header -->
+       <div class="rmp-dialog-header">
+            <div class="title">
+                <img alt="logo" width="34" height="34" src="<?php echo RMP_PLUGIN_URL_V4 .'/assets/images/rmp-logo.png'; ?>" />
+                <span> <?php esc_html_e('Create New Menu', 'responsive-menu-pro'); ?> </span>
+            </div>
+            <nav class="rmp-new-menu-step-conatiner">
+                <ul class="rmp-new-menu-steps">
+                    <li class="rmp-new-menu-step current">
+                        <?php esc_html_e( 'Select Themes', 'responsive-menu-pro' ); ?>
+                    </li>
+                    <li class="rmp-new-menu-step">
+                        <?php esc_html_e( 'Menu Settings', 'responsive-menu-pro'); ?>
+                    </li>
+                </ul>
+            </nav>
             <button class="close dashicons dashicons-no"></button>
         </div>
-        <div class="rmp-dialog-contents wp-clearfix tabs" id="tabs" >
-            <ul class="nav-tab-wrapper new_menu_tab_items">
-                <li>
-                    <a class="nav-tab" href="#menu-settings">
-                        <div class="nav-item-label">
-                            <span class="nav-item-label-icon dashicons dashicons-admin-generic "></span>
-                            <div class="nav-item-label-content">
-                                <h4><?php esc_html_e( 'Menu Setting', 'responsive-menu-pro'); ?></h4>
-                                <span><?php esc_html_e( 'Fill menu settings and show/hide as per preferences', 'responsive-menu-pro'); ?></span>
-                            </div>
-                        </div>
-                    </a>
-                </li>
 
-                <li>
-                    <a class="nav-tab" href="#select-themes">
-                        <div class="nav-item-label">
-                            <span class="nav-item-label-icon dashicons dashicons-layout "></span>    
-                            <div class="nav-item-label-content">
-                                <h4><?php esc_html_e( 'Select Themes', 'responsive-menu-pro' ); ?></h4>
-                                <span><?php esc_html_e( 'Use pre-made theme to speed up the things.', 'responsive-menu-pro'); ?></span>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-            </ul>
+        <!-- This is menu create wizard setting sections. -->
+        <div class="rmp-dialog-contents" >
 
-            <div id="menu-settings" class="rmp-new-menu-elements"> 
-                <div class="input-group">
-                    <label for="rmp-menu-name"> <?php esc_html_e('Enter Menu Name', 'responsive-menu-pro'); ?> </label>
-                    <input type="text" name="menu-name" id="rmp-menu-name" required>
+            <div id="select-themes" class="rmp-new-menu-themes rmp-menu-section current">
+                <div id="tabs" class="tabs">
+                    <!-- This is theme type list -->
+                    <ul class="nav-tab-wrapper">
+                        <li><a class="nav-tab rmp-v-divider" href="#tabs-1"><?php esc_html_e('Available Themes', 'responsive-menu-pro'); ?></a></li>
+                        <li><a class="nav-tab rmp-v-divider" href="#tabs-2"><?php esc_html_e('Browse Themes', 'responsive-menu-pro'); ?></a></li>
+                        <li><a class="nav-tab" href="#tabs-3"><?php esc_html_e('Saved Templates', 'responsive-menu-pro'); ?></a></li>
+                        <li style="float:right;"><button id="rmp-upload-new-theme" class="button btn-import-theme"><?php esc_html_e('Import', 'responsive-menu-pro'); ?></button></li>
+                    </ul>
+
+                    <!-- This is menu theme upload section -->
+                    <div id="rmp-menu-library-import" class="rmp-theme-upload-container hide" >
+                        <p><?php esc_html_e('If you have a menu theme in a .zip format, you can upload here.', 'responsive-menu-pro'); ?></p>
+                        <form method="post" enctype="multipart/form-data" id="rmp-menu-theme-upload-form" class="wp-upload-form">    
+                            <label class="screen-reader-text" for="themezip">Upload zip</label>
+                            <input type="file" accept=".zip" id="rmp_menu_theme_zip" name="rmp_menu_theme_zip" />
+                            <button id="rmp-theme-upload" class="button" type="button"> Upload Theme </button>
+                        </form>
+                    </div>
+
+                    <!-- This is theme list from stored -->
+                    <div id="tabs-2" class="rmp-themes"> 
+                        <ul class="rmp_theme_grids">
+                            <?php echo $theme_manager->get_themes_from_theme_store(); ?>
+                        </ul>
+                    </div>
+
+                    <!-- This is available theme list. -->
+                    <div id="tabs-1" class="rmp-themes">
+                        <?php echo $theme_manager->get_available_themes(); ?>
+                    </div>
+
+                    <!-- This is saved template themes. -->
+                    <div id="tabs-3" class="rmp-themes">
+                        <?php echo $theme_manager->rmp_saves_theme_template_list(); ?>
+                    </div>
                 </div>
+            </div>
+
+
+            <div id="menu-settings" class="rmp-new-menu-elements rmp-menu-section"> 
                 <div class="input-group">
-                    <label for="rmp-menu-to-use"> <?php esc_html_e('Menu to Use', 'responsive-menu-pro'); ?> </label>
-                    <select name="menu-to-use" id="rmp-menu-to-use">
+                    <div for="rmp-menu-name" class="input-label">
+                        <h4 class="input-label-title"> <?php esc_html_e('Name Your Menu', 'responsive-menu-pro'); ?> </h4>
+                        <p class="input-label-description"> 
+                            <?php esc_html_e('Please enter a descriptive name to identify this menu later', 'responsive-menu-pro'); ?>    
+                        </p>
+                    </div>
+
+                    <div class="input-control">
+                        <input type="text"  name="menu-name" id="rmp-menu-name" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div for="rmp-menu-to-use" class="input-label">
+                        <h4 class="input-label-title"><?php esc_html_e('Link WordPress Menu', 'responsive-menu-pro'); ?></h4>
+                        <p class="input-label-description"> 
+                            <?php esc_html_e('Map with your existing WordPress menu.', 'responsive-menu-pro'); ?>    
+                        </p>
+                   </div>
+
+                    <div class="input-control">
+                        <select name="menu-to-use" id="rmp-menu-to-use">
+                            <?php
+                            $menus = wp_get_nav_menus();
+                            foreach ( $menus as $menu ) {
+                                printf(
+                                    '<option value="%s">%s</option>',
+                                    esc_attr( $menu->slug ),
+                                    esc_html( $menu->name )
+                                );
+                            }
+                            ?>
+                        </select>
+
                         <?php
-                        $menus = wp_get_nav_menus();
-                        foreach ( $menus as $menu ) {
-                            printf(
-                                '<option value="%s">%s</option>',
-                                esc_attr( $menu->slug ),
-                                esc_html( $menu->name )
-                            );
-                        }
-                        ?>
-                    </select>
-                    <?php
                         if( empty( $menus ) ) {
                             printf(
                                 '<p class="rmp-admin-notice">
@@ -79,16 +124,38 @@ $option_manager  = Option_Manager::get_instance();
                                 esc_html__( 'create wp menu', 'responsive-menu-pro')
                             );
                         }
-                    ?>
+                        ?>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div for="rmp-menu-name" class="input-label">
+                        <h4 class="input-label-title"><?php esc_html_e('Hide Theme Menu', 'responsive-menu-pro'); ?></h4>
+                        <p class="input-label-description"> 
+                            <?php esc_html_e( 'Add any valid css selector to hide the existing menu on your website.', 'responsive-menu-pro'); ?>    
+                            <a href="https://responsive.menu/knowledgebase/hiding-original-wordpress-menu/" target="_blank"> Know More </a>
+                        </p>
+                    </div>
+
+                    <div class="input-control">
+                        <input type="text" name="rmp-hide-menu" id="rmp-hide-menu" />
+                    </div>                    
                 </div>
 
                 <div class="rmp-input-control-wrapper input-group">
-                    <label class="rmp-input-control-label">
-                        <span> <?php esc_html_e('Device Visibility', 'responsive-menu-pro'); ?> </span>
-                        <a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > PRO </a>
 
-                    </label>
-                    <div class="rmp-input-control">
+                    <div class="rmp-input-control-label input-label">
+                        <h4 class="input-label-title">
+                            <span> <?php esc_html_e('Device Visibility', 'responsive-menu-pro'); ?> </span>
+                            <a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > PRO </a>
+                        </h4>
+
+                        <p class="input-label-description"> 
+                            <?php esc_html_e('Select devices where you want to show this menu', 'responsive-menu-pro'); ?>    
+                        </p>
+                    </div>
+
+                    <div class="input-control">
                         <div class="device-icons-group">
                             <div class="device-icon">
                                 <input disabled class="rmp-menu-display-device checkbox mobile" type="checkbox" rel="&#xf120"/>
@@ -139,13 +206,20 @@ $option_manager  = Option_Manager::get_instance();
                         </div>
                     </div>
                 </div>
-                <div class="input-group">
-                    <label for="rmp-menu-display-on-pages">
-                        <span> <?php esc_html_e('Display Condition', 'responsive-menu-pro'); ?> </span>
-                        <a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > SEMI-PRO </a>
-                    </label>
 
-                    <div class="rmp-menu-condition-options">
+                <div class="input-group">
+                    <div for="rmp-menu-display-on-pages" class="input-label">
+                        <h4 class="input-label-title">
+                            <span> <?php esc_html_e('Display Condition', 'responsive-menu-pro'); ?></span>
+                            <a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > SEMI-PRO </a>
+                        </h4>
+
+                        <p class="input-label-description"> 
+                            <?php esc_html_e('Select specific pages where you want to show this menu.', 'responsive-menu-pro'); ?>    
+                        </p>
+                    </div>
+
+                    <div class="input-control">
                         <select name="rmp-menu-display-on" class="rmp-menu-display-option">
                             <option  value="all-pages"> <?php esc_html_e('Show on all pages ', 'responsive-menu-pro'); ?></option>
                             <option  value="shortcode"> <?php esc_html_e('Use as shortcode', 'responsive-menu-pro'); ?></option>
@@ -154,74 +228,21 @@ $option_manager  = Option_Manager::get_instance();
                         </select>
                     </div>
                 </div>
-            </div>
 
-            <div id="select-themes" class="rmp-new-menu-themes">
-                <div id="tabs" class="tabs">
-                    <ul class="nav-tab-wrapper">
-                        <li><a class="nav-tab" href="#tabs-2"><?php esc_html_e('My Downloads', 'responsive-menu-pro'); ?></a></li>
-                        <li><a class="nav-tab" href="#tabs-1"><?php esc_html_e('Premium', 'responsive-menu-pro'); ?></a></li>
-                        <li><a class="nav-tab" href="#tabs-3"><?php esc_html_e('Templates', 'responsive-menu-pro'); ?></a></li>
-                    </ul>
-
-                    <div id="tabs-1" class="rmp-themes"> 
-                        <ul class="rmp_theme_grids">
-                            <?php echo $theme_manager->get_themes_from_theme_store( true ); ?>
-                        </ul>
-                    </div>
-                    <div id="tabs-2" class="rmp-themes">
-                       <ul class="rmp_theme_grids">
-
-                            <li class="rmp_theme_grid_item">
-                                <input type="radio" id="default" class="rmp-theme-option" name="menu_theme" value="" theme-type="default"/>
-                                <label class="rmp-item-card default-item" for="default">
-                                    <span> <?php esc_html_e('Default Theme', 'responsive-menu-pro'); ?> </span>
-                                </label>
-                            </li>
-
-                            <?php
-                                $downloaded_themes = $theme_manager->get_themes_from_uploads();
-                                foreach( $downloaded_themes as $theme ) {
-                                    $id = 'rmp-theme-' . preg_replace('/\s+/', '', $theme['theme_name'] );
-                            ?>
-                            <li class="rmp_theme_grid_item">
-                                <div class="rmp-item-card">
-                                    <figure class="rmp-item-card_image">
-                                        <img src="<?php echo esc_url( $theme['theme_preview_url'] );?>" alt="" loading="lazy"/>
-                                        <figcaption class="rmp-item-card_label <?php echo $theme['status']; ?>">
-                                            <span class="dashicons dashicons-star-filled "></span> <?php echo $theme['status']; ?>
-                                        </figcaption>
-                                    </figure>
-                                    <div class="rmp-item-card_contents">
-                                        <h4> <?php echo esc_html( $theme['theme_name'] ); ?> </h4>
-                                    </div>
-                                    <div class="rmp-item-card_action">
-                                        <input type="radio" id="<?php echo $id; ?>" theme-type="downloaded" class="rmp-theme-option" name="menu_theme" value="<?php echo esc_html( $theme['theme_name'] ); ?>"/>
-                                        <label class="button" for="<?php echo $id; ?>"> <?php esc_html_e('Select Theme', 'responsive-menu-pro'); ?> </label>
-                                    </div>
-                                </div>
-                            </li>
-
-                        <?php } ?>
-                        </ul>
-                    </div>
-                    <div id="tabs-3" class="rmp-themes">
-                        <?php 
-                            echo $theme_manager->rmp_saved_theme_list_for_new_menu();
-                        ?>
-                    </div>
-                </div>
             </div>
         </div>
-        <div class="rmp-dialog-footer">
 
+        <!-- This is menu create wizard footer. -->
+        <div class="rmp-dialog-footer">
             <span class="spinner"></span>
-            <button class="button button-primary button-large  hide-if-no-js" id="rmp-create-menu-first-step" >
+            <button class="button button-primary button-large  hide-if-no-js" id="rmp-menu-next-step" >
                 <?php esc_html_e('Next', 'responsive-menu-pro'); ?>    
             </button>
+
             <button class="button button-primary button-large  hide-if-no-js" id="rmp-create-new-menu" style="display:none">
                 <?php esc_html_e('Create Menu', 'responsive-menu-pro'); ?>    
             </button>
         </div>
+
     </div>
 </section>

@@ -28,7 +28,7 @@
         left: $menu_trigger_distance_from_side;
     }
 
-    @if ( $menu_trigger_transparent_background == 'on' ) {
+    @if ( $menu_trigger_transparent_background == on ) {
         background: transparent;
     } @else {
 

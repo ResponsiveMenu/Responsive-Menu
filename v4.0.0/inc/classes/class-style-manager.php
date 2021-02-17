@@ -1483,7 +1483,7 @@ class Style_Manager {
 			/**
 			 * Apply before parse the scss to css.
 			 * 
-			 * @since 4.0.5
+			 * @since 4.1.0
 			 * 
 			 * @param array  $parse_options  Parsed menu settings.
 			 * @param int    $menu_id        Menu Id.
@@ -1499,7 +1499,7 @@ class Style_Manager {
 			/**
 			 * Apply after parsed the scss to css.
 			 * 
-			 * @since 4.0.5
+			 * @since 4.1.0
 			 * 
 			 * @param string $css            Compiled CSS.
 			 * @param int    $menu_id        Menu Id.
