@@ -820,9 +820,17 @@ class Theme_Manager {
 				'<li class="rmp_theme_grid_item">
 					<input type="radio" checked id="default" class="rmp-theme-option" name="menu_theme" value="" theme-type="default"/>
 					<label class="rmp-item-card default-item" for="default">
-						<span> %s </span>
+						<figure class="rmp-item-card_image">
+							<img src="%1$s" alt="%2$s" loading="lazy"/>
+						</figure>
+						<div class="rmp-item-card-backside">
+							<div class="rmp-item-card_contents">
+								<h4> %2$s </h4>
+							</div>
+						</div>
 					</label>
 				</li>',
+				esc_url( RMP_PLUGIN_URL_V4 .'/assets/images/default-theme-preview.png' ),
 				__( 'Default Theme', 'responsive-menu-pro')
 			);
 		}
