@@ -164,7 +164,7 @@ class Admin {
 		// Get appropriate theme as per theme type and theme name.
 		if ( ! empty( $theme_type ) && 'downloaded' == $theme_type ) {
 			$theme_manager   = Theme_Manager::get_instance();
-			$theme_options   = $theme_manager->get_downloaded_theme_settings( $menu_theme );
+			$theme_options   = $theme_manager->get_available_theme_settings( $menu_theme );
 		} else if ( ! empty( $theme_type ) && 'template' == $theme_type ) {
 			$theme_manager   = Theme_Manager::get_instance();
 			$theme_options   =  $theme_manager->get_saved_theme_options( $menu_theme );
