@@ -245,13 +245,7 @@ include dirname(__FILE__) . '/config/polylang.php';
         //Include the file from each theme which has php template.
         foreach( $active_themes as $key => $theme_name ) {
 
-            $theme_file_path = $theme_manager->get_theme_index_file( $theme_name );
-
-            if ( empty( $theme_file_path ) ) {
-                continue;
-            }
-
-            $theme_index = ABSPATH . 'wp-content/uploads/rmp-menu/themes/' . $theme_file_path;
+            $theme_index = $theme_manager->get_theme_index_file( $theme_name );
 
             if ( file_exists( $theme_index ) ) {
                 require_once $theme_index;
