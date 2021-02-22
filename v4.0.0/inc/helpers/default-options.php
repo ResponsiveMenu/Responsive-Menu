@@ -758,11 +758,11 @@ function rmp_get_default_options() {
         'use_header_bar' => 'off',
         'header_bar_items_order' => 
           array (
-              'title' => 'on',
-              'search' => 'off',
-              'additional content' => 'off',
               'logo' => 'off',
+              'title' => 'on',
+              'additional content' => 'off',
               'menu' => 'on',
+              'search' => 'off',
           ),
         'header_bar_title' => 'Responsive Menu',
         'header_bar_html_content' => '',
@@ -984,8 +984,8 @@ function rmp_get_default_options() {
           array (
               'title' => 'on',
               'additional content' => 'on',
-              'search' => 'on',
               'menu' => 'on',
+              'search' => 'on',
           ),
         'menu_title' => 'Responsive Menu',
         'menu_title_link' => '',
@@ -1017,7 +1017,7 @@ function rmp_get_default_options() {
           array (
               'top' => '0%',
               'right' => '5%',
-              'bottom' => '5%',
+              'bottom' => '10%',
               'left' => '5%',
           ),
         'menu_additional_content_font_size' => '16',
@@ -1027,12 +1027,12 @@ function rmp_get_default_options() {
         'menu_search_box_text' => 'Search',
         'menu_search_section_padding' => 
           array (
-              'top' => '0%',
+              'top' => '5%',
               'right' => '5%',
               'bottom' => '5%',
               'left' => '5%',
           ),
-        'menu_search_box_height' => '50',
+        'menu_search_box_height' => '45',
         'menu_search_box_height_unit' => 'px',
         'menu_search_box_border_radius' => '30',
         'menu_search_box_text_colour' => '#1d4354',
