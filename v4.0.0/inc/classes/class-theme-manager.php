@@ -703,9 +703,17 @@ class Theme_Manager {
 	 */
 	public function get_theme_thumbnail( $theme_name, $theme_type ) {
 
-		if ( 'Default' == $theme_name || $theme_type != 'downloaded' ) {
+		//If theme is saved template.
+		if ( $theme_type == 'template' ) {
 			return sprintf( '<img src="%s" class="theme-thumbnail">',
 				esc_url( RMP_PLUGIN_URL_V4 .'/assets/images/no-preview.jpeg' )
+			);
+		}
+
+		//If theme is default.
+		if( 'default' == $theme_type ) {
+			return sprintf( '<img src="%s" class="theme-thumbnail">',
+				esc_url( RMP_PLUGIN_URL_V4 .'/assets/images/default-theme-preview.png' )
 			);
 		}
 
