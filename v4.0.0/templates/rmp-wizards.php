@@ -6,6 +6,14 @@
  *
  * @package    responsive_menu_pro
  */
+
+// If theme list is cached then access it.
+$cached_data      = get_transient( 'rmp_theme_api_response' );
+$rmp_browse_class = '';
+if ( empty( $cached_data ) ) {
+    $rmp_browse_class = 'rmp-call-theme-api-button';
+}
+
 ?>
 <!--- This is icon picker wizard markups -->
 <section class="rmp-dialog-overlay rmp-menu-icons-dialog" style="display:none">
@@ -171,8 +179,8 @@
             <div id="select-themes" class="rmp-new-menu-themes">
                 <div id="tabs" class="tabs">
                     <ul class="nav-tab-wrapper">
-                        <li><a class="nav-tab rmp-v-divider" href="#tabs-1"><?php esc_html_e('Available Themes', 'responsive-menu-pro'); ?></a></li>
-                        <li><a class="nav-tab rmp-v-divider" href="#tabs-2"><?php esc_html_e('Browse Themes', 'responsive-menu-pro'); ?></a></li>
+                        <li><a class="nav-tab rmp-v-divider" href="#tabs-1"><?php esc_html_e('Installed Themes', 'responsive-menu-pro'); ?></a></li>
+                        <li><a class="nav-tab rmp-v-divider <?php echo $rmp_browse_class; ?>" href="#tabs-2"><?php esc_html_e( 'Marketplace', 'responsive-menu-pro'); ?></a></li>
                         <li><a class="nav-tab" href="#tabs-3"><?php esc_html_e('Saved Templates', 'responsive-menu-pro'); ?></a></li>
                         <li style="float:right;"><button id="rmp-upload-new-theme" class="button btn-import-theme"><?php esc_html_e('Import', 'responsive-menu-pro'); ?></button></li>
                     </ul>
@@ -189,7 +197,18 @@
 
                     <div id="tabs-2" class="rmp-themes">
                         <ul class="rmp_theme_grids">
-                            <?php echo $theme_manager->get_themes_from_theme_store(); ?>
+                            <?php
+                            if ( ! empty( $cached_data ) ) {
+                                echo $theme_manager->get_themes_from_theme_store();
+                            } else {
+                            ?>
+                                <div class="rmp-page-loader" style="display:flex;">
+                                <img class="rmp-loader-image" src="<?php echo RMP_PLUGIN_URL_V4 .'/assets/images/rmp-logo.png'; ?>"/>
+                                <h3 class="rmp-loader-message">
+                                    <?php _e( 'Just a moment <br/> Getting data from the server..', 'responsive-menu-pro' ); ?>
+                                </h3>
+                                </div>
+                            <?php } ?>
                         </ul>
                     </div>
 

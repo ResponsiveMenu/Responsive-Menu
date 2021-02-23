@@ -54,6 +54,7 @@ class Theme_Manager {
 		add_action( 'wp_ajax_rmp_menu_theme_upload', [ $this, 'rmp_theme_upload_from_wizard' ] );		
 		add_action('wp_ajax_rmp_theme_delete', array( $this, 'rmp_theme_delete' ) );
 		add_action('wp_ajax_rmp_theme_apply', array( $this, 'rmp_theme_apply' ) );
+		add_action('wp_ajax_rmp_call_theme_api', array( $this, 'update_theme_api_cache' ) );
 	}
 
 		
@@ -961,8 +962,28 @@ class Theme_Manager {
 		//Return the response
 		return wp_send_json_success(
 			[
-				'message' => 'Theme is uploaded successfully',
+				'message' => __( 'Theme is uploaded successfully', 'responsive-menu-pro' ),
 				'html'    => $this->get_available_themes( $is_customizer_request )
+			]
+		);
+	}
+
+	/**
+	 * Function to update the theme api cached data.
+	 *
+	 * @since 4.1.0
+	 *
+	 * @return json
+     */
+	public function update_theme_api_cache() {
+
+		//Check nonce to verify the authenticate upload file.
+		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
+
+		return wp_send_json_success(
+			[
+				'message' => __( 'Cache data updated !', 'responsive-menu-pro' ),
+				'html'    => $this->get_themes_from_theme_store()
 			]
 		);
 	}

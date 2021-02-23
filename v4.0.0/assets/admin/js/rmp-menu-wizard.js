@@ -155,6 +155,37 @@ const rmpMenuWizard = {
 			} );
 
 		} );
+
+		//Ajax call to check the recent changes the theme api.
+		jQuery( '.rmp-call-theme-api-button' ).on( 'click', ( e ) => {
+
+			if ( ! jQuery( e.currentTarget ).hasClass( 'rmp-call-theme-api-button' ) ) {
+				return;
+			}
+
+			jQuery( '#rmp-new-menu-wizard' ).find( '.rmp-page-loader' ).css( 'display', 'flex' );
+
+			jQuery.ajax( {
+				url: rmpObject.ajaxURL,
+				data: {
+					'action': 'rmp_call_theme_api',
+					'ajax_nonce': rmpObject.ajax_nonce
+				},
+				type: 'POST',
+				dataType: 'json',
+				error: function( error ) {
+					jQuery( '#rmp-new-menu-wizard' ).find( '.rmp-page-loader' ).hide();
+					jQuery( '#rmp-new-menu-wizard' ).find( '#tabs-2 .rmp_theme_grids' ).html( 'Internal Error !' );
+				},
+				success: ( response ) => {
+					if ( response.data.html ) {
+						jQuery( '#rmp-new-menu-wizard' ).find( '#tabs-2 .rmp_theme_grids' ).html( response.data.html );
+						jQuery( e.currentTarget ).removeClass( 'rmp-call-theme-api-button' );
+					}
+				}
+			} );
+		} );
+
 	},
 
 	/**
