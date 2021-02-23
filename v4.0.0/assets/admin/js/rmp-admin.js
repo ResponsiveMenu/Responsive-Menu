@@ -474,7 +474,13 @@ jQuery( document ).ready( function( jQuery ) {
 				jQuery( '.rmp-page-loader' ).hide();
 			},
 			success: function( response ) {
-				location.reload();
+
+				if ( response.success ) {
+					location.reload();
+				} else {
+					jQuery( '.rmp-page-loader' ).hide();
+					alert( response.data.message );
+				}
 			}
 		} );
 

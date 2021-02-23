@@ -143,16 +143,16 @@ class Theme_Manager {
 		 */
 		do_action('rmp_theme_apply', $menu_id );
 
-		wp_send_json_error( [ 'message' => __( 'Theme applied', 'responsive-menu-pro' ) ] );
+		wp_send_json_success( [ 'message' => __( 'Theme applied', 'responsive-menu-pro' ) ] );
 
 	}
 
 	/**
 	 * Function to get the theme options from availbale theme.
-	 * 
+	 *
 	 * @since 4.0.0
-	 * @since 4.1.0 Add plugin bundle themes and rename the function.
-	 * 
+	 * @since 4.1.0 Add plugin bundle themes, Rename the function and Check minimum version support.
+	 *
 	 * @return array
 	 */
 	public function get_available_theme_settings( $theme_name ) {
@@ -165,16 +165,31 @@ class Theme_Manager {
 		$theme_dirs = array_merge( glob( RMP_PLUGIN_PATH_V4 . '/themes/*' , GLOB_ONLYDIR ), $theme_dirs );
 
 		$options = [];
+		$min_version = '4.0.0';
 
 		foreach( $theme_dirs as $theme_dir ) {			
 			$config_file =  $theme_dir . '/config.json';
 			if ( file_exists( $config_file ) ) {
 				$config = json_decode( file_get_contents( $config_file ), true);
 				if ( $config['name'] == $theme_name ) {
+					$min_version = ! empty( $config['min_rm_version'] ) ? $config['min_rm_version'] : '4.0.0';
 					$options = json_decode( file_get_contents( $theme_dir . '/options.json' ), true);
 					break;
 				}
 			}
+		}
+
+		// Check menu theme minimum version compatibility.
+		if ( version_compare( RMP_PLUGIN_VERSION , $min_version , '<' ) ) {
+			wp_send_json_error(
+				[
+					'message' => sprintf(
+						'%s required Responsive Menu %s version or higher. Please update the plugin with the latest version.',
+						$theme_name,
+						$min_version
+					)
+				]
+			);
 		}
 
 		/**
