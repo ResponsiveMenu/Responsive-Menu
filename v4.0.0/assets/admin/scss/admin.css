@@ -1779,19 +1779,19 @@ button.menu-save {
     position: relative;
     bottom: 0;
     z-index: 9;
-   display: flex;
+    display: flex;
+    flex-direction: column;
 }
 
-.rmp-item-card_action .button{
+.rmp-item-card_action .button {
     width: 100%;
     display: inline-block;
     text-decoration: none;
     font-size: 12px;
     line-height: normal;
-    margin: 0;
+    margin: 0 0 10px 0;
     text-align: center;
     padding: 10px;
-    margin: 0 5px;
     cursor: pointer;
     border-width: 1px;
     border-style: solid;
