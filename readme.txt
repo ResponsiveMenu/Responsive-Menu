@@ -1,9 +1,9 @@
 === Responsive Menu - Create Mobile-Friendly Menu ===
-Contributors: expresstech,responsivemenu
+Contributors: expresstech,responsivemenu,imvarunkmr,surajkumarsingh
 Tags: responsive, mega menu, navigation, mobile, hamburger
 Requires at least: 3.6
 Tested up to: 5.6
-Stable tag: 4.0.4
+Stable tag: 4.1.0
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -110,6 +110,34 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 15. Admin Desktop Menu Section
 
 == Changelog ==
+= 4.1.0 (26th February 2021) =
+Feature: Bundled all free themes in plugin
+Feature: Added new option for font weight and font family for menu title
+Feature: Added home button on preview device
+Feature: Added border radius as new option for toggle button
+Feature: Added theme upload feature in wizards
+Feature: To support the advanced menu themes
+Enhancement: Improved push animation to work with only body element
+Enhancement: Added loader to show while uploading and changing theme
+Enhancement: Show message when theme page is empty
+Enhancement: Show spinner while deleting theme
+Enhancement: Redirected user directly to customizer after creating a new menu
+Enhancement: Prevent deleting a theme if being used by active menu
+Enhancement: Added color alpha feature and push animation
+Enhancement: Added custom admin notice to upgrade
+Enhancement: Added admin notice with doc link if no menu created. 
+Enhancement: Improved the default theme with new UI
+Enhancement: Improved the wizards UI
+Enhancement: Added hide menu input in new menu wizard
+Enhancement: Improved caching and minimize API requests
+Enhancement: Added support for WordPress core version 5.7
+Bug: Prevent to load the customizer screen in preview section
+Bug: Fixed additional contents to process the shortcode
+Bug: Fixed Menu item height issue with long text
+Bug: Fixed default wp menu items
+Bug: Improved live preview and update required
+Bug: Fixed PHP warning and errors
+
 = 4.0.4 (19th January 2021) =
 * Bug: Fixed security vulnerabilities
 
