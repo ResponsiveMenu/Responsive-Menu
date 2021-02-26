@@ -10,114 +10,6 @@
 jQuery( document ).ready( function( jQuery ) {
 
 	/**
-	 * Open new create menu wizard on click event.
-	 *
-	 * @since 4.0.0
-	 *
-	 * @fires Click
-	 */
-	jQuery( document ).on( 'click', 'a.page-title-action', function( e ) {
-		e.preventDefault();
-		jQuery( '#rmp-new-menu-wizard' ).show();
-	} );
-
-	/**
-	 * Close the new menu wizard.
-	 * 
-	 * @since 4.0.0
-	 * 
-	 * @fires Click
-	 */
-	jQuery( '#rmp-new-menu-wizard .rmp-dialog-header button.close' ).on( 'click', function() {
-		jQuery( '#rmp-new-menu-wizard' ).hide();
-	} );
-
-	/**
-	 * Move on next tab content for theme selection.
-	 */
-	jQuery( '#rmp-create-menu-first-step' ).on( 'click', () => {
-		jQuery( '#rmp-create-menu-first-step' ).hide();
-		jQuery( '#rmp-create-new-menu' ).show();
-		jQuery( 'a[href="#select-themes"]' ).trigger( 'click' );
-	} );
-
-	// Handle next and create button visibility.
-	jQuery( 'a[href="#select-themes"]' ).on( 'click', ()=> {
-		jQuery( '#rmp-create-new-menu' ).show();
-		jQuery( '#rmp-create-menu-first-step' ).hide();
-	} );
-
-	// Handle next and create button visibility.
-	jQuery( 'a[href="#menu-settings"]' ).on( 'click', () => {
-		jQuery( '#rmp-create-new-menu' ).hide();
-		jQuery( '#rmp-create-menu-first-step' ).show();
-	} );
-
-	/**
-	 * Call ajax to save the new create menu.
-	 *
-	 * @version 4.0.0
-	 *
-	 * @fires Click
-	 */
-	jQuery( '#rmp-create-new-menu' ).on( 'click', function( e ) {
-		e.preventDefault();
-		let menuName  = jQuery( '#rmp-menu-name' );
-		let themeName = jQuery( '.rmp-theme-option:checked' ).val();
-
-		if ( themeName == undefined ) {
-			themeName = '';
-		}
-
-		jQuery.ajax( {
-			url: rmpObject.ajaxURL,
-			data: {
-				'action': 'rmp_create_new_menu',
-				'ajax_nonce': rmpObject.ajax_nonce,
-				'menu_name': menuName.val(),
-				'menu_to_use': jQuery( '#rmp-menu-to-use' ).val(),
-				'menu_show_on_pages': jQuery( '#rmp-menu-display-on-pages' ).val(),
-				'menu_show_on': jQuery( '.rmp-menu-display-option' ).val(),
-				'menu_theme': themeName,
-				'theme_type': jQuery( '.rmp-theme-option:checked' ).attr( 'theme-type' )
-			},
-			type: 'POST',
-			dataType: 'json',
-			beforeSend: function() {
-				jQuery( '#rmp-create-new-menu' ).prop( 'disabled', true );
-				jQuery( '.spinner' ).addClass( 'is-active' );
-			},
-			error: function( error ) {
-				console.log( 'Internal Error !' );
-				jQuery( '#rmp-create-new-menu' ).prop( 'disabled', false );
-				jQuery( '.spinner' ).removeClass( 'is-active' );
-			},
-			success: function( response ) {
-				jQuery( '#rmp-create-new-menu' ).prop( 'disabled', false );
-				noticeClass = 'notice-error';
-				if ( true == response.success ) {
-					isSuccess = 'notice-success';
-				}
-
-				jQuery( '.rmp-new-menu-elements' ).prepend(
-					'<div class="notice ' + noticeClass + ' settings-error is-dismissible"> <p>' + response.data.message + '</p></div>'
-				);
-
-				setTimeout( function() {
-					jQuery( '.rmp-new-menu-elements' ).find( '.notice' ).remove();
-				}, 3000 );
-			}
-		} ).always( function( response ) {
-			jQuery( '.spinner' ).removeClass( 'is-active' );
-		} ).done( function( response ) {
-			if ( response.success ) {
-				location.reload();
-			}
-		} );
-
-	} );
-
-	/**
 	 * Rollback the plugin version.
 	 *
 	 * @version 4.0.0
@@ -159,6 +51,11 @@ jQuery( document ).ready( function( jQuery ) {
 			e.stopPropagation();
 			e.preventDefault();
 			var url = jQuery(this).attr('href');
+
+			// Prevent to load the customizer page on preview aria.
+			if ( '#' == url ) {
+				return;
+			}
 
 			if ( url.indexOf('?') >= 0 ) {
 				url = url + '&rmp_preview_mode=true';
@@ -250,8 +147,8 @@ jQuery( document ).ready( function( jQuery ) {
 	jQuery( '.rmp-color-input' ).wpColorPicker();
 
 	// Fix events glitch on color textbox.
-	jQuery('.rmp-color-input').removeAttr( 'style' );
-	jQuery('.rmp-color-input').off( 'focus' );
+	jQuery( '.rmp-color-input' ).removeAttr( 'style' );
+	jQuery( document ).find( '.rmp-color-input' ).off( 'focus' );
 
 	// Initiate the tab elements.
 	jQuery( '.tabs,#rmp-setting-tabs' ).tabs( {
@@ -449,6 +346,11 @@ jQuery( document ).ready( function( jQuery ) {
 		jQuery( this ).parent( '.rmp-image-picker' ).siblings( 'input.rmp-image-url-input' ).val( '' );
 		jQuery( this ).parent( '.rmp-image-picker' ).removeAttr( 'style' );
 		jQuery( this ).remove();
+
+		if ( ! jQuery('#rmp-editor-main').find('#rmp-menu-update-notification').length ) {
+			addUpdateNotification();	
+		}
+
 	} );
 
 	/**
@@ -476,7 +378,11 @@ jQuery( document ).ready( function( jQuery ) {
 		uploadMultiple: false,
 		success: function ( file, response ) {
 			location.reload();
+		},
+		totaluploadprogress: function() {
+			jQuery('.rmp-page-loader').css( 'display','flex' );
 		}
+
 	} );
 
 	/**
@@ -494,24 +400,21 @@ jQuery( document ).ready( function( jQuery ) {
 	} );
 
 	/**
-	 * Show/Hide change theme wizard.
-	 */
-	jQuery( '.rmp-theme-change-button' ).on( 'click', function( e ) {
-		jQuery( '#rmp-new-menu-wizard' ).toggle();
-	} );
-
-	/**
 	 * Delete the theme from theme page.
 	 */
 	jQuery( '.rmp-theme-delete' ).on( 'click', function( e ) {
 		e.preventDefault();
 
 		/** Ask for delete confirmation */
-		const isConfirm = confirm( 'Are you sure, you want delete this theme ?' );
+		const isConfirm = confirm( 'Are you sure, You want to delete this theme ?' );
 
 		if ( ! isConfirm ) {
 			return;
 		}
+
+		//Show the loader on deleting theme.
+		const current_theme = jQuery(this); 
+		current_theme.append( '<span class="spinner is-active"></span>' );
 
 		let themeName = jQuery( this ).attr( 'data-theme' );
 		let themeType = jQuery( this ).attr( 'data-theme-type' ).toLowerCase();
@@ -530,7 +433,13 @@ jQuery( document ).ready( function( jQuery ) {
 				console.log( error.statusText );
 			},
 			success: function( response ) {
-				location.reload();
+				current_theme.find('.spinner').removeClass('is-active');
+
+				if ( response.success ) {
+					location.reload();
+				} else {
+					alert( response.data.message );
+				}
 			}
 		} );
 
@@ -541,9 +450,12 @@ jQuery( document ).ready( function( jQuery ) {
 	 *
 	 * @version 4.0.0
 	 *
-	 * @fires 4.0.0
+	 * @fires click
 	 */
-	jQuery( '.rmp-theme-apply' ).on( 'click', function( e ) {
+	jQuery( document ).on( 'click', '.rmp-theme-apply', function( e ) {
+
+		//Show the overlay with loader.
+		jQuery('.rmp-page-loader').css('display','flex');
 
 		jQuery.ajax( {
 			url: rmpObject.ajaxURL,
@@ -559,9 +471,16 @@ jQuery( document ).ready( function( jQuery ) {
 			dataType: 'json',
 			error: function( error ) {
 				console.log( error.statusText );
+				jQuery( '.rmp-page-loader' ).hide();
 			},
 			success: function( response ) {
-				location.reload();
+
+				if ( response.success ) {
+					location.reload();
+				} else {
+					jQuery( '.rmp-page-loader' ).hide();
+					alert( response.data.message );
+				}
 			}
 		} );
 
@@ -815,6 +734,32 @@ jQuery( document ).ready( function( jQuery ) {
 	jQuery( '#rmp-editor-wrapper' ).on( 'change', '#rmp-animation-type', function( e ) {
 		const optionValue = jQuery( this ).val();
 		updateMenuContainerAnimationOptions( optionValue );
+	});
+
+	/**
+	 * Event to back on home page under preview screen.
+	 *
+	 * @since 4.1.0
+	 *
+	 * @fires click
+	 *
+	 * @return void
+	 */
+	jQuery('#rmp-preview-wrapper').on( 'click', () => {
+		let url = window.location.href;
+		url = url.substring( 0, url.indexOf( 'wp-admin' ) ) + '?rmp_preview_mode=true' ;
+		jQuery('#rmp-preview-iframe-loader').show();
+		jQuery('#rmp-preview-iframe').attr('src', url );
+	} );
+
+	/** Call ajax to hide admin notice permanent. */
+	jQuery( '.notice-responsive-menu' ).on( 'click', '.notice-dismiss', function( event ) {
+		event.preventDefault();
+		jQuery.ajax( {
+			type: "POST",
+			url: rmpObject.ajaxURL,
+			data: 'action=rmp_upgrade_admin_notice_dismiss',
+		});
 	});
 
 } );

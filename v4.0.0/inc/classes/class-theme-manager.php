@@ -1,8 +1,8 @@
 <?php
 /**
  * This file contain the Theme_Manager class and it's functionalities for menu.
- *
- * @since 4.0.0
+ * 
+ * @version 4.0.0
  * @author  Expresstech System
  * 
  * @package responsive-menu-pro
@@ -11,7 +11,7 @@
 namespace RMP\Features\Inc;
 
 use RMP\Features\Inc\Traits\Singleton;
-use responsive_menu_pro\frontend\RMP_Menu;
+use RMP\Features\Inc\Option_Manager;
 
 // Disable the direct access to this class.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -51,17 +51,18 @@ class Theme_Manager {
 	protected function setup_hooks() {
 		add_action('wp_ajax_rmp_save_theme', array( $this, 'rmp_save_theme' ) );
 		add_action('admin_post_rmp_upload_theme_file', array( $this, 'rmp_upload_theme' ) );
+		add_action( 'wp_ajax_rmp_menu_theme_upload', [ $this, 'rmp_theme_upload_from_wizard' ] );		
 		add_action('wp_ajax_rmp_theme_delete', array( $this, 'rmp_theme_delete' ) );
 		add_action('wp_ajax_rmp_theme_apply', array( $this, 'rmp_theme_apply' ) );
-		add_action('wp_ajax_rmp_theme_download', array( $this, 'rmp_theme_download' ) );
+		add_action('wp_ajax_rmp_call_theme_api', array( $this, 'update_theme_api_cache' ) );
 	}
 
+		
 	/**
 	 * Function to get the list of pro theme from store.
+	 *  
+     * @since 4.0.0
 	 * 
-	 * @since 4.0.0 Added this function to call the menu theme API
-	 * @since 4.0.3 Cached the API response
-	 *
      * @return array $pro_themes
      */
 	public function get_themes_by_api() {
@@ -88,6 +89,7 @@ class Theme_Manager {
 						'name'          => $product['info']['title'],
 						'slug'          => $product['info']['slug'],
 						'preview_url'   => $product['info']['thumbnail'],
+						'demo_link'     => ! empty( $product['info']['demo_link'] ) ? $product['info']['demo_link'] : '',
 						'buy_link'      => $product['info']['link'],
 						'price'         => $product['pricing']['amount']
 					);
@@ -103,7 +105,7 @@ class Theme_Manager {
 
 	/**
 	 * Function to apply the theme in the menu.
-	 *  
+	 *
      * @since 4.0.0
 	 * 
      * @return json
@@ -117,14 +119,14 @@ class Theme_Manager {
             wp_send_json_error( [ 'message' => __( 'Theme Name Missing', 'responsive-menu-pro' ) ] );
         }
 
-		$theme_type = sanitize_text_field( $_POST['theme_type'] );
-		$menu_id = sanitize_text_field( $_POST['menu_id'] );
-		$menu_to_use  = sanitize_text_field( $_POST['menu_to_use'] );
+		$theme_type  = sanitize_text_field( $_POST['theme_type'] );
+		$menu_id     = sanitize_text_field( $_POST['menu_id'] );
+		$menu_to_use = sanitize_text_field( $_POST['menu_to_use'] );
 
 		if ( 'template' === $theme_type ) {
 			$theme_option = $this->get_saved_theme_options( $theme_name );
 		} else {
-			$theme_option = $this->get_downloaded_theme_settings( $theme_name );
+			$theme_option = $this->get_available_theme_settings( $theme_name );
 		}
 
 		$theme_option['menu_id'] = $menu_id;
@@ -142,28 +144,76 @@ class Theme_Manager {
 		 */
 		do_action('rmp_theme_apply', $menu_id );
 
-		wp_send_json_error( [ 'message' => __( 'Theme applied', 'responsive-menu-pro' ) ] );
+		wp_send_json_success( [ 'message' => __( 'Theme applied', 'responsive-menu-pro' ) ] );
 
 	}
 
-	public function get_downloaded_theme_settings( $theme_name ) {
+	/**
+	 * Function to get the theme options from availbale theme.
+	 *
+	 * @since 4.0.0
+	 * @since 4.1.0 Add plugin bundle themes, Rename the function and Check minimum version support.
+	 *
+	 * @return array
+	 */
+	public function get_available_theme_settings( $theme_name ) {
+
+		//Themes from uploads directory.
 		$theme_dir_path = wp_upload_dir()['basedir'] . '/rmp-menu/themes';
         $theme_dirs = glob( $theme_dir_path . '/*' , GLOB_ONLYDIR );
+
+		//Themes from plugin bundle.
+		$theme_dirs = array_merge( glob( RMP_PLUGIN_PATH_V4 . '/themes/*' , GLOB_ONLYDIR ), $theme_dirs );
+
+		$options = [];
+		$min_version = '4.0.0';
 
 		foreach( $theme_dirs as $theme_dir ) {			
 			$config_file =  $theme_dir . '/config.json';
 			if ( file_exists( $config_file ) ) {
 				$config = json_decode( file_get_contents( $config_file ), true);
 				if ( $config['name'] == $theme_name ) {
+					$min_version = ! empty( $config['min_rm_version'] ) ? $config['min_rm_version'] : '4.0.0';
 					$options = json_decode( file_get_contents( $theme_dir . '/options.json' ), true);
-					return $options;
+					break;
 				}
 			}
 		}
 
-		return [];
+		// Check menu theme minimum version compatibility.
+		if ( version_compare( RMP_PLUGIN_VERSION , $min_version , '<' ) ) {
+			wp_send_json_error(
+				[
+					'message' => sprintf(
+						'%s required Responsive Menu %s version or higher. Please update the plugin with the latest version.',
+						$theme_name,
+						$min_version
+					)
+				]
+			);
+		}
+
+		/**
+		 * Filters the theme setting options.
+		 * 
+		 * @since 4.0.1
+		 * 
+		 * @param array  $option
+		 * @param string $theme_name
+		 */
+		$options = apply_filters( 'get_available_theme_settings', $options, $theme_name );
+
+		return $options;
 	}
 
+	/**
+	 * Function to delete the theme.
+	 * 
+	 * @since 4.0.0
+	 * @since 4.1.0 Added condition for active theme.
+	 * 
+	 * @return json
+	 */
 	public function rmp_theme_delete() {
 
 		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
@@ -174,7 +224,11 @@ class Theme_Manager {
         }
 
         $theme_type = sanitize_text_field( $_POST['theme_type'] );
-		
+
+		if ( $this->is_active_theme( $theme_name, $theme_type ) ) {
+			wp_send_json_error( [ 'message' => __( 'This theme is currently active. Please choose another theme and then try deleting.', 'responsive-menu-pro' ) ] );
+		}
+
 		if ( 'template' === $theme_type ) {
 			$this->delete_template( $theme_name );
 		} else {
@@ -185,77 +239,22 @@ class Theme_Manager {
 
 	}
 
-	public function rmp_theme_download() {
-
-		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
-
-		$theme_name = sanitize_text_field( $_POST['theme_name'] );
-		if ( empty( $theme_name ) ) {
-            wp_send_json_error( [ 'message' => __( 'Theme Name Missing', 'responsive-menu-pro' ) ] );
-        }
-
-        $theme_type = sanitize_text_field( $_POST['theme_type'] );
-
-		$theme_option = [];
-		if ( 'template' === $theme_type ) {
-			$theme_option = $this->get_saved_theme_options( $theme_name );
-		} else {
-			$theme = $this->download_zip( $theme_name );
-		}
-
-		$theme_options_json = json_encode( $theme_option );
-
-		wp_send_json_success( $theme_options_json );
-	}
-
-	public function prepare_theme_zip_file( $theme_name, $options ) {
-		$zip_file_name = $theme_name . '.zip';
-		
-		$zip = new ZipArchive();
-
-		if ( $zip->open( $zip_file_name ) === TRUE ) {
-			$zip->addFile( '/path/to/index.txt', 'newname.txt' );
-			$zip->close();
-		} else {
-			echo 'failed';
-		}
-	}
-
-	public function download_zip( $theme_name ) {
-
-		$theme_dir = $this->get_theme_dir( $theme_name );
-
-		if ( empty( $theme_dir ) ) {
-			return;
-		}
-
-		$theme_root = wp_upload_dir()['basedir'] . '/rmp-menu/themes';
-
-		// Filename for a zip package
-		$file_name = strtolower ( preg_replace('/\s+/', '-', $theme_name ) ) . '.zip';
-		$zip_file =  $theme_root.'/'.$file_name;
-
-		$zip = new \ZipArchive();
-		if ( $zip->open( $zip_file , \ZipArchive::CREATE | \ZipArchive::OVERWRITE ) ) {
-
-			foreach ( glob( $theme_dir . "/*" ) as $file) {
-				$zip->addFile($file);
-			}
-
-			$zip->close();
-		}
-
-		if ( file_exists( $zip_file ) ) {
-			header('Content-Type: application/zip');
-			header('Content-Disposition: attachment; filename="'.basename( $zip_file ).'"');
-			header('Content-Length: ' . filesize($zip_file));
-		}
-	}
-
+	/**
+	 * Function to return the theme dir path.
+	 * 
+	 * @since 4.0.0
+	 * @since 4.1.0 Added the plugin bundle theme.
+	 * 
+	 * @return string
+	 */
 	public function get_theme_dir( $theme_name ) {
 
+		//Themes from uploads directory.
 		$theme_dir_path = wp_upload_dir()['basedir'] . '/rmp-menu/themes';
         $theme_dirs = glob( $theme_dir_path . '/*' , GLOB_ONLYDIR );
+
+		//Themes from plugin bundle.
+		$theme_dirs = array_merge( glob( RMP_PLUGIN_PATH_V4 . '/themes/*' , GLOB_ONLYDIR ), $theme_dirs );
 
 		foreach( $theme_dirs as $theme_dir ) {			
 			$config_file =  $theme_dir . '/config.json';
@@ -266,9 +265,17 @@ class Theme_Manager {
 				}
 			}
 		}
+
 		return false;
 	}
 
+	/**
+	 * Function to delete the theme dir.
+	 *
+	 * @since 4.0.0
+	 *
+	 * @return void
+	 */
 	public function delete_theme_folder( $theme_name ) {
 
 		if ( empty( $theme_name ) ) {
@@ -283,6 +290,13 @@ class Theme_Manager {
 		$this->delete_files( $theme_dir );	
 	}
 
+	/**
+	 * Function to delete the theme files.
+	 * 
+	 * @since 4.0.0
+	 * 
+	 * @return void 
+	 */
 	public function delete_files( $dir ) { 
 		foreach( glob($dir . '/*') as $file) { 
 		  if( is_dir($file)) delete_files($file); else unlink($file); 
@@ -290,6 +304,13 @@ class Theme_Manager {
 		rmdir($dir); 
 	}
 
+	/**
+	 * Function to delete the saved template.
+	 * 
+	 * @since 4.0.0
+	 * 
+	 * @return boolean
+	 */
 	public function delete_template( $theme_name ) {
 		$rmp_themes = get_option( self::$theme_option );
 
@@ -329,6 +350,7 @@ class Theme_Manager {
 		status_header(200);
 
 		$theme = $_FILES['file']['tmp_name'];
+
 		WP_Filesystem();
 		$upload_dir = wp_upload_dir()['basedir'] . '/rmp-menu/themes/';
 		$unzip_file = unzip_file( $theme , $upload_dir );
@@ -346,25 +368,38 @@ class Theme_Manager {
 	 * Returns the theme list with meta info.
 	 * 
 	 * @since 4.0.0
+	 * @since 4.1.0 Added bundle themes.
 	 *
 	 * @return array $theme
 	 */
 	public function get_themes_from_uploads() {
 
-		$theme_url = wp_upload_dir()['baseurl'] . '/rmp-menu/themes';
-		$theme_dir_path = wp_upload_dir()['basedir'] . '/rmp-menu/themes';
+		//Get theme from uploads directory.
+		$upload_dir = wp_upload_dir(); 
+		$theme_url  = $upload_dir['baseurl'] . '/rmp-menu/themes';
+		$theme_dir_path = $upload_dir['basedir'] . '/rmp-menu/themes';
         $theme_dirs = glob( $theme_dir_path . '/*' , GLOB_ONLYDIR );
 
-        $themes = [];
+		//Get themes from plugin bundle.
+		$theme_dirs = array_merge( glob( RMP_PLUGIN_PATH_V4 . '/themes/*' , GLOB_ONLYDIR ), $theme_dirs );
 
-		foreach( $theme_dirs as $theme_dir ) {			
-			$config_file =  $theme_dir . '/config.json';
+        $themes = [];
+		foreach( $theme_dirs as $theme_dir ) {
+
+			$config_file       = $theme_dir . '/config.json';
+			$theme_preview_url = $theme_url .'/'. basename( $theme_dir ) . '/preview.png';
+
+			//Theme preview image from plugin bundle.
+			if ( strpos( $theme_dir , 'uploads' ) == false ) {
+				$theme_preview_url = plugin_dir_url( $config_file ) . '/preview.png';
+			}
+
 			if ( file_exists( $config_file ) ) {
 				$config = json_decode( file_get_contents( $config_file ), true);
 				$themes[basename($theme_dir)]['theme_name']         = $config['name'];
 				$themes[basename($theme_dir)]['theme_version']      = $config['version'];
-				$themes[basename($theme_dir)]['status']             = ! empty( $config['is_paid'] ) ? 'Pro' : 'Free';
-				$themes[basename($theme_dir)]['theme_preview_url'] = $theme_url .'/'. basename($theme_dir) . '/preview.png';
+				$themes[basename($theme_dir)]['demo_link']          = ! empty( $config['demo_link'] ) ? $config['demo_link'] : '';
+				$themes[basename($theme_dir)]['theme_preview_url']  = $theme_preview_url;
 			}
 		}
 
@@ -387,6 +422,7 @@ class Theme_Manager {
 		}
 
 		$theme_dirs = [];
+
 		foreach( $themes as $theme => $theme_meta ) {
 
 			//  Replace the these older themes dir name as slug.
@@ -422,12 +458,6 @@ class Theme_Manager {
 		$options = array();
 		parse_str( $_POST['form'], $options );
 		$options = $options['menu']; 
-
-		foreach( $options['mega_menu'] as $key ) {
-			$options['mega_menu_item'][$key] = get_post_meta( $menu_id, '_rmp_mega_menu_' . $key );
-		}
-
-		unset( $options['mega_menu'] );
 
 		$rmp_themes = get_option( self::$theme_option );
 		if ( empty( $rmp_themes ) || ! is_array( $rmp_themes ) ) {
@@ -483,46 +513,58 @@ class Theme_Manager {
 		return [];
 	}
 
-	public function rmp_saves_theme_list_html() {
+	/**
+	 * Function to return the list of saved template themes.
+	 * 
+	 * @since 4.0.0
+	 * @since Updated the funtion to add the condition
+	 * 
+	 * @return HTML|string
+	 */
+	public function rmp_saves_theme_template_list( $in_customizer = false ) {
 
 		$rmp_themes = $this->saved_theme_list();
 
+		//Check the list is empty or not.
 		if ( empty( $rmp_themes ) ) {
-			return;
+			return sprintf(
+				'<div class="rmp-theme-page-empty">
+					<span class="rmp-menu-library-blank-icon  dashicons dashicons-welcome-widgets-menus"></span>
+					<h3 class="rmp-menu-library-title"> %s </h3>
+				</div>',
+				__( 'You have no template !', 'responsive-menu-pro' )
+			);
 		}
 
+		//Prepare the saved theme list and wrapped into html.
 		$html = '';
 		foreach( $rmp_themes as $theme_name ) {
+
+			$actions = '';
+			if ( $in_customizer ) {
+				$actions = sprintf( '<a theme-name="%1$s" class="rmp-theme-apply" theme-type="template">%2$s</a>',
+					esc_attr( $theme_name ),
+					__('Apply','responsive-menu-pro')
+				);
+
+			} else {
+				$actions = sprintf(
+					'<input type="radio" class="rmp-theme-option" name="menu_theme" id="%1$s" value="%1$s" theme-type="template"/>
+					<label theme-name="%1$s" class="rmp-theme-use" for="%1$s">%2$s</label>',
+					esc_attr( $theme_name ),
+					__('Use','responsive-menu-pro')
+				);
+			}
+
 			$html .= sprintf(
 				'<div class="rmp-theme-title ">
 					<span class="item-title"> %1$s </span>
 					<span class="item-controls">
-						<a theme-name="%1$s" class="rmp-theme-apply" theme-type="template">Apply</a>
+						%2$s
 					</span>
 				</div>',
-				esc_attr( $theme_name )
-			);
-		}
-
-		return $html;
-	}
-
-	public function rmp_saved_theme_list_for_new_menu() {
-
-		$rmp_themes = $this->saved_theme_list();
-
-		if ( empty( $rmp_themes ) ) {
-			return;
-		}
-
-		$html = '';
-		foreach( $rmp_themes as $theme_name ) {
-			$html .= sprintf('
-				<div class="rmp-theme-item">
-					<input type="radio" class="rmp-theme-option" name="menu_theme" id="%1$s" value="%1$s" theme-type="template"/>
-					<label class="rmp-theme-title" for="%1$s"> %1$s </label>
-				</div>',
-				esc_attr( $theme_name )
+				esc_attr( $theme_name ),
+				$actions
 			);
 		}
 
@@ -533,18 +575,13 @@ class Theme_Manager {
 	 * Design the theme list which are from stored.
 	 *
 	 * @since 4.0.0
-	 * 
 	 * @return HTML|string $html
 	 */
-	public function get_themes_from_theme_store( $in_wizard = false ) {
+	public function get_themes_from_theme_store() {
 
-		$themes = $this->get_themes_by_api();
-
-		if ( empty( $themes ) && $in_wizard ) {
-			return __( '<h2>Coming soon..</h2>', 'responsive-menu-pro' );
-		}
-
+		$themes          = $this->get_themes_by_api();
 		$uploaded_themes = $this->get_uploaded_theme_dir();
+
 		if ( empty( $uploaded_themes ) || ! is_array( $uploaded_themes ) ) {
 			$uploaded_themes = [];
 		}
@@ -557,11 +594,19 @@ class Theme_Manager {
 				continue;
 			}
 
-			$action_label = __( 'BUY NOW','responsive-menu-pro' );
-			$status  = __( 'Pro','responsive-menu-pro' );
+			$action_label = __( 'Purchase','responsive-menu-pro' );
 			if ( 0 == $theme['price'] ) {
-				$status  = __( 'Free','responsive-menu-pro' );
-				$action_label = __( 'DOWNLOAD','responsive-menu-pro' );
+				$action_label = __( 'Download','responsive-menu-pro' );
+			}
+
+			$demo_link = '';
+			if ( ! empty( $theme['demo_link' ] ) ) {
+				$demo_link = sprintf(
+					'<a href="%s" alt="%s" target="_blank" class="button">%s</a>',
+					esc_url( $theme['demo_link' ] ),
+					esc_attr( $theme['name'] ),
+					__( 'View Demo','responsive-menu-pro' )
+				);
 			}
 
 			$html .= sprintf(
@@ -569,24 +614,34 @@ class Theme_Manager {
 					<div class="rmp-item-card">
 						<figure class="rmp-item-card_image">
 							<img src="%1$s" alt="%2$s" loading="lazy"/>
-							<figcaption class="rmp-item-card_label %3$s">
-								<span class="dashicons dashicons-star-filled "></span> %3$s
-							</figcaption>
 						</figure>
-						<div class="rmp-item-card_contents">
-						<h4> %2$s </h4>
-					</div>
-					<div class="rmp-item-card_action">
-						<a href="%4$s" target="_blank" class="button %5$s"> %5$s </a>
-					</div>
+						<div class="rmp-item-card-backside">
+							<div class="rmp-item-card_contents">
+								<h4> %2$s </h4>
+							</div>
+							<div class="rmp-item-card_action">
+								%5$s
+								<a href="%3$s" target="_blank" class="button btn-blue %4$s"> %4$s </a>
+							</div>
+						</div>
 					</div>
 				</li>',
 				esc_url( $theme['preview_url']),
 				esc_attr( $theme['name'] ),
-				$status,
 				esc_url( $theme['buy_link'] ),
-				$action_label
-			);	
+				$action_label,
+				$demo_link
+			);
+		}
+
+		if ( empty( $html ) ) {
+			return sprintf(
+				'<div class="rmp-theme-page-empty">
+					<span class="rmp-menu-library-blank-icon fas fa-file-download"></span>
+					<h3 class="rmp-menu-library-title"> %s </h3>
+				</div>',
+				__( 'No theme available !', 'responsive-menu-pro' )
+			);
 		}
 
 		return $html;
@@ -616,39 +671,321 @@ class Theme_Manager {
 		return $all_themes;
 	}
 
+	/**
+	 * Returns the thumbnail of theme.
+	 * 
+	 * @since 4.0.0
+	 * 
+	 * @return string|url|null
+	 */
 	public function get_theme_preview_url( $theme_name ) {
 
-		$theme_url = wp_upload_dir()['baseurl'] . '/rmp-menu/themes';
-		$theme_dir_path = wp_upload_dir()['basedir'] . '/rmp-menu/themes';
+		//Get theme from uploads directory.
+		$upload_dir = wp_upload_dir(); 
+		$theme_url  = $upload_dir['baseurl'] . '/rmp-menu/themes';
+		$theme_dir_path = $upload_dir['basedir'] . '/rmp-menu/themes';
         $theme_dirs = glob( $theme_dir_path . '/*' , GLOB_ONLYDIR );
 
-		foreach( $theme_dirs as $theme_dir ) {			
-			$config_file =  $theme_dir . '/config.json';
+		//Get themes from plugin bundle.
+		$theme_dirs = array_merge( glob( RMP_PLUGIN_PATH_V4 . '/themes/*' , GLOB_ONLYDIR ), $theme_dirs );
+
+		foreach( $theme_dirs as $theme_dir ) {
+
+			$config_file       = $theme_dir . '/config.json';
+			$theme_preview_url = $theme_url .'/'. basename( $theme_dir ) . '/preview.png';
+
+			//Theme preview image from plugin bundle.
+			if ( strpos( $theme_dir , 'uploads' ) == false ) {
+				$theme_preview_url = plugin_dir_url( $config_file ) . '/preview.png';
+			}
+
 			if ( file_exists( $config_file ) ) {
 				$config = json_decode( file_get_contents( $config_file ), true);
 				if ( $config['name'] == $theme_name ) {
-					return $theme_url .'/'. basename($theme_dir) . '/preview.png';
+					return $theme_preview_url;
 				}
 			}
 		}
-		return '';
+
+		return;
 	}
 
+	/**
+	 * Function to return the theme thumbnail element.
+	 *
+	 * @since 4.0.0
+	 *
+	 * @return strinh|HTML|null
+	 */
 	public function get_theme_thumbnail( $theme_name, $theme_type ) {
-		if( 'Default' == $theme_name || $theme_type != 'downloaded' ) {
+
+		//If theme is saved template.
+		if ( $theme_type == 'template' ) {
 			return sprintf( '<img src="%s" class="theme-thumbnail">',
 				esc_url( RMP_PLUGIN_URL_V4 .'/assets/images/no-preview.jpeg' )
 			);
-		} else {
-			$theme_url = $this->get_theme_preview_url( $theme_name );
+		}
+
+		//If theme is default.
+		if( 'default' == $theme_type ) {
 			return sprintf( '<img src="%s" class="theme-thumbnail">',
-				esc_url( $theme_url )
+				esc_url( RMP_PLUGIN_URL_V4 .'/assets/images/default-theme-preview.png' )
 			);
 		}
+
+		$theme_preview_url = $this->get_theme_preview_url( $theme_name );
+		if ( empty( $theme_preview_url ) ) {
+			return;
+		}
+
+		return sprintf(
+			'<img src="%s" class="theme-thumbnail">',
+			esc_url( $theme_preview_url )
+		);
+
+	}
+
+	/**
+	 * Returns the theme index file path.
+	 *
+	 * @since 4.1.0
+	 *
+	 * @return string;
+	 */
+	public function get_theme_index_file( $theme_name ) {
+
+		//Get theme from uploads directory.
+		$theme_dir_path = wp_upload_dir()['basedir'] . '/rmp-menu/themes';
+		$theme_dirs     = glob( $theme_dir_path . '/*' , GLOB_ONLYDIR );
+
+		//Get themes from plugin bundle.
+		$theme_dirs = array_merge( glob( RMP_PLUGIN_PATH_V4 . '/themes/*' , GLOB_ONLYDIR ), $theme_dirs );
+
+		foreach( $theme_dirs as $theme_dir ) {
+			$config_file =  $theme_dir . '/config.json';
+
+			if ( file_exists( $config_file ) ) {
+				$config = json_decode( file_get_contents( $config_file ), true);
+				if ( $config['name'] == $theme_name && ! empty( $config['index'] ) ) {
+					return $theme_dir . '/' . $config['index'];
+				}
+			}
+		}
+
+        return;
+	}
+
+	/**
+	 * Returns all uploaded theme list.
+	 *
+	 * @since 4.1.0
+	 *
+	 * @return array
+	 */
+	public function get_menu_active_themes() {
+
+		$active_themes = [];
+		$themes = $this->get_themes_from_uploads();
+		foreach ( $themes as $key => $theme ) {
+
+			if ( empty(  $theme['theme_name'] ) ) {
+				continue;
+			}
+
+			$active_themes[ $key ] = $theme['theme_name'];
+		}
+
+		return $active_themes;
+	}
+
+	/**
+	 * Check theme is active or not.
+	 *
+	 * @since 4.1.0
+	 *
+	 * @return bool
+	 */
+	public function is_active_theme( $theme_name, $theme_type ) {
+
+		if ( empty( $theme_name ) || empty( $theme_type ) ) {
+			return false;
+		}
+
+		$option_manager = Option_Manager::get_instance();
+		$menu_ids       = get_all_rmp_menu_ids(); 
+
+		foreach ( $menu_ids as $menu_id ) {
+			$options   = $option_manager->get_options( $menu_id );
+
+			if ( empty( $options['menu_theme'] ) || empty(  $options['theme_type'] ) ) {
+				continue;
+			}
+
+			if ( $options['menu_theme'] == $theme_name &&  $options['theme_type'] == $theme_type ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Function to returns the available theme list.
+	 *
+	 * @since 4.1.0
+	 * @return HTML|string $html
+	 */
+	public function get_available_themes( $in_customizer = false ) {
+
+		$html = '<ul class="rmp_theme_grids">';
+
+		if( ! $in_customizer ) {
+			$html .= sprintf(
+				'<li class="rmp_theme_grid_item">
+					<input type="radio" checked id="default" class="rmp-theme-option" name="menu_theme" value="" theme-type="default"/>
+					<label class="rmp-item-card default-item" for="default">
+						<figure class="rmp-item-card_image">
+							<img src="%1$s" alt="%2$s" loading="lazy"/>
+						</figure>
+						<div class="rmp-item-card-backside">
+							<div class="rmp-item-card_contents">
+								<h4> %2$s </h4>
+							</div>
+						</div>
+					</label>
+				</li>',
+				esc_url( RMP_PLUGIN_URL_V4 .'/assets/images/default-theme-preview.png' ),
+				__( 'Default Theme', 'responsive-menu-pro')
+			);
+		}
+
+		$downloaded_themes = $this->get_themes_from_uploads();
+		foreach( $downloaded_themes as $theme ) {
+			$id = 'rmp-theme-' . preg_replace('/\s+/', '', $theme['theme_name'] );
+			
+			$demo_link = '';
+			if ( ! empty( $theme['demo_link' ] ) ) {
+				$demo_link = sprintf(
+					'<a href="%s" alt="%s" target="_blank" class="button">%s</a>',
+					esc_url( $theme['demo_link' ] ),
+					esc_attr( $theme['theme_name'] ),
+					__( 'View Demo','responsive-menu-pro' )
+				);
+			}
+
+			$select_option = $apply_button = '';
+			if ( $in_customizer ) {
+				$apply_button = sprintf( '<button class="button btn-blue rmp-theme-apply" theme-name="%s" theme-type="downloaded" >%s</button>',
+					esc_html( $theme['theme_name'] ),
+					__('Apply', 'responsive-menu-pro')
+				);
+			} else {
+				$select_option = sprintf(
+					'<input type="radio" id="%1$s" theme-type="downloaded" class="rmp-theme-option" name="menu_theme" value="%2$s"/>',
+					esc_attr( $id ),
+					esc_html( $theme['theme_name'] )
+				);
+			}
+
+			$html .= sprintf('
+				<li class="rmp_theme_grid_item">
+					%5$s
+					<label class="rmp-item-card" for="%1$s">
+						<figure class="rmp-item-card_image">
+							<img src="%3$s" alt="%2$s" loading="lazy"/>
+						</figure>
+						<div class="rmp-item-card-backside">
+							<div class="rmp-item-card_contents">
+								<h4> %2$s </h4>
+							</div>
+							<div class="rmp-item-card_action">
+								%4$s
+								%6$s
+							</div>
+						</div>
+					</label>
+				</li>',
+				esc_attr( $id ),
+				esc_html( $theme['theme_name'] ),
+				esc_url( $theme['theme_preview_url'] ),
+				$demo_link,
+				$select_option,
+				$apply_button
+			);
+		}
+
+		$html .= '</ul>';
+
+		return $html;
+	}
+
+	/**
+	 * Function to upload the theme by ajax.
+	 *  
+     * @since 4.1.0
+	 * 
+     * @return json
+     */
+	public function rmp_theme_upload_from_wizard() {
+
+		//Check nonce to verify the authenticate upload file.
+		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
+
+		//Check if files are empty then return error message.
+		if ( empty( $_FILES['file']['tmp_name'] ) ) {
+			wp_send_json_error( 
+                [ 'message' => __( 'File not found !', 'responsive-menu-pro' )]
+			);
+		}
+
+		//Upload the file in upload directory.
+		status_header(200);
+		WP_Filesystem();
+		$upload_dir = wp_upload_dir()['basedir'] . '/rmp-menu/themes/';
+		$unzip_file = unzip_file( $_FILES['file']['tmp_name'] , $upload_dir );
+
+		if ( is_wp_error( $unzip_file ) ) {
+			return wp_send_json_error( 
+                [ 'message' => $unzip_file->get_error_message() ]
+			);
+		}
+
+		//Check the request origin either from customizer or create menu page.
+		$is_customizer_request = false;
+		if ( ! empty( $_SERVER[ 'HTTP_REFERER' ] ) ) {
+			parse_str( parse_url( $_SERVER[ 'HTTP_REFERER' ] )['query'], $params );
+			if ( ! empty( $params['action'] ) && ! empty( $params['editor'] ) ) {
+				$is_customizer_request = true;
+			}
+		}
+
+		//Return the response
+		return wp_send_json_success(
+			[
+				'message' => __( 'Theme is uploaded successfully', 'responsive-menu-pro' ),
+				'html'    => $this->get_available_themes( $is_customizer_request )
+			]
+		);
+	}
+
+	/**
+	 * Function to update the theme api cached data.
+	 *
+	 * @since 4.1.0
+	 *
+	 * @return json
+     */
+	public function update_theme_api_cache() {
+
+		//Check nonce to verify the authenticate upload file.
+		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
+
+		return wp_send_json_success(
+			[
+				'message' => __( 'Cache data updated !', 'responsive-menu-pro' ),
+				'html'    => $this->get_themes_from_theme_store()
+			]
+		);
 	}
 
 }
-
-
-
-

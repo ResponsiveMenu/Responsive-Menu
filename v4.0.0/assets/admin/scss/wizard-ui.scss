@@ -1,0 +1,525 @@
+/**
+* This is style file for all wizards.
+* @package responsive_menu_pro
+*/
+
+// Initialize all color variables.
+$wizard-background-color : #fff;
+
+.rmp-dialog-overlay {
+
+	font-family: Product Sans;
+
+	.rmp-menu-section {
+		display: none;
+
+		&.current {
+			display: block;
+		}
+	}
+	.rmp-dialog-backdrop {
+		position: fixed;
+		left: -20px;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		background: #0d133d82;
+		z-index: 999999;
+	}
+
+	.rmp-dialog-wrap {
+		clear: both;
+		position: absolute;
+		top: 10%;
+		left: 0;
+		right: 0;
+		bottom: 3%;
+		background: $wizard-background-color;
+		box-shadow: 0 1px 20px 5px rgba(0, 0, 0, 0.1);
+		z-index: 999999;
+		box-sizing: border-box;
+		-webkit-overflow-scrolling: touch;
+		height: fit-content;
+
+		.rmp-dialog-contents {
+			max-height: 580px;
+			overflow-y: overlay;
+		}
+	}
+
+	.rmp-dialog-header {
+		height: 4rem;
+    	border-bottom: 1px solid #eee;
+    	overflow: hidden;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		box-shadow: 0 0 2px 0 #00000029;
+		.title {
+			font-size: 1rem;
+			height: 4rem;
+			display: flex;
+			align-items: center;
+			padding-left: 1.25rem;
+			text-transform: capitalize;
+			font-family: Product Sans Medium;
+			color: #7e7e7e;
+		}
+
+		.close {
+			cursor: pointer;
+			font-size: 1.875rem;
+			width: 4rem;
+			color: #ccd0d4;
+			height: 4rem;
+			border: 0;
+			background-color: transparent;
+			border-left: 1px solid #ccd0d4;
+		}
+	}
+
+	.rmp-dialog-footer {
+		position: relative;
+		text-align: right;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		padding: .625rem 1.25rem;
+		box-sizing: border-box;
+		height: 4rem;
+		box-shadow: 0 -1px 2px 0 #00000029;
+	}
+
+	.rmp-theme-title .item-controls{
+		top: unset;
+	}
+
+	@media only screen and (min-width: 1170px) {
+		.rmp-dialog-wrap {
+			width: 1170px;
+			margin: 0 auto;
+		}
+	}
+
+	@media only screen and (max-width: 780px) {
+		.rmp-dialog-wrap,
+		.rmp-dialog-overlay
+		.rmp-dialog-wrap {
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			border: none;
+			z-index: 999999;
+			position: absolute;
+		}
+	}
+
+	a {
+		text-decoration: none;
+		&:focus{
+			border: 0;
+			outline: unset;
+			box-shadow: unset;
+		}
+	}
+}
+
+// New menu wizards styling.
+#rmp-new-menu-wizard {
+
+	.rmp-page-loader {
+		background-color: #ffffff80;
+		height: auto;
+		top: 64px;
+		bottom: 0px;
+		.rmp-loader-message {
+			font-style: initial;
+			font-size: 14px;
+			text-align: center;
+			font-weight: 600;
+		}
+	}
+
+	.rmp-theme-use,
+	.rmp-theme-apply {
+		padding: 4px 12px;
+		border: solid 1px #c8c8c8;
+		border-radius: 5px;
+		color: #9d9d9d;
+		letter-spacing: 0.14px;
+	}
+
+	.input-group {
+		margin-bottom: 8px;
+		padding: 20px 30px;
+		display: flex;
+		align-items: center;
+		padding: 1.4rem 2rem;
+		box-shadow: 0 0px 4px 0 rgba(0, 0, 0, 0.1);
+		border: solid 1px #dedcdc;
+		background-color: #f6f6f6;
+	}
+
+	.input-group .input-label {
+		width: 35%;
+	}
+
+	.input-group .input-control {
+		width: 65%;
+	}
+
+	.input-label-title {
+		font-family: 'PRODUCT SANS MEDIUM';
+		font-size: 1rem;
+		font-weight: normal;
+		letter-spacing: .16px;
+		color: #303030;
+		margin-bottom: .375rem;
+	}
+
+	.input-label-description {
+		font-family: 'PRODUCT SANS';
+		font-size: .875rem;	
+		line-height: 1.14;
+		letter-spacing: .14px;
+		color: #7b7b7b;
+		margin-right: 25%;
+
+		a {
+			text-decoration: underline;
+			color: #00adf5;
+		}
+	}
+
+	.rmp-dialog-contents .rmp-new-menu-elements {
+		padding: 2% 8%;
+	}
+
+	.input-control input[type="text"],
+	.input-control select {
+		width: 100%;
+		max-width: 100%;
+		border: 1px solid #ddd;
+		max-width: 34.375rem;
+		box-shadow: 0 1px 6px 0 rgba(0,0,0,0.16);
+		border: solid 1px #dedcdc;
+		border-radius: 0;
+		height: 42px;
+	}
+
+	.rmp-dialog-wrap {
+		top:5%;
+		transition: color .5s linear;
+
+		.rmp-dialog-contents {
+			padding: 2% 3%;
+			background: #f1f1f1;
+			min-height: 420px;
+		}
+
+ 		.nav-tab-wrapper {
+			border: 0;
+
+			.nav-tab {
+				color: #6e6e6e;
+				border: 0;
+				padding: 0;
+				background: unset;
+				margin: 0 2rem 0 0;
+				font-size: .875rem;
+				line-height: 1.14;
+				letter-spacing: .14px;
+				position: relative;
+				height: 30px;
+				font-weight: 500;
+			}
+
+			.ui-tabs-active .nav-tab {
+				color: #0085ba;
+			}
+		}
+		
+		.rmp-v-divider::after {
+			content: "";
+			position: absolute;
+			height: 20px;
+			width: 1px;
+			background: #d2d2d2;
+			right: -1rem;
+		}
+
+		.btn-import-theme {
+			width: 5rem;
+			height: 2.1875rem;
+			border-radius: .375rem;
+			box-shadow: 0 3px 6px 0 rgba(0,0,0,0.16);
+			background-color: #23b507;
+			color: #fff;
+			border: unset;
+		}
+
+		.rmp-themes {
+			margin: 20px 0;  
+		}
+
+		.rmp-item-card_image {
+			line-height: 0;
+		}
+
+		.rmp-item-card_image img {
+			height: 250px;
+		}
+
+		.rmp-item-card_contents {
+			display: inline;
+		}
+
+		.rmp-item-card-backside {
+			opacity: 0;
+			visibility: hidden;
+			display: flex;
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: calc( 100% - 10px);
+    		width: calc( 100% - 10px);
+			margin: 5px;
+			background: #000;
+			flex-direction: column;
+			justify-content: center;
+			text-align: center;
+			align-items: center;
+			text-align: center;
+			transform: translate3d(0%, 50%, 0);
+			transition: all .3s ease-in-out;
+		}
+
+	}
+
+	.rmp-item-card_contents h4 {
+		margin: 0 3px 22px 0;
+		font-size: 18px;
+		font-weight: normal;
+		font-stretch: normal;
+		font-style: normal;
+		line-height: 1.17;
+		letter-spacing: 0.18px;
+		text-align: center;
+		color: #ffffff;
+	}
+
+	.rmp-item-card {
+		padding: 5px;
+		background: #eaeaea;
+		border: solid 5px #eaeaea;
+		transition:  border 0.3s ease-in-out;
+		&:hover {
+			.rmp-item-card-backside{
+				opacity: 1;
+				visibility: visible;
+				transform: translate3d(0, 0, 0);
+			}
+		}
+	}
+
+	#rmp-theme-upload{
+		background: #36bef7;
+		border: .125rem solid #36bef7;
+		font-family: 'Product Sans Medium';
+		border-radius: 4px;
+		font-size: 12px;
+	}
+
+	.button {
+		width: 6.5625rem;
+		height: 2.1875rem;
+		border-radius: .3125rem;
+		background-color: #f80668;
+		border: unset;
+		color: #fff;
+		&.btn-blue{
+			background-color: #36bef7;
+		}
+	}
+
+	.rmp-theme-option:checked + label{
+		border: solid 5px #0085ba !important;
+	}
+
+	.item-controls .rmp-theme-option:checked + label.rmp-theme-use{
+		background-color: #0085ba;
+		border: solid 1px #0085ba !important;
+		color: #fff;
+	}
+
+	.rmp-new-menu-step-conatiner {
+		margin-right: 12%;
+	}
+
+	.rmp-dialog-header {
+
+		.title span {
+			padding: 0 10px;
+		}
+
+		.rmp-new-menu-steps {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+		}
+
+		.rmp-new-menu-step {
+			font-size: 1.25rem;
+			padding: 0 15px;
+			height: 4rem;
+    		line-height: 4rem;
+			font-size: 20px;
+			color: #000000;
+			cursor: pointer;
+			position: relative;
+			&.current {
+				&::after{
+					content: "";
+					position: absolute;
+					width: 100%;
+					height: 5px;
+					background: #f80668;
+					bottom: 0;
+					left: 0;
+				}
+			}
+		}
+
+	}
+
+	.rmp-theme-upload-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+
+		p {
+			color: #555d66;
+			font-size: 18px;
+			font-style: normal;
+			margin: 0;
+			padding: 0;
+			text-align: center;
+		}
+
+		&.hide{
+			display: none;
+		}
+	}
+
+	.wp-upload-form{
+		background: #fafafa;
+		border: 1px solid #ccd0d4;
+		padding: 30px;
+		margin: 30px auto;
+		display: inline-flex;
+		justify-content: space-between;
+		align-items: center;		
+	}
+
+	.rmp-dialog-footer {
+		#rmp-menu-next-step,
+		#rmp-create-new-menu {
+			width: 130px;
+			font-size: 16px;
+			height: 45px;
+			border: solid 1px #00adf5;
+			background-color: #36bef7;
+			border-radius: unset;
+		}
+	}
+
+	.default-item {
+		width: 184px;
+		height: 15.6rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 18px;
+		border: 5px solid #eaeaea;
+	}
+	
+	@media only screen and (max-width: 780px) {
+	
+		.input-group {
+			flex-direction: column;
+
+			.input-label,
+			.input-control {
+				width: 100%;
+				margin-bottom: 10px;
+			}
+		}
+
+		.rmp-dialog-contents .rmp-new-menu-elements{
+			padding: 0;
+		}
+	
+		.rmp-dialog-overlay .rmp-dialog-contents {
+			flex-direction: column;
+		}
+	
+		.rmp-dialog-contents .rmp-new-menu-themes {
+			width: 100%;
+			border-right:unset;
+			margin-bottom: 10px;
+		}
+	
+		.rmp-dialog-contents .rmp-new-menu-elements {
+			width: auto;
+		}
+	
+		.rmp-menu-icons-dialog .icon-tabs,
+		.rmp-mega-menu-dialog .icon-tabs{
+			flex-direction: column;
+		}
+	}
+}
+
+@media only screen and (max-width: 780px) {
+ 
+    .rmp-dialog-contents .rmp-new-menu-elements {
+        padding: 0;
+    }
+
+    .rmp-menu-icons-dialog .icon-tabs,
+    .rmp-mega-menu-dialog .icon-tabs{
+        flex-direction: column;
+    }
+}
+
+#rmp-new-menu-wizard .rmp_theme_grids,
+.rmp-theme-page .rmp_theme_grids{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.rmp-new-menu-themes .rmp-themes .rmp-theme-option {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    visibility: hidden;
+    display: none;
+}
+
+.rmp-new-menu-themes .rmp-themes .rmp-theme-title {
+	position: relative;
+	background: $wizard-background-color;
+    padding: 1rem 1rem;
+    line-height: 1.55;
+    font-weight: 500;
+    color: #6e6e6e;
+    font-weight: normal;
+    margin: .3125rem 0;
+    border: 1px solid #ddd;
+    font-family: 'Product Sans';
+    font-size: 14px;
+    text-transform: capitalize;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+}

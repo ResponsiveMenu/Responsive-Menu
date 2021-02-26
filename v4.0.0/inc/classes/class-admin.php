@@ -138,6 +138,8 @@ class Admin {
 			wp_send_json_error( [ 'message' => __('Select menu to use !', 'responsive-menu-pro') ] );
 		}
 
+		$menu_to_hide = sanitize_text_field( $_POST['menu_to_hide'] );
+
 		$menu_theme = '';
 		if ( ! empty( $_POST['menu_theme'] )  ) {
 			$menu_theme  = sanitize_text_field( $_POST['menu_theme'] );
@@ -162,7 +164,7 @@ class Admin {
 		// Get appropriate theme as per theme type and theme name.
 		if ( ! empty( $theme_type ) && 'downloaded' == $theme_type ) {
 			$theme_manager   = Theme_Manager::get_instance();
-			$theme_options   = $theme_manager->get_downloaded_theme_settings( $menu_theme );
+			$theme_options   = $theme_manager->get_available_theme_settings( $menu_theme );
 		} else if ( ! empty( $theme_type ) && 'template' == $theme_type ) {
 			$theme_manager   = Theme_Manager::get_instance();
 			$theme_options   =  $theme_manager->get_saved_theme_options( $menu_theme );
@@ -187,7 +189,8 @@ class Admin {
 			'theme_type'          => $theme_type,
 			'menu_display_on'     => $menu_show_on,
 			'menu_show_on_pages'  => $menu_show_on_pages,
-			'menu_id'             => $menu_id
+			'menu_id'             => $menu_id,
+			'menu_to_hide'        => $menu_to_hide
  		);
 
 		$new_options  = array_merge( $theme_options , $new_options );
@@ -203,13 +206,21 @@ class Admin {
 			 */
 			do_action( 'rmp_create_new_menu', $menu_id );
 
-			$status = __('Menu is created successfully', 'responsive-menu-pro');			
+			wp_send_json_success(
+				[
+					'message'       => __('Menu is created successfully', 'responsive-menu-pro'),
+					'customize_url' => sprintf(
+						'%spost.php?post=%s&action=edit&editor=true',
+						get_admin_url(),
+						$menu_id
+					)
+				]
+			);
 
 		} else {
-			$status = __('Unable to create new Menu', 'responsive-menu-pro');
+			wp_send_json_error( [ 'message' => __( 'Unable to create new Menu !', 'responsive-menu-pro' ) ] );
 		}
 
-		wp_send_json_success( ['message' => $status ] );
 	}
 
 	/**

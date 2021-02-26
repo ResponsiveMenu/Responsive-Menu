@@ -97,10 +97,13 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 			}
 
 			$side_animation = 'rmp-' . $this->options['animation_type'] . '-' . $this->options['menu_appear_from'];
+			$menu_container_classes = apply_filters( 'rmp_menu_container_classes', [ 'rmp-container', $side_animation ], $this->menu_id );
+			$menu_container_classes =  implode( ' ' , $menu_container_classes );
+
 			$html = sprintf( '%s<div id="rmp-container-%s" class="rmp-container %s">%s</div>',
 				$menu_switcher,
 				$this->menu_id,
-				esc_attr( $side_animation ),
+				esc_attr( $menu_container_classes ),
 				$html
 			);
 
@@ -111,13 +114,39 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 		 * Function to print the menu markups in webpage.
 		 */
 		public function build_menu() {
-			echo  $this->mobile_menu();
-			return;
+
+			$html = $this->mobile_menu();
+
+			/**
+			 * Filters the menu marksup.
+			 *
+			 * @since 4.1.0
+			 *
+			 * @param HTML|string $html
+			 * @param int         menu_id
+			 */
+			$html = apply_filters( 'rmp_menu_html', $html, $this->menu_id );
+
+			echo  $html;
 		}
 
+		/**
+		 * Function to return the prepared menu items.
+		 *
+		 * @since 4.0.0
+		 *
+		 * @return HTML|string
+		 */
 		public function menu() {
+
 			$param  = $this->rmp_nav_menu_args();
+
+			if ( empty( $param ) ) {
+				return;
+			}
+
 			$param['echo'] = false;
+
 			return wp_nav_menu( $param );
 		}
 
@@ -200,19 +229,26 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 				$menu_trigger_content .= $menu_trigger_text;
 			}
 
-
 			$trigger_click_animation = '';
 			if ( ! empty( $this->options['button_click_animation'] ) ) {
-				$trigger_click_animation = $this->options['button_click_animation'];
+				$trigger_click_animation = 'rmp-menu-trigger-' . $this->options['button_click_animation'];
 			}
 
+			$toggle_theme_class = '';
+			if ( ! empty( $this->options['menu_theme'] ) ) {
+				$toggle_theme_class = 'rmp-' . str_replace( ' ', '-', strtolower( $this->options['menu_theme'] ) ) . '-trigger';
+			}
+
+			$toggle_theme_class = apply_filters( 'rmp_menu_toggle_classes', [ 'rmp_menu_trigger', $trigger_click_animation ], $this->menu_id );
+			$toggle_theme_class =  implode( ' ' , $toggle_theme_class );
+
 			$rmp_menu_trigger = sprintf(
-				'<button type="button" aria-controls="rmp-container-%s" aria-label="Menu Trigger" id="rmp_menu_trigger-%s" class="rmp_menu_trigger rmp-menu-trigger-%s">
+				'<button type="button"  aria-controls="rmp-container-%s" aria-label="Menu Trigger" id="rmp_menu_trigger-%s" class=" %s ">
 					%s
 				</button>',
 				$this->menu_id,
 				$this->menu_id,
-				$trigger_click_animation,
+				esc_attr( $toggle_theme_class ),
 				$menu_trigger_content
 			);
 
@@ -295,23 +331,44 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 			return $menu_search_wrap;
 		}
 
+		/**
+		 * Function to prepare the the menu additional content section.
+		 *
+		 * @since 4.0.0
+		 *
+		 * @return HTML|string $content
+		 */
 		public function menu_additional_content() {
 
 			$content = '';
 
 			if ( ! empty( $this->options['menu_additional_content'] ) ) {
-				$content = $this->options['menu_additional_content'];
+
+				//Remove script tags if found in menu contents.
+				$content = preg_replace( '#<script(.*?)>(.*?)</script>#', '', $this->options['menu_additional_content'] );
+				$content = do_shortcode( $content );
 			}
 
-			$menu_content_wrap = sprintf(
+			$content = sprintf(
 				'<div id="rmp-menu-additional-content-%s" class="rmp-menu-additional-content">
 					%s
 				</div>',
-				esc_attr( $this->menu_id),
+				esc_attr( $this->menu_id ),
 				$content
 			);
 
-			return $menu_content_wrap;
+			/**
+			 * Filters the menu additional contents markups.
+			 *
+			 * @since 4.1.0
+			 *
+			 * @param string $content
+			 * @param int    $menu_id
+			 *
+			 */
+			$content = apply_filters( 'menu_additional_content_html', $content, $this->menu_id );
+
+			return $content;
 		}
 
 		public function rmp_nav_menu_args( $args = null ) {

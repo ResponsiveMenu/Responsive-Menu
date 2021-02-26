@@ -1,25 +1,25 @@
 const DEV = 'production' !== process.env.NODE_ENV;
 
 /**
-* Plugins
+* NPM Plugins.
 */
 const path                    = require( 'path' );
 const MiniCssExtractPlugin    = require( 'mini-css-extract-plugin' );
 const OptimizeCssAssetsPlugin = require( 'optimize-css-assets-webpack-plugin' );
 const cssnano                 = require( 'cssnano' );
 const CleanWebpackPlugin      = require( 'clean-webpack-plugin' );
-const UglifyJsPlugin          = require( 'uglifyjs-webpack-plugin' );
+const TerserPlugin            = require( 'terser-webpack-plugin' );
 const StyleLintPlugin         = require( 'stylelint-webpack-plugin' );
 const FriendlyErrorsPlugin    = require( 'friendly-errors-webpack-plugin' );
 
 // Assets Directory path.
-const JSDir     = path.resolve( __dirname, 'assets/js' );
-const Assets    = path.resolve( __dirname, 'assets' );
-const BUILD_DIR = path.resolve( __dirname, 'assets/build' );
+const JSDir     = path.resolve( __dirname, 'assets/admin/js' );
+const Assets    = path.resolve( __dirname, 'assets/admin' );
+const BUILD_DIR = path.resolve( __dirname, 'assets/admin/build' );
 
 // Entry points
 const entry = {
-	main: Assets + '/js/rmp-menu.js'
+	rmpMain: [ Assets + '/rmp-main.js' ]
 };
 
 // Outputs
@@ -42,7 +42,7 @@ const plugins = ( argv ) => [
 	new FriendlyErrorsPlugin( {
 		clearConsole: false
 	} )
-];      
+];
 
 const rules = [
 	{
@@ -64,7 +64,7 @@ const rules = [
 			MiniCssExtractPlugin.loader,
 			'css-loader',
 			'postcss-loader',
-			'sass-loader',
+			'sass-loader'
 		]
 	}
 ];
@@ -74,11 +74,8 @@ const optimization = [
 		cssProcessor: cssnano
 	} ),
 
-	new UglifyJsPlugin( {
-		cache: false
-	} )
+	new TerserPlugin()
 ];
-
 
 module.exports = ( argv ) => ( {
 	entry: entry,

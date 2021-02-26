@@ -122,21 +122,21 @@ class Assets {
 			wp_enqueue_media();
 		}
 
-		wp_enqueue_script(
-			'rmp_editor_scripts',
-			RMP_PLUGIN_URL_V4 . '/assets/admin/js/rmp-editor.js',
-			array('jquery'),
-			RMP_PLUGIN_VERSION,
-			true
-		);
+		// wp_enqueue_script(
+		// 	'rmp_editor_scripts',
+		// 	RMP_PLUGIN_URL_V4 . '/assets/admin/js/rmp-editor.js',
+		// 	array('jquery'),
+		// 	RMP_PLUGIN_VERSION,
+		// 	true
+		// );
 	
-		wp_enqueue_script(
-			'rmp_admin_icon_scripts',
-			RMP_PLUGIN_URL_V4 . '/assets/admin/js/rmp-icon.js',
-			array('jquery'),
-			RMP_PLUGIN_VERSION,
-			true
-		);
+		// wp_enqueue_script(
+		// 	'rmp_admin_icon_scripts',
+		// 	RMP_PLUGIN_URL_V4 . '/assets/admin/js/rmp-icon.js',
+		// 	array('jquery'),
+		// 	RMP_PLUGIN_VERSION,
+		// 	true
+		// );
 
 		wp_enqueue_script(
 			'rmp_admin_selectize_scripts',
@@ -152,12 +152,21 @@ class Assets {
 			RMP_PLUGIN_VERSION
 		);
 
-		wp_enqueue_script(
-			'rmp_custom_color_alpha_scripts',
-			RMP_PLUGIN_URL_V4 . '/assets/admin/js/wp-color-alpha.js',
-			array('wp-color-picker'),
+		//Color alpha feature in color input controls by below custom scripts.
+		// wp_enqueue_script(
+		// 	'rmp_custom_color_alpha_scripts',
+		// 	RMP_PLUGIN_URL_V4 . '/assets/admin/js/wp-color-alpha.js',
+		// 	array('wp-color-picker'),
+		// 	RMP_PLUGIN_VERSION
+		// );
+
+		wp_enqueue_style(
+			'rmp_admin_main_styles',
+			RMP_PLUGIN_URL_V4 . '/assets/admin/build/css/rmpMain.css',
+			null,
 			RMP_PLUGIN_VERSION
 		);
+
 
 		wp_enqueue_script(
 			'rmp_admin_dropzone_scripts',
@@ -175,7 +184,7 @@ class Assets {
 
 		wp_register_script(
 			'rmp_admin_scripts',
-			RMP_PLUGIN_URL_V4 . '/assets/admin/js/rmp-admin.js',
+			RMP_PLUGIN_URL_V4 . '/assets/admin/build/js/rmpMain.js',
 			array( 'wp-color-picker', 'jquery' ),
 			RMP_PLUGIN_VERSION,
 			true
@@ -193,13 +202,13 @@ class Assets {
 
 		wp_enqueue_script( 'rmp_admin_scripts' );
 
-		wp_enqueue_script(
-			'rmp_preview_scripts',
-			RMP_PLUGIN_URL_V4 . '/assets/admin/js/rmp-preview.js',
-			array('jquery'),
-			RMP_PLUGIN_VERSION,
-			true
-		);
+		// wp_enqueue_script(
+		// 	'rmp_preview_scripts',
+		// 	RMP_PLUGIN_URL_V4 . '/assets/admin/js/rmp-preview.js',
+		// 	array('jquery'),
+		// 	RMP_PLUGIN_VERSION,
+		// 	true
+		// );
 
 		/** Enqueue the icons resources */
 
@@ -220,9 +229,9 @@ class Assets {
 		);
 
 		/**
-		 * Fires after enqueue the scripts.
+		 * Fires after enqueue the admin scripts.
 		 */
-		do_action( 'after_rmp_enqueue_scripts' );
+		do_action( 'after_rmp_enqueue_admin_scripts' );
 	}
 
 }

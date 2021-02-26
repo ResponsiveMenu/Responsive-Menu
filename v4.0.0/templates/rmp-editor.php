@@ -117,7 +117,7 @@ $options = $option_manager->get_options( $menu_id );
 						<?php
 							echo $ui_manager->start_accordion_item( [
 								'item_header' => [
-									'item_title' => __('Theme options','responsive-menu-pro'),
+									'item_title' => __('Theme Details','responsive-menu-pro'),
 								]
 							] );
 
@@ -173,6 +173,17 @@ $options = $option_manager->get_options( $menu_id );
 
 						
 							echo $ui_manager->end_accordion_item();
+
+							/**
+							 * Fires after prepare the theme setting section.
+							 * 
+							 * @since 4.1.0
+							 * 
+							 * @param int   $menu_id
+							 * @param array $options
+							 */
+							do_action( 'rmp_tab_themes', $menu_id, $options );
+
 						?>
 						</ul>
 					</div>
@@ -511,30 +522,6 @@ $options = $option_manager->get_options( $menu_id );
 									]
 								);
 
-								echo $ui_manager->start_group_controls();
-
-								echo $control_manager->add_color_control( [
-									'label'  => __('Menu Background','responsive-menu-pro'),
-									'id'     => 'rmp-menu-background-colour',
-									'name'    => 'menu[menu_background_colour]',
-									'value'    => rmp_get_value($options,'menu_background_colour'),
-								] );
-					
-								echo $control_manager->add_select_control( [
-									'label'  => __('Depth Level','responsive-menu-pro'),
-									'id'     => 'rmp-menu-depth',
-									'tool_tip' => [
-										'text' => __('Set the level of nesting for sub menus.','responsive-menu-pro'),
-									],
-									'name'    => 'menu[menu_depth]',
-									'options' => array( '1'=>1, '2'=>2, '3' => 3, '4'=>4,'5'=>5 ),
-									'value'   => rmp_get_value($options,'menu_depth'),
-								] );
-								
-								echo $ui_manager->end_group_controls();
-
-								echo $ui_manager->accordion_divider();
-					
 								echo $control_manager->add_switcher_control( [
 									'label'  => __('Item Descriptions','responsive-menu-pro'),
 									'id'     => 'rmp-menu-submenu-descriptions-on',
@@ -567,6 +554,29 @@ $options = $option_manager->get_options( $menu_id );
 										'item_class' => 'title-contents',
 									]
 								);
+
+									echo $ui_manager->start_group_controls();
+									echo $control_manager->add_color_control( [
+										'label'  => __('Menu Background','responsive-menu-pro'),
+										'id'     => 'rmp-menu-background-colour',
+										'name'    => 'menu[menu_background_colour]',
+										'value'    => rmp_get_value($options,'menu_background_colour'),
+									] );
+						
+									echo $control_manager->add_select_control( [
+										'label'  => __('Depth Level','responsive-menu-pro'),
+										'id'     => 'rmp-menu-depth',
+										'tool_tip' => [
+											'text' => __('Set the level of nesting for sub menus.','responsive-menu-pro'),
+										],
+										'name'    => 'menu[menu_depth]',
+										'options' => array( '1'=>1, '2'=>2, '3' => 3, '4'=>4,'5'=>5 ),
+										'value'   => rmp_get_value($options,'menu_depth'),
+									] );
+									
+									echo $ui_manager->end_group_controls();
+									echo $ui_manager->accordion_divider();
+
 									echo $control_manager->add_switcher_control( [
 										'label'  => __('Smooth Scroll Enabled','responsive-menu-pro'),
 										'id'     => 'rmp-menu-smooth-scroll-on',
@@ -640,6 +650,7 @@ $options = $option_manager->get_options( $menu_id );
 									'label'  => __('Item Height','responsive-menu-pro'),
 									'type'   => 'number',
 									'id'     => 'rmp-menu-links-height',
+									'class' => 'no-updates',
 									'name'   => 'menu[menu_links_height]',
 									'value'    => rmp_get_value($options,'menu_links_height'),
 									'group_classes' => 'full-size',
@@ -648,7 +659,7 @@ $options = $option_manager->get_options( $menu_id );
 										'unit_type' => 'all',
 										'id' => 'rmp-menu-links-height-unit',
 										'name' => 'menu[menu_links_height_unit]',
-										'classes' => 'is-unit',
+										'classes' => 'is-unit no-updates',
 										'default' => 'px',
 										'value' => rmp_get_value($options,'menu_links_height_unit'),
 										'multi_device' => true,
@@ -659,6 +670,7 @@ $options = $option_manager->get_options( $menu_id );
 									'label'  => __('Line Height','responsive-menu-pro'),
 									'type'   => 'number',
 									'id'     => 'rmp-menu-links-line-height',
+									'class' => 'no-updates',
 									'name'   => 'menu[menu_links_line_height]',
 									'value'    => rmp_get_value($options,'menu_links_line_height'),
 									'group_classes' => 'full-size',
@@ -667,7 +679,7 @@ $options = $option_manager->get_options( $menu_id );
 										'unit_type' => 'all',
 										'id' => 'rmp-menu-links-line-height-unit',
 										'name' => 'menu[menu_links_line_height_unit]',
-										'classes' => 'is-unit',
+										'classes' => 'is-unit no-updates',
 										'default' => 'px',
 										'value' => rmp_get_value($options,'menu_links_line_height_unit'),
 										'multi_device' => true,
@@ -678,6 +690,7 @@ $options = $option_manager->get_options( $menu_id );
 									'label'  => __('Padding','responsive-menu-pro'),
 									'type'   => 'number',
 									'id'     => 'rmp-menu-depth-level-0',
+									'class' => 'no-updates',
 									'name'   => 'menu[menu_depth_0]',
 									'value'    => rmp_get_value($options,'menu_depth_0'),
 									'group_classes' => 'full-size',
@@ -685,7 +698,7 @@ $options = $option_manager->get_options( $menu_id );
 										'unit_type' => 'all',
 										'id' => 'rmp-menu-depth-level-0-unit',
 										'name' => 'menu[menu_depth_0_unit]',
-										'classes' => 'is-unit',
+										'classes' => 'is-unit no-updates',
 										'default' => '%',
 										'value' => rmp_get_value($options,'menu_depth_0_unit'),
 									],
@@ -754,6 +767,7 @@ $options = $option_manager->get_options( $menu_id );
 									'label'  => __('Letter Spacing','responsive-menu-pro'),
 									'type'   => 'number',
 									'id'     => 'rmp-menu-text-letter-spacing',
+									'class'  => 'no-updates',
 									'name'   => 'menu[menu_text_letter_spacing]',
 									'value'    => rmp_get_value($options,'menu_text_letter_spacing'),
 									'group_classes' => 'full-size',
@@ -880,7 +894,7 @@ $options = $option_manager->get_options( $menu_id );
 										'unit_type' => 'all',
 										'id' => 'rmp-menu-border-width-unit',
 										'name' => 'menu[menu_border_width_unit]',
-										'classes' => 'is-unit',
+										'classes' => 'is-unit no-updates',
 										'default' => 'px',
 										'value' => rmp_get_value($options,'menu_border_width_unit'),
 									],
@@ -907,7 +921,7 @@ $options = $option_manager->get_options( $menu_id );
 								echo $ui_manager->start_group_controls();
 									echo $control_manager->add_color_control( [
 										'label'  => __('Active Item','responsive-menu-pro'),
-										'id'     => 'rmp-menu-button-line-colour-active',
+										'id'     => 'rmp-menu-item-border-colour-active',
 										'name'   => 'menu[menu_current_item_border_colour]',
 										'value'    => rmp_get_value($options,'menu_current_item_border_colour'),
 										
@@ -940,6 +954,7 @@ $options = $option_manager->get_options( $menu_id );
 									'label'  => __('Item Height','responsive-menu-pro'),
 									'type'   => 'number',
 									'id'     => 'rmp-submenu-links-height',
+									'class'  => 'no-updates',
 									'name'   => 'menu[submenu_links_height]',
 									'value'    => rmp_get_value($options,'submenu_links_height'),
 									'multi_device' => true,
@@ -948,7 +963,7 @@ $options = $option_manager->get_options( $menu_id );
 										'unit_type' => 'all',
 										'id' => 'rmp-submenu-links-height-unit',
 										'name' => 'menu[submenu_links_height_unit]',
-										'classes' => 'is-unit',
+										'classes' => 'is-unit no-updates',
 										'default' => 'px',
 										'value' => rmp_get_value($options,'submenu_links_height_unit'),
 										'multi_device' => true,
@@ -959,6 +974,7 @@ $options = $option_manager->get_options( $menu_id );
 									'label'  => __('Line Height','responsive-menu-pro'),
 									'type'   => 'number',
 									'id'     => 'rmp-submenu-links-line-height',
+									'class'  => 'no-updates',
 									'name'   => 'menu[submenu_links_line_height]',
 									'value'    => rmp_get_value($options,'submenu_links_line_height'),
 									'multi_device' => true,
@@ -967,7 +983,7 @@ $options = $option_manager->get_options( $menu_id );
 										'unit_type' => 'all',
 										'id' => 'rmp-submenu-links-line-height-unit',
 										'name' => 'menu[submenu_links_line_height_unit]',
-										'classes' => 'is-unit',
+										'classes' => 'is-unit no-updates',
 										'default' => 'px',
 										'value' => rmp_get_value($options,'submenu_links_line_height_unit'),
 										'multi_device' => true,
@@ -1115,6 +1131,7 @@ $options = $option_manager->get_options( $menu_id );
 										'label'  => __('Border Width','responsive-menu-pro'),
 										'type'   => 'number',
 										'id'     => 'rmp-submenu-border-width',
+										'class'  => 'no-updates',
 										'name'   => 'menu[submenu_border_width]',
 										'value'    => rmp_get_value($options,'submenu_border_width'),
 										'tool_tip' => [
@@ -1124,7 +1141,8 @@ $options = $option_manager->get_options( $menu_id );
 											'unit_type' => 'all',
 											'id' => 'rmp-submenu-border-width-unit',
 											'name' => 'menu[submenu_border_width_unit]',
-											'classes' => 'is-unit',
+											'classes' => 'is-unit no-updates',
+											'default' => 'px',
 											'value' => rmp_get_value($options,'submenu_border_width_unit'),
 										],
 									] );
@@ -1150,10 +1168,9 @@ $options = $option_manager->get_options( $menu_id );
 									echo $ui_manager->start_group_controls();
 									echo $control_manager->add_color_control( [
 										'label'  => __('Active Item','responsive-menu-pro'),
-										'id'     => 'rmp-submenu-button-line-colour-active',
+										'id'     => 'rmp-submenu-item-border-colour-active',
 										'name'   => 'menu[submenu_current_item_border_colour]',
-										'value'    => rmp_get_value($options,'submenu_current_item_border_colour'),
-										
+										'value'    => rmp_get_value($options,'submenu_current_item_border_colour')
 									] );
 	
 									echo $control_manager->add_color_control( [
@@ -1186,7 +1203,7 @@ $options = $option_manager->get_options( $menu_id );
 											'unit_type' => 'all',
 											'id' => 'rmp-submenu-font-size-unit',
 											'name' => 'menu[submenu_font_size_unit]',
-											'classes' => 'is-unit',
+											'classes' => 'is-unit no-updates',
 											'default' => 'px',
 											'value' => rmp_get_value($options,'submenu_font_size_unit'),
 											'multi_device' => true,
@@ -1218,6 +1235,7 @@ $options = $option_manager->get_options( $menu_id );
 										'label'  => __('Letter Spacing','responsive-menu-pro'),
 										'type'   => 'number',
 										'id'     => 'rmp-submenu-text-letter-spacing',
+										'class' => 'no-updates',
 										'name'   => 'menu[submenu_text_letter_spacing]',
 										'value'    => rmp_get_value($options,'submenu_text_letter_spacing'),
 										'has_unit' => [
@@ -1426,7 +1444,8 @@ $options = $option_manager->get_options( $menu_id );
 									'unit_type' => 'all',
 									'id' => 'rmp-submenu-arrow-width-unit',
 									'name' => 'menu[submenu_arrow_width_unit]',
-									'classes' => 'is-unit no-updates',
+									'classes' => 'is-unit',
+									'default' => 'px',
 									'value' => rmp_get_value($options,'submenu_arrow_width_unit'),
 								],
 							] );
@@ -1445,7 +1464,8 @@ $options = $option_manager->get_options( $menu_id );
 									'unit_type' => 'all',
 									'id' => 'rmp-submenu-arrow-height-unit',
 									'name' => 'menu[submenu_arrow_height_unit]',
-									'classes' => 'is-unit no-updates',
+									'classes' => 'is-unit',
+									'default' => 'px',
 									'value' => rmp_get_value($options,'submenu_arrow_height_unit')
 								],
 							] );
@@ -1527,7 +1547,7 @@ $options = $option_manager->get_options( $menu_id );
 										'unit_type' => 'all',
 										'id' => 'rmp-menu-sub-arrow-border-width-unit',
 										'name' => 'menu[menu_sub_arrow_border_width_unit]',
-										'classes' => 'is-unit',
+										'classes' => 'is-unit no-updates',
 										'value' => rmp_get_value($options,'menu_sub_arrow_border_width_unit'),
 									],
 								] );
@@ -1758,13 +1778,26 @@ $options = $option_manager->get_options( $menu_id );
 
 								echo $ui_manager->end_group_controls();
 
+								echo  $ui_manager->start_group_controls();
 								echo $control_manager->add_color_control( [
 									'label'  => __('Active Color','responsive-menu-pro'),
 									'id'     => 'rmp-menu-button-background-colour-active',
 									'name'   => 'menu[button_background_colour_active]',
-									'value'    => rmp_get_value($options,'button_background_colour_active'),
-									
+									'value'    => rmp_get_value($options,'button_background_colour_active')
 								] );
+
+								echo $control_manager->add_text_input_control( [
+									'label'  => __('Border Radius','responsive-menu-pro'),
+									'type'   => 'number',
+									'class' => 'no-updates',
+									'id'     => 'rmp-menu-toggle-border-radius',
+									'name'   => 'menu[toggle_button_border_radius]',
+									'value'    => rmp_get_value($options,'toggle_button_border_radius'),
+									'has_unit' => [
+										'unit_type' => 'px',
+									]
+								] );
+								echo $ui_manager->end_group_controls();
 
 								echo $control_manager->add_switcher_control( [
 									'label'  => __('Transparent Background','responsive-menu-pro'),
@@ -1830,7 +1863,7 @@ $options = $option_manager->get_options( $menu_id );
 										'unit_type' => 'all',
 										'id' => 'rmp-menu-button-distance-from-side-unit',
 										'name' => 'menu[button_distance_from_side_unit]',
-										'classes' => 'is-unit',
+										'classes' => 'is-unit no-updates',
 										'default' => '%',
 										'value' => rmp_get_value($options,'button_distance_from_side_unit')
 									]
@@ -1850,7 +1883,7 @@ $options = $option_manager->get_options( $menu_id );
 										'unit_type' => 'all',
 										'id' => 'rmp-menu-button-top-unit',
 										'name' => 'menu[button_top_unit]',
-										'classes' => 'is-unit',
+										'classes' => 'is-unit no-updates',
 										'default' => 'px',
 										'value' => rmp_get_value($options,'button_top_unit')
 									],
@@ -1950,7 +1983,6 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-button-line-width',
 									'name'   => 'menu[button_line_width]',
 									'value'    => rmp_get_value($options,'button_line_width'),
-									
 									'tool_tip' => [
 										'text' => __('Set the width of each individual button line and it\'s unit','responsive-menu-pro')
 									],
@@ -1958,7 +1990,7 @@ $options = $option_manager->get_options( $menu_id );
 										'unit_type' => 'all',
 										'id' => 'rmp-menu-button-line-width-unit',
 										'name' => 'menu[button_line_width_unit]',
-										'classes' => 'is-unit',
+										'classes' => 'is-unit no-updates',
 										'default' => 'px',
 										'value' => rmp_get_value($options,'button_line_width_unit')
 									]
@@ -2099,7 +2131,7 @@ $options = $option_manager->get_options( $menu_id );
 									'label'  => __('Text','responsive-menu-pro'),
 									'id'     => 'rmp-menu-button-title',
 									'type'   => 'text',
-									'class' => 'on-updates',
+									'class' => 'no-updates',
 									'placeholder' => __('Enter text','responsive-menu-pro'),
 									'name'   => 'menu[button_title]',
 									'value'    => rmp_get_value($options,'button_title'),
@@ -2112,7 +2144,7 @@ $options = $option_manager->get_options( $menu_id );
 									'label'  => __('Active Text','responsive-menu-pro'),
 									'id'     => 'rmp-menu-button-title-open',
 									'name'   => 'menu[button_title_open]',
-									'class' => 'on-updates',
+									'class' => 'no-updates',
 									'placeholder' => __('Enter text','responsive-menu-pro'),
 									'type'   => 'text',
 									'value'    => rmp_get_value($options,'button_title_open'),
@@ -2125,7 +2157,7 @@ $options = $option_manager->get_options( $menu_id );
 								echo $control_manager->add_select_control( [
 									'label'  => __('Text Position','responsive-menu-pro'),
 									'id'     => 'rmp-menu-button-title-position',
-									'class' => 'on-updates',
+									'class' => 'no-updates',
 									'class'  => 'rmp-menu-button-title-position',
 									'name'    => 'menu[button_title_position]',
 									'options' => array( 'top' => 'Top' , 'left' => 'Left', 'bottom' => 'Bottom', 'right'=>'Right' ),
@@ -2147,7 +2179,7 @@ $options = $option_manager->get_options( $menu_id );
 								echo $control_manager->add_text_input_control( [
 									'label'  => __('Font Size','responsive-menu-pro'),
 									'type'   => 'number',
-									'class' => 'on-updates',
+									'class' => 'no-updates',
 									'id'     => 'rmp-menu-button-font-size',
 									'name'   => 'menu[button_font_size]',
 									'value'    => rmp_get_value($options,'button_font_size'),
@@ -2165,7 +2197,7 @@ $options = $option_manager->get_options( $menu_id );
 								echo $control_manager->add_text_input_control( [
 									'label'  => __('Line Height','responsive-menu-pro'),
 									'type'   => 'number',
-									'class' => 'on-updates',
+									'class' => 'no-updates',
 									'id'     => 'rmp-menu-button-title-line-height',
 									'name'   => 'menu[button_title_line_height]',
 									'value'    => rmp_get_value($options,'button_title_line_height'),
@@ -2297,7 +2329,7 @@ $options = $option_manager->get_options( $menu_id );
 										'unit_type' => 'all',
 										'id' => 'rmp-menu-container-max-width-unit',
 										'name' => 'menu[menu_maximum_width_unit]',
-										'classes' => 'is-unit',
+										'classes' => 'is-unit no-updates',
 										'default' => 'px',
 										'value' => rmp_get_value($options,'menu_maximum_width_unit'),
 									]
@@ -2315,7 +2347,7 @@ $options = $option_manager->get_options( $menu_id );
 										'unit_type' => 'all',
 										'id' => 'rmp-menu-container-min-width-unit',
 										'name' => 'menu[menu_minimum_width_unit]',
-										'classes' => 'is-unit',
+										'classes' => 'is-unit no-updates',
 										'default' => 'px',
 										'value' => rmp_get_value($options,'menu_minimum_width_unit'),
 									]
@@ -2376,7 +2408,7 @@ $options = $option_manager->get_options( $menu_id );
 									'label'  => __('Type','responsive-menu-pro'),
 									'id'     => 'rmp-animation-type',
 									'name'    => 'menu[animation_type]',
-									'options' => [ 'slide' => 'Slide' , 'push' => 'Push', 'fade' => 'Fade (PRO)' ],
+									'options' => [ 'slide' => 'Slide' , 'push' => 'Push', 'fade' => 'Fade' ],
 									'value'   => rmp_get_value($options,'animation_type')
 								] );
 
@@ -2535,5 +2567,12 @@ $options = $option_manager->get_options( $menu_id );
 		<div id="rmp-required-footer">
 			<?php wp_footer(); ?>
 		</div>
+
+		<!-- Page loader -->
+		<div class="rmp-page-loader">
+			<img class="rmp-loader-image large" src="<?php echo RMP_PLUGIN_URL_V4 .'/assets/images/rmp-logo.png'; ?>"/>
+			<h3 class="rmp-loader-message"><?php esc_html_e( 'Just a moment, the theme is applying...', 'responsive-menu-pro' ); ?> </h3>
+		</div>
+
 	</body>
 </html>

@@ -4,7 +4,7 @@
 Plugin Name: Responsive Menu
 Plugin URI: https://expresstech.io
 Description: Highly Customisable Responsive Menu Plugin for WordPress
-Version: 4.0.4
+Version: 4.1.0
 Author: ExpressTech
 Text Domain: responsive-menu
 Author URI: https://responsive.menu
@@ -16,7 +16,7 @@ Tags: responsive, menu, responsive menu, mega menu, max mega menu, max menu
  * Constant as plugin version.
  */
 if ( ! defined( 'RMP_PLUGIN_VERSION' ) ) {
-    define( 'RMP_PLUGIN_VERSION', '4.0.4' );
+    define( 'RMP_PLUGIN_VERSION', '4.1.0' );
 }
 
 define('RESPONSIVE_MENU_URL', plugin_dir_url( __FILE__ ) );
@@ -221,4 +221,38 @@ include dirname(__FILE__) . '/config/polylang.php';
 		flush_rewrite_rules();
 	}
 
+    /**
+     * Function to include the menu themes templates.
+     *
+     * @since 4.0.5
+     *
+     * @return void
+     */
+    function rm_includes_menu_theme_template() {
+
+        $theme_manager =  \RMP\Features\Inc\Theme_Manager::get_instance();
+
+        //Check class theme manager has this method or not.
+        if ( ! method_exists( $theme_manager, 'get_menu_active_themes' ) ) {
+            return;
+        }
+
+        $active_themes = $theme_manager->get_menu_active_themes();
+        if ( empty( $active_themes ) ) {
+            return;
+        }
+
+        //Include the file from each theme which has php template.
+        foreach( $active_themes as $key => $theme_name ) {
+
+            $theme_index = $theme_manager->get_theme_index_file( $theme_name );
+
+            if ( file_exists( $theme_index ) ) {
+                require_once $theme_index;
+            }
+        }
+
+    }
+
+    rm_includes_menu_theme_template();
 }

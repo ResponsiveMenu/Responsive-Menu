@@ -141,9 +141,10 @@
                 'class' => 'no-updates',
                 'has_unit' => [
                     'unit_type' => 'all',
-                    'id' => 'rmp-menu-sub-arrow-border-width-unit',
+                    'id' => 'rmp-submenu-sub-arrow-border-width-unit',
                     'name' => 'menu[submenu_sub_arrow_border_width_unit]',
-                    'classes' => 'is-unit',
+                    'classes' => 'is-unit no-updates',
+                    'default' => 'px',
                     'value' => rmp_get_value($options,'submenu_sub_arrow_border_width_unit'),
                 ],
             ] );
@@ -202,7 +203,7 @@
 
             echo $control_manager->add_color_control( [
                 'label'  => __('Hover','responsive-menu-pro'),
-                'id'     => 'rmp-submenu-item-border-colour-hover',
+                'id'     => 'rmp-submenu-sub-arrow-shape-colour-hover',
                 'name'    => 'menu[submenu_sub_arrow_shape_hover_colour]',
                 'value'    => rmp_get_value($options,'submenu_sub_arrow_shape_hover_colour'),
                 

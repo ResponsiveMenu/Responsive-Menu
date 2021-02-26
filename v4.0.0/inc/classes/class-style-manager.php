@@ -288,6 +288,12 @@ class Style_Manager {
 			$this->enqueue_styles_as_file();
 		}
 
+		/**
+		 * Fires after frontend scripts are enqueued.
+		 * 
+		 * @since 4.0.4
+		 */
+		do_action( 'after_rmp_enqueue_frontend_scripts' );
 	}
 
 	/**
@@ -375,6 +381,11 @@ class Style_Manager {
 			$menu_trigger_active_color = '';
 			if ( ! empty( $options['button_background_colour_active'] ) ) {
 				$menu_trigger_active_color = $options['button_background_colour_active'];
+			}
+
+			$toggle_button_border_radius = '0';
+			if ( ! empty( $options['toggle_button_border_radius'] ) ) {
+				$toggle_button_border_radius = $options['toggle_button_border_radius'];
 			}
 
 			$menu_trigger_transparent_background = '';
@@ -588,6 +599,16 @@ class Style_Manager {
 				$menu_title_background_hover = $options['menu_title_background_hover_colour'];
 			}
 
+			$menu_title_font_family = '';
+			if ( ! empty( $options['menu_title_font_family'] ) ) {
+				$menu_title_font_family = $options['menu_title_font_family'];
+			}
+
+			$menu_title_font_weight = '';
+			if ( ! empty( $options['menu_title_font_weight'] ) ) {
+				$menu_title_font_weight = $options['menu_title_font_weight'];
+			}
+
 			$menu_title_font_color = '';
 			if ( ! empty( $options['menu_title_colour'] ) ) {
 				$menu_title_font_color = $options['menu_title_colour'];
@@ -756,6 +777,11 @@ class Style_Manager {
 			$menu_item_letter_spacing = '0';
 			if ( ! empty( $options['menu_text_letter_spacing'] ) ) {
 				$menu_item_letter_spacing = $options['menu_text_letter_spacing'];
+			}
+
+			$submenu_text_letter_spacing = '0';
+			if ( ! empty( $options['submenu_text_letter_spacing'] ) ) {
+				$submenu_text_letter_spacing = $options['submenu_text_letter_spacing'];
 			}
 
 			$menu_item_border_width = '0';
@@ -1051,7 +1077,7 @@ class Style_Manager {
 				$submenu_current_item_border_color_hover = $options['submenu_current_item_border_hover_colour'];
 			}
 
-			$submenu_item_font_size = '0';
+			$submenu_item_font_size = '';
 			if ( ! empty( $options['submenu_font_size'] ) ) {
 				$submenu_item_font_size = $options['submenu_font_size'];
 			}
@@ -1254,6 +1280,7 @@ class Style_Manager {
 				'menu_trigger_background_color'       => $menu_trigger_background_color,
 				'menu_trigger_background_color_hover' => $menu_trigger_background_color_hover,
 				'menu_trigger_active_color'           => $menu_trigger_active_color,
+				'toggle_button_border_radius'         => $toggle_button_border_radius,
 				'menu_trigger_transparent_background' => $menu_trigger_transparent_background,
 				'menu_trigger_line_color'             => $menu_trigger_line_color,
 				'menu_trigger_line_color_hover'       => $menu_trigger_line_color_hover,
@@ -1296,6 +1323,8 @@ class Style_Manager {
 
 				// Menu title options.
 				'menu_title_wrap'             => $menu_title_wrap,
+				'menu_title_font_weight'      => $menu_title_font_weight,
+				'menu_title_font_family'      => $menu_title_font_family,
 				'menu_title_background'       => $menu_title_background,
 				'menu_title_background_hover' => $menu_title_background_hover,
 				'menu_title_font_color'       => $menu_title_font_color,
@@ -1378,11 +1407,10 @@ class Style_Manager {
 				'menu_current_item_toggle_background_color_hover' => $menu_current_item_toggle_background_color_hover,
 				'menu_item_toggle_border_color'                   => $menu_item_toggle_border_color,
 				'menu_item_toggle_border_color_hover'             => $menu_item_toggle_border_color_hover,
-				'menu_current_item_toggle_border_color'           => $menu_item_toggle_border_color_hover,
+				'menu_current_item_toggle_border_color'           => $menu_current_item_toggle_border_color,
 				'menu_current_item_toggle_border_color_hover'     => $menu_current_item_toggle_border_color_hover,
-
-				'menu_item_toggle_border_width'  => $menu_sub_arrow_border_width,
-				'menu_item_toggle_border_width_unit'  => $menu_sub_arrow_border_width_unit,
+				'menu_item_toggle_border_width'                   => $menu_sub_arrow_border_width,
+				'menu_item_toggle_border_width_unit'              => $menu_sub_arrow_border_width_unit,
 
 				// Sub-level menu items options.
 				'submenu_item_height'           => $submenu_item_height,
@@ -1401,7 +1429,8 @@ class Style_Manager {
 				'submenu_item_font_size_unit'  => $submenu_item_font_size_unit,
 				'submenu_item_font_family'     => $submenu_item_font_family,
 				'submenu_item_text_alignment'  => $submenu_item_text_alignment,
-				
+				'submenu_text_letter_spacing'  => $submenu_text_letter_spacing,
+
 				'submenu_item_text_color'                     => $submenu_item_text_color,
 				'submenu_item_text_color_hover'               => $submenu_item_text_color_hover,
 				'submenu_current_item_text_color'             => $submenu_current_item_text_color,
@@ -1451,10 +1480,33 @@ class Style_Manager {
 				'sub_menu_transition_speed' => $sub_menu_transition_speed
 			);
 
+			/**
+			 * Apply before parse the scss to css.
+			 * 
+			 * @since 4.1.0
+			 * 
+			 * @param array  $parse_options  Parsed menu settings.
+			 * @param int    $menu_id        Menu Id.
+			 * @param array  $options        Menu options array.
+			 */
+			$parse_options = apply_filters( 'rmp_before_parse_scss_to_css', $parse_options, $menu_id, $options );
+
 			$scss = new Compiler();
 			$scss->setImportPaths(  RMP_PLUGIN_PATH_V4 . '/assets/scss/' );
 			$scss->setVariables( $parse_options );
 			$css = $scss->compile( '@import "main.scss";' );
+
+			/**
+			 * Apply after parsed the scss to css.
+			 * 
+			 * @since 4.1.0
+			 * 
+			 * @param string $css            Compiled CSS.
+			 * @param int    $menu_id        Menu Id.
+			 * @param array  $parse_options  Parsed menu settings.
+			 * @param array  $options        Menu options array.
+			 */
+			$css = apply_filters( 'rmp_after_parse_scss_to_css', $css, $menu_id, $parse_options, $options );
 
 			return $css;
 		}
