@@ -93,21 +93,13 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 
 == Screenshots ==
 
-1. Animated Screencast
-2. Example Front End Menu Button
-3. Front End Expanded Menu with Background Image
-4. Alternative Example Front End Expanded Menu with Background Image
-5. Alternative Example Front End Expanded Menu with Background Image
-6. Alternative Example Front End Expanded Menu with Background Image
-7. Admin Initial Setup Section
-8. Admin Container Section
-9. Admin Menu Section
-10. Admin Sub Menus Section
-11. Admin Button Section
-12. Admin Technical Section
-13. Admin Advanced Section
-14. Admin Header Bar Section
-15. Admin Desktop Menu Section
+1. Dashboard
+2. Select theme
+3. Menu setting
+4. Mobile view setting
+5. Desktop view setting
+6. Toggle button
+7. Main menu
 
 == Changelog ==
 = 4.1.0 (26th February 2021) =
