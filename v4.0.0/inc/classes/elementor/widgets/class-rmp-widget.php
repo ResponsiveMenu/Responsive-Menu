@@ -103,7 +103,13 @@ class RMP_Widget extends Widget_Base {
 
 		if ( ! empty( $menus ) ) {
 
-			$menu_id = array_key_first( $menus );
+			$menu_id = null;
+			if ( function_exists( 'array_key_first' ) ) {
+				$menu_id = array_key_first( $menus );
+			} else {
+				$menu_id = ! empty( $menus ) ? array_keys($menus)[0] : null;
+			}
+
 			$this->add_control(
 				'rmp_menu',
 				[
