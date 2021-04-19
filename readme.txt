@@ -3,7 +3,7 @@ Contributors: expresstech,responsivemenu,imvarunkmr,surajkumarsingh
 Tags: responsive, mega menu, navigation, mobile, hamburger
 Requires at least: 3.6
 Tested up to: 5.7
-Stable tag: 4.1.0
+Stable tag: 4.1.1
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -102,6 +102,9 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 7. Main menu
 
 == Changelog ==
+= 4.1.1 (19th April 2021) =
+Bug: Fixed responsive menu elementor widget issue with PHP version 7.2 and older
+
 = 4.1.0 (26th February 2021) =
 Feature: Bundled all free themes in plugin
 Feature: Added new option for font weight and font family for menu title
