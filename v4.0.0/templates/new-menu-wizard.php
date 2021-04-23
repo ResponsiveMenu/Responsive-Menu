@@ -177,9 +177,9 @@ if ( empty( $cached_data ) ) {
                     <div class="input-control">
                         <div class="device-icons-group">
                             <div class="device-icon">
-                                <input disabled class="rmp-menu-display-device checkbox mobile" type="checkbox" rel="&#xf120"/>
+                                <input disabled checked class="rmp-menu-display-device checkbox mobile" type="checkbox" rel="&#xf120"/>
                                 <label for="rmp-menu-display-device-mobile" title="mobile" >
-                                  <span class="corner-icon">
+                                <span class="corner-icon">
                                         <i class="fas fa-check-circle" aria-hidden="true"></i>
                                     </span>
                                     <span class="device">
@@ -192,7 +192,7 @@ if ( empty( $cached_data ) ) {
                             </div>
 
                             <div class="device-icon">
-                                <input disabled class="rmp-menu-display-device checkbox tablet"  type="checkbox" rel="&#xf120"/>
+                                <input disabled checked class="rmp-menu-display-device checkbox tablet"  type="checkbox" rel="&#xf120"/>
                                 <label for="rmp-menu-display-device-tablet" title="tablet" >
                                     <span class="corner-icon">
                                         <i class="fas fa-check-circle" aria-hidden="true"></i>
@@ -208,7 +208,7 @@ if ( empty( $cached_data ) ) {
 
                             <div class="device-icon">
                                 <input type="hidden" name="menu[use_desktop_menu]" value="off"/>
-                                <input disabled class="rmp-menu-display-device checkbox desktop"  type="checkbox" rel="&#xf120"/>										
+                                <input disabled  class="rmp-menu-display-device checkbox desktop"  type="checkbox" rel="&#xf120"/>
                                 <label for="rmp-menu-display-device-desktop" title="desktop" >
                                     <span class="corner-icon">
                                         <i class="fas fa-check-circle" aria-hidden="true"></i>
