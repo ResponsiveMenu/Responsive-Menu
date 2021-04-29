@@ -5,6 +5,8 @@
  */
 
 import './scss/wizard-ui.scss';
+import './scss/dark-mode.scss';
+
 import RMPAdmin from './js/rmp-admin.js';
 import RMPColorAlpha from './js/wp-color-alpha.js';
 import rmpEditor from './js/rmp-editor.js';

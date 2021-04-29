@@ -1,0 +1,518 @@
+/**
+* This is dark mode styles for menu editor page and dialogs. 
+*/
+:root {
+    --mainColor : #323232;
+    --mainDarkColor:#212121;
+    --accentColor: #14ffec;
+    --secondaryAccentColor:#0d7377;
+    --white: #fff;
+    --lightWhite:#f0f0f0;
+    --black: #000;
+    --lightBlack:#5e5e5e;
+    --gray: #d8e3e7;
+    --pink: #f80668;
+}
+
+.rmp-dark-mode {
+
+    //Sidebar drawer.
+    .rmp-editor-overlay .collapse-sidebar {
+        background-color: var(--mainDarkColor); 
+        .collapse-sidebar-arrow:before {
+            color: var(--accentColor);
+        }
+    }
+
+    //Mobile and tablet preview shadow.
+    .rmp-preview-mobile #rmp-preview-wrapper,
+    .rmp-preview-tablet #rmp-preview-wrapper {
+        box-shadow: 0px 3px 0 #212121,  
+            0px 4px 0 #212121,  
+            0px 5px 0 #212121,  
+            0px 7px 0 #212121,
+            1px 6px 15px #212121;
+    }
+
+    #rmp-editor-wrapper {
+        background-color: var(--lightBlack);
+    }
+
+    //Menu editor header
+    #rmp-editor-header {
+        background-color: var(--mainDarkColor);
+    }
+
+    //Menu editor footer
+    #rmp-editor-footer {
+        background-color: var(--mainDarkColor);
+        border-color: var(--mainColor);
+        .rmp-footer-sub-menu-wrapper {
+            background-color: inherit;
+            .rmp-footer-sub-menu a {
+                background-color: var(--mainColor);
+                border-color: var(--mainDarkColor);
+                color: var(--white);
+            }
+        }
+
+        .rmp-preview-device-wrapper .rmp-device-preview.active {
+            background-color: var(--accentColor);
+        }
+
+        svg path {
+            fill: var(--lightWhite);
+        }
+    }
+
+    #rmp-editor-form {
+        background-color: var(--mainColor);
+
+        .rmp-tab-item {
+
+            svg path {
+                fill: var(--lightWhite);
+            }
+
+            .rmp-tab-item-title {
+                background-color: transparent !important;
+                color: var(--white);
+                &:after {
+                    color: var(--white);
+                }
+            }
+        }
+
+        .rmp-accordion-container {
+
+            .rmp-mega-menu-top-item {
+                background-color:var(--mainDarkColor) !important;
+                .rmp-mega-menu-edit-icon {
+                    svg path {
+                        fill: var(--lightWhite);
+                    }
+                }
+            }
+
+            .rmp-mega-menu-top-item,
+            .rmp-accordion-title,
+            .rmp-accordion-content {
+                background-color:var(--mainDarkColor);
+                color:var(--white);
+                border-color:var(--mainColor);
+
+                .ui-accordion-header-icon::before,
+                &:after {
+                    color:var(--lightWhite);
+                }
+            }
+
+            .nav-tab-wrapper {
+                background-color: var(--secondaryAccentColor);
+                .ui-tabs-active .nav-tab {
+                    background-color: var(--accentColor);
+                }
+            }
+            
+
+            .toggle {
+                background-color: var(--secondaryAccentColor);
+                border-color:var(--secondaryAccentColor);
+                &:checked {
+                    background-color: var(--accentColor);
+                    border-color:var(--accentColor);
+                }
+            }
+
+            .rmp-input-control-label,
+            .rmp-image-picker-placeholder,
+            .rmp-icon-picker-placeholder,
+            .rmp-accordion-sub-heading {
+                color:inherit;
+            }
+
+            .rmp-sub-accordion-container {
+                .rmp-accordion-title {
+                    background-color:var(--mainColor);
+                }
+
+                .rmp-accordion-content {
+                    border: 2px solid var(--mainColor);
+                    margin-top: -2px;
+                }
+            }
+        }
+
+        #rmp-editor-main {
+            .rmp-order-item-description {
+                background-color:var(--mainDarkColor);
+            }
+        }
+
+        .rmp-menu-controls {
+    
+            .rmp-input-control {
+
+                .rmp-group-input-wrapper input[type="text"] {
+                    border-color: var(--mainDarkColor);
+                }
+
+                .rmp-group-input-linked {
+                    background-color: var(--secondaryAccentColor);
+                    border-color: var(--secondaryAccentColor);
+                    &.is-linked{
+                        background-color: var(--accentColor);
+                        border-color:var(--accentColor);
+                    }
+                }
+
+                input[type="text"],
+                input[type="password"],
+                input[type="email"],
+                input[type="url"],
+                input[type="date"],
+                input[type="month"],
+                input[type="time"],
+                input[type="datetime"],
+                input[type="datetime-local"],
+                input[type="week"],
+                input[type="number"],
+                input[type="search"],
+                input[type="tel"],
+                input[type="color"],
+                textarea,
+                select {
+                    background-color:var(--mainColor);
+                    color:var(--white);
+                    border-color: var(--mainColor);
+                }
+
+                .is-unit,
+                .unit-px,
+                .unit-ms,
+                .unit-s {
+                    background-color: var(--secondaryAccentColor);
+                    border-color: var(--secondaryAccentColor);
+                    color:var(--white);
+                }
+
+                .button {
+                    background-color: var(--accentColor);
+                    border-color: var(--accentColor);
+                    color:var(--white);
+                }
+
+            }
+
+            .selectize-input {
+                background-color: var(--mainColor);
+                border-color: var(--mainColor);
+            }
+        }
+
+        .rmp-device-switcher li {
+            background-color: var(--accentColor);
+        }
+    }
+
+    .device-icons-group {
+
+        .device-title {
+            color:var(--lightWhite) !important;
+        }
+
+        svg path {
+            fill: var(--lightWhite);
+        }
+
+        .device-icon  {
+
+            .corner-icon{
+                color: var(--accentColor);
+            }
+
+            label {
+                background-color: var(--mainColor);
+                border-color: var(--mainColor);
+            }
+
+            .checkbox:checked + label {
+                border-color: var(--accentColor);
+                background-color: var(--mainColor);
+            }
+        }
+    }
+
+    .rmp-tooltip-icon .rmp-tooltip-content,
+    .selectize-control.multi .selectize-input > div,
+    .selectize-control.multi .selectize-input > div.active,
+    .selectize-dropdown {
+        background-color: var(--secondaryAccentColor);
+        color: var(--white);
+        &::before {
+            border-bottom-color: var(--secondaryAccentColor);
+        }
+    }
+
+    .align-icons-group {
+        input[type="radio"]:checked + label {
+            background-color: var(--accentColor);
+            color: var(--white);
+        }
+    }
+
+    .align-icons-group,
+    .rmp-image-picker-container,
+    .rmp-icon-picker-container {
+        background-color: var(--mainColor);
+    }
+
+    .wp-picker-container .wp-color-result.button {
+        border-color: var(--mainColor) !important;
+        border-radius: 0 !important;
+        & .color-alpha {
+            border-color: var(--mainDarkColor) !important;
+        }
+    }
+
+    .rmp-menu-item-icon-container .rmp-icon-picker,
+    .align-icons-group,
+    .rmp-h-separator {
+        border-color: var(--mainColor);
+    }
+
+    #rmp-menu-update-notification {
+        a {
+            color: var(--accentColor);
+        }
+    }
+
+    #rmp-save-menu-options,
+    #rmp-theme-action {
+        background-color: var(--accentColor);
+    }
+
+    // Common styles of dialogs.
+    .rmp-dialog-overlay {
+
+        .rmp-dialog-backdrop {
+            background-color: rgba( 33, 33, 33 , 0.5 );
+        }
+
+        .rmp-dialog-wrap {
+            background-color: var(--mainColor);
+            color: var(--white);
+        }
+
+        .rmp-dialog-header {
+
+            .title {
+                color: var(--white) !important;
+            }
+
+            border-color: var(--mainDarkColor); 
+            .close {
+                border-color: var(--mainDarkColor);
+            }
+        }
+
+        .rmp-menu-library-title {
+            color: var( --white );
+        }
+    } 
+
+    //New Menu and change theme dialog styles.
+    #rmp-new-menu-wizard {
+        .rmp-dialog-wrap {
+
+            .rmp-dialog-contents {
+                background-color: var(--mainColor);
+            }
+
+            .rmp-themes .rmp-theme-title,
+            .rmp-item-card,
+            .wp-upload-form {
+                background-color: var(--mainDarkColor);
+                border-color: var(--mainDarkColor);
+            }
+
+            .button.btn-blue,
+            #rmp-theme-upload {
+                background-color: var(--accentColor);
+                border-color: var(--accentColor);
+            }
+
+            .rmp-themes .rmp-theme-title,
+            .nav-tab-wrapper .nav-tab,
+            .rmp-theme-upload-container p {
+                color: var(--white);
+            }
+
+            .nav-tab-wrapper .ui-tabs-active .nav-tab {
+                color:var(--accentColor)
+            }
+
+            .input-group {
+                background-color: var(--mainDarkColor);
+                border-color: var(--mainDarkColor);
+
+                .input-label-title,
+                .input-label-description {
+                    color: var(--white);
+                    a {
+                        color:var(--accentColor);
+                    }
+                }
+
+                .input-control input[type=text],
+                .input-control select {
+                    background-color: var(--mainColor);
+                    border-color:var(--mainColor);
+                    color: var(--white);
+                }
+            }
+        }
+
+        .rmp-theme-option:checked+label {
+            border-color: var(--accentColor) !important;
+        }
+
+        .item-controls .rmp-theme-option:checked+label.rmp-theme-use {
+            border-color: var(--accentColor) !important;
+            background-color: var(--accentColor);
+        }
+
+        .rmp-dialog-header {
+            .rmp-new-menu-step {
+                color:var(--white);
+            }
+        }
+
+        .rmp-dialog-footer {
+            #rmp-create-new-menu,
+            #rmp-menu-next-step {
+                background-color: var(--accentColor);
+                border-color: var(--accentColor);
+            }
+        }
+    }
+
+    //Save templates dialog styles.
+    #rmp-menu-save-theme-wizard {
+
+        .rmp-dialog-wrap .close,
+        #rmp-save-theme-name {
+            background-color: var(--mainDarkColor);
+            border-color: var(--mainDarkColor);
+            color: var(--white);
+        }
+
+        #rmp-save-theme {
+            background-color: var(--accentColor);
+            border-color: var(--accentColor);
+        }
+
+        .notice {
+            color: var(--mainColor);
+        }
+    }
+
+    //Icon dialog styles.
+    .rmp-menu-icons-dialog {
+        #tabs {
+            .nav-tab-wrapper {
+                padding: 0;
+                background-color: var(--mainColor);
+                border-color: var(--mainDarkColor);
+                .nav-tab {
+                    background-color: var(--mainDarkColor);
+                    color:var(--white);
+                    margin: 2px 0;
+                    &.nav-tab-active {
+                        background-color: var(--accentColor);
+                    }
+                }
+            }
+        }
+
+        .rmp-icon-tab-contents {
+            .font-icon {
+                label:before {
+                    background-color: var(--mainDarkColor);
+                    color:var(--white);
+                    border-color: #444444;
+                }
+            }
+        }
+
+        #rmp-icon-search {
+            background-color: var(--mainDarkColor);
+            border-color: var(--mainDarkColor);
+        }
+
+        #rmp-icon-search,
+        #rmp-icon-search-typing-message {
+            color: var(--white);
+        }
+
+        #rmp-icon-dialog-clear {
+            background-color: var(--pink);
+            border-color: var(--pink);
+            color: var(--white);
+        }
+
+        #rmp-icon-dialog-select {
+            background-color: var(--accentColor);
+            border-color: var(--accentColor);
+            color: var(--white);
+        }
+
+    }
+
+    .rmp-icon-picker .rmp-font-icon {
+        color: var(--lightWhite);
+    }
+
+    #rmp-widget-container {
+        .widget-item {
+            background-color: var(--mainDarkColor);
+            border-color: var(--mainDarkColor);
+            color:var(--white);
+        }
+    }
+
+    .rmp-input-control-label {
+        color:var(--white);
+    }
+
+    * ::-webkit-scrollbar-thumb {
+        background-color: var(--mainDarkColor);
+    }
+
+    //Page loader
+    .rmp-page-loader {
+        background-color: rgba( #212121, 0.8 );
+        z-index: 99999999;
+        .rmp-loader-message {
+            color: var(--white);
+        }
+    }
+
+    .upgrade-options {
+        color:var(--white);
+        background-color: var(--mainDarkColor);
+        margin:1rem;
+    }
+
+    .rmp-accordion-content {
+        .upgrade-options {
+            background-color:var(--mainColor);
+            margin: 0 15px;
+        }
+    }
+
+    .upgrade-tooltip {
+        color:var(--white) !important;
+    }
+    
+}

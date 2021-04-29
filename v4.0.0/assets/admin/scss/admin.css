@@ -326,6 +326,7 @@ input[type="email"]:focus, input[type="month"]:focus, input[type="number"]:focus
     overflow: hidden;
     background: #FFFFFF;
     border: 1px solid #E7EFF0;
+    color: #99A6B9;
     box-sizing: border-box;
     border-radius: 4px;
     display: flex;
@@ -346,9 +347,7 @@ input[type="email"]:focus, input[type="month"]:focus, input[type="number"]:focus
 }
 
 .align-icons-group label {
-    background: #ffffff;
     padding: 0px 7px;
-    color: #99A6B9;
     height: 36px;
     display: inline-flex;
     align-items: center;
@@ -717,7 +716,7 @@ margin: 5px 0px 10px;
 
 #rmp-editor-footer .rmp-preview-device-wrapper {
     position: relative;
-    background: #fff;
+    background: transparent;
     display: flex;
     width: max-content;
     float: right;
@@ -904,7 +903,6 @@ margin: 5px 0px 10px;
     font-size: 14px;
     color: #464646;
     font-style: normal;
-    background: #f5f6fa;
 }
 
 #rmp-editor-form #rmp-editor-main .rmp-order-item-description{
@@ -1515,7 +1513,7 @@ margin: 5px 0px 10px;
     background-size: 100%;
     position: relative;
     overflow: hidden;
-    background: #FFFFFF;
+    background: transparent;
     border: 1px dashed #C9DBDD;
     box-sizing: border-box;
     border-radius: 4px;
