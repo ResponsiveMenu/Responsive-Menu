@@ -16,7 +16,15 @@ if ( empty( $cached_data ) ) {
     $rmp_browse_class = 'rmp-call-theme-api-button';
 }
 
+//Check dark mode options.
+$global_settings = get_option( 'rmp_global_setting_options' );
+$classes = '';
+if ( ! empty(  $global_settings['rmp_dark_mode'] ) ) {
+	$classes = 'rmp-dark-mode';
+}
+
 ?>
+<div class="<?php echo $classes; ?>">
 <section id="rmp-new-menu-wizard" class="rmp-dialog-overlay rmp-new-menu-wizard" style="display:none">
     <div class="rmp-dialog-backdrop"></div>
     <div class="rmp-dialog-wrap wp-clearfix">
@@ -265,3 +273,4 @@ if ( empty( $cached_data ) ) {
 
     </div>
 </section>
+</div>
