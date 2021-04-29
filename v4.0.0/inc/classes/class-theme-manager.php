@@ -851,11 +851,15 @@ class Theme_Manager {
 							<div class="rmp-item-card_contents">
 								<h4> %2$s </h4>
 							</div>
+							<div class="rmp-item-card_action">
+								<a href="https://demo.responsive.menu/themes/default-theme/" alt="%2$s" target="_blank" class="button">%3$s</a>
+							</div>
 						</div>
 					</label>
 				</li>',
 				esc_url( RMP_PLUGIN_URL_V4 .'/assets/images/default-theme-preview.png' ),
-				__( 'Default Theme', 'responsive-menu-pro')
+				__( 'Default Theme', 'responsive-menu-pro'),
+				__( 'View Demo','responsive-menu-pro' )
 			);
 		}
 
