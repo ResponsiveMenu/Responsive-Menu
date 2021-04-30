@@ -147,7 +147,21 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 
 			$param['echo'] = false;
 
-			return wp_nav_menu( $param );
+			$menu_markups = wp_nav_menu( $param );
+
+			/**
+			 * Filters the nav menu markups.
+			 *
+			 * @since 4.1.2
+			 *
+			 * @param HTML  $menu_markups
+			 * @param int   $this->menu_id
+			 * @param array $param
+			 */
+			$menu_markups = apply_filters( 'rmp_menu_markups', $menu_markups, $this->menu_id, $param );
+
+			return $menu_markups;
+
 		}
 
 		public function menu_trigger() {
