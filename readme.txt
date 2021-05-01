@@ -3,7 +3,7 @@ Contributors: expresstech,responsivemenu,imvarunkmr,surajkumarsingh
 Tags: responsive, mega menu, navigation, mobile, hamburger
 Requires at least: 3.6
 Tested up to: 5.7
-Stable tag: 4.1.1
+Stable tag: 4.1.2
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -102,6 +102,12 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 7. Main menu
 
 == Changelog ==
+= 4.1.2 ( 1st May 2021) =
+Feature: Added dark mode option for menu customizer
+Enhancement: Added new filter rmp_menu_markups
+Enhancement: Added demo links for free themes
+Enhancement: Enabled device visibility options by default
+
 = 4.1.1 (19th April 2021) =
 Bug: Fixed responsive menu elementor widget issue with PHP version 7.2 and older
 
