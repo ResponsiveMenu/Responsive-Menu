@@ -34,6 +34,12 @@ if ( is_rtl() ) {
 	$body_classes[] = 'rtl';
 }
 
+//Check dark mode options.
+$global_settings = get_option( 'rmp_global_setting_options' );
+if ( ! empty(  $global_settings['rmp_dark_mode'] ) ) {
+	$body_classes[] = 'rmp-dark-mode';
+}
+
 $option_manager  = Option_Manager::get_instance();
 $control_manager = Control_Manager::get_instance();
 $ui_manager      = UI_Manager::get_instance();

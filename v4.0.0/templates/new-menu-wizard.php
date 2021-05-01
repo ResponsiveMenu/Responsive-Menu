@@ -16,7 +16,15 @@ if ( empty( $cached_data ) ) {
     $rmp_browse_class = 'rmp-call-theme-api-button';
 }
 
+//Check dark mode options.
+$global_settings = get_option( 'rmp_global_setting_options' );
+$classes = '';
+if ( ! empty(  $global_settings['rmp_dark_mode'] ) ) {
+	$classes = 'rmp-dark-mode';
+}
+
 ?>
+<div class="<?php echo $classes; ?>">
 <section id="rmp-new-menu-wizard" class="rmp-dialog-overlay rmp-new-menu-wizard" style="display:none">
     <div class="rmp-dialog-backdrop"></div>
     <div class="rmp-dialog-wrap wp-clearfix">
@@ -177,9 +185,9 @@ if ( empty( $cached_data ) ) {
                     <div class="input-control">
                         <div class="device-icons-group">
                             <div class="device-icon">
-                                <input disabled class="rmp-menu-display-device checkbox mobile" type="checkbox" rel="&#xf120"/>
+                                <input disabled checked class="rmp-menu-display-device checkbox mobile" type="checkbox" rel="&#xf120"/>
                                 <label for="rmp-menu-display-device-mobile" title="mobile" >
-                                  <span class="corner-icon">
+                                <span class="corner-icon">
                                         <i class="fas fa-check-circle" aria-hidden="true"></i>
                                     </span>
                                     <span class="device">
@@ -192,7 +200,7 @@ if ( empty( $cached_data ) ) {
                             </div>
 
                             <div class="device-icon">
-                                <input disabled class="rmp-menu-display-device checkbox tablet"  type="checkbox" rel="&#xf120"/>
+                                <input disabled checked class="rmp-menu-display-device checkbox tablet"  type="checkbox" rel="&#xf120"/>
                                 <label for="rmp-menu-display-device-tablet" title="tablet" >
                                     <span class="corner-icon">
                                         <i class="fas fa-check-circle" aria-hidden="true"></i>
@@ -208,7 +216,7 @@ if ( empty( $cached_data ) ) {
 
                             <div class="device-icon">
                                 <input type="hidden" name="menu[use_desktop_menu]" value="off"/>
-                                <input disabled class="rmp-menu-display-device checkbox desktop"  type="checkbox" rel="&#xf120"/>										
+                                <input disabled  class="rmp-menu-display-device checkbox desktop"  type="checkbox" rel="&#xf120"/>
                                 <label for="rmp-menu-display-device-desktop" title="desktop" >
                                     <span class="corner-icon">
                                         <i class="fas fa-check-circle" aria-hidden="true"></i>
@@ -265,3 +273,4 @@ if ( empty( $cached_data ) ) {
 
     </div>
 </section>
+</div>

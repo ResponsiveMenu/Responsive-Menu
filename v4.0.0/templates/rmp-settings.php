@@ -46,7 +46,6 @@ if ( ! empty( $global_settings['menu_adjust_for_wp_admin_bar'] ) )  {
             <div id="rmp-settings-general">
                 <table  class="form-table" role="presentation">
                     <tbody>
-                     
                         <tr>
                             <th scope="row"> <?php esc_html_e( 'Rollback Version', 'responsive-menu-pro'); ?></th>
                             <td>
@@ -91,6 +90,20 @@ if ( ! empty( $global_settings['menu_adjust_for_wp_admin_bar'] ) )  {
                                         </label>
                                     </p>
                                 </label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row"> <?php esc_html_e( 'Active Dark Mode', 'responsive-menu-pro'); ?></th>
+                            <td>
+                                <fieldset>
+                                    <p>
+                                        <input type="checkbox" name="rmp_dark_mode" value="on" id="rmp-dark-mode" <?php echo is_rmp_option_checked( 'on', $global_settings, 'rmp_dark_mode' );?> > 
+                                        <label for="rmp-dark-mode" class="description">
+                                            <?php esc_html_e( 'Enable dark mode for menu editor page.', 'responsive-menu-pro'); ?>
+                                        </label>
+                                    </p>
+                                </fieldset>
                             </td>
                         </tr>
 
