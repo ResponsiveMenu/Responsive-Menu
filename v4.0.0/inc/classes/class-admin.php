@@ -382,7 +382,10 @@ class Admin {
 	 * @return void
 	 */
 	public function add_new_menu_widget() {
-		include_once RMP_PLUGIN_PATH_V4 . '/templates/new-menu-wizard.php';
+		$screen = get_current_screen();
+		if ( $screen->id === 'edit-rmp_menu' ) {
+		    include_once RMP_PLUGIN_PATH_V4 . '/templates/new-menu-wizard.php';
+		}
 	}
 
 	/**
