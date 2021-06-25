@@ -199,7 +199,7 @@ if ( empty( $cached_data ) ) {
                         <ul class="rmp_theme_grids">
                             <?php
                             if ( ! empty( $cached_data ) ) {
-                                echo $theme_manager->get_themes_from_theme_store();
+                                echo $theme_manager->get_themes_from_theme_store( true );
                             } else {
                             ?>
                                 <div class="rmp-page-loader" style="display:flex;">

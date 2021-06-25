@@ -1,9 +1,9 @@
 === Responsive Menu - Create Mobile-Friendly Menu ===
-Contributors: expresstech,responsivemenu,imvarunkmr,surajkumarsingh
+Contributors: expresstech, responsivemenu, imvarunkmr, surajkumarsingh, infosatech
 Tags: responsive, mega menu, navigation, mobile, hamburger
 Requires at least: 3.6
 Tested up to: 5.7
-Stable tag: 4.1.2
+Stable tag: 4.1.3
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -102,7 +102,14 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 7. Main menu
 
 == Changelog ==
-= 4.1.2 ( 1st May 2021) =
+= 4.1.3 (25th June 2021) =
+Bug: Fixed Adjust Page option issue
+Bug: Fixed the issue of conflict with WooCommerce plugin
+Bug: Fixed the issue of wrong button text position
+Feature: Added banner for providing plugin feedback
+Enhancement: Renamed `Roadmap` to `What's Next`
+
+= 4.1.2 (1st May 2021) =
 Feature: Added dark mode option for menu customizer
 Enhancement: Added new filter rmp_menu_markups
 Enhancement: Added demo links for free themes
