@@ -571,13 +571,13 @@ class Theme_Manager {
 		return $html;
 	}
 
-	/**
+/**
 	 * Design the theme list which are from stored.
 	 *
 	 * @since 4.0.0
 	 * @return HTML|string $html
 	 */
-	public function get_themes_from_theme_store() {
+	public function get_themes_from_theme_store( $in_customizer = false ) {
 
 		$themes          = $this->get_themes_by_api();
 		$uploaded_themes = $this->get_uploaded_theme_dir();
@@ -600,13 +600,37 @@ class Theme_Manager {
 			}
 
 			$demo_link = '';
-			if ( ! empty( $theme['demo_link' ] ) ) {
+			if ( ! empty( $theme['demo_link'] ) ) {
+				if ( $in_customizer ) {
+					$link = add_query_arg( [
+						'utm_source' => 'plugin',
+						'utm_medium' => 'change_theme_wizard'
+					], $theme['demo_link'] );
+				} else {
+					$link = add_query_arg( [
+						'utm_source' => 'plugin',
+						'utm_medium' => 'new_menu_wizard'
+					], $theme['demo_link'] );
+				}
+
 				$demo_link = sprintf(
 					'<a href="%s" alt="%s" target="_blank" class="button">%s</a>',
-					esc_url( $theme['demo_link' ] ),
+					esc_url( $link ),
 					esc_attr( $theme['name'] ),
 					__( 'View Demo','responsive-menu-pro' )
 				);
+			}
+
+			if ( $in_customizer ) {
+				$buy_link = add_query_arg( [
+					'utm_source' => 'plugin',
+					'utm_medium' => 'change_theme_wizard'
+				], $theme['buy_link'] );
+			} else {
+				$buy_link = add_query_arg( [
+					'utm_source' => 'plugin',
+					'utm_medium' => 'new_menu_wizard'
+				], $theme['buy_link'] );
 			}
 
 			$html .= sprintf(
@@ -628,7 +652,7 @@ class Theme_Manager {
 				</li>',
 				esc_url( $theme['preview_url']),
 				esc_attr( $theme['name'] ),
-				esc_url( $theme['buy_link'] ),
+				esc_url( $buy_link ),
 				$action_label,
 				$demo_link
 			);
@@ -719,7 +743,7 @@ class Theme_Manager {
 	 */
 	public function get_theme_thumbnail( $theme_name, $theme_type ) {
 
-		//If theme is saved template.
+		//If theme is template
 		if ( $theme_type == 'template' ) {
 			return sprintf( '<img src="%s" class="theme-thumbnail">',
 				esc_url( RMP_PLUGIN_URL_V4 .'/assets/images/no-preview.jpeg' )
@@ -839,7 +863,7 @@ class Theme_Manager {
 
 		$html = '<ul class="rmp_theme_grids">';
 
-		if( ! $in_customizer ) {
+		if ( ! $in_customizer ) {
 			$html .= sprintf(
 				'<li class="rmp_theme_grid_item">
 					<input type="radio" checked id="default" class="rmp-theme-option" name="menu_theme" value="" theme-type="default"/>
@@ -852,7 +876,7 @@ class Theme_Manager {
 								<h4> %2$s </h4>
 							</div>
 							<div class="rmp-item-card_action">
-								<a href="https://demo.responsive.menu/themes/default-theme/" alt="%2$s" target="_blank" class="button">%3$s</a>
+								<a href="https://demo.responsive.menu/themes/default-theme/?utm_source=plugin&utm_medium=new_menu_wizard" alt="%2$s" target="_blank" class="button">%3$s</a>
 							</div>
 						</div>
 					</label>
@@ -869,9 +893,21 @@ class Theme_Manager {
 			
 			$demo_link = '';
 			if ( ! empty( $theme['demo_link' ] ) ) {
+				if ( $in_customizer ) {
+					$link = add_query_arg( [
+						'utm_source' => 'plugin',
+						'utm_medium' => 'change_theme_wizard'
+					], $theme['demo_link' ] );
+				} else {
+					$link = add_query_arg( [
+						'utm_source' => 'plugin',
+						'utm_medium' => 'new_menu_wizard'
+					], $theme['demo_link' ] );
+				}
+
 				$demo_link = sprintf(
 					'<a href="%s" alt="%s" target="_blank" class="button">%s</a>',
-					esc_url( $theme['demo_link' ] ),
+					esc_url( $link ),
 					esc_attr( $theme['theme_name'] ),
 					__( 'View Demo','responsive-menu-pro' )
 				);
@@ -954,20 +990,11 @@ class Theme_Manager {
 			);
 		}
 
-		//Check the request origin either from customizer or create menu page.
-		$is_customizer_request = false;
-		if ( ! empty( $_SERVER[ 'HTTP_REFERER' ] ) ) {
-			parse_str( parse_url( $_SERVER[ 'HTTP_REFERER' ] )['query'], $params );
-			if ( ! empty( $params['action'] ) && ! empty( $params['editor'] ) ) {
-				$is_customizer_request = true;
-			}
-		}
-
 		//Return the response
 		return wp_send_json_success(
 			[
 				'message' => __( 'Theme is uploaded successfully', 'responsive-menu-pro' ),
-				'html'    => $this->get_available_themes( $is_customizer_request )
+				'html'    => $this->get_available_themes( $this->is_customizer() )
 			]
 		);
 	}
@@ -987,9 +1014,28 @@ class Theme_Manager {
 		return wp_send_json_success(
 			[
 				'message' => __( 'Cache data updated !', 'responsive-menu-pro' ),
-				'html'    => $this->get_themes_from_theme_store()
+				'html'    => $this->get_themes_from_theme_store( $this->is_customizer() )
 			]
 		);
 	}
 
+	/**
+	 * Function to check the request origin either from customizer or create menu page.
+	 *
+	 * @since 4.1.3
+	 *
+	 * @return bool
+     */
+	public function is_customizer() {
+	
+		$is_customizer_request = false;
+		if ( ! empty( $_SERVER[ 'HTTP_REFERER' ] ) ) {
+			parse_str( parse_url( $_SERVER[ 'HTTP_REFERER' ] )['query'], $params );
+			if ( ! empty( $params['action'] ) && ! empty( $params['editor'] ) ) {
+				$is_customizer_request = true;
+			}
+		}
+
+		return $is_customizer_request;
+	}
 }

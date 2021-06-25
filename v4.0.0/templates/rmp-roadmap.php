@@ -16,10 +16,10 @@
     </script>
     <script type="text/javascript" src="https://app.productstash.io/js/productstash-embed.js" defer="defer"></script>
 
-    <!-- Roadmap page title -->
-    <h1 class="wp-heading-inline"> <?php esc_html_e( 'Roadmap', 'responsive-menu-pro' ); ?> </h1>
+    <!-- What's Next page title -->
+    <h1 class="wp-heading-inline"> <?php esc_html_e( 'What\'s Next', 'responsive-menu-pro' ); ?> </h1>
 
-    <!--- Roadmap page contents --->
+    <!--- What's Next page contents --->
     <div class="rmp-roadmap-page" >
         <iframe id="rmp-roadmap-iframe" src="https://next.expresstech.io/responsive-menu"></iframe>
     </div>

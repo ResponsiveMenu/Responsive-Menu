@@ -308,10 +308,10 @@ class Admin {
 
 		add_submenu_page (
 			'edit.php?post_type=rmp_menu',
-			__( 'Roadmap', 'responsive-menu-pro' ),
-			__( 'Roadmap', 'responsive-menu-pro' ),
+			__( 'What\'s Next', 'responsive-menu-pro' ),
+			__( 'What\'s Next', 'responsive-menu-pro' ),
 			'manage_options',
-			'roadmap',
+			'whats-next',
 			array( $this, 'rmp_roadmap_admin_page' )
 		);
 
@@ -382,7 +382,10 @@ class Admin {
 	 * @return void
 	 */
 	public function add_new_menu_widget() {
-		include_once RMP_PLUGIN_PATH_V4 . '/templates/new-menu-wizard.php';
+		$screen = get_current_screen();
+		if ( $screen->id === 'edit-rmp_menu' ) {
+		    include_once RMP_PLUGIN_PATH_V4 . '/templates/new-menu-wizard.php';
+		}
 	}
 
 	/**
@@ -398,7 +401,7 @@ class Admin {
 
 		if ( 'rmp_menu' == $post->post_type ) {
 			$actions['edit'] = sprintf(
-				'<a href="%s" aria-label="Edit"> %s </a>',
+				'<a href="%s" aria-label="Edit">%s</a>',
 				esc_url( get_edit_post_link( $post->ID ) ),
 				__( 'Customize', 'responsive-menu-pro' )
 			);
@@ -462,7 +465,7 @@ class Admin {
 
 			case 'actions' :
 				echo sprintf(
-					'<a href="%s" class="button" aria-label="Customize"> %s </a>',
+					'<a href="%s" class="button" aria-label="Customize">%s</a>',
 					esc_url( get_edit_post_link( $post_id) ),
 					__( 'Customize', 'responsive-menu-pro' )
 				);

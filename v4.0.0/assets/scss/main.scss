@@ -67,21 +67,31 @@
         display: none;
    }
 
-   .rmp-trigger-label {
-       color:$menu_trigger_title_color;
-       pointer-events: none;
-       line-height: $menu_trigger_title_line_height;
+    .rmp-trigger-label {
+        color: $menu_trigger_title_color;
+        pointer-events: none;
+        line-height: $menu_trigger_title_line_height;
 
-       @if( $menu_trigger_title_font != '' ) {
-            font-family: $menu_trigger_title_font;
-        } @else {
-            font-family: inherit
+        @if( $menu_trigger_title_font != '' ) {
+             font-family: $menu_trigger_title_font;
+         } @else {
+             font-family: inherit
+         }
+
+        font-size: $menu_trigger_title_font_size;
+        display: inline;
+        text-transform: inherit;
+
+        &.rmp-trigger-label-top {
+            display: block;
+            margin-bottom: 12px;
         }
-
-       font-size: $menu_trigger_title_font_size;
-       display: inline;
-       text-transform: inherit;
-   }
+        
+        &.rmp-trigger-label-bottom {
+            display: block;
+            margin-top: 12px;
+        }
+    }
 
    .responsive-menu-pro-inner {
         display: block;
