@@ -60,7 +60,7 @@ ol li{
 .rmp-editor-active input[type="number"],
 .rmp-editor-active input[type="search"],
 .rmp-editor-active input[type="tel"],
-.rmp-editor-active input[type="color"], 
+.rmp-editor-active input[type="color"],
 .rmp-editor-active textarea {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -111,7 +111,7 @@ input[type="datetime-local"]:focus,
 input[type="email"]:focus, input[type="month"]:focus, input[type="number"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="text"]:focus, input[type="time"]:focus, input[type="url"]:focus, input[type="week"]:focus, input[type="checkbox"]:focus, input[type="radio"]:focus, select:focus, textarea:focus {
     border-color: #0085ba;
     box-shadow: 0 0 0 1px #0085ba;
-   
+
 }
 
 .rmp-editor-active input[type="checkbox"], input[type="radio"] {
@@ -228,8 +228,8 @@ input[type="email"]:focus, input[type="month"]:focus, input[type="number"]:focus
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
-@media only screen and ( max-width: 1140px ) { 
-    
+@media only screen and ( max-width: 1140px ) {
+
 }
 
 .rmp-box-header {
@@ -382,7 +382,7 @@ input[type="email"]:focus, input[type="month"]:focus, input[type="number"]:focus
 }
 
 * ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px transparent; 
+    box-shadow: inset 0 0 5px transparent;
 }
 
 * ::-webkit-scrollbar-thumb {
@@ -390,7 +390,7 @@ input[type="email"]:focus, input[type="month"]:focus, input[type="number"]:focus
 }
 
 *  ::-webkit-scrollbar-thumb:hover {
-    background: #2d405a; 
+    background: #2d405a;
 }
 
 .rmp-menu-tab-container .nav-tab-wrapper,
@@ -527,7 +527,7 @@ input[type="email"]:focus, input[type="month"]:focus, input[type="number"]:focus
 
 .theme-overlay .theme-header button {
     padding: 0;
-}   
+}
 
 .rmp-dialog-contents .tabs{
     width: 100%;
@@ -625,6 +625,7 @@ margin: 5px 0px 10px;
     height: 55px;
     z-index: 10;
     overflow: hidden;
+    justify-content: space-between;
 }
 
 .rmp-action-button {
@@ -672,15 +673,15 @@ margin: 5px 0px 10px;
     font-weight: 900;
 }
 
+.rmp-search-settings-btn {
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
 .rmp-editor-header-close {
-    width: 55px;
-    height: 55px;
-    position: absolute;
-    right: 0;
-    display: flex;
-    align-items: inherit;
-    justify-content: center;
-    font-weight: 900;
+    padding: 20px;
     font-size: 1.2rem;
     background: #F80668;
     color: #fff;
@@ -689,6 +690,45 @@ margin: 5px 0px 10px;
 .rmp-editor-header-close:hover,
 .rmp-editor-header-close:focus{
     color: #fff;
+}
+
+#rmp-editor-header .rmp-search-settings {
+    position: absolute;
+    width: 200px;
+    height: 40px;
+    border-radius: 4px;
+    transition-duration: .3s;
+    display: none;
+    left: 60px;
+    background: #383C58;
+    border: none;
+    color: #fff;
+}
+
+.rmp-search-results-found {
+    background: #fff34d;
+    padding: 2px;
+    border-radius: 4px;
+    font-size: 12px;
+    line-height: 1;
+    color: #000;
+    margin-left: 10px;
+}
+
+.rmp-tab-item  .rmp-search-results-found {
+    position: absolute;
+    right: 40px;
+    margin-top: -6px;
+}
+
+.rmp-highlight {
+    background-color: #fff34d;
+    color: #000;
+    border-radius: 5px;
+    padding:0px 2px;
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
 }
 
 .rmp-editor-header-title {
@@ -926,7 +966,7 @@ margin: 5px 0px 10px;
      -khtml-user-select: none;
        -moz-user-select: none;
         -ms-user-select: none;
-            user-select: none; 
+            user-select: none;
 }
 
 #rmp-editor-form .rmp-editor-pane-parent .rmp-tab-item {
@@ -1115,7 +1155,7 @@ margin: 5px 0px 10px;
     width: 100%
 }
 
-.rmp-menu-controls .rmp-input-control-wrapper .rmp-input-control input[type="number"]{ 
+.rmp-menu-controls .rmp-input-control-wrapper .rmp-input-control input[type="number"]{
     width: 100%;
 }
 
@@ -1238,7 +1278,7 @@ margin: 5px 0px 10px;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     cursor: move;
-} 
+}
 
 .rmp-tooltip-icon {
     width: 1.5rem;
@@ -2032,7 +2072,7 @@ button.menu-save {
     background: #fff;
     max-width: fit-content;
     border: solid 1px #cccccc;
-    margin-bottom: 1rem;    
+    margin-bottom: 1rem;
 }
 
 .rmp-menu-item-icon-container {
@@ -2096,7 +2136,7 @@ button.menu-save {
 #rmp-menu-update-notification{
     text-align: center;
     display: flex;
-    justify-content: space-between;   
+    justify-content: space-between;
 }
 
 #rmp-menu-update-notification:hover {
@@ -2176,7 +2216,7 @@ div.notice-responsive-menu .notice-responsive-menu-action a:hover {
     position: absolute;
     top: -30px;
     right: 5%;
-    
+
 }
 
 .rmp-editor-overlay .rmp-input-control-label .upgrade-tooltip {
