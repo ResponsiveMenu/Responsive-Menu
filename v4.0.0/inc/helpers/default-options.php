@@ -3,7 +3,7 @@
  * This file contain the list of functions which have default options.
  *
  * @version 4.0.0
- * 
+ *
  * @package responsive-menu-pro
  */
 
@@ -35,7 +35,7 @@ function rmp_global_default_setting_options() {
 /**
  * Function return the multi device options.
  * Here, Add the option which you want to make the multi device.
- * 
+ *
  * @version 4.0.0
  *
  * @return array List of options.
@@ -87,13 +87,13 @@ function rmp_animation_delay_options() {
 
 /**
  * Function to return the list of shortcut keys for menu open and close.
- * 
+ *
  * @version 4.0.0
- * 
+ *
  * @return array
  */
 function rmp_get_menu_open_close_keys() {
-    return [ 
+    return [
         27 => 'Esc',
         13 => 'Enter',
         32 => 'Space',
@@ -106,7 +106,7 @@ function rmp_get_menu_open_close_keys() {
 
 function rmp_font_weight_options() {
 
-    $unit_options = array( 
+    $unit_options = array(
         '100' => '100',
         '200' => '200',
         '300' => '300',
@@ -121,7 +121,7 @@ function rmp_font_weight_options() {
         'bolder' => 'Bolder',
         'lighter' => 'Lighter',
         'initial' => 'Initial',
-        'inherit' => 'Inherit',				  
+        'inherit' => 'Inherit',
     );
 
     $unit_options = apply_filters('rmp_font_weight_options', $unit_options );
@@ -455,7 +455,7 @@ function rmp_all_dash_icons() {
  * @return array - Sorted list of icon classes
  */
 function rmp_all_glyph_icons() {
-    
+
 
     $glyph = array(
         'glyph-2a' => 'glyphicon-asterisk',
@@ -715,7 +715,7 @@ function rmp_all_glyph_icons() {
         'glyph-e257' => 'glyphicon-menu-left',
         'glyph-e258' => 'glyphicon-menu-right',
         'glyph-e259' => 'glyphicon-menu-down',
-        'glyph-e260' => 'glyphicon-menu-up',  
+        'glyph-e260' => 'glyphicon-menu-up',
     );
 
     $glyph = apply_filters( "rmp_glyphicon", $glyph );
@@ -728,7 +728,7 @@ function rmp_all_glyph_icons() {
 /**
  * Get default options.
  * @since 4.0.0
- * 
+ *
  * @return array default_options list of option with default value.
  */
 function rmp_get_default_options() {
@@ -742,10 +742,10 @@ function rmp_get_default_options() {
         'submenu_submenu_arrow_height' => '39',
         'submenu_submenu_arrow_height_unit' => 'px',
         'submenu_arrow_position' => 'right',
-        'submenu_sub_arrow_background_colour' => 'rgba(33,33,33,0)',
-        'submenu_sub_arrow_background_hover_colour' => 'rgba(63,63,63,0)',
-        'submenu_sub_arrow_background_colour_active' => 'rgba(33,33,33,0)',
-        'submenu_sub_arrow_background_hover_colour_active' => 'rgba(63,63,63,0)',
+        'submenu_sub_arrow_background_colour' => '',
+        'submenu_sub_arrow_background_hover_colour' => '',
+        'submenu_sub_arrow_background_colour_active' => '',
+        'submenu_sub_arrow_background_hover_colour_active' => '',
         'submenu_sub_arrow_border_width' => '',
         'submenu_sub_arrow_border_width_unit' => 'px',
         'submenu_sub_arrow_border_colour' => '#1d4354',
@@ -757,7 +757,7 @@ function rmp_get_default_options() {
         'submenu_sub_arrow_shape_colour_active' => '#fff',
         'submenu_sub_arrow_shape_hover_colour_active' => '#fff',
         'use_header_bar' => 'off',
-        'header_bar_items_order' => 
+        'header_bar_items_order' =>
           array (
               'logo' => 'off',
               'title' => 'on',
@@ -775,7 +775,7 @@ function rmp_get_default_options() {
         'header_bar_logo_height_unit' => 'px',
         'header_bar_height' => '80',
         'header_bar_height_unit' => 'px',
-        'header_bar_padding' => 
+        'header_bar_padding' =>
           array (
               'top' => '0px',
               'right' => '5%',
@@ -806,7 +806,7 @@ function rmp_get_default_options() {
         'desktop_menu_side' => 'left',
         'desktop_menu_to_hide' => '',
         'use_current_theme_location' => 'off',
-        'mega_menu' => 
+        'mega_menu' =>
           array (
               225 => 'off',
               227 => 'off',
@@ -829,17 +829,17 @@ function rmp_get_default_options() {
         'menu_to_hide' => '',
         'submenu_descriptions_on' => 'off',
         'custom_walker' => '',
-        'menu_background_colour' => 'rgba(0,0,0,0)',
+        'menu_background_colour' => '',
         'menu_depth' => '5',
         'smooth_scroll_on' => 'off',
         'smooth_scroll_speed' => '500',
-        'menu_font_icons' => 
+        'menu_font_icons' =>
           array (
-              'id' => 
+              'id' =>
               array (
               0 => '225',
               ),
-              'icon' => 
+              'icon' =>
               array (
               0 => '',
               ),
@@ -861,10 +861,10 @@ function rmp_get_default_options() {
         'menu_link_hover_colour' => '#fff',
         'menu_current_link_colour' => '#fff',
         'menu_current_link_hover_colour' => '#fff',
-        'menu_item_background_colour' => 'rgba(33,33,33,0)',
-        'menu_item_background_hover_colour' => 'rgba(63,63,63,0)',
+        'menu_item_background_colour' => '',
+        'menu_item_background_hover_colour' => '',
         'menu_current_item_background_colour' => '#6fda44',
-        'menu_current_item_background_hover_colour' => 'rgba(63,63,63,0)',
+        'menu_current_item_background_hover_colour' => '',
         'menu_border_width' => '',
         'menu_border_width_unit' => 'px',
         'menu_item_border_colour' => '#1d4354',
@@ -884,10 +884,10 @@ function rmp_get_default_options() {
         'menu_depth_3_unit' => '%',
         'menu_depth_4' => '25',
         'menu_depth_4_unit' => '%',
-        'submenu_item_background_colour' => 'rgba(33,33,33,0)',
-        'submenu_item_background_hover_colour' => 'rgba(63,63,63,0)',
-        'submenu_current_item_background_colour' => 'rgba(33,33,33,0)',
-        'submenu_current_item_background_hover_colour' => 'rgba(63,63,63,0)',
+        'submenu_item_background_colour' => '',
+        'submenu_item_background_hover_colour' => '',
+        'submenu_current_item_background_colour' => '',
+        'submenu_current_item_background_hover_colour' => '',
         'submenu_border_width' => '',
         'submenu_border_width_unit' => 'px',
         'submenu_item_border_colour' => '#1d4354',
@@ -925,10 +925,10 @@ function rmp_get_default_options() {
         'menu_sub_arrow_border_hover_colour' => '#3f3f3f',
         'menu_sub_arrow_border_colour_active' => '#1d4354',
         'menu_sub_arrow_border_hover_colour_active' => '#3f3f3f',
-        'menu_sub_arrow_background_colour' => 'rgba(33,33,33,0)',
-        'menu_sub_arrow_background_hover_colour' => 'rgba(63,63,63,0)',
+        'menu_sub_arrow_background_colour' => '',
+        'menu_sub_arrow_background_hover_colour' => '',
         'menu_sub_arrow_background_colour_active' => 'rgba(33,33,33,0.01)',
-        'menu_sub_arrow_background_hover_colour_active' => 'rgba(63,63,63,0)',
+        'menu_sub_arrow_background_hover_colour_active' => '',
         'fade_submenus' => 'off',
         'fade_submenus_side' => 'left',
         'fade_submenus_delay' => '100',
@@ -981,7 +981,7 @@ function rmp_get_default_options() {
         'button_trigger_type_click' => 'on',
         'button_trigger_type_hover' => 'off',
         'button_click_trigger' => '',
-        'items_order' => 
+        'items_order' =>
           array (
               'title' => 'on',
               'additional content' => 'on',
@@ -993,15 +993,15 @@ function rmp_get_default_options() {
         'menu_title_link_location' => '_self',
         'menu_title_image' => '',
         'menu_title_font_icon' => '',
-        'menu_title_section_padding' => 
+        'menu_title_section_padding' =>
           array (
               'top' => '10%',
               'right' => '5%',
               'bottom' => '0%',
               'left' => '5%',
           ),
-        'menu_title_background_colour' => 'rgba(109,109,109,0)',
-        'menu_title_background_hover_colour' => 'rgba(109,109,109,0)',
+        'menu_title_background_colour' => '',
+        'menu_title_background_hover_colour' => '',
         'menu_title_font_size' => '25',
         'menu_title_font_size_unit' => 'px',
         'menu_title_alignment' => 'center',
@@ -1014,7 +1014,7 @@ function rmp_get_default_options() {
         'menu_title_image_height' => '',
         'menu_title_image_height_unit' => 'px',
         'menu_additional_content' => 'Add more content here...',
-        'menu_additional_section_padding' => 
+        'menu_additional_section_padding' =>
           array (
               'top' => '0%',
               'right' => '5%',
@@ -1026,7 +1026,7 @@ function rmp_get_default_options() {
         'menu_additional_content_alignment' => 'center',
         'menu_additional_content_colour' => '#6fda44',
         'menu_search_box_text' => 'Search',
-        'menu_search_section_padding' => 
+        'menu_search_section_padding' =>
           array (
               'top' => '5%',
               'right' => '5%',
@@ -1039,8 +1039,8 @@ function rmp_get_default_options() {
         'menu_search_box_text_colour' => '#1d4354',
         'menu_search_box_background_colour' => '#ffffff',
         'menu_search_box_placeholder_colour' => '#1d4354',
-        'menu_search_box_border_colour' => 'rgba(255,255,255,0)',
-        'menu_section_padding' => 
+        'menu_search_box_border_colour' => '',
+        'menu_section_padding' =>
           array (
               'top' => '0px',
               'right' => '0px',
@@ -1054,7 +1054,7 @@ function rmp_get_default_options() {
         'menu_minimum_width' => '320',
         'menu_minimum_width_unit' => 'px',
         'menu_auto_height' => 'off',
-        'menu_container_padding' => 
+        'menu_container_padding' =>
           array (
               'top' => '0px',
               'right' => '0px',

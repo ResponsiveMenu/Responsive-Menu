@@ -15,6 +15,7 @@ const rmpEditor = {
 	childTabs: '.rmp-accordions',
 	parentTabItem: '.rmp-editor-pane-parent li.rmp-tab-item',
 	tabItem: 'li.rmp-tab-item',
+	quickItem: '.rmp-quick-edit-link',
 	tabItemTitle: '.rmp-tab-item-title',
 	titleLogo: '.rmp-editor-header-logo',
 	closeButton: '.rmp-editor-header-close',
@@ -44,6 +45,35 @@ const rmpEditor = {
 		jQuery( '#' +  this.tabId ).attr( 'aria-parent', parentId );
 		jQuery( '#' + parentId ).hide();
 	},
+	updateQuickPanel: function( current ) {
+		this.tabId = current.attr( 'aria-owns' );
+		accordionId = current.attr( 'accordion-id' );
+		subAccordionId = current.attr( 'sub-accordion-id' );
+		subTabId = current.attr( 'sub-tab-id' );
+		parentId = jQuery(".rmp-accordions:visible").attr('id');
+		jQuery( '#' +  this.tabId ).attr( 'aria-parent', parentId );
+		jQuery( '#' + parentId ).hide();
+		jQuery( '#' + this.tabId ).show();
+		if(accordionId!=''){
+			if (!jQuery( '#' + accordionId ).hasClass("ui-state-active")) {
+				jQuery( '#' + accordionId ).click();
+			}
+			if (subAccordionId !='') {
+				if (!jQuery( '#' + subAccordionId).hasClass("ui-state-active")) {
+					jQuery( '#' + subAccordionId ).click();
+				}
+				accordionId = subAccordionId;
+			}
+			setTimeout( function() {
+					var topPos = document.getElementById(accordionId).offsetTop;
+					jQuery( '#rmp-editor-main' ).animate({scrollTop: topPos - 60+'px'}, 500);
+				}, 400);
+
+		}
+		if(subTabId!=''){
+			jQuery( '#' + subTabId ).click();
+		}
+	},
 	updateHeader: function( title ) {
 
 		if ( 0 == this.level ) {
@@ -71,6 +101,18 @@ const rmpEditor = {
 			self.level++;
 			self.updateHeader( current.text() );
 			self.updatePanel( current );
+		} );
+
+		// Move on next panel when click on item.
+		jQuery( self.editorContainer ).on( 'click', self.quickItem, function( e ) {
+			e.stopPropagation();
+			e.preventDefault();
+			current = jQuery( this );
+			tabId = current.attr( 'aria-owns' );
+			title = jQuery('.rmp-tab-item[aria-owns="'+tabId+'"]').find('.rmp-tab-item-title').html();
+			self.level++;
+			self.updateHeader( title );
+			self.updateQuickPanel( current );
 		} );
 
 		// Back from inner panel when click on back button.

@@ -2,10 +2,10 @@
 /**
  * Control_Manager class.
  * This class prepare the input control and it's markup.
- * 
+ *
  * @version 4.0.0
  * @author  Expresstech System
- * 
+ *
  * @package responsive-menu-pro
  */
 
@@ -36,7 +36,7 @@ class Control_Manager {
 	 * To setup action/filter.
 	 *
 	 * @version 4.0.0
-	 * 
+	 *
 	 * @return void
 	 */
 	protected function setup_hooks() {
@@ -45,11 +45,11 @@ class Control_Manager {
 
     /**
      * Add hidden field input control.
-     * 
+     *
      * @version 4.0.0
-     * 
+     *
      * @param array List of attribute
-     * 
+     *
      * @return HTML|string
      */
     public function add_hidden_control( $param ) {
@@ -60,10 +60,10 @@ class Control_Manager {
 
  	/**
 	 * This function prepare the single text input control.
-	 * 
+	 *
 	 * @version 4.0.0
 	 * @param array $param  List of attributes for a input control
-	 * 
+	 *
 	 * @return HTML
 	 */
 	public function add_text_input_control( $param ) {
@@ -74,7 +74,7 @@ class Control_Manager {
 
 		/**
 		 * Filters the text input control attributes before create.
-		 * 
+		 *
 		 * @version 4.0.0
 		 * @param array $param List of attribute.
 		 */
@@ -106,7 +106,7 @@ class Control_Manager {
 
         // Check label is exist.
         if ( ! empty( $param['label'] ) ) {
-            $html .= sprintf( 
+            $html .= sprintf(
                 '<div class="rmp-input-control-label">
                     <span> %s </span>
                     <span> %s </span>
@@ -168,28 +168,28 @@ class Control_Manager {
 
 		/**
 		 * Filters the text input attributes/contents after prepared.
-		 * 
+		 *
 		 * @version 4.0.0
-         * 
+         *
          * @param HTML|string Input control contents.
 		 * @param array       $param List of attribute.
-		 */		
+		 */
         $html = apply_filters( 'rmp_text_control_html', $html, $param );
 
         // Check if echo parameter is empty or false.
         if  ( empty( $param['echo'] ) ) {
             return $html;
-		} 
+		}
 
 		echo $html;
 	}
-	
+
 	/**
 	 * This function prepare the group text input control.
-	 * 
+	 *
 	 * @version 4.0.0
 	 * @param array $param  List of attributes for a input control
-	 * 
+	 *
 	 * @return HTML
 	 */
     public function add_group_text_control( $param ) {
@@ -200,7 +200,7 @@ class Control_Manager {
 
 		/**
 		 * Filters the text group input control attributes before create.
-		 * 
+		 *
 		 * @version 4.0.0
 		 * @param array $param List of attribute.
 		 */
@@ -285,19 +285,19 @@ class Control_Manager {
 
         /**
 		 * Filters the text input attributes/contents after prepared.
-		 * 
+		 *
 		 * @version 4.0.0
-         * 
+         *
          * @param HTML|string Input control contents.
 		 * @param array       $param List of attribute.
-		 */		
+		 */
          $html = apply_filters( 'rmp_text_control_html', $html, $param );
 
 
         // Check if echo parameter is empty or false.
         if  ( empty( $param['echo'] ) ) {
             return $html;
-		} 
+		}
 
 		echo $html;
 
@@ -305,10 +305,10 @@ class Control_Manager {
 
     /**
 	 * This function prepare input unit options.
-	 * 
+	 *
 	 * @version 4.0.0
 	 * @param array $param  List of attributes for a input control
-	 * 
+	 *
 	 * @return HTML
 	 */
     protected function get_input_control_unit( $param ) {
@@ -316,7 +316,7 @@ class Control_Manager {
         if ( empty( $param['name'] ) ) {
             return;
         }
-    
+
         $value = '';
 
         if ( ! empty( $param['value'] ) ) {
@@ -332,14 +332,14 @@ class Control_Manager {
 
 		/**
 		 * Filters the input units.
-		 * 
+		 *
 		 * @param array $unit_options List of units.
 		 */
         $unit_options = apply_filters( 'rmp_input_units', $unit_options );
 
         $options = '';
         foreach( $unit_options as $unit ) {
-    
+
             $is_selected = '';
             if ( $value === $unit ) {
                 $is_selected = 'selected';
@@ -374,10 +374,10 @@ class Control_Manager {
 
 	/**
 	 * This function prepare the color control.
-	 * 
+	 *
 	 * @version 4.0.0
 	 * @param array $param  List of attributes for a input control
-	 * 
+	 *
 	 * @return HTML
 	 */
     public function add_color_control( $param ) {
@@ -388,10 +388,10 @@ class Control_Manager {
 
 		/**
 		 * Filters the color input control attribute.
-		 * 
+		 *
 		 * @version 4.0.0
 		 * @param array  $param List of attribute.
-		 */	
+		 */
         $param = apply_filters( 'rmp_before_add_color_control', $param );
 
         $group_classes = '';
@@ -434,33 +434,33 @@ class Control_Manager {
             esc_attr( $class ),
             esc_attr( $param['value'] )
         );
-    
+
 		$html .= '</div></div>';
 
-        
+
 		/**
 		 * Filters the color input control html.
-		 * 
+		 *
 		 * @version 4.0.0
 		 * @param HTML|string Input control contents.
 		 * @param array       $param List of attribute.
-		 */		
+		 */
         $html = apply_filters( 'rmp_color_control_html', $html, $param );
 
         // Check if echo parameter is empty or false.
         if  ( empty( $param['echo'] ) ) {
             return $html;
-		} 
+		}
 
 		echo $html;
     }
 
 	/**
 	 * This function prepare the button input control.
-	 * 
+	 *
 	 * @version 4.0.0
 	 * @param array $param  List of attributes for a input control
-	 * 
+	 *
 	 * @return HTML
 	 */
     public function add_button_control( $param ) {
@@ -470,10 +470,10 @@ class Control_Manager {
 
 		/**
 		 * Filters the button input control attribute.
-		 * 
+		 *
 		 * @version 4.0.0
 		 * @param array  $param List of attribute.
-		 */	
+		 */
         $param = apply_filters('rmp_before_add_button_control', $param );
 
         $group_classes = '';
@@ -496,22 +496,22 @@ class Control_Manager {
             esc_attr( $class ),
             esc_html( $param['label'] )
         );
-		
+
 		$html .= '</div></div>';
 
 		/**
 		 * Filters the button input control html.
 		 * @version 4.0.0
-         * 
+         *
 		 * @param HTML|string Input control contents.
 		 * @param array       $param List of attribute.
-		 */		
+		 */
         $html = apply_filters( 'rmp_button_control_html', $html, $param );
 
         // Check if echo parameter is empty or false.
         if  ( empty( $param['echo'] ) ) {
             return $html;
-		} 
+		}
 
 		echo $html;
 
@@ -519,10 +519,10 @@ class Control_Manager {
 
 	/**
 	 * This function prepare the checkbox as switcher input control.
-	 * 
+	 *
 	 * @version 4.0.0
 	 * @param array $param  List of attributes for a input control
-	 * 
+	 *
 	 * @return HTML
 	 */
     public function add_switcher_control( $param ) {
@@ -533,10 +533,10 @@ class Control_Manager {
 
 		/**
 		 * Filters the switcher input control attributes.
-		 * 
+		 *
 		 * @version 4.0.0
 		 * @param array  $param List of attribute.
-		 */		
+		 */
         $param = apply_filters('rmp_before_add_switcher_control', $param );
 
         $group_classes = '';
@@ -566,7 +566,7 @@ class Control_Manager {
 
         // Check label is exist.
         if ( ! empty( $param['label'] ) ) {
-            $html .= sprintf( 
+            $html .= sprintf(
                 '<div class="rmp-input-control-label">
                     <span> %s </span>
                      %s
@@ -612,7 +612,7 @@ class Control_Manager {
 		 * Filters the switcher input control html.
 		 *
 		 * @version 4.0.0
-         * 
+         *
 		 * @param HTML|string Input control contents.
 		 * @param array       $param List of attribute.
 		 */
@@ -621,17 +621,17 @@ class Control_Manager {
         // Check if echo parameter is empty or false.
         if  ( empty( $param['echo'] ) ) {
             return $html;
-		} 
+		}
 
 		echo $html;
     }
 
 	/**
 	 * This function prepare the select/dropdown input control.
-	 * 
+	 *
 	 * @version 4.0.0
 	 * @param array $param  List of attributes for a input control
-	 * 
+	 *
 	 * @return HTML
 	 */
     public function add_select_control( $param ) {
@@ -642,7 +642,7 @@ class Control_Manager {
 
 		/**
 		 * Filters the select input control attributes.
-		 * 
+		 *
 		 * @version 4.0.0
 		 * @param array  $param List of attribute.
 		 */
@@ -675,7 +675,7 @@ class Control_Manager {
 
         // Check label is exist.
         if ( ! empty( $param['label'] ) ) {
-            $html .= sprintf( 
+            $html .= sprintf(
                 '<div class="rmp-input-control-label">
                     <span> %s </span>
                     <span> %s </span>
@@ -688,7 +688,7 @@ class Control_Manager {
         }
 
         $html .= '<div class="rmp-input-control">';
-		
+
 		// Check multi device options is enabled.
         $has_multi_device = '';
         if ( ! empty( $param['multi_device']) ) {
@@ -744,14 +744,14 @@ class Control_Manager {
             esc_attr( $is_multiple_value_allow ),
             $options
         );
-    
+
 		$html .= '</div></div>';
 
 		/**
 		 * Filters the select input control html.
 		 *
 		 * @version 4.0.0
-         * 
+         *
 		 * @param HTML|string Input control contents.
 		 * @param array       $param List of attribute.
 		 */
@@ -760,17 +760,17 @@ class Control_Manager {
         // Check if echo parameter is empty or false.
         if  ( empty( $param['echo'] ) ) {
             return $html;
-		} 
+		}
 
 		echo $html;
     }
 
 	/**
 	 * This function prepare the tooltip.
-	 * 
+	 *
 	 * @version 4.0.0
 	 * @param array $param  List of attributes for a input control
-	 * 
+	 *
 	 * @return HTML
 	 */
     public function get_tool_tip( $param ) {
@@ -784,7 +784,7 @@ class Control_Manager {
                 <span class="rmp-tooltip-content"> %s </span>
             </div>',
             wp_kses(
-                $param['text'], 
+                $param['text'],
                 array(
                     'a' => array(
                         'href' => array(),
@@ -795,12 +795,55 @@ class Control_Manager {
         );
     }
 
-	/**
-	 * This function prepare the icon picker control.
-	 * 
+    /**
+	 * This function prepare the shortcut.
+	 *
 	 * @version 4.0.0
 	 * @param array $param  List of attributes for a input control
-	 * 
+	 *
+	 * @return HTML
+	 */
+    public function add_shortcut_link( $param ) {
+        if ( empty( $param) ) {
+            return;
+		}
+
+        // Accordion id.
+        $accordion_id = '';
+        if ( ! empty( $param['accordion_id'] ) ) {
+            $accordion_id = $param['accordion_id'];
+        }
+
+        // Sub accordion id.
+        $sub_accordion_id = '';
+        if ( ! empty( $param['sub_accordion_id'] ) ) {
+            $sub_accordion_id = $param['sub_accordion_id'];
+        }
+
+        // Sub tab id.
+        $sub_tab_id = '';
+        if ( ! empty( $param['sub_tab_id'] ) ) {
+            $sub_tab_id = $param['sub_tab_id'];
+        }
+
+        if(!empty ($param['label']) && !empty ($param['target'])){
+            $html = sprintf( '<div class="rmp-quick-edit-link rmp-input-control-wrapper" aria-owns="%s" accordion-id="%s" sub-accordion-id="%s" sub-tab-id="%s"><a href="javascript:void(0)">%s <i class="fas fa-share"></i></a></div>',
+                esc_attr( $param["target"] ),
+                esc_attr( $accordion_id ),
+                esc_attr( $sub_accordion_id ),
+                esc_attr( $sub_tab_id ),
+                esc_attr( $param["label"] )
+            );
+        }
+        echo $html;
+    }
+
+	/**
+	 * This function prepare the icon picker control.
+	 *
+	 * @version 4.0.0
+	 * @param array $param  List of attributes for a input control
+	 *
 	 * @return HTML
 	 */
     public function add_icon_picker_control( $param ) {
@@ -836,7 +879,7 @@ class Control_Manager {
 
         // Check label is exist.
         if ( ! empty( $param['label'] ) ) {
-            $html .= sprintf( 
+            $html .= sprintf(
                 '<div class="rmp-input-control-label">
                     <span> %s </span>
                     <span> %s </span>
@@ -904,7 +947,7 @@ class Control_Manager {
 		 * Filters the icon picker control html.
 		 *
 		 * @version 4.0.0
-         * 
+         *
 		 * @param HTML|string Input control contents.
 		 * @param array       $param List of attribute.
 		 */
@@ -913,17 +956,17 @@ class Control_Manager {
         // Check if echo parameter is empty or false.
         if  ( empty( $param['echo'] ) ) {
             return $html;
-		} 
+		}
 
 		echo $html;
 	}
 
 	/**
 	 * This function prepare the image input control.
-	 * 
+	 *
 	 * @version 4.0.0
 	 * @param array $param  List of attributes for a input control
-	 * 
+	 *
 	 * @return HTML
 	 */
     public function add_image_control( $param ) {
@@ -952,7 +995,7 @@ class Control_Manager {
         }
 
         $html .= '<div class="rmp-input-control rmp-image-picker-container">';
-		
+
 		// Check multi device option is enabled.
         $has_multi_device = '';
         if ( ! empty( $param['multi_device']) ) {
@@ -995,16 +1038,16 @@ class Control_Manager {
             esc_attr( $param['picker_id'] ),
             $image_style,
             file_get_contents( RMP_PLUGIN_PATH_V4 .'/assets/admin/icons/svg/image-placeholder.svg' ),
-            $trash_icon  
+            $trash_icon
         );
-	
+
 		$html .= '</div></div>';
 
 		/**
 		 * Filters the icon picker control html.
 		 *
 		 * @version 4.0.0
-         * 
+         *
 		 * @param HTML|string Input control contents.
 		 * @param array       $param List of attribute.
 		 */
@@ -1013,17 +1056,17 @@ class Control_Manager {
         // Check if echo parameter is empty or false.
         if  ( empty( $param['echo'] ) ) {
             return $html;
-		} 
+		}
 
 		echo $html;
     }
 
 	/**
 	 * This function prepare the alignment control.
-	 * 
+	 *
 	 * @version 4.0.0
 	 * @param array $param  List of attributes for a input control
-	 * 
+	 *
 	 * @return HTML
 	 */
     public function add_text_alignment_control( $param ) {
@@ -1101,22 +1144,22 @@ class Control_Manager {
 
         $html .= sprintf( '<div class="align-icons-group"> %s </div>', $options );
 
-        $html .= '</div></div>';	
+        $html .= '</div></div>';
 
 		/**
 		 * Filters the icon picker control html.
 		 *
 		 * @version 4.0.0
-         * 
+         *
 		 * @param HTML|string Input control contents.
 		 * @param array       $param List of attribute.
 		 */
 		$html = apply_filters( 'rmp_add_text_alignment_control_html', $html, $param );
-		
+
         // Check if echo parameter is empty or false.
         if  ( empty( $param['echo'] ) ) {
             return $html;
-		} 
+		}
 
 		echo $html;
     }
@@ -1135,7 +1178,7 @@ class Control_Manager {
 
         $mobile = sprintf(
             '<div class="device-icon">
-                <input type="hidden" name="menu[use_mobile_menu]" value="on"/>													
+                <input type="hidden" name="menu[use_mobile_menu]" value="on"/>
                 <input disabled checked class="rmp-menu-display-device checkbox mobile" type="checkbox"/>
                 <label for="rmp-menu-display-device-mobile" title="mobile" >
                     <span class="corner-icon">
@@ -1144,7 +1187,7 @@ class Control_Manager {
                     <span class="device">
                         <svg width="15" height="20" viewBox="0 0 15 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7.5 5.625C7.5 5.625 7.49251 5.625 7.47754 5.625C7.28288 5.625 7.10319 5.57259 6.93848 5.46777C6.78874 5.34798 6.68392 5.20573 6.62402 5.04102C6.59408 4.98112 6.57161 4.92122 6.55664 4.86133C6.54167 4.80143 6.53418 4.74154 6.53418 4.68164C6.53418 4.68164 6.53418 4.67415 6.53418 4.65918C6.53418 4.62923 6.53418 4.59928 6.53418 4.56934C6.54915 4.53939 6.55664 4.50195 6.55664 4.45703V4.47949C6.57161 4.44954 6.5791 4.4196 6.5791 4.38965C6.59408 4.3597 6.60905 4.32975 6.62402 4.2998C6.639 4.26986 6.64648 4.23991 6.64648 4.20996C6.66146 4.18001 6.68392 4.15007 6.71387 4.12012C6.72884 4.10514 6.74382 4.08268 6.75879 4.05273C6.77376 4.02279 6.79622 4.00033 6.82617 3.98535C6.90104 3.89551 6.99837 3.82812 7.11816 3.7832C7.23796 3.73828 7.36523 3.71582 7.5 3.71582C7.52995 3.71582 7.5599 3.71582 7.58984 3.71582C7.61979 3.71582 7.64974 3.72331 7.67969 3.73828C7.70964 3.73828 7.73958 3.74577 7.76953 3.76074C7.81445 3.76074 7.8444 3.76823 7.85938 3.7832C7.88932 3.79818 7.91927 3.81315 7.94922 3.82812C7.97917 3.8431 8.00911 3.85807 8.03906 3.87305C8.06901 3.88802 8.09147 3.91048 8.10645 3.94043C8.13639 3.9554 8.15885 3.97038 8.17383 3.98535C8.20378 4.00033 8.22624 4.02279 8.24121 4.05273C8.25618 4.08268 8.27116 4.10514 8.28613 4.12012C8.31608 4.15007 8.33105 4.18001 8.33105 4.20996C8.34603 4.23991 8.361 4.26986 8.37598 4.2998C8.39095 4.32975 8.39844 4.3597 8.39844 4.38965C8.41341 4.4196 8.42839 4.44954 8.44336 4.47949C8.44336 4.50944 8.44336 4.53939 8.44336 4.56934C8.45833 4.59928 8.46582 4.62923 8.46582 4.65918C8.46582 4.73405 8.45833 4.80143 8.44336 4.86133C8.42839 4.92122 8.40592 4.98112 8.37598 5.04102C8.361 5.10091 8.33105 5.16081 8.28613 5.2207C8.25618 5.26562 8.21875 5.31055 8.17383 5.35547C8.08398 5.43034 7.97917 5.49772 7.85938 5.55762C7.75456 5.60254 7.63477 5.625 7.5 5.625ZM9.40918 16.1592C9.40918 15.9046 9.31185 15.6875 9.11719 15.5078C8.9375 15.3132 8.72038 15.2158 8.46582 15.2158H6.53418C6.27962 15.2158 6.05501 15.3132 5.86035 15.5078C5.68066 15.6875 5.59082 15.9046 5.59082 16.1592C5.59082 16.4287 5.68066 16.6608 5.86035 16.8555C6.05501 17.0352 6.27962 17.125 6.53418 17.125H8.46582C8.72038 17.125 8.9375 17.0352 9.11719 16.8555C9.31185 16.6608 9.40918 16.4287 9.40918 16.1592ZM14.2158 16.6533V4.1875C14.2158 3.25911 13.8864 2.47298 13.2275 1.8291C12.5687 1.17025 11.7751 0.84082 10.8467 0.84082H4.15332C3.22493 0.84082 2.43132 1.17025 1.77246 1.8291C1.11361 2.47298 0.78418 3.25911 0.78418 4.1875V16.6533C0.78418 17.5667 1.11361 18.3529 1.77246 19.0117C2.43132 19.6706 3.22493 20 4.15332 20H10.8467C11.7751 20 12.5687 19.6706 13.2275 19.0117C13.8864 18.3529 14.2158 17.5667 14.2158 16.6533ZM10.8467 2.75C11.251 2.75 11.5879 2.89225 11.8574 3.17676C12.1419 3.46126 12.2842 3.79818 12.2842 4.1875V16.6533C12.2842 17.0426 12.1419 17.3796 11.8574 17.6641C11.5879 17.9486 11.251 18.0908 10.8467 18.0908H4.15332C3.74902 18.0908 3.40462 17.9486 3.12012 17.6641C2.85059 17.3796 2.71582 17.0426 2.71582 16.6533V4.1875C2.71582 3.79818 2.85059 3.46126 3.12012 3.17676C3.40462 2.89225 3.74902 2.75 4.15332 2.75H10.8467Z" fill="#56606D"/>
-                        </svg>                
+                        </svg>
                     </span>
                 </label>
                 <span class="rmp-input-control-label device-title"> %s </span>
@@ -1154,8 +1197,8 @@ class Control_Manager {
 
         $tablet = sprintf(
             '<div class="device-icon">
-                <input type="hidden" name="menu[use_tablet_menu]" value="on"/>													
-                <input type="hidden" name="menu[use_tablet_menu]" value="on"/>													
+                <input type="hidden" name="menu[use_tablet_menu]" value="on"/>
+                <input type="hidden" name="menu[use_tablet_menu]" value="on"/>
                 <input disabled checked class="rmp-menu-display-device checkbox tablet"  type="checkbox"/>
                 <label for="rmp-menu-display-device-tablet" title="tablet" >
                     <span class="corner-icon">
@@ -1175,7 +1218,7 @@ class Control_Manager {
         $desktop = sprintf(
             '<div class="device-icon">
                 <input type="hidden" name="menu[use_desktop_menu]" value="off"/>
-                <input disabled class="rmp-menu-display-device checkbox desktop"  type="checkbox" />													
+                <input disabled class="rmp-menu-display-device checkbox desktop"  type="checkbox" />
                 <label for="rmp-menu-display-device-desktop" title="desktop" >
                     <span class="corner-icon">
                         <i class="fas fa-check-circle" aria-hidden="true"></i>
@@ -1196,7 +1239,7 @@ class Control_Manager {
 		return sprintf(
             '<div class="rmp-input-control-wrapper full-size">
                 <label class="rmp-input-control-label">
-                    %s 
+                    %s
                     <a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > PRO </a>
                 </label>
                 <div class="rmp-input-control">
@@ -1210,9 +1253,9 @@ class Control_Manager {
 
 	/**
 	 * Function to return the device options markup.
-	 * 
+	 *
 	 * @version 4.0.0
-	 * 
+	 *
 	 * @return HTML
 	 */
 	protected function get_device_options() {
@@ -1248,7 +1291,7 @@ class Control_Manager {
             $tool_tip = $this->get_tool_tip( $param['tool_tip'] );
         }
 
-		return sprintf ( 
+		return sprintf (
 			'<div class="rmp-accordion-sub-heading"> %s %s</div>',
             esc_html( $param['text'] ),
             $tool_tip

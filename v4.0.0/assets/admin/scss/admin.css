@@ -438,6 +438,18 @@ input[type="email"]:focus, input[type="month"]:focus, input[type="number"]:focus
     padding: 20px;
 }
 
+/*Shortcut link */
+.rmp-quick-edit-link a {
+    background: #dbf4ff;
+    padding: 5px 8px;
+    border: 1px dashed #36bef7;
+    border-radius: 3px;
+}
+
+.rmp-quick-edit-link a i{
+    margin-left: 5px;
+}
+
 /* Icons dialog */
 
 .rmp-menu-icons-dialog .icon-tabs {
