@@ -15,7 +15,6 @@ const rmpEditor = {
 	childTabs: '.rmp-accordions',
 	parentTabItem: '.rmp-editor-pane-parent li.rmp-tab-item',
 	tabItem: 'li.rmp-tab-item',
-	quickItem: '.rmp-quick-edit-link',
 	tabItemTitle: '.rmp-tab-item-title',
 	titleLogo: '.rmp-editor-header-logo',
 	closeButton: '.rmp-editor-header-close',
