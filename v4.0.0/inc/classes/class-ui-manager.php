@@ -1,11 +1,11 @@
 <?php
 /**
  * This file contain thh UI_Manager class and it's functionalities.
- * 
+ *
  * @version 4.0.0
- * 
+ *
  * @author  Expresstech System
- * 
+ *
  * @package responsive-menu-pro
  */
 
@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Class UI_Manager
  * This class is responsible for provide the UI.
- * 
+ *
  * @version 4.0.0
  */
 class UI_Manager {
@@ -49,7 +49,7 @@ class UI_Manager {
 	 * To setup action/filter.
 	 *
 	 * @version 4.0.0
-	 * 
+	 *
 	 * @return void
 	 */
 	protected function setup_hooks() {
@@ -82,7 +82,7 @@ class UI_Manager {
 				$title_class = $accordion_attr['item_header']['title_class'];
 			}
 
-			$title_span_class = '';
+			$title_span_class = 'accordion-item-title ';
 			if ( ! empty( $accordion_attr['item_header']['title_span_class'] ) ) {
 				$title_span_class = $accordion_attr['item_header']['title_span_class'];
 			}
@@ -176,7 +176,7 @@ class UI_Manager {
 
 		$html = sprintf('<li class="rmp-tab-item %s" aria-owns="%s">', esc_attr( $item_class ), esc_attr( $aria_owns ) );
 
-	
+
 		//Item header.
 		if ( ! empty( $tab_attr['item_header'] ) ) {
 

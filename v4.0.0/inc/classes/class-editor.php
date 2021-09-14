@@ -2,10 +2,10 @@
 /**
  * Editor class.
  * This class is responsible for editor UI.
- * 
+ *
  * @version 4.0.0
  * @author  Expresstech System
- * 
+ *
  * @package responsive-menu-pro
  */
 
@@ -36,7 +36,7 @@ class Editor {
 	 * To setup action/filter.
 	 *
 	 * @version 4.0.0
-	 * 
+	 *
 	 * @return void
 	 */
 	protected function setup_hooks() {
@@ -46,9 +46,9 @@ class Editor {
 	/**
 	 * Function to load the menu editor page when click on particular menu
 	 * customize option from menu list.
-	 * 
+	 *
 	 * @version 4.0.0
-	 * 
+	 *
 	 * @return void
 	 */
 	public function render_menu_editor_page() {
@@ -73,24 +73,24 @@ class Editor {
 		ob_start();
 		?>
 			<div id="rmp-editor-header" class="rmp-editor-header">
-
 				<!-- Plugin logo on editor header-->
 				<div class="rmp-editor-header-logo">
 					<span class="dashicons dashicons-arrow-left-alt rmp-editor-header-back"></span>
 					<img alt="logo" src="<?php echo esc_url( RMP_PLUGIN_URL_V4 .'/assets/images/rmp-logo.png' ); ?>" />
 				</div>
-
 				<!-- Menu title on editor header-->
 				<div class="rmp-editor-header-title"><?php echo esc_html( $menu_name ); ?></div>
-
-				<!-- Exit from editor button in header-->
-				<a class="rmp-editor-header-close" href="<?php echo esc_url( admin_url().'/edit.php?post_type=rmp_menu' ); ?>">
-					<span class="fas fa-times"></span>
-					<span class="screen-reader-text">
-						<?php echo esc_html__('Close the editor and go back to the previous page', 'responsive-menu-pro' ); ?>
-					</span>
-				</a>
-
+				<input class="rmp-search-settings no-updates" type="search" placeholder="Search Settings.." />
+				<div class="rmp-search-settings-block">
+					<label class="rmp-search-settings-btn"><i class="fa fa-search"></i></label>
+					<!-- Exit from editor button in header-->
+					<a class="rmp-editor-header-close" href="<?php echo esc_url( admin_url().'/edit.php?post_type=rmp_menu' ); ?>">
+						<span class="fas fa-times"></span>
+						<span class="screen-reader-text">
+							<?php echo esc_html__('Close the editor and go back to the previous page', 'responsive-menu-pro' ); ?>
+						</span>
+					</a>
+				</div>
 			</div>
 		<?php
 
@@ -99,7 +99,7 @@ class Editor {
 		/**
 		 * Filters the editor header.
 		 *
-		 * @param string|HTML $html 
+		 * @param string|HTML $html
 		 */
 		$html = apply_filters( 'rmp_editor_header_html', $html );
 
@@ -128,15 +128,15 @@ class Editor {
 
 				<div class="rmp-footer-sub-menu-wrapper" id="rmp-footer-theme-options">
 					<ul class="rmp-footer-sub-menu">
-						<li> 
-							<a id="rmp-theme-save-button" class="rmp-theme-save-button"> 
-								<span class="fas fa-save"></span>	
+						<li>
+							<a id="rmp-theme-save-button" class="rmp-theme-save-button">
+								<span class="fas fa-save"></span>
 								<span> <?php esc_html_e( 'Save as theme', 'responsive-menu-pro' ); ?></span>
 							</a>
 						</li>
 
-						<li> 
-							<a  id="rmp-theme-change-button" class="rmp-theme-change-button" > 
+						<li>
+							<a  id="rmp-theme-change-button" class="rmp-theme-change-button" >
 								<span class="fas fa-folder-open "></span>
 								<span><?php esc_html_e( 'Change theme', 'responsive-menu-pro' ); ?></span>
 							</a>
@@ -178,7 +178,7 @@ class Editor {
 		/**
 		 * Filters the editor footer html.
 		 *
-		 * @param string|HTML $html 
+		 * @param string|HTML $html
 		 */
 		$html = apply_filters( 'rmp_editor_footer_html', $html );
 
@@ -187,7 +187,7 @@ class Editor {
 
 	/**
 	 * Function to return the markups for sidebar drawers.
-	 * 
+	 *
 	 * @return HTML|string
 	 */
 	public function sidebar_drawer() {

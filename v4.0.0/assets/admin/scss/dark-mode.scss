@@ -1,10 +1,10 @@
 /**
-* This is dark mode styles for menu editor page and dialogs. 
+* This is dark mode styles for menu editor page and dialogs.
 */
 :root {
     --mainColor : #323232;
     --mainDarkColor:#212121;
-    --accentColor: #14ffec;
+    --accentColor: #36bef7;
     --secondaryAccentColor:#0d7377;
     --white: #fff;
     --lightWhite:#f0f0f0;
@@ -18,7 +18,7 @@
 
     //Sidebar drawer.
     .rmp-editor-overlay .collapse-sidebar {
-        background-color: var(--mainDarkColor); 
+        background-color: var(--mainDarkColor);
         .collapse-sidebar-arrow:before {
             color: var(--accentColor);
         }
@@ -27,9 +27,9 @@
     //Mobile and tablet preview shadow.
     .rmp-preview-mobile #rmp-preview-wrapper,
     .rmp-preview-tablet #rmp-preview-wrapper {
-        box-shadow: 0px 3px 0 #212121,  
-            0px 4px 0 #212121,  
-            0px 5px 0 #212121,  
+        box-shadow: 0px 3px 0 #212121,
+            0px 4px 0 #212121,
+            0px 5px 0 #212121,
             0px 7px 0 #212121,
             1px 6px 15px #212121;
     }
@@ -67,7 +67,11 @@
 
     #rmp-editor-form {
         background-color: var(--mainColor);
-
+        .rmp-search-settings{
+            background-color: var(--mainColor);
+            color: var(--white);
+            border-color: var(--mainColor);
+        }
         .rmp-tab-item {
 
             svg path {
@@ -113,7 +117,7 @@
                     background-color: var(--accentColor);
                 }
             }
-            
+
 
             .toggle {
                 background-color: var(--secondaryAccentColor);
@@ -150,7 +154,7 @@
         }
 
         .rmp-menu-controls {
-    
+
             .rmp-input-control {
 
                 .rmp-group-input-wrapper input[type="text"] {
@@ -310,7 +314,7 @@
                 color: var(--white) !important;
             }
 
-            border-color: var(--mainDarkColor); 
+            border-color: var(--mainDarkColor);
             .close {
                 border-color: var(--mainDarkColor);
             }
@@ -319,7 +323,7 @@
         .rmp-menu-library-title {
             color: var( --white );
         }
-    } 
+    }
 
     //New Menu and change theme dialog styles.
     #rmp-new-menu-wizard {
@@ -514,5 +518,5 @@
     .upgrade-tooltip {
         color:var(--white) !important;
     }
-    
+
 }
