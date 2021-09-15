@@ -147,7 +147,7 @@
 						var spannode = document.createElement('i');
 						spannode.className = 'rmp-highlight';
 						var middlebit = node.splitText(pos);
-						var endbit = middlebit.splitText(pat.length);
+						middlebit.splitText(pat.length);
 						var middleclone = middlebit.cloneNode(true);
 						spannode.appendChild(middleclone);
 						middlebit.parentNode.replaceChild(spannode, middlebit);
