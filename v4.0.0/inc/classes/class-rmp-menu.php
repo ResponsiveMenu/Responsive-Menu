@@ -48,12 +48,12 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 
 		/**
 		 * This is menu class constructor function.
-		 * 
+		 *
 		 * @access public
 		 *
 		 */
 		public function __construct( $menu_id ) {
-		
+
 			$option_manager = Option_Manager::get_instance();
 			$this->options = $option_manager->get_options( $menu_id );
 
@@ -62,15 +62,15 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 
 		/**
 		 * Prepare mobile menu markup.
-		 * 
+		 *
 		 * @version 4.0.0
-		 * 
+		 *
 		 * @return HTML|string
 		 */
 		public function mobile_menu() {
 
 			$menu_switcher = $this->menu_trigger();
-			
+
 			$menu_items = '';
 			if ( ! empty( $this->options['items_order'] ) ) {
 				$menu_items    = $this->options['items_order'];
@@ -93,7 +93,7 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 					} else {
 						$html .= $this->menu_additional_content();
 					}
-				}	
+				}
 			}
 
 			$side_animation = 'rmp-' . $this->options['animation_type'] . '-' . $this->options['menu_appear_from'];
@@ -256,12 +256,18 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 			$toggle_theme_class = apply_filters( 'rmp_menu_toggle_classes', [ 'rmp_menu_trigger', $trigger_click_animation ], $this->menu_id );
 			$toggle_theme_class =  implode( ' ' , $toggle_theme_class );
 
+			$menu_trigger_destination='';
+			if ( ! empty( $this->options['hamburger_position_selector'] ) ) {
+				$menu_trigger_destination=$this->options['hamburger_position_selector'];
+			}
+
 			$rmp_menu_trigger = sprintf(
-				'<button type="button"  aria-controls="rmp-container-%s" aria-label="Menu Trigger" id="rmp_menu_trigger-%s" class=" %s ">
+				'<button type="button"  aria-controls="rmp-container-%s" aria-label="Menu Trigger" id="rmp_menu_trigger-%s" destination="%s" class="%s">
 					%s
 				</button>',
 				$this->menu_id,
 				$this->menu_id,
+				$menu_trigger_destination,
 				esc_attr( $toggle_theme_class ),
 				$menu_trigger_content
 			);
@@ -271,7 +277,7 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 
 		/**
 		 * Returns menu title.
-		 * 
+		 *
 		 * @return HTML|string
 		 */
 		public function menu_title() {
@@ -326,7 +332,7 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 
 		/**
 		 * Return menu search box.
-		 * 
+		 *
 		 * @return HTML|string
 		 */
 		public function menu_search_box() {
@@ -478,7 +484,7 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 
 		/**
 		 * Function to get the location of menu.
-		 * 
+		 *
 		 * 	@return string   Returns the menu location.
 		 */
 		public function get_wp_menu_location() {
