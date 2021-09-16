@@ -1823,10 +1823,24 @@ $options = $option_manager->get_options( $menu_id );
 										'text' => __('Specify how you want the button to stick to your page.','responsive-menu-pro')
 									],
 									'name'    => 'menu[button_position_type]',
-									'options' => array( 'fixed' => 'Fixed' , 'absolute' => 'Absolute', 'relative' => 'Relative' ),
+									'options' => array( 'fixed' => 'Fixed' , 'absolute' => 'Absolute', 'relative' => 'Relative', 'inside-element' => 'Custom Selector' ),
 									'value'   => rmp_get_value($options,'button_position_type')
 								] );
 								echo  $ui_manager->end_group_controls();
+
+								echo $control_manager->add_text_input_control( [
+									'label'  => __('Element selector','responsive-menu-pro'),
+									'id'     => 'rmp-menu-hamburger-selector',
+									'type'   => 'text',
+									'group_classes' => 'full-size rmp-menu-hamburger-selector-div',
+									'class'  => '',
+									'placeholder' => __('e.g. #header, .header','responsive-menu-pro'),
+									'name'   => 'menu[hamburger_position_selector]',
+									'value'    => rmp_get_value($options,'hamburger_position_selector'),
+									'tool_tip'=> [
+										'text' => __( 'Show hamburger inside element.', 'responsive-menu-pro' )
+									]
+								] );
 
 								echo  $ui_manager->start_group_controls();
 								echo $control_manager->add_text_input_control( [

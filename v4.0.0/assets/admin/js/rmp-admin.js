@@ -32,7 +32,7 @@ jQuery( document ).ready( function( jQuery ) {
 				},
 				success: function( response ) {
 					if ( response.data.redirect ) {
-						location.href = response.data.redirect;    
+						location.href = response.data.redirect;
 					}
 				}
 			} );
@@ -64,7 +64,7 @@ jQuery( document ).ready( function( jQuery ) {
 			}
 
 			jQuery('#rmp-preview-iframe').attr('src', url );
- 
+
 		});
 
 	});
@@ -163,7 +163,37 @@ jQuery( document ).ready( function( jQuery ) {
 		jQuery( this ) .addClass( 'nav-tab-active' );
 	} );
 
-	
+	/**
+	 * Hamburger element selector option hide and show.
+	 */
+
+	 hideShowSelect( '#rmp-menu-button-position-type', '.rmp-menu-hamburger-selector-div', 'show', 'inside-element');
+
+	jQuery('#rmp-menu-button-position-type').on( 'change', function() {
+		hideShowSelect( this, '.rmp-menu-hamburger-selector-div', 'show', 'inside-element');
+	});
+
+
+	/**
+	 * select hide show function
+	 * @para string select, string show/hide Element, string show/hide
+	 */
+	 function hideShowSelect( checkElement, targetElement, condition, value ) {
+
+		if ( jQuery(checkElement).val() == value ) {
+			if(condition == 'show'){
+				jQuery(targetElement).show();
+			}else{
+				jQuery(targetElement).hide();
+			}
+		} else {
+			if(condition == 'show'){
+				jQuery(targetElement).hide();
+			}else{
+				jQuery(targetElement).show();
+			}
+		}
+	}
 
 	/**
 	 * Check open/close of device options switcher.
@@ -197,11 +227,11 @@ jQuery( document ).ready( function( jQuery ) {
 		if ( selectedDevice != firstDevice ) {
 			activeDeviceOptions( selectedDevice );
 			if ( 'desktop' == selectedDevice ) {
-				jQuery( '#rmp-preview-desktop' ).trigger( 'click' ); 
+				jQuery( '#rmp-preview-desktop' ).trigger( 'click' );
 			} else if ( 'tablet' == selectedDevice ) {
 				jQuery( '#rmp-preview-tablet' ).trigger( 'click' );
 			} else {
-				jQuery( '#rmp-preview-mobile' ).trigger( 'click' ); 
+				jQuery( '#rmp-preview-mobile' ).trigger( 'click' );
 			}
 		}
 	} );
@@ -348,7 +378,7 @@ jQuery( document ).ready( function( jQuery ) {
 		jQuery( this ).remove();
 
 		if ( ! jQuery('#rmp-editor-main').find('#rmp-menu-update-notification').length ) {
-			addUpdateNotification();	
+			addUpdateNotification();
 		}
 
 	} );
@@ -413,7 +443,7 @@ jQuery( document ).ready( function( jQuery ) {
 		}
 
 		//Show the loader on deleting theme.
-		const current_theme = jQuery(this); 
+		const current_theme = jQuery(this);
 		current_theme.append( '<span class="spinner is-active"></span>' );
 
 		let themeName = jQuery( this ).attr( 'data-theme' );
@@ -488,9 +518,9 @@ jQuery( document ).ready( function( jQuery ) {
 
 	/**
 	 * Save the global settings on click.
-	 * 
+	 *
 	 * @version 4.0.0
-	 * 
+	 *
 	 * @fires click
 	 */
 	jQuery( '.rmp-save-global-settings-button' ).on( 'click', function( e ) {
@@ -513,7 +543,7 @@ jQuery( document ).ready( function( jQuery ) {
 				console.log( 'Internal Error !' + error );
 			},
 			success: function( response ) {
-				jQuery( '.spinner' ).removeClass( 'is-active' );  
+				jQuery( '.spinner' ).removeClass( 'is-active' );
 				jQuery( this ).prop( 'disabled', false );
 			}
 		} );
@@ -529,7 +559,7 @@ jQuery( document ).ready( function( jQuery ) {
 
 	/**
 	 * Event to linked the group inputs.
-	 * 
+	 *
 	 * @fires Click
 	 */
 	jQuery( document ).on( 'click', 'button.rmp-group-input-linked',  function() {
@@ -538,7 +568,7 @@ jQuery( document ).ready( function( jQuery ) {
 
 	/**
 	 * Event to type on all sibblings input if linked.
-	 * 
+	 *
 	 * @fires keyup
 	 */
 	jQuery( document ).on( 'keyup', 'input.rmp-group-input', function( event ) {
@@ -549,7 +579,7 @@ jQuery( document ).ready( function( jQuery ) {
 		if ( isLinked.length ) {
 			parent.find( 'input.rmp-group-input' ).val( pressedKeys);
 		} else {
-			jQuery( this ).val(pressedKeys);	
+			jQuery( this ).val(pressedKeys);
 		}
 
 	});
@@ -584,14 +614,14 @@ jQuery( document ).ready( function( jQuery ) {
 		'#rmp-icon-dialog-select,.media-button-select,.rmp-icon-picker,.rmp-image-picker',
 		function() {
 			if ( ! jQuery('#rmp-editor-main').find('#rmp-menu-update-notification').length ) {
-				addUpdateNotification();	
+				addUpdateNotification();
 			}
 	});
 
 	/**
 	 * Event to download exported menu settings as json file.
 	 *
-	 * @version 4.0.0 
+	 * @version 4.0.0
 	 */
 	jQuery( '#rmp-export-menu-button' ).on( 'click', function( e ) {
 		e.preventDefault();
@@ -627,11 +657,11 @@ jQuery( document ).ready( function( jQuery ) {
 
 	/**
 	 * Function to download the content as file.
-	 * 
+	 *
 	 * @since 4.0.0
-	 * 
+	 *
 	 * @param {String} content Contents for file
-	 * @param {String} name    Name of the file. 
+	 * @param {String} name    Name of the file.
 	 * @param {String} type    File type
 	 */
 	function download_file(content, name, type ) {
@@ -647,7 +677,7 @@ jQuery( document ).ready( function( jQuery ) {
 	/**
 	 * Event to download exported menu settings as json file.
 	 *
-	 * @version 4.0.0 
+	 * @version 4.0.0
 	 */
 	jQuery( '#rmp-import-menu-button' ).on( 'click', function( e ) {
 		e.preventDefault();
@@ -710,7 +740,7 @@ jQuery( document ).ready( function( jQuery ) {
 	/**
 	 * Function to manage menu container animation options.
 	 *
-	 * @param {String} optionValue 
+	 * @param {String} optionValue
 	 */
 	function updateMenuContainerAnimationOptions( optionValue ) {
 
