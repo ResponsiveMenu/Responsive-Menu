@@ -2,7 +2,7 @@
  * This file contain the scrips for menu frontend.
  * @author ExpressTech System
  *
- * @since 4.0.0  
+ * @since 4.0.0
  */
 
 jQuery( document ).ready( function( jQuery ) {
@@ -52,10 +52,16 @@ jQuery( document ).ready( function( jQuery ) {
 				this.trigger = this.trigger +' , '+ this.options['button_click_trigger'];
 			}
 
+			//Append hamburger icon inside an element
+			if ( this.options['button_position_type'] == 'inside-element' ) {
+				var destination = jQuery(this.trigger).attr('destination');
+				jQuery(this.trigger).appendTo(jQuery(destination).parent());
+			}
+
 			this.init();
 		}
 
-		/** 
+		/**
 		 * This function register the events and initiate the menu settings.
 		 */
 		init() {
@@ -69,7 +75,7 @@ jQuery( document ).ready( function( jQuery ) {
 				e.stopPropagation();
 				self.triggerMenu();
 			} );
-	
+
 			// Show/Hide sub menu item when click on item toggle.
 			jQuery( self.menuWrap ).find( self.subMenuArrow ).on( 'click', function( e ) {
 				e.preventDefault();
@@ -124,7 +130,7 @@ jQuery( document ).ready( function( jQuery ) {
 					}
 				});
 			}
-	
+
 			// Expand Sub items on Parent Item Click.
 			if ( 'on' == self.options['menu_item_click_to_trigger_submenu']  ) {
 				jQuery( '.rmp-menu-item-has-children > ' + self.linkElement ).on( 'click', function(e) {
@@ -200,7 +206,7 @@ jQuery( document ).ready( function( jQuery ) {
 
 		/**
 		 * Function to fadeOut the hamburger menu container.
-		 */ 
+		 */
 		fadeMenuOut() {
 			jQuery(this.container)
 				.fadeOut(this.animationSpeed, function() {
@@ -210,8 +216,8 @@ jQuery( document ).ready( function( jQuery ) {
 
 		/**
 		 * Function is use to open the hamburger menu.
-		 * 
-		 * @since 4.0.0 
+		 *
+		 * @since 4.0.0
 		 */
 		openMenu() {
 			var self = this;
@@ -231,7 +237,7 @@ jQuery( document ).ready( function( jQuery ) {
 
 		/**
 		 * Function is use to close the hamburger menu.
-		 * 
+		 *
 		 * @since 4.0.0
 		 */
 		closeMenu() {
@@ -249,9 +255,9 @@ jQuery( document ).ready( function( jQuery ) {
 
 		/**
 		 * Function is responsible for checking the menu is open or close.
-		 * 
+		 *
 		 * @since 4.0.0
-		 * @param {Event} e 
+		 * @param {Event} e
 		 */
 		triggerMenu() {
 			this.isOpen ? this.closeMenu() : this.openMenu();
@@ -296,7 +302,7 @@ jQuery( document ).ready( function( jQuery ) {
 				jQuery( subArrow ).html(self.options['active_toggle_contents'] );
 				jQuery( subArrow ).addClass(RmpMenu.activeSubMenuArrowClass);
 			}
-			
+
 		}
 
 		/**
@@ -314,9 +320,9 @@ jQuery( document ).ready( function( jQuery ) {
 
 		/**
 		 * Returns the height of container.
-		 * 
+		 *
 		 * @version 4.0.0
-		 * 
+		 *
 		 * @return Number
 		 */
 		menuHeight() {
@@ -325,9 +331,9 @@ jQuery( document ).ready( function( jQuery ) {
 
 		/**
 		 * Returns the width of the container.
-		 * 
+		 *
 		 * @version 4.0.0
-		 * 
+		 *
 		 * @return Number
 		 */
 		menuWidth() {

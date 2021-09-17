@@ -62,7 +62,7 @@
             ] );
 
             echo $control_manager->add_icon_picker_control( [
-                'label'  => __('Set Font','responsive-menu-pro'),
+                'label'  => __('Set Font Icon','responsive-menu-pro'),
                 'id'     => 'rmp-button-title-icon',
                 'group_classes' => 'full-size',
                 'picker_class'  => 'rmp-button-title-icon-picker-button',
@@ -76,7 +76,7 @@
 
         <div id="title-styles" class="title ">
 
-                <?php 
+                <?php
 
                     echo $control_manager->add_group_text_control( [
                         'label'  => __('Padding','responsive-menu-pro'),
@@ -93,14 +93,14 @@
                         'id'     => 'rmp-menu-title-background-colour',
                         'name'    => 'menu[menu_title_background_colour]',
                         'value'    => rmp_get_value($options,'menu_title_background_colour'),
-                        
+
                     ] );
                     echo $control_manager->add_color_control( [
                         'label'  => __('Background Hover','responsive-menu-pro'),
                         'id'     => 'rmp-menu-title-background-hover-colour',
                         'name'    => 'menu[menu_title_background_hover_colour]',
                         'value'    => rmp_get_value($options,'menu_title_background_hover_colour'),
-                        
+
                     ] );
                     echo $ui_manager->end_group_controls();
 
@@ -129,7 +129,7 @@
                         'name'    => 'menu[menu_title_alignment]',
                         'options' => ['left','center','right','justify'],
                         'value'    => rmp_get_value($options,'menu_title_alignment'),
-                        
+
                     ] );
                     echo $ui_manager->end_group_controls();
 
@@ -161,14 +161,14 @@
                         'id'     => 'rmp-menu-title-colour',
                         'name'    => 'menu[menu_title_colour]',
                         'value'    => rmp_get_value($options,'menu_title_colour'),
-                        
+
                     ] );
                     echo $control_manager->add_color_control( [
                         'label'  => __(' Text Hover','responsive-menu-pro'),
                         'id'     => 'rmp-menu-title-hover-colour',
                         'name'    => 'menu[menu_title_hover_colour]',
                         'value'    => rmp_get_value($options,'menu_title_hover_colour'),
-                        
+
                     ] );
                     echo $ui_manager->end_group_controls();
 

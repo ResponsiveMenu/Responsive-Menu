@@ -2,7 +2,7 @@
 /**
  * This is menu editor page where we can customize the menu with
  * all dynamic option and also the preview.
- * 
+ *
  * @since      4.0.0
  *
  * @package    responsive_menu_pro
@@ -91,7 +91,7 @@ $options = $option_manager->get_options( $menu_id );
 								</span>
 								<h3 class="rmp-tab-item-title"><?php esc_html_e( 'Menu Styling', 'responsive-menu-pro' ); ?></h3>
 							</li>
-							
+
 							<li id="rmp-tab-item-header-bar" class="rmp-tab-item" aria-owns="tab-header-bar">
 								<span class="rmp-tab-item-icon">
 									<?php echo file_get_contents( RMP_PLUGIN_PATH_V4 .'/assets/admin/icons/svg/header.svg' ); ?>
@@ -163,8 +163,8 @@ $options = $option_manager->get_options( $menu_id );
 									'label'  => __('Change Theme','responsive-menu-pro'),
 									'id'     => 'rmp-change-theme-action',
 									'group_classes' => 'full-size',
-									'class' => 'rmp-theme-change-button',									
-								] 
+									'class' => 'rmp-theme-change-button',
+								]
 							);
 							echo $ui_manager->accordion_divider();
 
@@ -173,18 +173,18 @@ $options = $option_manager->get_options( $menu_id );
 									'label'  => __('Save As Theme','responsive-menu-pro'),
 									'id'     => 'rmp-theme-save-action',
 									'group_classes' => 'full-size',
-									'class' => 'rmp-theme-save-button',									
-								] 
+									'class' => 'rmp-theme-save-button',
+								]
 							);
 
-						
+
 							echo $ui_manager->end_accordion_item();
 
 							/**
 							 * Fires after prepare the theme setting section.
-							 * 
+							 *
 							 * @since 4.1.0
-							 * 
+							 *
 							 * @param int   $menu_id
 							 * @param array $options
 							 */
@@ -194,7 +194,7 @@ $options = $option_manager->get_options( $menu_id );
 						</ul>
 					</div>
 
-					<?php 
+					<?php
 					if ( ! empty( get_option('responsive_menu_version') ) ) {
 						include_once RMP_PLUGIN_PATH_V4 . '/templates/legacy-settings.php';
 					}
@@ -209,7 +209,7 @@ $options = $option_manager->get_options( $menu_id );
 					<div id="tab-advanced-settings" class="rmp-accordions" aria-label="Advanced">
 						<ul class="rmp-accordion-container">
 							<?php
-								
+
 								//Device Breakpoints
 								echo $ui_manager->start_accordion_item( [
 									'item_header' => [
@@ -237,16 +237,16 @@ $options = $option_manager->get_options( $menu_id );
 										'item_title' => __('Animation Speeds','responsive-menu-pro'),
 									]
 								] );
-								
+
 								echo $ui_manager->start_group_controls();
-								
+
 								echo $control_manager->add_text_input_control( [
 									'label'  => __('Colours','responsive-menu-pro'),
 									'type'   => 'text',
 									'id'     => 'rmp-menu-transition-speed',
 									'name'   => 'menu[transition_speed]',
 									'value'    => rmp_get_value($options,'transition_speed'),
-									
+
 									'tool_tip' => [
 										'text' => __('Specify the speed at which colours transition from standard to active or hover states.','responsive-menu-pro')
 									],
@@ -261,7 +261,7 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-sub-menu-speed',
 									'name'   => 'menu[sub_menu_speed]',
 									'value'    => rmp_get_value($options,'sub_menu_speed'),
-									
+
 									'tool_tip' => [
 										'text' => __('Specify the speed at which the sub menus transition.','responsive-menu-pro')
 									],
@@ -272,7 +272,7 @@ $options = $option_manager->get_options( $menu_id );
 
 								echo $ui_manager->end_group_controls();
 
-								
+
 								echo $ui_manager->end_accordion_item();
 
 								echo $ui_manager->start_accordion_item( [
@@ -292,7 +292,7 @@ $options = $option_manager->get_options( $menu_id );
 									'feature_type' => 'pro',
 									'name'   => 'menu[show_menu_on_page_load]',
 									'is_checked'   => '',
-									
+
 								] );
 
 								echo $control_manager->add_switcher_control( [
@@ -305,6 +305,30 @@ $options = $option_manager->get_options( $menu_id );
 									],
 									'name'   => 'menu[menu_disable_scrolling]',
 									'is_checked'   => ''
+								] );
+
+								echo $control_manager->add_switcher_control( [
+									'label'  => __('Enable Smooth Scrolling','responsive-menu-pro'),
+									'id'     => 'rmp-menu-smooth-scroll-on',
+									'class'  => 'rmp-menu-smooth-scroll-on',
+									'tool_tip' => [
+										'text' => __('The webpage will scroll smoothly to their target sections on same page.','responsive-menu-pro'),
+									],
+									'name'   => 'smooth_scroll_on',
+									'feature_type' => 'pro',
+									'is_checked'   => ''
+								] );
+
+								echo $control_manager->add_text_input_control( [
+									'label'  => __('Scroll Speed','responsive-menu-pro'),
+									'type'   => 'number',
+									'id'     => 'rmp-menu-smooth-scroll-speed',
+									'name'   => 'smooth_scroll_speed',
+									'feature_type' => 'pro',
+									'value'    => '0',
+									'has_unit' => [
+										'unit_type' => 'ms',
+									],
 								] );
 
 								echo $ui_manager->end_accordion_item();
@@ -325,7 +349,7 @@ $options = $option_manager->get_options( $menu_id );
 									echo $control_manager->upgrade_notice();
 
 								echo $ui_manager->end_accordion_item();
-									
+
 							?>
 						</ul>
 					</div>
@@ -407,7 +431,7 @@ $options = $option_manager->get_options( $menu_id );
 								]);
 
 								echo $ui_manager->start_group_controls();
-								
+
 								echo $control_manager->add_text_input_control( [
 									'label'  => __('Name','responsive-menu-pro'),
 									'type'   => 'text',
@@ -495,118 +519,58 @@ $options = $option_manager->get_options( $menu_id );
 					<div id="tab-menu-styling" class="rmp-accordions" aria-label="Menu Styling">
 						<ul class="rmp-accordion-container">
 							<?php
-							
+
 
 							echo $ui_manager->start_accordion_item( [
 								'item_header' => [
-									'item_title' => __('Menu ','responsive-menu-pro'),
+									'item_title' => __('Menu Settings','responsive-menu-pro'),
 								],
 								'feature_type' => 'semi-pro'
 							] );
-								echo $ui_manager->start_tabs_controls_panel(
-									[ 'tab_classes' => 'rmp-tab-content',
-										'tab_items'   =>
-										[
-											0 => [
-												'item_class' => 'nav-tab-active',
-												'item_target' => 'menu-item-contents',
-												'item_text' => __('Contents ','responsive-menu-pro'),
-											],
-											1 => [
-												'item_class' => '',
-												'item_target' => 'menu-item-styling',
-												'item_text' => __('Styling ','responsive-menu-pro'),
-											]
-										]
-									]
-								);
 
-								echo $ui_manager->start_tab_item( 
-									[
-										'item_id'    => 'menu-item-contents',
-										'item_class' => 'title-contents',
-									]
-								);
 
-								echo $control_manager->add_switcher_control( [
-									'label'  => __('Item Descriptions','responsive-menu-pro'),
-									'id'     => 'rmp-menu-submenu-descriptions-on',
-									'tool_tip' => [
-										'text' => __('Show the description text of menu items. Description text should be set while creating WordPress menus.','responsive-menu-pro'),
-									],
-									'name'   => 'menu[submenu_descriptions_on]',
-									'is_checked'   => is_rmp_option_checked('on', $options,'submenu_descriptions_on'),
+							echo $control_manager->add_text_input_control( [
+								'label'  => __('Custom Walker','responsive-menu-pro'),
+								'group_classes' => 'full-size',
+								'type'   => 'text',
+								'id'     => 'rmp-custom-walker',
+								'tool_tip' => [
+									'text' => __('Modify the HTML output by using a custom Walker class.','responsive-menu-pro'),
+								],
+								'name'    => 'menu[custom_walker]',
+								'value'   => rmp_get_value($options,'custom_walker'),
+							] );
+
+
+								echo $ui_manager->start_group_controls();
+								echo $control_manager->add_color_control( [
+									'label'  => __('Menu Background','responsive-menu-pro'),
+									'id'     => 'rmp-menu-background-colour',
+									'name'    => 'menu[menu_background_colour]',
+									'value'    => rmp_get_value($options,'menu_background_colour'),
 								] );
-					
-								echo $ui_manager->accordion_divider();
-								
-							   
-					
-								echo $control_manager->add_text_input_control( [
-									'label'  => __('Custom Walker','responsive-menu-pro'),
-									'group_classes' => 'full-size',
-									'type'   => 'text',
-									'id'     => 'rmp-custom-walker',
+
+								echo $control_manager->add_select_control( [
+									'label'  => __('Depth Level','responsive-menu-pro'),
+									'id'     => 'rmp-menu-depth',
 									'tool_tip' => [
-										'text' => __('Modify the HTML output by using a custom Walker class.','responsive-menu-pro'),
+										'text' => __('Set the level of nesting for sub menus.','responsive-menu-pro'),
 									],
-									'name'    => 'menu[custom_walker]',
-									'value'   => rmp_get_value($options,'custom_walker'),
+									'name'    => 'menu[menu_depth]',
+									'options' => array( '1'=>1, '2'=>2, '3' => 3, '4'=>4,'5'=>5 ),
+									'value'   => rmp_get_value($options,'menu_depth'),
 								] );
-								echo $ui_manager->end_tab_item();
-								echo $ui_manager->start_tab_item( 
-									[
-										'item_id'    => 'menu-item-styling',
-										'item_class' => 'title-contents',
-									]
-								);
 
-									echo $ui_manager->start_group_controls();
-									echo $control_manager->add_color_control( [
-										'label'  => __('Menu Background','responsive-menu-pro'),
-										'id'     => 'rmp-menu-background-colour',
-										'name'    => 'menu[menu_background_colour]',
-										'value'    => rmp_get_value($options,'menu_background_colour'),
-									] );
-						
-									echo $control_manager->add_select_control( [
-										'label'  => __('Depth Level','responsive-menu-pro'),
-										'id'     => 'rmp-menu-depth',
-										'tool_tip' => [
-											'text' => __('Set the level of nesting for sub menus.','responsive-menu-pro'),
-										],
-										'name'    => 'menu[menu_depth]',
-										'options' => array( '1'=>1, '2'=>2, '3' => 3, '4'=>4,'5'=>5 ),
-										'value'   => rmp_get_value($options,'menu_depth'),
-									] );
-									
-									echo $ui_manager->end_group_controls();
-									echo $ui_manager->accordion_divider();
+								echo $ui_manager->end_group_controls();
 
-									echo $control_manager->add_switcher_control( [
-										'label'  => __('Smooth Scroll Enabled','responsive-menu-pro'),
-										'id'     => 'rmp-menu-smooth-scroll-on',
-										'class'  => 'rmp-menu-smooth-scroll-on',
-										'tool_tip' => [
-											'text' => __('The webpage will scroll smoothly to their target sections on same page.','responsive-menu-pro'),
-										],
-										'name'   => 'smooth_scroll_on',
-										'feature_type' => 'pro',
-										'is_checked'   => ''
-									] );
-					
-									echo $control_manager->add_text_input_control( [
-										'label'  => __('Scroll Speed','responsive-menu-pro'),
-										'type'   => 'number',
-										'id'     => 'rmp-menu-smooth-scroll-speed',
-										'name'   => 'smooth_scroll_speed',
-										'feature_type' => 'pro',
-										'value'    => '0',
-										'has_unit' => [
-											'unit_type' => 'ms',
-										],
-									] );
-								echo $ui_manager->end_tab_item();
+								echo $control_manager->add_group_text_control( [
+									'label'  => __('Padding','responsive-menu-pro'),
+									'type'   =>   'text',
+									'class'  =>  'rmp-menu-section-padding',
+									'name'    => 'menu[menu_section_padding]',
+									'input_options' => [  'top', 'right', 'bottom', 'left' ],
+									'value_options' => ! empty( $options['menu_section_padding'] ) ? $options['menu_section_padding'] : ''
+								] );
 
 							echo $ui_manager->end_accordion_item();
 
@@ -645,8 +609,8 @@ $options = $option_manager->get_options( $menu_id );
 										]
 									]
 								);
-	
-								echo $ui_manager->start_tab_item( 
+
+								echo $ui_manager->start_tab_item(
 									[
 										'item_id'    => 'top-level-item-styling',
 										'item_class' => 'title-contents',
@@ -717,7 +681,7 @@ $options = $option_manager->get_options( $menu_id );
 										'item_title' => __('Typography','responsive-menu-pro')
 									]
 								] );
-	
+
 								echo $control_manager->add_text_input_control( [
 									'label'  => __('Font Size','responsive-menu-pro'),
 									'type'   => 'number',
@@ -738,7 +702,7 @@ $options = $option_manager->get_options( $menu_id );
 									],
 								] );
 
-							
+
 
 								echo $control_manager->add_text_input_control( [
 									'label'  => __('Font Family','responsive-menu-pro'),
@@ -791,7 +755,7 @@ $options = $option_manager->get_options( $menu_id );
 									],
 									'name'   => 'menu[menu_word_wrap]',
 									'is_checked'   => is_rmp_option_checked('on', $options,'menu_word_wrap'),
-									
+
 								] );
 
 								echo $ui_manager->end_accordion_item();
@@ -816,7 +780,7 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-link-hover-color',
 									'name'    => 'menu[menu_link_hover_colour]',
 									'value'    => rmp_get_value($options,'menu_link_hover_colour'),
-									
+
 									'multi_device' => true,
 								] );
 
@@ -825,7 +789,7 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-current-link-active-color',
 									'name'    => 'menu[menu_current_link_colour]',
 									'value'    => rmp_get_value($options,'menu_current_link_colour'),
-									
+
 								] );
 
 								echo $control_manager->add_color_control( [
@@ -833,9 +797,9 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-current-link-active-hover-color',
 									'name'    => 'menu[menu_current_link_hover_colour]',
 									'value'    => rmp_get_value($options,'menu_current_link_hover_colour'),
-									
+
 								] );
-							
+
 								echo $ui_manager->end_accordion_item();
 
 								echo $ui_manager->start_accordion_item( [
@@ -849,7 +813,7 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-item-background-colour',
 									'name'    => 'menu[menu_item_background_colour]',
 									'value'    => rmp_get_value($options,'menu_item_background_colour'),
-									
+
 									'multi_device' => true,
 
 								] );
@@ -859,7 +823,7 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-item-background-hover-color',
 									'name'    => 'menu[menu_item_background_hover_colour]',
 									'value'    => rmp_get_value($options,'menu_item_background_hover_colour'),
-									
+
 									'multi_device' => true,
 								] );
 
@@ -868,7 +832,7 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-current-item-background-color',
 									'name'    => 'menu[menu_current_item_background_colour]',
 									'value'    => rmp_get_value($options,'menu_current_item_background_colour'),
-									
+
 								] );
 
 								echo $control_manager->add_color_control( [
@@ -876,7 +840,7 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-current-item-background-hover-color',
 									'name'    => 'menu[menu_current_item_background_hover_colour]',
 									'value'    => rmp_get_value($options,'menu_current_item_background_hover_colour'),
-									
+
 								] );
 								echo $ui_manager->end_accordion_item();
 
@@ -912,7 +876,7 @@ $options = $option_manager->get_options( $menu_id );
 										'id'     => 'rmp-menu-item-border-colour',
 										'name'    => 'menu[menu_item_border_colour]',
 										'value'    => rmp_get_value($options,'menu_item_border_colour'),
-										
+
 									] );
 
 									echo $control_manager->add_color_control( [
@@ -920,17 +884,17 @@ $options = $option_manager->get_options( $menu_id );
 										'id'     => 'rmp-menu-item-border-colour-hover',
 										'name'   => 'menu[menu_item_border_colour_hover]',
 										'value'    => rmp_get_value($options,'menu_item_border_colour_hover'),
-										
+
 									] );
 								echo $ui_manager->end_group_controls();
-								
+
 								echo $ui_manager->start_group_controls();
 									echo $control_manager->add_color_control( [
 										'label'  => __('Active Item','responsive-menu-pro'),
 										'id'     => 'rmp-menu-item-border-colour-active',
 										'name'   => 'menu[menu_current_item_border_colour]',
 										'value'    => rmp_get_value($options,'menu_current_item_border_colour'),
-										
+
 									] );
 
 									echo $control_manager->add_color_control( [
@@ -941,7 +905,7 @@ $options = $option_manager->get_options( $menu_id );
 										],
 										'name'   => 'menu[menu_current_item_border_hover_colour]',
 										'value'    => rmp_get_value($options,'menu_current_item_border_hover_colour'),
-										
+
 									] );
 								echo $ui_manager->end_group_controls();
 
@@ -950,7 +914,7 @@ $options = $option_manager->get_options( $menu_id );
 								echo $ui_manager->end_sub_accordion();
 								echo $ui_manager->end_tab_item();
 
-								echo $ui_manager->start_tab_item( 
+								echo $ui_manager->start_tab_item(
 									[
 										'item_id'    => 'sub-level-item-styling',
 										'item_class' => 'title-contents',
@@ -1012,8 +976,8 @@ $options = $option_manager->get_options( $menu_id );
 										'options' => array( 'right' => 'Right' , 'left' => 'Left' ),
 										'value'   => rmp_get_value($options,'menu_depth_side'),
 									] );
-	
-									
+
+
 									echo $ui_manager->start_group_controls();
 									echo $control_manager->add_text_input_control( [
 										'label'  => __('Child Level 1','responsive-menu-pro'),
@@ -1021,7 +985,7 @@ $options = $option_manager->get_options( $menu_id );
 										'id'     => 'rmp-menu-depth-level-1',
 										'name'   => 'menu[menu_depth_1]',
 										'value'    => rmp_get_value($options,'menu_depth_1'),
-										
+
 										'has_unit' => [
 											'unit_type' => 'all',
 											'id' => 'rmp-menu-depth-level-1-unit',
@@ -1031,14 +995,14 @@ $options = $option_manager->get_options( $menu_id );
 											'value' => rmp_get_value($options,'menu_depth_1_unit'),
 										],
 									] );
-	
+
 									echo $control_manager->add_text_input_control( [
 										'label'  => __('Child Level 2','responsive-menu-pro'),
 										'type'   => 'number',
 										'id'     => 'rmp-menu-depth-level-2',
 										'name'   => 'menu[menu_depth_2]',
 										'value'    => rmp_get_value($options,'menu_depth_2'),
-										
+
 										'has_unit' => [
 											'unit_type' => 'all',
 											'id' => 'rmp-menu-depth-level-2-unit',
@@ -1048,7 +1012,7 @@ $options = $option_manager->get_options( $menu_id );
 											'value' => rmp_get_value($options,'menu_depth_2_unit'),
 										],
 									] );
-	
+
 									echo $ui_manager->end_group_controls();
 
 									echo $ui_manager->start_group_controls();
@@ -1058,7 +1022,7 @@ $options = $option_manager->get_options( $menu_id );
 										'id'     => 'rmp-menu-depth-level-3',
 										'name'   => 'menu[menu_depth_3]',
 										'value'    => rmp_get_value($options,'menu_depth_3'),
-										
+
 										'has_unit' => [
 											'unit_type' => 'all',
 											'id' => 'rmp-menu-depth-level-3-unit',
@@ -1075,7 +1039,7 @@ $options = $option_manager->get_options( $menu_id );
 										'id'     => 'rmp-menu-depth-level-4',
 										'name'   => 'menu[menu_depth_4]',
 										'value'    => rmp_get_value($options,'menu_depth_4'),
-										
+
 										'has_unit' => [
 											'unit_type' => 'all',
 											'id' => 'rmp-menu-depth-level-4-unit',
@@ -1100,31 +1064,31 @@ $options = $option_manager->get_options( $menu_id );
 										'value'    => rmp_get_value($options,'submenu_item_background_colour'),
 										'multi_device' => true,
 									] );
-	
+
 									echo $control_manager->add_color_control( [
 										'label'  => __('Hover','responsive-menu-pro'),
 										'id'     => 'rmp-submenu-item-background-hover-color',
 										'name'    => 'menu[submenu_item_background_hover_colour]',
 										'value'    => rmp_get_value($options,'submenu_item_background_hover_colour'),
-										
+
 										'multi_device' => true,
 									] );
-	
+
 									echo $ui_manager->start_group_controls();
 									echo $control_manager->add_color_control( [
 										'label'  => __('Active Item','responsive-menu-pro'),
 										'id'     => 'rmp-submenu-current-item-background-color',
 										'name'    => 'menu[submenu_current_item_background_colour]',
 										'value'    => rmp_get_value($options,'submenu_current_item_background_colour'),
-										
+
 									] );
-	
+
 									echo $control_manager->add_color_control( [
 										'label'  => __('Active Item Hover','responsive-menu-pro'),
 										'id'     => 'rmp-submenu-current-item-background-hover-color',
 										'name'    => 'menu[submenu_current_item_background_hover_colour]',
 										'value'    => rmp_get_value($options,'submenu_current_item_background_hover_colour'),
-										
+
 									] );
 									echo $ui_manager->end_group_controls();
 									echo $ui_manager->end_accordion_item();
@@ -1152,22 +1116,22 @@ $options = $option_manager->get_options( $menu_id );
 											'value' => rmp_get_value($options,'submenu_border_width_unit'),
 										],
 									] );
-	
+
 									echo $ui_manager->start_group_controls();
 									echo $control_manager->add_color_control( [
 										'label'  => __('Normal','responsive-menu-pro'),
 										'id'     => 'rmp-submenu-item-border-colour',
 										'name'    => 'menu[submenu_item_border_colour]',
 										'value'    => rmp_get_value($options,'submenu_item_border_colour'),
-										
+
 									] );
-	
+
 									echo $control_manager->add_color_control( [
 										'label'  => __('Hover','responsive-menu-pro'),
 										'id'     => 'rmp-submenu-item-border-colour-hover',
 										'name'   => 'menu[submenu_item_border_colour_hover]',
 										'value'    => rmp_get_value($options,'submenu_item_border_colour_hover'),
-										
+
 									] );
 									echo $ui_manager->end_group_controls();
 
@@ -1178,7 +1142,7 @@ $options = $option_manager->get_options( $menu_id );
 										'name'   => 'menu[submenu_current_item_border_colour]',
 										'value'    => rmp_get_value($options,'submenu_current_item_border_colour')
 									] );
-	
+
 									echo $control_manager->add_color_control( [
 										'label'  => __('Active Item Hover','responsive-menu-pro'),
 										'id'     => 'rmp-submenu-current-item-border-hover-colour',
@@ -1187,10 +1151,10 @@ $options = $option_manager->get_options( $menu_id );
 										],
 										'name'   => 'menu[submenu_current_item_border_hover_colour]',
 										'value'    => rmp_get_value($options,'submenu_current_item_border_hover_colour'),
-										
+
 									] );
 									echo $ui_manager->end_group_controls();
-	
+
 									echo $ui_manager->end_accordion_item();
 									echo $ui_manager->start_accordion_item( [
 										'item_header' => [
@@ -1215,7 +1179,7 @@ $options = $option_manager->get_options( $menu_id );
 											'multi_device' => true,
 										],
 									] );
-	
+
 									echo $control_manager->add_text_input_control( [
 										'label'  => __('Font Family','responsive-menu-pro'),
 										'type'   => 'text',
@@ -1225,7 +1189,7 @@ $options = $option_manager->get_options( $menu_id );
 										'value'    => rmp_get_value($options,'submenu_font'),
 										'multi_device' => true,
 									] );
-	
+
 									echo $ui_manager->start_group_controls();
 
 									echo $control_manager->add_select_control( [
@@ -1248,7 +1212,7 @@ $options = $option_manager->get_options( $menu_id );
 											'unit_type' => 'px',
 										],
 									] );
-	
+
 									echo $ui_manager->end_group_controls();
 
 
@@ -1273,7 +1237,7 @@ $options = $option_manager->get_options( $menu_id );
 										'name'         => 'menu[submenu_link_colour]',
 										'value'        => rmp_get_value($options,'submenu_link_colour'),
 										'multi_device' => true,
-										
+
 									] );
 
 									echo $control_manager->add_color_control( [
@@ -1302,7 +1266,7 @@ $options = $option_manager->get_options( $menu_id );
 
 									echo $ui_manager->end_accordion_item();
 									echo $ui_manager->end_sub_accordion();
-							
+
 								echo $ui_manager->end_tab_item();
 
 								echo $ui_manager->end_tabs_controls_panel();
@@ -1339,7 +1303,7 @@ $options = $option_manager->get_options( $menu_id );
 								]
 							);
 
-							echo $ui_manager->start_tab_item( 
+							echo $ui_manager->start_tab_item(
 								[
 									'item_id'    => 'menu-item-arrow-text',
 									'item_class' => 'title-contents',
@@ -1352,7 +1316,7 @@ $options = $option_manager->get_options( $menu_id );
 								'id'     => 'rmp-menu-inactive-arrow-shape',
 								'name'    => 'menu[inactive_arrow_shape]',
 								'value'    => rmp_get_value($options,'inactive_arrow_shape'),
-								
+
 							] );
 
 							echo $control_manager->add_text_input_control( [
@@ -1361,18 +1325,18 @@ $options = $option_manager->get_options( $menu_id );
 								'id'     => 'rmp-menu-active-arrow-shape',
 								'name'    => 'menu[active_arrow_shape]',
 								'value'    => rmp_get_value($options,'active_arrow_shape'),
-								
+
 							] );
 							echo $ui_manager->end_group_controls();
 							echo $ui_manager->end_tab_item();
 
-							echo $ui_manager->start_tab_item( 
+							echo $ui_manager->start_tab_item(
 								[
 									'item_id'    => 'menu-item-arrow-icon',
 									'item_class' => 'title-contents',
 								]
 							);
-							
+
 
 							echo $control_manager->add_icon_picker_control( [
 								'label'  => __('Font Icon','responsive-menu-pro'),
@@ -1383,7 +1347,7 @@ $options = $option_manager->get_options( $menu_id );
 								'picker_id' => "rmp-menu-inactive-arrow-font-icon-selector",
 								'name'    => 'menu[inactive_arrow_font_icon]',
 								'value'    => rmp_get_value($options,'inactive_arrow_font_icon'),
-								
+
 							] );
 
 							echo $control_manager->add_icon_picker_control( [
@@ -1394,13 +1358,13 @@ $options = $option_manager->get_options( $menu_id );
 								'picker_id' => "rmp-menu-active-arrow-font-icon-selector",
 								'name'    => 'menu[active_arrow_font_icon]',
 								'value'    => rmp_get_value($options,'active_arrow_font_icon'),
-								
+
 							] );
 
 							echo $ui_manager->end_tab_item();
 
 
-							echo $ui_manager->start_tab_item( 
+							echo $ui_manager->start_tab_item(
 								[
 									'item_id'    => 'menu-item-arrow-image',
 									'item_class' => 'title-style',
@@ -1415,7 +1379,7 @@ $options = $option_manager->get_options( $menu_id );
 								'picker_id' => "rmp-menu-inactive-arrow-image-selector",
 								'name'    => 'menu[inactive_arrow_image]',
 								'value'    => rmp_get_value($options,'inactive_arrow_image'),
-								
+
 							] );
 
 							echo $control_manager->add_image_control( [
@@ -1426,7 +1390,7 @@ $options = $option_manager->get_options( $menu_id );
 								'picker_id' => "rmp-menu-active-arrow-image-selector",
 								'name'    => 'menu[active_arrow_image]',
 								'value'    => rmp_get_value($options,'active_arrow_image'),
-								
+
 							] );
 							echo $ui_manager->end_tab_item();
 
@@ -1502,17 +1466,17 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-sub-arrow-shape-colour',
 									'name'    => 'menu[menu_sub_arrow_shape_colour]',
 									'value'    => rmp_get_value($options,'menu_sub_arrow_shape_colour'),
-									
+
 								] );
-	
+
 								echo $control_manager->add_color_control( [
 									'label'  => __('Hover','responsive-menu-pro'),
 									'id'     => 'rmp-menu-sub-arrow-shape-hover-colour',
 									'name'    => 'menu[menu_sub_arrow_shape_hover_colour]',
 									'value'    => rmp_get_value($options,'menu_sub_arrow_shape_hover_colour'),
-									
+
 								] );
-									
+
 								echo $ui_manager->end_group_controls();
 
 								echo $ui_manager->start_group_controls();
@@ -1522,15 +1486,15 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-sub-arrow-shape-colour-active',
 									'name'    => 'menu[menu_sub_arrow_shape_colour_active]',
 									'value'    => rmp_get_value($options,'menu_sub_arrow_shape_colour_active'),
-									
+
 								] );
-	
+
 								echo $control_manager->add_color_control( [
 									'label'  => __('Active Item Hover','responsive-menu-pro'),
 									'id'     => 'rmp-menu-sub-arrow-shape-hover-colour-active',
 									'name'    => 'menu[menu_sub_arrow_shape_hover_colour_active]',
 									'value'    => rmp_get_value($options,'menu_sub_arrow_shape_hover_colour_active'),
-									
+
 								] );
 								echo $ui_manager->end_group_controls();
 
@@ -1565,7 +1529,7 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-sub-arrow-border-colour',
 									'name'    => 'menu[menu_sub_arrow_border_colour]',
 									'value'    => rmp_get_value($options,'menu_sub_arrow_border_colour'),
-									
+
 								] );
 
 								echo $control_manager->add_color_control( [
@@ -1573,7 +1537,7 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-sub-arrow-border-hover-colour',
 									'name'    => 'menu[menu_sub_arrow_border_hover_colour]',
 									'value'    => rmp_get_value($options,'menu_sub_arrow_border_hover_colour'),
-									
+
 								] );
 								echo $ui_manager->end_group_controls();
 
@@ -1583,7 +1547,7 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-sub-arrow-border-colour-active',
 									'name'    => 'menu[menu_sub_arrow_border_colour_active]',
 									'value'    => rmp_get_value($options,'menu_sub_arrow_border_colour_active'),
-									
+
 								] );
 
 								echo $control_manager->add_color_control( [
@@ -1591,7 +1555,7 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-sub-arrow-border-hover-colour-active',
 									'name'    => 'menu[menu_sub_arrow_border_hover_colour_active]',
 									'value'    => rmp_get_value($options,'menu_sub_arrow_border_hover_colour_active'),
-									
+
 								] );
 								echo $ui_manager->end_group_controls();
 
@@ -1610,7 +1574,7 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-sub-arrow-background-color',
 									'name'    => 'menu[menu_sub_arrow_background_colour]',
 									'value'    => rmp_get_value($options,'menu_sub_arrow_background_colour'),
-									
+
 								] );
 
 								echo $control_manager->add_color_control( [
@@ -1618,7 +1582,7 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-sub-arrow-background-hover-colour',
 									'name'    => 'menu[menu_sub_arrow_background_hover_colour]',
 									'value'    => rmp_get_value($options,'menu_sub_arrow_background_hover_colour'),
-									
+
 								] );
 								echo $ui_manager->end_group_controls();
 								echo $ui_manager->start_group_controls();
@@ -1628,7 +1592,7 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-sub-arrow-background-colour-active',
 									'name'    => 'menu[menu_sub_arrow_background_colour_active]',
 									'value'    => rmp_get_value($options,'menu_sub_arrow_background_colour_active'),
-									
+
 								] );
 
 								echo $control_manager->add_color_control( [
@@ -1636,7 +1600,7 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-sub-arrow-background-hover-colour-active',
 									'name'    => 'menu[menu_sub_arrow_background_hover_colour_active]',
 									'value'    => rmp_get_value($options,'menu_sub_arrow_background_hover_colour_active'),
-									
+
 								] );
 								echo $ui_manager->end_group_controls();
 
@@ -1658,7 +1622,7 @@ $options = $option_manager->get_options( $menu_id );
 
 							echo $control_manager->upgrade_notice();
 							echo $ui_manager->end_accordion_item();
-							
+
 
 								echo $ui_manager->start_accordion_item( [
 									'item_header' => [
@@ -1667,12 +1631,22 @@ $options = $option_manager->get_options( $menu_id );
 								] );
 
 								echo $control_manager->add_switcher_control( [
+									'label'  => __('Item Descriptions','responsive-menu-pro'),
+									'id'     => 'rmp-menu-submenu-descriptions-on',
+									'tool_tip' => [
+										'text' => __('Show the description text of menu items. Description text should be set while creating WordPress menus.','responsive-menu-pro'),
+									],
+									'name'   => 'menu[submenu_descriptions_on]',
+									'is_checked'   => is_rmp_option_checked('on', $options,'submenu_descriptions_on'),
+								] );
+
+								echo $control_manager->add_switcher_control( [
 									'label'  => __('Use Accordion','responsive-menu-pro'),
 									'id'     => 'rmp-menu-accordion-animation',
 									'class'  => 'rmp-menu-accordion-animation',
 									'name'   => 'menu[accordion_animation]',
 									'is_checked'   => is_rmp_option_checked('on', $options,'accordion_animation'),
-									
+
 								] );
 
 								echo $control_manager->add_switcher_control( [
@@ -1681,7 +1655,7 @@ $options = $option_manager->get_options( $menu_id );
 									'class'  => 'rmp-menu-auto-expand-all-submenus',
 									'name'   => 'menu[auto_expand_all_submenus]',
 									'is_checked'   => is_rmp_option_checked('on', $options,'auto_expand_all_submenus'),
-									
+
 								] );
 
 								echo $control_manager->add_switcher_control( [
@@ -1690,7 +1664,7 @@ $options = $option_manager->get_options( $menu_id );
 									'class'  => 'rmp-menu-auto-expand-current-submenus',
 									'name'   => 'menu[auto_expand_current_submenus]',
 									'is_checked'   => is_rmp_option_checked('on', $options,'auto_expand_current_submenus'),
-									
+
 								] );
 
 								echo $control_manager->add_switcher_control( [
@@ -1699,7 +1673,7 @@ $options = $option_manager->get_options( $menu_id );
 									'class'  => 'rmp-menu-menu-item-click-to-trigger-submenu',
 									'name'   => 'menu[menu_item_click_to_trigger_submenu]',
 									'is_checked'   => is_rmp_option_checked('on', $options,'menu_item_click_to_trigger_submenu'),
-									
+
 								] );
 
 
@@ -1718,7 +1692,7 @@ $options = $option_manager->get_options( $menu_id );
 										'item_title' => __('Button Style','responsive-menu-pro'),
 									]
 								] );
-								
+
 								echo $ui_manager->start_group_controls();
 
 								echo $control_manager->add_text_input_control( [
@@ -1738,7 +1712,7 @@ $options = $option_manager->get_options( $menu_id );
 										'value' => rmp_get_value($options,'button_width_unit'),
 									],
 								] );
-								
+
 								echo $control_manager->add_text_input_control( [
 									'label'  => __('Container Height','responsive-menu-pro'),
 									'type'   => 'number',
@@ -1746,7 +1720,7 @@ $options = $option_manager->get_options( $menu_id );
 									'name'   => 'menu[button_height]',
 									'class' => 'no-updates',
 									'value'    => rmp_get_value($options,'button_height'),
-									
+
 									'has_unit' => [
 										'unit_type' => 'all',
 										'id' => 'rmp-menu-button-height-unit',
@@ -1771,7 +1745,7 @@ $options = $option_manager->get_options( $menu_id );
 									],
 									'name'   => 'menu[button_background_colour]',
 									'value'    => rmp_get_value($options,'button_background_colour'),
-									
+
 								] );
 
 								echo $control_manager->add_color_control( [
@@ -1779,7 +1753,7 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-button-background-colour-hover',
 									'name'   => 'menu[button_background_colour_hover]',
 									'value'    => rmp_get_value($options,'button_background_colour_hover'),
-									
+
 								] );
 
 								echo $ui_manager->end_group_controls();
@@ -1814,7 +1788,7 @@ $options = $option_manager->get_options( $menu_id );
 									],
 									'name'   => 'menu[button_transparent_background]',
 									'is_checked'   => is_rmp_option_checked('on', $options,'button_transparent_background'),
-									
+
 								] );
 
 								echo $ui_manager->end_accordion_item();
@@ -1849,10 +1823,24 @@ $options = $option_manager->get_options( $menu_id );
 										'text' => __('Specify how you want the button to stick to your page.','responsive-menu-pro')
 									],
 									'name'    => 'menu[button_position_type]',
-									'options' => array( 'fixed' => 'Fixed' , 'absolute' => 'Absolute', 'relative' => 'Relative' ),
+									'options' => array( 'fixed' => 'Fixed' , 'absolute' => 'Absolute', 'relative' => 'Relative', 'inside-element' => 'Custom Selector' ),
 									'value'   => rmp_get_value($options,'button_position_type')
 								] );
 								echo  $ui_manager->end_group_controls();
+
+								echo $control_manager->add_text_input_control( [
+									'label'  => __('Element selector','responsive-menu-pro'),
+									'id'     => 'rmp-menu-hamburger-selector',
+									'type'   => 'text',
+									'group_classes' => 'full-size rmp-menu-hamburger-selector-div',
+									'class'  => '',
+									'placeholder' => __('e.g. #header, .header','responsive-menu-pro'),
+									'name'   => 'menu[hamburger_position_selector]',
+									'value'    => rmp_get_value($options,'hamburger_position_selector'),
+									'tool_tip'=> [
+										'text' => __( 'Show hamburger inside element.', 'responsive-menu-pro' )
+									]
+								] );
 
 								echo  $ui_manager->start_group_controls();
 								echo $control_manager->add_text_input_control( [
@@ -1905,7 +1893,7 @@ $options = $option_manager->get_options( $menu_id );
 									],
 									'name'   => 'menu[button_push_with_animation]',
 									'is_checked'   => is_rmp_option_checked('on', $options,'button_push_with_animation'),
-									
+
 								] );
 
 
@@ -1941,8 +1929,8 @@ $options = $option_manager->get_options( $menu_id );
 										]
 									]
 								);
-	
-								echo $ui_manager->start_tab_item( 
+
+								echo $ui_manager->start_tab_item(
 									[
 										'item_id'    => 'hamburger-type-line',
 										'item_class' => 'title-contents',
@@ -1966,7 +1954,7 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-button-line-margin',
 									'name'   => 'menu[button_line_margin]',
 									'value'    => rmp_get_value($options,'button_line_margin'),
-									
+
 									'tool_tip' => [
 										'text' => __('Set the margin between each individual button line and it\'s unit','responsive-menu-pro')
 									],
@@ -2009,7 +1997,7 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-button-line-height',
 									'name'   => 'menu[button_line_height]',
 									'value'    => rmp_get_value($options,'button_line_height'),
-									
+
 									'tool_tip' => [
 										'text' => __('Set the height of each individual button line and it\'s unit','responsive-menu-pro')
 									],
@@ -2031,7 +2019,7 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-button-line-colour',
 									'name'   => 'menu[button_line_colour]',
 									'value'    => rmp_get_value($options,'button_line_colour'),
-									
+
 								] );
 
 								echo $control_manager->add_color_control( [
@@ -2039,7 +2027,7 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-button-line-colour-hover',
 									'name'   => 'menu[button_line_colour_hover]',
 									'value'    => rmp_get_value($options,'button_line_colour_hover'),
-									
+
 								] );
 								echo  $ui_manager->end_group_controls();
 
@@ -2049,13 +2037,13 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-button-line-colour-active',
 									'name'   => 'menu[button_line_colour_active]',
 									'value'    => rmp_get_value($options,'button_line_colour_active'),
-									
+
 								] );
 
 								echo $ui_manager->end_tab_item();
 
 
-								echo $ui_manager->start_tab_item( 
+								echo $ui_manager->start_tab_item(
 									[
 										'item_id'    => 'hamburger-type-icon',
 										'item_class' => 'title-contents',
@@ -2074,7 +2062,7 @@ $options = $option_manager->get_options( $menu_id );
 										'text' => __( 'Use a custom font icon instead of standard hamburger lines', 'responsive-menu-pro' )
 									],
 									'value'    => rmp_get_value($options,'button_font_icon'),
-									
+
 								] );
 
 								echo $control_manager->add_icon_picker_control( [
@@ -2090,7 +2078,7 @@ $options = $option_manager->get_options( $menu_id );
 
 								echo $ui_manager->end_tab_item();
 
-								echo $ui_manager->start_tab_item( 
+								echo $ui_manager->start_tab_item(
 									[
 										'item_id'    => 'hamburger-type-image',
 										'item_class' => 'title-contents',
@@ -2155,7 +2143,7 @@ $options = $option_manager->get_options( $menu_id );
 									'type'   => 'text',
 									'value'    => rmp_get_value($options,'button_title_open'),
 
-								] );	
+								] );
 
 								echo  $ui_manager->end_group_controls();
 
@@ -2207,7 +2195,7 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-button-title-line-height',
 									'name'   => 'menu[button_title_line_height]',
 									'value'    => rmp_get_value($options,'button_title_line_height'),
-									
+
 									'has_unit' => [
 										'unit_type' => 'all',
 										'id' => 'rmp-menu-button-title-line-height-unit',
@@ -2225,7 +2213,7 @@ $options = $option_manager->get_options( $menu_id );
 									'id'     => 'rmp-menu-button-text-colour',
 									'name'   => 'menu[button_text_colour]',
 									'value'    => rmp_get_value($options,'button_text_colour'),
-									
+
 								] );
 
 								echo $ui_manager->end_accordion_item();
@@ -2278,7 +2266,7 @@ $options = $option_manager->get_options( $menu_id );
 							<?php echo __('Drag the container items up and down to re-order their appearance on the front end.','responsive-menu-pro'); ?>
 						</div>
 						<ul class="rmp-accordion-container" id="rmp-menu-ordering-items">
-							
+
 							<?php
 
 								if ( ! empty( $options['items_order'] ) ) {
@@ -2391,6 +2379,19 @@ $options = $option_manager->get_options( $menu_id );
 									'value'    => rmp_get_value($options,'menu_container_background_colour'),
 								] );
 
+								echo $control_manager->add_shortcut_link( [
+									'label' => 'Change Menu Background',
+									'target' => 'tab-menu-styling',
+									'accordion_id' => 'ui-id-36'
+								] );
+
+								echo $control_manager->add_shortcut_link( [
+									'label' => 'Style Menu Items',
+									'target' => 'tab-menu-styling',
+									'accordion_id' => 'ui-id-40',
+									'sub_accordion_id' => 'ui-id-52'
+								] );
+
 								echo $control_manager->add_image_control( [
 									'label'  => __('Background Image','responsive-menu-pro'),
 									'group_classes' => 'full-size',
@@ -2399,7 +2400,7 @@ $options = $option_manager->get_options( $menu_id );
 									'picker_id' => "rmp-menu-background-image-selector",
 									'name'    => 'menu[menu_background_image]',
 									'value'    => rmp_get_value($options,'menu_background_image'),
-									
+
 								] );
 
 								echo $ui_manager->accordion_divider();
@@ -2517,7 +2518,7 @@ $options = $option_manager->get_options( $menu_id );
 									]
 								);
 
-								$keys =  rmp_get_menu_open_close_keys();	
+								$keys =  rmp_get_menu_open_close_keys();
 
 								echo $control_manager->add_select_control( [
 									'label'  => __('Hide Menu','responsive-menu-pro'),
@@ -2544,7 +2545,7 @@ $options = $option_manager->get_options( $menu_id );
 								] );
 
 								echo $ui_manager->end_accordion_item();
-							?>			
+							?>
 						</ul>
 					</div>
 				</div>
