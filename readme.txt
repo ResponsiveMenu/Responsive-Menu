@@ -3,7 +3,7 @@ Contributors: expresstech, responsivemenu, imvarunkmr, surajkumarsingh, infosate
 Tags: responsive, mega menu, navigation, mobile, hamburger
 Requires at least: 3.6
 Tested up to: 5.7
-Stable tag: 4.1.3
+Stable tag: 4.1.4
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -102,6 +102,15 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 7. Main menu
 
 == Changelog ==
+
+= 4.1.4 (17th Sep 2021) =
+Bug: Fixed transparent background issue.
+Feature: Added option to search settings in customizer.
+Feature: Added shortcuts to related settings in different sections of customizer.
+Feature: Added custom selector for hamburger icon position.
+Enhancement: Moved "Padding" setting from (Mobile Menu > Container > Menu) to (Menu Styling > Menu Settings)
+Enhancement: Moved "Enable Smooth Scrolling" setting from (Menu Styling > Menu Settings) to (Setting > Advance Setting > Technical)
+
 = 4.1.3 (25th June 2021) =
 Bug: Fixed Adjust Page option issue
 Bug: Fixed the issue of conflict with WooCommerce plugin
@@ -133,7 +142,7 @@ Enhancement: Redirected user directly to customizer after creating a new menu
 Enhancement: Prevent deleting a theme if being used by active menu
 Enhancement: Added color alpha feature and push animation
 Enhancement: Added custom admin notice to upgrade
-Enhancement: Added admin notice with doc link if no menu created. 
+Enhancement: Added admin notice with doc link if no menu created.
 Enhancement: Improved the default theme with new UI
 Enhancement: Improved the wizards UI
 Enhancement: Added hide menu input in new menu wizard
@@ -188,8 +197,8 @@ Bug: Fixed PHP warning and errors
 = 3.1.27 (19th Mar 2020) =
 * Fix: PHP v7.4 Compatibility
 
-= 3.1.26 (19th Feb 2020) = 
-* Fix: WordPress 5.3 Compatibility 
+= 3.1.26 (19th Feb 2020) =
+* Fix: WordPress 5.3 Compatibility
 * Fix: PHP v7.4 Compatibility
 
 = 3.1.25 (14th Dec 2019) =
