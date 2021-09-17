@@ -4,7 +4,7 @@
 Plugin Name: Responsive Menu
 Plugin URI: https://expresstech.io
 Description: Highly Customisable Responsive Menu Plugin for WordPress
-Version: 4.1.3
+Version: 4.1.4
 Author: ExpressTech
 Text Domain: responsive-menu
 Author URI: https://responsive.menu
@@ -16,7 +16,7 @@ Tags: responsive, menu, responsive menu, mega menu, max mega menu, max menu
  * Constant as plugin version.
  */
 if ( ! defined( 'RMP_PLUGIN_VERSION' ) ) {
-    define( 'RMP_PLUGIN_VERSION', '4.1.3' );
+    define( 'RMP_PLUGIN_VERSION', '4.1.4' );
 }
 
 define('RESPONSIVE_MENU_URL', plugin_dir_url( __FILE__ ) );
@@ -90,11 +90,11 @@ function og_pro_deactivate_pro_version_notice() {
 function og_deactivate_responsive_menu_pro() {
 
     $plugin = 'responsive-menu-pro/responsive-menu-pro.php';
-  
+
    if( is_plugin_active($plugin) ){
         deactivate_plugins( 'responsive-menu-pro/responsive-menu-pro.php');
         set_transient( 'og-admin-notice-activation-pro', true, 5 );
-        
+
         return;
     }
 }
@@ -196,7 +196,7 @@ include dirname(__FILE__) . '/config/polylang.php';
 
     /**
 	 * Activation of plugin.
-	 * 
+	 *
 	 * @return void
 	 */
 	function responsive_menu_plugin_activation() {
@@ -214,7 +214,7 @@ include dirname(__FILE__) . '/config/polylang.php';
 
 	/**
 	 * Deactivation of plugin.
-	 * 
+	 *
 	 * @return void
 	 */
 	function responsive_menu_plugin_deactivation() {
