@@ -38,7 +38,7 @@
                 'id'     => 'rmp-submenu-child-arrow-width',
                 'name'   => 'menu[submenu_submenu_arrow_width]',
                 'value'    => rmp_get_value($options,'submenu_submenu_arrow_width'),
-                
+
                 'tool_tip' => [
                     'text' => 'Set the width of the menu trigger items and their units.	'
                 ],
@@ -79,7 +79,7 @@
                 'name'    => 'menu[submenu_arrow_position]',
                 'options' => array( 'right' => 'Right' , 'left' => 'Left' ),
                 'value'   => rmp_get_value($options,'submenu_arrow_position'),
-            ] );								
+            ] );
 
             echo $ui_manager->start_sub_accordion();
 
@@ -95,7 +95,7 @@
                 'id'     => 'rmp-submenu-sub-arrow-background-color',
                 'name'    => 'menu[submenu_sub_arrow_background_colour]',
                 'value'    => rmp_get_value($options,'submenu_sub_arrow_background_colour'),
-                
+
             ] );
 
             echo $control_manager->add_color_control( [
@@ -103,7 +103,7 @@
                 'id'     => 'rmp-submenu-sub-arrow-background-hover-colour',
                 'name'    => 'menu[submenu_sub_arrow_background_hover_colour]',
                 'value'    => rmp_get_value($options,'submenu_sub_arrow_background_hover_colour'),
-                
+
             ] );
             echo $ui_manager->end_group_controls();
 
@@ -113,7 +113,7 @@
                 'id'     => 'rmp-submenu-sub-arrow-background-colour-active',
                 'name'    => 'menu[submenu_sub_arrow_background_colour_active]',
                 'value'    => rmp_get_value($options,'submenu_sub_arrow_background_colour_active'),
-                
+
             ] );
 
             echo $control_manager->add_color_control( [
@@ -121,11 +121,11 @@
                 'id'     => 'rmp-submenu-sub-arrow-background-hover-colour-active',
                 'name'    => 'menu[submenu_sub_arrow_background_hover_colour_active]',
                 'value'    => rmp_get_value($options,'submenu_sub_arrow_background_hover_colour_active'),
-                
+
             ] );
             echo $ui_manager->end_group_controls();
             echo $ui_manager->end_accordion_item();
-            
+
             echo $ui_manager->start_accordion_item( [
                 'item_header' => [
                     'item_title' => __('Border Color','responsive-menu-pro')
@@ -155,7 +155,7 @@
                 'id'     => 'rmp-submenu-sub-arrow-border-colour',
                 'name'    => 'menu[submenu_sub_arrow_border_colour]',
                 'value'    => rmp_get_value($options,'submenu_sub_arrow_border_colour'),
-                
+
             ] );
 
             echo $control_manager->add_color_control( [
@@ -163,7 +163,7 @@
                 'id'     => 'rmp-submenu-sub-arrow-border-hover-colour',
                 'name'    => 'menu[submenu_sub_arrow_border_hover_colour]',
                 'value'    => rmp_get_value($options,'submenu_sub_arrow_border_hover_colour'),
-                
+
             ] );
             echo $ui_manager->end_group_controls();
             echo $ui_manager->start_group_controls();
@@ -173,7 +173,7 @@
                 'id'     => 'rmp-submenu-sub-arrow-border-colour-active',
                 'name'    => 'menu[submenu_sub_arrow_border_colour_active]',
                 'value'    => rmp_get_value($options,'submenu_sub_arrow_border_colour_active'),
-                
+
             ] );
 
             echo $control_manager->add_color_control( [
@@ -181,7 +181,7 @@
                 'id'     => 'rmp-submenu-sub-arrow-border-hover-colour-active',
                 'name'    => 'menu[submenu_sub_arrow_border_hover_colour_active]',
                 'value'    => rmp_get_value($options,'submenu_sub_arrow_border_hover_colour_active'),
-                
+
             ] );
             echo $ui_manager->end_group_controls();
 
@@ -198,7 +198,7 @@
                 'id'     => 'rmp-submenu-sub-arrow-shape-colour',
                 'name'    => 'menu[submenu_sub_arrow_shape_colour]',
                 'value'    => rmp_get_value($options,'submenu_sub_arrow_shape_colour'),
-                
+
             ] );
 
             echo $control_manager->add_color_control( [
@@ -206,7 +206,7 @@
                 'id'     => 'rmp-submenu-sub-arrow-shape-colour-hover',
                 'name'    => 'menu[submenu_sub_arrow_shape_hover_colour]',
                 'value'    => rmp_get_value($options,'submenu_sub_arrow_shape_hover_colour'),
-                
+
             ] );
             echo $ui_manager->end_group_controls();
 
@@ -216,7 +216,7 @@
                 'id'     => 'rmp-submenu-sub-arrow-shape-colour-active',
                 'name'    => 'menu[submenu_sub_arrow_shape_colour_active]',
                 'value'    => rmp_get_value($options,'submenu_sub_arrow_shape_colour_active'),
-                
+
             ] );
 
             echo $control_manager->add_color_control( [
@@ -224,7 +224,7 @@
                 'id'     => 'rmp-submenu-sub-arrow-shape-hover-colour-active',
                 'name'    => 'menu[submenu_sub_arrow_shape_hover_colour_active]',
                 'value'    => rmp_get_value($options,'submenu_sub_arrow_shape_hover_colour_active'),
-                
+
             ] );
             echo $ui_manager->end_group_controls();
 

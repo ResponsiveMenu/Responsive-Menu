@@ -41,8 +41,8 @@ class Assets {
 	protected function setup_hooks() {
 
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_scripts' ] );
-		add_action('admin_head', [ $this, 'admin_custom_style_inline'] );
-		add_action('admin_head', [ $this, 'rmp_menu_editor_style_inline'] );
+		add_action('admin_enqueue_scripts', [ $this, 'admin_custom_style_inline'] );
+		add_action('admin_enqueue_scripts', [ $this, 'rmp_menu_editor_style_inline'] );
 	}
 
 	/**
@@ -54,12 +54,11 @@ class Assets {
 
 		$editor = filter_input( INPUT_GET, 'editor', FILTER_SANITIZE_STRING );
 		if ( ! empty( $editor ) && get_post_type() == 'rmp_menu' && is_admin() ) {
-			echo '<style>
-			html.wp-toolbar {
+			$css_data = 'html.wp-toolbar {
 				margin: 0;
 				padding: 0 !important;
-			}
-			</style>';
+			}';
+			wp_add_inline_style( 'rmp_admin_main_styles', $css_data );
 		}
 	}
 
@@ -69,7 +68,7 @@ class Assets {
 	 * @since 4.0.0
 	 */
 	function admin_custom_style_inline() {
-		echo '<style>
+		$css_data = '
 			#adminmenu .menu-icon-rmp_menu .wp-menu-image img{
 				height: 18px;
 			}
@@ -78,8 +77,9 @@ class Assets {
 				color: #f80668;
 				font-weight: 600;
 			}
+		';
+		wp_add_inline_style( 'rmp_admin_main_styles', $css_data );
 
-		</style>';
 	}
 
 	/**

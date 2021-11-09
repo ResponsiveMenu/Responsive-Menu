@@ -2,10 +2,10 @@
 /**
  * Admin class.
  * This is core class which is responsible for admin functionality.
- *  
+ *
  * @version 4.0.0
  * @author  Expresstech System
- * 
+ *
  * @package responsive-menu-pro
  */
 
@@ -56,7 +56,7 @@ class Admin {
 		add_action( 'wp_ajax_rmp_create_new_menu', [ $this, 'create_new_menu' ] );
 		add_action( 'wp_ajax_rmp_export_menu', [ $this, 'rmp_export_menu' ] );
 		add_action( 'wp_ajax_rmp_import_menu', [ $this, 'rmp_import_menu' ] );
-		
+
 		add_shortcode( 'rmp_menu', [ $this, 'register_menu_shortcode' ] );
 		add_action( 'init', array($this,'rmp_menu_cpt'), 0 );
 
@@ -73,7 +73,7 @@ class Admin {
 
 	/**
 	 * Function to save the global settings of setting page.
-	 * 
+	 *
 	 * @return json
 	 */
 	public function save_menu_global_settings() {
@@ -88,12 +88,12 @@ class Admin {
 		}
 
 		update_option( 'rmp_global_setting_options', $options );
-		
+
 		/**
 		 * Fires after global settings is saved.
-		 * 
+		 *
 		 * @since 4.0.0
-		 * 
+		 *
 		 * @param array $option List of global settings.
 		 */
 		do_action( 'rmp_save_global_settings', $options );
@@ -105,7 +105,7 @@ class Admin {
 	 * Rollback to older version from setting page.
 	 *
 	 * @since	4.0.0
-	 * 
+	 *
 	 * @return void
 	 */
 	public function rollback_version() {
@@ -121,7 +121,7 @@ class Admin {
 	 * Function to create a new theme.
 	 *
 	 * @since	4.0.0
-	 * 
+	 *
 	 * @return json
 	 */
 	public function create_new_menu() {
@@ -201,7 +201,7 @@ class Admin {
 
 			/**
 			 * Fires when menu is created and options is saved.
-			 * 
+			 *
 			 * @param int $menu_id Menu ID.
 			 */
 			do_action( 'rmp_create_new_menu', $menu_id );
@@ -227,10 +227,10 @@ class Admin {
 	 * This function register the shortcode for menu.
 	 *
 	 * @since  4.0.0
-	 * 
+	 *
 	 * @param  Array  $atts    Attributes List.
 	 * @param  string $content It contain text from shortcode.
-	 * 
+	 *
 	 * @return HTML   $output  Menu contents.
 	 */
 	public function register_menu_shortcode( $attrs = [] ) {
@@ -244,7 +244,7 @@ class Admin {
 			return __( 'Please pass menu id as attribute.', 'responsive-menu-pro' );
 		}
 
-		$menu_id   = $attrs['id'];	
+		$menu_id   = $attrs['id'];
 		if ( 'publish' !== get_post_status( $menu_id ) ) {
 			return __( "Shortcode with menu id $menu_id is not published.", 'responsive-menu-pro' );
 		}
@@ -267,9 +267,9 @@ class Admin {
 
 	/**
 	 * Function to update the global options.
-	 * 
+	 *
 	 * @since 4.0.0
-	 * 
+	 *
 	 * @return void
 	 */
 	public function set_global_options() {
@@ -350,7 +350,7 @@ class Admin {
 	 * Add template to the setting page.
 	 *
 	 * @since	4.0.0
-	 * 
+	 *
 	 * @return void
 	 */
 	public function rmp_global_settings_page() {
@@ -365,9 +365,9 @@ class Admin {
 
 	/**
 	 * Remove create new menu default link of rmp_menu post type.
-	 * 
+	 *
 	 * @since 4.0.0
-	 * 
+	 *
 	 * @return void
 	 */
 	function remove_default_add_cpt_page() {
@@ -376,9 +376,9 @@ class Admin {
 
 	/**
 	 * Function to add the new menu wizard template.
-	 * 
+	 *
 	 * @since 4.0.0
-	 * 
+	 *
 	 * @return void
 	 */
 	public function add_new_menu_widget() {
@@ -391,10 +391,10 @@ class Admin {
 	/**
 	 * Function to change the edit label and url.
 	 * @since 4.0.0
-	 * 
+	 *
 	 * @param array $actions List of post row actions.
 	 * @param Object $post Post object
-	 * 
+	 *
 	 * @return array $actions
 	 */
 	public function rmp_menu_row_actions( $actions, $post ) {
@@ -412,15 +412,15 @@ class Admin {
 
 	/**
 	 * Function to add the custom column.
-	 * 
+	 *
 	 * @since 4.0.0
-	 * 
+	 *
 	 * @param array $columns List of columns.
-	 * 
-	 * @return array $columns Edited columns list.  
+	 *
+	 * @return array $columns Edited columns list.
 	 */
 	public function  set_custom_edit_menu_columns($columns) {
-		
+
 		unset( $columns['date'] );
 		$columns['shortcode_place']  = __( 'Shortcode', 'responsive-menu-pro' );
 		$columns['actions']          = __( 'Actions', 'responsive-menu-pro' );
@@ -431,17 +431,17 @@ class Admin {
 
 	/**
 	 * Function to change the edit url of post type rmp_menu
-	 * 
+	 *
 	 * @since 4.0.0
-	 * 
+	 *
 	 * @param string $url     Post edit URL.
 	 * @param int    $post_id Post ID
-	 * 
+	 *
 	 * @return string $url    Edited post url URL
 	 */
 	public function my_edit_post_link( $url, $post_id ) {
 
-		if ( 'rmp_menu' == get_post_type() ) {	
+		if ( 'rmp_menu' == get_post_type() ) {
 			$url = get_admin_url() .'post.php?post='. $post_id .'&action=edit&editor=true';
 		}
 
@@ -450,12 +450,12 @@ class Admin {
 
 	/**
 	 * Function to add the data to the custom columns for the rmp_menu post type.
-	 * 
+	 *
 	 * @since 4.0.0
-	 * 
+	 *
 	 * @param string $column  Column Name
 	 * @param int    $post_id Post ID
-	 * 
+	 *
 	 * @return void
 	 */
 	function add_custom_columns( $column, $post_id ) {
@@ -465,7 +465,7 @@ class Admin {
 
 			case 'actions' :
 				echo sprintf(
-					'<a href="%s" class="button" aria-label="Customize">%s</a>',
+					'<a href="%s" class="' . esc_attr( "button" ) . '" aria-label="' . esc_attr( "Customize" ) . '">%s</a>',
 					esc_url( get_edit_post_link( $post_id) ),
 					__( 'Customize', 'responsive-menu-pro' )
 				);
@@ -474,7 +474,7 @@ class Admin {
 
 				$option  = $option_manager->get_option( $post_id, 'menu_display_on' );
 				if( 'shortcode' === $option ) {
-					echo sprintf('<code>[rmp_menu id="%s"]</code>', $post_id );
+					echo sprintf('<code>[rmp_menu id="%s"]</code>', esc_attr( $post_id ) );
 				} else {
 					esc_html_e( 'Shortcode deactivated', 'responsive-menu-pro' );
 				}
@@ -545,7 +545,7 @@ class Admin {
 	 * Function to export the menu
 	 *
 	 * @since	4.0.0
-	 * 
+	 *
 	 * @return json
 	 */
 	public function rmp_export_menu() {
@@ -567,7 +567,7 @@ class Admin {
 	 * Function to import the menu settings.
 	 *
 	 * @since	4.0.0
-	 * 
+	 *
 	 * @return json
 	 */
 	public function rmp_import_menu() {
@@ -590,7 +590,7 @@ class Admin {
 		}
 
 		$file_contents  = file_get_contents( $_FILES['file']['tmp_name'] );
-		$import_options = json_decode( $file_contents, true ); 
+		$import_options = json_decode( $file_contents, true );
 
 		$option_manager = Option_Manager::get_instance();
 		$exist_option         = $option_manager->get_options( $menu_id );
@@ -605,9 +605,9 @@ class Admin {
 		update_post_meta( $menu_id, 'rmp_menu_meta' , $import_options );
 		/**
 		 * Fires when menu is imported.
-		 * 
+		 *
 		 * @since 4.0.0
-		 * 
+		 *
 		 * @param int $menu_id
 		 */
 		do_action( 'rmp_import_menu', $menu_id );
