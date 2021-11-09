@@ -21,7 +21,7 @@ if ( empty( $cached_data ) ) {
     <div class="rmp-dialog-wrap wp-clearfix">
         <div class="rmp-dialog-header">
             <div class="title">
-                <img alt="logo" width="34" height="34" src="<?php echo RMP_PLUGIN_URL_V4 .'/assets/images/rmp-logo.png'; ?>" />
+                <img alt="logo" width="34" height="34" src="<?php echo esc_url( RMP_PLUGIN_URL_V4 .'/assets/images/rmp-logo.png' ); ?>" />
                 <span> <?php esc_html_e('Select Icon', 'responsive-menu-pro'); ?> </span>
             </div>
             <button class="close dashicons dashicons-no"></button>
@@ -35,7 +35,7 @@ if ( empty( $cached_data ) ) {
                             <?php esc_html_e('Material Icons (mdi)', 'responsive-menu-pro'); ?>
                             <span class="upgrade-tooltip"> PRO </span>
                         </a>
-                    </li> 
+                    </li>
                     <li>
                         <a class="nav-tab" href="#fas">
                             <?php esc_html_e('FontAwesome Solid (fas)', 'responsive-menu-pro'); ?>
@@ -63,7 +63,7 @@ if ( empty( $cached_data ) ) {
                 </ul>
                 <div class="rmp-icon-tab-contents">
                     <div id="dashicons" style="padding: 20px;">
-                        <p> <input type="text" class="medium-text" id="rmp-icon-search" placeholder="Search icons"/> </p>   
+                        <p> <input type="text" class="medium-text" id="rmp-icon-search" placeholder="Search icons"/> </p>
                         <?php echo rmp_dashicon_selector(); ?>
                     </div>
                     <div id="fab">
@@ -169,18 +169,18 @@ if ( empty( $cached_data ) ) {
     <div class="rmp-dialog-wrap wp-clearfix">
         <div class="rmp-dialog-header">
             <div class="title">
-                <img alt="logo" width="34" height="34" src="<?php echo RMP_PLUGIN_URL_V4 .'/assets/images/rmp-logo.png'; ?>" />
+                <img alt="logo" width="34" height="34" src="<?php echo esc_url( RMP_PLUGIN_URL_V4 .'/assets/images/rmp-logo.png' ); ?>" />
                 <span> <?php esc_html_e('Use Theme', 'responsive-menu-pro'); ?> </span>
             </div>
 
             <button class="close dashicons dashicons-no"></button>
         </div>
-        <div class="rmp-dialog-contents wp-clearfix tabs" id="tabs" >  
+        <div class="rmp-dialog-contents wp-clearfix tabs" id="tabs" >
             <div id="select-themes" class="rmp-new-menu-themes">
                 <div id="tabs" class="tabs">
                     <ul class="nav-tab-wrapper">
                         <li><a class="nav-tab rmp-v-divider" href="#tabs-1"><?php esc_html_e('Installed Themes', 'responsive-menu-pro'); ?></a></li>
-                        <li><a class="nav-tab rmp-v-divider <?php echo $rmp_browse_class; ?>" href="#tabs-2"><?php esc_html_e( 'Marketplace', 'responsive-menu-pro'); ?></a></li>
+                        <li><a class="nav-tab rmp-v-divider <?php echo esc_attr( $rmp_browse_class ); ?>" href="#tabs-2"><?php esc_html_e( 'Marketplace', 'responsive-menu-pro'); ?></a></li>
                         <li><a class="nav-tab" href="#tabs-3"><?php esc_html_e('Saved Templates', 'responsive-menu-pro'); ?></a></li>
                         <li style="float:right;"><button id="rmp-upload-new-theme" class="button btn-import-theme"><?php esc_html_e('Import', 'responsive-menu-pro'); ?></button></li>
                     </ul>
@@ -188,7 +188,7 @@ if ( empty( $cached_data ) ) {
                     <!-- This is menu theme upload section -->
                     <div id="rmp-menu-library-import" class="rmp-theme-upload-container hide" >
                         <p><?php esc_html_e('If you have a menu theme in a .zip format, you can upload here.', 'responsive-menu-pro'); ?></p>
-                        <form method="post" enctype="multipart/form-data" id="rmp-menu-theme-upload-form" class="wp-upload-form">    
+                        <form method="post" enctype="multipart/form-data" id="rmp-menu-theme-upload-form" class="wp-upload-form">
                             <label class="screen-reader-text" for="themezip">Upload zip</label>
                             <input type="file" accept=".zip" id="rmp_menu_theme_zip" name="rmp_menu_theme_zip" />
                             <button id="rmp-theme-upload" class="button" type="button"> Upload Theme </button>
@@ -203,7 +203,7 @@ if ( empty( $cached_data ) ) {
                             } else {
                             ?>
                                 <div class="rmp-page-loader" style="display:flex;">
-                                <img class="rmp-loader-image" src="<?php echo RMP_PLUGIN_URL_V4 .'/assets/images/rmp-logo.png'; ?>"/>
+                                <img class="rmp-loader-image" src="<?php echo esc_url( RMP_PLUGIN_URL_V4 .'/assets/images/rmp-logo.png' ); ?>"/>
                                 <h3 class="rmp-loader-message">
                                     <?php _e( 'Just a moment <br/> Getting data from the server..', 'responsive-menu-pro' ); ?>
                                 </h3>
@@ -213,7 +213,7 @@ if ( empty( $cached_data ) ) {
                     </div>
 
                     <div id="tabs-1" class="rmp-themes">
-                        <?php echo $theme_manager->get_available_themes( true ); ?>  
+                        <?php echo $theme_manager->get_available_themes( true ); ?>
                     </div>
 
                     <div id="tabs-3" class="rmp-themes">

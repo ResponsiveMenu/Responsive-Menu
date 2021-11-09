@@ -3,7 +3,7 @@
         <span class="item-title"><?php esc_html_e( 'Additional Content', 'responsive-menu-pro' ); ?></span>
         <span class="item-controls">
             <input type='hidden' value='' name='menu[items_order][additional content]'/>
-            <input type="checkbox" data-toggle="additional-content" value="on" id="rmp-item-order-additional-content"  class="no-updates toggle item-type" name="menu[items_order][additional content]" <?php if ( ! empty( $options['items_order']['additional content'] ) ) { echo "checked"; } ?>>
+            <input type="checkbox" data-toggle="additional-content" value="on" id="rmp-item-order-additional-content"  class="no-updates toggle item-type" name="menu[items_order][additional content]" <?php if ( ! empty( $options['items_order']['additional content'] ) ) { echo esc_attr( "checked" ); } ?>>
             <a class="item-edit open-item" aria-label="open Addition Contents options">
                 <span class="screen-reader-text">Open</span>
             </a>
@@ -24,7 +24,7 @@
                 </div>
             </div>
 
-            <div id="additions-contents-styles" class="title">    
+            <div id="additions-contents-styles" class="title">
                     <?php
 
                     echo $control_manager->add_group_text_control( [
@@ -68,7 +68,7 @@
                         'id'     => 'rmp-menu-additional-content-color',
                         'name'    => 'menu[menu_additional_content_colour]',
                         'value'    => rmp_get_value($options,'menu_additional_content_colour'),
-                        
+
                     ] );
 
                     ?>

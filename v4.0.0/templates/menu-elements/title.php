@@ -3,7 +3,7 @@
         <span class="item-title"><?php esc_html_e( 'Title', 'responsive-menu-pro' ); ?></span>
         <span class="item-controls">
             <input type='hidden' value='' name='menu[items_order][title]'/>
-            <input type="checkbox" value="on" data-toggle="title" class="no-updates toggle item-type" id="rmp-item-order-title" name="menu[items_order][title]" <?php if ( ! empty( $options['items_order']['title'] ) ) { echo 'checked'; } ?>>
+            <input type="checkbox" value="on" data-toggle="title" class="no-updates toggle item-type" id="rmp-item-order-title" name="menu[items_order][title]" <?php if ( ! empty( $options['items_order']['title'] ) ) { echo esc_attr( 'checked' ); } ?>>
             <a class="item-edit open-item" aria-label="open Title options">
                 <span class="screen-reader-text">Open</span>
             </a>

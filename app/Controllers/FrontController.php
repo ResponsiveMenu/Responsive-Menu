@@ -106,7 +106,9 @@ class FrontController {
                 if($options['minify_scripts'] == 'on')
                     $css_data = Minifier::minify($css_data);
 
-                echo '<style>' . $css_data . '</style>';
+                wp_register_style( 'responsive-menu', false );
+                wp_enqueue_style( 'responsive-menu' );
+                wp_add_inline_style( 'responsive-menu', $css_data );
             }, 100);
 
             add_action($options['scripts_in_footer'] == 'on' ? 'wp_footer' : 'wp_head', function() use($options) {
@@ -114,7 +116,7 @@ class FrontController {
                 if($options['minify_scripts'] == 'on')
                     $js_data = Minifier::minify($js_data);
 
-                echo '<script>' . $js_data . '</script>';
+                echo '<script>' .esc_js( $js_data ). '</script>';
             }, 100);
         endif;
 

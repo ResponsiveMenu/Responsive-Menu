@@ -30,7 +30,7 @@ function check_responsive_menu_php_version() {
 }
 
 function responsive_menu_deactivation_text() {
-    echo '<div class="error"><p>' . sprintf(
+    echo '<div class="'.esc_attr( "error" ).'"><p>' . sprintf(
         'Responsive Menu requires PHP 5.4 or higher to function and has therefore been automatically disabled.
         You are still on %s.%sPlease speak to your web host about upgrading your PHP version.',
         PHP_VERSION,
@@ -60,7 +60,7 @@ function rmp_move_new_version_admin_notice() {
 
     <div class="notice-responsive-menu notice error is-dismissible rmp-version-upgrade-notice">
         <div class="notice-responsive-menu-logo">
-            <img src="<?php echo RESPONSIVE_MENU_URL;?>/imgs/responsive-menu-logo.png" width="60" height="60" alt="logo" />
+            <img src="<?php echo esc_url( RESPONSIVE_MENU_URL.'/imgs/responsive-menu-logo.png' ) ;?>" width="60" height="60" alt="logo" />
         </div>
         <div class="notice-responsive-menu-message">
             <h4 style="font-weight: 700;"><?php _e('Responsive Menu', 'responsive-menu-pro'); ?></h4>

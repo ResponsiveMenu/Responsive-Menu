@@ -94,9 +94,22 @@ class RM_Review_Message {
 			$this->check_results_amount(),
 			'<br /><strong><em>~ RM Team</em></strong><br /><br />'
 		);
-		echo '&nbsp;<a target="_blank" href="https://wordpress.org/support/plugin/responsive-menu/reviews/#new-topic-0" class="button-primary">' . __( 'Yeah, you deserve it!', 'responsive-menu-pro' ) . '</a>';
-		echo '&nbsp;<a href="' . esc_url( $already_url ) . '" class="button-secondary">' . __( 'I already did!', 'responsive-menu-pro' ) . '</a>';
-  		echo '&nbsp;<a href="' . esc_url( $nope_url ) . '" class="button-secondary">' . __( 'No, this plugin is not good enough', 'responsive-menu-pro' ) . '</a>';
+		echo sprintf('<a target="%s" href="%s" class="%s">%s</a> ',
+				esc_attr( "_blank" ),
+				esc_url( "https://wordpress.org/support/plugin/responsive-menu/reviews/#new-topic-0"),
+				esc_attr( "button-primary" ),
+				__( 'Yeah, you deserve it!', 'responsive-menu-pro' )
+		);
+		echo sprintf('<a href="%s" class="%s">%s</a> ',
+				$already_url,
+				esc_attr( "button-secondary" ),
+				__( 'I already did!', 'responsive-menu-pro' )
+		);
+		echo sprintf('<a href="%s" class="%s">%s</a> ',
+				$nope_url,
+				esc_attr( "button-secondary" ),
+				__( 'No, this plugin is not good enough', 'responsive-menu-pro' )
+		);
 		echo "<br /><br /></div>";
 	}
 
