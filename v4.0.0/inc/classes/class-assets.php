@@ -92,7 +92,6 @@ class Assets {
 	public function admin_enqueue_scripts( $hook_suffix ) {
 
 
-
 		$post_type = get_post_type();
 
 		if ( empty( $post_type ) && ! empty( $_GET['post_type'] ) ) {
@@ -175,6 +174,26 @@ class Assets {
 				'THEMES_FOLDER_URL' => wp_upload_dir()['baseurl'] . '/rmp-themes/',
 			)
 		);
+
+        if ($hook_suffix == 'rmp_menu_page_whats-next') {
+
+			wp_localize_script(
+				'rmp_admin_scripts',
+				'ps_config',
+				array (
+					'productId'  => "9128555b-ea35-4af1-852b-b7a68679c4a4"
+				)
+			);
+
+            wp_enqueue_script(
+                'rmp_menu_productstash_embed',
+                RMP_PLUGIN_URL_V4 . '/assets/admin/js/productstash-embed.js',
+                array('jquery'),
+                RMP_PLUGIN_VERSION
+            );
+
+        }
+
 
 		wp_enqueue_script( 'rmp_admin_scripts' );
 
