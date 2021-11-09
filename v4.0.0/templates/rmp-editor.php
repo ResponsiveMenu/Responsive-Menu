@@ -2558,7 +2558,7 @@ $options = $option_manager->get_options( $menu_id );
 			<main id="rmp-editor-preview" class="rmp-editor-preview-main">
 				<div id="rmp-preview-wrapper" class="rmp-preview-wrapper">
 					<div id="rmp-preview-iframe-loader">
-						<img src="https://demo.responsive.menu/wp-content/themes/demo-main/static/imgs/giphy.webp" alt="loading" />
+						<img src="<?php echo RMP_PLUGIN_URL_V4; ?>/assets/images/giphy.webp" alt="loading" />
 					</div>
 					<iframe id="rmp-preview-iframe" src="<?php echo esc_url( get_site_url() . '?rmp_preview_mode=true' );  ?>"></iframe>
 				</div>
