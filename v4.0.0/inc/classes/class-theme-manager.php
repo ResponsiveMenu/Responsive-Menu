@@ -456,8 +456,8 @@ class Theme_Manager {
 		}
 
 		$options = array();
-		$form_data = intval( $_POST['form'] );
-		parse_str( $_POST['form'], $options );
+		$form_data = $_POST['form'];
+		parse_str( $form_data, $options );
 		$options = $options['menu'];
 
 		$rmp_themes = get_option( self::$theme_option );

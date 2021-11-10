@@ -24,7 +24,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Control_Manager {
 
 	use Singleton;
-
+    protected $pro_pricing_url           = 'https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile';
+    protected $rmp_input_control_wrapper = 'rmp-input-control-wrapper';
+    protected $_blank                    = '_blank';
 	/**
 	 * Construct method.
 	 */
@@ -207,7 +209,7 @@ class Control_Manager {
             $group_classes = $param['group_classes'];
         }
 
-        $html  = sprintf('<div class="rmp-input-control-wrapper full-size %s">', esc_attr( $group_classes ) );
+        $html  = sprintf('<div class=".'$rmp_input_control_wrapper'. full-size %s">', esc_attr( $group_classes ) );
 
         //Check tooltip text is added or not.
         $tool_tip = '';
@@ -390,7 +392,7 @@ class Control_Manager {
             $group_classes = $param['group_classes'];
         }
 
-        $html  = sprintf('<div class="rmp-input-control-wrapper %s">', esc_attr( $group_classes ) );
+        $html  = sprintf('<div class=".'$rmp_input_control_wrapper'. %s">', esc_attr( $group_classes ) );
 
         //Check tooltip text is added or not.
         $tool_tip = '';
@@ -466,7 +468,7 @@ class Control_Manager {
             $group_classes = $param['group_classes'];
         }
 
-        $html  = sprintf( '<div class="rmp-input-control-wrapper %s">', esc_attr( $group_classes ) );
+        $html  = sprintf( '<div class=".'$rmp_input_control_wrapper'. %s">', esc_attr( $group_classes ) );
 
         $html .= '<div class="rmp-input-control">';
 
@@ -525,7 +527,7 @@ class Control_Manager {
             $group_classes = $param['group_classes'];
         }
 
-        $html  = sprintf('<div class="rmp-input-control-wrapper rmp-input-control-switcher %s">' , esc_attr( $group_classes ) );
+        $html  = sprintf('<div class=".'$rmp_input_control_wrapper'. rmp-input-control-switcher %s">' , esc_attr( $group_classes ) );
 
         //Check tooltip text is added or not.
         $tool_tip = '';
@@ -629,7 +631,7 @@ class Control_Manager {
             $group_classes = $param['group_classes'];
         }
 
-        $html  = sprintf('<div class="rmp-input-control-wrapper %s">' , esc_attr( $group_classes ) );
+        $html  = sprintf('<div class=".'$rmp_input_control_wrapper'. %s">' , esc_attr( $group_classes ) );
 
         //Check tooltip text is added or not.
         $tool_tip = '';
@@ -644,9 +646,9 @@ class Control_Manager {
             $is_disabled = 'disabled';
             $feature_label = sprintf(
                 '<a target="%s" class="%s" href="%s" > %s </a>',
-                esc_attr('_blank'),
+                esc_attr($_blank),
                 esc_attr('upgrade-tooltip'),
-                esc_url('https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile'),
+                esc_url($pro_pricing_url),
                 $param['feature_type']
             );
         }
@@ -800,7 +802,7 @@ class Control_Manager {
         }
 
         if(!empty ($param['label']) && !empty ($param['target'])){
-            $html = sprintf( '<div class="rmp-quick-edit-link rmp-input-control-wrapper" aria-owns="%s" accordion-id="%s" sub-accordion-id="%s" sub-tab-id="%s"><a href="javascript:void(0)">%s <i class="fas fa-share"></i></a></div>',
+            $html = sprintf( '<div class="rmp-quick-edit-link .'$rmp_input_control_wrapper'." aria-owns="%s" accordion-id="%s" sub-accordion-id="%s" sub-tab-id="%s"><a href="javascript:void(0)">%s <i class="fas fa-share"></i></a></div>',
                 esc_attr( $param["target"] ),
                 esc_attr( $accordion_id ),
                 esc_attr( $sub_accordion_id ),
@@ -831,7 +833,7 @@ class Control_Manager {
             $group_classes = $param['group_classes'];
         }
 
-        $html  = sprintf('<div class="rmp-input-control-wrapper %s">' , esc_attr( $group_classes ) );
+        $html  = sprintf('<div class=".'$rmp_input_control_wrapper'. %s">' , esc_attr( $group_classes ) );
 
         //Check tooltip text is added or not.
         $tool_tip = '';
@@ -846,9 +848,9 @@ class Control_Manager {
             $is_disabled = 'disabled';
             $feature_label = sprintf(
                 '<a target="%s" class="%s" href="%s" > %s </a>',
-                esc_attr('_blank'),
+                esc_attr($_blank),
                 esc_attr('upgrade-tooltip'),
-                esc_attr('https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile'),
+                esc_attr($pro_pricing_url),
                 $param['feature_type']
             );
         }
@@ -952,7 +954,7 @@ class Control_Manager {
             $group_classes = $param['group_classes'];
         }
 
-        $html  = sprintf('<div class="rmp-input-control-wrapper %s">' , esc_attr( $group_classes ) );
+        $html  = sprintf('<div class=".'$rmp_input_control_wrapper'. %s">' , esc_attr( $group_classes ) );
 
         //Check tooltip text is added or not.
         $tool_tip = '';
@@ -1047,7 +1049,7 @@ class Control_Manager {
             $group_classes = $param['group_classes'];
         }
 
-        $html  = sprintf('<div class="rmp-input-control-wrapper %s">' , esc_attr( $group_classes ) );
+        $html  = sprintf('<div class=".'$rmp_input_control_wrapper'. %s">' , esc_attr( $group_classes ) );
 
         //Check tooltip text is added or not.
         $tool_tip = '';
@@ -1198,7 +1200,7 @@ class Control_Manager {
         $device_options = sprintf( '<div class="device-icons-group">%s %s %s</div>', $mobile, $tablet, $desktop );
 
 		return sprintf(
-            '<div class="rmp-input-control-wrapper full-size">
+            '<div class=".'$rmp_input_control_wrapper'. full-size">
                 <label class="rmp-input-control-label">
                     %s
                     <a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > PRO </a>

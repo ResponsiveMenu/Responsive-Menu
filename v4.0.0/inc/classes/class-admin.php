@@ -81,8 +81,8 @@ class Admin {
 		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
 
 		$options = array();
-		$form_data = intval( $_POST['form'] );
-		parse_str( $_POST['form'], $options );
+		$form_data = $_POST['form'];
+		parse_str( $form_data, $options );
 
 		foreach( $options as $key => $value ) {
 			$options[$key] = sanitize_text_field( $value );
