@@ -24,12 +24,12 @@ if(is_admin()):
                 $controller = get_responsive_menu_service('admin_controller');
 
                 if(isset($_POST['responsive-menu-current-page']))
-                    update_option('responsive_menu_current_page', $_POST['responsive-menu-current-page']);
+                    update_option('responsive_menu_current_page', intval( $_POST['responsive-menu-current-page'] ) );
 
                 if(isset($_POST['responsive-menu-submit'])):
                     update_option('hide_pro_options', isset($_POST['hide-pro-options']) ? 'yes' : 'no');
                     $valid_nonce = wp_verify_nonce($_POST['responsive-menu-nonce'], 'update');
-                    echo $controller->update($valid_nonce, wp_unslash($_POST['menu']));
+                    echo $controller->update($valid_nonce, intval( wp_unslash($_POST['menu']) ) );
 
                 elseif(isset($_POST['responsive-menu-reset'])):
                     $valid_nonce = wp_verify_nonce( $_POST['responsive-menu-nonce'], 'update' );
@@ -51,7 +51,7 @@ if(is_admin()):
                 elseif(isset($_POST['responsive-menu-import-theme'])):
                     $valid_nonce = wp_verify_nonce( $_POST['responsive-menu-nonce'], 'update' );
 
-                    $file = $_FILES['responsive-menu-import-theme-file'];
+                    $file =  $_FILES['responsive-menu-import-theme-file'];
                     $theme = isset($file['tmp_name']) && $file['tmp_name'] ? $file['tmp_name'] : null;
 
                     echo $controller->import_theme( $theme, $valid_nonce );

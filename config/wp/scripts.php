@@ -36,7 +36,7 @@ if(isset($_GET['page']) && $_GET['page'] == 'responsive-menu'):
 
         $options = get_responsive_menu_service('option_manager')->all();
         if(isset($options['admin_theme']) || isset($_POST['menu']['admin_theme'])):
-            $theme = isset($_POST['menu']['admin_theme']) ? $_POST['menu']['admin_theme'] : $options['admin_theme'];
+            $theme = isset($_POST['menu']['admin_theme']) ? intval( $_POST['menu']['admin_theme'] ) : intval( $options['admin_theme'] );
             wp_register_style('responsive-menu-admin-css-theme' . $theme, plugin_dir_url(dirname(dirname(__FILE__))) . 'public/css/admin/themes/' . $theme . '.css', false, null);
             wp_enqueue_style('responsive-menu-admin-css-theme' . $theme);
         endif;

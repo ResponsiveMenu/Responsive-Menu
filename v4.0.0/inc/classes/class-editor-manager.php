@@ -2,10 +2,10 @@
 /**
  * Editor_Manager class.
  * This class is responsible for editing the menu functionality.
- * 
+ *
  * @version 4.0.0
  * @author  Expresstech System
- * 
+ *
  * @package responsive-menu-pro
  */
 
@@ -37,7 +37,7 @@ class Editor_Manager {
 	 * To setup action/filter.
 	 *
 	 * @version 4.0.0
-	 * 
+	 *
 	 * @return void
 	 */
 	protected function setup_hooks() {
@@ -54,9 +54,9 @@ class Editor_Manager {
 
 	/**
 	 * This function save the settings and meta of mega menu item.
-	 * 
+	 *
 	 * @version 4.0.0
-	 * 
+	 *
 	 * @return json
 	 */
 	public function rmp_save_mega_menu_item() {
@@ -70,7 +70,7 @@ class Editor_Manager {
 
         $menu_id = sanitize_text_field( $_POST['menu_id'] );
 		if ( empty( $menu_id ) ) {
-            wp_send_json_error( 
+            wp_send_json_error(
                 [ 'message' => __( 'Menu ID missing !', 'responsive-menu-pro' )]);
 		}
 
@@ -83,16 +83,16 @@ class Editor_Manager {
 		// Don't forget to sanitize the data using recursive.
 		if ( is_array( $_POST['item_meta'] ) ) {
 
-			$item_meta = $_POST['item_meta'];
+			$item_meta = intval( $_POST['item_meta'] );
 		}
 
 		update_post_meta( $menu_id, '_rmp_mega_menu_'. $item_id, $item_meta );
 
 		/**
 		 * Fires when mega menu item settings update.
-		 * 
-		 * @version 4.0.0 
-		 * 
+		 *
+		 * @version 4.0.0
+		 *
 		 * @param int   $menu_id    Menu Id.
 		 * @param int   $item_id    Item ID for which mega menu settings are updated
 		 * @param array $item_meta  List of mega menu settings of an item.
@@ -105,9 +105,9 @@ class Editor_Manager {
 
 	/**
 	 * Function to update the enable option of mega menu item.
-	 * 
+	 *
 	 * @version 4.0.0
-	 * 
+	 *
 	 * @return json
 	 */
 	public function enable_mega_menu_item() {
@@ -128,7 +128,7 @@ class Editor_Manager {
 			wp_send_json_success( [ 'message' => __( 'Success', 'responsive-menu-pro' ) ] );
 		}
 
-		wp_send_json_error( 
+		wp_send_json_error(
 			[ 'message' => __( 'Menu not found', 'responsive-menu-pro' ) ]
 		);
 
@@ -138,7 +138,7 @@ class Editor_Manager {
 	 * This function saved the menu options when click update in the menu editor.
 	 *
 	 * @since	4.0.0
-	 * 
+	 *
 	 * @return json
 	 */
 	public function rmp_save_options() {
@@ -146,6 +146,7 @@ class Editor_Manager {
 		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
 
 		$options = [];
+		$form_data = intval( $_POST['form'] );
 		parse_str( $_POST['form'], $options );
 
 		$menu_id = sanitize_text_field( $options['menu_id'] );
@@ -162,7 +163,7 @@ class Editor_Manager {
 
 		/**
 		 * Fires when saved the options.
-		 * 
+		 *
 		 * @version 4.0.0
 		 * @param int $menu_id Menu ID.
 		 */

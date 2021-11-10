@@ -81,6 +81,7 @@ class Admin {
 		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
 
 		$options = array();
+		$form_data = intval( $_POST['form'] );
 		parse_str( $_POST['form'], $options );
 
 		foreach( $options as $key => $value ) {
@@ -593,7 +594,7 @@ class Admin {
 		$import_options = json_decode( $file_contents, true );
 
 		$option_manager = Option_Manager::get_instance();
-		$exist_option         = $option_manager->get_options( $menu_id );
+		$exist_option   = $option_manager->get_options( $menu_id );
 
 		// Some required options replced in imported settings with existing menu settings.
 		$import_options['menu_name'] = $exist_option['menu_name'];

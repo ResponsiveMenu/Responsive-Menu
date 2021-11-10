@@ -1,10 +1,10 @@
 <?php
 /**
  * This file contain the Theme_Manager class and it's functionalities for menu.
- * 
+ *
  * @version 4.0.0
  * @author  Expresstech System
- * 
+ *
  * @package responsive-menu-pro
  */
 
@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Class Theme_Manager
  * This class is handling the menu themes and its functionalities.
- * 
+ *
  * @since 4.0.0
  */
 class Theme_Manager {
@@ -45,24 +45,24 @@ class Theme_Manager {
 	 * To setup action/filter.
 	 *
 	 * @since 4.0.0
-	 * 
+	 *
 	 * @return void
 	 */
 	protected function setup_hooks() {
 		add_action('wp_ajax_rmp_save_theme', array( $this, 'rmp_save_theme' ) );
 		add_action('admin_post_rmp_upload_theme_file', array( $this, 'rmp_upload_theme' ) );
-		add_action( 'wp_ajax_rmp_menu_theme_upload', [ $this, 'rmp_theme_upload_from_wizard' ] );		
+		add_action( 'wp_ajax_rmp_menu_theme_upload', [ $this, 'rmp_theme_upload_from_wizard' ] );
 		add_action('wp_ajax_rmp_theme_delete', array( $this, 'rmp_theme_delete' ) );
 		add_action('wp_ajax_rmp_theme_apply', array( $this, 'rmp_theme_apply' ) );
 		add_action('wp_ajax_rmp_call_theme_api', array( $this, 'update_theme_api_cache' ) );
 	}
 
-		
+
 	/**
 	 * Function to get the list of pro theme from store.
-	 *  
+	 *
      * @since 4.0.0
-	 * 
+	 *
      * @return array $pro_themes
      */
 	public function get_themes_by_api() {
@@ -107,7 +107,7 @@ class Theme_Manager {
 	 * Function to apply the theme in the menu.
 	 *
      * @since 4.0.0
-	 * 
+	 *
      * @return json
      */
 	public function rmp_theme_apply() {
@@ -138,7 +138,7 @@ class Theme_Manager {
 
 		/**
 		 * Fires when menu theme applied and options are saved.
-		 * 
+		 *
 		 * @since 4.0.0
 		 * @param int $menu_id
 		 */
@@ -168,7 +168,7 @@ class Theme_Manager {
 		$options = [];
 		$min_version = '4.0.0';
 
-		foreach( $theme_dirs as $theme_dir ) {			
+		foreach( $theme_dirs as $theme_dir ) {
 			$config_file =  $theme_dir . '/config.json';
 			if ( file_exists( $config_file ) ) {
 				$config = json_decode( file_get_contents( $config_file ), true);
@@ -195,9 +195,9 @@ class Theme_Manager {
 
 		/**
 		 * Filters the theme setting options.
-		 * 
+		 *
 		 * @since 4.0.1
-		 * 
+		 *
 		 * @param array  $option
 		 * @param string $theme_name
 		 */
@@ -208,10 +208,10 @@ class Theme_Manager {
 
 	/**
 	 * Function to delete the theme.
-	 * 
+	 *
 	 * @since 4.0.0
 	 * @since 4.1.0 Added condition for active theme.
-	 * 
+	 *
 	 * @return json
 	 */
 	public function rmp_theme_delete() {
@@ -241,10 +241,10 @@ class Theme_Manager {
 
 	/**
 	 * Function to return the theme dir path.
-	 * 
+	 *
 	 * @since 4.0.0
 	 * @since 4.1.0 Added the plugin bundle theme.
-	 * 
+	 *
 	 * @return string
 	 */
 	public function get_theme_dir( $theme_name ) {
@@ -256,7 +256,7 @@ class Theme_Manager {
 		//Themes from plugin bundle.
 		$theme_dirs = array_merge( glob( RMP_PLUGIN_PATH_V4 . '/themes/*' , GLOB_ONLYDIR ), $theme_dirs );
 
-		foreach( $theme_dirs as $theme_dir ) {			
+		foreach( $theme_dirs as $theme_dir ) {
 			$config_file =  $theme_dir . '/config.json';
 			if ( file_exists( $config_file ) ) {
 				$config = json_decode( file_get_contents( $config_file ), true);
@@ -287,28 +287,28 @@ class Theme_Manager {
 			return;
 		}
 
-		$this->delete_files( $theme_dir );	
+		$this->delete_files( $theme_dir );
 	}
 
 	/**
 	 * Function to delete the theme files.
-	 * 
+	 *
 	 * @since 4.0.0
-	 * 
-	 * @return void 
+	 *
+	 * @return void
 	 */
-	public function delete_files( $dir ) { 
-		foreach( glob($dir . '/*') as $file) { 
-		  if( is_dir($file)) delete_files($file); else unlink($file); 
+	public function delete_files( $dir ) {
+		foreach( glob($dir . '/*') as $file) {
+		  if( is_dir($file)) delete_files($file); else unlink($file);
 		}
-		rmdir($dir); 
+		rmdir($dir);
 	}
 
 	/**
 	 * Function to delete the saved template.
-	 * 
+	 *
 	 * @since 4.0.0
-	 * 
+	 *
 	 * @return boolean
 	 */
 	public function delete_template( $theme_name ) {
@@ -366,7 +366,7 @@ class Theme_Manager {
 
 	/**
 	 * Returns the theme list with meta info.
-	 * 
+	 *
 	 * @since 4.0.0
 	 * @since 4.1.0 Added bundle themes.
 	 *
@@ -375,7 +375,7 @@ class Theme_Manager {
 	public function get_themes_from_uploads() {
 
 		//Get theme from uploads directory.
-		$upload_dir = wp_upload_dir(); 
+		$upload_dir = wp_upload_dir();
 		$theme_url  = $upload_dir['baseurl'] . '/rmp-menu/themes';
 		$theme_dir_path = $upload_dir['basedir'] . '/rmp-menu/themes';
         $theme_dirs = glob( $theme_dir_path . '/*' , GLOB_ONLYDIR );
@@ -451,13 +451,14 @@ class Theme_Manager {
 
         $menu_id = sanitize_text_field( $_POST['menu_id'] );
 		if ( empty( $menu_id ) ) {
-            wp_send_json_error( 
+            wp_send_json_error(
                 [ 'message' => __( 'Menu ID missing !', 'responsive-menu-pro' )]);
 		}
 
 		$options = array();
+		$form_data = intval( $_POST['form'] );
 		parse_str( $_POST['form'], $options );
-		$options = $options['menu']; 
+		$options = $options['menu'];
 
 		$rmp_themes = get_option( self::$theme_option );
 		if ( empty( $rmp_themes ) || ! is_array( $rmp_themes ) ) {
@@ -474,13 +475,13 @@ class Theme_Manager {
 	    wp_send_json_success( ['themes' => $data , 'message' => $theme_name . ' is saved' ] );
 
 		exit();
-	
-    
+
+
 	}
 
 
 	public function saved_theme_list() {
-		
+
 		$rmp_themes = get_option( self::$theme_option );
 
 		if ( empty( $rmp_themes ) ) {
@@ -515,10 +516,10 @@ class Theme_Manager {
 
 	/**
 	 * Function to return the list of saved template themes.
-	 * 
+	 *
 	 * @since 4.0.0
 	 * @since Updated the funtion to add the condition
-	 * 
+	 *
 	 * @return HTML|string
 	 */
 	public function rmp_saves_theme_template_list( $in_customizer = false ) {
@@ -680,7 +681,7 @@ class Theme_Manager {
 
 		if ( ! empty( $themes ) && is_array( $themes ) ) {
 			foreach( $themes as $theme ) {
-				$all_themes[] = [ 'name' => $theme , 'type' => 'Template' ];		
+				$all_themes[] = [ 'name' => $theme , 'type' => 'Template' ];
 			}
 		}
 
@@ -688,7 +689,7 @@ class Theme_Manager {
 		$themes = $this->get_themes_from_uploads();
 		if ( ! empty( $themes ) && is_array( $themes ) ) {
 			foreach( $themes as $theme ) {
-				$all_themes[] = [ 'name' => $theme['theme_name'] , 'type' => 'Downloaded', 'preview_url' => $theme['theme_preview_url'] ];		
+				$all_themes[] = [ 'name' => $theme['theme_name'] , 'type' => 'Downloaded', 'preview_url' => $theme['theme_preview_url'] ];
 			}
 		}
 
@@ -697,15 +698,15 @@ class Theme_Manager {
 
 	/**
 	 * Returns the thumbnail of theme.
-	 * 
+	 *
 	 * @since 4.0.0
-	 * 
+	 *
 	 * @return string|url|null
 	 */
 	public function get_theme_preview_url( $theme_name ) {
 
 		//Get theme from uploads directory.
-		$upload_dir = wp_upload_dir(); 
+		$upload_dir = wp_upload_dir();
 		$theme_url  = $upload_dir['baseurl'] . '/rmp-menu/themes';
 		$theme_dir_path = $upload_dir['basedir'] . '/rmp-menu/themes';
         $theme_dirs = glob( $theme_dir_path . '/*' , GLOB_ONLYDIR );
@@ -836,7 +837,7 @@ class Theme_Manager {
 		}
 
 		$option_manager = Option_Manager::get_instance();
-		$menu_ids       = get_all_rmp_menu_ids(); 
+		$menu_ids       = get_all_rmp_menu_ids();
 
 		foreach ( $menu_ids as $menu_id ) {
 			$options   = $option_manager->get_options( $menu_id );
@@ -890,7 +891,7 @@ class Theme_Manager {
 		$downloaded_themes = $this->get_themes_from_uploads();
 		foreach( $downloaded_themes as $theme ) {
 			$id = 'rmp-theme-' . preg_replace('/\s+/', '', $theme['theme_name'] );
-			
+
 			$demo_link = '';
 			if ( ! empty( $theme['demo_link' ] ) ) {
 				if ( $in_customizer ) {
@@ -961,9 +962,9 @@ class Theme_Manager {
 
 	/**
 	 * Function to upload the theme by ajax.
-	 *  
+	 *
      * @since 4.1.0
-	 * 
+	 *
      * @return json
      */
 	public function rmp_theme_upload_from_wizard() {
@@ -973,7 +974,7 @@ class Theme_Manager {
 
 		//Check if files are empty then return error message.
 		if ( empty( $_FILES['file']['tmp_name'] ) ) {
-			wp_send_json_error( 
+			wp_send_json_error(
                 [ 'message' => __( 'File not found !', 'responsive-menu-pro' )]
 			);
 		}
@@ -985,7 +986,7 @@ class Theme_Manager {
 		$unzip_file = unzip_file( $_FILES['file']['tmp_name'] , $upload_dir );
 
 		if ( is_wp_error( $unzip_file ) ) {
-			return wp_send_json_error( 
+			return wp_send_json_error(
                 [ 'message' => $unzip_file->get_error_message() ]
 			);
 		}
@@ -1027,7 +1028,7 @@ class Theme_Manager {
 	 * @return bool
      */
 	public function is_customizer() {
-	
+
 		$is_customizer_request = false;
 		if ( ! empty( $_SERVER[ 'HTTP_REFERER' ] ) ) {
 			parse_str( parse_url( $_SERVER[ 'HTTP_REFERER' ] )['query'], $params );

@@ -68,6 +68,9 @@ class Assets {
 	 * @since 4.0.0
 	 */
 	function admin_custom_style_inline() {
+		wp_register_style( 'rmp_admin_inline', false );
+		wp_enqueue_style( 'rmp_admin_inline' );
+
 		$css_data = '
 			#adminmenu .menu-icon-rmp_menu .wp-menu-image img{
 				height: 18px;
@@ -78,7 +81,7 @@ class Assets {
 				font-weight: 600;
 			}
 		';
-		wp_add_inline_style( 'rmp_admin_main_styles', $css_data );
+		wp_add_inline_style( 'rmp_admin_inline', $css_data );
 
 	}
 
@@ -95,7 +98,7 @@ class Assets {
 		$post_type = get_post_type();
 
 		if ( empty( $post_type ) && ! empty( $_GET['post_type'] ) ) {
-			$post_type = $_GET['post_type'];
+			$post_type = sanitize_text_field( $_GET['post_type'] );
 		}
 
 		if ( 'rmp_menu' !== $post_type ) {
@@ -187,7 +190,7 @@ class Assets {
 
             wp_enqueue_script(
                 'rmp_menu_productstash_embed',
-                RMP_PLUGIN_URL_V4 . '/assets/admin/js/productstash-embed.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/embed-js/5.0.4/embed.min.js',
                 array('jquery'),
                 RMP_PLUGIN_VERSION
             );

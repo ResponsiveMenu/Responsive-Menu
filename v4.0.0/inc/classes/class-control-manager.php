@@ -85,7 +85,7 @@ class Control_Manager {
             $group_classes = $param['group_classes'];
         }
 
-        $html  = sprintf('<div class="rmp-input-control-wrapper %s">', $group_classes );
+        $html  = sprintf('<div class="'.esc_attr( "rmp-input-control-wrapper").' %s">', esc_attr( $group_classes ) );
 
         //Check tooltip text is added or not.
         $tool_tip = '';
@@ -99,8 +99,8 @@ class Control_Manager {
         if( ! empty( $param['feature_type'] ) ) {
             $is_disabled = 'disabled';
             $feature_label = sprintf(
-                '<a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > %s </a>',
-                $param['feature_type']
+                '<a target="'.esc_attr( "_blank").'" class="'.esc_attr( "upgrade-tooltip").'" href="'.esc_url( "https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile").'" > %s </a>',
+                esc_html( $param['feature_type'] )
             );
         }
 
@@ -176,12 +176,7 @@ class Control_Manager {
 		 */
         $html = apply_filters( 'rmp_text_control_html', $html, $param );
 
-        // Check if echo parameter is empty or false.
-        if  ( empty( $param['echo'] ) ) {
-            return $html;
-		}
-
-		echo $html;
+        return $html;
 	}
 
 	/**
@@ -212,7 +207,7 @@ class Control_Manager {
             $group_classes = $param['group_classes'];
         }
 
-        $html  = sprintf('<div class="rmp-input-control-wrapper full-size %s">', $group_classes );
+        $html  = sprintf('<div class="rmp-input-control-wrapper full-size %s">', esc_attr( $group_classes ) );
 
         //Check tooltip text is added or not.
         $tool_tip = '';
@@ -294,12 +289,7 @@ class Control_Manager {
          $html = apply_filters( 'rmp_text_control_html', $html, $param );
 
 
-        // Check if echo parameter is empty or false.
-        if  ( empty( $param['echo'] ) ) {
-            return $html;
-		}
-
-		echo $html;
+        return $html;
 
     }
 
@@ -400,7 +390,7 @@ class Control_Manager {
             $group_classes = $param['group_classes'];
         }
 
-        $html  = sprintf('<div class="rmp-input-control-wrapper %s">', $group_classes );
+        $html  = sprintf('<div class="rmp-input-control-wrapper %s">', esc_attr( $group_classes ) );
 
         //Check tooltip text is added or not.
         $tool_tip = '';
@@ -447,12 +437,7 @@ class Control_Manager {
 		 */
         $html = apply_filters( 'rmp_color_control_html', $html, $param );
 
-        // Check if echo parameter is empty or false.
-        if  ( empty( $param['echo'] ) ) {
-            return $html;
-		}
-
-		echo $html;
+        return $html;
     }
 
 	/**
@@ -481,7 +466,7 @@ class Control_Manager {
             $group_classes = $param['group_classes'];
         }
 
-        $html  = sprintf( '<div class="rmp-input-control-wrapper %s">', $group_classes );
+        $html  = sprintf( '<div class="rmp-input-control-wrapper %s">', esc_attr( $group_classes ) );
 
         $html .= '<div class="rmp-input-control">';
 
@@ -508,12 +493,7 @@ class Control_Manager {
 		 */
         $html = apply_filters( 'rmp_button_control_html', $html, $param );
 
-        // Check if echo parameter is empty or false.
-        if  ( empty( $param['echo'] ) ) {
-            return $html;
-		}
-
-		echo $html;
+        return $html;
 
     }
 
@@ -545,7 +525,7 @@ class Control_Manager {
             $group_classes = $param['group_classes'];
         }
 
-        $html  = sprintf('<div class="rmp-input-control-wrapper rmp-input-control-switcher %s">', $group_classes );
+        $html  = sprintf('<div class="rmp-input-control-wrapper rmp-input-control-switcher %s">' , esc_attr( $group_classes ) );
 
         //Check tooltip text is added or not.
         $tool_tip = '';
@@ -618,12 +598,7 @@ class Control_Manager {
 		 */
         $html = apply_filters( 'rmp_switcher_control_html', $html, $param );
 
-        // Check if echo parameter is empty or false.
-        if  ( empty( $param['echo'] ) ) {
-            return $html;
-		}
-
-		echo $html;
+        return $html;
     }
 
 	/**
@@ -654,7 +629,7 @@ class Control_Manager {
             $group_classes = $param['group_classes'];
         }
 
-        $html  = sprintf('<div class="rmp-input-control-wrapper %s">', $group_classes );
+        $html  = sprintf('<div class="rmp-input-control-wrapper %s">' , esc_attr( $group_classes ) );
 
         //Check tooltip text is added or not.
         $tool_tip = '';
@@ -668,7 +643,10 @@ class Control_Manager {
         if( ! empty( $param['feature_type'] ) ) {
             $is_disabled = 'disabled';
             $feature_label = sprintf(
-                '<a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > %s </a>',
+                '<a target="%s" class="%s" href="%s" > %s </a>',
+                esc_attr('_blank'),
+                esc_attr('upgrade-tooltip'),
+                esc_url('https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile'),
                 $param['feature_type']
             );
         }
@@ -757,12 +735,7 @@ class Control_Manager {
 		 */
         $html = apply_filters( 'rmp_select_control_html', $html, $param );
 
-        // Check if echo parameter is empty or false.
-        if  ( empty( $param['echo'] ) ) {
-            return $html;
-		}
-
-		echo $html;
+        return $html;
     }
 
 	/**
@@ -858,7 +831,7 @@ class Control_Manager {
             $group_classes = $param['group_classes'];
         }
 
-        $html  = sprintf('<div class="rmp-input-control-wrapper %s">', $group_classes );
+        $html  = sprintf('<div class="rmp-input-control-wrapper %s">' , esc_attr( $group_classes ) );
 
         //Check tooltip text is added or not.
         $tool_tip = '';
@@ -872,7 +845,10 @@ class Control_Manager {
         if( ! empty( $param['feature_type'] ) ) {
             $is_disabled = 'disabled';
             $feature_label = sprintf(
-                '<a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > %s </a>',
+                '<a target="%s" class="%s" href="%s" > %s </a>',
+                esc_attr('_blank'),
+                esc_attr('upgrade-tooltip'),
+                esc_attr('https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile'),
                 $param['feature_type']
             );
         }
@@ -953,12 +929,7 @@ class Control_Manager {
 		 */
         $html = apply_filters( 'rmp_icon_picker_control_html', $html, $param);
 
-        // Check if echo parameter is empty or false.
-        if  ( empty( $param['echo'] ) ) {
-            return $html;
-		}
-
-		echo $html;
+        return $html;
 	}
 
 	/**
@@ -981,7 +952,7 @@ class Control_Manager {
             $group_classes = $param['group_classes'];
         }
 
-        $html  = sprintf('<div class="rmp-input-control-wrapper %s">', $group_classes );
+        $html  = sprintf('<div class="rmp-input-control-wrapper %s">' , esc_attr( $group_classes ) );
 
         //Check tooltip text is added or not.
         $tool_tip = '';
@@ -1053,12 +1024,7 @@ class Control_Manager {
 		 */
         $html = apply_filters( 'rmp_add_image_control_html', $html, $param );
 
-        // Check if echo parameter is empty or false.
-        if  ( empty( $param['echo'] ) ) {
-            return $html;
-		}
-
-		echo $html;
+        return $html;
     }
 
 	/**
@@ -1081,7 +1047,7 @@ class Control_Manager {
             $group_classes = $param['group_classes'];
         }
 
-        $html  = sprintf('<div class="rmp-input-control-wrapper %s">', $group_classes );
+        $html  = sprintf('<div class="rmp-input-control-wrapper %s">' , esc_attr( $group_classes ) );
 
         //Check tooltip text is added or not.
         $tool_tip = '';
@@ -1156,12 +1122,7 @@ class Control_Manager {
 		 */
 		$html = apply_filters( 'rmp_add_text_alignment_control_html', $html, $param );
 
-        // Check if echo parameter is empty or false.
-        if  ( empty( $param['echo'] ) ) {
-            return $html;
-		}
-
-		echo $html;
+        return $html;
     }
 
     /**
