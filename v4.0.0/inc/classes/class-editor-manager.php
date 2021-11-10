@@ -146,8 +146,8 @@ class Editor_Manager {
 		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
 
 		$options = [];
-		$form_data = intval( $_POST['form'] );
-		parse_str( $_POST['form'], $options );
+		$form_data = $_POST['form'];
+		parse_str( $form_data, $options );
 
 		$menu_id = sanitize_text_field( $options['menu_id'] );
 		if ( empty( $menu_id ) ) {
