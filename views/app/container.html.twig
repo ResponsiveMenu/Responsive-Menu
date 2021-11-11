@@ -1,9 +1,0 @@
-<div id="responsive-menu-container" class="{{ options.animation_type }}-{{ options.menu_appear_from }}">
-    <div id="responsive-menu-wrapper" role="navigation" aria-label="{{ options.menu_to_use }}">
-        {% for key, selected in options.items_order|json_decode %}
-            {% if selected == 'on' %}
-                {% include 'app/%s.html.twig'|format(key|replace({' ': '-'})) %}
-            {% endif %}
-        {% endfor %}
-    </div>
-</div>

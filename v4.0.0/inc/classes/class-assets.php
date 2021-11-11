@@ -68,6 +68,9 @@ class Assets {
 	 * @since 4.0.0
 	 */
 	function admin_custom_style_inline() {
+		wp_register_style( 'rmp_admin_inline', false );
+		wp_enqueue_style( 'rmp_admin_inline' );
+
 		$css_data = '
 			#adminmenu .menu-icon-rmp_menu .wp-menu-image img{
 				height: 18px;
@@ -78,7 +81,7 @@ class Assets {
 				font-weight: 600;
 			}
 		';
-		wp_add_inline_style( 'rmp_admin_main_styles', $css_data );
+		wp_add_inline_style( 'rmp_admin_inline', $css_data );
 
 	}
 
@@ -92,11 +95,10 @@ class Assets {
 	public function admin_enqueue_scripts( $hook_suffix ) {
 
 
-
 		$post_type = get_post_type();
 
 		if ( empty( $post_type ) && ! empty( $_GET['post_type'] ) ) {
-			$post_type = $_GET['post_type'];
+			$post_type = sanitize_text_field( $_GET['post_type'] );
 		}
 
 		if ( 'rmp_menu' !== $post_type ) {
@@ -175,6 +177,26 @@ class Assets {
 				'THEMES_FOLDER_URL' => wp_upload_dir()['baseurl'] . '/rmp-themes/',
 			)
 		);
+
+        if ($hook_suffix == 'rmp_menu_page_whats-next') {
+
+			wp_localize_script(
+				'rmp_admin_scripts',
+				'ps_config',
+				array (
+					'productId'  => "9128555b-ea35-4af1-852b-b7a68679c4a4"
+				)
+			);
+
+            wp_enqueue_script(
+                'rmp_menu_productstash_embed',
+                'https://cdnjs.cloudflare.com/ajax/libs/embed-js/5.0.4/embed.min.js',
+                array('jquery'),
+                RMP_PLUGIN_VERSION
+            );
+
+        }
+
 
 		wp_enqueue_script( 'rmp_admin_scripts' );
 
