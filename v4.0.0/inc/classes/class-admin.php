@@ -82,7 +82,7 @@ class Admin {
 
 		$options = array();
 		$form_data = $_POST['form'];
-		parse_str( $form_data, $options );
+		wp_parse_str( $form_data, $options );
 
 		foreach( $options as $key => $value ) {
 			$options[$key] = sanitize_text_field( $value );
@@ -579,9 +579,7 @@ class Admin {
 			wp_send_json_error( [ 'message' => __('Please add file !', 'responsive-menu-pro') ] );
 		}
 
-		$file_type = pathinfo( basename( $_FILES["file"]["name"] ), PATHINFO_EXTENSION );
-
-		if( empty( $_FILES['file']['tmp_name'] ) || 'json' != $file_type ) {
+		if( empty( $_FILES['file']['tmp_name'] ) || 'application/json' != $_FILES['file']['type'] ) {
 			wp_send_json_error( [ 'message' => __('Please add json file !', 'responsive-menu-pro') ] );
 		}
 

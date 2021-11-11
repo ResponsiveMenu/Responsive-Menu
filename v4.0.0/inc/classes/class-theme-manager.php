@@ -347,19 +347,24 @@ class Theme_Manager {
 			return;
 		}
 
-		status_header(200);
+		if( empty( $_FILES['file']['tmp_name'] ) || 'application/zip' != $_FILES['file']['type'] ) {
 
-		$theme = $_FILES['file']['tmp_name'];
+			$status = [ 'danger' => __('Please add zip file !', 'responsive-menu-pro') ];
 
-		WP_Filesystem();
-		$upload_dir = wp_upload_dir()['basedir'] . '/rmp-menu/themes/';
-		$unzip_file = unzip_file( $theme , $upload_dir );
+		}else{
 
-		if ( is_wp_error( $unzip_file ) ) {
-			$status = ['danger' => $unzip_file->get_error_message() ];
-		} else {
-			$status = [ 'success' => 'Theme Imported Successfully.'];
-		}
+            status_header(200);
+
+            WP_Filesystem();
+            $upload_dir = wp_upload_dir()['basedir'] . '/rmp-menu/themes/';
+            $unzip_file = unzip_file($_FILES['file']['tmp_name'], $upload_dir);
+
+            if (is_wp_error($unzip_file)) {
+                $status = ['danger' => $unzip_file->get_error_message() ];
+            } else {
+                $status = [ 'success' =>  __('Theme Imported Successfully.', 'responsive-menu-pro')];
+            }
+        }
 
 		return $status;
 	}
@@ -457,7 +462,7 @@ class Theme_Manager {
 
 		$options = array();
 		$form_data = $_POST['form'];
-		parse_str( $form_data, $options );
+		wp_parse_str( $form_data, $options );
 		$options = $options['menu'];
 
 		$rmp_themes = get_option( self::$theme_option );
@@ -1031,7 +1036,7 @@ class Theme_Manager {
 
 		$is_customizer_request = false;
 		if ( ! empty( $_SERVER[ 'HTTP_REFERER' ] ) ) {
-			parse_str( parse_url( $_SERVER[ 'HTTP_REFERER' ] )['query'], $params );
+			wp_parse_str( parse_url( $_SERVER[ 'HTTP_REFERER' ] )['query'], $params );
 			if ( ! empty( $params['action'] ) && ! empty( $params['editor'] ) ) {
 				$is_customizer_request = true;
 			}
