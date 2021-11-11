@@ -32,45 +32,10 @@ if ( ! empty( $global_settings['menu_adjust_for_wp_admin_bar'] ) )  {
 
         <div id="rmp-setting-tabs">
             <ul class="nav-tab-wrapper">
-                <?php if ( ! empty( get_option('responsive_menu_version') ) ) { ?>
-                <li><a class="nav-tab nav-tab-active" href="#rmp-settings-general"><?php esc_html_e('General', 'responsive-menu-pro'); ?></a></li>
-                <?php } ?>
-
                 <li><a class="nav-tab" href="#rmp-settings-advanced"><?php esc_html_e('Advance', 'responsive-menu-pro'); ?></a></li>
                 <li><a class="nav-tab" href="#rmp-settings-style"><?php esc_html_e('Style', 'responsive-menu-pro'); ?></a></li>
                 <li><a class="nav-tab" href="#rmp-settings-import-and-export"><?php esc_html_e('Import/Export', 'responsive-menu-pro'); ?></a></li>
             </ul>
-
-            <?php if ( ! empty( get_option('responsive_menu_version') ) ) { ?>
-
-            <div id="rmp-settings-general">
-                <table  class="form-table" role="presentation">
-                    <tbody>
-                        <tr>
-                            <th scope="row"> <?php esc_html_e( 'Rollback Version', 'responsive-menu-pro'); ?></th>
-                            <td>
-                                <fieldset>
-                                    <p>
-                                        <select class="" aria-describedby="Rollback Version" id="rmp-versions" name="rmp-versions">
-                                            <option value="4.0.0" selected> v4.x</option>
-                                            <option value="3.1.30"> v3.1.30</option>
-                                        </select>
-                                        <button id="rmp-rollback-version" class="button button-primary button-large"><?php esc_html_e( 'Rollback', 'responsive-menu-pro'); ?></button>
-                                    </p>
-                                    <p class="description"><?php esc_html_e( 'Experiencing an issue with latest version 4.0.0? Rollback to a previous version before the issue appeared.', 'responsive-menu-pro'); ?></p>
-                                </fieldset>
-                            </td>
-                        </tr>
-
-                    </tbody>
-                </table>
-                <button class="button button-primary button-large rmp-save-global-settings-button" type="button">
-                    <?php esc_html_e( 'Save Settings', 'responsive-menu-pro'); ?>
-                </button>
-                <span class="spinner"></span>
-            </div>
-
-            <?php } ?>
 
             <div id="rmp-settings-advanced" >
                 <table class="form-table" role="presentation">
