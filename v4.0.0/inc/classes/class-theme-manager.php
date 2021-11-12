@@ -347,26 +347,33 @@ class Theme_Manager {
 			return;
 		}
 
-		if( empty( $_FILES['file']['tmp_name'] ) || 'application/zip' != $_FILES['file']['type'] ) {
+		//Check if files are empty or not zip then return error message.
+		$file_name     = sanitize_file_name( $_FILES['file']['name'] );
+		$validate_file = wp_check_filetype( $file_name );
+		if ( empty( $_FILES['file']['tmp_name'] ) || !isset( $validate_file['type'] ) || $validate_file['type'] != 'application/zip' ) {
 
-			$status = [ 'danger' => __('Please add zip file !', 'responsive-menu-pro') ];
+			wp_send_json_error(
+                [ 'message' => __( 'Please add zip file !', 'responsive-menu-pro' )]
+			);
 
-		}else{
+		}
 
-            status_header(200);
+		status_header(200);
 
-            WP_Filesystem();
-            $upload_dir = wp_upload_dir()['basedir'] . '/rmp-menu/themes/';
-            $unzip_file = unzip_file($_FILES['file']['tmp_name'], $upload_dir);
+		WP_Filesystem();
+		$upload_dir = wp_upload_dir()['basedir'] . '/rmp-menu/themes/';
+		$unzip_file = unzip_file($_FILES['file']['tmp_name'], $upload_dir);
 
-            if (is_wp_error($unzip_file)) {
-                $status = ['danger' => $unzip_file->get_error_message() ];
-            } else {
-                $status = [ 'success' =>  __('Theme Imported Successfully.', 'responsive-menu-pro')];
-            }
-        }
+		if (is_wp_error($unzip_file)) {
+			wp_send_json_error(
+                [ 'message' => $unzip_file->get_error_message()]
+			);
+		} else {
+			wp_send_json_success(
+                [ 'message' => __('Theme Imported Successfully.', 'responsive-menu-pro')]
+			);
+		}
 
-		return $status;
 	}
 
 	/**
@@ -977,11 +984,15 @@ class Theme_Manager {
 		//Check nonce to verify the authenticate upload file.
 		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
 
-		//Check if files are empty then return error message.
-		if ( empty( $_FILES['file']['tmp_name'] ) ) {
+		//Check if files are empty or not zip then return error message.
+		$file_name     = sanitize_file_name( $_FILES['file']['name'] );
+		$validate_file = wp_check_filetype( $file_name );
+		if ( empty( $_FILES['file']['tmp_name'] ) || !isset( $validate_file['type'] ) || $validate_file['type'] != 'application/zip' ) {
+
 			wp_send_json_error(
-                [ 'message' => __( 'File not found !', 'responsive-menu-pro' )]
+                [ 'message' => __( 'Please add zip file !', 'responsive-menu-pro' )]
 			);
+
 		}
 
 		//Upload the file in upload directory.
@@ -991,13 +1002,13 @@ class Theme_Manager {
 		$unzip_file = unzip_file( $_FILES['file']['tmp_name'] , $upload_dir );
 
 		if ( is_wp_error( $unzip_file ) ) {
-			return wp_send_json_error(
+			wp_send_json_error(
                 [ 'message' => $unzip_file->get_error_message() ]
 			);
 		}
 
 		//Return the response
-		return wp_send_json_success(
+		wp_send_json_success(
 			[
 				'message' => __( 'Theme is uploaded successfully', 'responsive-menu-pro' ),
 				'html'    => $this->get_available_themes( $this->is_customizer() )
