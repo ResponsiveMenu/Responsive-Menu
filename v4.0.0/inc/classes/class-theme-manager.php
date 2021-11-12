@@ -347,17 +347,10 @@ class Theme_Manager {
 			return;
 		}
 
-		//Check if files are empty then return error message.
-		if ( empty( $_FILES['file']['tmp_name'] ) ) {
-			wp_send_json_error(
-                [ 'message' => __( 'File not found !', 'responsive-menu-pro' )]
-			);
-		}
-
-		//Check if files is not zip then return error message.
+		//Check if files are empty or not zip then return error message.
 		$file_name     = sanitize_file_name( $_FILES['file']['name'] );
 		$validate_file = wp_check_filetype( $file_name );
-		if ( !isset( $validate_file['type'] ) || $validate_file['type'] != 'application/zip' ) {
+		if ( empty( $_FILES['file']['tmp_name'] ) || !isset( $validate_file['type'] ) || $validate_file['type'] != 'application/zip' ) {
 
 			wp_send_json_error(
                 [ 'message' => __( 'Please add zip file !', 'responsive-menu-pro' )]
@@ -991,17 +984,10 @@ class Theme_Manager {
 		//Check nonce to verify the authenticate upload file.
 		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
 
-		//Check if files are empty then return error message.
-		if ( empty( $_FILES['file']['tmp_name'] ) ) {
-			wp_send_json_error(
-                [ 'message' => __( 'File not found !', 'responsive-menu-pro' )]
-			);
-		}
-
-		//Check if files is not zip then return error message.
+		//Check if files are empty or not zip then return error message.
 		$file_name     = sanitize_file_name( $_FILES['file']['name'] );
 		$validate_file = wp_check_filetype( $file_name );
-		if ( !isset( $validate_file['type'] ) || $validate_file['type'] != 'application/zip' ) {
+		if ( empty( $_FILES['file']['tmp_name'] ) || !isset( $validate_file['type'] ) || $validate_file['type'] != 'application/zip' ) {
 
 			wp_send_json_error(
                 [ 'message' => __( 'Please add zip file !', 'responsive-menu-pro' )]
