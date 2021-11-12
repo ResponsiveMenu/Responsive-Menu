@@ -54,7 +54,7 @@ $options = $option_manager->get_options( $menu_id );
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title><?php echo __( 'rmp-menu-editor', 'responsive-menu-pro' ) . ' | ' . esc_html( get_the_title() ); ?></title>
+	<title><?php echo esc_html__( 'rmp-menu-editor', 'responsive-menu-pro' ) . ' | ' . esc_html( get_the_title() ); ?></title>
 </head>
 	<body class="wp-admin wp-core-ui js post-php post-type-rmp_menu <?php echo esc_attr( implode( ' ', $body_classes ) ); ?>">
 		<div id="rmp-editor-wrapper" class="rmp-editor-overlay expanded rmp-preview-mobile">
@@ -81,7 +81,7 @@ $options = $option_manager->get_options( $menu_id );
 								</span>
 								<h3 class="rmp-tab-item-title">
 									<span> <?php esc_html_e( 'Desktop Menu', 'responsive-menu-pro' ); ?></span>
-									<a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > <?php echo __('Pro','responsive-menu-pro'); ?> </a>
+									<a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > <?php echo esc_html__('Pro','responsive-menu-pro'); ?> </a>
 								</h3>
 							</li>
 
@@ -98,7 +98,7 @@ $options = $option_manager->get_options( $menu_id );
 								</span>
 								<h3 class="rmp-tab-item-title">
 									<span><?php esc_html_e( 'Header Bar', 'responsive-menu-pro' ); ?></span>
-									<a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > <?php echo __('Pro','responsive-menu-pro'); ?> </a>
+									<a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > <?php echo esc_html__('Pro','responsive-menu-pro'); ?> </a>
 								</h3>
 							</li>
 
@@ -2263,7 +2263,7 @@ $options = $option_manager->get_options( $menu_id );
 
 					<div id="tab-container" class="rmp-accordions" aria-label="Container">
 						<div class="rmp-order-item rmp-order-item-description rmp-ignore-accordion">
-							<?php echo __('Drag the container items up and down to re-order their appearance on the front end.','responsive-menu-pro'); ?>
+							<?php echo esc_html__('Drag the container items up and down to re-order their appearance on the front end.','responsive-menu-pro'); ?>
 						</div>
 						<ul class="rmp-accordion-container" id="rmp-menu-ordering-items">
 

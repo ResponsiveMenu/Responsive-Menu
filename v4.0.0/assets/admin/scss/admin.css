@@ -1885,17 +1885,44 @@ button.menu-save {
     right: 10px;
 }
 
-.rmp-theme-page,
-.rmp-roadmap-page {
+.rmp-theme-page {
     margin: 2% 0;
 }
 
-#rmp-roadmap-iframe {
-    width: 100%;
-    min-height: 700px;
-    height: 100%;
+.notice-responsive-menu-next {
+    padding: 10px 35px 10px 10px;
+    background: #fff;
+    border: 1px solid #14a4fa;
+    border-left-width: 4px;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 4%);
+    margin: 5px 0 15px;
+    position: relative;
+}
+#wpfooter .notice-responsive-menu-next p, #wpfooter .notice-responsive-menu-next h3{
+    margin-bottom: 10px;
+}
+.notice-responsive-menu-next a[target="_blank"]::after {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);
+    content: "";
+    display: inline-block;
+    height: 8px;
+    width: 8px;
+    background-size: cover;
+    position: absolute;
+    top: 2px;
+    right: -10px;
+}
+.notice-responsive-menu-next a.btn-link {
+    margin-right: 20px;
+    position: relative;
+}
+.post-type-rmp_menu #wpfooter{
+    position: relative;
 }
 
+.notice-responsive-menu-next .notice-dismiss{
+    text-decoration: none;
+}
 .rmp-theme-page .pagination {
     display: inline-flex;
 }

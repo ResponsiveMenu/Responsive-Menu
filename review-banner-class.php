@@ -88,7 +88,7 @@ class RM_Review_Message {
 		$already_url  = esc_url( add_query_arg( 'rm_review_notice_check', 'already_did' ) );
 		$nope_url  = esc_url( add_query_arg( 'rm_review_notice_check', 'remove_message' ) );
 		echo "<div class='updated'><br />";
-		echo sprintf( __('Greetings! I just noticed that you have created %d Menus. That is
+		echo sprintf( esc_html__('Greetings! I just noticed that you have created %d Menus. That is
 		awesome! Could you please help me out by giving this plugin a 5-star rating on WordPress? This
 		will help us by helping other users discover this plugin. %s', 'responsive-menu-pro'),
 			$this->check_results_amount(),
@@ -98,17 +98,17 @@ class RM_Review_Message {
 				esc_attr( "_blank" ),
 				esc_url( "https://wordpress.org/support/plugin/responsive-menu/reviews/#new-topic-0"),
 				esc_attr( "button-primary" ),
-				__( 'Yeah, you deserve it!', 'responsive-menu-pro' )
+				esc_html__( 'Yeah, you deserve it!', 'responsive-menu-pro' )
 		);
 		echo sprintf('<a href="%s" class="%s">%s</a> ',
 				$already_url,
 				esc_attr( "button-secondary" ),
-				__( 'I already did!', 'responsive-menu-pro' )
+				esc_html__( 'I already did!', 'responsive-menu-pro' )
 		);
 		echo sprintf('<a href="%s" class="%s">%s</a> ',
 				$nope_url,
 				esc_attr( "button-secondary" ),
-				__( 'No, this plugin is not good enough', 'responsive-menu-pro' )
+				esc_html__( 'No, this plugin is not good enough', 'responsive-menu-pro' )
 		);
 		echo "<br /><br /></div>";
 	}
