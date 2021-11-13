@@ -1901,18 +1901,15 @@ button.menu-save {
 #wpfooter .notice-responsive-menu-next p, #wpfooter .notice-responsive-menu-next h3{
     margin-bottom: 10px;
 }
-.notice-responsive-menu-next a[target="_blank"]::after {
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);
-    content: "";
-    display: inline-block;
+.notice-responsive-menu-next .rm-btn-link .rm-btn-img-icon {
     height: 8px;
     width: 8px;
-    background-size: cover;
+    object-fit: cover;
     position: absolute;
     top: 2px;
     right: -10px;
 }
-.notice-responsive-menu-next a.btn-link {
+.notice-responsive-menu-next .rm-btn-link {
     margin-right: 20px;
     position: relative;
 }
