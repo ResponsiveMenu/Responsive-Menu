@@ -50,7 +50,6 @@ class RMNextUpdateMessage {
         $update_url     = 'https://next.expresstech.io/responsive-menu/updates';
         $roadmap_url    = 'https://next.expresstech.io/responsive-menu';
         $ideas_url      = 'https://next.expresstech.io/responsive-menu#/ideas';
-        $icon_url       =  RMP_PLUGIN_URL_V4.'/assets/admin/icons/export.png';
 		$close_url      =  add_query_arg( 'rm_next_update_notice_close', 'close' );
         ?>
         <div class=' notice-responsive-menu-next notice-info is-dismissible'>
