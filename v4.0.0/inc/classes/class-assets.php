@@ -178,25 +178,6 @@ class Assets {
 			)
 		);
 
-        if ($hook_suffix == 'rmp_menu_page_whats-next') {
-
-			wp_localize_script(
-				'rmp_admin_scripts',
-				'ps_config',
-				array (
-					'productId'  => "9128555b-ea35-4af1-852b-b7a68679c4a4"
-				)
-			);
-
-            wp_enqueue_script(
-                'rmp_menu_productstash_embed',
-                'https://cdnjs.cloudflare.com/ajax/libs/embed-js/5.0.4/embed.min.js',
-                array('jquery'),
-                RMP_PLUGIN_VERSION
-            );
-
-        }
-
 
 		wp_enqueue_script( 'rmp_admin_scripts' );
 
