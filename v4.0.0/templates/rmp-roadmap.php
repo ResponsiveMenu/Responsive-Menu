@@ -44,9 +44,9 @@ class RMNextUpdateMessage {
 	 *
 	 */
 	public function display_next_updates_message() {
-        // if( get_user_meta( get_current_user_id(), 'rm_next_update_notice_close' ) ){
-        //     return;
-        // }
+        if( get_user_meta( get_current_user_id(), 'rm_next_update_notice_close' ) ){
+            return;
+        }
         $update_url     = 'https://next.expresstech.io/responsive-menu/updates';
         $roadmap_url    = 'https://next.expresstech.io/responsive-menu';
         $ideas_url      = 'https://next.expresstech.io/responsive-menu#/ideas';
