@@ -103,6 +103,13 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 
 == Changelog ==
 
+= 4.1.5 (16th Nov 2021) =
+Enhancement: Refactored code to use wp_enqueue functions while including JS and CSS
+Enhancement: Removed external dependencies (CDN url and third party server scripts)
+Enhancement: Removed legacy code and rollback feature
+Enhancement: Removed encrypted code from third party libraries
+Enhancement: "Sanitized, Escaped, and Validated" all variable, file uploads and data
+
 = 4.1.4 (17th Sep 2021) =
 Bug: Fixed transparent background issue.
 Feature: Added option to search settings in customizer.
