@@ -2,10 +2,10 @@
 /**
  * Preview class.
  * This class is responsible for preview related functionality.
- * 
+ *
  * @version 4.0.0
  * @author  Expresstech System
- * 
+ *
  * @package responsive-menu-pro
  */
 
@@ -37,7 +37,7 @@ class Preview {
 	 * To setup action/filter.
 	 *
 	 * @version 4.0.0
-	 * 
+	 *
 	 * @return void
 	 */
 	protected function setup_hooks() {
@@ -46,15 +46,15 @@ class Preview {
 
 	/**
 	 * This function get the content of menu item for live preview element.
-	 * 
+	 *
 	 * @return HTML
 	 */
 	public function enable_menu_item() {
 
 		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
 
-		$menu_id      = $_POST['menu_id'];
-		$menu_element = $_POST['menu_element'];
+		$menu_id      = intval( $_POST['menu_id'] );
+		$menu_element = intval( $_POST['menu_element'] );
 		$menu = new RMP_Menu($menu_id);
 
 		if ( $menu_element === 'menu' ) {

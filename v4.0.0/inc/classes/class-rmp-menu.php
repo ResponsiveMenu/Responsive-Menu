@@ -102,7 +102,7 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 
 			$html = sprintf( '%s<div id="rmp-container-%s" class="rmp-container %s">%s</div>',
 				$menu_switcher,
-				$this->menu_id,
+				esc_attr( $this->menu_id ),
 				esc_attr( $menu_container_classes ),
 				$html
 			);

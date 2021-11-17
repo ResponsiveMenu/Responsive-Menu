@@ -1,7 +1,7 @@
 <?php
 /**
  * Assets class.
- * 
+ *
  * This class is responsible to load the resources as per page call.
  *
  * @since      4.0.0
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Class Assets
- * 
+ *
  */
 class Assets {
 
@@ -41,35 +41,37 @@ class Assets {
 	protected function setup_hooks() {
 
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_scripts' ] );
-		add_action('admin_head', [ $this, 'admin_custom_style_inline'] );
-		add_action('admin_head', [ $this, 'rmp_menu_editor_style_inline'] );
+		add_action('admin_enqueue_scripts', [ $this, 'admin_custom_style_inline'] );
+		add_action('admin_enqueue_scripts', [ $this, 'rmp_menu_editor_style_inline'] );
 	}
 
 	/**
 	 * Add custom css to manage headerbar extra padding.
-	 * 
+	 *
 	 * @since 4.0.1
 	 */
 	function rmp_menu_editor_style_inline() {
 
 		$editor = filter_input( INPUT_GET, 'editor', FILTER_SANITIZE_STRING );
 		if ( ! empty( $editor ) && get_post_type() == 'rmp_menu' && is_admin() ) {
-			echo '<style>
-			html.wp-toolbar {
+			$css_data = 'html.wp-toolbar {
 				margin: 0;
 				padding: 0 !important;
-			}
-			</style>';
+			}';
+			wp_add_inline_style( 'rmp_admin_main_styles', $css_data );
 		}
 	}
 
 	/**
 	 * Add custom css to manage size of admin menu logo.
-	 * 
+	 *
 	 * @since 4.0.0
 	 */
 	function admin_custom_style_inline() {
-		echo '<style>
+		wp_register_style( 'rmp_admin_inline', false );
+		wp_enqueue_style( 'rmp_admin_inline' );
+
+		$css_data = '
 			#adminmenu .menu-icon-rmp_menu .wp-menu-image img{
 				height: 18px;
 			}
@@ -78,8 +80,9 @@ class Assets {
 				color: #f80668;
 				font-weight: 600;
 			}
+		';
+		wp_add_inline_style( 'rmp_admin_inline', $css_data );
 
-		</style>';
 	}
 
 	/**
@@ -91,12 +94,11 @@ class Assets {
 	 */
 	public function admin_enqueue_scripts( $hook_suffix ) {
 
-		
 
-		$post_type = get_post_type(); 
+		$post_type = get_post_type();
 
 		if ( empty( $post_type ) && ! empty( $_GET['post_type'] ) ) {
-			$post_type = $_GET['post_type'];
+			$post_type = sanitize_text_field( $_GET['post_type'] );
 		}
 
 		if ( 'rmp_menu' !== $post_type ) {
@@ -122,22 +124,6 @@ class Assets {
 			wp_enqueue_media();
 		}
 
-		// wp_enqueue_script(
-		// 	'rmp_editor_scripts',
-		// 	RMP_PLUGIN_URL_V4 . '/assets/admin/js/rmp-editor.js',
-		// 	array('jquery'),
-		// 	RMP_PLUGIN_VERSION,
-		// 	true
-		// );
-	
-		// wp_enqueue_script(
-		// 	'rmp_admin_icon_scripts',
-		// 	RMP_PLUGIN_URL_V4 . '/assets/admin/js/rmp-icon.js',
-		// 	array('jquery'),
-		// 	RMP_PLUGIN_VERSION,
-		// 	true
-		// );
-
 		wp_enqueue_script(
 			'rmp_admin_selectize_scripts',
 			RMP_PLUGIN_URL_V4 . '/assets/admin/js/selectize.js',
@@ -152,14 +138,6 @@ class Assets {
 			RMP_PLUGIN_VERSION
 		);
 
-		//Color alpha feature in color input controls by below custom scripts.
-		// wp_enqueue_script(
-		// 	'rmp_custom_color_alpha_scripts',
-		// 	RMP_PLUGIN_URL_V4 . '/assets/admin/js/wp-color-alpha.js',
-		// 	array('wp-color-picker'),
-		// 	RMP_PLUGIN_VERSION
-		// );
-
 		wp_enqueue_style(
 			'rmp_admin_main_styles',
 			RMP_PLUGIN_URL_V4 . '/assets/admin/build/css/rmpMain.css',
@@ -170,7 +148,7 @@ class Assets {
 
 		wp_enqueue_script(
 			'rmp_admin_dropzone_scripts',
-			'https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/min/dropzone.min.js',
+			RMP_PLUGIN_URL_V4 . '/assets/admin/js/dropzone.min.js',
 			array('jquery'),
 			RMP_PLUGIN_VERSION
 		);
@@ -200,15 +178,8 @@ class Assets {
 			)
 		);
 
-		wp_enqueue_script( 'rmp_admin_scripts' );
 
-		// wp_enqueue_script(
-		// 	'rmp_preview_scripts',
-		// 	RMP_PLUGIN_URL_V4 . '/assets/admin/js/rmp-preview.js',
-		// 	array('jquery'),
-		// 	RMP_PLUGIN_VERSION,
-		// 	true
-		// );
+		wp_enqueue_script( 'rmp_admin_scripts' );
 
 		/** Enqueue the icons resources */
 

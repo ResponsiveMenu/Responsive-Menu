@@ -20,20 +20,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Class Style_Manager
- * 
+ *
  * This class is responsible for handle the styling from frontend.
- * 
+ *
  * @version 4.0.0
  */
 class Style_Manager {
 
 	use Singleton;
-	
+
 	/**
 	 * Instance of option manager class.
-	 * 
+	 *
 	 * @version 4.0.0
-	 * 
+	 *
 	 * @var array $option_manager.
 	 */
 	protected $option_manager;
@@ -50,19 +50,19 @@ class Style_Manager {
 	 * To setup action/filter.
 	 *
 	 * @version 4.0.0
-	 * 
+	 *
 	 * @return void
 	 */
 	protected function setup_hooks() {
 
-		add_action( 'wp_head', array( $this , 'enqueue_styles_as_inline' ) );
+		add_action( 'wp_enqueue_scripts', array( $this , 'enqueue_styles_as_inline' ) );
 		add_action( 'wp_enqueue_scripts', array( $this , 'add_rmp_menu_frontend_scripts' ) );
 		add_action( 'rmp_create_new_menu', array( $this , 'save_style_css_on_file' ), 10 , 0 );
 		add_action( 'rmp_save_menu', array( $this , 'save_style_css_on_file' ), 10, 0 );
 		add_action( 'rmp_update_mega_menu_item', array( $this , 'save_style_css_on_file' ), 10, 0 );
 		add_action( 'rmp_save_global_settings', array( $this , 'save_style_css_on_file' ), 10, 0 );
 		add_action( 'rmp_theme_apply', array( $this , 'save_style_css_on_file' ), 10, 0 );
-		add_action( 'rmp_migrate_menu_style', [ $this , 'save_style_css_on_file' ], 10, 0 );	
+		add_action( 'rmp_migrate_menu_style', [ $this , 'save_style_css_on_file' ], 10, 0 );
 		add_action( 'rmp_import_menu', [ $this , 'save_style_css_on_file' ], 10, 0 );
 
 		// Hide adminbar.
@@ -73,7 +73,7 @@ class Style_Manager {
 
 	/**
 	 * Function to call the css generate for all menu one by one.
-	 * 
+	 *
 	 * @return string $css
 	 */
 	public function get_menus_scss_to_css() {
@@ -95,7 +95,7 @@ class Style_Manager {
 		$css .= $this->option_manager->get_global_option( 'rmp_custom_css' );
 
 		//If minify is enable from settings then minify the style css.
-		if ( 'on' === $this->option_manager->get_global_option( 'rmp_minify_scripts' ) ) { 
+		if ( 'on' === $this->option_manager->get_global_option( 'rmp_minify_scripts' ) ) {
 			$css = $this->minify( $css );
 		}
 
@@ -116,7 +116,7 @@ class Style_Manager {
 
 		$upload_dir = wp_upload_dir();
 
-		$dir = trailingslashit( $upload_dir['basedir'] ) . 'rmp-menu/css/';          
+		$dir = trailingslashit( $upload_dir['basedir'] ) . 'rmp-menu/css/';
 
 		if ( ! $wp_filesystem->is_dir( $dir ) ) {
 			wp_mkdir_p( $dir );
@@ -161,9 +161,9 @@ class Style_Manager {
 
 	/**
 	 * Function to minify the css to reduce the file size.
-	 * 
+	 *
 	 * @param string $row_css
-	 * 
+	 *
 	 * @return string $minified
 	 */
 	public function minify( $row_css ) {
@@ -184,13 +184,13 @@ class Style_Manager {
 
 	/**
 	 * Function to combine the options of all the menus.
-	 * 
+	 *
 	 * @version 4.0.0
-	 * 
+	 *
 	 * @return array $options;
 	 */
 	public function get_all_menu_options() {
-		$menu_ids       = get_all_rmp_menu_ids(); 
+		$menu_ids       = get_all_rmp_menu_ids();
 		$menu_options   = [];
 
 		foreach ( $menu_ids as $menu_id ) {
@@ -206,9 +206,9 @@ class Style_Manager {
 
 	/**
 	 * Function get the active item toggle icon.
-	 * 
+	 *
 	 * @version 4.0.0
-	 * 
+	 *
 	 * @param array options
 	 * @return HTML
 	 */
@@ -290,7 +290,7 @@ class Style_Manager {
 
 		/**
 		 * Fires after frontend scripts are enqueued.
-		 * 
+		 *
 		 * @since 4.0.4
 		 */
 		do_action( 'after_rmp_enqueue_frontend_scripts' );
@@ -298,7 +298,7 @@ class Style_Manager {
 
 	/**
 	 * This function enqueue inline the menu style css.
-	 * 
+	 *
 	 * @version 4.0.0
 	 */
 	public function enqueue_styles_as_inline() {
@@ -308,14 +308,16 @@ class Style_Manager {
 		}
 
 		$css = $this->get_menus_scss_to_css();
-		echo '<style id="rmp-inline-menu-styles">'. $css  . '</style>';
+		wp_register_style( 'responsive-menu', false );
+        wp_enqueue_style( 'responsive-menu' );
+		wp_add_inline_style( 'responsive-menu', $css );
 	}
 
 	/**
 	 * This function convert the scss to css for menu.
-	 * 
+	 *
 	 * @param int $menu_id  This is menu id for which converting the scss to css.
-	 * 
+	 *
 	 * @return string|WP_Error
 	 */
 	public function get_css_for_menu( $menu_id ) {
@@ -588,7 +590,7 @@ class Style_Manager {
 				$menu_title_section_padding_bottom = $options['menu_title_section_padding']['bottom'];
 			}
 
-			
+
 			$menu_title_background = '';
 			if ( ! empty( $options['menu_title_background_colour'] ) ) {
 				$menu_title_background = $options['menu_title_background_colour'];
@@ -885,7 +887,7 @@ class Style_Manager {
 				$menu_item_padding_unit = $options['menu_depth_0_unit'];
 			}
 
-			
+
 
 			$menu_depth_side = '';
 			if ( ! empty( $options['menu_depth_side'] ) ) {
@@ -1031,7 +1033,7 @@ class Style_Manager {
 			if ( ! empty( $options['submenu_links_height'] ) ) {
 				$submenu_item_height = $options['submenu_links_height'];
 			}
-			
+
 			$submenu_item_height_unit = '';
 			if ( ! empty( $options['submenu_links_height_unit'] ) ) {
 				$submenu_item_height = $options['submenu_links_height_unit'];
@@ -1329,8 +1331,8 @@ class Style_Manager {
 				'menu_title_background_hover' => $menu_title_background_hover,
 				'menu_title_font_color'       => $menu_title_font_color,
 				'menu_title_font_color_hover' => $menu_title_font_color_hover,
-				'menu_title_font_size'        => $menu_title_font_size, 
-				'menu_title_image_width'      => $menu_title_image_width, 
+				'menu_title_font_size'        => $menu_title_font_size,
+				'menu_title_image_width'      => $menu_title_image_width,
 				'menu_title_image_height'     => $menu_title_image_height,
 				'menu_title_text_alignment'   => $menu_title_text_alignment,
 				'menu_title_section_padding_left' => $menu_title_section_padding_left,
@@ -1350,7 +1352,7 @@ class Style_Manager {
 				'menu_container_background_image'  => "'" . $menu_container_background_image . "'",
 				'menu_container_appear_from'       => $menu_container_appear_from,
 				'page_wrapper'                     => $page_wrapper,
-				'menu_to_hide'                     => $menu_to_hide, 
+				'menu_to_hide'                     => $menu_to_hide,
 				'menu_container_padding_left'   => $menu_container_padding_left,
 				'menu_container_padding_top'    => $menu_container_padding_top,
 				'menu_container_padding_bottom' => $menu_container_padding_bottom,
@@ -1482,9 +1484,9 @@ class Style_Manager {
 
 			/**
 			 * Apply before parse the scss to css.
-			 * 
+			 *
 			 * @since 4.1.0
-			 * 
+			 *
 			 * @param array  $parse_options  Parsed menu settings.
 			 * @param int    $menu_id        Menu Id.
 			 * @param array  $options        Menu options array.
@@ -1498,9 +1500,9 @@ class Style_Manager {
 
 			/**
 			 * Apply after parsed the scss to css.
-			 * 
+			 *
 			 * @since 4.1.0
-			 * 
+			 *
 			 * @param string $css            Compiled CSS.
 			 * @param int    $menu_id        Menu Id.
 			 * @param array  $parse_options  Parsed menu settings.
@@ -1510,7 +1512,7 @@ class Style_Manager {
 
 			return $css;
 		}
-		
+
 
 		catch ( Exception $e ) {
 			return new \WP_Error( "Warning: Menu style scss compile failed <br/> <br />" . $e->getMessage() );
@@ -1525,7 +1527,7 @@ class Style_Manager {
 	public function get_common_scss_to_css() {
 		try {
 
-			
+
 			$menu_adjust_for_wp_admin_bar = $this->option_manager->get_global_option( 'menu_adjust_for_wp_admin_bar' );
 
 			$options = [

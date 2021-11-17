@@ -54,19 +54,19 @@ $options = $option_manager->get_options( $menu_id );
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title><?php echo __( 'rmp-menu-editor', 'responsive-menu-pro' ) . ' | ' . get_the_title(); ?></title>
+	<title><?php echo esc_html__( 'rmp-menu-editor', 'responsive-menu-pro' ) . ' | ' . esc_html( get_the_title() ); ?></title>
 </head>
-	<body class="wp-admin wp-core-ui js post-php post-type-rmp_menu <?php echo implode( ' ', $body_classes ); ?>">
+	<body class="wp-admin wp-core-ui js post-php post-type-rmp_menu <?php echo esc_attr( implode( ' ', $body_classes ) ); ?>">
 		<div id="rmp-editor-wrapper" class="rmp-editor-overlay expanded rmp-preview-mobile">
 			<form method="post" enctype="multipart/form-data" id="rmp-editor-form" class="rmp-editor-sidebar">
 				<input type="hidden" name="rmp_device_mode" id="rmp_device_mode" value="mobile"/>
-				<input type="hidden" id="menu_id" name="menu_id" value="<?php echo get_the_ID(); ?>"/>
+				<input type="hidden" id="menu_id" name="menu_id" value="<?php echo esc_attr( get_the_ID() ); ?>"/>
 				<?php
 					echo $editor->header_section( $options['menu_name'] );
 				?>
 
 				<div id="rmp-editor-main">
-					<div id="rmp-editor-nav" class="rmp-editor-controls-nav" role="navigation" aria-label="<?php echo $options['menu_name']; ?>">
+					<div id="rmp-editor-nav" class="rmp-editor-controls-nav" role="navigation" aria-label="<?php echo esc_attr( $options['menu_name'] ); ?>">
 						<ul id="rmp-editor-pane" class="rmp-editor-pane-parent">
 							<li id="rmp-tab-item-mobile-menu" class="rmp-tab-item" aria-owns="tab-mobile-menu">
 								<span class="rmp-tab-item-icon">
@@ -81,7 +81,7 @@ $options = $option_manager->get_options( $menu_id );
 								</span>
 								<h3 class="rmp-tab-item-title">
 									<span> <?php esc_html_e( 'Desktop Menu', 'responsive-menu-pro' ); ?></span>
-									<a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > <?php echo __('Pro','responsive-menu-pro'); ?> </a>
+									<a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > <?php echo esc_html__('Pro','responsive-menu-pro'); ?> </a>
 								</h3>
 							</li>
 
@@ -98,7 +98,7 @@ $options = $option_manager->get_options( $menu_id );
 								</span>
 								<h3 class="rmp-tab-item-title">
 									<span><?php esc_html_e( 'Header Bar', 'responsive-menu-pro' ); ?></span>
-									<a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > <?php echo __('Pro','responsive-menu-pro'); ?> </a>
+									<a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > <?php echo esc_html__('Pro','responsive-menu-pro'); ?> </a>
 								</h3>
 							</li>
 
@@ -2263,7 +2263,7 @@ $options = $option_manager->get_options( $menu_id );
 
 					<div id="tab-container" class="rmp-accordions" aria-label="Container">
 						<div class="rmp-order-item rmp-order-item-description rmp-ignore-accordion">
-							<?php echo __('Drag the container items up and down to re-order their appearance on the front end.','responsive-menu-pro'); ?>
+							<?php echo esc_html__('Drag the container items up and down to re-order their appearance on the front end.','responsive-menu-pro'); ?>
 						</div>
 						<ul class="rmp-accordion-container" id="rmp-menu-ordering-items">
 
@@ -2558,7 +2558,7 @@ $options = $option_manager->get_options( $menu_id );
 			<main id="rmp-editor-preview" class="rmp-editor-preview-main">
 				<div id="rmp-preview-wrapper" class="rmp-preview-wrapper">
 					<div id="rmp-preview-iframe-loader">
-						<img src="https://demo.responsive.menu/wp-content/themes/demo-main/static/imgs/giphy.webp" alt="loading" />
+						<img src="<?php echo esc_url( RMP_PLUGIN_URL_V4.'/assets/images/giphy.webp' ); ?>" alt="loading" />
 					</div>
 					<iframe id="rmp-preview-iframe" src="<?php echo esc_url( get_site_url() . '?rmp_preview_mode=true' );  ?>"></iframe>
 				</div>
@@ -2577,7 +2577,7 @@ $options = $option_manager->get_options( $menu_id );
 
 		<!-- Page loader -->
 		<div class="rmp-page-loader">
-			<img class="rmp-loader-image large" src="<?php echo RMP_PLUGIN_URL_V4 .'/assets/images/rmp-logo.png'; ?>"/>
+			<img class="rmp-loader-image large" src="<?php echo esc_url( RMP_PLUGIN_URL_V4 .'/assets/images/rmp-logo.png' ); ?>"/>
 			<h3 class="rmp-loader-message"><?php esc_html_e( 'Just a moment, the theme is applying...', 'responsive-menu-pro' ); ?> </h3>
 		</div>
 

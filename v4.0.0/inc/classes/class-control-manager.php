@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Control_Manager {
 
 	use Singleton;
-
+    static $pro_pricing_url             = 'https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile';
 	/**
 	 * Construct method.
 	 */
@@ -85,7 +85,7 @@ class Control_Manager {
             $group_classes = $param['group_classes'];
         }
 
-        $html  = sprintf('<div class="rmp-input-control-wrapper %s">', $group_classes );
+        $html  = sprintf('<div class="rmp-input-control-wrapper %s">', esc_attr( $group_classes ) );
 
         //Check tooltip text is added or not.
         $tool_tip = '';
@@ -99,8 +99,9 @@ class Control_Manager {
         if( ! empty( $param['feature_type'] ) ) {
             $is_disabled = 'disabled';
             $feature_label = sprintf(
-                '<a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > %s </a>',
-                $param['feature_type']
+                '<a target="_blank" class="upgrade-tooltip" href="%s" > %s </a>',
+                esc_url( $this->pro_pricing_url),
+                esc_html( $param['feature_type'] )
             );
         }
 
@@ -176,12 +177,7 @@ class Control_Manager {
 		 */
         $html = apply_filters( 'rmp_text_control_html', $html, $param );
 
-        // Check if echo parameter is empty or false.
-        if  ( empty( $param['echo'] ) ) {
-            return $html;
-		}
-
-		echo $html;
+        return $html;
 	}
 
 	/**
@@ -212,7 +208,7 @@ class Control_Manager {
             $group_classes = $param['group_classes'];
         }
 
-        $html  = sprintf('<div class="rmp-input-control-wrapper full-size %s">', $group_classes );
+        $html  = sprintf('<div class="rmp-input-control-wrapper full-size %s">', esc_attr( $group_classes ) );
 
         //Check tooltip text is added or not.
         $tool_tip = '';
@@ -294,12 +290,7 @@ class Control_Manager {
          $html = apply_filters( 'rmp_text_control_html', $html, $param );
 
 
-        // Check if echo parameter is empty or false.
-        if  ( empty( $param['echo'] ) ) {
-            return $html;
-		}
-
-		echo $html;
+        return $html;
 
     }
 
@@ -400,7 +391,7 @@ class Control_Manager {
             $group_classes = $param['group_classes'];
         }
 
-        $html  = sprintf('<div class="rmp-input-control-wrapper %s">', $group_classes );
+        $html  = sprintf('<div class="rmp-input-control-wrapper %s">', esc_attr( $group_classes ) );
 
         //Check tooltip text is added or not.
         $tool_tip = '';
@@ -447,12 +438,7 @@ class Control_Manager {
 		 */
         $html = apply_filters( 'rmp_color_control_html', $html, $param );
 
-        // Check if echo parameter is empty or false.
-        if  ( empty( $param['echo'] ) ) {
-            return $html;
-		}
-
-		echo $html;
+        return $html;
     }
 
 	/**
@@ -481,7 +467,7 @@ class Control_Manager {
             $group_classes = $param['group_classes'];
         }
 
-        $html  = sprintf( '<div class="rmp-input-control-wrapper %s">', $group_classes );
+        $html  = sprintf( '<div class="rmp-input-control-wrapper %s">', esc_attr( $group_classes ) );
 
         $html .= '<div class="rmp-input-control">';
 
@@ -508,12 +494,7 @@ class Control_Manager {
 		 */
         $html = apply_filters( 'rmp_button_control_html', $html, $param );
 
-        // Check if echo parameter is empty or false.
-        if  ( empty( $param['echo'] ) ) {
-            return $html;
-		}
-
-		echo $html;
+        return $html;
 
     }
 
@@ -545,7 +526,7 @@ class Control_Manager {
             $group_classes = $param['group_classes'];
         }
 
-        $html  = sprintf('<div class="rmp-input-control-wrapper rmp-input-control-switcher %s">', $group_classes );
+        $html  = sprintf('<div class="rmp-input-control-wrapper rmp-input-control-switcher %s">' , esc_attr( $group_classes ) );
 
         //Check tooltip text is added or not.
         $tool_tip = '';
@@ -559,7 +540,8 @@ class Control_Manager {
         if( ! empty( $param['feature_type'] ) ) {
             $is_disabled = 'disabled';
             $feature_label = sprintf(
-                '<a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > %s </a>',
+                '<a target="_blank" class="upgrade-tooltip" href="%s" > %s </a>',
+                esc_url( $this->pro_pricing_url ),
                 $param['feature_type']
             );
         }
@@ -618,12 +600,7 @@ class Control_Manager {
 		 */
         $html = apply_filters( 'rmp_switcher_control_html', $html, $param );
 
-        // Check if echo parameter is empty or false.
-        if  ( empty( $param['echo'] ) ) {
-            return $html;
-		}
-
-		echo $html;
+        return $html;
     }
 
 	/**
@@ -654,7 +631,7 @@ class Control_Manager {
             $group_classes = $param['group_classes'];
         }
 
-        $html  = sprintf('<div class="rmp-input-control-wrapper %s">', $group_classes );
+        $html  = sprintf('<div class="rmp-input-control-wrapper %s">' , esc_attr( $group_classes ) );
 
         //Check tooltip text is added or not.
         $tool_tip = '';
@@ -668,7 +645,8 @@ class Control_Manager {
         if( ! empty( $param['feature_type'] ) ) {
             $is_disabled = 'disabled';
             $feature_label = sprintf(
-                '<a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > %s </a>',
+                '<a target="_blank" class="upgrade-tooltip" href="%s" > %s </a>',
+                esc_url($this->pro_pricing_url),
                 $param['feature_type']
             );
         }
@@ -757,12 +735,7 @@ class Control_Manager {
 		 */
         $html = apply_filters( 'rmp_select_control_html', $html, $param );
 
-        // Check if echo parameter is empty or false.
-        if  ( empty( $param['echo'] ) ) {
-            return $html;
-		}
-
-		echo $html;
+        return $html;
     }
 
 	/**
@@ -858,7 +831,7 @@ class Control_Manager {
             $group_classes = $param['group_classes'];
         }
 
-        $html  = sprintf('<div class="rmp-input-control-wrapper %s">', $group_classes );
+        $html  = sprintf('<div class="rmp-input-control-wrapper %s">' , esc_attr( $group_classes ) );
 
         //Check tooltip text is added or not.
         $tool_tip = '';
@@ -872,7 +845,8 @@ class Control_Manager {
         if( ! empty( $param['feature_type'] ) ) {
             $is_disabled = 'disabled';
             $feature_label = sprintf(
-                '<a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > %s </a>',
+                '<a target="_blank" class="upgrade-tooltip" href="%s" > %s </a>',
+                esc_attr($this->pro_pricing_url),
                 $param['feature_type']
             );
         }
@@ -953,12 +927,7 @@ class Control_Manager {
 		 */
         $html = apply_filters( 'rmp_icon_picker_control_html', $html, $param);
 
-        // Check if echo parameter is empty or false.
-        if  ( empty( $param['echo'] ) ) {
-            return $html;
-		}
-
-		echo $html;
+        return $html;
 	}
 
 	/**
@@ -981,7 +950,7 @@ class Control_Manager {
             $group_classes = $param['group_classes'];
         }
 
-        $html  = sprintf('<div class="rmp-input-control-wrapper %s">', $group_classes );
+        $html  = sprintf('<div class="rmp-input-control-wrapper %s">' , esc_attr( $group_classes ) );
 
         //Check tooltip text is added or not.
         $tool_tip = '';
@@ -1053,12 +1022,7 @@ class Control_Manager {
 		 */
         $html = apply_filters( 'rmp_add_image_control_html', $html, $param );
 
-        // Check if echo parameter is empty or false.
-        if  ( empty( $param['echo'] ) ) {
-            return $html;
-		}
-
-		echo $html;
+        return $html;
     }
 
 	/**
@@ -1081,7 +1045,7 @@ class Control_Manager {
             $group_classes = $param['group_classes'];
         }
 
-        $html  = sprintf('<div class="rmp-input-control-wrapper %s">', $group_classes );
+        $html  = sprintf('<div class="rmp-input-control-wrapper %s">' , esc_attr( $group_classes ) );
 
         //Check tooltip text is added or not.
         $tool_tip = '';
@@ -1156,12 +1120,7 @@ class Control_Manager {
 		 */
 		$html = apply_filters( 'rmp_add_text_alignment_control_html', $html, $param );
 
-        // Check if echo parameter is empty or false.
-        if  ( empty( $param['echo'] ) ) {
-            return $html;
-		}
-
-		echo $html;
+        return $html;
     }
 
     /**
@@ -1240,13 +1199,14 @@ class Control_Manager {
             '<div class="rmp-input-control-wrapper full-size">
                 <label class="rmp-input-control-label">
                     %s
-                    <a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > PRO </a>
+                    <a target="_blank" class="upgrade-tooltip" href="%s" > PRO </a>
                 </label>
                 <div class="rmp-input-control">
                     %s
                 </div>
             </div>',
             __('Device Visibility', 'responsive-menu-pro'),
+            esc_url( $this->pro_pricing_url ),
             $device_options
         );
     }
@@ -1261,7 +1221,7 @@ class Control_Manager {
 	protected function get_device_options() {
        return sprintf(
             '<div class="rmp-device-switcher-holder">
-                <a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > PRO </a>
+                <a target="_blank" class="upgrade-tooltip" href="%s" > PRO </a>
                 <ul class="select rmp-device-switcher" >
                     <li data-device="mobile">
                         %s
@@ -1274,6 +1234,7 @@ class Control_Manager {
                     </li>
                 </ul>
             </div>',
+            esc_url( $this->pro_pricing_url ),
             file_get_contents( RMP_PLUGIN_PATH_V4 .'/assets/admin/icons/svg/mobile.svg' ),
             file_get_contents( RMP_PLUGIN_PATH_V4 .'/assets/admin/icons/svg/tablet.svg' ),
             file_get_contents( RMP_PLUGIN_PATH_V4 .'/assets/admin/icons/svg/desktop.svg' )
@@ -1303,9 +1264,10 @@ class Control_Manager {
             '<div class="upgrade-options">
                 <div class="upgrade-notes">
                     <p> %s </p>
-                    <a target="_blank" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" class="button"> %s </a>
+                    <a target="_blank" href="%s" class="button"> %s </a>
                 </div>
             </div>',
+            esc_url( $this->pro_pricing_url ),
             __('This feature is not available in free version. <br/> Upgrade now to use', 'responsive-menu-pro'),
             esc_html__('Upgrade to Pro', 'responsive-menu-pro')
         );

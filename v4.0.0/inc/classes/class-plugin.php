@@ -72,7 +72,7 @@ class Plugin {
 		//Check post type.
 		$post_type = get_post_type();
 		if ( empty( $post_type ) && ! empty( $_GET['post_type'] ) ) {
-			$post_type = $_GET['post_type'];
+			$post_type = intval( $_GET['post_type'] );
 		}
 
 		if ( 'rmp_menu' !== $post_type || ! empty( $_GET['page'] ) ) {
@@ -107,7 +107,7 @@ class Plugin {
 	 * Add plugin upgrade link.
 	 *
 	 * Add a link to the settings page on the responsive menu page.
-	 * 
+	 *
 	 * @param  array  $links List of existing plugin action links.
 	 * @return array         List of modified plugin action links.
 	 */
@@ -123,15 +123,15 @@ class Plugin {
 
 	/**
 	 * Function to add the admin notice to upgrade as pro.
-	 * 
+	 *
 	 * @version 4.1.0
-	 * 
+	 *
 	 */
 	public function rmp_upgrade_pro_admin_notice() {
 
-		$post_type = get_post_type(); 
+		$post_type = get_post_type();
 		if ( empty( $post_type ) && ! empty( $_GET['post_type'] ) ) {
-			$post_type = $_GET['post_type'];
+			$post_type = intval( $_GET['post_type'] );
 		}
 
 		if ( 'rmp_menu' !== $post_type ) {
@@ -156,7 +156,7 @@ class Plugin {
 
 	/**
 	 * Function to show the admin notice if plugin deactivate.
-	 * 
+	 *
 	 * @return void
 	 */
 	public function rmp_deactivate_paid_version_notice() {
@@ -165,7 +165,7 @@ class Plugin {
 				'<div class="notice notice-error is-dismissible">
 				<p>%s</p>
 				</div>',
-				__('Responsive Menu has been deactivated','responsive-menu-pro' )	
+				__('Responsive Menu has been deactivated','responsive-menu-pro' )
 			);
 			delete_transient( 'og-admin-notice-activation-pro' );
 		}
@@ -173,9 +173,9 @@ class Plugin {
 
 	/**
 	 * Load plugin text domain.
-	 * 
+	 *
 	 * @version 4.0.0
-	 * 
+	 *
 	 * @return void
 	 */
 	public function rmp_load_plugin_text_domain() {
@@ -184,22 +184,22 @@ class Plugin {
 
 	/**
 	 * Function to render the nenu on frontend.
-	 * 
+	 *
 	 * @version 4.0.0
 	 */
 	function menu_render_on_frontend() {
 
 		$option_manager  = Option_Manager::get_instance();
 		$menu_ids   = get_all_rmp_menu_ids();
-	
+
 		if ( empty( $menu_ids ) ) {
 			return;
 		}
-	
+
 		foreach ( $menu_ids as $menu_id ) {
 
 			$menu_show_on = $option_manager->get_option( $menu_id, 'menu_display_on' );
-	
+
 			if ( ! empty( $menu_show_on ) && 'shortcode' === $menu_show_on ) {
 				continue;
 			}
@@ -211,9 +211,9 @@ class Plugin {
 
 	/**
 	 * Check support of wp_body_open for plugins and themes.
-	 * 
+	 *
 	 * @since 4.0.0
-	 * 
+	 *
 	 * @param string $hook Name of hook.
 	 * @return boolean
 	 */

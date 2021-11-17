@@ -10,7 +10,7 @@
 $global_settings = get_option( 'rmp_global_setting_options' );
 
 if ( empty( $global_settings )  ) {
-    $global_settings = rmp_global_default_setting_options();  
+    $global_settings = rmp_global_default_setting_options();
     update_option( 'rmp_global_setting_options', $global_settings  );
 }
 
@@ -22,68 +22,33 @@ if ( ! empty(  $global_settings['rmp_custom_css'] ) ) {
 
 $wp_header = 'none';
 if ( ! empty( $global_settings['menu_adjust_for_wp_admin_bar'] ) )  {
-    $wp_header = $global_settings['menu_adjust_for_wp_admin_bar'];    
+    $wp_header = $global_settings['menu_adjust_for_wp_admin_bar'];
 }
 
-?>  
+?>
 <div class="wrap rmp-container rmp-setting-page">
     <h1 class="wp-heading-inline"> <?php esc_html_e( 'Responsive Menu', 'responsive-menu-pro' ); ?> </h1>
     <form method="post" enctype="multipart/form-data" id="rmp-global-settings">
 
         <div id="rmp-setting-tabs">
             <ul class="nav-tab-wrapper">
-                <?php if ( ! empty( get_option('responsive_menu_version') ) ) { ?>
-                <li><a class="nav-tab nav-tab-active" href="#rmp-settings-general"><?php esc_html_e('General', 'responsive-menu-pro'); ?></a></li>
-                <?php } ?>
-
                 <li><a class="nav-tab" href="#rmp-settings-advanced"><?php esc_html_e('Advance', 'responsive-menu-pro'); ?></a></li>
                 <li><a class="nav-tab" href="#rmp-settings-style"><?php esc_html_e('Style', 'responsive-menu-pro'); ?></a></li>
                 <li><a class="nav-tab" href="#rmp-settings-import-and-export"><?php esc_html_e('Import/Export', 'responsive-menu-pro'); ?></a></li>
             </ul>
 
-            <?php if ( ! empty( get_option('responsive_menu_version') ) ) { ?>
-
-            <div id="rmp-settings-general">
-                <table  class="form-table" role="presentation">
-                    <tbody>
-                        <tr>
-                            <th scope="row"> <?php esc_html_e( 'Rollback Version', 'responsive-menu-pro'); ?></th>
-                            <td>
-                                <fieldset>
-                                    <p>
-                                        <select class="" aria-describedby="Rollback Version" id="rmp-versions" name="rmp-versions">
-                                            <option value="4.0.0" selected> v4.x</option>
-                                            <option value="3.1.30"> v3.1.30</option>
-                                        </select>
-                                        <button id="rmp-rollback-version" class="button button-primary button-large"><?php esc_html_e( 'Rollback', 'responsive-menu-pro'); ?></button>
-                                    </p>
-                                    <p class="description"><?php esc_html_e( 'Experiencing an issue with latest version 4.0.0? Rollback to a previous version before the issue appeared.', 'responsive-menu-pro'); ?></p>
-                                </fieldset>
-                            </td>
-                        </tr>
-
-                    </tbody>
-                </table>
-                <button class="button button-primary button-large rmp-save-global-settings-button" type="button">
-                    <?php esc_html_e( 'Save Settings', 'responsive-menu-pro'); ?>
-                </button>
-                <span class="spinner"></span>
-            </div>
-
-            <?php } ?>
-
             <div id="rmp-settings-advanced" >
                 <table class="form-table" role="presentation">
-                    <tbody>                                
+                    <tbody>
                         <tr>
                             <th scope="row"> <?php esc_html_e( 'Adjust for WP Admin Bar', 'responsive-menu-pro'); ?></th>
                             <td>
                                 <label>
                                     <p>
                                         <select name="menu_adjust_for_wp_admin_bar" value="on" id="rmp-menu_adjust-wp-admin-bar">
-                                            <option value="none" <?php echo ( $wp_header == 'none' ? 'selected' : '' ); ?>><?php esc_attr_e( 'None', 'responsive-menu-pro'); ?></option>
-                                            <option value="adjust" <?php echo ( $wp_header == 'adjust' ? 'selected' : '' ); ?>><?php esc_attr_e( 'Adjust', 'responsive-menu-pro'); ?></option>
-                                            <option value="hide" <?php echo ( $wp_header == 'hide' ? 'selected' : '' ); ?>><?php esc_attr_e( 'Hide', 'responsive-menu-pro'); ?></option>
+                                            <option value="none" <?php echo esc_attr( $wp_header == 'none' ? 'selected' : '' ); ?>><?php esc_attr_e( 'None', 'responsive-menu-pro'); ?></option>
+                                            <option value="adjust" <?php echo esc_attr( $wp_header == 'adjust' ? 'selected' : '' ); ?>><?php esc_attr_e( 'Adjust', 'responsive-menu-pro'); ?></option>
+                                            <option value="hide" <?php echo esc_attr( $wp_header == 'hide' ? 'selected' : '' ); ?>><?php esc_attr_e( 'Hide', 'responsive-menu-pro'); ?></option>
                                         </select>
                                         <label for="rmp-menu_adjust-wp-admin-bar" class="description">
                                             <?php esc_html_e( 'If you use the WP Admin bar when logged in, this will help you to adjust the admin bar.', 'responsive-menu-pro'); ?>
@@ -98,7 +63,7 @@ if ( ! empty( $global_settings['menu_adjust_for_wp_admin_bar'] ) )  {
                             <td>
                                 <fieldset>
                                     <p>
-                                        <input type="checkbox" name="rmp_dark_mode" value="on" id="rmp-dark-mode" <?php echo is_rmp_option_checked( 'on', $global_settings, 'rmp_dark_mode' );?> > 
+                                        <input type="checkbox" name="rmp_dark_mode" value="on" id="rmp-dark-mode" <?php echo is_rmp_option_checked( 'on', $global_settings, 'rmp_dark_mode' );?> >
                                         <label for="rmp-dark-mode" class="description">
                                             <?php esc_html_e( 'Enable dark mode for menu editor page.', 'responsive-menu-pro'); ?>
                                         </label>
@@ -112,7 +77,7 @@ if ( ! empty( $global_settings['menu_adjust_for_wp_admin_bar'] ) )  {
                             <td>
                                 <fieldset>
                                     <p>
-                                        <input type="checkbox" name="rmp_wp_footer_hook" value="on" id="rmp-wp-footer-hook" <?php echo is_rmp_option_checked( 'on', $global_settings, 'rmp_wp_footer_hook' );?> > 
+                                        <input type="checkbox" name="rmp_wp_footer_hook" value="on" id="rmp-wp-footer-hook" <?php echo is_rmp_option_checked( 'on', $global_settings, 'rmp_wp_footer_hook' );?> >
                                         <label for="rmp-wp-footer-hook" class="description">
                                             <?php esc_html_e( 'Enable this option if your theme does not support wp_body_open hook.', 'responsive-menu-pro'); ?>
                                         </label>
@@ -126,7 +91,7 @@ if ( ! empty( $global_settings['menu_adjust_for_wp_admin_bar'] ) )  {
                             <td>
                                 <fieldset>
                                     <p>
-                                        <input type="checkbox" name="rmp_external_files" value="on" id="rmp-use-external-files" <?php echo is_rmp_option_checked( 'on', $global_settings, 'rmp_external_files' );?> > 
+                                        <input type="checkbox" name="rmp_external_files" value="on" id="rmp-use-external-files" <?php echo is_rmp_option_checked( 'on', $global_settings, 'rmp_external_files' );?> >
                                         <label for="rmp-use-external-files" class="description">
                                             <?php esc_html_e( 'Create external files for the CSS and JavaScript created by this plugin.', 'responsive-menu-pro'); ?>
                                         </label>
@@ -149,7 +114,7 @@ if ( ! empty( $global_settings['menu_adjust_for_wp_admin_bar'] ) )  {
                             </td>
                         </tr>
 
-                        <tr>    
+                        <tr>
                             <th scope="row"><?php esc_html_e( 'Place scripts in footer', 'responsive-menu-pro'); ?>  </th>
                             <td>
                                 <fieldset>
@@ -182,7 +147,7 @@ if ( ! empty( $global_settings['menu_adjust_for_wp_admin_bar'] ) )  {
                 </button>
                 <span class="spinner"></span>
             </div>
- 
+
             <div id="rmp-settings-style" >
                 <table class="form-table" role="presentation">
                     <tbody>
@@ -261,7 +226,7 @@ if ( ! empty( $global_settings['menu_adjust_for_wp_admin_bar'] ) )  {
                                 <p class="description">
                                     <?php esc_html_e( 'This will import settings in selected menu created via the export process above.', 'responsive-menu-pro'); ?>
                                 </p>
-                                
+
                             </td>
                         </tr>
                     </tbody>

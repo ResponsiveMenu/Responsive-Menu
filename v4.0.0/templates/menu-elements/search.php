@@ -4,7 +4,7 @@
         <span class="item-title"><?php esc_html_e( 'Search', 'responsive-menu-pro' ); ?></span>
         <span class="item-controls">
             <input type='hidden' value='' name='menu[items_order][search]'/>
-            <input type="checkbox" data-toggle="search" value="on" id="rmp-item-order-search" class="no-updates toggle item-type" name="menu[items_order][search]" <?php if ( ! empty( $options['items_order']['search'] ) ) { echo "checked"; } ?>>
+            <input type="checkbox" data-toggle="search" value="on" id="rmp-item-order-search" class="no-updates toggle item-type" name="menu[items_order][search]" <?php if ( ! empty( $options['items_order']['search'] ) ) { echo esc_attr( "checked" ); } ?>>
             <a class="item-edit open-item" aria-label="open Search options">
                 <span class="screen-reader-text">Open</span>
             </a>
@@ -73,7 +73,7 @@
                 ] );
 
             echo $ui_manager->end_group_controls();
-            
+
             echo $ui_manager->accordion_divider();
 
             echo $ui_manager->start_group_controls();
@@ -82,18 +82,18 @@
                 'id'     => 'rmp-menu-search-box-text-colour',
                 'name'    => 'menu[menu_search_box_text_colour]',
                 'value'    => rmp_get_value($options,'menu_search_box_text_colour'),
-                
+
             ] );
             echo $control_manager->add_color_control( [
                 'label'  => __('Background Color','responsive-menu-pro'),
                 'id'     => 'rmp-menu-search-box-background-colour',
                 'name'    => 'menu[menu_search_box_background_colour]',
                 'value'    => rmp_get_value($options,'menu_search_box_background_colour'),
-                
+
             ] );
             echo $ui_manager->end_group_controls();
             echo $ui_manager->start_group_controls();
-           
+
             echo $control_manager->add_color_control( [
                 'label'  => __('Placeholder Color','responsive-menu-pro'),
                 'id'     => 'rmp-menu-search-box-placeholder-colour',
@@ -106,7 +106,7 @@
                 'id'     => 'rmp-menu-search-box-border-colour',
                 'name'    => 'menu[menu_search_box_border_colour]',
                 'value'    => rmp_get_value($options,'menu_search_box_border_colour'),
-                
+
             ] );
             echo $ui_manager->end_group_controls();
 

@@ -2,8 +2,8 @@
 Contributors: expresstech, responsivemenu, imvarunkmr, surajkumarsingh, infosatech
 Tags: responsive, mega menu, navigation, mobile, hamburger
 Requires at least: 3.6
-Tested up to: 5.7
-Stable tag: 4.1.4
+Tested up to: 5.8
+Stable tag: 4.1.5
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -102,6 +102,13 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 7. Main menu
 
 == Changelog ==
+
+= 4.1.5 (17th Nov 2021) =
+Enhancement: Refactored code to use wp_enqueue functions while including JS and CSS
+Enhancement: Removed external dependencies (CDN url and third party server scripts)
+Enhancement: Removed legacy code and rollback feature
+Enhancement: Removed encrypted code from third party libraries
+Enhancement: "Sanitized, Escaped, and Validated" all variable, file uploads and data
 
 = 4.1.4 (17th Sep 2021) =
 Bug: Fixed transparent background issue.

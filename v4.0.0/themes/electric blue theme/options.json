@@ -226,7 +226,7 @@
     "menu_title":"Alexa Seleno",
     "menu_title_link":"#",
     "menu_title_link_location":"_self",
-    "menu_title_image":"http:\/\/suraj.expresstech.dev\/wp-content\/uploads\/2020\/11\/clipart1005846.png",
+    "menu_title_image":"",
     "menu_title_font_icon":"",
     "menu_title_section_padding":{
         "top":"10%",
@@ -290,7 +290,7 @@
         "left":"0px"
     },
     "menu_container_background_colour":"#3692f7",
-    "menu_background_image":"http:\/\/suraj.expresstech.dev\/wp-content\/uploads\/2020\/11\/Reef.png",
+    "menu_background_image":"",
     "menu_appear_from":"right",
     "animation_type":"slide",
     "animation_speed":"0.5",
