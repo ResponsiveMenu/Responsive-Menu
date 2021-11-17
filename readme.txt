@@ -103,7 +103,7 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 
 == Changelog ==
 
-= 4.1.5 (16th Nov 2021) =
+= 4.1.5 (17th Nov 2021) =
 Enhancement: Refactored code to use wp_enqueue functions while including JS and CSS
 Enhancement: Removed external dependencies (CDN url and third party server scripts)
 Enhancement: Removed legacy code and rollback feature
