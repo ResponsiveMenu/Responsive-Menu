@@ -33,7 +33,7 @@
         <div id="search-styles" class="title">
             <?php
 
-            echo $control_manager->add_group_text_control( [
+            $control_manager->add_group_text_control( [
                 'label'  => __('Padding','responsive-menu-pro'),
                 'type'   =>   'text',
                 'class'  =>  'rmp-menu-search-section-padding',
@@ -42,8 +42,8 @@
                 'value_options' => ! empty( $options['menu_search_section_padding'] ) ? $options['menu_search_section_padding'] : ''
             ] );
 
-            echo $ui_manager->start_group_controls();
-                echo $control_manager->add_text_input_control( [
+            $ui_manager->start_group_controls();
+                $control_manager->add_text_input_control( [
                     'label'  => __('Height','responsive-menu-pro'),
                     'type'   => 'number',
                     'id'     => 'rmp-menu-search-box-height',
@@ -60,7 +60,7 @@
                     ],
                 ] );
 
-                echo $control_manager->add_text_input_control( [
+                $control_manager->add_text_input_control( [
                     'label'  => __('Border Radius','responsive-menu-pro'),
                     'type'   => 'number',
                     'class' => 'no-updates',
@@ -72,43 +72,43 @@
                     ],
                 ] );
 
-            echo $ui_manager->end_group_controls();
+            $ui_manager->end_group_controls();
 
-            echo $ui_manager->accordion_divider();
+            $ui_manager->accordion_divider();
 
-            echo $ui_manager->start_group_controls();
-            echo $control_manager->add_color_control( [
+            $ui_manager->start_group_controls();
+            $control_manager->add_color_control( [
                 'label'  => __('Text Color','responsive-menu-pro'),
                 'id'     => 'rmp-menu-search-box-text-colour',
                 'name'    => 'menu[menu_search_box_text_colour]',
                 'value'    => rmp_get_value($options,'menu_search_box_text_colour'),
 
             ] );
-            echo $control_manager->add_color_control( [
+            $control_manager->add_color_control( [
                 'label'  => __('Background Color','responsive-menu-pro'),
                 'id'     => 'rmp-menu-search-box-background-colour',
                 'name'    => 'menu[menu_search_box_background_colour]',
                 'value'    => rmp_get_value($options,'menu_search_box_background_colour'),
 
             ] );
-            echo $ui_manager->end_group_controls();
-            echo $ui_manager->start_group_controls();
+            $ui_manager->end_group_controls();
+            $ui_manager->start_group_controls();
 
-            echo $control_manager->add_color_control( [
+            $control_manager->add_color_control( [
                 'label'  => __('Placeholder Color','responsive-menu-pro'),
                 'id'     => 'rmp-menu-search-box-placeholder-colour',
                 'name'    => 'menu[menu_search_box_placeholder_colour]',
                 'value'    => rmp_get_value($options,'menu_search_box_placeholder_colour'),
             ] );
 
-            echo $control_manager->add_color_control( [
+            $control_manager->add_color_control( [
                 'label'  => __('Border Color','responsive-menu-pro'),
                 'id'     => 'rmp-menu-search-box-border-colour',
                 'name'    => 'menu[menu_search_box_border_colour]',
                 'value'    => rmp_get_value($options,'menu_search_box_border_colour'),
 
             ] );
-            echo $ui_manager->end_group_controls();
+            $ui_manager->end_group_controls();
 
             ?>
 

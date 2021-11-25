@@ -69,8 +69,6 @@ class Editor {
 	 * @param HTML.
 	 */
 	public function header_section( $menu_name ) {
-
-		ob_start();
 		?>
 			<div id="rmp-editor-header" class="rmp-editor-header">
 				<!-- Plugin logo on editor header-->
@@ -87,23 +85,20 @@ class Editor {
 					<a class="rmp-editor-header-close" href="<?php echo esc_url( admin_url().'/edit.php?post_type=rmp_menu' ); ?>">
 						<span class="fas fa-times"></span>
 						<span class="screen-reader-text">
-							<?php echo esc_html__('Close the editor and go back to the previous page', 'responsive-menu-pro' ); ?>
+							<?php esc_html_e('Close the editor and go back to the previous page', 'responsive-menu-pro' ); ?>
 						</span>
 					</a>
 				</div>
 			</div>
 		<?php
 
-		$html = ob_get_clean();
-
 		/**
 		 * Filters the editor header.
 		 *
 		 * @param string|HTML $html
 		 */
-		$html = apply_filters( 'rmp_editor_header_html', $html );
+		echo apply_filters( 'rmp_editor_header_html', $html );
 
-		return $html;
 	}
 
 	/**
@@ -112,7 +107,6 @@ class Editor {
 	 * @param HTML.
 	 */
 	public function footer_section() {
-		ob_start();
 		?>
 			<div id="rmp-editor-footer" class="rmp-editor-footer">
 
@@ -150,21 +144,21 @@ class Editor {
 					<button type="button" id="rmp-preview-mobile" class=" rmp-device-preview rmp-preview-mobile active" aria-pressed="1" data-device="mobile">
 						<?php echo file_get_contents( RMP_PLUGIN_PATH_V4 .'/assets/admin/icons/svg/mobile.svg' ); ?>
 						<span class="screen-reader-text">
-							<?php echo esc_html__('Enter mobile preview mode', 'responsive-menu-pro' ); ?>
+							<?php esc_html_e('Enter mobile preview mode', 'responsive-menu-pro' ); ?>
 						</span>
 					</button>
 
 					<button type="button" id="rmp-preview-tablet" class="rmp-preview-tablet rmp-device-preview" aria-pressed="" data-device="tablet">
 						<?php echo file_get_contents( RMP_PLUGIN_PATH_V4 .'/assets/admin/icons/svg/tablet.svg' ); ?>
 						<span class="screen-reader-text">
-							<?php echo esc_html__('Enter tablet preview mode', 'responsive-menu-pro' ); ?>
+							<?php esc_html_e('Enter tablet preview mode', 'responsive-menu-pro' ); ?>
 						</span>
 					</button>
 
 					<button type="button" id="rmp-preview-desktop" class="rmp-preview-desktop rmp-device-preview" aria-pressed="" data-device="desktop">
 						<?php echo file_get_contents( RMP_PLUGIN_PATH_V4 .'/assets/admin/icons/svg/desktop.svg' ); ?>
 						<span class="screen-reader-text">
-							<?php echo esc_html__('Enter desktop preview mode', 'responsive-menu-pro' ); ?>
+							<?php esc_html_e('Enter desktop preview mode', 'responsive-menu-pro' ); ?>
 						</span>
 					</button>
 
@@ -173,16 +167,13 @@ class Editor {
 			</div>
 		<?php
 
-		$html = ob_get_clean();
-
 		/**
 		 * Filters the editor footer html.
 		 *
 		 * @param string|HTML $html
 		 */
-		$html = apply_filters( 'rmp_editor_footer_html', $html );
+		echo apply_filters( 'rmp_editor_footer_html', $html );
 
-		return $html;
 	}
 
 	/**
@@ -191,11 +182,11 @@ class Editor {
 	 * @return HTML|string
 	 */
 	public function sidebar_drawer() {
-		return (
-			'<button type="button" class="collapse-sidebar" aria-expanded="true" aria-label="Hide Controls">
-				<span class="collapse-sidebar-arrow"></span>
-			</button>'
-		);
+		?>
+		<button type="button" class="collapse-sidebar" aria-expanded="true" aria-label="Hide Controls">
+			<span class="collapse-sidebar-arrow"></span>
+		</button>
+		<?php
 	}
 
 }

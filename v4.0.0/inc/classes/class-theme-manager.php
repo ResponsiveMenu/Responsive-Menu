@@ -758,16 +758,12 @@ class Theme_Manager {
 
 		//If theme is template
 		if ( $theme_type == 'template' ) {
-			return sprintf( '<img src="%s" class="theme-thumbnail">',
-				esc_url( RMP_PLUGIN_URL_V4 .'/assets/images/no-preview.jpeg' )
-			);
+			?><img src="<?php echo esc_url( RMP_PLUGIN_URL_V4 .'/assets/images/no-preview.jpeg' ); ?>" class="theme-thumbnail"><?php
 		}
 
 		//If theme is default.
 		if( 'default' == $theme_type ) {
-			return sprintf( '<img src="%s" class="theme-thumbnail">',
-				esc_url( RMP_PLUGIN_URL_V4 .'/assets/images/default-theme-preview.png' )
-			);
+			?><img src="<?php echo esc_url( RMP_PLUGIN_URL_V4 .'/assets/images/default-theme-preview.png' ); ?>" class="theme-thumbnail"><?php
 		}
 
 		$theme_preview_url = $this->get_theme_preview_url( $theme_name );
@@ -775,10 +771,7 @@ class Theme_Manager {
 			return;
 		}
 
-		return sprintf(
-			'<img src="%s" class="theme-thumbnail">',
-			esc_url( $theme_preview_url )
-		);
+		?><img src="<?php echo esc_url( $theme_preview_url ); ?>" class="theme-thumbnail"><?php
 
 	}
 
