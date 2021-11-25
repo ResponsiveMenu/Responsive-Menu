@@ -540,48 +540,29 @@ class Theme_Manager {
 
 		//Check the list is empty or not.
 		if ( empty( $rmp_themes ) ) {
-			return sprintf(
-				'<div class="rmp-theme-page-empty">
+			?><div class="rmp-theme-page-empty">
 					<span class="rmp-menu-library-blank-icon  dashicons dashicons-welcome-widgets-menus"></span>
-					<h3 class="rmp-menu-library-title"> %s </h3>
-				</div>',
-				__( 'You have no template !', 'responsive-menu-pro' )
-			);
+					<h3 class="rmp-menu-library-title"> <?php esc_html_e( 'You have no template !', 'responsive-menu-pro' ); ?> </h3>
+				</div><?php
+			return;
 		}
 
 		//Prepare the saved theme list and wrapped into html.
-		$html = '';
 		foreach( $rmp_themes as $theme_name ) {
-
-			$actions = '';
-			if ( $in_customizer ) {
-				$actions = sprintf( '<a theme-name="%1$s" class="rmp-theme-apply" theme-type="template">%2$s</a>',
-					esc_attr( $theme_name ),
-					__('Apply','responsive-menu-pro')
-				);
-
-			} else {
-				$actions = sprintf(
-					'<input type="radio" class="rmp-theme-option" name="menu_theme" id="%1$s" value="%1$s" theme-type="template"/>
-					<label theme-name="%1$s" class="rmp-theme-use" for="%1$s">%2$s</label>',
-					esc_attr( $theme_name ),
-					__('Use','responsive-menu-pro')
-				);
-			}
-
-			$html .= sprintf(
-				'<div class="rmp-theme-title ">
-					<span class="item-title"> %1$s </span>
-					<span class="item-controls">
-						%2$s
-					</span>
-				</div>',
-				esc_attr( $theme_name ),
-				$actions
-			);
+			?><div class="rmp-theme-title ">
+				<span class="item-title"> <?php echo esc_attr( $theme_name ); ?> </span>
+				<span class="item-controls">
+					<?php
+					if ( $in_customizer ) {
+						?><a theme-name="<?php echo esc_attr( $theme_name ); ?>" class="rmp-theme-apply" theme-type="template"><?php esc_html_e('Apply','responsive-menu-pro'); ?></a><?php
+					} else {
+						?><input type="radio" class="rmp-theme-option" name="menu_theme" id="<?php echo esc_attr( $theme_name ); ?>" value="<?php echo esc_attr( $theme_name ); ?>" theme-type="template"/>
+							<label theme-name="<?php echo esc_attr( $theme_name ); ?>" class="rmp-theme-use" for="<?php echo esc_attr( $theme_name ); ?>"><?php esc_html_e('Use','responsive-menu-pro'); ?></label><?php
+					}
+					?>
+				</span>
+			</div><?php
 		}
-
-		return $html;
 	}
 
 /**
@@ -599,39 +580,11 @@ class Theme_Manager {
 			$uploaded_themes = [];
 		}
 
-		$html = '';
 		foreach( $themes as $theme ) {
 
 			// Avoid the themes which are already uploaded.
 			if ( in_array( strtolower( $theme['slug'] ), $uploaded_themes ) ) {
 				continue;
-			}
-
-			$action_label = __( 'Purchase','responsive-menu-pro' );
-			if ( 0 == $theme['price'] ) {
-				$action_label = __( 'Download','responsive-menu-pro' );
-			}
-
-			$demo_link = '';
-			if ( ! empty( $theme['demo_link'] ) ) {
-				if ( $in_customizer ) {
-					$link = add_query_arg( [
-						'utm_source' => 'plugin',
-						'utm_medium' => 'change_theme_wizard'
-					], $theme['demo_link'] );
-				} else {
-					$link = add_query_arg( [
-						'utm_source' => 'plugin',
-						'utm_medium' => 'new_menu_wizard'
-					], $theme['demo_link'] );
-				}
-
-				$demo_link = sprintf(
-					'<a href="%s" alt="%s" target="_blank" class="button">%s</a>',
-					esc_url( $link ),
-					esc_attr( $theme['name'] ),
-					__( 'View Demo','responsive-menu-pro' )
-				);
 			}
 
 			if ( $in_customizer ) {
@@ -646,29 +599,45 @@ class Theme_Manager {
 				], $theme['buy_link'] );
 			}
 
-			$html .= sprintf(
-				'<li class="rmp_theme_grid_item">
-					<div class="rmp-item-card">
-						<figure class="rmp-item-card_image">
-							<img src="%1$s" alt="%2$s" loading="lazy"/>
-						</figure>
-						<div class="rmp-item-card-backside">
-							<div class="rmp-item-card_contents">
-								<h4> %2$s </h4>
-							</div>
-							<div class="rmp-item-card_action">
-								%5$s
-								<a href="%3$s" target="_blank" class="button btn-blue %4$s"> %4$s </a>
-							</div>
+			?><li class="rmp_theme_grid_item">
+				<div class="rmp-item-card">
+					<figure class="rmp-item-card_image">
+						<img src="<?php echo esc_url( $theme['preview_url']); ?>" alt="<?php echo esc_attr( $theme['name'] ); ?>" loading="lazy"/>
+					</figure>
+					<div class="rmp-item-card-backside">
+						<div class="rmp-item-card_contents">
+							<h4> <?php esc_html_e( $theme['name'], 'responsive-menu-pro' ); ?> </h4>
+						</div>
+						<div class="rmp-item-card_action">
+							<?php
+								if ( ! empty( $theme['demo_link'] ) ) {
+									if ( $in_customizer ) {
+										$link = add_query_arg( [
+											'utm_source' => 'plugin',
+											'utm_medium' => 'change_theme_wizard'
+										], $theme['demo_link'] );
+									} else {
+										$link = add_query_arg( [
+											'utm_source' => 'plugin',
+											'utm_medium' => 'new_menu_wizard'
+										], $theme['demo_link'] );
+									}
+									?><a href="<?php echo esc_url( $link ); ?>" alt="<?php echo esc_attr( $theme['name'] ); ?>" target="_blank" class="button"><?php esc_html_e( 'View Demo','responsive-menu-pro' ); ?></a><?php
+								}
+							?>
+							<a href="<?php echo esc_url( $buy_link ); ?>" target="_blank" class="button btn-blue">
+								<?php
+									if ( 0 == $theme['price'] ) {
+										esc_html_e( 'Download','responsive-menu-pro' );
+									}else{
+										esc_html_e( 'Purchase','responsive-menu-pro' );
+									}
+								?>
+							</a>
 						</div>
 					</div>
-				</li>',
-				esc_url( $theme['preview_url']),
-				esc_attr( $theme['name'] ),
-				esc_url( $buy_link ),
-				$action_label,
-				$demo_link
-			);
+				</div>
+			</li><?php
 		}
 
 		if ( empty( $html ) ) {
@@ -758,12 +727,12 @@ class Theme_Manager {
 
 		//If theme is template
 		if ( $theme_type == 'template' ) {
-			?><img src="<?php echo esc_url( RMP_PLUGIN_URL_V4 .'/assets/images/no-preview.jpeg' ); ?>" class="theme-thumbnail"><?php
+			?><img src="<?php echo esc_url( RMP_PLUGIN_URL_V4 .'/assets/images/no-preview.jpeg' ); ?>" class="theme-thumbnail" alt="<?php echo esc_attr($theme_type); ?>" ><?php
 		}
 
 		//If theme is default.
 		if( 'default' == $theme_type ) {
-			?><img src="<?php echo esc_url( RMP_PLUGIN_URL_V4 .'/assets/images/default-theme-preview.png' ); ?>" class="theme-thumbnail"><?php
+			?><img src="<?php echo esc_url( RMP_PLUGIN_URL_V4 .'/assets/images/default-theme-preview.png' ); ?>" class="theme-thumbnail" alt="<?php echo esc_attr($theme_type); ?>" ><?php
 		}
 
 		$theme_preview_url = $this->get_theme_preview_url( $theme_name );
@@ -771,7 +740,7 @@ class Theme_Manager {
 			return;
 		}
 
-		?><img src="<?php echo esc_url( $theme_preview_url ); ?>" class="theme-thumbnail"><?php
+		?><img src="<?php echo esc_url( $theme_preview_url ); ?>" class="theme-thumbnail"  alt="<?php echo esc_attr($theme_type); ?>" ><?php
 
 	}
 
@@ -866,6 +835,85 @@ class Theme_Manager {
 	 * @return HTML|string $html
 	 */
 	public function get_available_themes( $in_customizer = false ) {
+
+		?><ul class="rmp_theme_grids"><?php
+
+		if ( ! $in_customizer ) {
+			?><li class="rmp_theme_grid_item">
+					<input type="radio" checked id="default" class="rmp-theme-option" name="menu_theme" value="" theme-type="default"/>
+					<label class="rmp-item-card default-item" for="default">
+						<figure class="rmp-item-card_image">
+							<img src="<?php echo esc_url( RMP_PLUGIN_URL_V4 .'/assets/images/default-theme-preview.png' ); ?>" alt="%2$s" loading="lazy"/>
+						</figure>
+						<div class="rmp-item-card-backside">
+							<div class="rmp-item-card_contents">
+								<h4> <?php esc_html_e( 'Default Theme', 'responsive-menu-pro'); ?> </h4>
+							</div>
+							<div class="rmp-item-card_action">
+								<a href="https://demo.responsive.menu/themes/default-theme/?utm_source=plugin&utm_medium=new_menu_wizard" alt="<?php esc_html_e( 'Default Theme', 'responsive-menu-pro'); ?>" target="_blank" class="button"><?php esc_html_e( 'View Demo','responsive-menu-pro' ); ?></a>
+							</div>
+						</div>
+					</label>
+				</li><?php
+		}
+
+		$downloaded_themes = $this->get_themes_from_uploads();
+		foreach( $downloaded_themes as $theme ) {
+			$id = 'rmp-theme-' . preg_replace('/\s+/', '', $theme['theme_name'] );
+
+			?>
+				<li class="rmp_theme_grid_item">
+					<?php
+					if ( !$in_customizer ) {
+						?><input type="radio" id="<?php echo esc_attr( $id ); ?>" theme-type="downloaded" class="rmp-theme-option" name="menu_theme" value="<?php echo esc_html( $theme['theme_name'] ); ?>"/><?php
+					}
+					?>
+					<label class="rmp-item-card" for="<?php echo esc_attr( $id ); ?>">
+						<figure class="rmp-item-card_image">
+							<img src="<?php echo esc_url( $theme['theme_preview_url'] ); ?>" alt="<?php esc_html_e( $theme['theme_name'], 'responsive-menu-pro' ); ?>" loading="lazy"/>
+						</figure>
+						<div class="rmp-item-card-backside">
+							<div class="rmp-item-card_contents">
+								<h4> <?php esc_html_e( $theme['theme_name'], 'responsive-menu-pro' ); ?> </h4>
+							</div>
+							<div class="rmp-item-card_action">
+								<?php
+								if ( ! empty( $theme['demo_link' ] ) ) {
+									if ( $in_customizer ) {
+										$link = add_query_arg( [
+											'utm_source' => 'plugin',
+											'utm_medium' => 'change_theme_wizard'
+										], $theme['demo_link' ] );
+									} else {
+										$link = add_query_arg( [
+											'utm_source' => 'plugin',
+											'utm_medium' => 'new_menu_wizard'
+										], $theme['demo_link' ] );
+									}
+
+									?><a href="<?php echo esc_url( $link ); ?>" alt="<?php echo esc_attr( $theme['theme_name'] ); ?>" target="_blank" class="button"><?php esc_html_e( 'View Demo','responsive-menu-pro' ); ?></a><?php
+								}
+								if ( $in_customizer ) {
+									?><button class="button btn-blue rmp-theme-apply" theme-name="<?php echo esc_html( $theme['theme_name'] ); ?>" theme-type="downloaded" ><?php esc_html_e('Apply', 'responsive-menu-pro'); ?></button><?php
+								}
+								?>
+							</div>
+						</div>
+					</label>
+				</li>
+				<?php
+		}
+
+		?></ul><?php
+	}
+
+	/**
+	 * Function to returns the available theme list.
+	 *
+	 * @since 4.1.0
+	 * @return HTML|string $html
+	 */
+	public function get_available_themes_return( $in_customizer = false ) {
 
 		$html = '<ul class="rmp_theme_grids">';
 
@@ -1004,7 +1052,7 @@ class Theme_Manager {
 		wp_send_json_success(
 			[
 				'message' => __( 'Theme is uploaded successfully', 'responsive-menu-pro' ),
-				'html'    => $this->get_available_themes( $this->is_customizer() )
+				'html'    => $this->get_available_themes_return( $this->is_customizer() )
 			]
 		);
 	}

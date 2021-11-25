@@ -100,7 +100,7 @@ class Control_Manager {
                     <?php
                     // Check feature type.
                     if( ! empty( $param['feature_type'] ) ) { ?>
-                        <a target="_blank" class="upgrade-tooltip" href="<?php echo esc_url( $this->pro_plugin_url ); ?>" >
+                        <a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url( $this->pro_plugin_url ); ?>" >
                             <?php esc_html_e( $accordion_attr['feature_type'], 'responsive-menu-pro' ); ?>
                         </a>
                 <?php } ?>
@@ -484,7 +484,7 @@ class Control_Manager {
                 // Check feature type.
                 if( ! empty( $param['feature_type'] ) ) {
                     $is_disabled = 'disabled';
-                    ?><a target="_blank" class="upgrade-tooltip" href="<?php echo esc_url( $this->pro_plugin_url ); ?>" > <?php echo $param['feature_type']; ?> </a><?php
+                    ?><a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url( $this->pro_plugin_url ); ?>" > <?php echo esc_html_e( $param['feature_type'], 'responsive-menu-pro' ); ?> </a><?php
                 }
 
                 // Check multi device options is enabled.
@@ -566,7 +566,7 @@ class Control_Manager {
                         // Check feature type.
                         if( ! empty( $param['feature_type'] ) ) {
                             $is_disabled = 'disabled';
-                            ?><a target="_blank" class="upgrade-tooltip" href="<?php echo esc_url($this->pro_plugin_url); ?>" > <?php esc_html_e( $param['feature_type'], 'responsive-menu-pro' ); ?> </a><?php
+                            ?><a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url($this->pro_plugin_url); ?>" > <?php esc_html_e( $param['feature_type'], 'responsive-menu-pro' ); ?> </a><?php
                         }
                      ?>
                 </div>
@@ -728,7 +728,7 @@ class Control_Manager {
                     <?php
                     // Check feature type.
                     if (! empty($param['feature_type'])) {
-                        $is_disabled = 'disabled'; ?><a target="_blank" class="upgrade-tooltip" href="<?php echo esc_url($this->pro_plugin_url); ?>" > <?php esc_html_e( $param['feature_type'], 'responsive-menu-pro' ); ?></a><?php
+                        $is_disabled = 'disabled'; ?><a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url($this->pro_plugin_url); ?>" > <?php esc_html_e( $param['feature_type'], 'responsive-menu-pro' ); ?></a><?php
                     }
                     ?>
             </div><?php
@@ -964,7 +964,7 @@ class Control_Manager {
 		?><div class="rmp-input-control-wrapper full-size">
                 <label class="rmp-input-control-label">
                     <?php esc_html_e('Device Visibility', 'responsive-menu-pro'); ?>
-                    <a target="_blank" class="upgrade-tooltip" href="<?php echo esc_url( $this->pro_plugin_url ); ?>" > PRO </a>
+                    <a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url( $this->pro_plugin_url ); ?>" > PRO </a>
                 </label>
                 <div class="rmp-input-control">
                     <div class="device-icons-group">
@@ -1028,7 +1028,7 @@ class Control_Manager {
 	 */
 	protected function get_device_options() {
        ?><div class="rmp-device-switcher-holder">
-            <a target="_blank" class="upgrade-tooltip" href="<?php echo esc_url( $this->pro_plugin_url ); ?>" > PRO </a>
+            <a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url( $this->pro_plugin_url ); ?>" > PRO </a>
             <ul class="select rmp-device-switcher" >
                 <li data-device="mobile">
                     <?php echo file_get_contents( RMP_PLUGIN_PATH_V4 .'/assets/admin/icons/svg/mobile.svg' ); ?>
@@ -1061,8 +1061,8 @@ class Control_Manager {
     public function upgrade_notice() {
         ?><div class="upgrade-options">
             <div class="upgrade-notes">
-                <p><?php esc_html_e('This feature is not available in free version. <br/> Upgrade now to use', 'responsive-menu-pro'); ?> </p>
-                <a target="_blank" href="<?php echo esc_url( $this->pro_plugin_url ); ?>" class="button"> <?php esc_html_e('Upgrade to Pro', 'responsive-menu-pro'); ?> </a>
+                <p><?php echo __('This feature is not available in free version. Upgrade now to use', 'responsive-menu-pro'); ?> </p>
+                <a target="_blank" rel="noopener" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" class="button"> <?php esc_html_e('Upgrade to Pro', 'responsive-menu-pro'); ?> </a>
             </div>
         </div><?php
     }
