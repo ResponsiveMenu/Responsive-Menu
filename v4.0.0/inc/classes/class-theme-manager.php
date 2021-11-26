@@ -622,10 +622,10 @@ class Theme_Manager {
 											'utm_medium' => 'new_menu_wizard'
 										], $theme['demo_link'] );
 									}
-									?><a href="<?php echo esc_url( $link ); ?>" alt="<?php echo esc_attr( $theme['name'] ); ?>" target="_blank" class="button"><?php esc_html_e( 'View Demo','responsive-menu-pro' ); ?></a><?php
+									?><a href="<?php echo esc_url( $link ); ?>" alt="<?php echo esc_attr( $theme['name'] ); ?>" target="_blank" rel="noopener" class="button"><?php esc_html_e( 'View Demo','responsive-menu-pro' ); ?></a><?php
 								}
 							?>
-							<a href="<?php echo esc_url( $buy_link ); ?>" target="_blank" class="button btn-blue">
+							<a href="<?php echo esc_url( $buy_link ); ?>" target="_blank" rel="noopener" class="button btn-blue">
 								<?php
 									if ( 0 == $theme['price'] ) {
 										esc_html_e( 'Download','responsive-menu-pro' );
@@ -843,14 +843,14 @@ class Theme_Manager {
 					<input type="radio" checked id="default" class="rmp-theme-option" name="menu_theme" value="" theme-type="default"/>
 					<label class="rmp-item-card default-item" for="default">
 						<figure class="rmp-item-card_image">
-							<img src="<?php echo esc_url( RMP_PLUGIN_URL_V4 .'/assets/images/default-theme-preview.png' ); ?>" alt="%2$s" loading="lazy"/>
+							<img src="<?php echo esc_url( RMP_PLUGIN_URL_V4 .'/assets/images/default-theme-preview.png' ); ?>" alt="<?php esc_html_e( 'Default Theme', 'responsive-menu-pro'); ?>" loading="lazy"/>
 						</figure>
 						<div class="rmp-item-card-backside">
 							<div class="rmp-item-card_contents">
 								<h4> <?php esc_html_e( 'Default Theme', 'responsive-menu-pro'); ?> </h4>
 							</div>
 							<div class="rmp-item-card_action">
-								<a href="https://demo.responsive.menu/themes/default-theme/?utm_source=plugin&utm_medium=new_menu_wizard" alt="<?php esc_html_e( 'Default Theme', 'responsive-menu-pro'); ?>" target="_blank" class="button"><?php esc_html_e( 'View Demo','responsive-menu-pro' ); ?></a>
+								<a href="https://demo.responsive.menu/themes/default-theme/?utm_source=plugin&utm_medium=new_menu_wizard" alt="<?php esc_html_e( 'Default Theme', 'responsive-menu-pro'); ?>" target="_blank" rel="noopener" class="button"><?php esc_html_e( 'View Demo','responsive-menu-pro' ); ?></a>
 							</div>
 						</div>
 					</label>
@@ -891,7 +891,7 @@ class Theme_Manager {
 										], $theme['demo_link' ] );
 									}
 
-									?><a href="<?php echo esc_url( $link ); ?>" alt="<?php echo esc_attr( $theme['theme_name'] ); ?>" target="_blank" class="button"><?php esc_html_e( 'View Demo','responsive-menu-pro' ); ?></a><?php
+									?><a href="<?php echo esc_url( $link ); ?>" alt="<?php echo esc_attr( $theme['theme_name'] ); ?>" target="_blank" rel="noopener" class="button"><?php esc_html_e( 'View Demo','responsive-menu-pro' ); ?></a><?php
 								}
 								if ( $in_customizer ) {
 									?><button class="button btn-blue rmp-theme-apply" theme-name="<?php echo esc_html( $theme['theme_name'] ); ?>" theme-type="downloaded" ><?php esc_html_e('Apply', 'responsive-menu-pro'); ?></button><?php
@@ -930,7 +930,7 @@ class Theme_Manager {
 								<h4> %2$s </h4>
 							</div>
 							<div class="rmp-item-card_action">
-								<a href="https://demo.responsive.menu/themes/default-theme/?utm_source=plugin&utm_medium=new_menu_wizard" alt="%2$s" target="_blank" class="button">%3$s</a>
+								<a href="https://demo.responsive.menu/themes/default-theme/?utm_source=plugin&utm_medium=new_menu_wizard" alt="%2$s" target="_blank" rel="noopener" class="button">%3$s</a>
 							</div>
 						</div>
 					</label>
@@ -960,7 +960,7 @@ class Theme_Manager {
 				}
 
 				$demo_link = sprintf(
-					'<a href="%s" alt="%s" target="_blank" class="button">%s</a>',
+					'<a href="%s" alt="%s" target="_blank" rel="noopener" class="button">%s</a>',
 					esc_url( $link ),
 					esc_attr( $theme['theme_name'] ),
 					__( 'View Demo','responsive-menu-pro' )
