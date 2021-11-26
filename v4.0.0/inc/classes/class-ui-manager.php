@@ -108,7 +108,7 @@ class UI_Manager {
 						// Check feature type.
 						if( ! empty( $accordion_attr['feature_type'] ) ) {
 							?>
-							<a target="_blank" class="upgrade-tooltip" href="<?php echo esc_url( $this->pro_plugin_url ); ?>" >
+							<a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url( $this->pro_plugin_url ); ?>" >
 								<?php esc_html_e( $accordion_attr['feature_type'], 'responsive-menu-pro' ); ?>
 							</a>
 							<?php
