@@ -76,7 +76,7 @@ if ( ! empty(  $global_settings['rmp_dark_mode'] ) ) {
                         <ul class="rmp_theme_grids">
                             <?php
                             if ( ! empty( $cached_data ) ) {
-                                echo $theme_manager->get_themes_from_theme_store();
+                                $theme_manager->get_themes_from_theme_store();
                             } else {
                             ?>
                                 <div class="rmp-page-loader" style="display:flex;">
@@ -91,12 +91,12 @@ if ( ! empty(  $global_settings['rmp_dark_mode'] ) ) {
 
                     <!-- This is available theme list. -->
                     <div id="tabs-1" class="rmp-themes">
-                        <?php echo $theme_manager->get_available_themes(); ?>
+                        <?php $theme_manager->get_available_themes(); ?>
                     </div>
 
                     <!-- This is saved template themes. -->
                     <div id="tabs-3" class="rmp-themes">
-                        <?php echo $theme_manager->rmp_saves_theme_template_list(); ?>
+                        <?php $theme_manager->rmp_saves_theme_template_list(); ?>
                     </div>
                 </div>
             </div>

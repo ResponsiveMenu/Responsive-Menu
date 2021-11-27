@@ -32,9 +32,9 @@ class RMP_Widget extends Widget_Base {
 
 	/**
 	 * Function to return the widget name.
-	 * 
+	 *
 	 * @since 4.0.2
-	 * 
+	 *
 	 * @return string
 	 */
 	public function get_name() {
@@ -43,9 +43,9 @@ class RMP_Widget extends Widget_Base {
 
 	/**
 	 * Function to return the widget title.
-	 * 
+	 *
 	 * @since 4.0.2
-	 * 
+	 *
 	 * @return string
 	 */
 	public function get_title() {
@@ -54,9 +54,9 @@ class RMP_Widget extends Widget_Base {
 
 	/**
 	 * Function to return the widget icon.
-	 * 
+	 *
 	 * @since 4.0.2
-	 * 
+	 *
 	 * @return string
 	 */
 	public function get_icon() {
@@ -65,9 +65,9 @@ class RMP_Widget extends Widget_Base {
 
 	/**
 	 * Function to add the widget in the category list.
-	 * 
+	 *
 	 * @since 4.0.2
-	 * 
+	 *
 	 * @return array
 	 */
 	public function get_categories() {
@@ -76,9 +76,9 @@ class RMP_Widget extends Widget_Base {
 
 	/**
 	 * Add keywords to search the widget in elementor.
-	 * 
+	 *
 	 * @since 4.0.2
-	 * 
+	 *
 	 * @return array
 	 */
 	public function get_keywords() {
@@ -87,7 +87,7 @@ class RMP_Widget extends Widget_Base {
 
 	/**
 	 * Function to registered the input controls.
-	 * 
+	 *
 	 * @since 4.0.2
 	 */
 	protected function _register_controls() {
@@ -143,7 +143,7 @@ class RMP_Widget extends Widget_Base {
 
 	/**
 	 * Function to update the contents in preview and render the menu.
-	 * 
+	 *
 	 * @since 4.0.2
 	 */
 	protected function render() {
@@ -158,6 +158,6 @@ class RMP_Widget extends Widget_Base {
 		$menu_id = $settings['rmp_menu'];
 
 		$menu = new RMP_Menu( $menu_id );
-		echo $menu->mobile_menu();
+		$menu->mobile_menu();
 	}
 }

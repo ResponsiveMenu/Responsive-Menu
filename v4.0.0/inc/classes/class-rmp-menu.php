@@ -69,45 +69,38 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 		 */
 		public function mobile_menu() {
 
-			$menu_switcher = $this->menu_trigger();
-
 			$menu_items = '';
 			if ( ! empty( $this->options['items_order'] ) ) {
 				$menu_items    = $this->options['items_order'];
 			}
 
-			$html  = '';
-
 			if ( empty( $menu_items ) ) {
 				return;
-			}
-
-			foreach( $menu_items as $key => $value ) {
-				if ( ! empty( $value ) && $value === 'on' ) {
-					if ( 'menu' === $key ) {
-						$html .= $this->menu();
-					} elseif ( 'title' === $key ) {
-						$html .= $this->menu_title();
-					} elseif ( 'search' === $key ) {
-						$html .= $this->menu_search_box();
-					} else {
-						$html .= $this->menu_additional_content();
-					}
-				}
 			}
 
 			$side_animation = 'rmp-' . $this->options['animation_type'] . '-' . $this->options['menu_appear_from'];
 			$menu_container_classes = apply_filters( 'rmp_menu_container_classes', [ 'rmp-container', $side_animation ], $this->menu_id );
 			$menu_container_classes =  implode( ' ' , $menu_container_classes );
 
-			$html = sprintf( '%s<div id="rmp-container-%s" class="rmp-container %s">%s</div>',
-				$menu_switcher,
-				esc_attr( $this->menu_id ),
-				esc_attr( $menu_container_classes ),
-				$html
-			);
-
-			return $html;
+			$this->menu_trigger()
+			?>
+			<div id="rmp-container-<?php echo esc_attr( $this->menu_id ); ?>" class="rmp-container <?php echo esc_attr( $menu_container_classes ); ?>">
+				<?php
+					foreach( $menu_items as $key => $value ) {
+						if ( ! empty( $value ) && $value === 'on' ) {
+							if ( 'menu' === $key ) {
+								$this->menu();
+							} elseif ( 'title' === $key ) {
+								$this->menu_title();
+							} elseif ( 'search' === $key ) {
+								$this->menu_search_box();
+							} else {
+								$this->menu_additional_content();
+							}
+						}
+					}
+				?>
+			</div><?php
 		}
 
 		/**
@@ -115,7 +108,7 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 		 */
 		public function build_menu() {
 
-			$html = $this->mobile_menu();
+			$this->mobile_menu();
 
 			/**
 			 * Filters the menu marksup.
@@ -125,9 +118,8 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 			 * @param HTML|string $html
 			 * @param int         menu_id
 			 */
-			$html = apply_filters( 'rmp_menu_html', $html, $this->menu_id );
+			echo apply_filters( 'rmp_menu_html', '', $this->menu_id );
 
-			echo  $html;
 		}
 
 		/**
@@ -147,7 +139,7 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 
 			$param['echo'] = false;
 
-			$menu_markups = wp_nav_menu( $param );
+			echo wp_nav_menu( $param );
 
 			/**
 			 * Filters the nav menu markups.
@@ -158,90 +150,11 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 			 * @param int   $this->menu_id
 			 * @param array $param
 			 */
-			$menu_markups = apply_filters( 'rmp_menu_markups', $menu_markups, $this->menu_id, $param );
-
-			return $menu_markups;
+			echo apply_filters( 'rmp_menu_markups', '', $this->menu_id, $param );
 
 		}
 
 		public function menu_trigger() {
-
-			$menu_trigger_type = '<span class="rmp-trigger-box">';
-
-			//Normal state menu trigger type.
-			if ( ! empty( $this->options['button_font_icon'] ) ) {
-				$menu_trigger_type .= sprintf(
-					'<span class="rmp-trigger-icon rmp-trigger-icon-inactive">%s</span>',
-					$this->options['button_font_icon']
-				);
-			} else if ( ! empty ( $this->options['button_image'] ) ) {
-				$menu_trigger_type .= sprintf(
-					'<img src="%s" alt="%s" class="rmp-trigger-icon rmp-trigger-icon-inactive" width="100" height="100">',
-					esc_url( $this->options['button_image'] ),
-					rmp_image_alt_by_url( $this->options['button_image'] )
-				);
-			} else {
-				$menu_trigger_type .= sprintf('<span class="responsive-menu-pro-inner"></span>');
-			}
-
-			//Active state menu trigger type.
-			if ( ! empty( $this->options['button_font_icon_when_clicked'] ) ) {
-				$menu_trigger_type .= sprintf(
-					'<span class="rmp-trigger-icon rmp-trigger-icon-active">%s</span>',
-					$this->options['button_font_icon_when_clicked']
-				);
-			} else if ( ! empty ( $this->options['button_image_when_clicked'] ) ) {
-				$menu_trigger_type .= sprintf(
-					'<img src="%s" alt="%s" class="rmp-trigger-icon rmp-trigger-icon-active" width="100" height="100">',
-					esc_url( $this->options['button_image_when_clicked'] ),
-					rmp_image_alt_by_url( $this->options['button_image_when_clicked'] )
-				);
-			}
-
-			$menu_trigger_type .= '</span>';
-
-			$menu_trigger_text      = '';
-			$trigger_text_position  = '';
-
-			if ( !empty( $this->options['button_title_position'] ) ) {
-				$trigger_text_position = $this->options['button_title_position'];
-			}
-
-			//Menu trigger text.
-			if ( ! empty( $this->options['button_title'] ) ) {
-				$menu_trigger_text .= sprintf(
-					'<span class="rmp-trigger-text">%s</span>',
-					esc_html( $this->options['button_title'] )
-				);
-
-				if ( ! empty( $this->options['button_title_open'] ) ) {
-					$menu_trigger_text .= sprintf(
-						'<span class="rmp-trigger-text-open">%s</span>',
-						esc_html( $this->options['button_title_open'] )
-					);
-				}
-
-				$menu_trigger_text  = sprintf(
-					'<div class="rmp-trigger-label rmp-trigger-label-%s">
-						%s
-					</div>',
-					esc_attr($trigger_text_position),
-					$menu_trigger_text
-				);
-			}
-
-			$menu_trigger_content = '';
-
-			if ( 'left' === $trigger_text_position || 'top' === $trigger_text_position )  {
-				$menu_trigger_content .= $menu_trigger_text;
-
-			}
-
-			$menu_trigger_content .= $menu_trigger_type;
-
-			if ( 'bottom' === $trigger_text_position || 'right' === $trigger_text_position )  {
-				$menu_trigger_content .= $menu_trigger_text;
-			}
 
 			$trigger_click_animation = '';
 			if ( ! empty( $this->options['button_click_animation'] ) ) {
@@ -261,18 +174,57 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 				$menu_trigger_destination=$this->options['hamburger_position_selector'];
 			}
 
-			$rmp_menu_trigger = sprintf(
-				'<button type="button"  aria-controls="rmp-container-%s" aria-label="Menu Trigger" id="rmp_menu_trigger-%s" destination="%s" class="%s">
-					%s
-				</button>',
-				$this->menu_id,
-				$this->menu_id,
-				$menu_trigger_destination,
-				esc_attr( $toggle_theme_class ),
-				$menu_trigger_content
-			);
+			?><button type="button"  aria-controls="rmp-container-<?php echo esc_attr( $this->menu_id ); ?>" aria-label="Menu Trigger" id="rmp_menu_trigger-<?php echo esc_attr( $this->menu_id ); ?>" destination="<?php echo esc_attr( $menu_trigger_destination ); ?>" class="<?php echo esc_attr( $toggle_theme_class ); ?>">
+					<?php
+					$trigger_text_position  = '';
 
-			return $rmp_menu_trigger;
+					if ( !empty( $this->options['button_title_position'] ) ) {
+						$trigger_text_position = $this->options['button_title_position'];
+					}
+
+					if ( ( 'left' === $trigger_text_position || 'top' === $trigger_text_position ) && ! empty( $this->options['button_title'] ) )  {
+						//Menu trigger text.
+						?><div class="rmp-trigger-label rmp-trigger-label-<?php echo esc_attr($trigger_text_position); ?>">
+							<span class="rmp-trigger-text"><?php echo esc_html( $this->options['button_title'] ); ?></span><?php
+							if ( ! empty( $this->options['button_title_open'] ) ) {
+								?><span class="rmp-trigger-text-open"><?php echo esc_html( $this->options['button_title_open'] ); ?></span>
+							<?php } ?>
+							</div>
+						<?php
+					}
+
+					?><span class="rmp-trigger-box"><?php
+
+					//Normal state menu trigger type.
+					if ( ! empty( $this->options['button_font_icon'] ) ) {
+						?><span class="rmp-trigger-icon rmp-trigger-icon-inactive"><?php echo esc_html( $this->options['button_font_icon'] ); ?></span><?php
+					} else if ( ! empty ( $this->options['button_image'] ) ) {
+						?><img src="<?php echo esc_url( $this->options['button_image'] ); ?>" alt="<?php echo esc_attr( rmp_image_alt_by_url( $this->options['button_image'] ) ); ?>" class="rmp-trigger-icon rmp-trigger-icon-inactive" width="100" height="100"><?php
+					} else {
+						?><span class="responsive-menu-pro-inner"></span><?php
+					}
+
+					//Active state menu trigger type.
+					if ( ! empty( $this->options['button_font_icon_when_clicked'] ) ) {
+						?><span class="rmp-trigger-icon rmp-trigger-icon-active"><?php echo esc_html( $this->options['button_font_icon_when_clicked'] ); ?></span><?php
+					} else if ( ! empty ( $this->options['button_image_when_clicked'] ) ) {
+						?><img src="<?php echo esc_url( $this->options['button_image_when_clicked'] ); ?>" alt="<?php echo esc_attr( rmp_image_alt_by_url( $this->options['button_image_when_clicked'] ) ); ?>" class="rmp-trigger-icon rmp-trigger-icon-active" width="100" height="100"><?php
+					}
+
+					?></span><?php
+
+					if ( ( 'bottom' === $trigger_text_position || 'right' === $trigger_text_position ) && ! empty( $this->options['button_title'] ) )  {
+						//Menu trigger text.
+						?><div class="rmp-trigger-label rmp-trigger-label-<?php echo esc_attr($trigger_text_position); ?>">
+							<span class="rmp-trigger-text"><?php echo esc_html( $this->options['button_title'] ); ?></span><?php
+							if ( ! empty( $this->options['button_title_open'] ) ) {
+								?><span class="rmp-trigger-text-open"><?php echo esc_html( $this->options['button_title_open'] ); ?></span>
+							<?php } ?>
+							</div>
+						<?php
+					}
+					?>
+				</button><?php
 		}
 
 		/**
@@ -308,26 +260,17 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 
 			$link_href = '';
 			if ( ! empty( $this->options['menu_title_link'] ) ) {
-				$link_href = sprintf('href="%s"',
-					esc_url( $this->options['menu_title_link'] )
-				);
+				$link_href = $this->options['menu_title_link'];
 			}
 
-			$menu_title_wrap = sprintf('
-				<div id="rmp-menu-title-%s" class="rmp-menu-title">
-					<a %s target="%s" id="rmp-menu-title-link">
-					%s
-					<span>%s</span>
-					</a>
-				</div>',
-				esc_attr( $this->menu_id),
-				$link_href,
-				esc_attr( $link_target ),
-				$menu_image,
-				esc_html( $menu_title )
-			);
-
-			return $menu_title_wrap;
+			?>
+			<div id="rmp-menu-title-<?php echo esc_attr( $this->menu_id); ?>" class="rmp-menu-title">
+				<a href="<?php echo esc_url( $link_href ); ?>" target="<?php echo esc_attr( $link_target ); ?>" id="rmp-menu-title-link">
+				<?php echo wp_kses( $menu_image, wp_kses_allowed_html('post') ); ?>
+				<span><?php echo esc_html( $menu_title ); ?></span>
+				</a>
+			</div>
+			<?php
 		}
 
 		/**
@@ -336,19 +279,13 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 		 * @return HTML|string
 		 */
 		public function menu_search_box() {
-
-			$menu_search_wrap = sprintf('
-				<div id="rmp-search-box-%s" class="rmp-search-box">
-					<form action="%s" class="rmp-search-form" role="search">
-						<input type="search" name="s" title="Search" placeholder="%s" class="rmp-search-box">
+			?>
+			<div id="rmp-search-box-<?php echo esc_attr( $this->menu_id); ?>" class="rmp-search-box">
+					<form action="<?php echo esc_url( home_url( '/' ) ); ?>" class="rmp-search-form" role="search">
+						<input type="search" name="s" title="Search" placeholder="<?php esc_attr_e( 'Search', 'responsive-menu-pro' ); ?>" class="rmp-search-box">
 					</form>
-				</div>',
-				esc_attr( $this->menu_id),
-				esc_url( home_url( '/' ) ),
-				__( 'Search', 'responsive-menu-pro' )
-			);
-
-			return $menu_search_wrap;
+				</div>
+			<?php
 		}
 
 		/**
@@ -366,16 +303,11 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 
 				//Remove script tags if found in menu contents.
 				$content = preg_replace( '#<script(.*?)>(.*?)</script>#', '', $this->options['menu_additional_content'] );
-				$content = do_shortcode( $content );
 			}
 
-			$content = sprintf(
-				'<div id="rmp-menu-additional-content-%s" class="rmp-menu-additional-content">
-					%s
-				</div>',
-				esc_attr( $this->menu_id ),
-				$content
-			);
+			?><div id="rmp-menu-additional-content-<?php echo esc_attr( $this->menu_id ); ?>" class="rmp-menu-additional-content">
+					<?php echo do_shortcode( $content ); ?>
+				</div><?php
 
 			/**
 			 * Filters the menu additional contents markups.
@@ -386,9 +318,8 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 			 * @param int    $menu_id
 			 *
 			 */
-			$content = apply_filters( 'menu_additional_content_html', $content, $this->menu_id );
+			echo apply_filters( 'menu_additional_content_html', '', $this->menu_id );
 
-			return $content;
 		}
 
 		public function rmp_nav_menu_args( $args = null ) {

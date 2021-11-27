@@ -9,7 +9,7 @@
 
     <div class="rmp-accordion-content rmp-menu-controls">
         <?php
-            echo $control_manager->add_shortcut_link( [
+            $control_manager->add_shortcut_link( [
                 'label' => 'Menu Settings',
                 'target' => 'tab-menu-styling',
                 'accordion_id' => 'ui-id-36',

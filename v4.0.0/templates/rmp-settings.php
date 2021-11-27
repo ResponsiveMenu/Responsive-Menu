@@ -158,7 +158,7 @@ if ( ! empty( $global_settings['menu_adjust_for_wp_admin_bar'] ) )  {
                                     <?php esc_html_e( 'You can place any Custom CSS you want here. Very useful if you want to make minor tweaks to some margins, paddings or colours or even for whole new layouts or designs.', 'responsive-menu-pro'); ?>
                                 </label>
                                 <p>
-                                    <textarea class="large-text code" id="rmp-custom-css" name="rmp_custom_css"><?php echo $rmp_custom_css; ?></textarea>
+                                    <textarea class="large-text code" id="rmp-custom-css" name="rmp_custom_css"><?php echo esc_attr( $rmp_custom_css ); ?></textarea>
                                 </p>
                             </td>
                         </tr>

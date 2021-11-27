@@ -27,7 +27,7 @@
             <div id="additions-contents-styles" class="title">
                     <?php
 
-                    echo $control_manager->add_group_text_control( [
+                    $control_manager->add_group_text_control( [
                         'label'  => __('Padding','responsive-menu-pro'),
                         'type'   =>   'text',
                         'class'  =>  'rmp-menu-additional-section-padding',
@@ -36,8 +36,8 @@
                         'value_options' => ! empty( $options['menu_additional_section_padding'] ) ? $options['menu_additional_section_padding'] : ''
                     ] );
 
-                    echo $ui_manager->start_group_controls();
-                    echo $control_manager->add_text_input_control( [
+                    $ui_manager->start_group_controls();
+                    $control_manager->add_text_input_control( [
                         'label'  => __('Font Size','responsive-menu-pro'),
                         'type'   => 'number',
                         'class' => 'no-updates',
@@ -54,16 +54,16 @@
                         ],
                     ] );
 
-                    echo $control_manager->add_text_alignment_control( [
+                    $control_manager->add_text_alignment_control( [
                         'label'  => __('Text Alignment','responsive-menu-pro'),
                         'class'   => 'rmp-menu-additional-content-alignment',
                         'name'    => 'menu[menu_additional_content_alignment]',
                         'options' => ['left','center','right','justify'],
                         'value'    => rmp_get_value($options,'menu_additional_content_alignment'),
                     ] );
-                    echo $ui_manager->end_group_controls();
+                    $ui_manager->end_group_controls();
 
-                    echo $control_manager->add_color_control( [
+                    $control_manager->add_color_control( [
                         'label'  => __('Text Color','responsive-menu-pro'),
                         'id'     => 'rmp-menu-additional-content-color',
                         'name'    => 'menu[menu_additional_content_colour]',
