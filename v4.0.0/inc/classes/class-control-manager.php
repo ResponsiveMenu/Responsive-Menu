@@ -101,7 +101,7 @@ class Control_Manager {
                     // Check feature type.
                     if( ! empty( $param['feature_type'] ) ) { ?>
                         <a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url( $this->pro_plugin_url ); ?>" >
-                            <?php esc_html_e( $accordion_attr['feature_type'], 'responsive-menu-pro' ); ?>
+                            <?php esc_html_e( $param['feature_type'], 'responsive-menu-pro' ); ?>
                         </a>
                 <?php } ?>
                 </div><?php

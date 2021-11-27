@@ -122,7 +122,7 @@ class UI_Manager {
 
 				?><span class="item-controls">
 					<input type="hidden" value="off" name="<?php echo esc_attr( $accordion_attr['item_header']['item_control']['name'] ); ?>"/>
-				 	<input type="checkbox" id="<?php echo esc_attr( $accordion_attr['item_header']['item_control']['id'] ); ?>" name="<?php echo esc_attr( $accordion_attr['item_header']['item_control']['name'] ); ?>" class="toggle <?php echo esc_attr( $accordion_attr['item_header']['item_control']['class'] ); ?>" value="on" <?php esc_attr( $accordion_attr_e['item_header']['item_control']['is_checked'] ); ?>>',
+				 	<input type="checkbox" id="<?php echo esc_attr( $accordion_attr['item_header']['item_control']['id'] ); ?>" name="<?php echo esc_attr( $accordion_attr['item_header']['item_control']['name'] ); ?>" class="toggle <?php echo esc_attr( $accordion_attr['item_header']['item_control']['class'] ); ?>" value="on" <?php esc_attr( $accordion_attr['item_header']['item_control']['is_checked'] ); ?>>',
 				</span><?php
 			}
 
