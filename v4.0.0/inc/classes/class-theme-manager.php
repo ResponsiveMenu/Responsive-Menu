@@ -646,17 +646,13 @@ class Theme_Manager {
 			</li><?php
 		}
 
-		if ( empty( $html ) ) {
-			return sprintf(
-				'<div class="rmp-theme-page-empty">
+		if ( empty( $themes ) ) {
+			?><div class="rmp-theme-page-empty">
 					<span class="rmp-menu-library-blank-icon fas fa-file-download"></span>
-					<h3 class="rmp-menu-library-title"> %s </h3>
-				</div>',
-				__( 'No theme available !', 'responsive-menu-pro' )
-			);
+					<h3 class="rmp-menu-library-title"> <?php esc_html_e( 'No theme available !', 'responsive-menu-pro' ); ?> </h3>
+				</div><?php
 		}
 
-		return $html;
 	}
 
 	public function all_theme_combine_list() {
@@ -738,7 +734,7 @@ class Theme_Manager {
 
 		//If theme is default.
 		if( 'default' == $theme_type ) {
-			?><img src="<?php echo esc_url( $theme_preview_img ); ?>" class="theme-thumbnail" alt="<?php echo esc_attr($theme_type); ?>" ><?php
+			?><img src="<?php echo esc_url( esc_url( RMP_PLUGIN_URL_V4 .'/assets/images/default-theme-preview.png' ) ); ?>" class="theme-thumbnail" alt="<?php echo esc_attr($theme_type); ?>" ><?php
 		}
 
 		$theme_preview_url = $this->get_theme_preview_url( $theme_name );
@@ -849,7 +845,7 @@ class Theme_Manager {
 					<input type="radio" checked id="default" class="rmp-theme-option" name="menu_theme" value="" theme-type="default"/>
 					<label class="rmp-item-card default-item" for="default">
 						<figure class="rmp-item-card_image">
-							<img src="<?php echo esc_url( $theme_preview_img ); ?>" alt="<?php esc_html_e( 'Default Theme', 'responsive-menu-pro'); ?>" loading="lazy"/>
+							<img src="<?php echo esc_url( esc_url( RMP_PLUGIN_URL_V4 .'/assets/images/default-theme-preview.png' ) ); ?>" alt="<?php esc_html_e( 'Default Theme', 'responsive-menu-pro'); ?>" loading="lazy"/>
 						</figure>
 						<div class="rmp-item-card-backside">
 							<div class="rmp-item-card_contents">
@@ -941,7 +937,7 @@ class Theme_Manager {
 						</div>
 					</label>
 				</li>',
-				esc_url( $theme_preview_img ),
+				esc_url( RMP_PLUGIN_URL_V4 .'/assets/images/default-theme-preview.png' ),
 				__( 'Default Theme', 'responsive-menu-pro'),
 				__( 'View Demo','responsive-menu-pro' )
 			);
