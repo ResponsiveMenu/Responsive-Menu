@@ -21,7 +21,7 @@ class RMNextUpdateMessage {
 		if ( isset( $_GET['rm_next_update_notice_close'] ) && $_GET['rm_next_update_notice_close'] == 'close' ) {
 			add_action( 'admin_init', array( $this, 'close_next_updates_message' ) );
 		}
-		if ( $this->trigger !== -1 && isset( $_GET['post_type'] ) && $_GET['post_type'] == 'rmp_menu' ) {
+		if ( isset( $_GET['post_type'] ) && $_GET['post_type'] == 'rmp_menu' ) {
 			add_action( 'in_admin_footer', array( $this, 'display_next_updates_message' ) );
 		}
 	}

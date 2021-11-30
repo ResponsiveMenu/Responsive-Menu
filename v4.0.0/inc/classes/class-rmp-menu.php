@@ -307,7 +307,8 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 
 			?><div id="rmp-menu-additional-content-<?php echo esc_attr( $this->menu_id ); ?>" class="rmp-menu-additional-content">
 					<?php echo do_shortcode( $content ); ?>
-				</div><?php
+				</div>
+			<?php
 
 			/**
 			 * Filters the menu additional contents markups.

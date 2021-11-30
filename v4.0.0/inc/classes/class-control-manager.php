@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Control_Manager {
 
 	use Singleton;
-    static $pro_plugin_url = 'https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile';
+    public $pro_plugin_url = 'https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile';
 	/**
 	 * Construct method.
 	 */
@@ -78,6 +78,7 @@ class Control_Manager {
 		 */
         $param = apply_filters( 'rmp_before_add_text_input_control', $param );
 
+        $is_disabled = '';
         $group_classes = '';
         if ( ! empty( $param['group_classes'] ) ) {
             $group_classes = $param['group_classes'];
@@ -99,7 +100,9 @@ class Control_Manager {
                     </span>
                     <?php
                     // Check feature type.
-                    if( ! empty( $param['feature_type'] ) ) { ?>
+                    if( ! empty( $param['feature_type'] ) ) {
+                        $is_disabled = 'disabled';
+                        ?>
                         <a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url( $this->pro_plugin_url ); ?>" >
                             <?php esc_html_e( $param['feature_type'], 'responsive-menu-pro' ); ?>
                         </a>
@@ -383,7 +386,7 @@ class Control_Manager {
 		 * @param HTML|string Input control contents.
 		 * @param array       $param List of attribute.
 		 */
-        echo apply_filters( 'rmp_color_control_html', $html, $param );
+        echo apply_filters( 'rmp_color_control_html', '', $param );
 
     }
 
@@ -429,7 +432,7 @@ class Control_Manager {
 		 * @param HTML|string Input control contents.
 		 * @param array       $param List of attribute.
 		 */
-        echo apply_filters( 'rmp_button_control_html', $html, $param );
+        echo apply_filters( 'rmp_button_control_html', '', $param );
 
     }
 
@@ -627,7 +630,7 @@ class Control_Manager {
 		 * @param HTML|string Input control contents.
 		 * @param array       $param List of attribute.
 		 */
-        echo apply_filters( 'rmp_select_control_html', $html, $param );
+        echo apply_filters( 'rmp_select_control_html', '', $param );
 
     }
 
@@ -778,7 +781,7 @@ class Control_Manager {
 		 * @param HTML|string Input control contents.
 		 * @param array       $param List of attribute.
 		 */
-        echo apply_filters( 'rmp_icon_picker_control_html', $html, $param);
+        echo apply_filters( 'rmp_icon_picker_control_html', '', $param);
 
 	}
 
@@ -822,7 +825,7 @@ class Control_Manager {
         $has_multi_device = '';
         if ( ! empty( $param['multi_device']) ) {
             $has_multi_device = 'multi-device=true';
-            $html .= $this->get_device_options();
+            $this->get_device_options();
         }
 
         $class = '';
@@ -862,7 +865,7 @@ class Control_Manager {
 		 * @param HTML|string Input control contents.
 		 * @param array       $param List of attribute.
 		 */
-        echo apply_filters( 'rmp_add_image_control_html', $html, $param );
+        echo apply_filters( 'rmp_add_image_control_html', '', $param );
     }
 
 	/**
@@ -920,7 +923,7 @@ class Control_Manager {
                     }
 
                     ?><input id="<?php echo esc_attr( $class. '-' . $value ); ?>" type="radio" name="<?php echo esc_attr( $param['name'] ); ?>" <?php echo esc_attr( $has_multi_device ); ?> class="no-updates <?php echo esc_attr( $class ); ?>" value="<?php echo esc_attr( $value ); ?>" <?php echo esc_attr( $is_checked ); ?> >
-                        <label for="<?php echo esc_attr( $id ); ?>">
+                        <label for="<?php echo esc_attr( $class. '-' . $value ); ?>">
                         <?php
                         if ( 'left' == $value ) {
                             ?><span class="dashicons dashicons-editor-alignleft"></span><?php
@@ -946,7 +949,7 @@ class Control_Manager {
 		 * @param HTML|string Input control contents.
 		 * @param array       $param List of attribute.
 		 */
-		echo apply_filters( 'rmp_add_text_alignment_control_html', $html, $param );
+		echo apply_filters( 'rmp_add_text_alignment_control_html', '', $param );
     }
 
     /**
@@ -983,37 +986,37 @@ class Control_Manager {
                             </label>
                             <span class="rmp-input-control-label device-title"> <?php esc_html_e( 'Mobile', 'responsive-menu-pro' ); ?> </span>
                         </div>
-                    </div>
-                    <div class="device-icon">
-                        <input type="hidden" name="menu[use_tablet_menu]" value="on"/>
-                        <input type="hidden" name="menu[use_tablet_menu]" value="on"/>
-                        <input disabled checked class="rmp-menu-display-device checkbox tablet"  type="checkbox"/>
-                        <label for="rmp-menu-display-device-tablet" title="tablet" >
-                            <span class="corner-icon">
-                                <i class="fas fa-check-circle" aria-hidden="true"></i>
-                            </span>
-                            <span class="device">
-                                <svg width="16" height="19" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12.125 19H3.875C2.98698 19 2.22786 18.6849 1.59766 18.0547C0.981771 17.4245 0.673828 16.6725 0.673828 15.7988V3.875C0.673828 2.98698 0.981771 2.23503 1.59766 1.61914C2.22786 0.988932 2.98698 0.673828 3.875 0.673828H12.125C13.013 0.673828 13.765 0.988932 14.3809 1.61914C15.0111 2.23503 15.3262 2.98698 15.3262 3.875V15.7988C15.3262 16.6725 15.0111 17.4245 14.3809 18.0547C13.765 18.6849 13.013 19 12.125 19ZM3.875 2.5C3.5026 2.5 3.18034 2.63607 2.9082 2.9082C2.63607 3.18034 2.5 3.5026 2.5 3.875V15.7988C2.5 16.1712 2.63607 16.4935 2.9082 16.7656C3.18034 17.0378 3.5026 17.1738 3.875 17.1738H12.125C12.4974 17.1738 12.8197 17.0378 13.0918 16.7656C13.3639 16.4935 13.5 16.1712 13.5 15.7988V3.875C13.5 3.5026 13.3639 3.18034 13.0918 2.9082C12.8197 2.63607 12.4974 2.5 12.125 2.5H3.875ZM8.64453 15.9922C8.73047 15.9062 8.79492 15.806 8.83789 15.6914C8.89518 15.5768 8.92383 15.4622 8.92383 15.3477C8.92383 15.3333 8.92383 15.3262 8.92383 15.3262C8.92383 15.0827 8.83073 14.875 8.64453 14.7031C8.47266 14.5169 8.25781 14.4238 8 14.4238C7.74219 14.4238 7.52018 14.5169 7.33398 14.7031C7.16211 14.875 7.07617 15.0827 7.07617 15.3262C7.07617 15.584 7.16211 15.806 7.33398 15.9922C7.52018 16.1641 7.74219 16.25 8 16.25C8.12891 16.25 8.24349 16.2285 8.34375 16.1855C8.45833 16.1283 8.55859 16.0638 8.64453 15.9922Z" fill="#56606D"/>
-                                </svg>
-                            </span>
-                        </label>
-                        <span class="rmp-input-control-label device-title"> <?php esc_html_e( 'Tablet', 'responsive-menu-pro' ); ?> </span>
-                    </div>
-                    <div class="device-icon">
-                        <input type="hidden" name="menu[use_desktop_menu]" value="off"/>
-                        <input disabled class="rmp-menu-display-device checkbox desktop"  type="checkbox" />
-                        <label for="rmp-menu-display-device-desktop" title="desktop" >
-                            <span class="corner-icon">
-                                <i class="fas fa-check-circle" aria-hidden="true"></i>
-                            </span>
-                            <span class="device">
-                                <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M15.9512 0.673828H4.04883C3.16081 0.673828 2.40169 0.988932 1.77148 1.61914C1.14128 2.23503 0.826172 2.98698 0.826172 3.875V12.125C0.826172 13.013 1.14128 13.7721 1.77148 14.4023C2.40169 15.0182 3.16081 15.3262 4.04883 15.3262H9.07617V17.1738H6.32617C6.08268 17.1738 5.86784 17.2669 5.68164 17.4531C5.50977 17.625 5.42383 17.8327 5.42383 18.0762C5.42383 18.334 5.50977 18.556 5.68164 18.7422C5.86784 18.9141 6.08268 19 6.32617 19H13.6738C13.9173 19 14.125 18.9141 14.2969 18.7422C14.4831 18.556 14.5762 18.334 14.5762 18.0762C14.5762 17.8327 14.4831 17.625 14.2969 17.4531C14.125 17.2669 13.9173 17.1738 13.6738 17.1738H10.9238V15.3262H15.9512C16.8392 15.3262 17.5983 15.0182 18.2285 14.4023C18.8587 13.7721 19.1738 13.013 19.1738 12.125V3.875C19.1738 2.98698 18.8587 2.23503 18.2285 1.61914C17.5983 0.988932 16.8392 0.673828 15.9512 0.673828ZM17.3262 12.125C17.3262 12.4974 17.1901 12.8197 16.918 13.0918C16.6602 13.3639 16.3379 13.5 15.9512 13.5H4.04883C3.66211 13.5 3.33268 13.3639 3.06055 13.0918C2.80273 12.8197 2.67383 12.4974 2.67383 12.125V3.875C2.67383 3.5026 2.80273 3.18034 3.06055 2.9082C3.33268 2.63607 3.66211 2.5 4.04883 2.5H15.9512C16.3379 2.5 16.6602 2.63607 16.918 2.9082C17.1901 3.18034 17.3262 3.5026 17.3262 3.875V12.125ZM7.76562 3.83203C7.83724 3.90365 7.88737 3.98242 7.91602 4.06836C7.95898 4.13997 7.98047 4.22591 7.98047 4.32617C7.98047 4.42643 7.95898 4.51953 7.91602 4.60547C7.88737 4.67708 7.83724 4.7487 7.76562 4.82031L5.01562 7.57031C4.95833 7.6276 4.88672 7.67057 4.80078 7.69922C4.72917 7.72786 4.64323 7.74219 4.54297 7.74219C4.35677 7.74219 4.19206 7.67773 4.04883 7.54883C3.91992 7.41992 3.85547 7.25521 3.85547 7.05469C3.85547 6.96875 3.86979 6.88997 3.89844 6.81836C3.94141 6.73242 3.99154 6.65365 4.04883 6.58203L6.79883 3.83203C6.85612 3.77474 6.92773 3.73177 7.01367 3.70312C7.09961 3.66016 7.19271 3.63867 7.29297 3.63867C7.37891 3.63867 7.46484 3.66016 7.55078 3.70312C7.63672 3.73177 7.70833 3.77474 7.76562 3.83203Z" fill="white"/>
-                                </svg>
-                            </span>
-                        </label>
-                        <span class="rmp-input-control-label device-title"> <?php esc_html_e( 'Desktop', 'responsive-menu-pro' ); ?> </span>
+                        <div class="device-icon">
+                            <input type="hidden" name="menu[use_tablet_menu]" value="on"/>
+                            <input type="hidden" name="menu[use_tablet_menu]" value="on"/>
+                            <input disabled checked class="rmp-menu-display-device checkbox tablet"  type="checkbox"/>
+                            <label for="rmp-menu-display-device-tablet" title="tablet" >
+                                <span class="corner-icon">
+                                    <i class="fas fa-check-circle" aria-hidden="true"></i>
+                                </span>
+                                <span class="device">
+                                    <svg width="16" height="19" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12.125 19H3.875C2.98698 19 2.22786 18.6849 1.59766 18.0547C0.981771 17.4245 0.673828 16.6725 0.673828 15.7988V3.875C0.673828 2.98698 0.981771 2.23503 1.59766 1.61914C2.22786 0.988932 2.98698 0.673828 3.875 0.673828H12.125C13.013 0.673828 13.765 0.988932 14.3809 1.61914C15.0111 2.23503 15.3262 2.98698 15.3262 3.875V15.7988C15.3262 16.6725 15.0111 17.4245 14.3809 18.0547C13.765 18.6849 13.013 19 12.125 19ZM3.875 2.5C3.5026 2.5 3.18034 2.63607 2.9082 2.9082C2.63607 3.18034 2.5 3.5026 2.5 3.875V15.7988C2.5 16.1712 2.63607 16.4935 2.9082 16.7656C3.18034 17.0378 3.5026 17.1738 3.875 17.1738H12.125C12.4974 17.1738 12.8197 17.0378 13.0918 16.7656C13.3639 16.4935 13.5 16.1712 13.5 15.7988V3.875C13.5 3.5026 13.3639 3.18034 13.0918 2.9082C12.8197 2.63607 12.4974 2.5 12.125 2.5H3.875ZM8.64453 15.9922C8.73047 15.9062 8.79492 15.806 8.83789 15.6914C8.89518 15.5768 8.92383 15.4622 8.92383 15.3477C8.92383 15.3333 8.92383 15.3262 8.92383 15.3262C8.92383 15.0827 8.83073 14.875 8.64453 14.7031C8.47266 14.5169 8.25781 14.4238 8 14.4238C7.74219 14.4238 7.52018 14.5169 7.33398 14.7031C7.16211 14.875 7.07617 15.0827 7.07617 15.3262C7.07617 15.584 7.16211 15.806 7.33398 15.9922C7.52018 16.1641 7.74219 16.25 8 16.25C8.12891 16.25 8.24349 16.2285 8.34375 16.1855C8.45833 16.1283 8.55859 16.0638 8.64453 15.9922Z" fill="#56606D"/>
+                                    </svg>
+                                </span>
+                            </label>
+                            <span class="rmp-input-control-label device-title"> <?php esc_html_e( 'Tablet', 'responsive-menu-pro' ); ?> </span>
+                        </div>
+                        <div class="device-icon">
+                            <input type="hidden" name="menu[use_desktop_menu]" value="off"/>
+                            <input disabled class="rmp-menu-display-device checkbox desktop"  type="checkbox" />
+                            <label for="rmp-menu-display-device-desktop" title="desktop" >
+                                <span class="corner-icon">
+                                    <i class="fas fa-check-circle" aria-hidden="true"></i>
+                                </span>
+                                <span class="device">
+                                    <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15.9512 0.673828H4.04883C3.16081 0.673828 2.40169 0.988932 1.77148 1.61914C1.14128 2.23503 0.826172 2.98698 0.826172 3.875V12.125C0.826172 13.013 1.14128 13.7721 1.77148 14.4023C2.40169 15.0182 3.16081 15.3262 4.04883 15.3262H9.07617V17.1738H6.32617C6.08268 17.1738 5.86784 17.2669 5.68164 17.4531C5.50977 17.625 5.42383 17.8327 5.42383 18.0762C5.42383 18.334 5.50977 18.556 5.68164 18.7422C5.86784 18.9141 6.08268 19 6.32617 19H13.6738C13.9173 19 14.125 18.9141 14.2969 18.7422C14.4831 18.556 14.5762 18.334 14.5762 18.0762C14.5762 17.8327 14.4831 17.625 14.2969 17.4531C14.125 17.2669 13.9173 17.1738 13.6738 17.1738H10.9238V15.3262H15.9512C16.8392 15.3262 17.5983 15.0182 18.2285 14.4023C18.8587 13.7721 19.1738 13.013 19.1738 12.125V3.875C19.1738 2.98698 18.8587 2.23503 18.2285 1.61914C17.5983 0.988932 16.8392 0.673828 15.9512 0.673828ZM17.3262 12.125C17.3262 12.4974 17.1901 12.8197 16.918 13.0918C16.6602 13.3639 16.3379 13.5 15.9512 13.5H4.04883C3.66211 13.5 3.33268 13.3639 3.06055 13.0918C2.80273 12.8197 2.67383 12.4974 2.67383 12.125V3.875C2.67383 3.5026 2.80273 3.18034 3.06055 2.9082C3.33268 2.63607 3.66211 2.5 4.04883 2.5H15.9512C16.3379 2.5 16.6602 2.63607 16.918 2.9082C17.1901 3.18034 17.3262 3.5026 17.3262 3.875V12.125ZM7.76562 3.83203C7.83724 3.90365 7.88737 3.98242 7.91602 4.06836C7.95898 4.13997 7.98047 4.22591 7.98047 4.32617C7.98047 4.42643 7.95898 4.51953 7.91602 4.60547C7.88737 4.67708 7.83724 4.7487 7.76562 4.82031L5.01562 7.57031C4.95833 7.6276 4.88672 7.67057 4.80078 7.69922C4.72917 7.72786 4.64323 7.74219 4.54297 7.74219C4.35677 7.74219 4.19206 7.67773 4.04883 7.54883C3.91992 7.41992 3.85547 7.25521 3.85547 7.05469C3.85547 6.96875 3.86979 6.88997 3.89844 6.81836C3.94141 6.73242 3.99154 6.65365 4.04883 6.58203L6.79883 3.83203C6.85612 3.77474 6.92773 3.73177 7.01367 3.70312C7.09961 3.66016 7.19271 3.63867 7.29297 3.63867C7.37891 3.63867 7.46484 3.66016 7.55078 3.70312C7.63672 3.73177 7.70833 3.77474 7.76562 3.83203Z" fill="white"/>
+                                    </svg>
+                                </span>
+                            </label>
+                            <span class="rmp-input-control-label device-title"> <?php esc_html_e( 'Desktop', 'responsive-menu-pro' ); ?> </span>
+                        </div>
                     </div>
                 </div>
             </div><?php
@@ -1062,7 +1065,7 @@ class Control_Manager {
         ?><div class="upgrade-options">
             <div class="upgrade-notes">
                 <p><?php echo __('This feature is not available in free version. Upgrade now to use', 'responsive-menu-pro'); ?> </p>
-                <a target="_blank" rel="noopener" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" class="button"> <?php esc_html_e('Upgrade to Pro', 'responsive-menu-pro'); ?> </a>
+                <a target="_blank" rel="noopener" href="<?php echo esc_attr($this->pro_plugin_url); ?>" class="button"> <?php esc_html_e('Upgrade to Pro', 'responsive-menu-pro'); ?> </a>
             </div>
         </div><?php
     }
