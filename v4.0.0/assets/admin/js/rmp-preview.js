@@ -8,7 +8,7 @@
  *
  * @since 4.0.0
  *
- * @package responsive-menu-pro
+ * @package responsive-menu
  */
 
 /**
@@ -67,9 +67,9 @@ const rmpHook = {
 
 /**
  * Register function to color the menu elements.
- * 
+ *
  * @since 4.0.0
- * 
+ *
  * @param  {Object}  args List of inputs.
  * @return {String}
  */
@@ -96,9 +96,9 @@ rmpHook.register( 'rmp_color_style', function ( args ) {
 
 /**
  * rmpPreview class
- * 
+ *
  * @since 4.0.0
- * 
+ *
  * @type  {Object}
  */
 window.RMP_Preview = {
@@ -133,7 +133,7 @@ window.RMP_Preview = {
 				break;
 				case 'trigger-text':
 						if ( iframe.contents().find(outputSelector).length ) {
-							iframe.contents().find(outputSelector).html(this.value);        
+							iframe.contents().find(outputSelector).html(this.value);
 						} else {
 							iframe.contents().find( '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-box' ).before('<div class="rmp-trigger-label rmp-trigger-label-top"><span class="rmp-trigger-text">"'+ this.value + '"</span></div>')
 						}
@@ -141,7 +141,7 @@ window.RMP_Preview = {
 
 				case 'trigger-text-open':
 						if ( iframe.contents().find(outputSelector).length ) {
-							iframe.contents().find(outputSelector).html(this.value);        
+							iframe.contents().find(outputSelector).html(this.value);
 						} else {
 							iframe.contents().find( '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-box' ).before('<div class="rmp-trigger-label rmp-trigger-label-top"><span class="rmp-trigger-text-open">"'+ this.value + '"</span></div>')
 						}
@@ -228,7 +228,7 @@ window.RMP_Preview = {
 					}
 
 					css = outputSelector + '{ min-width : '+ (this.value + unit) +';}';
-					
+
 					self.inlineCssInjector(css);
 
 				break;
@@ -307,7 +307,7 @@ window.RMP_Preview = {
 				jQuery(e.target).prev('input.rmp-image-url-input').val(attachment.url);
 				jQuery(e.target).css('background-image', 'url(' + attachment.url + ')');
 				jQuery(e.target).append('<i class="rmp-image-picker-trash dashicons dashicons-trash" aria-hidden="true"></i>');
-		
+
 				if ( type == 'img-src') {
 					iframe.contents().find(outputSelector).attr('src', attachment.url );
 				} else if( type == 'background' ) {
@@ -331,7 +331,7 @@ window.RMP_Preview = {
 					}
 				}
 			}).open();
-	
+
 		});
 	},
 	toggleElements: function( inputSelector, outputSelector ) {
@@ -368,11 +368,11 @@ window.RMP_Preview = {
 					error: function( error ) {
 						console.log('Internal Error !');
 						jQuery(this).prop('disabled', false);
-						jQuery('#iframe-spinner').hide(); 
+						jQuery('#iframe-spinner').hide();
 					},
 					success: function( response ) {
 
-						if ( response.data.markup ) { 
+						if ( response.data.markup ) {
 							iframe.contents().find( '#rmp-container-'+ self.menuId ).append(response.data.markup);
 							self.orderMenuElements();
 						}
@@ -413,13 +413,13 @@ window.RMP_Preview = {
 	},
 	/**
 	 * Function to bind the color input with option and elements.
-	 * 
+	 *
 	 * @version 4.0.0
-	 * 
-	 * @param {String} inputSelector 
-	 * @param {String} outputSelector 
-	 * @param {String} attr 
-	 * @param {String} state 
+	 *
+	 * @param {String} inputSelector
+	 * @param {String} outputSelector
+	 * @param {String} attr
+	 * @param {String} state
 	 */
 	bindColor: function( inputSelector, outputSelector, attr, state ) {
 		var self = this;
@@ -468,7 +468,7 @@ window.RMP_Preview = {
 			switch (attr) {
 				case 'height-unit':
 					value = jQuery(this).prev('input').val();
-					unit = jQuery(this).val(); 
+					unit = jQuery(this).val();
 
 					css = outputSelector + '{ height : '+  ( value + unit ) + ';}';
 					if ( jQuery(this).attr( 'multi-device') ) {
@@ -479,7 +479,7 @@ window.RMP_Preview = {
 				break;
 				case 'line-height-unit':
 					value = jQuery(this).prev('input').val();
-					unit = jQuery(this).val(); 
+					unit = jQuery(this).val();
 
 					css = outputSelector + '{ line-height : '+  ( value+unit ) + ';}';
 
@@ -491,14 +491,14 @@ window.RMP_Preview = {
 				break;
 				case 'width-unit':
 					var value = jQuery(this).prev('input').val();
-					var unit = jQuery(this).val(); 
+					var unit = jQuery(this).val();
 					css = outputSelector + '{ width : '+ ( value + unit) +';}';
 					self.inlineCssInjector(css);
 				break;
 
 				case 'font-size':
 					value = jQuery(this).prev('input').val();
-					unit = jQuery(this).val(); 
+					unit = jQuery(this).val();
 					css = outputSelector + '{ font-size :' + value + unit + ' !important;}';
 
 					if ( jQuery(this).attr( 'multi-device') ) {
@@ -510,7 +510,7 @@ window.RMP_Preview = {
 				case 'font-family':
 					value = jQuery(this).val();
 					css = outputSelector + '{ font-family :' + value +' !important;}';
-					
+
 					if ( jQuery(this).attr( 'multi-device') ) {
 						css = self.mediaQuery( css );
 					}
@@ -541,7 +541,7 @@ window.RMP_Preview = {
 					self.inlineCssInjector(css);
 				break;
 				case 'position-alignment':
-					
+
 					if ( iframe.contents().find( outputSelector ).length ) {
 						position  = jQuery(this).val();
 						var rmpTriggerBox = iframe.contents().find( '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-box' );
@@ -602,7 +602,7 @@ window.RMP_Preview = {
 						iframe.contents().find( outputSelector ).attr('style', 'background:unset !important;');
 					} else {
 						iframe.contents().find( outputSelector ).removeAttr( 'style' );
-					}    
+					}
 				break;
 				case 'target':
 					var value = jQuery(this).val();
@@ -935,7 +935,7 @@ window.RMP_Preview = {
 
 		self.bindImage('#rmp-button-title-image', '#rmp-menu-title-' + self.menuId + ' .rmp-menu-title-image', 'img-src' );
 		self.bindImage('#rmp-menu-background-image-selector', '#rmp-container-'+ self.menuId, 'background' );
-		
+
 		self.bindImage('#rmp-menu-button-image-when-clicked-selector', '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-icon-active', 'trigger-icon-open' );
 		self.bindImage('#rmp-menu-button-image-selector', '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-icon-inactive', 'trigger-icon' );
 
@@ -1111,7 +1111,7 @@ window.RMP_Preview = {
 				'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link',
 				'text-align'
 		);
-		
+
 		self.changeInput(
 			'#rmp-submenu-text-letter-spacing',
 			'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link',

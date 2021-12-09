@@ -6,7 +6,7 @@
  * @version 4.0.0
  * @author  Expresstech System
  *
- * @package responsive-menu-pro
+ * @package responsive-menu
  */
 
 namespace RMP\Features\Inc;
@@ -14,34 +14,35 @@ namespace RMP\Features\Inc;
 use RMP\Features\Inc\Traits\Singleton;
 
 // Disable the direct access to this class.
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
     exit;
 }
 
 /**
  * Class Control_Manager
  */
-class Control_Manager {
-
-	use Singleton;
+class Control_Manager
+{
+    use Singleton;
     public $pro_plugin_url = 'https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile';
-	/**
-	 * Construct method.
-	 */
-	protected function __construct() {
-		$this->setup_hooks();
-	}
+    /**
+     * Construct method.
+     */
+    protected function __construct()
+    {
+        $this->setup_hooks();
+    }
 
-	/**
-	 * To setup action/filter.
-	 *
-	 * @version 4.0.0
-	 *
-	 * @return void
-	 */
-	protected function setup_hooks() {
-
-	}
+    /**
+     * To setup action/filter.
+     *
+     * @version 4.0.0
+     *
+     * @return void
+     */
+    protected function setup_hooks()
+    {
+    }
 
     /**
      * Add hidden field input control.
@@ -52,922 +53,834 @@ class Control_Manager {
      *
      * @return HTML|string
      */
-    public function add_hidden_control( $param ) {
-        ?><input type="hidden" name="<?php echo esc_attr( $param['name'] ); ?>" value="<?php echo esc_attr( $param['value'] ); ?>" ><?php
+    public function add_hidden_control($param)
+    {
+        ?><input type="hidden" name="<?php echo esc_attr($param['name']); ?>" value="<?php echo esc_attr($param['value']); ?>" ><?php
     }
 
- 	/**
-	 * This function prepare the single text input control.
-	 *
-	 * @version 4.0.0
-	 * @param array $param  List of attributes for a input control
-	 *
-	 * @return HTML
-	 */
-	public function add_text_input_control( $param ) {
-
-		if ( empty( $param ) ) {
+    /**
+     * This function prepare the single text input control.
+     *
+     * @version 4.0.0
+     * @param array $param  List of attributes for a input control
+     *
+     * @return HTML
+     */
+    public function add_text_input_control($param)
+    {
+        if (empty($param)) {
             return;
-		}
+        }
 
-		/**
-		 * Filters the text input control attributes before create.
-		 *
-		 * @version 4.0.0
-		 * @param array $param List of attribute.
-		 */
-        $param = apply_filters( 'rmp_before_add_text_input_control', $param );
+        /**
+         * Filters the text input control attributes before create.
+         *
+         * @version 4.0.0
+         * @param array $param List of attribute.
+         */
+        $param = apply_filters('rmp_before_add_text_input_control', $param);
 
         $is_disabled = '';
         $group_classes = '';
-        if ( ! empty( $param['group_classes'] ) ) {
+        if (! empty($param['group_classes'])) {
             $group_classes = $param['group_classes'];
-        }
-
-        ?><div class="rmp-input-control-wrapper <?php echo esc_attr( $group_classes ); ?>"><?php
+        } ?><div class="rmp-input-control-wrapper <?php echo esc_attr($group_classes); ?>"><?php
 
         // Check label is exist.
-        if ( ! empty( $param['label'] ) ) {
+        if (! empty($param['label'])) {
             ?><div class="rmp-input-control-label">
-                    <span> <?php esc_html_e( $param['label'], 'responsive-menu-pro' ); ?> </span>
+                    <span> <?php esc_html_e($param['label'], 'responsive-menu'); ?> </span>
                     <span>
                         <?php
                         //Check tooltip text is added or not.
-                        if ( ! empty( $param['tool_tip'] ) ) {
-                            $this->get_tool_tip( $param['tool_tip'] );
-                        }
-                        ?>
+                        if (! empty($param['tool_tip'])) {
+                            $this->get_tool_tip($param['tool_tip']);
+                        } ?>
                     </span>
                     <?php
                     // Check feature type.
-                    if( ! empty( $param['feature_type'] ) ) {
-                        $is_disabled = 'disabled';
-                        ?>
-                        <a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url( $this->pro_plugin_url ); ?>" >
-                            <?php esc_html_e( $param['feature_type'], 'responsive-menu-pro' ); ?>
+                    if (! empty($param['feature_type'])) {
+                        $is_disabled = 'disabled'; ?>
+                        <a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url($this->pro_plugin_url); ?>" >
+                            <?php esc_html_e($param['feature_type'], 'responsive-menu'); ?>
                         </a>
-                <?php } ?>
+                <?php
+                    } ?>
                 </div><?php
-        }
-
-		?><div class="rmp-input-control"><?php
+        } ?><div class="rmp-input-control"><?php
 
         // Check this input has multi device options.
         $has_multi_device = '';
-        if ( ! empty( $param['multi_device']) ) {
+        if (! empty($param['multi_device'])) {
             $has_multi_device = 'multi-device=true';
             $this->get_device_options();
         }
 
         //Place holder text.
         $placeholder = '';
-        if ( ! empty( $param['placeholder'] ) ) {
+        if (! empty($param['placeholder'])) {
             $placeholder = $param['placeholder'];
         }
 
-		// Check the input control type that maybe text,number or any other.
-        if ( ! empty( $param['type']) ) {
-
+        // Check the input control type that maybe text,number or any other.
+        if (! empty($param['type'])) {
             $class = '';
-            if ( ! empty( $param['class'] ) ) {
+            if (! empty($param['class'])) {
                 $class = $param['class'];
-            }
-
-            ?><input type="<?php echo esc_attr( $param['type'] ); ?>" id="<?php echo esc_attr( $param['id'] ); ?>" name="<?php echo esc_attr( $param['name'] ); ?>" <?php echo esc_attr( $has_multi_device ); ?> class="<?php echo esc_attr( $class ); ?>" value="<?php echo esc_attr( $param['value'] ); ?>" placeholder="<?php esc_attr_e( $placeholder ); ?>" <?php echo esc_attr( $is_disabled ); ?> ><?php
+            } ?><input type="<?php echo esc_attr($param['type']); ?>" id="<?php echo esc_attr($param['id']); ?>" name="<?php echo esc_attr($param['name']); ?>" <?php echo esc_attr($has_multi_device); ?> class="<?php echo esc_attr($class); ?>" value="<?php echo esc_attr($param['value']); ?>" placeholder="<?php esc_attr_e($placeholder); ?>" <?php echo esc_attr($is_disabled); ?> ><?php
         }
 
-		// Check the unit of the this control.
-        if ( ! empty( $param['has_unit']) ) {
+        // Check the unit of the this control.
+        if (! empty($param['has_unit'])) {
             $unit_type = $param['has_unit']['unit_type'];
-            if ( 'all' === $unit_type ) {
-                $this->get_input_control_unit( $param['has_unit'] );
+            if ('all' === $unit_type) {
+                $this->get_input_control_unit($param['has_unit']);
             } else {
-                ?><span class="unit-<?php echo esc_html( $unit_type ); ?>"> <?php echo esc_html( $unit_type ); ?> </span><?php
+                ?><span class="unit-<?php echo esc_html($unit_type); ?>"> <?php echo esc_html($unit_type); ?> </span><?php
             }
-        }
+        } ?></div></div><?php
 
-        ?></div></div><?php
-
-		/**
-		 * Filters the text input attributes/contents after prepared.
-		 *
-		 * @version 4.0.0
+        /**
+         * Filters the text input attributes/contents after prepared.
+         *
+         * @version 4.0.0
          *
          * @param HTML|string Input control contents.
-		 * @param array       $param List of attribute.
-		 */
-        echo apply_filters( 'rmp_text_control_html', '', $param );
+         * @param array       $param List of attribute.
+         */
+        echo apply_filters('rmp_text_control_html', '', $param);
+    }
 
-	}
-
-	/**
-	 * This function prepare the group text input control.
-	 *
-	 * @version 4.0.0
-	 * @param array $param  List of attributes for a input control
-	 *
-	 * @return HTML
-	 */
-    public function add_group_text_control( $param ) {
-
-		if ( empty( $param) ) {
+    /**
+     * This function prepare the group text input control.
+     *
+     * @version 4.0.0
+     * @param array $param  List of attributes for a input control
+     *
+     * @return HTML
+     */
+    public function add_group_text_control($param)
+    {
+        if (empty($param)) {
             return;
-		}
+        }
 
-		/**
-		 * Filters the text group input control attributes before create.
-		 *
-		 * @version 4.0.0
-		 * @param array $param List of attribute.
-		 */
-        $param = apply_filters('rmp_before_add_group_text_control', $param );
+        /**
+         * Filters the text group input control attributes before create.
+         *
+         * @version 4.0.0
+         * @param array $param List of attribute.
+         */
+        $param = apply_filters('rmp_before_add_group_text_control', $param);
 
         $group_classes = '';
 
-        if ( ! empty( $param['group_classes'] ) ) {
+        if (! empty($param['group_classes'])) {
             $group_classes = $param['group_classes'];
-        }
-
-        ?><div class="rmp-input-control-wrapper full-size <?php echo esc_attr( $group_classes ); ?>"><?php
+        } ?><div class="rmp-input-control-wrapper full-size <?php echo esc_attr($group_classes); ?>"><?php
 
         // Check label is exist.
-        if ( ! empty( $param['label'] ) ) {
-            ?><div class="rmp-input-control-label"> <span> <?php echo esc_html( $param['label'] ); ?> </span><?php
+        if (! empty($param['label'])) {
+            ?><div class="rmp-input-control-label"> <span> <?php echo esc_html($param['label']); ?> </span><?php
                 //Check tooltip text is added or not.
-                if ( ! empty( $param['tool_tip'] ) ) {
-                    $this->get_tool_tip( $param['tool_tip'] );
-                }
-            ?></div><?php
-        }
+                if (! empty($param['tool_tip'])) {
+                    $this->get_tool_tip($param['tool_tip']);
+                } ?></div><?php
+        } ?><div class="rmp-input-control rmp-input-group-control"><?php
 
-        ?><div class="rmp-input-control rmp-input-group-control"><?php
-
-		// Check this input has multi device options.
+        // Check this input has multi device options.
         $has_multi_device = '';
-        if ( ! empty( $param['multi_device']) ) {
+        if (! empty($param['multi_device'])) {
             $has_multi_device = 'multi-device=true';
             $this->get_device_options();
         }
 
-		// Check the input control type that maybe text,number or any other.
-        if ( ! empty( $param['type']) ) {
+        // Check the input control type that maybe text,number or any other.
+        if (! empty($param['type'])) {
             $class = '';
-            if ( ! empty( $param['class'] ) ) {
+            if (! empty($param['class'])) {
                 $class = $param['class'];
             }
 
-            if ( ! empty( $param['input_options'] ) ) {
-
-                foreach( $param['input_options'] as $input ) {
-                    $value = ! empty( $param['value_options'][$input] ) ? $param['value_options'][$input] : '0px';
-
-                    ?><div class="rmp-group-input-wrapper">
-                            <label> <?php echo esc_html__( $input, 'responsive-menu-pro' ); ?> </label>
-                            <input type="<?php echo esc_attr( $param['type'] ); ?>" placeholder="0px" data-input="<?php echo esc_attr( $input ); ?>" id="<?php echo esc_attr( $class.'-'.$input ); ?>" name="<?php echo esc_attr( $param['name'].'['. $input .']' ); ?>" <?php echo  esc_attr( $has_multi_device ); ?> class="no-updates rmp-group-input <?php echo esc_attr( $class ); ?>" value="<?php echo esc_attr( $value ); ?>">
+            if (! empty($param['input_options'])) {
+                foreach ($param['input_options'] as $input) {
+                    $value = ! empty($param['value_options'][$input]) ? $param['value_options'][$input] : '0px'; ?><div class="rmp-group-input-wrapper">
+                            <label> <?php echo esc_html__($input, 'responsive-menu'); ?> </label>
+                            <input type="<?php echo esc_attr($param['type']); ?>" placeholder="0px" data-input="<?php echo esc_attr($input); ?>" id="<?php echo esc_attr($class.'-'.$input); ?>" name="<?php echo esc_attr($param['name'].'['. $input .']'); ?>" <?php echo  esc_attr($has_multi_device); ?> class="no-updates rmp-group-input <?php echo esc_attr($class); ?>" value="<?php echo esc_attr($value); ?>">
                         </div><?php
-                }
-
-                ?><div class="rmp-group-input-wrapper">
+                } ?><div class="rmp-group-input-wrapper">
                     <button type="button" class="is-linked rmp-group-input rmp-group-input-linked">
                         <span class="dashicons dashicons-admin-links "></span>
                     </button></div><?php
             }
         }
 
-		// Check the unit of the this control.
-        if ( ! empty( $param['has_unit']) ) {
+        // Check the unit of the this control.
+        if (! empty($param['has_unit'])) {
             $unit_type = $param['has_unit']['unit_type'];
-            if ( 'all' === $unit_type ) {
-                $this->get_input_control_unit( $param['has_unit'] );
+            if ('all' === $unit_type) {
+                $this->get_input_control_unit($param['has_unit']);
             } else {
-                ?><span class="unit-<?php echo esc_html( $unit_type ); ?>"> <?php echo esc_html( $unit_type ); ?> </span><?php
+                ?><span class="unit-<?php echo esc_html($unit_type); ?>"> <?php echo esc_html($unit_type); ?> </span><?php
             }
-        }
-
-		?></div></div><?php
+        } ?></div></div><?php
 
         /**
-		 * Filters the text input attributes/contents after prepared.
-		 *
-		 * @version 4.0.0
+         * Filters the text input attributes/contents after prepared.
+         *
+         * @version 4.0.0
          *
          * @param HTML|string Input control contents.
-		 * @param array       $param List of attribute.
-		 */
-        echo apply_filters( 'rmp_text_control_html', '', $param );
-
+         * @param array       $param List of attribute.
+         */
+        echo apply_filters('rmp_text_control_html', '', $param);
     }
 
     /**
-	 * This function prepare input unit options.
-	 *
-	 * @version 4.0.0
-	 * @param array $param  List of attributes for a input control
-	 *
-	 * @return HTML
-	 */
-    protected function get_input_control_unit( $param ) {
-
-        if ( empty( $param['name'] ) ) {
+     * This function prepare input unit options.
+     *
+     * @version 4.0.0
+     * @param array $param  List of attributes for a input control
+     *
+     * @return HTML
+     */
+    protected function get_input_control_unit($param)
+    {
+        if (empty($param['name'])) {
             return;
         }
 
         $value = '';
 
-        if ( ! empty( $param['value'] ) ) {
+        if (! empty($param['value'])) {
             $value = $param['value'];
         }
 
         $has_multi_device = 'false';
-        if ( ! empty( $param['multi_device']) ) {
+        if (! empty($param['multi_device'])) {
             $has_multi_device = 'true';
         }
 
         $unit_options = [ 'px', '%','em','rem','vw','vh' ];
 
-		/**
-		 * Filters the input units.
-		 *
-		 * @param array $unit_options List of units.
-		 */
-        $unit_options = apply_filters( 'rmp_input_units', $unit_options );
-
-
-        ?>
-        <select id="<?php echo esc_attr( $param['id'] ); ?>" name="<?php echo esc_attr( $param['name'] ); ?>" class="<?php echo esc_attr( $param['classes'] ); ?>" multi-device="<?php echo esc_attr( $has_multi_device ) ; ?>" >
+        /**
+         * Filters the input units.
+         *
+         * @param array $unit_options List of units.
+         */
+        $unit_options = apply_filters('rmp_input_units', $unit_options); ?>
+        <select id="<?php echo esc_attr($param['id']); ?>" name="<?php echo esc_attr($param['name']); ?>" class="<?php echo esc_attr($param['classes']); ?>" multi-device="<?php echo esc_attr($has_multi_device) ; ?>" >
             <?php
-            foreach( $unit_options as $unit ) {
-
+            foreach ($unit_options as $unit) {
                 $is_selected = '';
-                if ( $value === $unit ) {
+                if ($value === $unit) {
                     $is_selected = 'selected';
                 }
 
                 $is_disabled = '';
-                if ( ! empty( $param['default'] ) && $param['default'] !== $unit ) {
+                if (! empty($param['default']) && $param['default'] !== $unit) {
                     $is_disabled = 'disabled';
-                }
-
-                ?><option <?php echo esc_attr( $is_disabled ); ?> value="<?php echo esc_attr($unit); ?>" <?php echo esc_attr( $is_selected ); ?> >
-                    <?php echo esc_attr( $unit );
-                    if ( ! empty( $param['default'] ) && $param['default'] !== $unit ) {
-                        esc_html_e( ' (PRO)', 'responsive-menu-pro' );
-                    }
-                    ?>
+                } ?><option <?php echo esc_attr($is_disabled); ?> value="<?php echo esc_attr($unit); ?>" <?php echo esc_attr($is_selected); ?> >
+                    <?php echo esc_attr($unit);
+                if (! empty($param['default']) && $param['default'] !== $unit) {
+                    esc_html_e(' (PRO)', 'responsive-menu');
+                } ?>
                 </option><?php
-            }
-            ?>
+            } ?>
         </select><?php
     }
 
-	/**
-	 * This function prepare the color control.
-	 *
-	 * @version 4.0.0
-	 * @param array $param  List of attributes for a input control
-	 *
-	 * @return HTML
-	 */
-    public function add_color_control( $param ) {
-
-		if ( empty( $param) ) {
+    /**
+     * This function prepare the color control.
+     *
+     * @version 4.0.0
+     * @param array $param  List of attributes for a input control
+     *
+     * @return HTML
+     */
+    public function add_color_control($param)
+    {
+        if (empty($param)) {
             return;
-		}
+        }
 
-		/**
-		 * Filters the color input control attribute.
-		 *
-		 * @version 4.0.0
-		 * @param array  $param List of attribute.
-		 */
-        $param = apply_filters( 'rmp_before_add_color_control', $param );
+        /**
+         * Filters the color input control attribute.
+         *
+         * @version 4.0.0
+         * @param array  $param List of attribute.
+         */
+        $param = apply_filters('rmp_before_add_color_control', $param);
 
         $group_classes = '';
 
-        if ( ! empty( $param['group_classes'] ) ) {
+        if (! empty($param['group_classes'])) {
             $group_classes = $param['group_classes'];
-        }
-
-        ?><div class="rmp-input-control-wrapper <?php echo esc_attr( $group_classes ); ?>"><?php
+        } ?><div class="rmp-input-control-wrapper <?php echo esc_attr($group_classes); ?>"><?php
 
         // Check label is exist.
-        if ( ! empty( $param['label'] ) ) {
-            ?><div class="rmp-input-control-label"> <span> <?php echo esc_html( $param['label'] ); ?> </span> <?php
+        if (! empty($param['label'])) {
+            ?><div class="rmp-input-control-label"> <span> <?php echo esc_html($param['label']); ?> </span> <?php
                 //Check tooltip text is added or not.
-                if ( ! empty( $param['tool_tip'] ) ) {
-                    $this->get_tool_tip( $param['tool_tip'] );
-                }?>
+                if (! empty($param['tool_tip'])) {
+                    $this->get_tool_tip($param['tool_tip']);
+                } ?>
             </div><?php
-        }
+        } ?><div class="rmp-input-control"><?php
 
-        ?><div class="rmp-input-control"><?php
-
-		// Check this input has multi device options.
+        // Check this input has multi device options.
         $has_multi_device = '';
-        if ( ! empty( $param['multi_device']) ) {
+        if (! empty($param['multi_device'])) {
             $has_multi_device = 'multi-device=true';
             $this->get_device_options();
         }
 
         $class = '';
-        if ( ! empty( $param['class'] ) ) {
+        if (! empty($param['class'])) {
             $class = $param['class'];
-        }
+        } ?><input type="text" data-alpha="true" id="<?php echo esc_attr($param['id']); ?>" name="<?php echo esc_attr($param['name']); ?>" <?php echo esc_attr($has_multi_device); ?> class="no-updates rmp-color-input <?php echo esc_attr($class); ?>" value="<?php echo esc_attr($param['value']); ?>"><?php
 
-        ?><input type="text" data-alpha="true" id="<?php echo esc_attr( $param['id'] ); ?>" name="<?php echo esc_attr( $param['name'] ); ?>" <?php echo esc_attr( $has_multi_device ); ?> class="no-updates rmp-color-input <?php echo esc_attr( $class ); ?>" value="<?php echo esc_attr( $param['value'] ); ?>"><?php
-
-		?></div></div><?php
+        ?></div></div><?php
 
 
-		/**
-		 * Filters the color input control html.
-		 *
-		 * @version 4.0.0
-		 * @param HTML|string Input control contents.
-		 * @param array       $param List of attribute.
-		 */
-        echo apply_filters( 'rmp_color_control_html', '', $param );
-
+        /**
+         * Filters the color input control html.
+         *
+         * @version 4.0.0
+         * @param HTML|string Input control contents.
+         * @param array       $param List of attribute.
+         */
+        echo apply_filters('rmp_color_control_html', '', $param);
     }
 
-	/**
-	 * This function prepare the button input control.
-	 *
-	 * @version 4.0.0
-	 * @param array $param  List of attributes for a input control
-	 *
-	 * @return HTML
-	 */
-    public function add_button_control( $param ) {
-		if ( empty( $param) ) {
+    /**
+     * This function prepare the button input control.
+     *
+     * @version 4.0.0
+     * @param array $param  List of attributes for a input control
+     *
+     * @return HTML
+     */
+    public function add_button_control($param)
+    {
+        if (empty($param)) {
             return;
-		}
-
-		/**
-		 * Filters the button input control attribute.
-		 *
-		 * @version 4.0.0
-		 * @param array  $param List of attribute.
-		 */
-        $param = apply_filters('rmp_before_add_button_control', $param );
-
-        $group_classes = '';
-        if ( ! empty( $param['group_classes'] ) ) {
-            $group_classes = $param['group_classes'];
         }
 
-        ?><div class="rmp-input-control-wrapper <?php echo esc_attr( $group_classes ); ?>"><?php
+        /**
+         * Filters the button input control attribute.
+         *
+         * @version 4.0.0
+         * @param array  $param List of attribute.
+         */
+        $param = apply_filters('rmp_before_add_button_control', $param);
+
+        $group_classes = '';
+        if (! empty($param['group_classes'])) {
+            $group_classes = $param['group_classes'];
+        } ?><div class="rmp-input-control-wrapper <?php echo esc_attr($group_classes); ?>"><?php
             ?><div class="rmp-input-control"><?php
                 $class = '';
-                if ( ! empty( $param['class'] ) ) {
-                    $class = $param['class'];
-                }
-                ?><button type="button" id="<?php echo esc_attr( $param['id'] ); ?>" class="button button-primary button-large <?php echo esc_attr( $class ); ?>" ><?php echo esc_html( $param['label'] ); ?></button>
+        if (! empty($param['class'])) {
+            $class = $param['class'];
+        } ?><button type="button" id="<?php echo esc_attr($param['id']); ?>" class="button button-primary button-large <?php echo esc_attr($class); ?>" ><?php echo esc_html($param['label']); ?></button>
         </div></div><?php
 
-		/**
-		 * Filters the button input control html.
-		 * @version 4.0.0
+        /**
+         * Filters the button input control html.
+         * @version 4.0.0
          *
-		 * @param HTML|string Input control contents.
-		 * @param array       $param List of attribute.
-		 */
-        echo apply_filters( 'rmp_button_control_html', '', $param );
-
+         * @param HTML|string Input control contents.
+         * @param array       $param List of attribute.
+         */
+        echo apply_filters('rmp_button_control_html', '', $param);
     }
 
-	/**
-	 * This function prepare the checkbox as switcher input control.
-	 *
-	 * @version 4.0.0
-	 * @param array $param  List of attributes for a input control
-	 *
-	 * @return HTML
-	 */
-    public function add_switcher_control( $param ) {
-
-		if ( empty( $param ) ) {
+    /**
+     * This function prepare the checkbox as switcher input control.
+     *
+     * @version 4.0.0
+     * @param array $param  List of attributes for a input control
+     *
+     * @return HTML
+     */
+    public function add_switcher_control($param)
+    {
+        if (empty($param)) {
             return;
         }
 
-		/**
-		 * Filters the switcher input control attributes.
-		 *
-		 * @version 4.0.0
-		 * @param array  $param List of attribute.
-		 */
-        $param = apply_filters('rmp_before_add_switcher_control', $param );
+        /**
+         * Filters the switcher input control attributes.
+         *
+         * @version 4.0.0
+         * @param array  $param List of attribute.
+         */
+        $param = apply_filters('rmp_before_add_switcher_control', $param);
 
         $group_classes = '';
 
-        if ( ! empty( $param['group_classes'] ) ) {
+        if (! empty($param['group_classes'])) {
             $group_classes = $param['group_classes'];
-        }
-
-        ?><div class="rmp-input-control-wrapper rmp-input-control-switcher <?php echo esc_attr( $group_classes ); ?>" ><?php
+        } ?><div class="rmp-input-control-wrapper rmp-input-control-switcher <?php echo esc_attr($group_classes); ?>" ><?php
 
         // Check label is exist.
-        if ( ! empty( $param['label'] ) ) {
+        if (! empty($param['label'])) {
             ?><div class="rmp-input-control-label">
-                    <span> <?php echo esc_html( $param['label'] ); ?> </span>
+                    <span> <?php echo esc_html($param['label']); ?> </span>
                     <?php
                     //Check tooltip text is added or not.
-                    if ( ! empty( $param['tool_tip'] ) ) {
-                        $this->get_tool_tip( $param['tool_tip'] );
-                    }
-                    ?>
+                    if (! empty($param['tool_tip'])) {
+                        $this->get_tool_tip($param['tool_tip']);
+                    } ?>
                 </div><?php
         }
 
-        if ( ! empty( $param['name'] ) ) {
-
-           ?><div class="rmp-input-control"><?php
+        if (! empty($param['name'])) {
+            ?><div class="rmp-input-control"><?php
 
                 $is_disabled = '';
-                // Check feature type.
-                if( ! empty( $param['feature_type'] ) ) {
-                    $is_disabled = 'disabled';
-                    ?><a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url( $this->pro_plugin_url ); ?>" > <?php echo esc_html_e( $param['feature_type'], 'responsive-menu-pro' ); ?> </a><?php
-                }
+            // Check feature type.
+            if (! empty($param['feature_type'])) {
+                $is_disabled = 'disabled'; ?><a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url($this->pro_plugin_url); ?>" > <?php echo esc_html_e($param['feature_type'], 'responsive-menu'); ?> </a><?php
+            }
 
-                // Check multi device options is enabled.
-                $has_multi_device = '';
-                if ( ! empty( $param['multi_device']) ) {
-                    $has_multi_device = 'multi-device=true';
-                    $this->get_device_options();
-                }
+            // Check multi device options is enabled.
+            $has_multi_device = '';
+            if (! empty($param['multi_device'])) {
+                $has_multi_device = 'multi-device=true';
+                $this->get_device_options();
+            }
 
-                $class = '';
-                if ( ! empty( $param['class'] ) ) {
-                    $class = $param['class'];
-                }
-
-                ?><input <?php echo esc_attr( $is_disabled ); ?> type="hidden" value="off" name="<?php echo esc_attr( $param['name'] ); ?>"/><?php
-                ?><input <?php echo esc_attr( $is_disabled ); ?> type="checkbox" id="<?php echo esc_attr( $param['id'] ); ?>" name="<?php echo esc_attr( $param['name'] ); ?>" <?php echo esc_attr( $has_multi_device ); ?> class="toggle <?php echo esc_attr( $class ); ?>" value="on" <?php echo esc_attr( $param['is_checked'] ); ?> ><?php
+            $class = '';
+            if (! empty($param['class'])) {
+                $class = $param['class'];
+            } ?><input <?php echo esc_attr($is_disabled); ?> type="hidden" value="off" name="<?php echo esc_attr($param['name']); ?>"/><?php
+                ?><input <?php echo esc_attr($is_disabled); ?> type="checkbox" id="<?php echo esc_attr($param['id']); ?>" name="<?php echo esc_attr($param['name']); ?>" <?php echo esc_attr($has_multi_device); ?> class="toggle <?php echo esc_attr($class); ?>" value="on" <?php echo esc_attr($param['is_checked']); ?> ><?php
 
             ?></div><?php
-        }
+        } ?></div><?php
 
-		?></div><?php
-
-		/**
-		 * Filters the switcher input control html.
-		 *
-		 * @version 4.0.0
+        /**
+         * Filters the switcher input control html.
          *
-		 * @param HTML|string Input control contents.
-		 * @param array       $param List of attribute.
-		 */
-        echo apply_filters( 'rmp_switcher_control_html', '', $param );
+         * @version 4.0.0
+         *
+         * @param HTML|string Input control contents.
+         * @param array       $param List of attribute.
+         */
+        echo apply_filters('rmp_switcher_control_html', '', $param);
     }
 
-	/**
-	 * This function prepare the select/dropdown input control.
-	 *
-	 * @version 4.0.0
-	 * @param array $param  List of attributes for a input control
-	 *
-	 * @return HTML
-	 */
-    public function add_select_control( $param ) {
-
-		if ( empty( $param) ) {
+    /**
+     * This function prepare the select/dropdown input control.
+     *
+     * @version 4.0.0
+     * @param array $param  List of attributes for a input control
+     *
+     * @return HTML
+     */
+    public function add_select_control($param)
+    {
+        if (empty($param)) {
             return;
-		}
+        }
 
-		/**
-		 * Filters the select input control attributes.
-		 *
-		 * @version 4.0.0
-		 * @param array  $param List of attribute.
-		 */
-        $param = apply_filters('rmp_before_add_select_control', $param );
+        /**
+         * Filters the select input control attributes.
+         *
+         * @version 4.0.0
+         * @param array  $param List of attribute.
+         */
+        $param = apply_filters('rmp_before_add_select_control', $param);
 
         $group_classes = '';
 
-        if ( ! empty( $param['group_classes'] ) ) {
+        if (! empty($param['group_classes'])) {
             $group_classes = $param['group_classes'];
         }
 
-        $is_disabled = '';
-
-        ?><div class="rmp-input-control-wrapper <?php echo esc_attr( $group_classes ); ?> "><?php
+        $is_disabled = ''; ?><div class="rmp-input-control-wrapper <?php echo esc_attr($group_classes); ?> "><?php
 
         // Check label is exist.
-        if ( ! empty( $param['label'] ) ) {
+        if (! empty($param['label'])) {
             ?><div class="rmp-input-control-label">
-                    <span> <?php esc_html_e( $param['label'], 'responsive-menu-pro' ); ?> </span>
+                    <span> <?php esc_html_e($param['label'], 'responsive-menu'); ?> </span>
                     <span>
                         <?php
                         //Check tooltip text is added or not.
-                        if ( ! empty( $param['tool_tip'] ) ) {
-                            $this->get_tool_tip( $param['tool_tip'] );
-                        }
-                        ?>
+                        if (! empty($param['tool_tip'])) {
+                            $this->get_tool_tip($param['tool_tip']);
+                        } ?>
                     </span>
                      <?php
                         // Check feature type.
-                        if( ! empty( $param['feature_type'] ) ) {
-                            $is_disabled = 'disabled';
-                            ?><a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url($this->pro_plugin_url); ?>" > <?php esc_html_e( $param['feature_type'], 'responsive-menu-pro' ); ?> </a><?php
-                        }
-                     ?>
+                        if (! empty($param['feature_type'])) {
+                            $is_disabled = 'disabled'; ?><a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url($this->pro_plugin_url); ?>" > <?php esc_html_e($param['feature_type'], 'responsive-menu'); ?> </a><?php
+                        } ?>
                 </div>
             <?php
-        }
+        } ?><div class="rmp-input-control"><?php
 
-        ?><div class="rmp-input-control"><?php
-
-		// Check multi device options is enabled.
+        // Check multi device options is enabled.
         $has_multi_device = '';
-        if ( ! empty( $param['multi_device']) ) {
+        if (! empty($param['multi_device'])) {
             $has_multi_device = 'multi-device=true';
             $this->get_device_options();
         }
 
         $class = '';
-        if ( ! empty( $param['class'] ) ) {
+        if (! empty($param['class'])) {
             $class = $param['class'];
         }
 
-		// Check multiple value is allowed.
+        // Check multiple value is allowed.
         $is_multiple_value_allow = '';
-        if ( ! empty( $param['multiple'] ) ) {
+        if (! empty($param['multiple'])) {
             $is_multiple_value_allow = 'multiple';
-        }
-
-        ?><select id="<?php echo esc_attr( $param['id'] ); ?>" name="<?php echo esc_attr( $param['name'] ); ?>" <?php echo esc_attr( $has_multi_device ); ?> class="<?php echo esc_attr( $class ); ?>" <?php echo esc_attr( $is_multiple_value_allow ); ?>>
+        } ?><select id="<?php echo esc_attr($param['id']); ?>" name="<?php echo esc_attr($param['name']); ?>" <?php echo esc_attr($has_multi_device); ?> class="<?php echo esc_attr($class); ?>" <?php echo esc_attr($is_multiple_value_allow); ?>>
             <?php
-            if ( ! empty( $param['options'] ) ) {
-                foreach( $param['options'] as $key => $value ) {
+            if (! empty($param['options'])) {
+                foreach ($param['options'] as $key => $value) {
                     $is_select = '';
-                    if ( ! empty( $param['value'] ) ) {
-                        if( ! empty( $param['multiple'] ) && is_array( $param['value'] ) && in_array( $key, $param['value'] ) ) {
+                    if (! empty($param['value'])) {
+                        if (! empty($param['multiple']) && is_array($param['value']) && in_array($key, $param['value'], true)) {
                             $is_select = 'selected';
-                        } elseif( $key == $param['value']  ) {
+                        } elseif ($key == $param['value']) {
                             $is_select = 'selected';
                         }
                     }
 
                     // Check options is pro.
                     $disabled = '';
-                    if ( strpos( strtolower($value) , 'pro' ) ) {
+                    if (strpos(strtolower($value), 'pro')) {
                         $disabled = 'disabled';
-                    }
-                    ?>
-                    <option <?php echo esc_attr( $disabled ); ?> value="<?php echo esc_attr( $key ); ?>" <?php echo esc_attr( $is_select ); ?>> <?php echo esc_html( $value ); ?> </option><?php
+                    } ?>
+                    <option <?php echo esc_attr($disabled); ?> value="<?php echo esc_attr($key); ?>" <?php echo esc_attr($is_select); ?>> <?php echo esc_html($value); ?> </option><?php
                 }
-            }
-            ?>
+            } ?>
         </select>
         </div></div><?php
 
-		/**
-		 * Filters the select input control html.
-		 *
-		 * @version 4.0.0
+        /**
+         * Filters the select input control html.
          *
-		 * @param HTML|string Input control contents.
-		 * @param array       $param List of attribute.
-		 */
-        echo apply_filters( 'rmp_select_control_html', '', $param );
-
+         * @version 4.0.0
+         *
+         * @param HTML|string Input control contents.
+         * @param array       $param List of attribute.
+         */
+        echo apply_filters('rmp_select_control_html', '', $param);
     }
 
-	/**
-	 * This function prepare the tooltip.
-	 *
-	 * @version 4.0.0
-	 * @param array $param  List of attributes for a input control
-	 *
-	 * @return HTML
-	 */
-    public function get_tool_tip( $param ) {
-
-		if ( empty( $param['text'] ) ) {
+    /**
+     * This function prepare the tooltip.
+     *
+     * @version 4.0.0
+     * @param array $param  List of attributes for a input control
+     *
+     * @return HTML
+     */
+    public function get_tool_tip($param)
+    {
+        if (empty($param['text'])) {
             return;
-        }?>
+        } ?>
         <div class="rmp-tooltip-icon dashicons dashicons-editor-help">
             <span class="rmp-tooltip-content">
-                <?php echo wp_kses( $param['text'], array( 'a' => array( 'href' => array(), 'title' => array() ) ) ); ?>
+                <?php echo wp_kses($param['text'], array( 'a' => array( 'href' => array(), 'title' => array() ) )); ?>
             </span>
         </div>
         <?php
     }
 
     /**
-	 * This function prepare the shortcut.
-	 *
-	 * @version 4.0.0
-	 * @param array $param  List of attributes for a input control
-	 *
-	 * @return HTML
-	 */
-    public function add_shortcut_link( $param ) {
-        if ( empty( $param) ) {
+     * This function prepare the shortcut.
+     *
+     * @version 4.0.0
+     * @param array $param  List of attributes for a input control
+     *
+     * @return HTML
+     */
+    public function add_shortcut_link($param)
+    {
+        if (empty($param)) {
             return;
-		}
+        }
 
         // Accordion id.
         $accordion_id = '';
-        if ( ! empty( $param['accordion_id'] ) ) {
+        if (! empty($param['accordion_id'])) {
             $accordion_id = $param['accordion_id'];
         }
 
         // Sub accordion id.
         $sub_accordion_id = '';
-        if ( ! empty( $param['sub_accordion_id'] ) ) {
+        if (! empty($param['sub_accordion_id'])) {
             $sub_accordion_id = $param['sub_accordion_id'];
         }
 
         // Sub tab id.
         $sub_tab_id = '';
-        if ( ! empty( $param['sub_tab_id'] ) ) {
+        if (! empty($param['sub_tab_id'])) {
             $sub_tab_id = $param['sub_tab_id'];
         }
 
-        if(!empty ($param['label']) && !empty ($param['target'])){
-            ?><div class="rmp-quick-edit-link rmp-input-control-wrapper" aria-owns="<?php echo esc_attr( $param["target"] ); ?>" accordion-id="<?php echo esc_attr( $accordion_id ); ?>" sub-accordion-id="<?php echo esc_attr( $sub_accordion_id ); ?>" sub-tab-id="<?php echo esc_attr( $sub_tab_id ); ?>">
-                <a href="javascript:void(0)"><?php esc_html_e( $param["label"], 'responsive-menu-pro' ); ?> <i class="fas fa-share"></i></a>
+        if (!empty($param['label']) && !empty($param['target'])) {
+            ?><div class="rmp-quick-edit-link rmp-input-control-wrapper" aria-owns="<?php echo esc_attr($param["target"]); ?>" accordion-id="<?php echo esc_attr($accordion_id); ?>" sub-accordion-id="<?php echo esc_attr($sub_accordion_id); ?>" sub-tab-id="<?php echo esc_attr($sub_tab_id); ?>">
+                <a href="javascript:void(0)"><?php esc_html_e($param["label"], 'responsive-menu'); ?> <i class="fas fa-share"></i></a>
             </div><?php
         }
     }
 
-	/**
-	 * This function prepare the icon picker control.
-	 *
-	 * @version 4.0.0
-	 * @param array $param  List of attributes for a input control
-	 *
-	 * @return HTML
-	 */
-    public function add_icon_picker_control( $param ) {
-
-        if ( empty( $param) ) {
+    /**
+     * This function prepare the icon picker control.
+     *
+     * @version 4.0.0
+     * @param array $param  List of attributes for a input control
+     *
+     * @return HTML
+     */
+    public function add_icon_picker_control($param)
+    {
+        if (empty($param)) {
             return;
-		}
+        }
 
         $group_classes = '';
 
-        if ( ! empty( $param['group_classes'] ) ) {
+        if (! empty($param['group_classes'])) {
             $group_classes = $param['group_classes'];
         }
-        $is_disabled = '';
-
-        ?><div class="rmp-input-control-wrapper <?php echo esc_attr( $group_classes ); ?>"><?php
+        $is_disabled = ''; ?><div class="rmp-input-control-wrapper <?php echo esc_attr($group_classes); ?>"><?php
 
         // Check label is exist.
-        if ( ! empty( $param['label'] ) ) {
+        if (! empty($param['label'])) {
             ?><div class="rmp-input-control-label">
-                <span> <?php esc_html_e( $param['label'], 'responsive-menu-pro' ); ?> </span>
+                <span> <?php esc_html_e($param['label'], 'responsive-menu'); ?> </span>
                 <span>
                     <?php
                     //Check tooltip text is added or not.
-                    if ( ! empty( $param['tool_tip'] ) ) {
-                        $this->get_tool_tip( $param['tool_tip'] );
-                    }
-                    ?>
+                    if (! empty($param['tool_tip'])) {
+                        $this->get_tool_tip($param['tool_tip']);
+                    } ?>
                 </span>
                     <?php
                     // Check feature type.
                     if (! empty($param['feature_type'])) {
-                        $is_disabled = 'disabled'; ?><a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url($this->pro_plugin_url); ?>" > <?php esc_html_e( $param['feature_type'], 'responsive-menu-pro' ); ?></a><?php
-                    }
-                    ?>
+                        $is_disabled = 'disabled'; ?><a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url($this->pro_plugin_url); ?>" > <?php esc_html_e($param['feature_type'], 'responsive-menu'); ?></a><?php
+                    } ?>
             </div><?php
-        }
-        ?>
+        } ?>
         <div class="rmp-input-control rmp-icon-picker-container"><?php
 
-		// Check multiple device option enabled.
+        // Check multiple device option enabled.
         $has_multi_device = '';
-        if ( ! empty( $param['multi_device']) ) {
+        if (! empty($param['multi_device'])) {
             $has_multi_device = 'multi-device=true';
             $this->get_device_options();
         }
 
         $class = '';
-        if ( ! empty( $param['class'] ) ) {
+        if (! empty($param['class'])) {
             $class = $param['class'];
         }
 
         $icon_value = '';
         $is_icon_set = "false";
-        if( ! empty( $param['value'] ) ) {
+        if (! empty($param['value'])) {
             $icon_value = $param['value'];
             $is_icon_set = "true";
-        }
+        } ?><input type="hidden" placeholder="fa fa-icon" id="<?php echo esc_attr($param['id']); ?>" name="<?php echo esc_attr($param['name']); ?>" <?php echo esc_attr($has_multi_device); ?> class="rmp-icon-hidden-input <?php echo esc_attr($class); ?>" value="<?php echo esc_attr($icon_value); ?>"><?php
 
-        ?><input type="hidden" placeholder="fa fa-icon" id="<?php echo esc_attr( $param['id'] ); ?>" name="<?php echo esc_attr( $param['name'] ); ?>" <?php echo esc_attr( $has_multi_device ); ?> class="rmp-icon-hidden-input <?php echo esc_attr( $class ); ?>" value="<?php echo esc_attr( $icon_value ); ?>"><?php
-
-        ?><div class="rmp-icon-picker <?php echo esc_attr( $param['picker_class'] . $is_disabled ); ?>" for="<?php echo esc_attr( $param['id'] ); ?>" id="<?php echo esc_attr( $param['picker_id'] ); ?>" data-icon="<?php echo esc_attr( $is_icon_set ); ?>">
+        ?><div class="rmp-icon-picker <?php echo esc_attr($param['picker_class'] . $is_disabled); ?>" for="<?php echo esc_attr($param['id']); ?>" id="<?php echo esc_attr($param['picker_id']); ?>" data-icon="<?php echo esc_attr($is_icon_set); ?>">
                 <div class="rmp-icon-picker-placeholder">
-                    <span> <?php echo file_get_contents( RMP_PLUGIN_PATH_V4 .'/assets/admin/icons/svg/image-placeholder.svg' ); ?></span>
+                    <span> <?php echo wp_kses(file_get_contents(RMP_PLUGIN_PATH_V4 .'/assets/admin/icons/svg/image-placeholder.svg'), rmp_allow_svg_html_tags()); ?></span>
                     <label> Choose Icon</label>
                 </div>
-                <?php echo wp_kses( $icon_value, wp_kses_allowed_html( 'post' ) );
-                if( ! empty( $param['value'] ) ) {
-                        ?><i class="rmp-icon-picker-trash dashicons dashicons-trash" aria-hidden="true"></i><?php
-                    }
-                ?>
+                <?php echo wp_kses($icon_value, rmp_allow_svg_html_tags());
+        if (! empty($param['value'])) {
+            ?><i class="rmp-icon-picker-trash dashicons dashicons-trash" aria-hidden="true"></i><?php
+        } ?>
             </div>
         </div></div><?php
 
-		/**
-		 * Filters the icon picker control html.
-		 *
-		 * @version 4.0.0
+        /**
+         * Filters the icon picker control html.
          *
-		 * @param HTML|string Input control contents.
-		 * @param array       $param List of attribute.
-		 */
-        echo apply_filters( 'rmp_icon_picker_control_html', '', $param);
+         * @version 4.0.0
+         *
+         * @param HTML|string Input control contents.
+         * @param array       $param List of attribute.
+         */
+        echo apply_filters('rmp_icon_picker_control_html', '', $param);
+    }
 
-	}
-
-	/**
-	 * This function prepare the image input control.
-	 *
-	 * @version 4.0.0
-	 * @param array $param  List of attributes for a input control
-	 *
-	 * @return HTML
-	 */
-    public function add_image_control( $param ) {
-
-        if ( empty( $param) ) {
+    /**
+     * This function prepare the image input control.
+     *
+     * @version 4.0.0
+     * @param array $param  List of attributes for a input control
+     *
+     * @return HTML
+     */
+    public function add_image_control($param)
+    {
+        if (empty($param)) {
             return;
         }
 
         $group_classes = '';
 
-        if ( ! empty( $param['group_classes'] ) ) {
+        if (! empty($param['group_classes'])) {
             $group_classes = $param['group_classes'];
-        }
-
-        ?><div class="rmp-input-control-wrapper <?php echo esc_attr( $group_classes ); ?>"><?php
+        } ?><div class="rmp-input-control-wrapper <?php echo esc_attr($group_classes); ?>"><?php
 
         // Check label is exist.
-        if ( ! empty( $param['label'] ) ) {
-            ?><div class="rmp-input-control-label"> <span> <?php echo esc_html( $param['label'] ); ?> </span>
+        if (! empty($param['label'])) {
+            ?><div class="rmp-input-control-label"> <span> <?php echo esc_html($param['label']); ?> </span>
                 <?php
                     //Check tooltip text is added or not.
-                    if ( ! empty( $param['tool_tip'] ) ) {
-                        $this->get_tool_tip( $param['tool_tip'] );
-                    }
-                ?>
+                    if (! empty($param['tool_tip'])) {
+                        $this->get_tool_tip($param['tool_tip']);
+                    } ?>
             </div><?php
-        }
+        } ?><div class="rmp-input-control rmp-image-picker-container"><?php
 
-        ?><div class="rmp-input-control rmp-image-picker-container"><?php
-
-		// Check multi device option is enabled.
+        // Check multi device option is enabled.
         $has_multi_device = '';
-        if ( ! empty( $param['multi_device']) ) {
+        if (! empty($param['multi_device'])) {
             $has_multi_device = 'multi-device=true';
             $this->get_device_options();
         }
 
         $class = '';
-        if ( ! empty( $param['class'] ) ) {
+        if (! empty($param['class'])) {
             $class = $param['class'];
         }
 
         $image_url   = '';
-        if ( ! empty( $param['value'] ) ) {
+        if (! empty($param['value'])) {
             $image_url  = $param['value'];
-        }
+        } ?><input type="hidden" id="<?php echo esc_attr($param['id']); ?>" name="<?php echo esc_attr($param['name']); ?>" <?php echo esc_attr($has_multi_device); ?> class="rmp-image-url-input <?php echo esc_attr($class); ?>" value="<?php echo esc_url($image_url); ?>"><?php
 
-        ?><input type="hidden" id="<?php echo esc_attr( $param['id'] ); ?>" name="<?php echo esc_attr( $param['name'] ); ?>" <?php echo esc_attr( $has_multi_device ); ?> class="rmp-image-url-input <?php echo esc_attr( $class ); ?>" value="<?php echo esc_url( $image_url ); ?>"><?php
-
-        ?><div class="rmp-image-picker <?php echo esc_attr( $param['picker_class'] ); ?>" for="<?php echo esc_attr( $param['id'] ); ?>" id="<?php echo esc_attr( $param['picker_id'] ); ?>"
-            <?php if ( ! empty( $param['value'] ) ) {
-                    echo 'style="background-image: url('.esc_url($image_url).');"';
-                } ?>
+        ?><div class="rmp-image-picker <?php echo esc_attr($param['picker_class']); ?>" for="<?php echo esc_attr($param['id']); ?>" id="<?php echo esc_attr($param['picker_id']); ?>"
+            <?php if (! empty($param['value'])) {
+            echo 'style="background-image: url('.esc_url($image_url).');"';
+        } ?>
             >
                 <div class="rmp-image-picker-placeholder">
-                    <span> <?php echo file_get_contents( RMP_PLUGIN_PATH_V4 .'/assets/admin/icons/svg/image-placeholder.svg' ); ?> </span>
+                    <span> <?php echo wp_kses(file_get_contents(RMP_PLUGIN_PATH_V4 .'/assets/admin/icons/svg/image-placeholder.svg'), rmp_allow_svg_html_tags()); ?> </span>
                     <label> Choose Image</label>
                 </div>
                 <?php
-                if ( ! empty( $param['value'] ) ) {
-                   ?><i class="rmp-image-picker-trash dashicons dashicons-trash" aria-hidden="true"></i><?php
-                }
-                ?>
+                if (! empty($param['value'])) {
+                    ?><i class="rmp-image-picker-trash dashicons dashicons-trash" aria-hidden="true"></i><?php
+                } ?>
             </div>
         </div></div><?php
 
-		/**
-		 * Filters the icon picker control html.
-		 *
-		 * @version 4.0.0
+        /**
+         * Filters the icon picker control html.
          *
-		 * @param HTML|string Input control contents.
-		 * @param array       $param List of attribute.
-		 */
-        echo apply_filters( 'rmp_add_image_control_html', '', $param );
+         * @version 4.0.0
+         *
+         * @param HTML|string Input control contents.
+         * @param array       $param List of attribute.
+         */
+        echo apply_filters('rmp_add_image_control_html', '', $param);
     }
 
-	/**
-	 * This function prepare the alignment control.
-	 *
-	 * @version 4.0.0
-	 * @param array $param  List of attributes for a input control
-	 *
-	 * @return HTML
-	 */
-    public function add_text_alignment_control( $param ) {
-
-        if ( empty( $param) ) {
+    /**
+     * This function prepare the alignment control.
+     *
+     * @version 4.0.0
+     * @param array $param  List of attributes for a input control
+     *
+     * @return HTML
+     */
+    public function add_text_alignment_control($param)
+    {
+        if (empty($param)) {
             return;
         }
 
         $group_classes = '';
 
-        if ( ! empty( $param['group_classes'] ) ) {
+        if (! empty($param['group_classes'])) {
             $group_classes = $param['group_classes'];
-        }
-
-        ?><div class="rmp-input-control-wrapper <?php echo esc_attr( $group_classes ); ?>"><?php
+        } ?><div class="rmp-input-control-wrapper <?php echo esc_attr($group_classes); ?>"><?php
 
         // Check label is exist.
-        if ( ! empty( $param['label'] ) ) {
-            ?><div class="rmp-input-control-label"> <span> <?php echo esc_html( $param['label'] ); ?> </span><?php
+        if (! empty($param['label'])) {
+            ?><div class="rmp-input-control-label"> <span> <?php echo esc_html($param['label']); ?> </span><?php
              //Check tooltip text is added or not.
-            if ( ! empty( $param['tool_tip'] ) ) {
-                $this->get_tool_tip( $param['tool_tip'] );
-            }?>
+            if (! empty($param['tool_tip'])) {
+                $this->get_tool_tip($param['tool_tip']);
+            } ?>
             </div><?php
-        }
+        } ?><div class="rmp-input-control"><?php
 
-        ?><div class="rmp-input-control"><?php
-
-		// Check multiple device options is enabled.
+        // Check multiple device options is enabled.
         $has_multi_device = '';
-        if ( ! empty( $param['multi_device']) ) {
+        if (! empty($param['multi_device'])) {
             $has_multi_device = 'multi-device=true';
             $this->get_device_options();
         }
 
         $class = '';
-        if ( ! empty( $param['class'] ) ) {
+        if (! empty($param['class'])) {
             $class = $param['class'];
-        }
-
-        ?><div class="align-icons-group">
+        } ?><div class="align-icons-group">
             <?php
-                foreach( $param['options'] as $value ) {
+                foreach ($param['options'] as $value) {
                     $is_checked = '';
-                    if ( $param['value'] == $value ) {
+                    if ($param['value'] == $value) {
                         $is_checked = 'checked';
-                    }
-
-                    ?><input id="<?php echo esc_attr( $class. '-' . $value ); ?>" type="radio" name="<?php echo esc_attr( $param['name'] ); ?>" <?php echo esc_attr( $has_multi_device ); ?> class="no-updates <?php echo esc_attr( $class ); ?>" value="<?php echo esc_attr( $value ); ?>" <?php echo esc_attr( $is_checked ); ?> >
-                        <label for="<?php echo esc_attr( $class. '-' . $value ); ?>">
+                    } ?><input id="<?php echo esc_attr($class. '-' . $value); ?>" type="radio" name="<?php echo esc_attr($param['name']); ?>" <?php echo esc_attr($has_multi_device); ?> class="no-updates <?php echo esc_attr($class); ?>" value="<?php echo esc_attr($value); ?>" <?php echo esc_attr($is_checked); ?> >
+                        <label for="<?php echo esc_attr($class. '-' . $value); ?>">
                         <?php
-                        if ( 'left' == $value ) {
+                        if ('left' == $value) {
                             ?><span class="dashicons dashicons-editor-alignleft"></span><?php
-                        } else if( 'justify' == $value ) {
+                        } elseif ('justify' == $value) {
                             ?><span class="dashicons dashicons-editor-justify"></span><?php
-                        } else if( 'right' == $value ) {
+                        } elseif ('right' == $value) {
                             ?><span class="dashicons dashicons-editor-alignright "></span><?php
-                        } else if( 'center' == $value ) {
+                        } elseif ('center' == $value) {
                             ?><span class="dashicons dashicons-editor-aligncenter "></span><?php
-                        }
-                        ?>
+                        } ?>
                         </label><?php
-                }
-            ?>
+                } ?>
         </div>
         </div></div><?php
 
-		/**
-		 * Filters the icon picker control html.
-		 *
-		 * @version 4.0.0
+        /**
+         * Filters the icon picker control html.
          *
-		 * @param HTML|string Input control contents.
-		 * @param array       $param List of attribute.
-		 */
-		echo apply_filters( 'rmp_add_text_alignment_control_html', '', $param );
+         * @version 4.0.0
+         *
+         * @param HTML|string Input control contents.
+         * @param array       $param List of attribute.
+         */
+        echo apply_filters('rmp_add_text_alignment_control_html', '', $param);
     }
 
     /**
      * Function to prepare the device visibility control,
-	 * those are mobile, tablet and desktop as options.
+     * those are mobile, tablet and desktop as options.
      *
-	 * @version 4.0.0
+     * @version 4.0.0
      *
-	 * @param array $options list of values.
+     * @param array $options list of values.
      *
      * @return HTML
      */
-    public function add_device_visibility_control( $options ) {
-
-		?><div class="rmp-input-control-wrapper full-size">
+    public function add_device_visibility_control($options)
+    {
+        ?><div class="rmp-input-control-wrapper full-size">
                 <label class="rmp-input-control-label">
-                    <?php esc_html_e('Device Visibility', 'responsive-menu-pro'); ?>
-                    <a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url( $this->pro_plugin_url ); ?>" > PRO </a>
+                    <?php esc_html_e('Device Visibility', 'responsive-menu'); ?>
+                    <a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url($this->pro_plugin_url); ?>" > PRO </a>
                 </label>
                 <div class="rmp-input-control">
                     <div class="device-icons-group">
@@ -984,7 +897,7 @@ class Control_Manager {
                                     </svg>
                                 </span>
                             </label>
-                            <span class="rmp-input-control-label device-title"> <?php esc_html_e( 'Mobile', 'responsive-menu-pro' ); ?> </span>
+                            <span class="rmp-input-control-label device-title"> <?php esc_html_e('Mobile', 'responsive-menu'); ?> </span>
                         </div>
                         <div class="device-icon">
                             <input type="hidden" name="menu[use_tablet_menu]" value="on"/>
@@ -1000,7 +913,7 @@ class Control_Manager {
                                     </svg>
                                 </span>
                             </label>
-                            <span class="rmp-input-control-label device-title"> <?php esc_html_e( 'Tablet', 'responsive-menu-pro' ); ?> </span>
+                            <span class="rmp-input-control-label device-title"> <?php esc_html_e('Tablet', 'responsive-menu'); ?> </span>
                         </div>
                         <div class="device-icon">
                             <input type="hidden" name="menu[use_desktop_menu]" value="off"/>
@@ -1015,59 +928,58 @@ class Control_Manager {
                                     </svg>
                                 </span>
                             </label>
-                            <span class="rmp-input-control-label device-title"> <?php esc_html_e( 'Desktop', 'responsive-menu-pro' ); ?> </span>
+                            <span class="rmp-input-control-label device-title"> <?php esc_html_e('Desktop', 'responsive-menu'); ?> </span>
                         </div>
                     </div>
                 </div>
             </div><?php
     }
 
-	/**
-	 * Function to return the device options markup.
-	 *
-	 * @version 4.0.0
-	 *
-	 * @return HTML
-	 */
-	protected function get_device_options() {
-       ?><div class="rmp-device-switcher-holder">
-            <a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url( $this->pro_plugin_url ); ?>" > PRO </a>
+    /**
+     * Function to return the device options markup.
+     *
+     * @version 4.0.0
+     *
+     * @return HTML
+     */
+    protected function get_device_options()
+    {
+        ?><div class="rmp-device-switcher-holder">
+            <a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url($this->pro_plugin_url); ?>" > PRO </a>
             <ul class="select rmp-device-switcher" >
                 <li data-device="mobile">
-                    <?php echo file_get_contents( RMP_PLUGIN_PATH_V4 .'/assets/admin/icons/svg/mobile.svg' ); ?>
+                    <?php echo wp_kses(file_get_contents(RMP_PLUGIN_PATH_V4 .'/assets/admin/icons/svg/mobile.svg'), rmp_allow_svg_html_tags()); ?>
                 </li>
                 <li data-device="tablet">
-                    <?php echo file_get_contents( RMP_PLUGIN_PATH_V4 .'/assets/admin/icons/svg/tablet.svg' ); ?>
+                    <?php echo wp_kses(file_get_contents(RMP_PLUGIN_PATH_V4 .'/assets/admin/icons/svg/tablet.svg'), rmp_allow_svg_html_tags()); ?>
                 </li>
                 <li data-device="desktop">
-                    <?php echo file_get_contents( RMP_PLUGIN_PATH_V4 .'/assets/admin/icons/svg/desktop.svg' ); ?>
+                    <?php echo wp_kses(file_get_contents(RMP_PLUGIN_PATH_V4 .'/assets/admin/icons/svg/desktop.svg'), rmp_allow_svg_html_tags()); ?>
                 </li>
             </ul>
         </div><?php
     }
 
-    public function add_sub_heading( $param ) {
-		if ( empty( $param['text'] ) ) {
-			return;
-		}
-
-		?><div class="rmp-accordion-sub-heading">
-            <?php esc_html_e( $param['text'], 'responsive-menu-pro' );
-            //Check tooltip text is added or not.
-            if ( ! empty( $param['tool_tip'] ) ) {
-                $this->get_tool_tip( $param['tool_tip'] );
-            }
-            ?>
+    public function add_sub_heading($param)
+    {
+        if (empty($param['text'])) {
+            return;
+        } ?><div class="rmp-accordion-sub-heading">
+            <?php esc_html_e($param['text'], 'responsive-menu');
+        //Check tooltip text is added or not.
+        if (! empty($param['tool_tip'])) {
+            $this->get_tool_tip($param['tool_tip']);
+        } ?>
         </div><?php
     }
 
-    public function upgrade_notice() {
+    public function upgrade_notice()
+    {
         ?><div class="upgrade-options">
             <div class="upgrade-notes">
-                <p><?php echo __('This feature is not available in free version. Upgrade now to use', 'responsive-menu-pro'); ?> </p>
-                <a target="_blank" rel="noopener" href="<?php echo esc_attr($this->pro_plugin_url); ?>" class="button"> <?php esc_html_e('Upgrade to Pro', 'responsive-menu-pro'); ?> </a>
+                <p><?php echo esc_html_e('This feature is not available in free version. Upgrade now to use', 'responsive-menu'); ?> </p>
+                <a target="_blank" rel="noopener" href="<?php echo esc_attr($this->pro_plugin_url); ?>" class="button"> <?php esc_html_e('Upgrade to Pro', 'responsive-menu'); ?> </a>
             </div>
         </div><?php
     }
-
 }

@@ -10,21 +10,21 @@
 $theme_manager = RMP\Features\Inc\Theme_Manager::get_instance();
 
 // If theme list is cached then access it.
-$cached_data      = get_transient( 'rmp_theme_api_response' );
+$cached_data      = get_transient('rmp_theme_api_response');
 $rmp_browse_class = '';
-if ( empty( $cached_data ) ) {
+if (empty($cached_data)) {
     $rmp_browse_class = 'rmp-call-theme-api-button';
 }
 
 //Check dark mode options.
-$global_settings = get_option( 'rmp_global_setting_options' );
+$global_settings = get_option('rmp_global_setting_options');
 $classes = '';
-if ( ! empty(  $global_settings['rmp_dark_mode'] ) ) {
-	$classes = 'rmp-dark-mode';
+if (! empty($global_settings['rmp_dark_mode'])) {
+    $classes = 'rmp-dark-mode';
 }
 
 ?>
-<div class="<?php echo esc_attr( $classes ); ?>">
+<div class="<?php echo esc_attr($classes); ?>">
 <section id="rmp-new-menu-wizard" class="rmp-dialog-overlay rmp-new-menu-wizard" style="display:none">
     <div class="rmp-dialog-backdrop"></div>
     <div class="rmp-dialog-wrap wp-clearfix">
@@ -32,16 +32,16 @@ if ( ! empty(  $global_settings['rmp_dark_mode'] ) ) {
        <!-- This is new new wizard header -->
        <div class="rmp-dialog-header">
             <div class="title">
-                <img alt="logo" width="34" height="34" src="<?php echo esc_url( RMP_PLUGIN_URL_V4 .'/assets/images/rmp-logo.png' ); ?>" />
-                <span> <?php esc_html_e('Create New Menu', 'responsive-menu-pro'); ?> </span>
+                <img alt="logo" width="34" height="34" src="<?php echo esc_url(RMP_PLUGIN_URL_V4 .'/assets/images/rmp-logo.png'); ?>" />
+                <span> <?php esc_html_e('Create New Menu', 'responsive-menu'); ?> </span>
             </div>
             <nav class="rmp-new-menu-step-conatiner">
                 <ul class="rmp-new-menu-steps">
                     <li class="rmp-new-menu-step current">
-                        <?php esc_html_e( 'Select Themes', 'responsive-menu-pro' ); ?>
+                        <?php esc_html_e('Select Themes', 'responsive-menu'); ?>
                     </li>
                     <li class="rmp-new-menu-step">
-                        <?php esc_html_e( 'Menu Settings', 'responsive-menu-pro'); ?>
+                        <?php esc_html_e('Menu Settings', 'responsive-menu'); ?>
                     </li>
                 </ul>
             </nav>
@@ -55,15 +55,15 @@ if ( ! empty(  $global_settings['rmp_dark_mode'] ) ) {
                 <div id="tabs" class="tabs">
                     <!-- This is theme type list -->
                     <ul class="nav-tab-wrapper">
-                        <li><a class="nav-tab rmp-v-divider" href="#tabs-1"><?php esc_html_e('Installed Themes', 'responsive-menu-pro'); ?></a></li>
-                        <li><a class="nav-tab rmp-v-divider <?php echo esc_attr( $rmp_browse_class ); ?>" href="#tabs-2"><?php esc_html_e('Marketplace', 'responsive-menu-pro'); ?></a></li>
-                        <li><a class="nav-tab" href="#tabs-3"><?php esc_html_e('Saved Templates', 'responsive-menu-pro'); ?></a></li>
-                        <li style="float:right;"><button id="rmp-upload-new-theme" class="button btn-import-theme"><?php esc_html_e('Import', 'responsive-menu-pro'); ?></button></li>
+                        <li><a class="nav-tab rmp-v-divider" href="#tabs-1"><?php esc_html_e('Installed Themes', 'responsive-menu'); ?></a></li>
+                        <li><a class="nav-tab rmp-v-divider <?php echo esc_attr($rmp_browse_class); ?>" href="#tabs-2"><?php esc_html_e('Marketplace', 'responsive-menu'); ?></a></li>
+                        <li><a class="nav-tab" href="#tabs-3"><?php esc_html_e('Saved Templates', 'responsive-menu'); ?></a></li>
+                        <li style="float:right;"><button id="rmp-upload-new-theme" class="button btn-import-theme"><?php esc_html_e('Import', 'responsive-menu'); ?></button></li>
                     </ul>
 
                     <!-- This is menu theme upload section -->
                     <div id="rmp-menu-library-import" class="rmp-theme-upload-container hide" >
-                        <p><?php esc_html_e('If you have a menu theme in a .zip format, you can upload here.', 'responsive-menu-pro'); ?></p>
+                        <p><?php esc_html_e('If you have a menu theme in a .zip format, you can upload here.', 'responsive-menu'); ?></p>
                         <form method="post" enctype="multipart/form-data" id="rmp-menu-theme-upload-form" class="wp-upload-form">
                             <label class="screen-reader-text" for="themezip">Upload zip</label>
                             <input type="file" accept=".zip" id="rmp_menu_theme_zip" name="rmp_menu_theme_zip" />
@@ -75,17 +75,18 @@ if ( ! empty(  $global_settings['rmp_dark_mode'] ) ) {
                     <div id="tabs-2" class="rmp-themes">
                         <ul class="rmp_theme_grids">
                             <?php
-                            if ( ! empty( $cached_data ) ) {
+                            if (! empty($cached_data)) {
                                 $theme_manager->get_themes_from_theme_store();
                             } else {
-                            ?>
+                                ?>
                                 <div class="rmp-page-loader" style="display:flex;">
-                                <img class="rmp-loader-image" src="<?php echo esc_url( RMP_PLUGIN_URL_V4 .'/assets/images/rmp-logo.png' ); ?>"/>
+                                <img class="rmp-loader-image" src="<?php echo esc_url(RMP_PLUGIN_URL_V4 .'/assets/images/rmp-logo.png'); ?>"/>
                                 <h3 class="rmp-loader-message">
-                                    <?php _e( 'Just a moment <br/> Getting data from the server..', 'responsive-menu-pro' ); ?>
+                                    <?php esc_html_e('Just a moment <br/> Getting data from the server..', 'responsive-menu'); ?>
                                 </h3>
                                 </div>
-                            <?php } ?>
+                            <?php
+                            } ?>
                         </ul>
                     </div>
 
@@ -105,9 +106,9 @@ if ( ! empty(  $global_settings['rmp_dark_mode'] ) ) {
             <div id="menu-settings" class="rmp-new-menu-elements rmp-menu-section">
                 <div class="input-group">
                     <div for="rmp-menu-name" class="input-label">
-                        <h4 class="input-label-title"> <?php esc_html_e('Name Your Menu', 'responsive-menu-pro'); ?> </h4>
+                        <h4 class="input-label-title"> <?php esc_html_e('Name Your Menu', 'responsive-menu'); ?> </h4>
                         <p class="input-label-description">
-                            <?php esc_html_e('Please enter a descriptive name to identify this menu later', 'responsive-menu-pro'); ?>
+                            <?php esc_html_e('Please enter a descriptive name to identify this menu later', 'responsive-menu'); ?>
                         </p>
                     </div>
 
@@ -118,9 +119,9 @@ if ( ! empty(  $global_settings['rmp_dark_mode'] ) ) {
 
                 <div class="input-group">
                     <div for="rmp-menu-to-use" class="input-label">
-                        <h4 class="input-label-title"><?php esc_html_e('Link WordPress Menu', 'responsive-menu-pro'); ?></h4>
+                        <h4 class="input-label-title"><?php esc_html_e('Link WordPress Menu', 'responsive-menu'); ?></h4>
                         <p class="input-label-description">
-                            <?php esc_html_e('Map with your existing WordPress menu.', 'responsive-menu-pro'); ?>
+                            <?php esc_html_e('Map with your existing WordPress menu.', 'responsive-menu'); ?>
                         </p>
                    </div>
 
@@ -128,27 +129,23 @@ if ( ! empty(  $global_settings['rmp_dark_mode'] ) ) {
                         <select name="menu-to-use" id="rmp-menu-to-use">
                             <?php
                             $menus = wp_get_nav_menus();
-                            foreach ( $menus as $menu ) {
-                                printf(
-                                    '<option value="%s">%s</option>',
-                                    esc_attr( $menu->slug ),
-                                    esc_html( $menu->name )
-                                );
+                            foreach ($menus as $menu) {
+                                ?><option value="<?php echo esc_attr($menu->slug); ?>"><?php esc_html_e($menu->name); ?></option><?php
                             }
                             ?>
                         </select>
 
                         <?php
-                        if( empty( $menus ) ) {
+                        if (empty($menus)) {
                             printf(
                                 '<p class="rmp-admin-notice">
                                     <span class="dashicons dashicons-warning"></span>
                                     <span>%s </span>
                                     <a href="%s"> %s </a>
                                 </p>',
-                                esc_html__( 'Notice : You don\'t have any existing WordPress menus, please ', 'responsive-menu-pro'),
-                                esc_url( admin_url() . 'nav-menus.php' ),
-                                esc_html__( 'create wp menu', 'responsive-menu-pro')
+                                esc_html__('Notice : You don\'t have any existing WordPress menus, please ', 'responsive-menu'),
+                                esc_url(admin_url() . 'nav-menus.php'),
+                                esc_html__('create wp menu', 'responsive-menu')
                             );
                         }
                         ?>
@@ -157,9 +154,9 @@ if ( ! empty(  $global_settings['rmp_dark_mode'] ) ) {
 
                 <div class="input-group">
                     <div for="rmp-menu-name" class="input-label">
-                        <h4 class="input-label-title"><?php esc_html_e('Hide Theme Menu', 'responsive-menu-pro'); ?></h4>
+                        <h4 class="input-label-title"><?php esc_html_e('Hide Theme Menu', 'responsive-menu'); ?></h4>
                         <p class="input-label-description">
-                            <?php esc_html_e( 'Add any valid css selector to hide the existing menu on your website.', 'responsive-menu-pro'); ?>
+                            <?php esc_html_e('Add any valid css selector to hide the existing menu on your website.', 'responsive-menu'); ?>
                             <a href="https://responsive.menu/knowledgebase/hiding-original-wordpress-menu/" target="_blank"> Know More </a>
                         </p>
                     </div>
@@ -173,12 +170,12 @@ if ( ! empty(  $global_settings['rmp_dark_mode'] ) ) {
 
                     <div class="rmp-input-control-label input-label">
                         <h4 class="input-label-title">
-                            <span> <?php esc_html_e('Device Visibility', 'responsive-menu-pro'); ?> </span>
+                            <span> <?php esc_html_e('Device Visibility', 'responsive-menu'); ?> </span>
                             <a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > PRO </a>
                         </h4>
 
                         <p class="input-label-description">
-                            <?php esc_html_e('Select devices where you want to show this menu', 'responsive-menu-pro'); ?>
+                            <?php esc_html_e('Select devices where you want to show this menu', 'responsive-menu'); ?>
                         </p>
                     </div>
 
@@ -211,7 +208,7 @@ if ( ! empty(  $global_settings['rmp_dark_mode'] ) ) {
                                         </svg>
                                     </span>
                                 </label>
-                                <span class="device-title"> <?php esc_html_e('Tablet', 'responsive-menu-pro'); ?> </span>
+                                <span class="device-title"> <?php esc_html_e('Tablet', 'responsive-menu'); ?> </span>
                             </div>
 
                             <div class="device-icon">
@@ -227,7 +224,7 @@ if ( ! empty(  $global_settings['rmp_dark_mode'] ) ) {
                                         </svg>
                                     </span>
                                 </label>
-                                <span class="device-title"> <?php esc_html_e('Desktop', 'responsive-menu-pro'); ?> </span>
+                                <span class="device-title"> <?php esc_html_e('Desktop', 'responsive-menu'); ?> </span>
                             </div>
 
                         </div>
@@ -237,21 +234,21 @@ if ( ! empty(  $global_settings['rmp_dark_mode'] ) ) {
                 <div class="input-group">
                     <div for="rmp-menu-display-on-pages" class="input-label">
                         <h4 class="input-label-title">
-                            <span> <?php esc_html_e('Display Condition', 'responsive-menu-pro'); ?></span>
+                            <span> <?php esc_html_e('Display Condition', 'responsive-menu'); ?></span>
                             <a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > SEMI-PRO </a>
                         </h4>
 
                         <p class="input-label-description">
-                            <?php esc_html_e('Select specific pages where you want to show this menu.', 'responsive-menu-pro'); ?>
+                            <?php esc_html_e('Select specific pages where you want to show this menu.', 'responsive-menu'); ?>
                         </p>
                     </div>
 
                     <div class="input-control">
                         <select name="rmp-menu-display-on" class="rmp-menu-display-option">
-                            <option  value="all-pages"> <?php esc_html_e('Show on all pages ', 'responsive-menu-pro'); ?></option>
-                            <option  value="shortcode"> <?php esc_html_e('Use as shortcode', 'responsive-menu-pro'); ?></option>
-                            <option  value="exclude-pages" disabled="disabled"> <?php esc_html_e('Exclude some pages (Pro) ', 'responsive-menu-pro'); ?></option>
-                            <option  value="include-pages" disabled="disabled"> <?php esc_html_e('Include only pages (Pro)', 'responsive-menu-pro'); ?></option>
+                            <option  value="all-pages"> <?php esc_html_e('Show on all pages ', 'responsive-menu'); ?></option>
+                            <option  value="shortcode"> <?php esc_html_e('Use as shortcode', 'responsive-menu'); ?></option>
+                            <option  value="exclude-pages" disabled="disabled"> <?php esc_html_e('Exclude some pages (Pro) ', 'responsive-menu'); ?></option>
+                            <option  value="include-pages" disabled="disabled"> <?php esc_html_e('Include only pages (Pro)', 'responsive-menu'); ?></option>
                         </select>
                     </div>
                 </div>
@@ -263,11 +260,11 @@ if ( ! empty(  $global_settings['rmp_dark_mode'] ) ) {
         <div class="rmp-dialog-footer">
             <span class="spinner"></span>
             <button class="button button-primary button-large  hide-if-no-js" id="rmp-menu-next-step" >
-                <?php esc_html_e('Next', 'responsive-menu-pro'); ?>
+                <?php esc_html_e('Next', 'responsive-menu'); ?>
             </button>
 
             <button class="button button-primary button-large  hide-if-no-js" id="rmp-create-new-menu" style="display:none">
-                <?php esc_html_e('Create Menu', 'responsive-menu-pro'); ?>
+                <?php esc_html_e('Create Menu', 'responsive-menu'); ?>
             </button>
         </div>
 

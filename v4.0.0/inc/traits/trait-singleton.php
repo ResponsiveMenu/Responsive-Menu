@@ -22,7 +22,7 @@
  *
  * If you specifically need multiple objects, then use a normal class.
  *
- * @package responsive-menu-pro
+ * @package responsive-menu
  */
 
 namespace RMP\Features\Inc\Traits;

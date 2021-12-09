@@ -1,11 +1,11 @@
 <?php
 /**
  * This file contain the Option_Manager class and it's functionalities.
- * 
+ *
  * @version 4.0.0
  * @author  Expresstech System
- * 
- * @package responsive-menu-pro
+ *
+ * @package responsive-menu
  */
 
 namespace RMP\Features\Inc;
@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Class Option_Manager
  * This class is responsible for provide the options for menu that
  * maybe global or specific menu options.
- * 
+ *
  * @version 4.0.0
  */
 class Option_Manager {
@@ -40,7 +40,7 @@ class Option_Manager {
 	 * To setup action/filter.
 	 *
 	 * @version 4.0.0
-	 * 
+	 *
 	 * @return void
 	 */
 	protected function setup_hooks() {
@@ -48,16 +48,16 @@ class Option_Manager {
 
 	/**
      * This function get all options stored in rmp_menu post meta for menu.
-     * 
+     *
      * @access public
      * @param int $menu_id    Menu id
-     * 
+     *
      * @return array $options Array of backend setting options.
      */
     public function get_options( $menu_id ) {
 
         $options = get_post_meta( $menu_id, 'rmp_menu_meta' );
-       
+
         if ( empty( $options[0] ) ) {
             return [];
         }
@@ -70,10 +70,10 @@ class Option_Manager {
 
     /**
      * This function get all options stored in table for responsive menu.
-     * 
+     *
      * @access public
      * @param int $menu_id    Menu id
-     * 
+     *
      * @return array $options Array of backend setting options.
      */
     public function get_option( $menu_id, $key ) {
@@ -89,10 +89,10 @@ class Option_Manager {
 
     /**
      * Return the global setting options.
-     * 
+     *
      * @version 4.0.0
      * @access public
-     * 
+     *
      * @return array
      */
     public function get_global_options() {
@@ -108,12 +108,12 @@ class Option_Manager {
 
     /**
      * Return global option
-     * 
+     *
      * @version 4.0.0
-     * 
+     *
      * @access public
      * @param string $key Option name.
-     * 
+     *
      * @return string|null
      */
 	public function get_global_option( $key ) {

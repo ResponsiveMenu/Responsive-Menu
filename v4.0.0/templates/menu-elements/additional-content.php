@@ -1,6 +1,6 @@
 <li class="rmp-accordion-item rmp-order-item">
     <div class="rmp-accordion-title rmp-order-item-title">
-        <span class="item-title"><?php esc_html_e( 'Additional Content', 'responsive-menu-pro' ); ?></span>
+        <span class="item-title"><?php esc_html_e( 'Additional Content', 'responsive-menu' ); ?></span>
         <span class="item-controls">
             <input type='hidden' value='' name='menu[items_order][additional content]'/>
             <input type="checkbox" data-toggle="additional-content" value="on" id="rmp-item-order-additional-content"  class="no-updates toggle item-type" name="menu[items_order][additional content]" <?php if ( ! empty( $options['items_order']['additional content'] ) ) { echo esc_attr( "checked" ); } ?>>
@@ -11,13 +11,13 @@
     </div>
     <div class="rmp-accordion-content tabs rmp-menu-controls">
             <ul class="nav-tab-wrapper">
-                <li><a class="nav-tab nav-tab-active" href="#additions-contents"><?php esc_html_e('Contents', 'responsive-menu-pro'); ?></a></li>
-                <li><a class="nav-tab" href="#additions-contents-styles"><?php esc_html_e('Styles', 'responsive-menu-pro'); ?></a></li>
+                <li><a class="nav-tab nav-tab-active" href="#additions-contents"><?php esc_html_e('Contents', 'responsive-menu'); ?></a></li>
+                <li><a class="nav-tab" href="#additions-contents-styles"><?php esc_html_e('Styles', 'responsive-menu'); ?></a></li>
             </ul>
 
             <div id="additions-contents" class="title">
                 <div class="rmp-input-control-wrapper full-size">
-                    <label class="rmp-input-control-label"> <?php esc_html_e('Content', 'responsive-menu-pro'); ?> </label>
+                    <label class="rmp-input-control-label"> <?php esc_html_e('Content', 'responsive-menu'); ?> </label>
                     <div class="rmp-input-control">
                         <textarea id="rmp-menu-additional-content" name="menu[menu_additional_content]" class="no-updates"><?php echo esc_html( rmp_get_value( $options,'menu_additional_content' ) ); ?></textarea>
                     </div>
@@ -28,7 +28,7 @@
                     <?php
 
                     $control_manager->add_group_text_control( [
-                        'label'  => __('Padding','responsive-menu-pro'),
+                        'label'  => __('Padding','responsive-menu'),
                         'type'   =>   'text',
                         'class'  =>  'rmp-menu-additional-section-padding',
                         'name'    => 'menu[menu_additional_section_padding]',
@@ -38,7 +38,7 @@
 
                     $ui_manager->start_group_controls();
                     $control_manager->add_text_input_control( [
-                        'label'  => __('Font Size','responsive-menu-pro'),
+                        'label'  => __('Font Size','responsive-menu'),
                         'type'   => 'number',
                         'class' => 'no-updates',
                         'id'     => 'rmp-menu-additional-content-font-size',
@@ -55,7 +55,7 @@
                     ] );
 
                     $control_manager->add_text_alignment_control( [
-                        'label'  => __('Text Alignment','responsive-menu-pro'),
+                        'label'  => __('Text Alignment','responsive-menu'),
                         'class'   => 'rmp-menu-additional-content-alignment',
                         'name'    => 'menu[menu_additional_content_alignment]',
                         'options' => ['left','center','right','justify'],
@@ -64,7 +64,7 @@
                     $ui_manager->end_group_controls();
 
                     $control_manager->add_color_control( [
-                        'label'  => __('Text Color','responsive-menu-pro'),
+                        'label'  => __('Text Color','responsive-menu'),
                         'id'     => 'rmp-menu-additional-content-color',
                         'name'    => 'menu[menu_additional_content_colour]',
                         'value'    => rmp_get_value($options,'menu_additional_content_colour'),

@@ -4,7 +4,7 @@
  *
  * @version 4.0.0
  *
- * @package responsive-menu-pro
+ * @package responsive-menu
  */
 
 /**
@@ -14,8 +14,8 @@
  *
  * @return array List of options.
  */
-function rmp_global_default_setting_options() {
-
+function rmp_global_default_setting_options()
+{
     return [
         'rmp_custom_css' => '',
         'rmp_dark_mode' => 'off',
@@ -40,8 +40,8 @@ function rmp_global_default_setting_options() {
  *
  * @return array List of options.
  */
-function rmp_get_multi_device_options() {
-
+function rmp_get_multi_device_options()
+{
     return [
         'menu_font' => '',
         'menu_font_size' => '',
@@ -68,7 +68,8 @@ function rmp_get_multi_device_options() {
     ];
 }
 
-function rmp_animation_delay_options() {
+function rmp_animation_delay_options()
+{
     $time_options = [
         '100ms'  => '100ms',
         '200ms'  => '200ms',
@@ -92,7 +93,8 @@ function rmp_animation_delay_options() {
  *
  * @return array
  */
-function rmp_get_menu_open_close_keys() {
+function rmp_get_menu_open_close_keys()
+{
     return [
         27 => 'Esc',
         13 => 'Enter',
@@ -104,8 +106,8 @@ function rmp_get_menu_open_close_keys() {
     ];
 }
 
-function rmp_font_weight_options() {
-
+function rmp_font_weight_options()
+{
     $unit_options = array(
         '100' => '100',
         '200' => '200',
@@ -124,45 +126,45 @@ function rmp_font_weight_options() {
         'inherit' => 'Inherit',
     );
 
-    $unit_options = apply_filters('rmp_font_weight_options', $unit_options );
+    $unit_options = apply_filters('rmp_font_weight_options', $unit_options);
 
     return $unit_options;
 }
 
-function rmp_hamburger_type_animation_options() {
-
-    $type = array (
-        'off'        => __( 'Off', 'responsive-menu-pro' ),
-        'boring'     => __( 'Boring','responsive-menu-pro' ),
-        '3dx'        => __( '3DX (PRO)','responsive-menu-pro' ),
-        '3dx-r'      => __( '3DX Reverse (PRO)','responsive-menu-pro' ),
-        '3dy'        => __( '3DY (PRO)','responsive-menu-pro' ),
-        '3dy-r'      => __( '3DY Reverse (PRO)','responsive-menu-pro' ),
-        'arrow'      => __( 'Arrow (PRO)','responsive-menu-pro' ),
-        'arrow-r'    => __( 'Arrow Reverse (PRO)','responsive-menu-pro' ),
-        'arrowalt'   => __( 'Arrow Alt (PRO)','responsive-menu-pro'),
-        'arrowalt-r' => __( 'Arrow Alt Reverse (PRO)','responsive-menu-pro' ),
-        'collapse'   => __('Collapse (PRO)','responsive-menu-pro' ),
-        'collapse-r' => __('Collapse Reverse (PRO)','responsive-menu-pro' ),
-        'elastic'    => __('Elastic (PRO)','responsive-menu-pro' ),
-        'elastic-r'  => __('Elastic Reverse (PRO)','responsive-menu-pro' ),
-        'emphatic'   => __( 'Emphatic (PRO)','responsive-menu-pro' ),
-        'emphatic-r' => __('Emphatic Reverse (PRO)','responsive-menu-pro' ),
-        'minus'      => __('Minus (PRO)','responsive-menu-pro' ),
-        'slider'     => __('Slider (PRO)','responsive-menu-pro' ),
-        'slider-r'   => __('Slider Reverse (PRO)','responsive-menu-pro' ),
-        'spin'       => __('Spin (PRO)','responsive-menu-pro' ),
-        'spin-r'     => __('Spin Reverse (PRO)','responsive-menu-pro' ),
-        'spring'     => __('Spring (PRO)','responsive-menu-pro' ),
-        'spring-r'   => __('Spring Reverse (PRO)','responsive-menu-pro' ),
-        'stand'      => __('Stand (PRO)','responsive-menu-pro' ),
-        'stand-r'    => __('Stand Reverse (PRO)','responsive-menu-pro' ),
-        'squeeze'    => __('Squeeze (PRO)','responsive-menu-pro' ),
-        'vortex'     => __('Vortex (PRO)','responsive-menu-pro' ),
-        'vortex-r'   => __('Vortex Reverse (PRO)','responsive-menu-pro' )
+function rmp_hamburger_type_animation_options()
+{
+    $type = array(
+        'off'        => __('Off', 'responsive-menu'),
+        'boring'     => __('Boring', 'responsive-menu'),
+        '3dx'        => __('3DX (PRO)', 'responsive-menu'),
+        '3dx-r'      => __('3DX Reverse (PRO)', 'responsive-menu'),
+        '3dy'        => __('3DY (PRO)', 'responsive-menu'),
+        '3dy-r'      => __('3DY Reverse (PRO)', 'responsive-menu'),
+        'arrow'      => __('Arrow (PRO)', 'responsive-menu'),
+        'arrow-r'    => __('Arrow Reverse (PRO)', 'responsive-menu'),
+        'arrowalt'   => __('Arrow Alt (PRO)', 'responsive-menu'),
+        'arrowalt-r' => __('Arrow Alt Reverse (PRO)', 'responsive-menu'),
+        'collapse'   => __('Collapse (PRO)', 'responsive-menu'),
+        'collapse-r' => __('Collapse Reverse (PRO)', 'responsive-menu'),
+        'elastic'    => __('Elastic (PRO)', 'responsive-menu'),
+        'elastic-r'  => __('Elastic Reverse (PRO)', 'responsive-menu'),
+        'emphatic'   => __('Emphatic (PRO)', 'responsive-menu'),
+        'emphatic-r' => __('Emphatic Reverse (PRO)', 'responsive-menu'),
+        'minus'      => __('Minus (PRO)', 'responsive-menu'),
+        'slider'     => __('Slider (PRO)', 'responsive-menu'),
+        'slider-r'   => __('Slider Reverse (PRO)', 'responsive-menu'),
+        'spin'       => __('Spin (PRO)', 'responsive-menu'),
+        'spin-r'     => __('Spin Reverse (PRO)', 'responsive-menu'),
+        'spring'     => __('Spring (PRO)', 'responsive-menu'),
+        'spring-r'   => __('Spring Reverse (PRO)', 'responsive-menu'),
+        'stand'      => __('Stand (PRO)', 'responsive-menu'),
+        'stand-r'    => __('Stand Reverse (PRO)', 'responsive-menu'),
+        'squeeze'    => __('Squeeze (PRO)', 'responsive-menu'),
+        'vortex'     => __('Vortex (PRO)', 'responsive-menu'),
+        'vortex-r'   => __('Vortex Reverse (PRO)', 'responsive-menu')
     );
 
-    $type = apply_filters('rmp_button_animation_type', $type );
+    $type = apply_filters('rmp_button_animation_type', $type);
 
     return $type;
 }
@@ -174,8 +176,8 @@ function rmp_hamburger_type_animation_options() {
  * @since 1.0
  * @return array - Sorted list of icon classes
  */
-function rmp_all_dash_icons() {
-
+function rmp_all_dash_icons()
+{
     $icons = array(
         'dash-f333' => 'dashicons-menu',
         'dash-f319' => 'dashicons-admin-site',
@@ -440,9 +442,9 @@ function rmp_all_dash_icons() {
         'dash-f121' => 'dashicons-text-page',
     );
 
-    $icons = apply_filters( "rmp_dashicons", $icons );
+    $icons = apply_filters("rmp_dashicons", $icons);
 
-    krsort( $icons );
+    krsort($icons);
 
     return $icons;
 }
@@ -454,9 +456,8 @@ function rmp_all_dash_icons() {
  * @since 1.0
  * @return array - Sorted list of icon classes
  */
-function rmp_all_glyph_icons() {
-
-
+function rmp_all_glyph_icons()
+{
     $glyph = array(
         'glyph-2a' => 'glyphicon-asterisk',
         'glyph-2b' => 'glyphicon-plus',
@@ -718,8 +719,8 @@ function rmp_all_glyph_icons() {
         'glyph-e260' => 'glyphicon-menu-up',
     );
 
-    $glyph = apply_filters( "rmp_glyphicon", $glyph );
-    krsort( $glyph );
+    $glyph = apply_filters("rmp_glyphicon", $glyph);
+    krsort($glyph);
 
     return $glyph;
 }
@@ -731,9 +732,9 @@ function rmp_all_glyph_icons() {
  *
  * @return array default_options list of option with default value.
  */
-function rmp_get_default_options() {
-
-    $default_options = array (
+function rmp_get_default_options()
+{
+    $default_options = array(
         'menu_theme' => 'Default',
         'theme_type' => 'default',
         'theme_location_menu' => '0',
@@ -758,7 +759,7 @@ function rmp_get_default_options() {
         'submenu_sub_arrow_shape_hover_colour_active' => '#fff',
         'use_header_bar' => 'off',
         'header_bar_items_order' =>
-          array (
+          array(
               'logo' => 'off',
               'title' => 'on',
               'additional content' => 'off',
@@ -776,7 +777,7 @@ function rmp_get_default_options() {
         'header_bar_height' => '80',
         'header_bar_height_unit' => 'px',
         'header_bar_padding' =>
-          array (
+          array(
               'top' => '0px',
               'right' => '5%',
               'bottom' => '0px',
@@ -807,7 +808,7 @@ function rmp_get_default_options() {
         'desktop_menu_to_hide' => '',
         'use_current_theme_location' => 'off',
         'mega_menu' =>
-          array (
+          array(
               225 => 'off',
               227 => 'off',
               229 => 'off',
@@ -834,13 +835,13 @@ function rmp_get_default_options() {
         'smooth_scroll_on' => 'off',
         'smooth_scroll_speed' => '500',
         'menu_font_icons' =>
-          array (
+          array(
               'id' =>
-              array (
+              array(
               0 => '225',
               ),
               'icon' =>
-              array (
+              array(
               0 => '',
               ),
           ),
@@ -982,7 +983,7 @@ function rmp_get_default_options() {
         'button_trigger_type_hover' => 'off',
         'button_click_trigger' => '',
         'items_order' =>
-          array (
+          array(
               'title' => 'on',
               'additional content' => 'on',
               'menu' => 'on',
@@ -994,7 +995,7 @@ function rmp_get_default_options() {
         'menu_title_image' => '',
         'menu_title_font_icon' => '',
         'menu_title_section_padding' =>
-          array (
+          array(
               'top' => '10%',
               'right' => '5%',
               'bottom' => '0%',
@@ -1015,7 +1016,7 @@ function rmp_get_default_options() {
         'menu_title_image_height_unit' => 'px',
         'menu_additional_content' => 'Add more content here...',
         'menu_additional_section_padding' =>
-          array (
+          array(
               'top' => '0%',
               'right' => '5%',
               'bottom' => '10%',
@@ -1027,7 +1028,7 @@ function rmp_get_default_options() {
         'menu_additional_content_colour' => '#6fda44',
         'menu_search_box_text' => 'Search',
         'menu_search_section_padding' =>
-          array (
+          array(
               'top' => '5%',
               'right' => '5%',
               'bottom' => '5%',
@@ -1041,7 +1042,7 @@ function rmp_get_default_options() {
         'menu_search_box_placeholder_colour' => '#1d4354',
         'menu_search_box_border_colour' => '',
         'menu_section_padding' =>
-          array (
+          array(
               'top' => '0px',
               'right' => '0px',
               'bottom' => '0px',
@@ -1055,7 +1056,7 @@ function rmp_get_default_options() {
         'menu_minimum_width_unit' => 'px',
         'menu_auto_height' => 'off',
         'menu_container_padding' =>
-          array (
+          array(
               'top' => '0px',
               'right' => '0px',
               'bottom' => '0px',

@@ -15,149 +15,157 @@ use Elementor\Widget_Base;
 use RMP\Features\Inc\RMP_Menu;
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if (! defined('ABSPATH')) {
+    exit;
 }
 
-class RMP_Widget extends Widget_Base {
-	/**
-	 * Class constructor.
-	 *
-	 * @param array $data Widget data.
-	 * @param array $args Widget arguments.
-	 */
-	public function __construct( $data = array(), $args = null ) {
-		parent::__construct( $data, $args );
-	}
+class RMP_Widget extends Widget_Base
+{
+    /**
+     * Class constructor.
+     *
+     * @param array $data Widget data.
+     * @param array $args Widget arguments.
+     */
+    public function __construct($data = array(), $args = null)
+    {
+        parent::__construct($data, $args);
+    }
 
-	/**
-	 * Function to return the widget name.
-	 *
-	 * @since 4.0.2
-	 *
-	 * @return string
-	 */
-	public function get_name() {
-		return 'RMP_Widget';
-	}
+    /**
+     * Function to return the widget name.
+     *
+     * @since 4.0.2
+     *
+     * @return string
+     */
+    public function get_name()
+    {
+        return 'RMP_Widget';
+    }
 
-	/**
-	 * Function to return the widget title.
-	 *
-	 * @since 4.0.2
-	 *
-	 * @return string
-	 */
-	public function get_title() {
-		return __( 'Responsive Menu', 'responsive-menu-pro' );
-	}
+    /**
+     * Function to return the widget title.
+     *
+     * @since 4.0.2
+     *
+     * @return string
+     */
+    public function get_title()
+    {
+        return __('Responsive Menu', 'responsive-menu');
+    }
 
-	/**
-	 * Function to return the widget icon.
-	 *
-	 * @since 4.0.2
-	 *
-	 * @return string
-	 */
-	public function get_icon() {
-		return 'eicon-menu-bar';
-	}
+    /**
+     * Function to return the widget icon.
+     *
+     * @since 4.0.2
+     *
+     * @return string
+     */
+    public function get_icon()
+    {
+        return 'eicon-menu-bar';
+    }
 
-	/**
-	 * Function to add the widget in the category list.
-	 *
-	 * @since 4.0.2
-	 *
-	 * @return array
-	 */
-	public function get_categories() {
-		return [ 'general'];
-	}
+    /**
+     * Function to add the widget in the category list.
+     *
+     * @since 4.0.2
+     *
+     * @return array
+     */
+    public function get_categories()
+    {
+        return [ 'general'];
+    }
 
-	/**
-	 * Add keywords to search the widget in elementor.
-	 *
-	 * @since 4.0.2
-	 *
-	 * @return array
-	 */
-	public function get_keywords() {
-		return [ 'menu', 'nav', 'button', 'responsive' ];
-	}
+    /**
+     * Add keywords to search the widget in elementor.
+     *
+     * @since 4.0.2
+     *
+     * @return array
+     */
+    public function get_keywords()
+    {
+        return [ 'menu', 'nav', 'button', 'responsive' ];
+    }
 
-	/**
-	 * Function to registered the input controls.
-	 *
-	 * @since 4.0.2
-	 */
-	protected function _register_controls() {
+    /**
+     * Function to registered the input controls.
+     *
+     * @since 4.0.2
+     */
+    protected function _register_controls()
+    {
+        $this->start_controls_section(
+            'section_layout',
+            [
+                'label' => __('Menu Setting', 'responsive-menu'),
+            ]
+        );
 
-		$this->start_controls_section(
-			'section_layout',
-			[
-				'label' => __( 'Menu Setting', 'responsive-menu-pro' ),
-			]
-		);
+        $menus = rmp_get_all_menus();
 
-		$menus = rmp_get_all_menus();
+        if (! empty($menus)) {
+            $menu_id = null;
+            if (function_exists('array_key_first')) {
+                $menu_id = array_key_first($menus);
+            } else {
+                $menu_id = ! empty($menus) ? array_keys($menus)[0] : null;
+            }
 
-		if ( ! empty( $menus ) ) {
+            $this->add_control(
+                'rmp_menu',
+                [
+                    'label' => __('Responsive Menu', 'responsive-menu'),
+                    'type' => Controls_Manager::SELECT,
+                    'options' => $menus,
+                    'default' => array_keys($menus)[0],
+                    'save_default' => true,
+                    'separator' => 'after',
+                    /* translators: %s: HTML tag */
+                    'description' => sprintf(
+                        esc_html__('Go to the %sResponsive menu customizer%s to style your menu.', 'responsive-menu'),
+                        '<a class="rmp-menu-edit-link" href="'.admin_url("post.php?post=" . $menu_id . "&action=edit&editor=true").'" target="_blank">',
+                        '</a>'
+                    ),
+                ]
+            );
+        } else {
+            $this->add_control(
+                'rmp_menu',
+                [
+                    'type' => Controls_Manager::RAW_HTML,
+                    /* translators: %s: HTML tag */
+                    'raw' => '<strong>' . esc_html__('There are no menus in your site.', 'responsive-menu') . '</strong><br>' .sprintf(esc_html__('Go to the %s Menus screen %s to create one.', 'responsive-menu'), '<a href="'.esc_url(admin_url("edit.php?post_type=rmp_menu")).'" target="_blank">', '</a>'),
+                    'separator' => 'after',
+                    'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
+                ]
+            );
+        }
 
-			$menu_id = null;
-			if ( function_exists( 'array_key_first' ) ) {
-				$menu_id = array_key_first( $menus );
-			} else {
-				$menu_id = ! empty( $menus ) ? array_keys($menus)[0] : null;
-			}
+        $this->end_controls_section();
+    }
 
-			$this->add_control(
-				'rmp_menu',
-				[
-					'label' => __( 'Responsive Menu', 'responsive-menu-pro' ),
-					'type' => Controls_Manager::SELECT,
-					'options' => $menus,
-					'default' => array_keys( $menus )[0],
-					'save_default' => true,
-					'separator' => 'after',
-					'description' => sprintf(
-						__( 'Go to the <a class="rmp-menu-edit-link" href="%s" target="_blank">Responsive menu customizer</a> to style your menu.', 'responsive-menu-pro' ),
-						admin_url( 'post.php?post=' . $menu_id . '&action=edit&editor=true' )
-					),
-				]
-			);
+    /**
+     * Function to update the contents in preview and render the menu.
+     *
+     * @since 4.0.2
+     */
+    protected function render()
+    {
+        $available_menus = rmp_get_all_menus();
 
-		} else {
-			$this->add_control(
-				'rmp_menu',
-				[
-					'type' => Controls_Manager::RAW_HTML,
-					'raw' => '<strong>' . __( 'There are no menus in your site.', 'responsive-menu-pro' ) . '</strong><br>' . sprintf( __( 'Go to the <a href="%s" target="_blank">Menus screen</a> to create one.', 'responsive-menu-pro' ), admin_url( 'edit.php?post_type=rmp_menu' ) ),
-					'separator' => 'after',
-					'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
-				]
-			);
-		}
+        if (! $available_menus) {
+            return;
+        }
 
-		$this->end_controls_section();
-	}
+        $settings = $this->get_settings_for_display();
+        $menu_id = $settings['rmp_menu'];
 
-	/**
-	 * Function to update the contents in preview and render the menu.
-	 *
-	 * @since 4.0.2
-	 */
-	protected function render() {
-
-		$available_menus = rmp_get_all_menus();
-
-		if ( ! $available_menus ) {
-			return;
-		}
-
-		$settings = $this->get_settings_for_display();
-		$menu_id = $settings['rmp_menu'];
-
-		$menu = new RMP_Menu( $menu_id );
-		$menu->mobile_menu();
-	}
+        $menu = new RMP_Menu($menu_id);
+        $menu->mobile_menu();
+    }
 }
