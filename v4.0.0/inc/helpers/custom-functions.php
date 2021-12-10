@@ -210,5 +210,5 @@ function rmp_allow_svg_html_tags()
         'path'  => array( 'd' => true, 'fill' => true,  ),
     );
 
-    return $allowed_tags = array_merge($kses_defaults, $svg_args);
+    return array_merge($kses_defaults, $svg_args);
 }

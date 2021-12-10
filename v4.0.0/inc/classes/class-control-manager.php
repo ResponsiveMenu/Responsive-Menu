@@ -443,19 +443,19 @@ class Control_Manager
 
         if (! empty($param['name'])) {
             ?><div class="rmp-input-control"><?php
-
                 $is_disabled = '';
-            // Check feature type.
-            if (! empty($param['feature_type'])) {
-                $is_disabled = 'disabled'; ?><a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url($this->pro_plugin_url); ?>" > <?php echo esc_html_e($param['feature_type'], 'responsive-menu'); ?> </a><?php
-            }
+                // Check feature type.
+                if (! empty($param['feature_type'])) {
+                    $is_disabled = 'disabled'; ?>
+                    <a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url($this->pro_plugin_url); ?>" > <?php echo esc_html_e($param['feature_type'], 'responsive-menu'); ?> </a><?php
+                }
 
-            // Check multi device options is enabled.
-            $has_multi_device = '';
-            if (! empty($param['multi_device'])) {
-                $has_multi_device = 'multi-device=true';
-                $this->get_device_options();
-            }
+                // Check multi device options is enabled.
+                $has_multi_device = '';
+                if (! empty($param['multi_device'])) {
+                    $has_multi_device = 'multi-device=true';
+                    $this->get_device_options();
+                }
 
             $class = '';
             if (! empty($param['class'])) {
@@ -505,7 +505,7 @@ class Control_Manager
             $group_classes = $param['group_classes'];
         }
 
-        $is_disabled = ''; ?><div class="rmp-input-control-wrapper <?php echo esc_attr($group_classes); ?> "><?php
+        ?><div class="rmp-input-control-wrapper <?php echo esc_attr($group_classes); ?> "><?php
 
         // Check label is exist.
         if (! empty($param['label'])) {
@@ -521,7 +521,7 @@ class Control_Manager
                      <?php
                         // Check feature type.
                         if (! empty($param['feature_type'])) {
-                            $is_disabled = 'disabled'; ?><a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url($this->pro_plugin_url); ?>" > <?php esc_html_e($param['feature_type'], 'responsive-menu'); ?> </a><?php
+                            ?><a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url($this->pro_plugin_url); ?>" > <?php esc_html_e($param['feature_type'], 'responsive-menu'); ?> </a><?php
                         } ?>
                 </div>
             <?php

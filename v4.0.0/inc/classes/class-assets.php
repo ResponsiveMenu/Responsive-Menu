@@ -93,7 +93,7 @@ class Assets
      *
      * @return void
      */
-    public function admin_enqueue_scripts($hook_suffix)
+    public function admin_enqueue_scripts()
     {
         $post_type = get_post_type();
 
