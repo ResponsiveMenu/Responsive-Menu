@@ -5,17 +5,19 @@
  * @version 4.0.0
  * @author  Expresstech System
  *
- * @package responsive-menu-pro
+ * @package responsive-menu
  */
 
 namespace RMP\Features\Inc;
+
 use RMP\Features\Inc\Option_Manager;
 use RMP\Features\Inc\Traits\Singleton;
 use ScssPhp\ScssPhp\Compiler;
+use \Exception;
 
 // Disable the direct access to this class.
 if ( ! defined( 'ABSPATH' ) ) {
-    exit;
+	exit;
 }
 
 /**
@@ -42,7 +44,7 @@ class Style_Manager {
 	 * Construct method.
 	 */
 	protected function __construct() {
-		$this->option_manager  = Option_Manager::get_instance();
+		$this->option_manager = Option_Manager::get_instance();
 		$this->setup_hooks();
 	}
 
@@ -54,16 +56,15 @@ class Style_Manager {
 	 * @return void
 	 */
 	protected function setup_hooks() {
-
-		add_action( 'wp_enqueue_scripts', array( $this , 'enqueue_styles_as_inline' ) );
-		add_action( 'wp_enqueue_scripts', array( $this , 'add_rmp_menu_frontend_scripts' ) );
-		add_action( 'rmp_create_new_menu', array( $this , 'save_style_css_on_file' ), 10 , 0 );
-		add_action( 'rmp_save_menu', array( $this , 'save_style_css_on_file' ), 10, 0 );
-		add_action( 'rmp_update_mega_menu_item', array( $this , 'save_style_css_on_file' ), 10, 0 );
-		add_action( 'rmp_save_global_settings', array( $this , 'save_style_css_on_file' ), 10, 0 );
-		add_action( 'rmp_theme_apply', array( $this , 'save_style_css_on_file' ), 10, 0 );
-		add_action( 'rmp_migrate_menu_style', [ $this , 'save_style_css_on_file' ], 10, 0 );
-		add_action( 'rmp_import_menu', [ $this , 'save_style_css_on_file' ], 10, 0 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles_as_inline' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'add_rmp_menu_frontend_scripts' ) );
+		add_action( 'rmp_create_new_menu', array( $this, 'save_style_css_on_file' ), 10, 0 );
+		add_action( 'rmp_save_menu', array( $this, 'save_style_css_on_file' ), 10, 0 );
+		add_action( 'rmp_update_mega_menu_item', array( $this, 'save_style_css_on_file' ), 10, 0 );
+		add_action( 'rmp_save_global_settings', array( $this, 'save_style_css_on_file' ), 10, 0 );
+		add_action( 'rmp_theme_apply', array( $this, 'save_style_css_on_file' ), 10, 0 );
+		add_action( 'rmp_migrate_menu_style', array( $this, 'save_style_css_on_file' ), 10, 0 );
+		add_action( 'rmp_import_menu', array( $this, 'save_style_css_on_file' ), 10, 0 );
 
 		// Hide adminbar.
 		if ( 'hide' == $this->option_manager->get_global_option( 'menu_adjust_for_wp_admin_bar' ) ) {
@@ -77,8 +78,7 @@ class Style_Manager {
 	 * @return string $css
 	 */
 	public function get_menus_scss_to_css() {
-
-		$menu_ids  = get_all_rmp_menu_ids();
+		$menu_ids = get_all_rmp_menu_ids();
 
 		if ( empty( $menu_ids ) ) {
 			return;
@@ -91,10 +91,10 @@ class Style_Manager {
 
 		$css .= $this->get_common_scss_to_css();
 
-		//Add custom css from setting page.
+		// Add custom css from setting page.
 		$css .= $this->option_manager->get_global_option( 'rmp_custom_css' );
 
-		//If minify is enable from settings then minify the style css.
+		// If minify is enable from settings then minify the style css.
 		if ( 'on' === $this->option_manager->get_global_option( 'rmp_minify_scripts' ) ) {
 			$css = $this->minify( $css );
 		}
@@ -109,7 +109,7 @@ class Style_Manager {
 		global $wp_filesystem;
 
 		if ( empty( $wp_filesystem ) ) {
-			require_once( ABSPATH . 'wp-admin/includes/file.php' );
+			require_once ABSPATH . 'wp-admin/includes/file.php';
 		}
 
 		WP_Filesystem();
@@ -124,17 +124,15 @@ class Style_Manager {
 
 		$css = $this->get_menus_scss_to_css();
 
-		if ( ! $wp_filesystem->put_contents( $dir . 'rmp-menu.css' , $css, 0644 ) ) {
-			return new \WP_Error( "Notice: Unable to write css in file." );
+		if ( ! $wp_filesystem->put_contents( $dir . 'rmp-menu.css', $css, 0644 ) ) {
+			return new \WP_Error( 'Notice: Unable to write css in file.' );
 		}
-
 	}
 
 	/**
 	 * Enqueue the stylesheet held on the filesystem.
 	 */
 	public function enqueue_styles_as_file() {
-
 		$upload_dir = wp_upload_dir();
 
 		$filename = 'rmp-menu.css';
@@ -147,13 +145,12 @@ class Style_Manager {
 		}
 
 		if ( file_exists( $file_path ) ) {
-
 			$file_url = trailingslashit( $upload_dir['baseurl'] ) . 'rmp-menu/css/' . $filename;
 
 			$protocol = is_ssl() ? 'https://' : 'http://';
 
 			// Ensure we're using the correct protocol.
-			$file_url = str_replace( array( "http://", "https://" ), $protocol, $file_url );
+			$file_url = str_replace( array( 'http://', 'https://' ), $protocol, $file_url );
 
 			wp_enqueue_style( 'rmp-menu-styles', $file_url, false, substr( md5( filemtime( $file_path ) ), 0, 6 ) );
 		}
@@ -169,15 +166,15 @@ class Style_Manager {
 	public function minify( $row_css ) {
 
 		// Remove comments.
-		$minified = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $row_css );
+		$minified = preg_replace( '!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $row_css );
 
 		// Remove tabs, spaces, newlines, etc.
-		$minified = str_replace(array("\r\n","\r","\n","\t",'  ','    ','     '), '', $minified);
+		$minified = str_replace( array( "\r\n", "\r", "\n", "\t", '  ', '    ', '     ' ), '', $minified );
 
 		// Remove other spaces before/after.
-		$minified = preg_replace(array('(( )+{)','({( )+)'), '{', $minified);
-		$minified = preg_replace(array('(( )+})','(}( )+)','(;( )*})'), '}', $minified);
-		$minified = preg_replace(array('(;( )+)','(( )+;)'), ';', $minified);
+		$minified = preg_replace( array( '(( )+{)', '({( )+)' ), '{', $minified );
+		$minified = preg_replace( array( '(( )+})', '(}( )+)', '(;( )*})' ), '}', $minified );
+		$minified = preg_replace( array( '(;( )+)', '(( )+;)' ), ';', $minified );
 
 		return $minified;
 	}
@@ -190,11 +187,11 @@ class Style_Manager {
 	 * @return array $options;
 	 */
 	public function get_all_menu_options() {
-		$menu_ids       = get_all_rmp_menu_ids();
-		$menu_options   = [];
+		$menu_ids     = get_all_rmp_menu_ids();
+		$menu_options = array();
 
 		foreach ( $menu_ids as $menu_id ) {
-			$options = $this->option_manager->get_options( $menu_id );
+			$options                             = $this->option_manager->get_options( $menu_id );
 			$options['active_toggle_contents']   = $this->get_active_toggle_contents( $options );
 			$options['inactive_toggle_contents'] = $this->get_inactive_toggle_contents( $options );
 
@@ -213,13 +210,13 @@ class Style_Manager {
 	 * @return HTML
 	 */
 	public function get_active_toggle_contents( $options ) {
-
 		if ( ! empty( $options['active_arrow_font_icon'] ) ) {
 			return $options['active_arrow_font_icon'];
-		} elseif( ! empty( $options['active_arrow_image'] ) ) {
-			return sprintf( '<img alt="%s" src="%s" />',
-				rmp_image_alt_by_url( $options['active_arrow_image']),
-				esc_url( $options['active_arrow_image'])
+		} elseif ( ! empty( $options['active_arrow_image'] ) ) {
+			return sprintf(
+				'<img alt="%s" src="%s" />',
+				rmp_image_alt_by_url( $options['active_arrow_image'] ),
+				esc_url( $options['active_arrow_image'] )
 			);
 		} else {
 			return $options['active_arrow_shape'];
@@ -235,13 +232,13 @@ class Style_Manager {
 	 * @return HTML
 	 */
 	public function get_inactive_toggle_contents( $options ) {
-
 		if ( ! empty( $options['inactive_arrow_font_icon'] ) ) {
 			return $options['inactive_arrow_font_icon'];
-		} elseif( ! empty( $options['inactive_arrow_image'] ) ) {
-			return sprintf( '<img alt="%s" src="%s" />',
-			    rmp_image_alt_by_url( $options['inactive_arrow_image']),
-				esc_url($options['inactive_arrow_image'])
+		} elseif ( ! empty( $options['inactive_arrow_image'] ) ) {
+			return sprintf(
+				'<img alt="%s" src="%s" />',
+				rmp_image_alt_by_url( $options['inactive_arrow_image'] ),
+				esc_url( $options['inactive_arrow_image'] )
 			);
 		} else {
 			return $options['inactive_arrow_shape'];
@@ -252,13 +249,12 @@ class Style_Manager {
 	 * Add menu scripts for frontend.
 	 */
 	public function add_rmp_menu_frontend_scripts() {
-
 		$in_footer = false;
 		if ( 'on' === $this->option_manager->get_global_option( 'rmp_scripts_in_footer' ) ) {
 			$in_footer = true;
 		}
 
-		wp_enqueue_script('jquery');
+		wp_enqueue_script( 'jquery' );
 
 		wp_register_script(
 			'rmp_menu_scripts',
@@ -271,10 +267,10 @@ class Style_Manager {
 		wp_localize_script(
 			'rmp_menu_scripts',
 			'rmp_menu',
-			array (
+			array(
 				'ajaxURL'  => admin_url( 'admin-ajax.php' ),
-				'wp_nonce' => wp_create_nonce('ajax-nonce'),
-				'menu'  => $this->get_all_menu_options(),
+				'wp_nonce' => wp_create_nonce( 'ajax-nonce' ),
+				'menu'     => $this->get_all_menu_options(),
 			)
 		);
 
@@ -302,14 +298,13 @@ class Style_Manager {
 	 * @version 4.0.0
 	 */
 	public function enqueue_styles_as_inline() {
-
 		if ( 'on' == $this->option_manager->get_global_option( 'rmp_external_files' ) ) {
 			return;
 		}
 
 		$css = $this->get_menus_scss_to_css();
-		wp_register_style( 'responsive-menu', false );
-        wp_enqueue_style( 'responsive-menu' );
+		wp_register_style( 'responsive-menu', false, array(), RMP_PLUGIN_VERSION );
+		wp_enqueue_style( 'responsive-menu' );
 		wp_add_inline_style( 'responsive-menu', $css );
 	}
 
@@ -321,18 +316,17 @@ class Style_Manager {
 	 * @return string|WP_Error
 	 */
 	public function get_css_for_menu( $menu_id ) {
-
 		try {
 			$options = $this->option_manager->get_options( $menu_id );
 
 			$is_legacy = 'off';
-			if ( ! empty( get_option('responsive_menu_version') ) ) {
+			if ( ! empty( get_option( 'responsive_menu_version' ) ) ) {
 				$is_legacy = 'on';
 			}
 
 			$tablet_breakpoint = '';
 			if ( ! empty( $options['tablet_breakpoint'] ) ) {
-				$tablet_breakpoint = $options['tablet_breakpoint'].'px';
+				$tablet_breakpoint = $options['tablet_breakpoint'] . 'px';
 			}
 
 			$menu_trigger_id = '';
@@ -352,22 +346,22 @@ class Style_Manager {
 
 			$button_distance_from_side = '0';
 			if ( ! empty( $options['button_distance_from_side'] ) ) {
-				$button_distance_from_side = $options['button_distance_from_side'] .  $options['button_distance_from_side_unit'];
+				$button_distance_from_side = $options['button_distance_from_side'] . $options['button_distance_from_side_unit'];
 			}
 
 			$menu_trigger_distance_from_top = '0';
 			if ( ! empty( $options['button_top'] ) ) {
-				$menu_trigger_distance_from_top = $options['button_top'] .  $options['button_top_unit'];
+				$menu_trigger_distance_from_top = $options['button_top'] . $options['button_top_unit'];
 			}
 
 			$menu_trigger_width = '';
 			if ( ! empty( $options['button_width'] ) ) {
-				$menu_trigger_width = $options['button_width'] .  $options['button_width_unit'];
+				$menu_trigger_width = $options['button_width'] . $options['button_width_unit'];
 			}
 
 			$menu_trigger_height = '';
 			if ( ! empty( $options['button_height'] ) ) {
-				$menu_trigger_height = $options['button_height'] .  $options['button_height_unit'];
+				$menu_trigger_height = $options['button_height'] . $options['button_height_unit'];
 			}
 
 			$menu_trigger_background_color = '';
@@ -417,12 +411,12 @@ class Style_Manager {
 
 			$menu_trigger_title_line_height = '';
 			if ( ! empty( $options['button_title_line_height'] ) ) {
-				$menu_trigger_title_line_height = $options['button_title_line_height'] .  $options['button_title_line_height_unit'];
+				$menu_trigger_title_line_height = $options['button_title_line_height'] . $options['button_title_line_height_unit'];
 			}
 
 			$menu_trigger_title_font_size = '';
 			if ( ! empty( $options['button_font_size'] ) ) {
-				$menu_trigger_title_font_size = $options['button_font_size'] .  $options['button_font_size_unit'];
+				$menu_trigger_title_font_size = $options['button_font_size'] . $options['button_font_size_unit'];
 			}
 
 			$menu_trigger_title_font = '';
@@ -590,7 +584,6 @@ class Style_Manager {
 				$menu_title_section_padding_bottom = $options['menu_title_section_padding']['bottom'];
 			}
 
-
 			$menu_title_background = '';
 			if ( ! empty( $options['menu_title_background_colour'] ) ) {
 				$menu_title_background = $options['menu_title_background_colour'];
@@ -701,12 +694,10 @@ class Style_Manager {
 				$menu_container_background_colour = $options['menu_container_background_colour'];
 			}
 
-
 			$menu_container_background_image = '';
 			if ( ! empty( $options['menu_background_image'] ) ) {
 				$menu_container_background_image = $options['menu_background_image'];
 			}
-
 
 			$menu_container_appear_from = '';
 			if ( ! empty( $options['menu_appear_from'] ) ) {
@@ -718,10 +709,9 @@ class Style_Manager {
 				$page_wrapper = $options['page_wrapper'];
 			}
 
-
 			$menu_wrap = '';
 			if ( ! empty( $options['menu_id'] ) ) {
-				$menu_wrap = '#rmp-menu-wrap-' .$options['menu_id'];
+				$menu_wrap = '#rmp-menu-wrap-' . $options['menu_id'];
 			}
 
 			$menu_section_padding_left = '';
@@ -769,12 +759,10 @@ class Style_Manager {
 				$menu_item_line_height_unit = $options['menu_links_line_height_unit'];
 			}
 
-
 			$menu_item_font_weight = 'intial';
 			if ( ! empty( $options['menu_font_weight'] ) ) {
 				$menu_item_font_weight = $options['menu_font_weight'];
 			}
-
 
 			$menu_item_letter_spacing = '0';
 			if ( ! empty( $options['menu_text_letter_spacing'] ) ) {
@@ -861,7 +849,6 @@ class Style_Manager {
 				$menu_item_background_color = $options['menu_item_background_colour'];
 			}
 
-
 			$menu_item_background_color_hover = '';
 			if ( ! empty( $options['menu_item_background_hover_colour'] ) ) {
 				$menu_item_background_color_hover = $options['menu_item_background_hover_colour'];
@@ -886,8 +873,6 @@ class Style_Manager {
 			if ( ! empty( $options['menu_depth_0_unit'] ) ) {
 				$menu_item_padding_unit = $options['menu_depth_0_unit'];
 			}
-
-
 
 			$menu_depth_side = '';
 			if ( ! empty( $options['menu_depth_side'] ) ) {
@@ -969,18 +954,15 @@ class Style_Manager {
 				$menu_item_toggle_text_color = $options['menu_sub_arrow_shape_colour'];
 			}
 
-
 			$menu_item_toggle_text_color_hover = '';
 			if ( ! empty( $options['menu_sub_arrow_shape_hover_colour'] ) ) {
 				$menu_item_toggle_text_color_hover = $options['menu_sub_arrow_shape_hover_colour'];
 			}
 
-
 			$menu_current_item_toggle_text_color = '';
 			if ( ! empty( $options['menu_sub_arrow_shape_colour_active'] ) ) {
 				$menu_current_item_toggle_text_color = $options['menu_sub_arrow_shape_colour_active'];
 			}
-
 
 			$menu_current_item_toggle_text_color_hover = '';
 			if ( ! empty( $options['menu_sub_arrow_shape_hover_colour_active'] ) ) {
@@ -1007,7 +989,6 @@ class Style_Manager {
 				$menu_current_item_toggle_background_color_hover = $options['menu_sub_arrow_background_hover_colour_active'];
 			}
 
-
 			$menu_item_toggle_border_color = '';
 			if ( ! empty( $options['menu_sub_arrow_border_colour'] ) ) {
 				$menu_item_toggle_border_color = $options['menu_sub_arrow_border_colour'];
@@ -1022,7 +1003,6 @@ class Style_Manager {
 			if ( ! empty( $options['menu_sub_arrow_border_colour_active'] ) ) {
 				$menu_current_item_toggle_border_color = $options['menu_sub_arrow_border_colour_active'];
 			}
-
 
 			$menu_current_item_toggle_border_color_hover = '';
 			if ( ! empty( $options['menu_sub_arrow_border_hover_colour_active'] ) ) {
@@ -1154,7 +1134,6 @@ class Style_Manager {
 				$submenu_item_toggle_height_unit = $options['submenu_submenu_arrow_height_unit'];
 			}
 
-
 			$submenu_item_toggle_width = '';
 			if ( ! empty( $options['submenu_submenu_arrow_width'] ) ) {
 				$submenu_item_toggle_width = $options['submenu_submenu_arrow_width'];
@@ -1245,7 +1224,7 @@ class Style_Manager {
 				$submenu_current_item_toggle_border_color_hover = $options['submenu_sub_arrow_border_hover_colour_active'];
 			}
 
-			//Animation delay and times.
+			// Animation delay and times.
 
 			$animation_speed = '';
 			if ( ! empty( $options['animation_speed'] ) ) {
@@ -1267,125 +1246,125 @@ class Style_Manager {
 				$menu_to_hide = $options['menu_to_hide'];
 			}
 
-			$parse_options = array (
+			$parse_options = array(
 				// Menu breakpoints
-				'tablet_breakpoint'     => $tablet_breakpoint,
+				'tablet_breakpoint'                        => $tablet_breakpoint,
 
 				// Menu hamburger toggle options.
-				'menu_trigger_id'                     => $menu_trigger_id,
-				'menu_trigger_position_type'          => $button_position_type,
-				'menu_trigger_side'                   => $menu_trigger_side,
-				'menu_trigger_distance_from_side'     => $button_distance_from_side,
-				'menu_trigger_distance_from_top'      => $menu_trigger_distance_from_top,
-				'menu_trigger_width'                  => $menu_trigger_width,
-				'menu_trigger_height'                 => $menu_trigger_height,
-				'menu_trigger_background_color'       => $menu_trigger_background_color,
-				'menu_trigger_background_color_hover' => $menu_trigger_background_color_hover,
-				'menu_trigger_active_color'           => $menu_trigger_active_color,
-				'toggle_button_border_radius'         => $toggle_button_border_radius,
-				'menu_trigger_transparent_background' => $menu_trigger_transparent_background,
-				'menu_trigger_line_color'             => $menu_trigger_line_color,
-				'menu_trigger_line_color_hover'       => $menu_trigger_line_color_hover,
-				'menu_trigger_line_active_color'      => $menu_trigger_line_active_color,
-				'menu_trigger_title_color'            => $menu_trigger_title_color,
-				'menu_trigger_title_line_height'      => $menu_trigger_title_line_height,
-				'menu_trigger_title_font_size'        => $menu_trigger_title_font_size,
-				'menu_trigger_title_font'             => $menu_trigger_title_font,
-				'menu_trigger_line_height'            => $menu_trigger_line_height,
-				'menu_trigger_line_height_unit'       => $menu_trigger_line_height_unit,
-				'menu_trigger_line_width'             => $menu_trigger_line_width,
-				'menu_trigger_line_width_unit'        => $menu_trigger_line_width_unit,
-				'menu_trigger_line_margin'            => $menu_trigger_line_margin,
-				'menu_trigger_line_margin_unit'       => $menu_trigger_line_margin_unit,
+				'menu_trigger_id'                          => $menu_trigger_id,
+				'menu_trigger_position_type'               => $button_position_type,
+				'menu_trigger_side'                        => $menu_trigger_side,
+				'menu_trigger_distance_from_side'          => $button_distance_from_side,
+				'menu_trigger_distance_from_top'           => $menu_trigger_distance_from_top,
+				'menu_trigger_width'                       => $menu_trigger_width,
+				'menu_trigger_height'                      => $menu_trigger_height,
+				'menu_trigger_background_color'            => $menu_trigger_background_color,
+				'menu_trigger_background_color_hover'      => $menu_trigger_background_color_hover,
+				'menu_trigger_active_color'                => $menu_trigger_active_color,
+				'toggle_button_border_radius'              => $toggle_button_border_radius,
+				'menu_trigger_transparent_background'      => $menu_trigger_transparent_background,
+				'menu_trigger_line_color'                  => $menu_trigger_line_color,
+				'menu_trigger_line_color_hover'            => $menu_trigger_line_color_hover,
+				'menu_trigger_line_active_color'           => $menu_trigger_line_active_color,
+				'menu_trigger_title_color'                 => $menu_trigger_title_color,
+				'menu_trigger_title_line_height'           => $menu_trigger_title_line_height,
+				'menu_trigger_title_font_size'             => $menu_trigger_title_font_size,
+				'menu_trigger_title_font'                  => $menu_trigger_title_font,
+				'menu_trigger_line_height'                 => $menu_trigger_line_height,
+				'menu_trigger_line_height_unit'            => $menu_trigger_line_height_unit,
+				'menu_trigger_line_width'                  => $menu_trigger_line_width,
+				'menu_trigger_line_width_unit'             => $menu_trigger_line_width_unit,
+				'menu_trigger_line_margin'                 => $menu_trigger_line_margin,
+				'menu_trigger_line_margin_unit'            => $menu_trigger_line_margin_unit,
 
 				// Menu searchbox options.
-				'menu_search_box_wrap'                => $menu_search_box_wrap,
-				'menu_search_box_text_color'          => $menu_search_box_text_color,
-				'menu_search_box_background_color'    => $menu_search_box_background_color,
-				'menu_search_box_border_color'        => $menu_search_box_border_color,
-				'menu_search_box_placeholder_color'   => $menu_search_box_placeholder_color,
-				'menu_search_box_border_radius'       => $menu_search_box_border_radius,
-				'menu_search_box_height_unit'         => $menu_search_box_height_unit,
-				'menu_search_box_height'              => $menu_search_box_height,
-				'menu_search_section_padding_bottom'  => $menu_search_section_padding_bottom,
-				'menu_search_section_padding_right'   => $menu_search_section_padding_right,
-				'menu_search_section_padding_top'     => $menu_search_section_padding_top,
-				'menu_search_section_padding_left'    => $menu_search_section_padding_left,
+				'menu_search_box_wrap'                     => $menu_search_box_wrap,
+				'menu_search_box_text_color'               => $menu_search_box_text_color,
+				'menu_search_box_background_color'         => $menu_search_box_background_color,
+				'menu_search_box_border_color'             => $menu_search_box_border_color,
+				'menu_search_box_placeholder_color'        => $menu_search_box_placeholder_color,
+				'menu_search_box_border_radius'            => $menu_search_box_border_radius,
+				'menu_search_box_height_unit'              => $menu_search_box_height_unit,
+				'menu_search_box_height'                   => $menu_search_box_height,
+				'menu_search_section_padding_bottom'       => $menu_search_section_padding_bottom,
+				'menu_search_section_padding_right'        => $menu_search_section_padding_right,
+				'menu_search_section_padding_top'          => $menu_search_section_padding_top,
+				'menu_search_section_padding_left'         => $menu_search_section_padding_left,
 
- 				// Menu additional contents options.
-				'menu_additional_content_wrap'           => $menu_additional_content_wrap,
-				'menu_additional_content_color'          => $menu_additional_content_color,
-				'menu_additional_content_alignment'      => $menu_additional_content_alignment,
-				'menu_additional_content_font_size'      => $menu_additional_content_font_size,
-				'menu_additional_content_font_size_unit' => $menu_additional_content_font_size_unit,
-				'menu_additional_section_padding_left' => $menu_additional_section_padding_left,
-				'menu_additional_section_padding_top' => $menu_additional_section_padding_top,
-				'menu_additional_section_padding_bottom' => $menu_additional_section_padding_bottom,
-				'menu_additional_section_padding_right' => $menu_additional_section_padding_right,
+				// Menu additional contents options.
+				'menu_additional_content_wrap'             => $menu_additional_content_wrap,
+				'menu_additional_content_color'            => $menu_additional_content_color,
+				'menu_additional_content_alignment'        => $menu_additional_content_alignment,
+				'menu_additional_content_font_size'        => $menu_additional_content_font_size,
+				'menu_additional_content_font_size_unit'   => $menu_additional_content_font_size_unit,
+				'menu_additional_section_padding_left'     => $menu_additional_section_padding_left,
+				'menu_additional_section_padding_top'      => $menu_additional_section_padding_top,
+				'menu_additional_section_padding_bottom'   => $menu_additional_section_padding_bottom,
+				'menu_additional_section_padding_right'    => $menu_additional_section_padding_right,
 
 				// Menu title options.
-				'menu_title_wrap'             => $menu_title_wrap,
-				'menu_title_font_weight'      => $menu_title_font_weight,
-				'menu_title_font_family'      => $menu_title_font_family,
-				'menu_title_background'       => $menu_title_background,
-				'menu_title_background_hover' => $menu_title_background_hover,
-				'menu_title_font_color'       => $menu_title_font_color,
-				'menu_title_font_color_hover' => $menu_title_font_color_hover,
-				'menu_title_font_size'        => $menu_title_font_size,
-				'menu_title_image_width'      => $menu_title_image_width,
-				'menu_title_image_height'     => $menu_title_image_height,
-				'menu_title_text_alignment'   => $menu_title_text_alignment,
-				'menu_title_section_padding_left' => $menu_title_section_padding_left,
-				'menu_title_section_padding_top' => $menu_title_section_padding_top,
-				'menu_title_section_padding_right' => $menu_title_section_padding_right,
-				'menu_title_section_padding_bottom' => $menu_title_section_padding_bottom,
+				'menu_title_wrap'                          => $menu_title_wrap,
+				'menu_title_font_weight'                   => $menu_title_font_weight,
+				'menu_title_font_family'                   => $menu_title_font_family,
+				'menu_title_background'                    => $menu_title_background,
+				'menu_title_background_hover'              => $menu_title_background_hover,
+				'menu_title_font_color'                    => $menu_title_font_color,
+				'menu_title_font_color_hover'              => $menu_title_font_color_hover,
+				'menu_title_font_size'                     => $menu_title_font_size,
+				'menu_title_image_width'                   => $menu_title_image_width,
+				'menu_title_image_height'                  => $menu_title_image_height,
+				'menu_title_text_alignment'                => $menu_title_text_alignment,
+				'menu_title_section_padding_left'          => $menu_title_section_padding_left,
+				'menu_title_section_padding_top'           => $menu_title_section_padding_top,
+				'menu_title_section_padding_right'         => $menu_title_section_padding_right,
+				'menu_title_section_padding_bottom'        => $menu_title_section_padding_bottom,
 
 				// Menu items and it's settings options.
-				'menu_container'                   => $menu_container,
-				'menu_width'                       => $menu_width,
-				'menu_width_unit'                  => $menu_width_unit,
-				'menu_maximum_width'               =>  $menu_maximum_width,
-				'menu_maximum_width_unit'          => $menu_maximum_width_unit,
-				'menu_minimum_width'               =>  $menu_minimum_width,
-				'menu_minimum_width_unit'          => $menu_minimum_width_unit,
-				'menu_container_background_colour' => $menu_container_background_colour,
-				'menu_container_background_image'  => "'" . $menu_container_background_image . "'",
-				'menu_container_appear_from'       => $menu_container_appear_from,
-				'page_wrapper'                     => $page_wrapper,
-				'menu_to_hide'                     => $menu_to_hide,
-				'menu_container_padding_left'   => $menu_container_padding_left,
-				'menu_container_padding_top'    => $menu_container_padding_top,
-				'menu_container_padding_bottom' => $menu_container_padding_bottom,
-				'menu_container_padding_right'  => $menu_container_padding_right,
-				'menu_wrap'                    => $menu_wrap,
-				'menu_section_padding_bottom'  => $menu_section_padding_bottom,
-				'menu_section_padding_right'   => $menu_section_padding_right,
-				'menu_section_padding_top'     => $menu_section_padding_top,
-				'menu_section_padding_left'    => $menu_section_padding_left,
+				'menu_container'                           => $menu_container,
+				'menu_width'                               => $menu_width,
+				'menu_width_unit'                          => $menu_width_unit,
+				'menu_maximum_width'                       => $menu_maximum_width,
+				'menu_maximum_width_unit'                  => $menu_maximum_width_unit,
+				'menu_minimum_width'                       => $menu_minimum_width,
+				'menu_minimum_width_unit'                  => $menu_minimum_width_unit,
+				'menu_container_background_colour'         => $menu_container_background_colour,
+				'menu_container_background_image'          => "'" . $menu_container_background_image . "'",
+				'menu_container_appear_from'               => $menu_container_appear_from,
+				'page_wrapper'                             => $page_wrapper,
+				'menu_to_hide'                             => $menu_to_hide,
+				'menu_container_padding_left'              => $menu_container_padding_left,
+				'menu_container_padding_top'               => $menu_container_padding_top,
+				'menu_container_padding_bottom'            => $menu_container_padding_bottom,
+				'menu_container_padding_right'             => $menu_container_padding_right,
+				'menu_wrap'                                => $menu_wrap,
+				'menu_section_padding_bottom'              => $menu_section_padding_bottom,
+				'menu_section_padding_right'               => $menu_section_padding_right,
+				'menu_section_padding_top'                 => $menu_section_padding_top,
+				'menu_section_padding_left'                => $menu_section_padding_left,
 
-				'menu_background_color'      => $menu_background_color,
-				'menu_item_height'           => $menu_item_height,
-				'menu_item_height_unit'      => $menu_item_height_unit,
-				'menu_item_line_height'      => $menu_item_line_height,
-				'menu_item_line_height_unit' => $menu_item_line_height_unit,
-				'menu_item_font_weight'      => $menu_item_font_weight,
-				'menu_item_letter_spacing'   => $menu_item_letter_spacing,
+				'menu_background_color'                    => $menu_background_color,
+				'menu_item_height'                         => $menu_item_height,
+				'menu_item_height_unit'                    => $menu_item_height_unit,
+				'menu_item_line_height'                    => $menu_item_line_height,
+				'menu_item_line_height_unit'               => $menu_item_line_height_unit,
+				'menu_item_font_weight'                    => $menu_item_font_weight,
+				'menu_item_letter_spacing'                 => $menu_item_letter_spacing,
 
-				'menu_item_border_width'               => $menu_item_border_width,
-				'menu_item_border_width_unit'          => $menu_item_border_width_unit,
-				'menu_item_border_color'               => $menu_item_border_color,
-				'menu_item_border_color_hover'         => $menu_item_border_color_hover,
-				'menu_current_item_border_color'       => $menu_current_item_border_color,
-				'menu_current_item_border_color_hover' => $menu_current_item_border_color_hover,
+				'menu_item_border_width'                   => $menu_item_border_width,
+				'menu_item_border_width_unit'              => $menu_item_border_width_unit,
+				'menu_item_border_color'                   => $menu_item_border_color,
+				'menu_item_border_color_hover'             => $menu_item_border_color_hover,
+				'menu_current_item_border_color'           => $menu_current_item_border_color,
+				'menu_current_item_border_color_hover'     => $menu_current_item_border_color_hover,
 
-				'menu_item_font_size'                => $menu_item_font_size,
-				'menu_item_font_size_unit'           => $menu_item_font_size_unit,
-				'menu_item_font_family'              => $menu_item_font_family,
-				'menu_item_text_alignment'           => $menu_item_text_alignment,
-				'menu_item_text_color'               => $menu_item_text_color,
-				'menu_item_text_color_hover'         => $menu_item_text_color_hover,
-				'menu_current_item_text_color'       => $menu_current_item_text_color,
-				'menu_current_item_text_color_hover' => $menu_current_item_text_color_hover,
+				'menu_item_font_size'                      => $menu_item_font_size,
+				'menu_item_font_size_unit'                 => $menu_item_font_size_unit,
+				'menu_item_font_family'                    => $menu_item_font_family,
+				'menu_item_text_alignment'                 => $menu_item_text_alignment,
+				'menu_item_text_color'                     => $menu_item_text_color,
+				'menu_item_text_color_hover'               => $menu_item_text_color_hover,
+				'menu_current_item_text_color'             => $menu_current_item_text_color,
+				'menu_current_item_text_color_hover'       => $menu_current_item_text_color_hover,
 
 				'menu_item_padding'                        => $menu_item_padding,
 				'menu_item_padding_unit'                   => $menu_item_padding_unit,
@@ -1394,92 +1373,92 @@ class Style_Manager {
 				'menu_current_item_background_color'       => $menu_current_item_background_color,
 				'menu_current_item_background_color_hover' => $menu_current_item_background_color_hover,
 
-				'menu_item_toggle_position'                       => $menu_item_toggle_position,
-				'menu_item_toggle_height'                         => $menu_item_toggle_height,
-				'menu_item_toggle_height_unit'                    => $menu_item_toggle_height_unit,
-				'menu_item_toggle_width'                          => $menu_item_toggle_width,
-				'menu_item_toggle_width_unit'                     => $menu_item_toggle_width_unit,
-				'menu_item_toggle_text_color'                     => $menu_item_toggle_text_color,
-				'menu_item_toggle_text_color_hover'               => $menu_item_toggle_text_color_hover,
-				'menu_current_item_toggle_text_color'             => $menu_current_item_toggle_text_color,
-				'menu_current_item_toggle_text_color_hover'       => $menu_current_item_toggle_text_color_hover,
-				'menu_item_toggle_background_color'               => $menu_item_toggle_background_color,
-				'menu_item_toggle_background_color_hover'         => $menu_item_toggle_background_color_hover,
-				'menu_current_item_toggle_background_color'       => $menu_current_item_toggle_background_color,
+				'menu_item_toggle_position'                => $menu_item_toggle_position,
+				'menu_item_toggle_height'                  => $menu_item_toggle_height,
+				'menu_item_toggle_height_unit'             => $menu_item_toggle_height_unit,
+				'menu_item_toggle_width'                   => $menu_item_toggle_width,
+				'menu_item_toggle_width_unit'              => $menu_item_toggle_width_unit,
+				'menu_item_toggle_text_color'              => $menu_item_toggle_text_color,
+				'menu_item_toggle_text_color_hover'        => $menu_item_toggle_text_color_hover,
+				'menu_current_item_toggle_text_color'      => $menu_current_item_toggle_text_color,
+				'menu_current_item_toggle_text_color_hover' => $menu_current_item_toggle_text_color_hover,
+				'menu_item_toggle_background_color'        => $menu_item_toggle_background_color,
+				'menu_item_toggle_background_color_hover'  => $menu_item_toggle_background_color_hover,
+				'menu_current_item_toggle_background_color' => $menu_current_item_toggle_background_color,
 				'menu_current_item_toggle_background_color_hover' => $menu_current_item_toggle_background_color_hover,
-				'menu_item_toggle_border_color'                   => $menu_item_toggle_border_color,
-				'menu_item_toggle_border_color_hover'             => $menu_item_toggle_border_color_hover,
-				'menu_current_item_toggle_border_color'           => $menu_current_item_toggle_border_color,
-				'menu_current_item_toggle_border_color_hover'     => $menu_current_item_toggle_border_color_hover,
-				'menu_item_toggle_border_width'                   => $menu_sub_arrow_border_width,
-				'menu_item_toggle_border_width_unit'              => $menu_sub_arrow_border_width_unit,
+				'menu_item_toggle_border_color'            => $menu_item_toggle_border_color,
+				'menu_item_toggle_border_color_hover'      => $menu_item_toggle_border_color_hover,
+				'menu_current_item_toggle_border_color'    => $menu_current_item_toggle_border_color,
+				'menu_current_item_toggle_border_color_hover' => $menu_current_item_toggle_border_color_hover,
+				'menu_item_toggle_border_width'            => $menu_sub_arrow_border_width,
+				'menu_item_toggle_border_width_unit'       => $menu_sub_arrow_border_width_unit,
 
 				// Sub-level menu items options.
-				'submenu_item_height'           => $submenu_item_height,
-				'submenu_item_height_unit'      => $submenu_item_height_unit,
-				'submenu_item_line_height'      => $submenu_item_line_height,
-				'submenu_item_line_height_unit' => $submenu_item_line_height_unit,
+				'submenu_item_height'                      => $submenu_item_height,
+				'submenu_item_height_unit'                 => $submenu_item_height_unit,
+				'submenu_item_line_height'                 => $submenu_item_line_height,
+				'submenu_item_line_height_unit'            => $submenu_item_line_height_unit,
 
-				'submenu_item_border_width'               => $submenu_item_border_width,
-				'submenu_item_border_width_unit'          => $submenu_item_border_width_unit,
-				'submenu_item_border_color'               => $submenu_item_border_color,
-				'submenu_item_border_color_hover'         => $submenu_item_border_color_hover,
-				'submenu_current_item_border_color'       => $submenu_current_item_border_color,
-				'submenu_current_item_border_color_hover' => $submenu_current_item_border_color_hover,
+				'submenu_item_border_width'                => $submenu_item_border_width,
+				'submenu_item_border_width_unit'           => $submenu_item_border_width_unit,
+				'submenu_item_border_color'                => $submenu_item_border_color,
+				'submenu_item_border_color_hover'          => $submenu_item_border_color_hover,
+				'submenu_current_item_border_color'        => $submenu_current_item_border_color,
+				'submenu_current_item_border_color_hover'  => $submenu_current_item_border_color_hover,
 
-				'submenu_item_font_size'       => $submenu_item_font_size,
-				'submenu_item_font_size_unit'  => $submenu_item_font_size_unit,
-				'submenu_item_font_family'     => $submenu_item_font_family,
-				'submenu_item_text_alignment'  => $submenu_item_text_alignment,
-				'submenu_text_letter_spacing'  => $submenu_text_letter_spacing,
+				'submenu_item_font_size'                   => $submenu_item_font_size,
+				'submenu_item_font_size_unit'              => $submenu_item_font_size_unit,
+				'submenu_item_font_family'                 => $submenu_item_font_family,
+				'submenu_item_text_alignment'              => $submenu_item_text_alignment,
+				'submenu_text_letter_spacing'              => $submenu_text_letter_spacing,
 
-				'submenu_item_text_color'                     => $submenu_item_text_color,
-				'submenu_item_text_color_hover'               => $submenu_item_text_color_hover,
-				'submenu_current_item_text_color'             => $submenu_current_item_text_color,
-				'submenu_current_item_text_color_hover'       => $submenu_current_item_text_color_hover,
-				'submenu_item_background_color'               => $submenu_item_background_color,
-				'submenu_item_background_color_hover'         => $submenu_item_background_color_hover,
-				'submenu_current_item_background_color'       => $submenu_current_item_background_color,
+				'submenu_item_text_color'                  => $submenu_item_text_color,
+				'submenu_item_text_color_hover'            => $submenu_item_text_color_hover,
+				'submenu_current_item_text_color'          => $submenu_current_item_text_color,
+				'submenu_current_item_text_color_hover'    => $submenu_current_item_text_color_hover,
+				'submenu_item_background_color'            => $submenu_item_background_color,
+				'submenu_item_background_color_hover'      => $submenu_item_background_color_hover,
+				'submenu_current_item_background_color'    => $submenu_current_item_background_color,
 				'submenu_current_item_background_color_hover' => $submenu_current_item_background_color_hover,
 
-				'submenu_item_toggle_position'    => $submenu_item_toggle_position,
-				'submenu_item_toggle_height'      => $submenu_item_toggle_height,
-				'submenu_item_toggle_height_unit' => $submenu_item_toggle_height_unit,
-				'submenu_item_toggle_width'       => $submenu_item_toggle_width,
-				'submenu_item_toggle_width_unit'  => $submenu_item_toggle_width_unit,
-				'is_legacy' => $is_legacy,
+				'submenu_item_toggle_position'             => $submenu_item_toggle_position,
+				'submenu_item_toggle_height'               => $submenu_item_toggle_height,
+				'submenu_item_toggle_height_unit'          => $submenu_item_toggle_height_unit,
+				'submenu_item_toggle_width'                => $submenu_item_toggle_width,
+				'submenu_item_toggle_width_unit'           => $submenu_item_toggle_width_unit,
+				'is_legacy'                                => $is_legacy,
 
-				'submenu_item_toggle_text_color'                     => $submenu_item_toggle_text_color,
-				'submenu_item_toggle_text_color_hover'               => $submenu_item_toggle_text_color_hover,
-				'submenu_current_item_toggle_text_color'             => $submenu_current_item_toggle_text_color,
-				'submenu_current_item_toggle_text_color_hover'       => $submenu_current_item_toggle_text_color_hover,
-				'submenu_item_toggle_background_color'               => $submenu_item_toggle_background_color,
-				'submenu_item_toggle_background_color_hover'         => $submenu_item_toggle_background_color_hover,
-				'submenu_current_item_toggle_background_color'       => $submenu_current_item_toggle_background_color,
+				'submenu_item_toggle_text_color'           => $submenu_item_toggle_text_color,
+				'submenu_item_toggle_text_color_hover'     => $submenu_item_toggle_text_color_hover,
+				'submenu_current_item_toggle_text_color'   => $submenu_current_item_toggle_text_color,
+				'submenu_current_item_toggle_text_color_hover' => $submenu_current_item_toggle_text_color_hover,
+				'submenu_item_toggle_background_color'     => $submenu_item_toggle_background_color,
+				'submenu_item_toggle_background_color_hover' => $submenu_item_toggle_background_color_hover,
+				'submenu_current_item_toggle_background_color' => $submenu_current_item_toggle_background_color,
 				'submenu_current_item_toggle_background_color_hover' => $submenu_current_item_toggle_background_color_hover,
-				'submenu_item_toggle_border_color'                   => $submenu_item_toggle_border_color,
-				'submenu_item_toggle_border_color_hover'             => $submenu_item_toggle_border_color_hover,
-				'submenu_current_item_toggle_border_color'           => $submenu_current_item_toggle_border_color,
-				'submenu_current_item_toggle_border_color_hover'     => $submenu_current_item_toggle_border_color_hover,
+				'submenu_item_toggle_border_color'         => $submenu_item_toggle_border_color,
+				'submenu_item_toggle_border_color_hover'   => $submenu_item_toggle_border_color_hover,
+				'submenu_current_item_toggle_border_color' => $submenu_current_item_toggle_border_color,
+				'submenu_current_item_toggle_border_color_hover' => $submenu_current_item_toggle_border_color_hover,
 
-				'submenu_item_toggle_border_width'       => $submenu_sub_arrow_border_width,
-				'submenu_item_toggle_border_width_unit'  => $submenu_sub_arrow_border_width_unit,
+				'submenu_item_toggle_border_width'         => $submenu_sub_arrow_border_width,
+				'submenu_item_toggle_border_width_unit'    => $submenu_sub_arrow_border_width_unit,
 
-				'menu_depth_side' => $menu_depth_side,
-				'menu_item_padding_depth_1' => $menu_item_padding_depth_1,
-				'menu_item_padding_depth_1_unit' => $menu_item_padding_depth_1_unit,
-				'menu_item_padding_depth_2' => $menu_item_padding_depth_2,
-				'menu_item_padding_depth_2_unit' => $menu_item_padding_depth_2_unit,
-				'menu_item_padding_depth_3' => $menu_item_padding_depth_3,
-				'menu_item_padding_depth_3_unit' => $menu_item_padding_depth_3_unit,
-				'menu_item_padding_depth_4' => $menu_item_padding_depth_4,
-				'menu_item_padding_depth_4_unit' => $menu_item_padding_depth_4_unit,
-				'menu_word_wrap' => $menu_word_wrap,
+				'menu_depth_side'                          => $menu_depth_side,
+				'menu_item_padding_depth_1'                => $menu_item_padding_depth_1,
+				'menu_item_padding_depth_1_unit'           => $menu_item_padding_depth_1_unit,
+				'menu_item_padding_depth_2'                => $menu_item_padding_depth_2,
+				'menu_item_padding_depth_2_unit'           => $menu_item_padding_depth_2_unit,
+				'menu_item_padding_depth_3'                => $menu_item_padding_depth_3,
+				'menu_item_padding_depth_3_unit'           => $menu_item_padding_depth_3_unit,
+				'menu_item_padding_depth_4'                => $menu_item_padding_depth_4,
+				'menu_item_padding_depth_4_unit'           => $menu_item_padding_depth_4_unit,
+				'menu_word_wrap'                           => $menu_word_wrap,
 
-				//Animation and transition.
-				'animation_speed' => $animation_speed,
-				'color_transition_speed'  => $color_transition_speed,
-				'sub_menu_transition_speed' => $sub_menu_transition_speed
+				// Animation and transition.
+				'animation_speed'                          => $animation_speed,
+				'color_transition_speed'                   => $color_transition_speed,
+				'sub_menu_transition_speed'                => $sub_menu_transition_speed,
 			);
 
 			/**
@@ -1494,7 +1473,7 @@ class Style_Manager {
 			$parse_options = apply_filters( 'rmp_before_parse_scss_to_css', $parse_options, $menu_id, $options );
 
 			$scss = new Compiler();
-			$scss->setImportPaths(  RMP_PLUGIN_PATH_V4 . '/assets/scss/' );
+			$scss->setImportPaths( RMP_PLUGIN_PATH_V4 . '/assets/scss/' );
 			$scss->setVariables( $parse_options );
 			$css = $scss->compile( '@import "main.scss";' );
 
@@ -1511,41 +1490,32 @@ class Style_Manager {
 			$css = apply_filters( 'rmp_after_parse_scss_to_css', $css, $menu_id, $parse_options, $options );
 
 			return $css;
-		}
-
-
-		catch ( Exception $e ) {
-			return new \WP_Error( "Warning: Menu style scss compile failed <br/> <br />" . $e->getMessage() );
+		} catch ( Exception $e ) {
+			return new \WP_Error( 'Warning: Menu style scss compile failed <br/> <br />' . $e->getMessage() );
 		}
 	}
 
 	/**
-	* This function convert the common scss style to css.
-	*
-	* @return string/WP_Error
-	*/
+	 * This function convert the common scss style to css.
+	 *
+	 * @return string/WP_Error
+	 */
 	public function get_common_scss_to_css() {
 		try {
-
-
 			$menu_adjust_for_wp_admin_bar = $this->option_manager->get_global_option( 'menu_adjust_for_wp_admin_bar' );
 
-			$options = [
-				'menu_adjust_for_wp_admin_bar' => $menu_adjust_for_wp_admin_bar
-			];
+			$options = array(
+				'menu_adjust_for_wp_admin_bar' => $menu_adjust_for_wp_admin_bar,
+			);
 
 			$scss = new Compiler();
-			$scss->setImportPaths(  RMP_PLUGIN_PATH_V4 . '/assets/scss/' );
+			$scss->setImportPaths( RMP_PLUGIN_PATH_V4 . '/assets/scss/' );
 			$scss->setVariables( $options );
 			$css = $scss->compile( '@import "common.scss";' );
 
 			return $css;
+		} catch ( Exception $e ) {
+			return new \WP_Error( 'Warning: Common style scss compile failed <br/> <br />' . $e->getMessage() );
 		}
-
-		catch ( Exception $e ) {
-			return new \WP_Error( "Warning: Common style scss compile failed <br/> <br />" . $e->getMessage() );
-		}
-
 	}
-
 }

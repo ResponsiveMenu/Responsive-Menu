@@ -22,7 +22,7 @@
  *
  * If you specifically need multiple objects, then use a normal class.
  *
- * @package responsive-menu-pro
+ * @package responsive-menu
  */
 
 namespace RMP\Features\Inc\Traits;
@@ -59,7 +59,7 @@ trait Singleton {
 		 *
 		 * @var array
 		 */
-		static $instance = [];
+		static $instance = array();
 
 		/**
 		 * If this trait is implemented in a class which has multiple

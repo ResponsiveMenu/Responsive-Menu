@@ -6,7 +6,7 @@
  * @version 4.0.0
  * @author  Expresstech System
  *
- * @package responsive-menu-pro
+ * @package responsive-menu
  */
 
 namespace RMP\Features\Inc;
@@ -16,7 +16,7 @@ use RMP\Features\Inc\RMP_Menu;
 
 // Disable the direct access to this class.
 if ( ! defined( 'ABSPATH' ) ) {
-    exit;
+	exit;
 }
 
 /**
@@ -41,7 +41,7 @@ class Preview {
 	 * @return void
 	 */
 	protected function setup_hooks() {
-		add_action('wp_ajax_rmp_enable_menu_item', array( $this, 'enable_menu_item' ) );
+		add_action( 'wp_ajax_rmp_enable_menu_item', array( $this, 'enable_menu_item' ) );
 	}
 
 	/**
@@ -50,25 +50,22 @@ class Preview {
 	 * @return HTML
 	 */
 	public function enable_menu_item() {
-
 		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
 
-		$menu_id      = intval( $_POST['menu_id'] );
-		$menu_element = intval( $_POST['menu_element'] );
-		$menu = new RMP_Menu($menu_id);
+		$menu_id      = isset( $_POST['menu_id'] ) ? intval( wp_unslash( $_POST['menu_id'] ) ) : '';
+		$menu_element = isset( $_POST['menu_element'] ) ? intval( wp_unslash( $_POST['menu_element'] ) ) : '';
+		$menu         = new RMP_Menu( $menu_id );
 
-		if ( $menu_element === 'menu' ) {
+		if ( 'menu' === $menu_element ) {
 			$html = $menu->menu();
 		} elseif ( 'search' === $menu_element ) {
 			$html = $menu->menu_search_box();
-		} elseif( 'title' === $menu_element ) {
+		} elseif ( 'title' === $menu_element ) {
 			$html = $menu->menu_title();
 		} else {
 			$html = $menu->menu_additional_content();
 		}
 
-		wp_send_json_success( [ 'markup' => $html ] );
-
+		wp_send_json_success( array( 'markup' => $html ) );
 	}
-
 }
