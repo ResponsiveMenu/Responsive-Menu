@@ -7,7 +7,7 @@
  * @package responsive-menu
  */
 
-//namespace RMP\Features\Inc\Helpers;
+// namespace RMP\Features\Inc\Helpers;
 
 /**
  * Function to check the input is checked or not.
@@ -18,18 +18,17 @@
  *
  * @return string|null
  */
-function is_rmp_option_checked($actual_value, $options, $key)
-{
-    if (empty($options[$key])) {
-        return;
-    }
+function is_rmp_option_checked( $actual_value, $options, $key ) {
+	if ( empty( $options[ $key ] ) ) {
+		return;
+	}
 
-    $checked_value = $options[$key];
-    if ($actual_value == $checked_value) {
-        return "checked";
-    }
+	$checked_value = $options[ $key ];
+	if ( $actual_value == $checked_value ) {
+		return 'checked';
+	}
 
-    return;
+	return;
 }
 
 /**
@@ -42,29 +41,29 @@ function is_rmp_option_checked($actual_value, $options, $key)
  *
  * @return string|array
  */
-function rmp_get_value($options, $key)
-{
-    if (empty($options[$key])) {
-        return;
-    }
+function rmp_get_value( $options, $key ) {
+	if ( empty( $options[ $key ] ) ) {
+		return;
+	}
 
-    return $options[$key];
+	return $options[ $key ];
 }
 
-function rmp_get_list_of_pages()
-{
-    $posts = get_posts([
-        'numberposts' => -1,
-        'post_type' => 'any'
-    ]);
+function rmp_get_list_of_pages() {
+	$posts = get_posts(
+		array(
+			'numberposts' => -1,
+			'post_type'   => 'any',
+		)
+	);
 
-    $all_pages = [];
+	$all_pages = array();
 
-    foreach ($posts as $post) {
-        $all_pages[$post->ID] = $post->post_title;
-    }
+	foreach ( $posts as $post ) {
+		$all_pages[ $post->ID ] = $post->post_title;
+	}
 
-    return $all_pages;
+	return $all_pages;
 }
 
 /**
@@ -73,17 +72,16 @@ function rmp_get_list_of_pages()
  * @since 1.5.2
  * @return string
  */
-function rmp_dashicon_selector()
-{
-    foreach (rmp_all_dash_icons() as $code => $class) {
-        $bits = explode("-", $code);
-        $type = $bits[0]; ?>
-        <div class="<?php echo esc_attr($type); ?> font-icon">
-            <input class="radio" id="<?php echo esc_attr($class); ?>" type="radio" rel="<?php echo '&#x' . esc_attr($bits[1]); ?>" name="icon" value="dashicons <?php echo esc_attr($class); ?>" />
-            <label rel="<?php echo '&#x' . esc_attr($bits[1]); ?>" for="<?php echo esc_attr($class); ?>" title="<?php echo esc_attr($class); ?>" ></label>
-        </div>
-        <?php
-    }
+function rmp_dashicon_selector() {
+	foreach ( rmp_all_dash_icons() as $code => $class ) {
+		$bits = explode( '-', $code );
+		$type = $bits[0]; ?>
+		<div class="<?php echo esc_attr( $type ); ?> font-icon">
+			<input class="radio" id="<?php echo esc_attr( $class ); ?>" type="radio" rel="<?php echo '&#x' . esc_attr( $bits[1] ); ?>" name="icon" value="dashicons <?php echo esc_attr( $class ); ?>" />
+			<label rel="<?php echo '&#x' . esc_attr( $bits[1] ); ?>" for="<?php echo esc_attr( $class ); ?>" title="<?php echo esc_attr( $class ); ?>" ></label>
+		</div>
+		  <?php
+	}
 }
 
 
@@ -93,27 +91,26 @@ function rmp_dashicon_selector()
  * @since 4.0.0
  * @return array $menu_ids;
  */
-function get_all_rmp_menu_ids()
-{
-    $args = array(
-        'post_type' => 'rmp_menu',
-        'posts_per_page' => -1,
-        'post_status' => 'publish',
-    );
+function get_all_rmp_menu_ids() {
+	$args = array(
+		'post_type'      => 'rmp_menu',
+		'posts_per_page' => -1,
+		'post_status'    => 'publish',
+	);
 
-    $query = new \WP_Query($args);
-    $menu_ids = [];
+	$query    = new \WP_Query( $args );
+	$menu_ids = array();
 
-    if ($query->have_posts()) {
-        while ($query->have_posts()) {
-            $query->the_post();
-            $menu_ids[] = get_the_ID();
-        }
+	if ( $query->have_posts() ) {
+		while ( $query->have_posts() ) {
+			$query->the_post();
+			$menu_ids[] = get_the_ID();
+		}
 
-        wp_reset_postdata();
-    }
+		wp_reset_postdata();
+	}
 
-    return $menu_ids;
+	return $menu_ids;
 }
 
 /**
@@ -122,27 +119,26 @@ function get_all_rmp_menu_ids()
  * @since 4.0.0
  * @return array;
  */
-function rmp_get_all_menus()
-{
-    $args = array(
-        'post_type' => 'rmp_menu',
-        'posts_per_page' => -1,
-        'post_status' => 'publish',
-    );
+function rmp_get_all_menus() {
+	$args = array(
+		'post_type'      => 'rmp_menu',
+		'posts_per_page' => -1,
+		'post_status'    => 'publish',
+	);
 
-    $query = new \WP_Query($args);
-    $menus = [];
+	$query = new \WP_Query( $args );
+	$menus = array();
 
-    if ($query->have_posts()) {
-        while ($query->have_posts()) {
-            $query->the_post();
-            $menus[ get_the_ID() ] = get_the_title();
-        }
+	if ( $query->have_posts() ) {
+		while ( $query->have_posts() ) {
+			$query->the_post();
+			$menus[ get_the_ID() ] = get_the_title();
+		}
 
-        wp_reset_postdata();
-    }
+		wp_reset_postdata();
+	}
 
-    return $menus;
+	return $menus;
 }
 
 
@@ -154,61 +150,61 @@ function rmp_get_all_menus()
  *
  * @return Bool | String
  */
-function rmp_image_alt_by_url($image_url)
-{
-    global $wpdb;
+function rmp_image_alt_by_url( $image_url ) {
+	global $wpdb;
 
-    if (empty($image_url)) {
-        return '';
-    }
+	if ( empty( $image_url ) ) {
+		return '';
+	}
 
-    $query_arr  = $wpdb->get_col($wpdb->prepare("SELECT ID FROM {$wpdb->posts} WHERE guid='%s';", strtolower($image_url)));
-    $image_id   = (! empty($query_arr)) ? $query_arr[0] : 0;
+	$query_arr = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM {$wpdb->posts} WHERE guid='%s';", strtolower( $image_url ) ) );
+	$image_id  = ( ! empty( $query_arr ) ) ? $query_arr[0] : 0;
 
-    return get_post_meta($image_id, '_wp_attachment_image_alt', true);
+	return get_post_meta( $image_id, '_wp_attachment_image_alt', true );
 }
 
 /**
  * Return the menu items.
  */
-function rmp_get_wp_nav_menu_items($options)
-{
-    $menu = '';
+function rmp_get_wp_nav_menu_items( $options ) {
+	$menu = '';
 
-    if (! empty($options['theme_location_menu']) && has_nav_menu($options['theme_location_menu'])) {
-        $menu = get_term(get_nav_menu_locations()[ $options['theme_location_menu'] ], 'nav_menu')->slug;
-    } elseif (! empty($options['menu_to_use'])) {
-        $menu = $options['menu_to_use'];
-    } elseif (!empty(get_terms('nav_menu')[0]->slug)) {
-        $menu = get_terms('nav_menu')[0]->slug;
-    }
+	if ( ! empty( $options['theme_location_menu'] ) && has_nav_menu( $options['theme_location_menu'] ) ) {
+		$menu = get_term( get_nav_menu_locations()[ $options['theme_location_menu'] ], 'nav_menu' )->slug;
+	} elseif ( ! empty( $options['menu_to_use'] ) ) {
+		$menu = $options['menu_to_use'];
+	} elseif ( ! empty( get_terms( 'nav_menu' )[0]->slug ) ) {
+		$menu = get_terms( 'nav_menu' )[0]->slug;
+	}
 
-    return wp_get_nav_menu_items($menu);
+	return wp_get_nav_menu_items( $menu );
 }
 
 
 /**
  * @return allow svg html tags.
  */
-function rmp_allow_svg_html_tags()
-{
-    $kses_defaults = wp_kses_allowed_html('post');
+function rmp_allow_svg_html_tags() {
+	$kses_defaults = wp_kses_allowed_html( 'post' );
 
-    $svg_args = array(
-        'svg'   => array(
-            'class' => true,
-            'aria-hidden' => true,
-            'aria-labelledby' => true,
-            'role' => true,
-            'xmlns' => true,
-            'width' => true,
-            'height' => true,
-            'viewbox' => true, // <= Must be lower case!
-        ),
-        'g'     => array( 'fill' => true ),
-        'title' => array( 'title' => true ),
-        'path'  => array( 'd' => true, 'fill' => true,  ),
-    );
+	$svg_args = array(
+		'svg'   => array(
+			'class'           => true,
+			'aria-hidden'     => true,
+			'aria-labelledby' => true,
+			'role'            => true,
+			'xmlns'           => true,
+			'width'           => true,
+			'height'          => true,
+			'viewbox'         => true, // <= Must be lower case!
+		),
+		'g'     => array( 'fill' => true ),
+		'title' => array( 'title' => true ),
+		'path'  => array(
+			'd'    => true,
+			'fill' => true,
+		),
+	);
 
-    return array_merge($kses_defaults, $svg_args);
+	return array_merge( $kses_defaults, $svg_args );
 }

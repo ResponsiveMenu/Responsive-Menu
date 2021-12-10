@@ -15,160 +15,155 @@ use RMP\Features\Inc\Traits\Singleton;
 use RMP\Features\Inc\Option_Manager;
 
 // Disable the direct access to this class.
-if (! defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 /**
  * Class Editor_Manager
  */
-class Editor_Manager
-{
-    use Singleton;
+class Editor_Manager {
 
-    /**
-     * Construct method.
-     */
-    protected function __construct()
-    {
-        $this->setup_hooks();
-    }
+	use Singleton;
 
-    /**
-     * To setup action/filter.
-     *
-     * @version 4.0.0
-     *
-     * @return void
-     */
-    protected function setup_hooks()
-    {
-        add_action('wp_ajax_rmp_save_menu_action', array( $this, 'rmp_save_options' ));
-        add_action('wp_ajax_rmp_mega_menu_item_enable', array( $this, 'enable_mega_menu_item' ));
-        add_action('wp_ajax_rmp_save_mega_menu_item', array( $this, 'rmp_save_mega_menu_item' ));
+	/**
+	 * Construct method.
+	 */
+	protected function __construct() {
+		$this->setup_hooks();
+	}
 
-        // Hide the wp admin bar from preview iframe.
-        if (! empty($_GET['rmp_preview_mode'])) {
-            add_filter('show_admin_bar', '__return_false');
-        }
-    }
+	/**
+	 * To setup action/filter.
+	 *
+	 * @version 4.0.0
+	 *
+	 * @return void
+	 */
+	protected function setup_hooks() {
+		add_action( 'wp_ajax_rmp_save_menu_action', array( $this, 'rmp_save_options' ) );
+		add_action( 'wp_ajax_rmp_mega_menu_item_enable', array( $this, 'enable_mega_menu_item' ) );
+		add_action( 'wp_ajax_rmp_save_mega_menu_item', array( $this, 'rmp_save_mega_menu_item' ) );
 
-    /**
-     * This function save the settings and meta of mega menu item.
-     *
-     * @version 4.0.0
-     *
-     * @return json
-     */
-    public function rmp_save_mega_menu_item()
-    {
-        check_ajax_referer('rmp_nonce', 'ajax_nonce');
+		// Hide the wp admin bar from preview iframe.
+		if ( ! empty( $_GET['rmp_preview_mode'] ) ) {
+			add_filter( 'show_admin_bar', '__return_false' );
+		}
+	}
 
-        $item_id = isset($_POST['item_id']) ? sanitize_text_field(wp_unslash($_POST['item_id'])) : '';
-        if (empty($item_id)) {
-            wp_send_json_error([ 'message' => esc_html__('Menu Item ID missing', 'responsive-menu') ]);
-        }
+	/**
+	 * This function save the settings and meta of mega menu item.
+	 *
+	 * @version 4.0.0
+	 *
+	 * @return json
+	 */
+	public function rmp_save_mega_menu_item() {
+		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
 
-        $menu_id = isset($_POST['menu_id']) ? sanitize_text_field(wp_unslash($_POST['menu_id'])) : '';
-        if (empty($menu_id)) {
-            wp_send_json_error(
-                [ 'message' => esc_html__('Menu ID missing !', 'responsive-menu')]
-            );
-        }
+		$item_id = isset( $_POST['item_id'] ) ? sanitize_text_field( wp_unslash( $_POST['item_id'] ) ) : '';
+		if ( empty( $item_id ) ) {
+			wp_send_json_error( array( 'message' => esc_html__( 'Menu Item ID missing', 'responsive-menu' ) ) );
+		}
 
-        if (empty($_POST['item_meta'])) {
-            wp_send_json_error([ 'message' => esc_html__('Unable to get mega menu settings', 'responsive-menu')]);
-        }
+		$menu_id = isset( $_POST['menu_id'] ) ? sanitize_text_field( wp_unslash( $_POST['menu_id'] ) ) : '';
+		if ( empty( $menu_id ) ) {
+			wp_send_json_error(
+				array( 'message' => esc_html__( 'Menu ID missing !', 'responsive-menu' ) )
+			);
+		}
 
-        $item_meta = [];
+		if ( empty( $_POST['item_meta'] ) ) {
+			wp_send_json_error( array( 'message' => esc_html__( 'Unable to get mega menu settings', 'responsive-menu' ) ) );
+		}
 
-        // Don't forget to sanitize the data using recursive.
-        if (is_array($_POST['item_meta'])) {
-            $item_meta = intval(wp_unslash($_POST['item_meta']));
-        }
+		$item_meta = array();
 
-        update_post_meta($menu_id, '_rmp_mega_menu_'. $item_id, $item_meta);
+		// Don't forget to sanitize the data using recursive.
+		if ( is_array( $_POST['item_meta'] ) ) {
+			$item_meta = intval( wp_unslash( $_POST['item_meta'] ) );
+		}
 
-        /**
-         * Fires when mega menu item settings update.
-         *
-         * @version 4.0.0
-         *
-         * @param int   $menu_id    Menu Id.
-         * @param int   $item_id    Item ID for which mega menu settings are updated
-         * @param array $item_meta  List of mega menu settings of an item.
-         */
-        do_action('rmp_update_mega_menu_item', $menu_id, $item_id, $item_meta);
+		update_post_meta( $menu_id, '_rmp_mega_menu_' . $item_id, $item_meta );
 
-        wp_send_json_success(['message' => 'success']);
-    }
+		/**
+		 * Fires when mega menu item settings update.
+		 *
+		 * @version 4.0.0
+		 *
+		 * @param int   $menu_id    Menu Id.
+		 * @param int   $item_id    Item ID for which mega menu settings are updated
+		 * @param array $item_meta  List of mega menu settings of an item.
+		 */
+		do_action( 'rmp_update_mega_menu_item', $menu_id, $item_id, $item_meta );
 
-    /**
-     * Function to update the enable option of mega menu item.
-     *
-     * @version 4.0.0
-     *
-     * @return json
-     */
-    public function enable_mega_menu_item()
-    {
-        check_ajax_referer('rmp_nonce', 'ajax_nonce');
+		wp_send_json_success( array( 'message' => 'success' ) );
+	}
 
-        $menu_id  = isset($_POST['menu_id']) ? sanitize_text_field(wp_unslash($_POST['menu_id'])) : '';
-        $item_id  = isset($_POST['item_id']) ? sanitize_text_field(wp_unslash($_POST['item_id'])) : '';
-        $value    = isset($_POST['value']) ? sanitize_text_field(wp_unslash($_POST['value'])) : '';
+	/**
+	 * Function to update the enable option of mega menu item.
+	 *
+	 * @version 4.0.0
+	 *
+	 * @return json
+	 */
+	public function enable_mega_menu_item() {
+		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
 
-        $options = get_post_meta($menu_id, 'rmp_menu_meta');
+		$menu_id = isset( $_POST['menu_id'] ) ? sanitize_text_field( wp_unslash( $_POST['menu_id'] ) ) : '';
+		$item_id = isset( $_POST['item_id'] ) ? sanitize_text_field( wp_unslash( $_POST['item_id'] ) ) : '';
+		$value   = isset( $_POST['value'] ) ? sanitize_text_field( wp_unslash( $_POST['value'] ) ) : '';
 
-        if (! empty($options)) {
-            $options = $options[0];
-            $options['mega_menu'][$item_id] = $value ;
-            $options = update_post_meta($menu_id, 'rmp_menu_meta', $options);
+		$options = get_post_meta( $menu_id, 'rmp_menu_meta' );
 
-            wp_send_json_success([ 'message' => esc_html__('Success', 'responsive-menu') ]);
-        }
+		if ( ! empty( $options ) ) {
+			$options                          = $options[0];
+			$options['mega_menu'][ $item_id ] = $value;
+			$options                          = update_post_meta( $menu_id, 'rmp_menu_meta', $options );
 
-        wp_send_json_error(
-            [ 'message' => esc_html__('Menu not found', 'responsive-menu') ]
-        );
-    }
+			wp_send_json_success( array( 'message' => esc_html__( 'Success', 'responsive-menu' ) ) );
+		}
 
-    /**
-     * This function saved the menu options when click update in the menu editor.
-     *
-     * @since	4.0.0
-     *
-     * @return json
-     */
-    public function rmp_save_options()
-    {
-        check_ajax_referer('rmp_nonce', 'ajax_nonce');
+		wp_send_json_error(
+			array( 'message' => esc_html__( 'Menu not found', 'responsive-menu' ) )
+		);
+	}
 
-        $options = [];
-        $form_data = isset($_POST['form']) ? wp_unslash($_POST['form']) : '';
-        parse_str($form_data, $options);
+	/**
+	 * This function saved the menu options when click update in the menu editor.
+	 *
+	 * @since   4.0.0
+	 *
+	 * @return json
+	 */
+	public function rmp_save_options() {
+		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
 
-        $menu_id = sanitize_text_field($options['menu_id']);
-        if (empty($menu_id)) {
-            wp_send_json_error([ 'message' => esc_html__('Menu ID missing !', 'responsive-menu') ]);
-        }
+		$options   = array();
+		$form_data = isset( $_POST['form'] ) ? wp_unslash( $_POST['form'] ) : '';
+		parse_str( $form_data, $options );
 
-        $options = $options['menu'];
+		$menu_id = sanitize_text_field( $options['menu_id'] );
+		if ( empty( $menu_id ) ) {
+			wp_send_json_error( array( 'message' => esc_html__( 'Menu ID missing !', 'responsive-menu' ) ) );
+		}
 
-        // Merge the default and update options.
-        $options = array_merge(rmp_get_default_options(), $options);
+		$options = $options['menu'];
 
-        update_post_meta($menu_id, 'rmp_menu_meta', $options);
+		// Merge the default and update options.
+		$options = array_merge( rmp_get_default_options(), $options );
 
-        /**
-         * Fires when saved the options.
-         *
-         * @version 4.0.0
-         * @param int $menu_id Menu ID.
-         */
-        do_action('rmp_save_menu', $menu_id);
+		update_post_meta( $menu_id, 'rmp_menu_meta', $options );
 
-        // Return the response after success.
-        wp_send_json_success();
-    }
+		/**
+		 * Fires when saved the options.
+		 *
+		 * @version 4.0.0
+		 * @param int $menu_id Menu ID.
+		 */
+		do_action( 'rmp_save_menu', $menu_id );
+
+		// Return the response after success.
+		wp_send_json_success();
+	}
 }
