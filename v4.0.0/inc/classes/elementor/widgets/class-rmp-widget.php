@@ -53,7 +53,7 @@ class RMP_Widget extends Widget_Base
      */
     public function get_title()
     {
-        return __('Responsive Menu', 'responsive-menu');
+        return esc_html__('Responsive Menu', 'responsive-menu');
     }
 
     /**
@@ -102,7 +102,7 @@ class RMP_Widget extends Widget_Base
         $this->start_controls_section(
             'section_layout',
             [
-                'label' => __('Menu Setting', 'responsive-menu'),
+                'label' => esc_html__('Menu Setting', 'responsive-menu'),
             ]
         );
 
@@ -119,7 +119,7 @@ class RMP_Widget extends Widget_Base
             $this->add_control(
                 'rmp_menu',
                 [
-                    'label' => __('Responsive Menu', 'responsive-menu'),
+                    'label' => esc_html__('Responsive Menu', 'responsive-menu'),
                     'type' => Controls_Manager::SELECT,
                     'options' => $menus,
                     'default' => array_keys($menus)[0],
@@ -128,7 +128,7 @@ class RMP_Widget extends Widget_Base
                     /* translators: %s: HTML tag */
                     'description' => sprintf(
                         esc_html__('Go to the %sResponsive menu customizer%s to style your menu.', 'responsive-menu'),
-                        '<a class="rmp-menu-edit-link" href="'.admin_url("post.php?post=" . $menu_id . "&action=edit&editor=true").'" target="_blank">',
+                        '<a class="rmp-menu-edit-link" href="'.admin_url("post.php?post=" . $menu_id . "&action=edit&editor=true").'" target="_blank" rel="noopener">',
                         '</a>'
                     ),
                 ]
@@ -139,7 +139,7 @@ class RMP_Widget extends Widget_Base
                 [
                     'type' => Controls_Manager::RAW_HTML,
                     /* translators: %s: HTML tag */
-                    'raw' => '<strong>' . esc_html__('There are no menus in your site.', 'responsive-menu') . '</strong><br>' .sprintf(esc_html__('Go to the %s Menus screen %s to create one.', 'responsive-menu'), '<a href="'.esc_url(admin_url("edit.php?post_type=rmp_menu")).'" target="_blank">', '</a>'),
+                    'raw' => '<strong>' . esc_html__('There are no menus in your site.', 'responsive-menu') . '</strong><br>' .sprintf(esc_html__('Go to the %s Menus screen %s to create one.', 'responsive-menu'), '<a href="'.esc_url(admin_url("edit.php?post_type=rmp_menu")).'" target="_blank" rel="noopener">', '</a>'),
                     'separator' => 'after',
                     'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
                 ]

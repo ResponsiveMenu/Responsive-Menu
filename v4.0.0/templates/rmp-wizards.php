@@ -9,6 +9,7 @@
 
 // If theme list is cached then access it.
 $cached_data      = get_transient('rmp_theme_api_response');
+$pro_plugin_url   = 'https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile';
 $rmp_browse_class = '';
 if (empty($cached_data)) {
     $rmp_browse_class = 'rmp-call-theme-api-button';
@@ -70,7 +71,7 @@ if (empty($cached_data)) {
                         <div class="upgrade-options">
                             <div class="upgrade-notes">
                                 <p><?php esc_html_e('FontAwesome brand icons are not available in free version.', 'responsive-menu'); ?> <br/> <?php esc_html_e('Upgrade now to use', 'responsive-menu'); ?></p>
-                                <a target="_blank" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" class="button"> <?php esc_html_e('Upgrade to Pro', 'responsive-menu'); ?></a>
+                                <a target="_blank" rel="noopener" href="<?php echo esc_url($pro_plugin_url); ?>" class="button"> <?php esc_html_e('Upgrade to Pro', 'responsive-menu'); ?></a>
                             </div>
                         </div>
                     </div>
@@ -78,7 +79,7 @@ if (empty($cached_data)) {
                         <div class="upgrade-options">
                             <div class="upgrade-notes">
                                 <p><?php esc_html_e('FontAwesome solid icons are not available in free version.', 'responsive-menu'); ?> <br/> <?php esc_html_e('Upgrade now to use', 'responsive-menu'); ?></p>
-                                <a target="_blank" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" class="button"><?php esc_html_e('Upgrade to Pro', 'responsive-menu'); ?></a>
+                                <a target="_blank" rel="noopener" href="<?php echo esc_url($pro_plugin_url); ?>" class="button"><?php esc_html_e('Upgrade to Pro', 'responsive-menu'); ?></a>
                             </div>
                         </div>
                     </div>
@@ -86,7 +87,7 @@ if (empty($cached_data)) {
                         <div class="upgrade-options">
                             <div class="upgrade-notes">
                                 <p><?php esc_html_e('The glyphicons are not available in free version.', 'responsive-menu'); ?> <br/> <?php esc_html_e('Upgrade now to use', 'responsive-menu'); ?></p>
-                                <a target="_blank" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" class="button"><?php esc_html_e('Upgrade to Pro', 'responsive-menu'); ?></a>
+                                <a target="_blank" rel="noopener" href="<?php echo esc_url($pro_plugin_url); ?>" class="button"><?php esc_html_e('Upgrade to Pro', 'responsive-menu'); ?></a>
                             </div>
                         </div>
                     </div>
@@ -94,7 +95,7 @@ if (empty($cached_data)) {
                         <div class="upgrade-options">
                             <div class="upgrade-notes">
                                 <p><?php esc_html_e('Material icons are not available in free version.', 'responsive-menu'); ?> <br/> <?php esc_html_e('Upgrade now to use', 'responsive-menu'); ?></p>
-                                <a target="_blank" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" class="button"><?php esc_html_e('Upgrade to Pro', 'responsive-menu'); ?></a>
+                                <a target="_blank" rel="noopener" href="<?php echo esc_url($pro_plugin_url); ?>" class="button"><?php esc_html_e('Upgrade to Pro', 'responsive-menu'); ?></a>
                             </div>
                         </div>
                     </div>
@@ -102,7 +103,7 @@ if (empty($cached_data)) {
                         <div class="upgrade-options">
                             <div class="upgrade-notes">
                                 <p><?php esc_html_e('FontAwesome regular icons are not available in free version.', 'responsive-menu'); ?> <br/> <?php esc_html_e('Upgrade now to use', 'responsive-menu'); ?></p>
-                                <a target="_blank" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" class="button"><?php esc_html_e('Upgrade to Pro', 'responsive-menu'); ?></a>
+                                <a target="_blank" rel="noopener" href="<?php echo esc_url($pro_plugin_url); ?>" class="button"><?php esc_html_e('Upgrade to Pro', 'responsive-menu'); ?></a>
                             </div>
                         </div>
                     </div>

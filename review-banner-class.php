@@ -102,7 +102,7 @@ class RM_Review_Message
             esc_html($this->check_results_amount())
         ); ?>
 		<br/><strong><em>~ <?php esc_html_e('RM Team', 'responsive-menu'); ?></em></strong><br/><br/>
-		<a target="_blank" href="https://wordpress.org/support/plugin/responsive-menu/reviews/#new-topic-0" class="button-primary"><?php esc_html_e('Yeah, you deserve it!', 'responsive-menu'); ?></a>
+		<a target="_blank" rel="noopener" href="https://wordpress.org/support/plugin/responsive-menu/reviews/#new-topic-0" class="button-primary"><?php esc_html_e('Yeah, you deserve it!', 'responsive-menu'); ?></a>
 		<a href="<?php echo esc_url(add_query_arg('rm_review_notice_check', 'already_did')); ?>" class="button-secondary"><?php esc_html_e('I already did!', 'responsive-menu'); ?></a>
 		<a href="<?php echo esc_url(add_query_arg('rm_review_notice_check', 'remove_message')); ?>" class="button-secondary"><?php esc_html_e('No, this plugin is not good enough', 'responsive-menu'); ?></a>
         <br /><br /></div>

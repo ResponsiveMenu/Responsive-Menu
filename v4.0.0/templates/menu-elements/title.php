@@ -21,7 +21,7 @@
             <?php
 
             $control_manager->add_text_input_control([
-                'label'  => __('Title Text ', 'responsive-menu'),
+                'label'  => esc_html__('Title Text ', 'responsive-menu'),
                 'group_classes' => 'full-size',
                 'type' => 'text',
                 'placeholder' => 'Enter Title',
@@ -32,7 +32,7 @@
             ]);
 
             $control_manager->add_text_input_control([
-                'label'  => __('Link ', 'responsive-menu'),
+                'label'  => esc_html__('Link ', 'responsive-menu'),
                 'group_classes' => 'full-size',
                 'type' => 'text',
                 'class' => 'no-updates',
@@ -43,7 +43,7 @@
             ]);
 
             $control_manager->add_select_control([
-                'label'  => __('Link Target', 'responsive-menu'),
+                'label'  => esc_html__('Link Target', 'responsive-menu'),
                 'id'     => 'rmp-menu-title-link-location',
                 'class' => 'no-updates',
                 'name'    => 'menu[menu_title_link_location]',
@@ -54,7 +54,7 @@
             $ui_manager->accordion_divider();
 
             $control_manager->add_image_control([
-                'label'  => __('Image', 'responsive-menu'),
+                'label'  => esc_html__('Image', 'responsive-menu'),
                 'group_classes' => 'full-size',
                 'id'     => 'rmp-menu-title-image',
                 'picker_class'  => 'rmp-menu-title-image-selector',
@@ -64,7 +64,7 @@
             ]);
 
             $control_manager->add_icon_picker_control([
-                'label'  => __('Set Font Icon', 'responsive-menu'),
+                'label'  => esc_html__('Set Font Icon', 'responsive-menu'),
                 'id'     => 'rmp-button-title-icon',
                 'group_classes' => 'full-size',
                 'picker_class'  => 'rmp-button-title-icon-picker-button',
@@ -81,7 +81,7 @@
                 <?php
 
                     $control_manager->add_group_text_control([
-                        'label'  => __('Padding', 'responsive-menu'),
+                        'label'  => esc_html__('Padding', 'responsive-menu'),
                         'type'   =>   'text',
                         'class'  =>  'rmp-menu-title-section-padding',
                         'name'    => 'menu[menu_title_section_padding]',
@@ -91,14 +91,14 @@
 
                     $ui_manager->start_group_controls();
                     $control_manager->add_color_control([
-                        'label'  => __('Background', 'responsive-menu'),
+                        'label'  => esc_html__('Background', 'responsive-menu'),
                         'id'     => 'rmp-menu-title-background-colour',
                         'name'    => 'menu[menu_title_background_colour]',
                         'value'    => rmp_get_value($options, 'menu_title_background_colour'),
 
                     ]);
                     $control_manager->add_color_control([
-                        'label'  => __('Background Hover', 'responsive-menu'),
+                        'label'  => esc_html__('Background Hover', 'responsive-menu'),
                         'id'     => 'rmp-menu-title-background-hover-colour',
                         'name'    => 'menu[menu_title_background_hover_colour]',
                         'value'    => rmp_get_value($options, 'menu_title_background_hover_colour'),
@@ -109,7 +109,7 @@
                     $ui_manager->accordion_divider();
                     $ui_manager->start_group_controls();
                     $control_manager->add_text_input_control([
-                        'label'  => __('Font Size', 'responsive-menu'),
+                        'label'  => esc_html__('Font Size', 'responsive-menu'),
                         'type'   => 'number',
                         'class' => 'no-updates',
                         'id'     => 'rmp-menu-title-font-size',
@@ -126,7 +126,7 @@
                     ]);
 
                     $control_manager->add_text_alignment_control([
-                        'label'  => __('Text Alignment', 'responsive-menu'),
+                        'label'  => esc_html__('Text Alignment', 'responsive-menu'),
                         'class'   => 'rmp-menu-title-alignment',
                         'name'    => 'menu[menu_title_alignment]',
                         'options' => ['left','center','right','justify'],
@@ -138,7 +138,7 @@
                     //Font family and Font weight options.
                     $ui_manager->start_group_controls();
                     $control_manager->add_select_control([
-                        'label'  => __('Font Weight', 'responsive-menu'),
+                        'label'  => esc_html__('Font Weight', 'responsive-menu'),
                         'id'     => 'rmp-menu-title-font-weight',
                         'class' => 'no-updates',
                         'name'    => 'menu[menu_title_font_weight]',
@@ -148,7 +148,7 @@
                     ]);
 
                     $control_manager->add_text_input_control([
-                        'label'  => __('Font Family', 'responsive-menu'),
+                        'label'  => esc_html__('Font Family', 'responsive-menu'),
                         'type'   => 'text',
                         'id'     => 'rmp-menu-title-font-family',
                         'name'   => 'menu[menu_title_font_family]',
@@ -159,14 +159,14 @@
 
                     $ui_manager->start_group_controls();
                     $control_manager->add_color_control([
-                        'label'  => __(' Text Color', 'responsive-menu'),
+                        'label'  => esc_html__(' Text Color', 'responsive-menu'),
                         'id'     => 'rmp-menu-title-colour',
                         'name'    => 'menu[menu_title_colour]',
                         'value'    => rmp_get_value($options, 'menu_title_colour'),
 
                     ]);
                     $control_manager->add_color_control([
-                        'label'  => __(' Text Hover', 'responsive-menu'),
+                        'label'  => esc_html__(' Text Hover', 'responsive-menu'),
                         'id'     => 'rmp-menu-title-hover-colour',
                         'name'    => 'menu[menu_title_hover_colour]',
                         'value'    => rmp_get_value($options, 'menu_title_hover_colour'),
@@ -178,13 +178,13 @@
 
                     $ui_manager->start_group_controls();
                         $control_manager->add_text_input_control([
-                            'label'  => __('Image Width', 'responsive-menu'),
+                            'label'  => esc_html__('Image Width', 'responsive-menu'),
                             'type'   => 'number',
                             'id'     => 'rmp-menu-title-image-width',
                             'class' => 'no-updates',
                             'name'   => 'menu[menu_title_image_width]',
                             'value'    => rmp_get_value($options, 'menu_title_image_width'),
-                            'placeholder' => __('Enter width', 'responsive-menu'),
+                            'placeholder' => esc_html__('Enter width', 'responsive-menu'),
                             'has_unit' => [
                                 'unit_type' => 'all',
                                 'id' => 'rmp-menu-title-image-width-unit',
@@ -196,13 +196,13 @@
                         ]);
 
                         $control_manager->add_text_input_control([
-                            'label'  => __('Image Height', 'responsive-menu'),
+                            'label'  => esc_html__('Image Height', 'responsive-menu'),
                             'type'   => 'number',
                             'id'     => 'rmp-menu-title-image-height',
                             'class' => 'no-updates',
                             'name'   => 'menu[menu_title_image_height]',
                             'value'    => rmp_get_value($options, 'menu_title_image_height'),
-                            'placeholder' => __('Enter height', 'responsive-menu'),
+                            'placeholder' => esc_html__('Enter height', 'responsive-menu'),
                             'has_unit' => [
                                 'unit_type' => 'all',
                                 'id' => 'rmp-menu-title-image-height-unit',

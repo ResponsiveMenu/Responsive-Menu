@@ -102,7 +102,7 @@ class Control_Manager
                     if (! empty($param['feature_type'])) {
                         $is_disabled = 'disabled'; ?>
                         <a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url($this->pro_plugin_url); ?>" >
-                            <?php esc_html_e($param['feature_type'], 'responsive-menu'); ?>
+                            <?php echo esc_html($param['feature_type']); ?>
                         </a>
                 <?php
                     } ?>
@@ -378,13 +378,18 @@ class Control_Manager
         $group_classes = '';
         if (! empty($param['group_classes'])) {
             $group_classes = $param['group_classes'];
-        } ?><div class="rmp-input-control-wrapper <?php echo esc_attr($group_classes); ?>"><?php
-            ?><div class="rmp-input-control"><?php
-                $class = '';
+        }
+        $class = '';
         if (! empty($param['class'])) {
             $class = $param['class'];
-        } ?><button type="button" id="<?php echo esc_attr($param['id']); ?>" class="button button-primary button-large <?php echo esc_attr($class); ?>" ><?php echo esc_html($param['label']); ?></button>
-        </div></div><?php
+        }
+        ?>
+        <div class="rmp-input-control-wrapper <?php echo esc_attr($group_classes); ?>">
+            <div class="rmp-input-control">
+                <button type="button" id="<?php echo esc_attr($param['id']); ?>" class="button button-primary button-large <?php echo esc_attr($class); ?>" ><?php echo esc_html($param['label']); ?></button>
+            </div>
+        </div>
+        <?php
 
         /**
          * Filters the button input control html.

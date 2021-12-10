@@ -13,6 +13,7 @@ namespace RMP\Features\Inc;
 use RMP\Features\Inc\Option_Manager;
 use RMP\Features\Inc\Traits\Singleton;
 use ScssPhp\ScssPhp\Compiler;
+use \Exception;
 
 // Disable the direct access to this class.
 if (! defined('ABSPATH')) {

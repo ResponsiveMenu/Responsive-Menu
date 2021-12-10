@@ -77,11 +77,10 @@ function rmp_dashicon_selector()
 {
     foreach (rmp_all_dash_icons() as $code => $class) {
         $bits = explode("-", $code);
-        $code = "&#x" . $bits[1] . "";
         $type = $bits[0]; ?>
         <div class="<?php echo esc_attr($type); ?> font-icon">
-            <input class="radio" id="<?php echo esc_attr($class); ?>" type="radio" rel="<?php echo esc_attr($code); ?>" name="icon" value="dashicons <?php echo esc_attr($class); ?>" />
-            <label rel="<?php echo esc_attr($code); ?>" for="<?php echo esc_attr($class); ?>" title="<?php echo esc_attr($class); ?>" ></label>
+            <input class="radio" id="<?php echo esc_attr($class); ?>" type="radio" rel="<?php echo '&#x' . esc_attr($bits[1]); ?>" name="icon" value="dashicons <?php echo esc_attr($class); ?>" />
+            <label rel="<?php echo '&#x' . esc_attr($bits[1]); ?>" for="<?php echo esc_attr($class); ?>" title="<?php echo esc_attr($class); ?>" ></label>
         </div>
         <?php
     }

@@ -95,7 +95,7 @@ class Plugin
             return;
         } ?>
 		<div class="notice notice-error">
-			<p><?php esc_html_e('Responsive menu list is empty. Create a menu by clicking the <b>Create New Menu</b> button. For more details visit ', 'responsive-menu'); ?> <a href="<?php echo esc_url('https://responsive.menu/knowledgebase/responsive-menu-4-0-overview/'); ?>" target="_blank"> <?php esc_html_e('Documentation', 'responsive-menu'); ?></a></p>
+			<p><?php esc_html_e('Responsive menu list is empty. Create a menu by clicking the <b>Create New Menu</b> button. For more details visit ', 'responsive-menu'); ?> <a target="_blank" rel="noopener" href="<?php echo esc_url('https://responsive.menu/knowledgebase/responsive-menu-4-0-overview/'); ?>"> <?php esc_html_e('Documentation', 'responsive-menu'); ?></a></p>
 		</div><?php
     }
 
@@ -111,7 +111,7 @@ class Plugin
     {
         $links = array_merge(
             $links,
-            array( '<a class="responsive-menu-license-upgrade-link" target="_blank" href="https://responsive.menu/pricing/">' . __('Upgrade', 'responsive-menu') . '</a>')
+            array( '<a class="responsive-menu-license-upgrade-link" target="_blank" rel="noopener" href="https://responsive.menu/pricing/">' . esc_html__('Upgrade', 'responsive-menu') . '</a>')
         );
 
         return $links;

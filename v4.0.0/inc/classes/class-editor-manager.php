@@ -66,18 +66,18 @@ class Editor_Manager
 
         $item_id = isset($_POST['item_id']) ? sanitize_text_field(wp_unslash($_POST['item_id'])) : '';
         if (empty($item_id)) {
-            wp_send_json_error([ 'message' => __('Menu Item ID missing', 'responsive-menu') ]);
+            wp_send_json_error([ 'message' => esc_html__('Menu Item ID missing', 'responsive-menu') ]);
         }
 
         $menu_id = isset($_POST['menu_id']) ? sanitize_text_field(wp_unslash($_POST['menu_id'])) : '';
         if (empty($menu_id)) {
             wp_send_json_error(
-                [ 'message' => __('Menu ID missing !', 'responsive-menu')]
+                [ 'message' => esc_html__('Menu ID missing !', 'responsive-menu')]
             );
         }
 
         if (empty($_POST['item_meta'])) {
-            wp_send_json_error([ 'message' => __('Unable to get mega menu settings', 'responsive-menu')]);
+            wp_send_json_error([ 'message' => esc_html__('Unable to get mega menu settings', 'responsive-menu')]);
         }
 
         $item_meta = [];
@@ -125,11 +125,11 @@ class Editor_Manager
             $options['mega_menu'][$item_id] = $value ;
             $options = update_post_meta($menu_id, 'rmp_menu_meta', $options);
 
-            wp_send_json_success([ 'message' => __('Success', 'responsive-menu') ]);
+            wp_send_json_success([ 'message' => esc_html__('Success', 'responsive-menu') ]);
         }
 
         wp_send_json_error(
-            [ 'message' => __('Menu not found', 'responsive-menu') ]
+            [ 'message' => esc_html__('Menu not found', 'responsive-menu') ]
         );
     }
 
@@ -150,7 +150,7 @@ class Editor_Manager
 
         $menu_id = sanitize_text_field($options['menu_id']);
         if (empty($menu_id)) {
-            wp_send_json_error([ 'message' => __('Menu ID missing !', 'responsive-menu') ]);
+            wp_send_json_error([ 'message' => esc_html__('Menu ID missing !', 'responsive-menu') ]);
         }
 
         $options = $options['menu'];

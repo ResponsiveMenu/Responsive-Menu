@@ -28,7 +28,7 @@
                     <?php
 
                     $control_manager->add_group_text_control( [
-                        'label'  => __('Padding','responsive-menu'),
+                        'label'  => esc_html__('Padding','responsive-menu'),
                         'type'   =>   'text',
                         'class'  =>  'rmp-menu-additional-section-padding',
                         'name'    => 'menu[menu_additional_section_padding]',
@@ -38,7 +38,7 @@
 
                     $ui_manager->start_group_controls();
                     $control_manager->add_text_input_control( [
-                        'label'  => __('Font Size','responsive-menu'),
+                        'label'  => esc_html__('Font Size','responsive-menu'),
                         'type'   => 'number',
                         'class' => 'no-updates',
                         'id'     => 'rmp-menu-additional-content-font-size',
@@ -55,7 +55,7 @@
                     ] );
 
                     $control_manager->add_text_alignment_control( [
-                        'label'  => __('Text Alignment','responsive-menu'),
+                        'label'  => esc_html__('Text Alignment','responsive-menu'),
                         'class'   => 'rmp-menu-additional-content-alignment',
                         'name'    => 'menu[menu_additional_content_alignment]',
                         'options' => ['left','center','right','justify'],
@@ -64,7 +64,7 @@
                     $ui_manager->end_group_controls();
 
                     $control_manager->add_color_control( [
-                        'label'  => __('Text Color','responsive-menu'),
+                        'label'  => esc_html__('Text Color','responsive-menu'),
                         'id'     => 'rmp-menu-additional-content-color',
                         'name'    => 'menu[menu_additional_content_colour]',
                         'value'    => rmp_get_value($options,'menu_additional_content_colour'),

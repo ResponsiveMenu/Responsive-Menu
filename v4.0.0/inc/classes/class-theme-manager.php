@@ -125,7 +125,7 @@ class Theme_Manager
 
         $theme_name = isset($_POST['theme_name']) ? sanitize_text_field(wp_unslash($_POST['theme_name'])) : '';
         if (empty($theme_name)) {
-            wp_send_json_error([ 'message' => __('Theme Name Missing', 'responsive-menu') ]);
+            wp_send_json_error([ 'message' => esc_html__('Theme Name Missing', 'responsive-menu') ]);
         }
 
         $theme_type  = isset($_POST['theme_type']) ? sanitize_text_field(wp_unslash($_POST['theme_type'])) : '';
@@ -153,7 +153,7 @@ class Theme_Manager
          */
         do_action('rmp_theme_apply', $menu_id);
 
-        wp_send_json_success([ 'message' => __('Theme applied', 'responsive-menu') ]);
+        wp_send_json_success([ 'message' => esc_html__('Theme applied', 'responsive-menu') ]);
     }
 
     /**
@@ -229,13 +229,13 @@ class Theme_Manager
 
         $theme_name = isset($_POST['theme_name']) ? sanitize_text_field(wp_unslash($_POST['theme_name'])) : '';
         if (empty($theme_name)) {
-            wp_send_json_error([ 'message' => __('Theme Name Missing', 'responsive-menu') ]);
+            wp_send_json_error([ 'message' => esc_html__('Theme Name Missing', 'responsive-menu') ]);
         }
 
         $theme_type = isset($_POST['theme_type']) ? sanitize_text_field(wp_unslash($_POST['theme_type'])) : '';
 
         if ($this->is_active_theme($theme_name, $theme_type)) {
-            wp_send_json_error([ 'message' => __('This theme is currently active. Please choose another theme and then try deleting.', 'responsive-menu') ]);
+            wp_send_json_error([ 'message' => esc_html__('This theme is currently active. Please choose another theme and then try deleting.', 'responsive-menu') ]);
         }
 
         if ('template' === $theme_type) {
@@ -244,7 +244,7 @@ class Theme_Manager
             $this->delete_theme_folder($theme_name);
         }
 
-        wp_send_json_success([ 'message' => __('Theme deleted', 'responsive-menu') ]);
+        wp_send_json_success([ 'message' => esc_html__('Theme deleted', 'responsive-menu') ]);
     }
 
     /**
@@ -368,7 +368,7 @@ class Theme_Manager
         $validate_file = wp_check_filetype($file_name);
         if (empty($_FILES['file']['tmp_name']) || !isset($validate_file['type']) || 'application/zip' !== $validate_file['type']) {
             wp_send_json_error(
-                [ 'message' => __('Please add zip file !', 'responsive-menu')]
+                [ 'message' => esc_html__('Please add zip file !', 'responsive-menu')]
             );
         }
 
@@ -384,7 +384,7 @@ class Theme_Manager
             );
         } else {
             wp_send_json_success(
-                [ 'message' => __('Theme Imported Successfully.', 'responsive-menu')]
+                [ 'message' => esc_html__('Theme Imported Successfully.', 'responsive-menu')]
             );
         }
     }
@@ -471,13 +471,13 @@ class Theme_Manager
 
         $theme_name = isset($_POST['theme_name']) ? sanitize_text_field(wp_unslash($_POST['theme_name'])) : '';
         if (empty($theme_name)) {
-            wp_send_json_error([ 'message' => __('Theme Name Missing', 'responsive-menu') ]);
+            wp_send_json_error([ 'message' => esc_html__('Theme Name Missing', 'responsive-menu') ]);
         }
 
         $menu_id = isset($_POST['menu_id']) ? sanitize_text_field(wp_unslash($_POST['menu_id'])) : '';
         if (empty($menu_id)) {
             wp_send_json_error(
-                [ 'message' => __('Menu ID missing !', 'responsive-menu')]
+                [ 'message' => esc_html__('Menu ID missing !', 'responsive-menu')]
             );
         }
 
@@ -926,8 +926,8 @@ class Theme_Manager
 					</label>
 				</li>',
                 esc_url($this->theme_preview_img),
-                __('Default Theme', 'responsive-menu'),
-                __('View Demo', 'responsive-menu')
+                esc_html__('Default Theme', 'responsive-menu'),
+                esc_html__('View Demo', 'responsive-menu')
             );
         }
 
@@ -953,7 +953,7 @@ class Theme_Manager
                     '<a href="%s" alt="%s" target="_blank" rel="noopener" class="button">%s</a>',
                     esc_url($link),
                     esc_attr($theme['theme_name']),
-                    __('View Demo', 'responsive-menu')
+                    esc_html__('View Demo', 'responsive-menu')
                 );
             }
 
@@ -962,7 +962,7 @@ class Theme_Manager
                 $apply_button = sprintf(
                     '<button class="button btn-blue rmp-theme-apply" theme-name="%s" theme-type="downloaded" >%s</button>',
                     esc_html($theme['theme_name']),
-                    __('Apply', 'responsive-menu')
+                    esc_html__('Apply', 'responsive-menu')
                 );
             } else {
                 $select_option = sprintf(
@@ -1023,7 +1023,7 @@ class Theme_Manager
         $validate_file = wp_check_filetype($file_name);
         if (empty($_FILES['file']['tmp_name']) || !isset($validate_file['type']) || 'application/zip' !== $validate_file['type']) {
             wp_send_json_error(
-                [ 'message' => __('Please add zip file !', 'responsive-menu')]
+                [ 'message' => esc_html__('Please add zip file !', 'responsive-menu')]
             );
         }
 
@@ -1042,7 +1042,7 @@ class Theme_Manager
         //Return the response
         wp_send_json_success(
             [
-                'message' => __('Theme is uploaded successfully', 'responsive-menu'),
+                'message' => esc_html__('Theme is uploaded successfully', 'responsive-menu'),
                 'html'    => $this->get_available_themes_return($this->is_customizer())
             ]
         );
@@ -1063,7 +1063,7 @@ class Theme_Manager
 
         return wp_send_json_success(
             [
-                'message' => __('Cache data updated !', 'responsive-menu'),
+                'message' => esc_html__('Cache data updated !', 'responsive-menu'),
                 'html'    => $this->get_themes_from_theme_store($this->is_customizer())
             ]
         );

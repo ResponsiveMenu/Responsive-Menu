@@ -57,11 +57,11 @@ class RMNextUpdateMessage
             <h3><?php echo esc_html__("What's Next", "responsive-menu"); ?></h3>
             <p><?php echo esc_html__("This page shows what has been planned for the Responsive Menu plugin. You can vote on the roadmap cards or add your own idea.", "responsive-menu"); ?></p>
             <p><strong><em><?php echo esc_html__("~ RM Team", "responsive-menu"); ?></em></strong></p>
-            <a target="_blank" href="<?php echo esc_url($roadmap_url) ; ?>" class="rm-btn-link" rel="noopener"><?php echo esc_html__("Roadmap", "responsive-menu"); ?></a>
+            <a target="_blank" rel="noopener" href="<?php echo esc_url($roadmap_url) ; ?>" class="rm-btn-link" rel="noopener"><?php echo esc_html__("Roadmap", "responsive-menu"); ?></a>
             <span class="rm-btn-link-seprate">|</span>
-            <a target="_blank" href="<?php echo esc_url($update_url) ; ?>" class="rm-btn-link" rel="noopener"><?php echo esc_html__("Updates", "responsive-menu"); ?></a>
+            <a target="_blank" rel="noopener" href="<?php echo esc_url($update_url) ; ?>" class="rm-btn-link" rel="noopener"><?php echo esc_html__("Updates", "responsive-menu"); ?></a>
             <span class="rm-btn-link-seprate">|</span>
-            <a target="_blank" href="<?php echo esc_url($ideas_url) ; ?>" class="rm-btn-link" rel="noopener"><?php echo esc_html__("Ideas", "responsive-menu"); ?></a>
+            <a target="_blank" rel="noopener" href="<?php echo esc_url($ideas_url) ; ?>" class="rm-btn-link" rel="noopener"><?php echo esc_html__("Ideas", "responsive-menu"); ?></a>
             <a href="<?php echo esc_url($close_url) ; ?>" class="notice-dismiss"><span class="screen-reader-text"><?php echo esc_html__("Dismiss this notice.", "responsive-menu"); ?></span></a>
         </div>
     <?php

@@ -23,7 +23,7 @@
                 <label class="rmp-input-control-label">
                     <?php esc_html_e('Placeholder Text', 'responsive-menu'); ?>
                     <span>
-                        <a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > PRO </a>
+                        <a target="_blank" rel="noopener" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > PRO </a>
                     </span>
                 </label>
                 <div class="rmp-input-control">
@@ -36,7 +36,7 @@
             <?php
 
             $control_manager->add_group_text_control([
-                'label'  => __('Padding', 'responsive-menu'),
+                'label'  => esc_html__('Padding', 'responsive-menu'),
                 'type'   =>   'text',
                 'class'  =>  'rmp-menu-search-section-padding',
                 'name'    => 'menu[menu_search_section_padding]',
@@ -46,7 +46,7 @@
 
             $ui_manager->start_group_controls();
                 $control_manager->add_text_input_control([
-                    'label'  => __('Height', 'responsive-menu'),
+                    'label'  => esc_html__('Height', 'responsive-menu'),
                     'type'   => 'number',
                     'id'     => 'rmp-menu-search-box-height',
                     'name'   => 'menu[menu_search_box_height]',
@@ -63,7 +63,7 @@
                 ]);
 
                 $control_manager->add_text_input_control([
-                    'label'  => __('Border Radius', 'responsive-menu'),
+                    'label'  => esc_html__('Border Radius', 'responsive-menu'),
                     'type'   => 'number',
                     'class' => 'no-updates',
                     'id'     => 'rmp-menu-search-box-border-radius',
@@ -80,14 +80,14 @@
 
             $ui_manager->start_group_controls();
             $control_manager->add_color_control([
-                'label'  => __('Text Color', 'responsive-menu'),
+                'label'  => esc_html__('Text Color', 'responsive-menu'),
                 'id'     => 'rmp-menu-search-box-text-colour',
                 'name'    => 'menu[menu_search_box_text_colour]',
                 'value'    => rmp_get_value($options, 'menu_search_box_text_colour'),
 
             ]);
             $control_manager->add_color_control([
-                'label'  => __('Background Color', 'responsive-menu'),
+                'label'  => esc_html__('Background Color', 'responsive-menu'),
                 'id'     => 'rmp-menu-search-box-background-colour',
                 'name'    => 'menu[menu_search_box_background_colour]',
                 'value'    => rmp_get_value($options, 'menu_search_box_background_colour'),
@@ -97,14 +97,14 @@
             $ui_manager->start_group_controls();
 
             $control_manager->add_color_control([
-                'label'  => __('Placeholder Color', 'responsive-menu'),
+                'label'  => esc_html__('Placeholder Color', 'responsive-menu'),
                 'id'     => 'rmp-menu-search-box-placeholder-colour',
                 'name'    => 'menu[menu_search_box_placeholder_colour]',
                 'value'    => rmp_get_value($options, 'menu_search_box_placeholder_colour'),
             ]);
 
             $control_manager->add_color_control([
-                'label'  => __('Border Color', 'responsive-menu'),
+                'label'  => esc_html__('Border Color', 'responsive-menu'),
                 'id'     => 'rmp-menu-search-box-border-colour',
                 'name'    => 'menu[menu_search_box_border_colour]',
                 'value'    => rmp_get_value($options, 'menu_search_box_border_colour'),

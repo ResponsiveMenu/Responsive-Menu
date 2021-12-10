@@ -128,9 +128,9 @@ if (! empty($global_settings['rmp_dark_mode'])) {
                     <div class="input-control">
                         <select name="menu-to-use" id="rmp-menu-to-use">
                             <?php
-                            $menus = wp_get_nav_menus();
-                            foreach ($menus as $menu) {
-                                ?><option value="<?php echo esc_attr($menu->slug); ?>"><?php esc_html_e($menu->name); ?></option><?php
+                            $nav_menus = wp_get_nav_menus();
+                            foreach ($nav_menus as $nav_menu) {
+                                ?><option value="<?php echo esc_attr($nav_menu->slug); ?>"><?php esc_html_e($nav_menu->name); ?></option><?php
                             }
                             ?>
                         </select>
@@ -157,7 +157,7 @@ if (! empty($global_settings['rmp_dark_mode'])) {
                         <h4 class="input-label-title"><?php esc_html_e('Hide Theme Menu', 'responsive-menu'); ?></h4>
                         <p class="input-label-description">
                             <?php esc_html_e('Add any valid css selector to hide the existing menu on your website.', 'responsive-menu'); ?>
-                            <a href="https://responsive.menu/knowledgebase/hiding-original-wordpress-menu/" target="_blank"> Know More </a>
+                            <a href="https://responsive.menu/knowledgebase/hiding-original-wordpress-menu/" target="_blank" rel="noopener"> Know More </a>
                         </p>
                     </div>
 
@@ -171,7 +171,7 @@ if (! empty($global_settings['rmp_dark_mode'])) {
                     <div class="rmp-input-control-label input-label">
                         <h4 class="input-label-title">
                             <span> <?php esc_html_e('Device Visibility', 'responsive-menu'); ?> </span>
-                            <a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > PRO </a>
+                            <a target="_blank" rel="noopener" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > PRO </a>
                         </h4>
 
                         <p class="input-label-description">
@@ -235,7 +235,7 @@ if (! empty($global_settings['rmp_dark_mode'])) {
                     <div for="rmp-menu-display-on-pages" class="input-label">
                         <h4 class="input-label-title">
                             <span> <?php esc_html_e('Display Condition', 'responsive-menu'); ?></span>
-                            <a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > SEMI-PRO </a>
+                            <a target="_blank" rel="noopener" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > SEMI-PRO </a>
                         </h4>
 
                         <p class="input-label-description">

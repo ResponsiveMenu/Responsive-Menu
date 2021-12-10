@@ -133,12 +133,12 @@ class Admin
 
         $menu_name = isset($_POST['menu_name']) ? sanitize_text_field(wp_unslash($_POST['menu_name'])) : '';
         if (empty($menu_name)) {
-            wp_send_json_error([ 'message' => __('Enter the Menu name !', 'responsive-menu') ]);
+            wp_send_json_error([ 'message' => esc_html__('Enter the Menu name !', 'responsive-menu') ]);
         }
 
         $menu_to_use = isset($_POST['menu_to_use']) ? sanitize_text_field(wp_unslash($_POST['menu_to_use'])) : '';
         if (empty($menu_to_use)) {
-            wp_send_json_error([ 'message' => __('Select menu to use !', 'responsive-menu') ]);
+            wp_send_json_error([ 'message' => esc_html__('Select menu to use !', 'responsive-menu') ]);
         }
 
         $menu_to_hide = isset($_POST['menu_to_hide']) ? sanitize_text_field(wp_unslash($_POST['menu_to_hide'])) : '';
@@ -204,7 +204,7 @@ class Admin
 
             wp_send_json_success(
                 [
-                    'message'       => __('Menu is created successfully', 'responsive-menu'),
+                    'message'       => esc_html__('Menu is created successfully', 'responsive-menu'),
                     'customize_url' => sprintf(
                         '%spost.php?post=%s&action=edit&editor=true',
                         get_admin_url(),
@@ -213,7 +213,7 @@ class Admin
                 ]
             );
         } else {
-            wp_send_json_error([ 'message' => __('Unable to create new Menu !', 'responsive-menu') ]);
+            wp_send_json_error([ 'message' => esc_html__('Unable to create new Menu !', 'responsive-menu') ]);
         }
     }
 
@@ -235,7 +235,7 @@ class Admin
 
         // Check given id is valid.
         if (empty($attrs['id'])) {
-            return __('Please pass menu id as attribute.', 'responsive-menu');
+            return esc_html__('Please pass menu id as attribute.', 'responsive-menu');
         }
 
         $menu_id   = $attrs['id'];
@@ -249,7 +249,7 @@ class Admin
         $option         = $option_manager->get_option($menu_id, 'menu_display_on');
 
         if ('shortcode' !== $option) {
-            return __('Shortcode deactivated', 'responsive-menu');
+            return esc_html__('Shortcode deactivated', 'responsive-menu');
         }
 
         ob_start();
@@ -285,8 +285,8 @@ class Admin
     {
         add_submenu_page(
             'edit.php?post_type=rmp_menu',
-            __('Settings', 'responsive-menu'),
-            __('Settings', 'responsive-menu'),
+            esc_html__('Settings', 'responsive-menu'),
+            esc_html__('Settings', 'responsive-menu'),
             'manage_options',
             'settings',
             array( $this, 'rmp_global_settings_page' )
@@ -294,8 +294,8 @@ class Admin
 
         add_submenu_page(
             'edit.php?post_type=rmp_menu',
-            __('Themes', 'responsive-menu'),
-            __('Themes', 'responsive-menu'),
+            esc_html__('Themes', 'responsive-menu'),
+            esc_html__('Themes', 'responsive-menu'),
             'manage_options',
             'themes',
             array( $this, 'rmp_theme_admin_page' )
@@ -378,7 +378,7 @@ class Admin
             $actions['edit'] = sprintf(
                 '<a href="%s" aria-label="Edit">%s</a>',
                 esc_url(get_edit_post_link($post->ID)),
-                __('Customize', 'responsive-menu')
+                esc_html__('Customize', 'responsive-menu')
             );
         }
 
@@ -397,9 +397,9 @@ class Admin
     public function set_custom_edit_menu_columns($columns)
     {
         unset($columns['date']);
-        $columns['shortcode_place']  = __('Shortcode', 'responsive-menu');
-        $columns['actions']          = __('Actions', 'responsive-menu');
-        $columns['date']             = __('Date', 'responsive-menu');
+        $columns['shortcode_place']  = esc_html__('Shortcode', 'responsive-menu');
+        $columns['actions']          = esc_html__('Actions', 'responsive-menu');
+        $columns['date']             = esc_html__('Date', 'responsive-menu');
 
         return $columns;
     }
@@ -440,9 +440,7 @@ class Admin
         switch ($column) {
 
             case 'actions':
-                ?>
-				<a href="<?php echo esc_url(get_edit_post_link($post_id)); ?>" class="button" aria-label="Customize"><?php esc_html_e('Customize', 'responsive-menu'); ?></a>
-				<?php
+                ?><a href="<?php echo esc_url(get_edit_post_link($post_id)); ?>" class="button" aria-label="Customize"><?php esc_html_e('Customize', 'responsive-menu'); ?></a><?php
                 break;
             case 'shortcode_place':
                 $option  = $option_manager->get_option($post_id, 'menu_display_on');
@@ -452,7 +450,6 @@ class Admin
                     esc_html_e('Shortcode deactivated', 'responsive-menu');
                 }
                 break;
-
         }
     }
 
@@ -470,24 +467,24 @@ class Admin
         }
 
         $labels = array(
-            'name'                => __('Responsive Menu', 'responsive-menu'),
+            'name'                => esc_html__('Responsive Menu', 'responsive-menu'),
             'singular_name'       => 'Rmp_Menu',
-            'menu_name'           => __('Responsive Menu', 'responsive-menu'),
-            'parent_item_colon'   => __('Parent Menu', 'responsive-menu'),
-            'all_items'           => __('Menus', 'responsive-menu'),
-            'view_item'           => __('View Menu', 'responsive-menu'),
-            'add_new_item'        => __('Add New Menu', 'responsive-menu'),
-            'add_new'             => __('Create New Menu', 'responsive-menu'),
-            'edit_item'           => __('Edit Menu', 'responsive-menu'),
-            'update_item'         => __('Update Menu', 'responsive-menu'),
-            'search_items'        => __('Search Menu', 'responsive-menu'),
-            'not_found'           => __('Not Found', 'responsive-menu'),
-            'not_found_in_trash'  => __('Not found in Trash', 'responsive-menu')
+            'menu_name'           => esc_html__('Responsive Menu', 'responsive-menu'),
+            'parent_item_colon'   => esc_html__('Parent Menu', 'responsive-menu'),
+            'all_items'           => esc_html__('Menus', 'responsive-menu'),
+            'view_item'           => esc_html__('View Menu', 'responsive-menu'),
+            'add_new_item'        => esc_html__('Add New Menu', 'responsive-menu'),
+            'add_new'             => esc_html__('Create New Menu', 'responsive-menu'),
+            'edit_item'           => esc_html__('Edit Menu', 'responsive-menu'),
+            'update_item'         => esc_html__('Update Menu', 'responsive-menu'),
+            'search_items'        => esc_html__('Search Menu', 'responsive-menu'),
+            'not_found'           => esc_html__('Not Found', 'responsive-menu'),
+            'not_found_in_trash'  => esc_html__('Not found in Trash', 'responsive-menu')
         );
 
         $args = array(
-            'label'               => __('Responsive Menu', 'responsive-menu'),
-            'description'         => __('Responsive Menu', 'responsive-menu'),
+            'label'               => esc_html__('Responsive Menu', 'responsive-menu'),
+            'description'         => esc_html__('Responsive Menu', 'responsive-menu'),
             'labels'              => $labels,
             'supports'            => array( 'title',  'author'),
             'public'              => false,
@@ -527,7 +524,7 @@ class Admin
 
         $menu_id = isset($_POST['menu_id']) ? sanitize_text_field(wp_unslash($_POST['menu_id'])) : '';
         if (empty($menu_id)) {
-            wp_send_json_error([ 'message' => __('Select menu !', 'responsive-menu') ]);
+            wp_send_json_error([ 'message' => esc_html__('Select menu !', 'responsive-menu') ]);
         }
 
         $option_manager = Option_Manager::get_instance();
@@ -548,16 +545,16 @@ class Admin
         check_ajax_referer('rmp_nonce', 'ajax_nonce');
 
         if (empty($_FILES['file']['name'])) {
-            wp_send_json_error([ 'message' => __('Please add file !', 'responsive-menu') ]);
+            wp_send_json_error([ 'message' => esc_html__('Please add file !', 'responsive-menu') ]);
         }
 
         if (empty($_FILES['file']['tmp_name']) || 'application/json' != $_FILES['file']['type']) {
-            wp_send_json_error([ 'message' => __('Please add json file !', 'responsive-menu') ]);
+            wp_send_json_error([ 'message' => esc_html__('Please add json file !', 'responsive-menu') ]);
         }
 
         $menu_id =  isset($_POST['menu_id']) ? sanitize_text_field(wp_unslash($_POST['menu_id'])) : '';
         if (empty($menu_id)) {
-            wp_send_json_error([ 'message' => __('Select menu !', 'responsive-menu') ]);
+            wp_send_json_error([ 'message' => esc_html__('Select menu !', 'responsive-menu') ]);
         }
 
         $file_contents  = isset($_FILES['file']['tmp_name']) ? file_get_contents(wp_unslash($_FILES['file']['tmp_name'])) : '';
@@ -583,6 +580,6 @@ class Admin
          */
         do_action('rmp_import_menu', $menu_id);
 
-        wp_send_json_success([ 'message' => __('Menu settings imported successfully!', 'responsive-menu') ]);
+        wp_send_json_success([ 'message' => esc_html__('Menu settings imported successfully!', 'responsive-menu') ]);
     }
 }

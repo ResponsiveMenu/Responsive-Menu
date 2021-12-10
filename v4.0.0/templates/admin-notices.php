@@ -17,7 +17,7 @@
     </div>
 
     <div class="notice-responsive-menu-action">
-        <a target="_blank" href="https://responsive.menu/pricing/" data-toggle="tab">
+        <a target="_blank" rel="noopener" href="https://responsive.menu/pricing/" data-toggle="tab">
             <span class="dashicons dashicons-update-alt"></span>
             <?php esc_html_e('Upgrade To Pro', 'responsive-menu');?>
         </a>
