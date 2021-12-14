@@ -70,14 +70,24 @@ $options         = $option_manager->get_options( $menu_id );
 						<ul id="rmp-editor-pane" class="rmp-editor-pane-parent">
 							<li id="rmp-tab-item-mobile-menu" class="rmp-tab-item" aria-owns="tab-mobile-menu">
 								<span class="rmp-tab-item-icon">
-									<?php echo wp_kses( file_get_contents( RMP_PLUGIN_PATH_V4 . '/assets/admin/icons/svg/mobile.svg' ), rmp_allow_svg_html_tags() ); ?>
+									<?php
+									$svg_mobile = wp_remote_get( RMP_PLUGIN_URL_V4 . '/assets/admin/icons/svg/mobile.svg' );
+									if ( is_array( $svg_mobile ) && ! is_wp_error( $svg_mobile ) ) {
+										echo wp_kses( $svg_mobile['body'], rmp_allow_svg_html_tags() );
+									}
+									?>
 								</span>
 								<h3 class="rmp-tab-item-title"><?php esc_html_e( 'Mobile Menu', 'responsive-menu' ); ?></h3>
 							</li>
 
 							<li id="rmp-tab-item-desktop-menu" class="rmp-tab-item" aria-owns="tab-desktop-menu">
 								<span class="rmp-tab-item-icon">
-									<?php echo wp_kses( file_get_contents( RMP_PLUGIN_PATH_V4 . '/assets/admin/icons/svg/desktop.svg' ), rmp_allow_svg_html_tags() ); ?>
+									<?php
+									$svg_desktop = wp_remote_get( RMP_PLUGIN_URL_V4 . '/assets/admin/icons/svg/desktop.svg' );
+									if ( is_array( $svg_desktop ) && ! is_wp_error( $svg_desktop ) ) {
+										echo wp_kses( $svg_desktop['body'], rmp_allow_svg_html_tags() );
+									}
+									?>
 								</span>
 								<h3 class="rmp-tab-item-title">
 									<span> <?php esc_html_e( 'Desktop Menu', 'responsive-menu' ); ?></span>
@@ -87,14 +97,24 @@ $options         = $option_manager->get_options( $menu_id );
 
 							<li id="rmp-tab-item-dropdowns" class="rmp-tab-item" aria-owns="tab-menu-styling">
 								<span class="rmp-tab-item-icon">
-									<?php echo wp_kses( file_get_contents( RMP_PLUGIN_PATH_V4 . '/assets/admin/icons/svg/dropdowns.svg' ), rmp_allow_svg_html_tags() ); ?>
+									<?php
+									$svg_dropdowns = wp_remote_get( RMP_PLUGIN_URL_V4 . '/assets/admin/icons/svg/dropdowns.svg' );
+									if ( is_array( $svg_dropdowns ) && ! is_wp_error( $svg_dropdowns ) ) {
+										echo wp_kses( $svg_dropdowns['body'], rmp_allow_svg_html_tags() );
+									}
+									?>
 								</span>
 								<h3 class="rmp-tab-item-title"><?php esc_html_e( 'Menu Styling', 'responsive-menu' ); ?></h3>
 							</li>
 
 							<li id="rmp-tab-item-header-bar" class="rmp-tab-item" aria-owns="tab-header-bar">
 								<span class="rmp-tab-item-icon">
-									<?php echo wp_kses( file_get_contents( RMP_PLUGIN_PATH_V4 . '/assets/admin/icons/svg/header.svg' ), rmp_allow_svg_html_tags() ); ?>
+									<?php
+									$svg_header = wp_remote_get( RMP_PLUGIN_URL_V4 . '/assets/admin/icons/svg/header.svg' );
+									if ( is_array( $svg_header ) && ! is_wp_error( $svg_header ) ) {
+										echo wp_kses( $svg_header['body'], rmp_allow_svg_html_tags() );
+									}
+									?>
 								</span>
 								<h3 class="rmp-tab-item-title">
 									<span><?php esc_html_e( 'Header Bar', 'responsive-menu' ); ?></span>
@@ -104,14 +124,24 @@ $options         = $option_manager->get_options( $menu_id );
 
 							<li id="rmp-tab-item-themes" class="rmp-tab-item" aria-owns="tab-themes">
 								<span class="rmp-tab-item-icon">
-									<?php echo wp_kses( file_get_contents( RMP_PLUGIN_PATH_V4 . '/assets/admin/icons/svg/advanced.svg' ), rmp_allow_svg_html_tags() ); ?>
+									<?php
+									$svg_advanced = wp_remote_get( RMP_PLUGIN_URL_V4 . '/assets/admin/icons/svg/advanced.svg' );
+									if ( is_array( $svg_advanced ) && ! is_wp_error( $svg_advanced ) ) {
+										echo wp_kses( $svg_advanced['body'], rmp_allow_svg_html_tags() );
+									}
+									?>
 								</span>
 								<h3 class="rmp-tab-item-title"><?php esc_html_e( 'Themes', 'responsive-menu' ); ?></h3>
 							</li>
 
 							<li id="rmp-tab-item-settings" class="rmp-tab-item" aria-owns="tab-settings">
 								<span class="rmp-tab-item-icon">
-									<?php echo wp_kses( file_get_contents( RMP_PLUGIN_PATH_V4 . '/assets/admin/icons/svg/general.svg' ), rmp_allow_svg_html_tags() ); ?>
+									<?php
+									$svg_general = wp_remote_get( RMP_PLUGIN_URL_V4 . '/assets/admin/icons/svg/general.svg' );
+									if ( is_array( $svg_general ) && ! is_wp_error( $svg_general ) ) {
+										echo wp_kses( $svg_general['body'], rmp_allow_svg_html_tags() );
+									}
+									?>
 								</span>
 								<h3 class="rmp-tab-item-title"><?php esc_html_e( 'Settings', 'responsive-menu' ); ?></h3>
 							</li>
@@ -386,7 +416,7 @@ $options         = $option_manager->get_options( $menu_id );
 									'item_class'  => 'is-child-item',
 									'aria_owns'   => 'tab-container',
 									'item_header' => array(
-										'item_svg_icon' => RMP_PLUGIN_PATH_V4 . '/assets/admin/icons/svg/container.svg',
+										'item_svg_icon' => RMP_PLUGIN_URL_V4 . '/assets/admin/icons/svg/container.svg',
 										'item_title'    => esc_html__( 'Container', 'responsive-menu' ),
 									),
 								)
@@ -397,7 +427,7 @@ $options         = $option_manager->get_options( $menu_id );
 									'item_class'  => 'is-child-item',
 									'aria_owns'   => 'tab-toggle-button',
 									'item_header' => array(
-										'item_svg_icon' => RMP_PLUGIN_PATH_V4 . '/assets/admin/icons/svg/toggle.svg',
+										'item_svg_icon' => RMP_PLUGIN_URL_V4 . '/assets/admin/icons/svg/toggle.svg',
 										'item_title'    => esc_html__( 'Toggle button', 'responsive-menu' ),
 									),
 								)
@@ -414,7 +444,7 @@ $options         = $option_manager->get_options( $menu_id );
 									'item_class'  => 'is-child-item rmp-tab-item-general-settings',
 									'aria_owns'   => 'tab-general-settings',
 									'item_header' => array(
-										'item_svg_icon' => RMP_PLUGIN_PATH_V4 . '/assets/admin/icons/svg/general.svg',
+										'item_svg_icon' => RMP_PLUGIN_URL_V4 . '/assets/admin/icons/svg/general.svg',
 										'item_title'    => esc_html__( 'General Settings', 'responsive-menu' ),
 									),
 								)
@@ -425,7 +455,7 @@ $options         = $option_manager->get_options( $menu_id );
 									'item_class'  => 'is-child-item rmp-tab-item-advanced-settings',
 									'aria_owns'   => 'tab-advanced-settings',
 									'item_header' => array(
-										'item_svg_icon' => RMP_PLUGIN_PATH_V4 . '/assets/admin/icons/svg/advanced.svg',
+										'item_svg_icon' => RMP_PLUGIN_URL_V4 . '/assets/admin/icons/svg/advanced.svg',
 										'item_title'    => esc_html__( 'Advanced Settings', 'responsive-menu' ),
 									),
 								)

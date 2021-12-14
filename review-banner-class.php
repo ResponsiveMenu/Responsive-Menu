@@ -90,13 +90,7 @@ class RM_Review_Message {
 		<div class='updated'><br />
 		<?php
 		/* translators: %d: Result count */
-		echo sprintf(
-			esc_html__(
-				'Greetings! I just noticed that you have created %d Menus. That is awesome! Could you please help me out by giving this plugin a 5-star rating on WordPress? This will help us by helping other users discover this plugin.',
-				'responsive-menu'
-			),
-			esc_html( $this->check_results_amount() )
-		);
+		echo sprintf( esc_html__( 'Greetings! I just noticed that you have created %d Menus. That is awesome! Could you please help me out by giving this plugin a 5-star rating on WordPress? This will help us by helping other users discover this plugin.', 'responsive-menu' ), esc_html( $this->check_results_amount() ) );
 		?>
 		<br/><strong><em>~ <?php esc_html_e( 'RM Team', 'responsive-menu' ); ?></em></strong><br/><br/>
 		<a target="_blank" rel="noopener" href="https://wordpress.org/support/plugin/responsive-menu/reviews/#new-topic-0" class="button-primary"><?php esc_html_e( 'Yeah, you deserve it!', 'responsive-menu' ); ?></a>

@@ -367,7 +367,7 @@ class Theme_Manager {
 
 		WP_Filesystem();
 		$upload_dir = wp_upload_dir()['basedir'] . '/rmp-menu/themes/';
-		$unzip_file = unzip_file( wp_unslash( $_FILES['file']['tmp_name'] ), $upload_dir );
+		$unzip_file = unzip_file( wp_unslash( $_FILES['file']['tmp_name'] ), $upload_dir ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
 		if ( is_wp_error( $unzip_file ) ) {
 			wp_send_json_error(
@@ -470,7 +470,7 @@ class Theme_Manager {
 		}
 
 		$options   = array();
-		$form_data = isset( $_POST['form'] ) ? wp_unslash( $_POST['form'] ) : '';
+		$form_data = isset( $_POST['form'] ) ? rm_sanitize_rec_array( wp_unslash( $_POST['form'] ) ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		wp_parse_str( $form_data, $options );
 		$options = $options['menu'];
 
@@ -563,9 +563,7 @@ class Theme_Manager {
 						?>
 						<input type="radio" class="rmp-theme-option" name="menu_theme" id="<?php echo esc_attr( $theme_name ); ?>" value="<?php echo esc_attr( $theme_name ); ?>" theme-type="template"/>
 							<label theme-name="<?php echo esc_attr( $theme_name ); ?>" class="rmp-theme-use" for="<?php echo esc_attr( $theme_name ); ?>"><?php esc_html_e( 'Use', 'responsive-menu' ); ?></label>
-														  <?php
-					}
-					?>
+						<?php } ?>
 				</span>
 			</div>
 			<?php
@@ -1083,7 +1081,7 @@ class Theme_Manager {
 		status_header( 200 );
 		WP_Filesystem();
 		$upload_dir = wp_upload_dir()['basedir'] . '/rmp-menu/themes/';
-		$unzip_file = unzip_file( wp_unslash( $_FILES['file']['tmp_name'] ), $upload_dir );
+		$unzip_file = unzip_file( wp_unslash( $_FILES['file']['tmp_name'] ), $upload_dir ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
 		if ( is_wp_error( $unzip_file ) ) {
 			wp_send_json_error(

@@ -26,13 +26,13 @@ if ( ! class_exists( 'RMP_Migration' ) ) :
 	 */
 	class RMP_Migration {
 
-		 /**
-		  * Instance of this class.
-		  *
-		  * @since    4.0.0
-		  * @access   protected
-		  * @var      object $instance Instance of this class.
-		  */
+		/**
+		 * Instance of this class.
+		 *
+		 * @since    4.0.0
+		 * @access   protected
+		 * @var      object $instance Instance of this class.
+		 */
 		protected static $instance;
 
 		/**

@@ -80,7 +80,7 @@ function rmp_dashicon_selector() {
 			<input class="radio" id="<?php echo esc_attr( $class ); ?>" type="radio" rel="<?php echo '&#x' . esc_attr( $bits[1] ); ?>" name="icon" value="dashicons <?php echo esc_attr( $class ); ?>" />
 			<label rel="<?php echo '&#x' . esc_attr( $bits[1] ); ?>" for="<?php echo esc_attr( $class ); ?>" title="<?php echo esc_attr( $class ); ?>" ></label>
 		</div>
-		  <?php
+		<?php
 	}
 }
 
@@ -207,4 +207,20 @@ function rmp_allow_svg_html_tags() {
 	);
 
 	return array_merge( $kses_defaults, $svg_args );
+}
+
+/**
+ * Sanitizes multi-dimentional array
+ *
+ * @since 4.1.6
+ */
+function rm_sanitize_rec_array( $array, $textarea = false ) {
+	foreach ( (array) $array as $key => $value ) {
+		if ( is_array( $value ) ) {
+			$array[ $key ] = rm_sanitize_rec_array( $value );
+		} else {
+			$array[ $key ] = $textarea ? sanitize_textarea_field( $value ) : sanitize_text_field( $value );
+		}
+	}
+	return $array;
 }

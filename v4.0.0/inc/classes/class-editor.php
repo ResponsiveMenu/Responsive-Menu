@@ -140,21 +140,36 @@ class Editor {
 				<div class="rmp-preview-device-wrapper">
 
 					<button type="button" id="rmp-preview-mobile" class=" rmp-device-preview rmp-preview-mobile active" aria-pressed="1" data-device="mobile">
-						<?php echo wp_kses( file_get_contents( RMP_PLUGIN_PATH_V4 . '/assets/admin/icons/svg/mobile.svg' ), rmp_allow_svg_html_tags() ); ?>
+						<?php
+						$svg_mobile = wp_remote_get( RMP_PLUGIN_URL_V4 . '/assets/admin/icons/svg/mobile.svg' );
+						if ( is_array( $svg_mobile ) && ! is_wp_error( $svg_mobile ) ) {
+							echo wp_kses( $svg_mobile['body'], rmp_allow_svg_html_tags() );
+						}
+						?>
 						<span class="screen-reader-text">
 							<?php esc_html_e( 'Enter mobile preview mode', 'responsive-menu' ); ?>
 						</span>
 					</button>
 
 					<button type="button" id="rmp-preview-tablet" class="rmp-preview-tablet rmp-device-preview" aria-pressed="" data-device="tablet">
-						<?php echo wp_kses( file_get_contents( RMP_PLUGIN_PATH_V4 . '/assets/admin/icons/svg/tablet.svg' ), rmp_allow_svg_html_tags() ); ?>
+						<?php
+						$svg_tablet = wp_remote_get( RMP_PLUGIN_URL_V4 . '/assets/admin/icons/svg/tablet.svg' );
+						if ( is_array( $svg_tablet ) && ! is_wp_error( $svg_tablet ) ) {
+							echo wp_kses( $svg_tablet['body'], rmp_allow_svg_html_tags() );
+						}
+						?>
 						<span class="screen-reader-text">
 							<?php esc_html_e( 'Enter tablet preview mode', 'responsive-menu' ); ?>
 						</span>
 					</button>
 
 					<button type="button" id="rmp-preview-desktop" class="rmp-preview-desktop rmp-device-preview" aria-pressed="" data-device="desktop">
-						<?php echo wp_kses( file_get_contents( RMP_PLUGIN_PATH_V4 . '/assets/admin/icons/svg/desktop.svg' ), rmp_allow_svg_html_tags() ); ?>
+						<?php
+						$svg_desktop = wp_remote_get( RMP_PLUGIN_URL_V4 . '/assets/admin/icons/svg/desktop.svg' );
+						if ( is_array( $svg_desktop ) && ! is_wp_error( $svg_desktop ) ) {
+							echo wp_kses( $svg_desktop['body'], rmp_allow_svg_html_tags() );
+						}
+						?>
 						<span class="screen-reader-text">
 							<?php esc_html_e( 'Enter desktop preview mode', 'responsive-menu' ); ?>
 						</span>

@@ -60,14 +60,14 @@ $theme_manager = Theme_Manager::get_instance();
 				<div class="rmp-theme-page-empty">
 					<span class="rmp-menu-library-blank-icon  fas fa-save"></span>
 					<h3 class="rmp-menu-library-title"> <?php esc_html_e( 'You have no theme here', 'responsive-menu' ); ?> </h3>
-				 </div>
-				 <?php
+				</div>
+				<?php
 					$themes = array();
 		}
 		?>
 
 		<ul class="rmp_theme_grids">
-			 <?php
+			<?php
 
 				foreach ( $themes as $theme ) {
 					$id          = 'rmp-theme-' . preg_replace( '/\s+/', '', $theme['name'] );

@@ -137,7 +137,7 @@ class Control_Manager {
 				$class = $param['class'];
 			}
 			?>
-			<input type="<?php echo esc_attr( $param['type'] ); ?>" id="<?php echo esc_attr( $param['id'] ); ?>" name="<?php echo esc_attr( $param['name'] ); ?>" <?php echo esc_attr( $has_multi_device ); ?> class="<?php echo esc_attr( $class ); ?>" value="<?php echo esc_attr( $param['value'] ); ?>" placeholder="<?php esc_attr_e( $placeholder ); ?>" <?php echo esc_attr( $is_disabled ); ?> >
+			<input type="<?php echo esc_attr( $param['type'] ); ?>" id="<?php echo esc_attr( $param['id'] ); ?>" name="<?php echo esc_attr( $param['name'] ); ?>" <?php echo esc_attr( $has_multi_device ); ?> class="<?php echo esc_attr( $class ); ?>" value="<?php echo esc_attr( $param['value'] ); ?>" placeholder="<?php echo esc_attr( $placeholder ); ?>" <?php echo esc_attr( $is_disabled ); ?> >
 			<?php
 		}
 
@@ -233,7 +233,7 @@ class Control_Manager {
 					$value = ! empty( $param['value_options'][ $input ] ) ? $param['value_options'][ $input ] : '0px';
 					?>
 					<div class="rmp-group-input-wrapper">
-							<label> <?php echo esc_html__( $input, 'responsive-menu' ); ?> </label>
+							<label> <?php echo esc_html( $input ); ?> </label>
 							<input type="<?php echo esc_attr( $param['type'] ); ?>" placeholder="0px" data-input="<?php echo esc_attr( $input ); ?>" id="<?php echo esc_attr( $class . '-' . $input ); ?>" name="<?php echo esc_attr( $param['name'] . '[' . $input . ']' ); ?>" <?php echo esc_attr( $has_multi_device ); ?> class="no-updates rmp-group-input <?php echo esc_attr( $class ); ?>" value="<?php echo esc_attr( $value ); ?>">
 						</div>
 						<?php
@@ -509,7 +509,7 @@ class Control_Manager {
 				$is_disabled = 'disabled';
 				?>
 					<a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url( $this->pro_plugin_url ); ?>" > <?php echo esc_html( $param['feature_type'] ); ?> </a>
-																					   <?php
+				<?php
 			}
 
 			// Check multi device options is enabled.
@@ -579,21 +579,19 @@ class Control_Manager {
 			<div class="rmp-input-control-label">
 					<span> <?php echo esc_html( $param['label'] ); ?> </span>
 					<span>
-				<?php
-				// Check tooltip text is added or not.
-				if ( ! empty( $param['tool_tip'] ) ) {
-					$this->get_tool_tip( $param['tool_tip'] );
-				}
-				?>
+					<?php
+					// Check tooltip text is added or not.
+					if ( ! empty( $param['tool_tip'] ) ) {
+						$this->get_tool_tip( $param['tool_tip'] );
+					}
+					?>
 					</span>
-					 <?php
-						// Check feature type.
-						if ( ! empty( $param['feature_type'] ) ) {
-							?>
-							<a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url( $this->pro_plugin_url ); ?>" > <?php echo esc_html( $param['feature_type'] ); ?> </a>
-							<?php
-						}
+					<?php
+					// Check feature type.
+					if ( ! empty( $param['feature_type'] ) ) {
 						?>
+					<a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url( $this->pro_plugin_url ); ?>" > <?php echo esc_html( $param['feature_type'] ); ?> </a>
+					<?php } ?>
 				</div>
 					<?php
 		}
@@ -639,7 +637,7 @@ class Control_Manager {
 					}
 					?>
 					<option <?php echo esc_attr( $disabled ); ?> value="<?php echo esc_attr( $key ); ?>" <?php echo esc_attr( $is_select ); ?>> <?php echo esc_html( $value ); ?> </option>
-									   <?php
+					<?php
 				}
 			}
 			?>
@@ -802,7 +800,14 @@ class Control_Manager {
 		?>
 		<input type="hidden" placeholder="fa fa-icon" id="<?php echo esc_attr( $param['id'] ); ?>" name="<?php echo esc_attr( $param['name'] ); ?>" <?php echo esc_attr( $has_multi_device ); ?> class="rmp-icon-hidden-input <?php echo esc_attr( $class ); ?>" value="<?php echo esc_attr( $icon_value ); ?>"><div class="rmp-icon-picker <?php echo esc_attr( $param['picker_class'] . $is_disabled ); ?>" for="<?php echo esc_attr( $param['id'] ); ?>" id="<?php echo esc_attr( $param['picker_id'] ); ?>" data-icon="<?php echo esc_attr( $is_icon_set ); ?>">
 				<div class="rmp-icon-picker-placeholder">
-					<span> <?php echo wp_kses( file_get_contents( RMP_PLUGIN_PATH_V4 . '/assets/admin/icons/svg/image-placeholder.svg' ), rmp_allow_svg_html_tags() ); ?></span>
+					<span>
+						<?php
+						$svg_placeholder = wp_remote_get( RMP_PLUGIN_URL_V4 . '/assets/admin/icons/svg/image-placeholder.svg' );
+						if ( is_array( $svg_placeholder ) && ! is_wp_error( $svg_placeholder ) ) {
+							echo wp_kses( $svg_placeholder['body'], rmp_allow_svg_html_tags() );
+						}
+						?>
+					</span>
 					<label> Choose Icon</label>
 				</div>
 				<?php
@@ -892,7 +897,14 @@ class Control_Manager {
 			?>
 			>
 				<div class="rmp-image-picker-placeholder">
-					<span> <?php echo wp_kses( file_get_contents( RMP_PLUGIN_PATH_V4 . '/assets/admin/icons/svg/image-placeholder.svg' ), rmp_allow_svg_html_tags() ); ?> </span>
+					<span>
+						<?php
+						$svg_placeholder = wp_remote_get( RMP_PLUGIN_URL_V4 . '/assets/admin/icons/svg/image-placeholder.svg' );
+						if ( is_array( $svg_placeholder ) && ! is_wp_error( $svg_placeholder ) ) {
+							echo wp_kses( $svg_placeholder['body'], rmp_allow_svg_html_tags() );
+						}
+						?>
+					</span>
 					<label> Choose Image</label>
 				</div>
 				<?php
@@ -944,9 +956,9 @@ class Control_Manager {
 			?>
 			<div class="rmp-input-control-label"> <span> <?php echo esc_html( $param['label'] ); ?> </span>
 			<?php
-			 // Check tooltip text is added or not.
+			// Check tooltip text is added or not.
 			if ( ! empty( $param['tool_tip'] ) ) {
-					$this->get_tool_tip( $param['tool_tip'] );
+				$this->get_tool_tip( $param['tool_tip'] );
 			}
 			?>
 			</div>
@@ -1100,13 +1112,28 @@ class Control_Manager {
 			<a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url( $this->pro_plugin_url ); ?>" > PRO </a>
 			<ul class="select rmp-device-switcher" >
 				<li data-device="mobile">
-					<?php echo wp_kses( file_get_contents( RMP_PLUGIN_PATH_V4 . '/assets/admin/icons/svg/mobile.svg' ), rmp_allow_svg_html_tags() ); ?>
+					<?php
+					$svg_mobile = wp_remote_get( RMP_PLUGIN_URL_V4 . '/assets/admin/icons/svg/mobile.svg' );
+					if ( is_array( $svg_mobile ) && ! is_wp_error( $svg_mobile ) ) {
+						echo wp_kses( $svg_mobile['body'], rmp_allow_svg_html_tags() );
+					}
+					?>
 				</li>
 				<li data-device="tablet">
-					<?php echo wp_kses( file_get_contents( RMP_PLUGIN_PATH_V4 . '/assets/admin/icons/svg/tablet.svg' ), rmp_allow_svg_html_tags() ); ?>
+					<?php
+					$svg_tablet = wp_remote_get( RMP_PLUGIN_URL_V4 . '/assets/admin/icons/svg/tablet.svg' );
+					if ( is_array( $svg_tablet ) && ! is_wp_error( $svg_tablet ) ) {
+						echo wp_kses( $svg_tablet['body'], rmp_allow_svg_html_tags() );
+					}
+					?>
 				</li>
 				<li data-device="desktop">
-					<?php echo wp_kses( file_get_contents( RMP_PLUGIN_PATH_V4 . '/assets/admin/icons/svg/desktop.svg' ), rmp_allow_svg_html_tags() ); ?>
+					<?php
+					$svg_desktop = wp_remote_get( RMP_PLUGIN_URL_V4 . '/assets/admin/icons/svg/desktop.svg' );
+					if ( is_array( $svg_desktop ) && ! is_wp_error( $svg_desktop ) ) {
+						echo wp_kses( $svg_desktop['body'], rmp_allow_svg_html_tags() );
+					}
+					?>
 				</li>
 			</ul>
 		</div>

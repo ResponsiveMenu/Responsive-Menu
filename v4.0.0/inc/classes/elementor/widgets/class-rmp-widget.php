@@ -119,11 +119,7 @@ class RMP_Widget extends Widget_Base {
 					'save_default' => true,
 					'separator'    => 'after',
 					/* translators: %s: HTML tag */
-					'description'  => sprintf(
-						esc_html__( 'Go to the %1$sResponsive menu customizer%2$s to style your menu.', 'responsive-menu' ),
-						'<a class="rmp-menu-edit-link" href="' . admin_url( 'post.php?post=' . $menu_id . '&action=edit&editor=true' ) . '" target="_blank" rel="noopener">',
-						'</a>'
-					),
+					'description'  => sprintf( esc_html__( 'Go to the %1$sResponsive menu customizer%2$s to style your menu.', 'responsive-menu' ), '<a class="rmp-menu-edit-link" href="' . admin_url( 'post.php?post=' . $menu_id . '&action=edit&editor=true' ) . '" target="_blank" rel="noopener">', '</a>' ),
 				)
 			);
 		} else {

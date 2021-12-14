@@ -117,7 +117,7 @@ require_once RMP_PLUGIN_PATH_V4 . '/templates/rmp-roadmap.php';
  * @return void
  */
 function responsive_menu_features_plugin_loader() {
-	 \RMP\Features\Inc\Plugin::get_instance();
+	\RMP\Features\Inc\Plugin::get_instance();
 }
 
 responsive_menu_features_plugin_loader();
