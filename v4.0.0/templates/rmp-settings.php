@@ -175,7 +175,7 @@ if ( ! empty( $global_settings['menu_adjust_for_wp_admin_bar'] ) ) {
 						<tr>
 							<th scope="row"> <?php esc_html_e( 'Export Menu', 'responsive-menu' ); ?> </th>
 							<td>
-							   <select id="rmp_export_menu_list">
+								<select id="rmp_export_menu_list">
 								<?php
 									$menus = rmp_get_all_menus();
 								foreach ( $menus as $id => $title ) {
@@ -184,11 +184,11 @@ if ( ! empty( $global_settings['menu_adjust_for_wp_admin_bar'] ) ) {
 									<?php
 								}
 								?>
-							   </select>
-							   <button type="button" class="button button-primary button-large" id="rmp-export-menu-button">
-								   <?php esc_html_e( 'Export', 'responsive-menu' ); ?>
-							   </button>
-							   <p class="description">
+								</select>
+								<button type="button" class="button button-primary button-large" id="rmp-export-menu-button">
+									<?php esc_html_e( 'Export', 'responsive-menu' ); ?>
+								</button>
+								<p class="description">
 									<?php esc_html_e( 'This will create an export file for selected menu transferring to other sites.', 'responsive-menu' ); ?>
 								</p>
 							</td>

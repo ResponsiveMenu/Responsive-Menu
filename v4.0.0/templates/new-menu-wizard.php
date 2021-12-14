@@ -29,8 +29,8 @@ if ( ! empty( $global_settings['rmp_dark_mode'] ) ) {
 	<div class="rmp-dialog-backdrop"></div>
 	<div class="rmp-dialog-wrap wp-clearfix">
 
-	   <!-- This is new new wizard header -->
-	   <div class="rmp-dialog-header">
+		<!-- This is new new wizard header -->
+		<div class="rmp-dialog-header">
 			<div class="title">
 				<img alt="logo" width="34" height="34" src="<?php echo esc_url( RMP_PLUGIN_URL_V4 . '/assets/images/rmp-logo.png' ); ?>" />
 				<span> <?php esc_html_e( 'Create New Menu', 'responsive-menu' ); ?> </span>
@@ -124,7 +124,7 @@ if ( ! empty( $global_settings['rmp_dark_mode'] ) ) {
 						<p class="input-label-description">
 							<?php esc_html_e( 'Map with your existing WordPress menu.', 'responsive-menu' ); ?>
 						</p>
-				   </div>
+					</div>
 
 					<div class="input-control">
 						<select name="menu-to-use" id="rmp-menu-to-use">

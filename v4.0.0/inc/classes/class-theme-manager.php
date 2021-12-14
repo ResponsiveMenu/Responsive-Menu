@@ -165,8 +165,9 @@ class Theme_Manager {
 	public function get_available_theme_settings( $theme_name ) {
 
 		// Themes from uploads directory.
-		$theme_dir_path = wp_upload_dir()['basedir'] . '/rmp-menu/themes';
-		$theme_dirs     = glob( $theme_dir_path . '/*', GLOB_ONLYDIR );
+		$theme_dir_path   = wp_upload_dir()['basedir'] . '/rmp-menu/themes';
+		$upload_theme_url = wp_upload_dir()['baseurl'] . '/rmp-menu/themes';
+		$theme_dirs       = glob( $theme_dir_path . '/*', GLOB_ONLYDIR );
 
 		// Themes from plugin bundle.
 		$theme_dirs = array_merge( glob( RMP_PLUGIN_PATH_V4 . '/themes/*', GLOB_ONLYDIR ), $theme_dirs );
@@ -175,17 +176,21 @@ class Theme_Manager {
 		$min_version = '4.0.0';
 
 		foreach ( $theme_dirs as $theme_dir ) {
-			$config_file = $theme_dir . '/config.json';
-			if ( file_exists( $config_file ) ) {
-				$config = json_decode( file_get_contents( $config_file ), true );
+			$config_theme_url = str_replace( RMP_PLUGIN_PATH_V4, RMP_PLUGIN_URL_V4, $theme_dir );
+			$config_theme_url = str_replace( $theme_dir_path, $upload_theme_url, $config_theme_url );
+			$config_file      = wp_remote_get( $config_theme_url . '/config.json' );
+			if ( is_array( $config_file ) && ! is_wp_error( $config_file ) ) {
+				$config = json_decode( $config_file['body'], true );
 				if ( $config['name'] === $theme_name ) {
-					$min_version = ! empty( $config['min_rm_version'] ) ? $config['min_rm_version'] : '4.0.0';
-					$options     = json_decode( file_get_contents( $theme_dir . '/options.json' ), true );
+					$min_version  = ! empty( $config['min_rm_version'] ) ? $config['min_rm_version'] : '4.0.0';
+					$options_file = wp_remote_get( $config_theme_url . '/options.json' );
+					if ( is_array( $options_file ) && ! is_wp_error( $options_file ) ) {
+						$options = json_decode( $options_file['body'], true );
+					}
 					break;
 				}
 			}
 		}
-
 		// Check menu theme minimum version compatibility.
 		if ( version_compare( RMP_PLUGIN_VERSION, $min_version, '<' ) ) {
 			wp_send_json_error(
@@ -254,16 +259,19 @@ class Theme_Manager {
 	public function get_theme_dir( $theme_name ) {
 
 		// Themes from uploads directory.
-		$theme_dir_path = wp_upload_dir()['basedir'] . '/rmp-menu/themes';
-		$theme_dirs     = glob( $theme_dir_path . '/*', GLOB_ONLYDIR );
+		$upload_theme_url = wp_upload_dir()['baseurl'] . '/rmp-menu/themes';
+		$theme_dir_path   = wp_upload_dir()['basedir'] . '/rmp-menu/themes';
+		$theme_dirs       = glob( $theme_dir_path . '/*', GLOB_ONLYDIR );
 
 		// Themes from plugin bundle.
 		$theme_dirs = array_merge( glob( RMP_PLUGIN_PATH_V4 . '/themes/*', GLOB_ONLYDIR ), $theme_dirs );
 
 		foreach ( $theme_dirs as $theme_dir ) {
-			$config_file = $theme_dir . '/config.json';
-			if ( file_exists( $config_file ) ) {
-				$config = json_decode( file_get_contents( $config_file ), true );
+			$config_theme_url = str_replace( RMP_PLUGIN_PATH_V4, RMP_PLUGIN_URL_V4, $theme_dir );
+			$config_theme_url = str_replace( $theme_dir_path, $upload_theme_url, $config_theme_url );
+			$config_file      = wp_remote_get( $config_theme_url . '/config.json' );
+			if ( is_array( $config_file ) && ! is_wp_error( $config_file ) ) {
+				$config = json_decode( $config_file['body'], true );
 				if ( $config['name'] === $theme_name ) {
 					return $theme_dir;
 				}
@@ -367,7 +375,7 @@ class Theme_Manager {
 
 		WP_Filesystem();
 		$upload_dir = wp_upload_dir()['basedir'] . '/rmp-menu/themes/';
-		$unzip_file = unzip_file( wp_unslash( $_FILES['file']['tmp_name'] ), $upload_dir );
+		$unzip_file = unzip_file( wp_unslash( $_FILES['file']['tmp_name'] ), $upload_dir ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
 		if ( is_wp_error( $unzip_file ) ) {
 			wp_send_json_error(
@@ -401,16 +409,16 @@ class Theme_Manager {
 
 		$themes = array();
 		foreach ( $theme_dirs as $theme_dir ) {
-			$config_file       = $theme_dir . '/config.json';
+			$config_theme_url  = str_replace( RMP_PLUGIN_PATH_V4, RMP_PLUGIN_URL_V4, $theme_dir );
+			$config_theme_url  = str_replace( $theme_dir_path, $theme_url, $config_theme_url );
+			$config_file       = wp_remote_get( $config_theme_url . '/config.json' );
 			$theme_preview_url = $theme_url . '/' . basename( $theme_dir ) . '/preview.png';
-
 			// Theme preview image from plugin bundle.
 			if ( strpos( $theme_dir, 'uploads' ) === false ) {
-				$theme_preview_url = plugin_dir_url( $config_file ) . '/preview.png';
+				$theme_preview_url = $config_theme_url . '/preview.png';
 			}
-
-			if ( file_exists( $config_file ) ) {
-				$config = json_decode( file_get_contents( $config_file ), true );
+			if ( is_array( $config_file ) && ! is_wp_error( $config_file ) ) {
+				$config = json_decode( $config_file['body'], true );
 				$themes[ basename( $theme_dir ) ]['theme_name']        = $config['name'];
 				$themes[ basename( $theme_dir ) ]['theme_version']     = $config['version'];
 				$themes[ basename( $theme_dir ) ]['demo_link']         = ! empty( $config['demo_link'] ) ? $config['demo_link'] : '';
@@ -470,7 +478,7 @@ class Theme_Manager {
 		}
 
 		$options   = array();
-		$form_data = isset( $_POST['form'] ) ? wp_unslash( $_POST['form'] ) : '';
+		$form_data = isset( $_POST['form'] ) ? rm_sanitize_rec_array( wp_unslash( $_POST['form'] ) ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		wp_parse_str( $form_data, $options );
 		$options = $options['menu'];
 
@@ -563,9 +571,7 @@ class Theme_Manager {
 						?>
 						<input type="radio" class="rmp-theme-option" name="menu_theme" id="<?php echo esc_attr( $theme_name ); ?>" value="<?php echo esc_attr( $theme_name ); ?>" theme-type="template"/>
 							<label theme-name="<?php echo esc_attr( $theme_name ); ?>" class="rmp-theme-use" for="<?php echo esc_attr( $theme_name ); ?>"><?php esc_html_e( 'Use', 'responsive-menu' ); ?></label>
-														  <?php
-					}
-					?>
+						<?php } ?>
 				</span>
 			</div>
 			<?php
@@ -720,16 +726,16 @@ class Theme_Manager {
 		$theme_dirs = array_merge( glob( RMP_PLUGIN_PATH_V4 . '/themes/*', GLOB_ONLYDIR ), $theme_dirs );
 
 		foreach ( $theme_dirs as $theme_dir ) {
-			$config_file       = $theme_dir . '/config.json';
+			$config_theme_url  = str_replace( RMP_PLUGIN_PATH_V4, RMP_PLUGIN_URL_V4, $theme_dir );
+			$config_theme_url  = str_replace( $theme_dir_path, $theme_url, $config_theme_url );
+			$config_file       = wp_remote_get( $config_theme_url . '/config.json' );
 			$theme_preview_url = $theme_url . '/' . basename( $theme_dir ) . '/preview.png';
-
 			// Theme preview image from plugin bundle.
 			if ( strpos( $theme_dir, 'uploads' ) === false ) {
-				$theme_preview_url = plugin_dir_url( $config_file ) . '/preview.png';
+				$theme_preview_url = $config_theme_url . '/preview.png';
 			}
-
-			if ( file_exists( $config_file ) ) {
-				$config = json_decode( file_get_contents( $config_file ), true );
+			if ( is_array( $config_file ) && ! is_wp_error( $config_file ) ) {
+				$config = json_decode( $config_file['body'], true );
 				if ( $config['name'] === $theme_name ) {
 					return $theme_preview_url;
 				}
@@ -781,6 +787,7 @@ class Theme_Manager {
 	public function get_theme_index_file( $theme_name ) {
 
 		// Get theme from uploads directory.
+		$theme_url      = wp_upload_dir()['baseurl'] . '/rmp-menu/themes';
 		$theme_dir_path = wp_upload_dir()['basedir'] . '/rmp-menu/themes';
 		$theme_dirs     = glob( $theme_dir_path . '/*', GLOB_ONLYDIR );
 
@@ -788,10 +795,12 @@ class Theme_Manager {
 		$theme_dirs = array_merge( glob( RMP_PLUGIN_PATH_V4 . '/themes/*', GLOB_ONLYDIR ), $theme_dirs );
 
 		foreach ( $theme_dirs as $theme_dir ) {
-			$config_file = $theme_dir . '/config.json';
 
-			if ( file_exists( $config_file ) ) {
-				$config = json_decode( file_get_contents( $config_file ), true );
+			$config_theme_url = str_replace( RMP_PLUGIN_PATH_V4, RMP_PLUGIN_URL_V4, $theme_dir );
+			$config_theme_url = str_replace( $theme_dir_path, $theme_url, $config_theme_url );
+			$config_file      = wp_remote_get( $config_theme_url . '/config.json' );
+			if ( is_array( $config_file ) && ! is_wp_error( $config_file ) ) {
+				$config = json_decode( $config_file['body'], true );
 				if ( $config['name'] === $theme_name && ! empty( $config['index'] ) ) {
 					return $theme_dir . '/' . $config['index'];
 				}
@@ -1083,7 +1092,7 @@ class Theme_Manager {
 		status_header( 200 );
 		WP_Filesystem();
 		$upload_dir = wp_upload_dir()['basedir'] . '/rmp-menu/themes/';
-		$unzip_file = unzip_file( wp_unslash( $_FILES['file']['tmp_name'] ), $upload_dir );
+		$unzip_file = unzip_file( wp_unslash( $_FILES['file']['tmp_name'] ), $upload_dir ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
 		if ( is_wp_error( $unzip_file ) ) {
 			wp_send_json_error(

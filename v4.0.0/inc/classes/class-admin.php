@@ -79,7 +79,7 @@ class Admin {
 		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
 
 		$options   = array();
-		$form_data = isset( $_POST['form'] ) ? wp_unslash( $_POST['form'] ) : '';
+		$form_data = isset( $_POST['form'] ) ? rm_sanitize_rec_array( wp_unslash( $_POST['form'] ) ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		wp_parse_str( $form_data, $options );
 
 		foreach ( $options as $key => $value ) {
@@ -145,9 +145,7 @@ class Admin {
 
 		$menu_show_on_pages = array();
 		if ( ! empty( $_POST['menu_show_on_pages'] ) && is_array( $_POST['menu_show_on_pages'] ) ) {
-			foreach ( $_POST['menu_show_on_pages']  as $key => $val ) {
-				$menu_show_on_pages[ $key ] = sanitize_text_field( $val );
-			}
+			$menu_show_on_pages = rm_sanitize_rec_array( wp_unslash( $_POST['menu_show_on_pages'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		}
 
 		$theme_options = array();
@@ -533,7 +531,7 @@ class Admin {
 			wp_send_json_error( array( 'message' => esc_html__( 'Please add file !', 'responsive-menu' ) ) );
 		}
 
-		if ( empty( $_FILES['file']['tmp_name'] ) || 'application/json' != $_FILES['file']['type'] ) {
+		if ( empty( $_FILES['file']['type'] ) || 'application/json' != $_FILES['file']['type'] ) {
 			wp_send_json_error( array( 'message' => esc_html__( 'Please add json file !', 'responsive-menu' ) ) );
 		}
 
@@ -542,7 +540,7 @@ class Admin {
 			wp_send_json_error( array( 'message' => esc_html__( 'Select menu !', 'responsive-menu' ) ) );
 		}
 
-		$file_contents  = isset( $_FILES['file']['tmp_name'] ) ? file_get_contents( wp_unslash( $_FILES['file']['tmp_name'] ) ) : '';
+		$file_contents  = isset( $_FILES['file']['tmp_name'] ) ? file_get_contents( wp_unslash( $_FILES['file']['tmp_name'] ) ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$import_options = json_decode( $file_contents, true );
 
 		$option_manager = Option_Manager::get_instance();

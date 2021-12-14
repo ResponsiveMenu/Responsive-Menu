@@ -86,7 +86,7 @@ class UI_Manager {
 				$title_class = $accordion_attr['item_header']['title_class'];
 			}
 			?>
-			 <div class="rmp-accordion-title <?php echo esc_attr( $title_class ); ?>">
+			<div class="rmp-accordion-title <?php echo esc_attr( $title_class ); ?>">
 			<?php
 
 			$title_span_class = 'accordion-item-title ';
@@ -122,7 +122,7 @@ class UI_Manager {
 				?>
 				<span class="item-controls">
 					<input type="hidden" value="off" name="<?php echo esc_attr( $accordion_attr['item_header']['item_control']['name'] ); ?>"/>
-					 <input type="checkbox" id="<?php echo esc_attr( $accordion_attr['item_header']['item_control']['id'] ); ?>" name="<?php echo esc_attr( $accordion_attr['item_header']['item_control']['name'] ); ?>" class="toggle <?php echo esc_attr( $accordion_attr['item_header']['item_control']['class'] ); ?>" value="on" <?php esc_attr( $accordion_attr['item_header']['item_control']['is_checked'] ); ?>>',
+					<input type="checkbox" id="<?php echo esc_attr( $accordion_attr['item_header']['item_control']['id'] ); ?>" name="<?php echo esc_attr( $accordion_attr['item_header']['item_control']['name'] ); ?>" class="toggle <?php echo esc_attr( $accordion_attr['item_header']['item_control']['class'] ); ?>" value="on" <?php esc_attr( $accordion_attr['item_header']['item_control']['is_checked'] ); ?>>',
 				</span>
 				<?php
 			}
@@ -186,7 +186,12 @@ class UI_Manager {
 			if ( ! empty( $tab_attr['item_header']['item_svg_icon'] ) ) {
 				?>
 				<span class="rmp-tab-item-icon">
-					<?php echo wp_kses( file_get_contents( $tab_attr['item_header']['item_svg_icon'] ), rmp_allow_svg_html_tags() ); ?>
+					<?php
+					$svg_icon = wp_remote_get( $tab_attr['item_header']['item_svg_icon'] );
+					if ( is_array( $svg_icon ) && ! is_wp_error( $svg_icon ) ) {
+						echo wp_kses( $svg_icon['body'], rmp_allow_svg_html_tags() );
+					}
+					?>
 				</span>
 				<?php
 			}
