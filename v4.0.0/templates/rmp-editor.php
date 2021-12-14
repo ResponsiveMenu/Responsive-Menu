@@ -495,10 +495,10 @@ $options         = $option_manager->get_options( $menu_id );
 										<br/> <strong> ' . esc_html__( 'Please note that the', 'responsive-menu' ) . ' <a href="' . esc_url( admin_url() . 'nav-menus.php' ) . '" target="_blank" rel="noopener"> ' . esc_html__( 'Theme Location', 'responsive-menu' ) . ' </a> ' . esc_html__( 'option will take precedence over this.', 'responsive-menu' ) . ' </strong>'
 								);
 
-								$menus        = wp_get_nav_menus();
+								$nav_menus    = wp_get_nav_menus();
 								$wp_menu_list = array();
-								foreach ( $menus as $menu ) {
-									$wp_menu_list[ $menu->slug ] = $menu->name;
+								foreach ( $nav_menus as $nav_menu ) {
+									$wp_menu_list[ $nav_menu->slug ] = $nav_menu->name;
 								}
 								$control_manager->add_select_control(
 									array(

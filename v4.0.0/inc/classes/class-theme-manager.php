@@ -1139,7 +1139,7 @@ class Theme_Manager {
 	public function is_customizer() {
 		$is_customizer_request = false;
 		if ( ! empty( $_SERVER['HTTP_REFERER'] ) ) {
-			wp_parse_str( wp_parse_url( wp_unslash( $_SERVER['HTTP_REFERER'] ) )['query'], $params );
+			wp_parse_str( wp_parse_url( esc_url_raw( wp_unslash( $_SERVER['HTTP_REFERER'] ) ) )['query'], $params );
 			if ( ! empty( $params['action'] ) && ! empty( $params['editor'] ) ) {
 				$is_customizer_request = true;
 			}

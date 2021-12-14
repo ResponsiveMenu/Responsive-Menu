@@ -176,14 +176,14 @@ if ( ! empty( $global_settings['menu_adjust_for_wp_admin_bar'] ) ) {
 							<th scope="row"> <?php esc_html_e( 'Export Menu', 'responsive-menu' ); ?> </th>
 							<td>
 								<select id="rmp_export_menu_list">
-								<?php
-									$menus = rmp_get_all_menus();
-								foreach ( $menus as $id => $title ) {
-									?>
-									<option value="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $title ); ?></option>
 									<?php
-								}
-								?>
+									$nav_menus = rmp_get_all_menus();
+									foreach ( $nav_menus as $menu_id => $menu_title ) {
+										?>
+										<option value="<?php echo esc_attr( $menu_id ); ?>"><?php echo esc_html( $menu_title ); ?></option>
+										<?php
+									}
+									?>
 								</select>
 								<button type="button" class="button button-primary button-large" id="rmp-export-menu-button">
 									<?php esc_html_e( 'Export', 'responsive-menu' ); ?>
@@ -203,14 +203,13 @@ if ( ! empty( $global_settings['menu_adjust_for_wp_admin_bar'] ) ) {
 
 								<div class=rmp-menu-import-options>
 									<select id="rmp_import_menu_list">
-									<?php
-										$menus = rmp_get_all_menus();
-									foreach ( $menus as $id => $title ) {
-										?>
-										<option value="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $title ); ?></option>
 										<?php
-									}
-									?>
+										foreach ( $nav_menus as $menu_id => $menu_title ) {
+											?>
+											<option value="<?php echo esc_attr( $menu_id ); ?>"><?php echo esc_html( $menu_title ); ?></option>
+											<?php
+										}
+										?>
 									</select>
 
 									<button type="button" class="button button-primary button-large" id="rmp-import-menu-button">

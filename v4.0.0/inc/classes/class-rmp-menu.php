@@ -169,79 +169,71 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 			}
 			?>
 			<button type="button"  aria-controls="rmp-container-<?php echo esc_attr( $this->menu_id ); ?>" aria-label="Menu Trigger" id="rmp_menu_trigger-<?php echo esc_attr( $this->menu_id ); ?>" destination="<?php echo esc_attr( $menu_trigger_destination ); ?>" class="<?php echo esc_attr( $toggle_theme_class ); ?>">
-					<?php
-					$trigger_text_position = '';
+				<?php
+				$trigger_text_position = '';
 
-					if ( ! empty( $this->options['button_title_position'] ) ) {
-						$trigger_text_position = $this->options['button_title_position'];
-					}
+				if ( ! empty( $this->options['button_title_position'] ) ) {
+					$trigger_text_position = $this->options['button_title_position'];
+				}
 
-					if ( ( 'left' === $trigger_text_position || 'top' === $trigger_text_position ) && ! empty( $this->options['button_title'] ) ) {
-						// Menu trigger text.
-						?>
-				<div class="rmp-trigger-label rmp-trigger-label-<?php echo esc_attr( $trigger_text_position ); ?>">
-							<span class="rmp-trigger-text"><?php echo esc_html( $this->options['button_title'] ); ?></span>
-																	  <?php
-																		if ( ! empty( $this->options['button_title_open'] ) ) {
-																			?>
-								<span class="rmp-trigger-text-open"><?php echo esc_html( $this->options['button_title_open'] ); ?></span>
-																			<?php
-																		}
-																		?>
-							</div>
-								<?php
-					}
+				if ( ( 'left' === $trigger_text_position || 'top' === $trigger_text_position ) && ! empty( $this->options['button_title'] ) ) {
+					// Menu trigger text.
 					?>
-			<span class="rmp-trigger-box">
-			<?php
+				<div class="rmp-trigger-label rmp-trigger-label-<?php echo esc_attr( $trigger_text_position ); ?>">
+					<span class="rmp-trigger-text"><?php echo esc_html( $this->options['button_title'] ); ?></span>
+						<?php
+						if ( ! empty( $this->options['button_title_open'] ) ) {
+							?>
+					<span class="rmp-trigger-text-open"><?php echo esc_html( $this->options['button_title_open'] ); ?></span>
+						<?php } ?>
+				</div>
+				<?php } ?>
+				<span class="rmp-trigger-box">
+				<?php
 
-					// Normal state menu trigger type.
-			if ( ! empty( $this->options['button_font_icon'] ) ) {
-				?>
-						<span class="rmp-trigger-icon rmp-trigger-icon-inactive"><?php echo esc_html( $this->options['button_font_icon'] ); ?></span>
-						<?php
-			} elseif ( ! empty( $this->options['button_image'] ) ) {
-				?>
-						<img src="<?php echo esc_url( $this->options['button_image'] ); ?>" alt="<?php echo esc_attr( rmp_image_alt_by_url( $this->options['button_image'] ) ); ?>" class="rmp-trigger-icon rmp-trigger-icon-inactive" width="100" height="100">
-						<?php
-			} else {
-				?>
-						<span class="responsive-menu-pro-inner"></span>
-						<?php
-			}
+				// Normal state menu trigger type.
+				if ( ! empty( $this->options['button_font_icon'] ) ) {
+					?>
+					<span class="rmp-trigger-icon rmp-trigger-icon-inactive"><?php echo esc_html( $this->options['button_font_icon'] ); ?></span>
+					<?php
+				} elseif ( ! empty( $this->options['button_image'] ) ) {
+					?>
+					<img src="<?php echo esc_url( $this->options['button_image'] ); ?>" alt="<?php echo esc_attr( rmp_image_alt_by_url( $this->options['button_image'] ) ); ?>" class="rmp-trigger-icon rmp-trigger-icon-inactive" width="100" height="100">
+					<?php
+				} else {
+					?>
+					<span class="responsive-menu-pro-inner"></span>
+					<?php
+				}
 
-			// Active state menu trigger type.
-			if ( ! empty( $this->options['button_font_icon_when_clicked'] ) ) {
-				?>
+				// Active state menu trigger type.
+				if ( ! empty( $this->options['button_font_icon_when_clicked'] ) ) {
+					?>
 				<span class="rmp-trigger-icon rmp-trigger-icon-active"><?php echo esc_html( $this->options['button_font_icon_when_clicked'] ); ?></span>
-				<?php
-			} elseif ( ! empty( $this->options['button_image_when_clicked'] ) ) {
-				?>
+					<?php
+				} elseif ( ! empty( $this->options['button_image_when_clicked'] ) ) {
+					?>
 				<img src="<?php echo esc_url( $this->options['button_image_when_clicked'] ); ?>" alt="<?php echo esc_attr( rmp_image_alt_by_url( $this->options['button_image_when_clicked'] ) ); ?>" class="rmp-trigger-icon rmp-trigger-icon-active" width="100" height="100">
-				<?php
-			}
-			?>
+					<?php
+				}
+				?>
 			</span>
 			<?php
 
 			if ( ( 'bottom' === $trigger_text_position || 'right' === $trigger_text_position ) && ! empty( $this->options['button_title'] ) ) {
 				// Menu trigger text.
 				?>
-						<div class="rmp-trigger-label rmp-trigger-label-<?php echo esc_attr( $trigger_text_position ); ?>">
-							<span class="rmp-trigger-text"><?php echo esc_html( $this->options['button_title'] ); ?></span>
-																	  <?php
-																		if ( ! empty( $this->options['button_title_open'] ) ) {
-																			?>
-								<span class="rmp-trigger-text-open"><?php echo esc_html( $this->options['button_title_open'] ); ?></span>
-																			<?php
-																		}
-																		?>
-							</div>
-									<?php
-			}
-			?>
-				</button>
-				<?php
+				<div class="rmp-trigger-label rmp-trigger-label-<?php echo esc_attr( $trigger_text_position ); ?>">
+					<span class="rmp-trigger-text"><?php echo esc_html( $this->options['button_title'] ); ?></span>
+					<?php
+					if ( ! empty( $this->options['button_title_open'] ) ) {
+						?>
+					<span class="rmp-trigger-text-open"><?php echo esc_html( $this->options['button_title_open'] ); ?></span>
+					<?php } ?>
+				</div>
+		<?php } ?>
+		</button>
+			<?php
 		}
 
 		/**
