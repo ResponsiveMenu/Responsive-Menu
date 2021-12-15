@@ -68,42 +68,35 @@ $theme_manager = Theme_Manager::get_instance();
 
 		<ul class="rmp_theme_grids">
 			<?php
-
-				foreach ( $themes as $theme ) {
-					$id          = 'rmp-theme-' . preg_replace( '/\s+/', '', $theme['name'] );
-					$preview_url = RMP_PLUGIN_URL_V4 . '/assets/images/no-preview.jpeg';
-
-					if ( ! empty( $theme['preview_url'] ) ) {
-						$preview_url = $theme['preview_url'];
-					}
-					?>
-
-			<li class="rmp_theme_grid_item">
-				<div class="rmp-item-card">
-					<!--- Theme preview image -->
-					<figure class="rmp-item-card_image">
-						<img src="<?php echo esc_url( $preview_url ); ?>" alt="" loading="lazy"/>
-					</figure>
-
-					<!--- Theme titlw -->
-					<div class="rmp-item-card_contents">
-						<h4> <?php echo esc_html( $theme['name'] ); ?> </h4>
-					</div>
-
-					<!-- Theme actions -->
-					<div class="rmp-item-card_action">
-						<button class="button rmp-theme-delete" data-theme="<?php echo esc_attr( $theme['name'] ); ?>" data-theme-type="<?php echo esc_attr( $theme['type'] ); ?> ">
-							<?php esc_html_e( 'Delete', 'responsive-menu' ); ?>
-						</button>
-					</div>
-
-				</div>
-			</li>
-
-					<?php
+			foreach ( $themes as $theme ) {
+				$preview_url = RMP_PLUGIN_URL_V4 . '/assets/images/no-preview.jpeg';
+				if ( ! empty( $theme['preview_url'] ) ) {
+					$preview_url = $theme['preview_url'];
 				}
 				?>
+				<li class="rmp_theme_grid_item">
+					<div class="rmp-item-card">
+						<!--- Theme preview image -->
+						<figure class="rmp-item-card_image">
+							<img src="<?php echo esc_url( $preview_url ); ?>" alt="" loading="lazy"/>
+						</figure>
 
+						<!--- Theme titlw -->
+						<div class="rmp-item-card_contents">
+							<h4> <?php echo esc_html( $theme['name'] ); ?> </h4>
+						</div>
+
+						<!-- Theme actions -->
+						<div class="rmp-item-card_action">
+							<button class="button rmp-theme-delete" data-theme="<?php echo esc_attr( $theme['name'] ); ?>" data-theme-type="<?php echo esc_attr( $theme['type'] ); ?> ">
+							<?php esc_html_e( 'Delete', 'responsive-menu' ); ?>
+							</button>
+						</div>
+					</div>
+				</li>
+				<?php
+			}
+			?>
 		</ul>
 	</div>
 </div>
