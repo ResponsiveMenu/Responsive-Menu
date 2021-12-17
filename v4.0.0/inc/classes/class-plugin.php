@@ -95,7 +95,7 @@ class Plugin {
 			<p>
 				<?php
 				/* translators: %s: HTML tag */
-				sprintf( esc_html_e( 'Responsive menu list is empty. Create a menu by clicking the %1$sCreate New Menu%2$s button. For more details visit ', 'responsive-menu' ), '<b>', '</b>' );
+				echo sprintf( esc_html__( 'Responsive menu list is empty. Create a menu by clicking the %1$sCreate New Menu%2$s button. For more details visit ', 'responsive-menu' ), '<b>', '</b>' );
 				?>
 				<a target="_blank" rel="noopener" href="<?php echo esc_url( 'https://responsive.menu/knowledgebase/responsive-menu-4-0-overview/' ); ?>"> <?php esc_html_e( 'Documentation', 'responsive-menu' ); ?></a>
 			</p>
