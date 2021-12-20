@@ -143,7 +143,9 @@
         margin: 0;
         transition: transform $animation_speed;
         overflow: auto;
-        display:block;
+        @if ( $animation_type != 'fade' ) {
+            display:block;
+        }
 
         @if ( $menu_width ) {
             width: $menu_width + $menu_width_unit;

@@ -1231,6 +1231,11 @@ class Style_Manager {
 				$animation_speed = $options['animation_speed'] . 's';
 			}
 
+			$animation_type = '';
+			if ( ! empty( $options['animation_type'] ) ) {
+				$animation_type = $options['animation_type'];
+			}
+
 			$color_transition_speed = '';
 			if ( ! empty( $options['transition_speed'] ) ) {
 				$color_transition_speed = $options['transition_speed'] . 's';
@@ -1457,6 +1462,7 @@ class Style_Manager {
 
 				// Animation and transition.
 				'animation_speed'                          => $animation_speed,
+				'animation_type'                           => $animation_type,
 				'color_transition_speed'                   => $color_transition_speed,
 				'sub_menu_transition_speed'                => $sub_menu_transition_speed,
 			);
