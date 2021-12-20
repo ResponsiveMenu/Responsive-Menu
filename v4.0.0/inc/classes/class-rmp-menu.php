@@ -194,7 +194,7 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 				// Normal state menu trigger type.
 				if ( ! empty( $this->options['button_font_icon'] ) ) {
 					?>
-					<span class="rmp-trigger-icon rmp-trigger-icon-inactive"><?php echo esc_html( $this->options['button_font_icon'] ); ?></span>
+					<span class="rmp-trigger-icon rmp-trigger-icon-inactive"><?php echo wp_kses( $this->options['button_font_icon'], wp_kses_allowed_html( 'post' ) ); ?></span>
 					<?php
 				} elseif ( ! empty( $this->options['button_image'] ) ) {
 					?>
@@ -209,7 +209,7 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 				// Active state menu trigger type.
 				if ( ! empty( $this->options['button_font_icon_when_clicked'] ) ) {
 					?>
-				<span class="rmp-trigger-icon rmp-trigger-icon-active"><?php echo esc_html( $this->options['button_font_icon_when_clicked'] ); ?></span>
+				<span class="rmp-trigger-icon rmp-trigger-icon-active"><?php echo wp_kses( $this->options['button_font_icon_when_clicked'], wp_kses_allowed_html( 'post' ) ); ?></span>
 					<?php
 				} elseif ( ! empty( $this->options['button_image_when_clicked'] ) ) {
 					?>
