@@ -2,7 +2,7 @@
 /**
  * Autoloader file for plugin.
  *
- * @package responsive-menu-pro
+ * @package responsive-menu
  */
 
 namespace RMP\Features\Inc\Helpers;
@@ -15,7 +15,6 @@ namespace RMP\Features\Inc\Helpers;
  * @return void
  */
 function autoloader( $resource = '' ) {
-
 	$resource_path  = false;
 	$namespace_root = 'RMP\Features\\';
 	$resource       = trim( $resource, '\\' );
@@ -45,7 +44,6 @@ function autoloader( $resource = '' ) {
 	$file_name = '';
 
 	if ( 'inc' === $path[0] ) {
-
 		switch ( $path[1] ) {
 			case 'traits':
 				$directory = 'traits';
@@ -68,6 +66,7 @@ function autoloader( $resource = '' ) {
 					$file_name = sprintf( 'class-%s', trim( strtolower( $path[2] ) ) );
 					break;
 				}
+				// no break
 			default:
 				$directory = 'classes';
 				$file_name = sprintf( 'class-%s', trim( strtolower( $path[1] ) ) );
@@ -84,9 +83,8 @@ function autoloader( $resource = '' ) {
 
 	if ( ! empty( $resource_path ) && file_exists( $resource_path ) && ( 0 === $is_valid_file || 2 === $is_valid_file ) ) {
 		// We already making sure that file is exists and valid.
-		require_once( $resource_path );
+		require_once $resource_path;
 	}
-
 }
 
 spl_autoload_register( '\RMP\Features\Inc\Helpers\autoloader' );

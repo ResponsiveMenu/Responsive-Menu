@@ -6,7 +6,7 @@
  * @version 4.0.0
  * @author  Expresstech System
  *
- * @package responsive-menu-pro
+ * @package responsive-menu
  */
 
 namespace RMP\Features\Inc;
@@ -15,7 +15,7 @@ use RMP\Features\Inc\Traits\Singleton;
 
 // Disable the direct access to this class.
 if ( ! defined( 'ABSPATH' ) ) {
-    exit;
+	exit;
 }
 
 /**
@@ -40,7 +40,7 @@ class Editor {
 	 * @return void
 	 */
 	protected function setup_hooks() {
-		add_action( 'admin_head', [ $this,'render_menu_editor_page'] );
+		add_action( 'admin_head', array( $this, 'render_menu_editor_page' ) );
 	}
 
 	/**
@@ -52,7 +52,6 @@ class Editor {
 	 * @return void
 	 */
 	public function render_menu_editor_page() {
-
 		$editor = filter_input( INPUT_GET, 'editor', FILTER_SANITIZE_STRING );
 		if ( ! empty( $editor ) && get_post_type() == 'rmp_menu' && is_admin() ) {
 			set_current_screen();
@@ -69,14 +68,12 @@ class Editor {
 	 * @param HTML.
 	 */
 	public function header_section( $menu_name ) {
-
-		ob_start();
 		?>
 			<div id="rmp-editor-header" class="rmp-editor-header">
 				<!-- Plugin logo on editor header-->
 				<div class="rmp-editor-header-logo">
 					<span class="dashicons dashicons-arrow-left-alt rmp-editor-header-back"></span>
-					<img alt="logo" src="<?php echo esc_url( RMP_PLUGIN_URL_V4 .'/assets/images/rmp-logo.png' ); ?>" />
+					<img alt="logo" src="<?php echo esc_url( RMP_PLUGIN_URL_V4 . '/assets/images/rmp-logo.png' ); ?>" />
 				</div>
 				<!-- Menu title on editor header-->
 				<div class="rmp-editor-header-title"><?php echo esc_html( $menu_name ); ?></div>
@@ -84,26 +81,22 @@ class Editor {
 				<div class="rmp-search-settings-block">
 					<label class="rmp-search-settings-btn"><i class="fa fa-search"></i></label>
 					<!-- Exit from editor button in header-->
-					<a class="rmp-editor-header-close" href="<?php echo esc_url( admin_url().'/edit.php?post_type=rmp_menu' ); ?>">
+					<a class="rmp-editor-header-close" href="<?php echo esc_url( admin_url() . '/edit.php?post_type=rmp_menu' ); ?>">
 						<span class="fas fa-times"></span>
 						<span class="screen-reader-text">
-							<?php echo esc_html__('Close the editor and go back to the previous page', 'responsive-menu-pro' ); ?>
+							<?php esc_html_e( 'Close the editor and go back to the previous page', 'responsive-menu' ); ?>
 						</span>
 					</a>
 				</div>
 			</div>
 		<?php
 
-		$html = ob_get_clean();
-
 		/**
 		 * Filters the editor header.
 		 *
 		 * @param string|HTML $html
 		 */
-		$html = apply_filters( 'rmp_editor_header_html', $html );
-
-		return $html;
+		echo apply_filters( 'rmp_editor_header_html', '' );
 	}
 
 	/**
@@ -112,13 +105,12 @@ class Editor {
 	 * @param HTML.
 	 */
 	public function footer_section() {
-		ob_start();
 		?>
 			<div id="rmp-editor-footer" class="rmp-editor-footer">
 
 				<!-- Update the settings button in footer-->
 				<button type="button" class="menu-save" id="rmp-save-menu-options">
-					<?php esc_html_e( 'Update', 'responsive-menu-pro' ); ?>
+					<?php esc_html_e( 'Update', 'responsive-menu' ); ?>
 				</button>
 
 				<!-- Themes options when click on up arrow button in footer-->
@@ -131,14 +123,14 @@ class Editor {
 						<li>
 							<a id="rmp-theme-save-button" class="rmp-theme-save-button">
 								<span class="fas fa-save"></span>
-								<span> <?php esc_html_e( 'Save as theme', 'responsive-menu-pro' ); ?></span>
+								<span> <?php esc_html_e( 'Save as theme', 'responsive-menu' ); ?></span>
 							</a>
 						</li>
 
 						<li>
 							<a  id="rmp-theme-change-button" class="rmp-theme-change-button" >
 								<span class="fas fa-folder-open "></span>
-								<span><?php esc_html_e( 'Change theme', 'responsive-menu-pro' ); ?></span>
+								<span><?php esc_html_e( 'Change theme', 'responsive-menu' ); ?></span>
 							</a>
 						</li>
 					</ul>
@@ -148,23 +140,38 @@ class Editor {
 				<div class="rmp-preview-device-wrapper">
 
 					<button type="button" id="rmp-preview-mobile" class=" rmp-device-preview rmp-preview-mobile active" aria-pressed="1" data-device="mobile">
-						<?php echo file_get_contents( RMP_PLUGIN_PATH_V4 .'/assets/admin/icons/svg/mobile.svg' ); ?>
+						<?php
+						$svg_mobile = wp_remote_get( RMP_PLUGIN_URL_V4 . '/assets/admin/icons/svg/mobile.svg' );
+						if ( is_array( $svg_mobile ) && ! is_wp_error( $svg_mobile ) ) {
+							echo wp_kses( $svg_mobile['body'], rmp_allow_svg_html_tags() );
+						}
+						?>
 						<span class="screen-reader-text">
-							<?php echo esc_html__('Enter mobile preview mode', 'responsive-menu-pro' ); ?>
+							<?php esc_html_e( 'Enter mobile preview mode', 'responsive-menu' ); ?>
 						</span>
 					</button>
 
 					<button type="button" id="rmp-preview-tablet" class="rmp-preview-tablet rmp-device-preview" aria-pressed="" data-device="tablet">
-						<?php echo file_get_contents( RMP_PLUGIN_PATH_V4 .'/assets/admin/icons/svg/tablet.svg' ); ?>
+						<?php
+						$svg_tablet = wp_remote_get( RMP_PLUGIN_URL_V4 . '/assets/admin/icons/svg/tablet.svg' );
+						if ( is_array( $svg_tablet ) && ! is_wp_error( $svg_tablet ) ) {
+							echo wp_kses( $svg_tablet['body'], rmp_allow_svg_html_tags() );
+						}
+						?>
 						<span class="screen-reader-text">
-							<?php echo esc_html__('Enter tablet preview mode', 'responsive-menu-pro' ); ?>
+							<?php esc_html_e( 'Enter tablet preview mode', 'responsive-menu' ); ?>
 						</span>
 					</button>
 
 					<button type="button" id="rmp-preview-desktop" class="rmp-preview-desktop rmp-device-preview" aria-pressed="" data-device="desktop">
-						<?php echo file_get_contents( RMP_PLUGIN_PATH_V4 .'/assets/admin/icons/svg/desktop.svg' ); ?>
+						<?php
+						$svg_desktop = wp_remote_get( RMP_PLUGIN_URL_V4 . '/assets/admin/icons/svg/desktop.svg' );
+						if ( is_array( $svg_desktop ) && ! is_wp_error( $svg_desktop ) ) {
+							echo wp_kses( $svg_desktop['body'], rmp_allow_svg_html_tags() );
+						}
+						?>
 						<span class="screen-reader-text">
-							<?php echo esc_html__('Enter desktop preview mode', 'responsive-menu-pro' ); ?>
+							<?php esc_html_e( 'Enter desktop preview mode', 'responsive-menu' ); ?>
 						</span>
 					</button>
 
@@ -173,16 +180,12 @@ class Editor {
 			</div>
 		<?php
 
-		$html = ob_get_clean();
-
 		/**
 		 * Filters the editor footer html.
 		 *
 		 * @param string|HTML $html
 		 */
-		$html = apply_filters( 'rmp_editor_footer_html', $html );
-
-		return $html;
+		echo apply_filters( 'rmp_editor_footer_html', $html );
 	}
 
 	/**
@@ -191,11 +194,10 @@ class Editor {
 	 * @return HTML|string
 	 */
 	public function sidebar_drawer() {
-		return (
-			'<button type="button" class="collapse-sidebar" aria-expanded="true" aria-label="Hide Controls">
-				<span class="collapse-sidebar-arrow"></span>
-			</button>'
-		);
+		?>
+		<button type="button" class="collapse-sidebar" aria-expanded="true" aria-label="Hide Controls">
+			<span class="collapse-sidebar-arrow"></span>
+		</button>
+		<?php
 	}
-
 }

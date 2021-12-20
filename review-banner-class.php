@@ -7,6 +7,7 @@
  */
 class RM_Review_Message {
 
+
 	/**
 	 * Variable to hold how many results needed to show message
 	 *
@@ -21,7 +22,7 @@ class RM_Review_Message {
 	 *
 	 * @since 4.1.3
 	 */
-	function __construct() {
+	public function __construct() {
 		$this->add_hooks();
 	}
 
@@ -30,9 +31,9 @@ class RM_Review_Message {
 	 *
 	 * @since 4.1.3
 	 */
-	 public function add_hooks() {
-		 add_action( 'admin_init', array( $this, 'check_message_display' ) );
-	 }
+	public function add_hooks() {
+		add_action( 'admin_init', array( $this, 'check_message_display' ) );
+	}
 
 	/**
 	 * Checks if message should be displayed
@@ -42,7 +43,7 @@ class RM_Review_Message {
 	public function check_message_display() {
 		$this->admin_notice_check();
 		$this->trigger = $this->check_message_trigger();
-		if ( $this->trigger !== -1 ) {
+		if ( -1 !== $this->trigger ) {
 			$amount = $this->check_results_amount();
 			if ( $amount >= $this->trigger ) {
 				add_action( 'admin_notices', array( $this, 'display_admin_message' ) );
@@ -59,7 +60,7 @@ class RM_Review_Message {
 	public function check_message_trigger() {
 		$trigger = get_option( 'rm_review_message_trigger' );
 		if ( empty( $trigger ) || is_null( $trigger ) ) {
-			add_option('rm_review_message_trigger', 1 );
+			add_option( 'rm_review_message_trigger', 1 );
 			return 1;
 		}
 		return intval( $trigger );
@@ -72,8 +73,10 @@ class RM_Review_Message {
 	 */
 	public function check_results_amount() {
 		global $wpdb;
-		$amount = $wpdb->get_var("SELECT COUNT(*) FROM `". $wpdb->prefix ."posts`
-        WHERE post_type = 'rmp_menu'");
+		$amount = $wpdb->get_var(
+			'SELECT COUNT(*) FROM `' . $wpdb->prefix . "posts`
+        WHERE post_type = 'rmp_menu'"
+		);
 		return $amount;
 	}
 
@@ -81,36 +84,20 @@ class RM_Review_Message {
 	 * Displays the message
 	 *
 	 * Displays the message asking for review
-	 *
-	 *
 	 */
 	public function display_admin_message() {
-		$already_url  = esc_url( add_query_arg( 'rm_review_notice_check', 'already_did' ) );
-		$nope_url  = esc_url( add_query_arg( 'rm_review_notice_check', 'remove_message' ) );
-		echo "<div class='updated'><br />";
-		echo sprintf( esc_html__('Greetings! I just noticed that you have created %d Menus. That is
-		awesome! Could you please help me out by giving this plugin a 5-star rating on WordPress? This
-		will help us by helping other users discover this plugin. %s', 'responsive-menu-pro'),
-			$this->check_results_amount(),
-			'<br /><strong><em>~ RM Team</em></strong><br /><br />'
-		);
-		echo sprintf('<a target="%s" href="%s" class="%s">%s</a> ',
-				esc_attr( "_blank" ),
-				esc_url( "https://wordpress.org/support/plugin/responsive-menu/reviews/#new-topic-0"),
-				esc_attr( "button-primary" ),
-				esc_html__( 'Yeah, you deserve it!', 'responsive-menu-pro' )
-		);
-		echo sprintf('<a href="%s" class="%s">%s</a> ',
-				$already_url,
-				esc_attr( "button-secondary" ),
-				esc_html__( 'I already did!', 'responsive-menu-pro' )
-		);
-		echo sprintf('<a href="%s" class="%s">%s</a> ',
-				$nope_url,
-				esc_attr( "button-secondary" ),
-				esc_html__( 'No, this plugin is not good enough', 'responsive-menu-pro' )
-		);
-		echo "<br /><br /></div>";
+		?>
+		<div class='updated'><br />
+		<?php
+		/* translators: %d: Result count */
+		echo sprintf( esc_html__( 'Greetings! I just noticed that you have created %d Menus. That is awesome! Could you please help me out by giving this plugin a 5-star rating on WordPress? This will help us by helping other users discover this plugin.', 'responsive-menu' ), esc_html( $this->check_results_amount() ) );
+		?>
+		<br/><strong><em>~ <?php esc_html_e( 'RM Team', 'responsive-menu' ); ?></em></strong><br/><br/>
+		<a target="_blank" rel="noopener" href="https://wordpress.org/support/plugin/responsive-menu/reviews/#new-topic-0" class="button-primary"><?php esc_html_e( 'Yeah, you deserve it!', 'responsive-menu' ); ?></a>
+		<a href="<?php echo esc_url( add_query_arg( 'rm_review_notice_check', 'already_did' ) ); ?>" class="button-secondary"><?php esc_html_e( 'I already did!', 'responsive-menu' ); ?></a>
+		<a href="<?php echo esc_url( add_query_arg( 'rm_review_notice_check', 'remove_message' ) ); ?>" class="button-secondary"><?php esc_html_e( 'No, this plugin is not good enough', 'responsive-menu' ); ?></a>
+		<br /><br /></div>
+		<?php
 	}
 
 	/**
@@ -119,21 +106,21 @@ class RM_Review_Message {
 	 * @since 4.1.3
 	 */
 	public function admin_notice_check() {
-		if ( isset( $_GET["rm_review_notice_check"] ) && $_GET["rm_review_notice_check"] == 'remove_message' ) {
-			$this->trigger = $this->check_message_trigger();
+		if ( isset( $_GET['rm_review_notice_check'] ) && 'remove_message' === $_GET['rm_review_notice_check'] ) {
+			$this->trigger  = $this->check_message_trigger();
 			$update_trigger = -1;
-			if ( $this->trigger === -1 ) {
+			if ( -1 === $this->trigger ) {
 				exit;
-			} else if ( $this->trigger === 1 ) {
+			} elseif ( 1 === $this->trigger ) {
 				$update_trigger = 5;
-			} else if ( $this->trigger === 5 ) {
+			} elseif ( 5 === $this->trigger ) {
 				$update_trigger = 10;
-			} else if ( $this->trigger === 10 ) {
+			} elseif ( 10 === $this->trigger ) {
 				$update_trigger = -1;
 			}
 			update_option( 'rm_review_message_trigger', $update_trigger );
 		}
-		if ( isset( $_GET["rm_review_notice_check"] ) && $_GET["rm_review_notice_check"] == 'already_did' ) {
+		if ( isset( $_GET['rm_review_notice_check'] ) && 'already_did' === $_GET['rm_review_notice_check'] ) {
 			update_option( 'rm_review_message_trigger', -1 );
 		}
 	}

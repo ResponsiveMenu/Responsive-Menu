@@ -15,12 +15,11 @@ use RMP\Features\Inc\Traits\Singleton;
 
 // Disable the direct access to this class.
 if ( ! defined( 'ABSPATH' ) ) {
-    exit;
+	exit;
 }
 
 /**
  * Class Assets
- *
  */
 class Assets {
 
@@ -39,10 +38,9 @@ class Assets {
 	 * @return void
 	 */
 	protected function setup_hooks() {
-
-		add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_scripts' ] );
-		add_action('admin_enqueue_scripts', [ $this, 'admin_custom_style_inline'] );
-		add_action('admin_enqueue_scripts', [ $this, 'rmp_menu_editor_style_inline'] );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_custom_style_inline' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'rmp_menu_editor_style_inline' ) );
 	}
 
 	/**
@@ -50,8 +48,7 @@ class Assets {
 	 *
 	 * @since 4.0.1
 	 */
-	function rmp_menu_editor_style_inline() {
-
+	public function rmp_menu_editor_style_inline() {
 		$editor = filter_input( INPUT_GET, 'editor', FILTER_SANITIZE_STRING );
 		if ( ! empty( $editor ) && get_post_type() == 'rmp_menu' && is_admin() ) {
 			$css_data = 'html.wp-toolbar {
@@ -67,8 +64,8 @@ class Assets {
 	 *
 	 * @since 4.0.0
 	 */
-	function admin_custom_style_inline() {
-		wp_register_style( 'rmp_admin_inline', false );
+	public function admin_custom_style_inline() {
+		wp_register_style( 'rmp_admin_inline', false, array(), RMP_PLUGIN_VERSION );
 		wp_enqueue_style( 'rmp_admin_inline' );
 
 		$css_data = '
@@ -82,7 +79,6 @@ class Assets {
 			}
 		';
 		wp_add_inline_style( 'rmp_admin_inline', $css_data );
-
 	}
 
 	/**
@@ -92,13 +88,11 @@ class Assets {
 	 *
 	 * @return void
 	 */
-	public function admin_enqueue_scripts( $hook_suffix ) {
-
-
+	public function admin_enqueue_scripts() {
 		$post_type = get_post_type();
 
 		if ( empty( $post_type ) && ! empty( $_GET['post_type'] ) ) {
-			$post_type = sanitize_text_field( $_GET['post_type'] );
+			$post_type = sanitize_text_field( wp_unslash( $_GET['post_type'] ) );
 		}
 
 		if ( 'rmp_menu' !== $post_type ) {
@@ -128,7 +122,8 @@ class Assets {
 			'rmp_admin_selectize_scripts',
 			RMP_PLUGIN_URL_V4 . '/assets/admin/js/selectize.js',
 			null,
-			RMP_PLUGIN_VERSION
+			RMP_PLUGIN_VERSION,
+			true
 		);
 
 		wp_enqueue_style(
@@ -145,12 +140,12 @@ class Assets {
 			RMP_PLUGIN_VERSION
 		);
 
-
 		wp_enqueue_script(
 			'rmp_admin_dropzone_scripts',
 			RMP_PLUGIN_URL_V4 . '/assets/admin/js/dropzone.min.js',
-			array('jquery'),
-			RMP_PLUGIN_VERSION
+			array( 'jquery' ),
+			RMP_PLUGIN_VERSION,
+			true
 		);
 
 		wp_enqueue_style(
@@ -171,13 +166,12 @@ class Assets {
 		wp_localize_script(
 			'rmp_admin_scripts',
 			'rmpObject',
-			array (
-				'ajaxURL'  => admin_url( 'admin-ajax.php' ),
-				'ajax_nonce' => wp_create_nonce('rmp_nonce'),
+			array(
+				'ajaxURL'           => admin_url( 'admin-ajax.php' ),
+				'ajax_nonce'        => wp_create_nonce( 'rmp_nonce' ),
 				'THEMES_FOLDER_URL' => wp_upload_dir()['baseurl'] . '/rmp-themes/',
 			)
 		);
-
 
 		wp_enqueue_script( 'rmp_admin_scripts' );
 
@@ -204,5 +198,4 @@ class Assets {
 		 */
 		do_action( 'after_rmp_enqueue_admin_scripts' );
 	}
-
 }

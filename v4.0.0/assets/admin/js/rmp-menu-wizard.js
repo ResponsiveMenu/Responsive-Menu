@@ -6,7 +6,7 @@
  *
  * @since 4.1.0
  *
- * @package responsive-menu-pro
+ * @package responsive-menu
  */
 
 'use strict';

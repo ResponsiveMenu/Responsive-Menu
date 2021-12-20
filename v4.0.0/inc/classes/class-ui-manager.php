@@ -6,16 +6,17 @@
  *
  * @author  Expresstech System
  *
- * @package responsive-menu-pro
+ * @package responsive-menu
  */
 
 namespace RMP\Features\Inc;
+
 use RMP\Features\Inc\Control_Manager;
 use RMP\Features\Inc\Traits\Singleton;
 
 // Disable the direct access to this class.
 if ( ! defined( 'ABSPATH' ) ) {
-    exit;
+	exit;
 }
 
 /**
@@ -36,7 +37,9 @@ class UI_Manager {
 	 * @var      object.
 	 */
 
-    protected $control_manager;
+	protected $control_manager;
+
+	protected $pro_plugin_url = 'https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile';
 
 	/**
 	 * Construct method.
@@ -53,16 +56,17 @@ class UI_Manager {
 	 * @return void
 	 */
 	protected function setup_hooks() {
-        $this->control_manager = Control_Manager::get_instance();
+		$this->control_manager = Control_Manager::get_instance();
 	}
 
 	public function accordion_divider() {
-		return '<div class="rmp-h-separator clearfix"></div>';
+		?>
+		<div class="rmp-h-separator clearfix"></div>
+		<?php
 	}
 
 
 	public function start_accordion_item( $accordion_attr ) {
-
 		if ( empty( $accordion_attr ) ) {
 			return;
 		}
@@ -71,95 +75,89 @@ class UI_Manager {
 		if ( ! empty( $accordion_attr['item_class'] ) ) {
 			$item_class = $accordion_attr['item_class'];
 		}
+		?>
+		<li class="rmp-accordion-item <?php echo esc_attr( $item_class ); ?>">
+		<?php
 
-		$html = sprintf('<li class="rmp-accordion-item %s">', esc_attr( $item_class ) );
-
-		//According header.
+		// According header.
 		if ( ! empty( $accordion_attr['item_header'] ) ) {
-
 			$title_class = '';
 			if ( ! empty( $accordion_attr['item_header']['title_class'] ) ) {
 				$title_class = $accordion_attr['item_header']['title_class'];
 			}
+			?>
+			<div class="rmp-accordion-title <?php echo esc_attr( $title_class ); ?>">
+			<?php
 
 			$title_span_class = 'accordion-item-title ';
 			if ( ! empty( $accordion_attr['item_header']['title_span_class'] ) ) {
 				$title_span_class = $accordion_attr['item_header']['title_span_class'];
 			}
 
-			//Check tooltip text is added or not.
-			$tool_tip = '';
-			if ( ! empty( $accordion_attr['tool_tip'] ) ) {
-				$tool_tip = $this->control_manager->get_tool_tip( $accordion_attr['tool_tip'] );
-			}
-
-			$feature_label = '';
-			// Check feature type.
-			if( ! empty( $accordion_attr['feature_type'] ) ) {
-				$feature_label = sprintf(
-					'<a target="_blank" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > %s </a>',
-					$accordion_attr['feature_type']
-				);
-			}
-
 			$title_contents = '';
 			if ( ! empty( $accordion_attr['item_header']['item_title'] ) ) {
-				$title_contents .= sprintf('<span class="%s"> %s %s %s</span>',
-					esc_attr( $title_span_class ),
-					esc_html( $accordion_attr['item_header']['item_title'] ),
-					$tool_tip,
-					$feature_label
-				);
+				?>
+				<span class="<?php echo esc_attr( $title_span_class ); ?>">
+				<?php
+					echo esc_html( $accordion_attr['item_header']['item_title'] );
+				// Check tooltip text is added or not.
+				if ( ! empty( $accordion_attr['tool_tip'] ) ) {
+					$this->control_manager->get_tool_tip( $accordion_attr['tool_tip'] );
+				}
+
+					// Check feature type.
+				if ( ! empty( $accordion_attr['feature_type'] ) ) {
+					?>
+						<a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url( $this->pro_plugin_url ); ?>" >
+						<?php echo esc_html( $accordion_attr['feature_type'] ); ?>
+						</a>
+						<?php
+				}
+				?>
+				</span>
+				<?php
 			}
 
-			$switcher = '';
 			if ( ! empty( $accordion_attr['item_header']['item_control']['switcher'] ) ) {
-
-				$switcher .= '<span class="item-controls">';
-				$switcher .= sprintf( '<input type="hidden" value="off" name="%s"/>', esc_attr( $accordion_attr['item_header']['item_control']['name'] ) );
-				$switcher .= sprintf( '<input type="checkbox" id="%s" name="%s" class="toggle %s" value="on" %s>',
-					esc_attr( $accordion_attr['item_header']['item_control']['id'] ),
-					esc_attr( $accordion_attr['item_header']['item_control']['name'] ),
-					esc_attr( $accordion_attr['item_header']['item_control']['class'] ),
-					esc_attr( $accordion_attr['item_header']['item_control']['is_checked'] )
-				);
-				$switcher .= '</span>';
+				?>
+				<span class="item-controls">
+					<input type="hidden" value="off" name="<?php echo esc_attr( $accordion_attr['item_header']['item_control']['name'] ); ?>"/>
+					<input type="checkbox" id="<?php echo esc_attr( $accordion_attr['item_header']['item_control']['id'] ); ?>" name="<?php echo esc_attr( $accordion_attr['item_header']['item_control']['name'] ); ?>" class="toggle <?php echo esc_attr( $accordion_attr['item_header']['item_control']['class'] ); ?>" value="on" <?php esc_attr( $accordion_attr['item_header']['item_control']['is_checked'] ); ?>>',
+				</span>
+				<?php
 			}
-
-			$title_contents .= $switcher;
-
-			$html .= sprintf('<div class="rmp-accordion-title %s">%s</div>',
-				esc_attr( $title_class ),
-				$title_contents
-			);
+			?>
+			</div>
+			<?php
 		}
 
 		// If self_close_item is true then avoid contents for this accordion item and close it.
 		if ( ! empty( $accordion_attr['self_close_item'] ) ) {
-			$html .= '</li>';
-			return $html;
+			?>
+			</li>
+			<?php
+			return;
 		}
 
-		//Accordion contents start.
+		// Accordion contents start.
 		$content_class = '';
 		if ( ! empty( $accordion_attr['item_content']['content_class'] ) ) {
 			$content_class = $accordion_attr['item_content']['content_class'];
 		}
-
-		$html .= sprintf('<div class="rmp-accordion-content rmp-menu-controls %s">', esc_attr( $content_class ) );
-
-		return $html;
-
+		?>
+		<div class="rmp-accordion-content rmp-menu-controls <?php echo esc_attr( $content_class ); ?>">
+		<?php
 	}
 
 	public function end_accordion_item() {
-		//Accordion contents end.
-		return  '</div></li>';
+		// Accordion contents end.
+		?>
+		</div></li>
+		<?php
 	}
 
 
 	public function add_editor_menu_item( $tab_attr ) {
-
 		if ( empty( $tab_attr ) ) {
 			return;
 		}
@@ -173,106 +171,113 @@ class UI_Manager {
 		if ( ! empty( $tab_attr['aria_owns'] ) ) {
 			$aria_owns = $tab_attr['aria_owns'];
 		}
+		?>
+		<li class="rmp-tab-item <?php echo esc_attr( $item_class ); ?>" aria-owns="<?php echo esc_attr( $aria_owns ); ?>">
+		<?php
 
-		$html = sprintf('<li class="rmp-tab-item %s" aria-owns="%s">', esc_attr( $item_class ), esc_attr( $aria_owns ) );
-
-
-		//Item header.
+		// Item header.
 		if ( ! empty( $tab_attr['item_header'] ) ) {
-
 			$title_class = '';
 			if ( ! empty( $tab_attr['item_header']['title_class'] ) ) {
 				$title_class = $tab_attr['item_header']['title_class'];
 			}
 
-			$title_contents = '';
-
+			// Item icon.
+			if ( ! empty( $tab_attr['item_header']['item_svg_icon'] ) ) {
+				?>
+				<span class="rmp-tab-item-icon">
+					<?php
+					$svg_icon = wp_remote_get( $tab_attr['item_header']['item_svg_icon'] );
+					if ( is_array( $svg_icon ) && ! is_wp_error( $svg_icon ) ) {
+						echo wp_kses( $svg_icon['body'], rmp_allow_svg_html_tags() );
+					}
+					?>
+				</span>
+				<?php
+			}
+			?>
+			<h3 class="rmp-tab-item-title <?php echo esc_attr( $title_class ); ?>">
+			<?php
 			if ( ! empty( $tab_attr['item_header']['item_title'] ) ) {
-				$title_contents .= sprintf('<span class="%s"> %s </span>',
-					esc_attr( $title_class ),
-					esc_html( $tab_attr['item_header']['item_title'] )
-				);
+				?>
+					<span class="<?php echo esc_attr( $title_class ); ?>">
+				<?php echo esc_html( $tab_attr['item_header']['item_title'] ); ?>
+					</span>
+				<?php
 			}
-
-			//Item icon.
-			if ( ! empty( $tab_attr['item_header']['item_svg_icon']  ) ) {
-				$html .= sprintf(
-					'<span class="rmp-tab-item-icon">%s</span>',
-					file_get_contents( $tab_attr['item_header']['item_svg_icon'] )
-				);
-			}
-
-			$html .= sprintf('<h3 class="rmp-tab-item-title %s">%s</h3>',
-				esc_attr( $title_class ),
-				$title_contents
-			);
+			?>
+				</h3>
+				<?php
 		}
-
-		$html .= '</li>';
-
-		return $html;
-
+		?>
+		</li>
+		<?php
 	}
 
 	public function start_tabs_controls_panel( $param ) {
-
 		$items_count = 2;
-		if( ! empty( $param['tab_items'] ) ) {
+		if ( ! empty( $param['tab_items'] ) ) {
 			$items_count = count( $param['tab_items'] );
 		}
+		?>
+		<div class="tabs <?php echo esc_attr( $param['tab_classes'] ); ?>">
+			<ul class="nav-tab-wrapper rmp-tab-items rmp-tab-items-<?php echo esc_attr( $items_count ); ?>" >
+		<?php
 
-		$html = sprintf( '<div class="tabs %s">
-			<ul class="nav-tab-wrapper rmp-tab-items rmp-tab-items-%s" >',
-			esc_attr( $param['tab_classes'] ),
-			esc_attr( $items_count )
-		);
-
-		foreach( $param['tab_items'] as $tab_item ) {
-			$html .= sprintf(
-				'<li><a class="nav-tab %s" href="#%s">%s</a></li>',
-				esc_attr( $tab_item['item_class'] ),
-				esc_attr( $tab_item['item_target'] ),
-				esc_html( $tab_item['item_text'] )
-			);
+		foreach ( $param['tab_items'] as $tab_item ) {
+			?>
+			<li>
+				<a class="nav-tab <?php echo esc_attr( $tab_item['item_class'] ); ?>" href="#<?php echo esc_attr( $tab_item['item_target'] ); ?>">
+					<?php echo esc_html( $tab_item['item_text'] ); ?>
+				</a>
+			</li>
+			<?php
 		}
-
-		$html .= '</ul>';
-
-		return $html;
+		?>
+		</ul>
+		<?php
 	}
 
 	public function end_tabs_controls_panel() {
-		return '</div>';
+		?>
+		</div>
+		<?php
 	}
 
 
 	public function start_tab_item( $param ) {
-		$html = sprintf('<div id="%s" class="%s">',esc_attr( $param['item_id'] ), esc_attr( $param['item_class'] ) );
-
-		return $html;
+		?>
+		<div id="<?php echo esc_attr( $param['item_id'] ); ?>" class="<?php echo esc_attr( $param['item_class'] ); ?>">
+		<?php
 	}
 
 	public function end_tab_item() {
-		return '</div>';
+		?>
+		</div>
+		<?php
 	}
 
 	public function start_group_controls() {
-		return '<div class="rmp-input-control-group">';
+		?>
+		<div class="rmp-input-control-group">
+		<?php
 	}
 
 	public function end_group_controls() {
-		return '</div>';
+		?>
+		</div>
+		<?php
 	}
 
-
-
 	public function start_sub_accordion() {
-		return '<ul class="rmp-sub-accordion-container">';
+		?>
+		<ul class="rmp-sub-accordion-container">
+		<?php
 	}
 
 	public function end_sub_accordion() {
-		return '</ul>';
+		?>
+		</ul>
+		<?php
 	}
-
-
 }

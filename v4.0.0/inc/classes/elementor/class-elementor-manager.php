@@ -9,6 +9,7 @@
  */
 
 namespace RMP\Features\Inc\Elementor;
+
 use RMP\Features\Inc\Traits\Singleton;
 use RMP\Features\Inc\Elementor\Widgets\RMP_Widget;
 
@@ -54,7 +55,7 @@ class Elementor_Manager {
 	 */
 	protected function setup_hooks() {
 		add_action( 'plugins_loaded', array( $this, 'elementor_init' ) );
-		add_action( 'elementor/editor/after_enqueue_scripts', [ $this, 'elementor_enqueue_scripts' ] );
+		add_action( 'elementor/editor/after_enqueue_scripts', array( $this, 'elementor_enqueue_scripts' ) );
 	}
 
 	/**
@@ -65,7 +66,6 @@ class Elementor_Manager {
 	 * @return void
 	 */
 	public function elementor_enqueue_scripts( $hook_suffix ) {
-
 		wp_enqueue_script(
 			'rmp_elementor_scripts',
 			RMP_PLUGIN_URL_V4 . '/assets/admin/js/rmp-elementor.js',
@@ -119,7 +119,6 @@ class Elementor_Manager {
 	 * @access public
 	 */
 	public function admin_notice_missing_main_plugin() {
-
 		return sprintf(
 			wp_kses(
 				'<div class="notice notice-warning is-dismissible"><p><strong>"%1$s"</strong> requires <strong>"%2$s"</strong> to be installed and activated.</p></div>',
@@ -145,7 +144,6 @@ class Elementor_Manager {
 	 * @access public
 	 */
 	public function admin_notice_minimum_elementor_version() {
-
 		return sprintf(
 			wp_kses(
 				'<div class="notice notice-warning is-dismissible"><p><strong>"%1$s"</strong> requires <strong>"%2$s"</strong> version %3$s or greater.</p></div>',
@@ -172,7 +170,6 @@ class Elementor_Manager {
 	 * @access public
 	 */
 	public function admin_notice_minimum_php_version() {
-
 		return sprintf(
 			wp_kses(
 				'<div class="notice notice-warning is-dismissible"><p><strong>"%1$s"</strong> requires <strong>"%2$s"</strong> version %3$s or greater.</p></div>',

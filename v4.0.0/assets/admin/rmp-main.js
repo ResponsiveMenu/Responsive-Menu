@@ -1,7 +1,7 @@
 /**
  * Main scripts file.
  *
- * @package responsive-menu-pro
+ * @package responsive-menu
  */
 
 import './scss/wizard-ui.scss';
