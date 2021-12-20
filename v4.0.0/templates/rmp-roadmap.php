@@ -2,7 +2,7 @@
 /**
  * Class Displays the message What's Next.
  *
- * @since      4.1.5
+ * @since      4.1.6
  *
  * @package    responsive_menu_pro
  */
@@ -15,7 +15,7 @@ class RMNextUpdateMessage {
 	 *
 	 * Adds the notice check to init and then check to display message
 	 *
-	 * @since 4.1.5
+	 * @since 4.1.6
 	 */
 	public function __construct() {
 		if ( isset( $_GET['rm_next_update_notice_close'] ) && 'close' === $_GET['rm_next_update_notice_close'] ) {
@@ -30,7 +30,7 @@ class RMNextUpdateMessage {
 	/**
 	 * Check if next update message closed
 	 *
-	 * @since 4.1.5
+	 * @since 4.1.6
 	 * @return int The amount of menus needed to display message
 	 */
 	public function close_next_updates_message() {
