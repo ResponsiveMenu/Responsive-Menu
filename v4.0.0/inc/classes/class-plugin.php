@@ -215,7 +215,7 @@ class Plugin {
 
 		// Check wp footer option is enabled.
 		$option_manager = Option_Manager::get_instance();
-		if ( 'wp_body_open' == $hook && 'on' == $option_manager->get_global_option( 'rmp_wp_footer_hook' ) ) {
+		if ( 'wp_body_open' === $hook && 'on' === $option_manager->get_global_option( 'rmp_wp_footer_hook' ) ) {
 			return false;
 		}
 
