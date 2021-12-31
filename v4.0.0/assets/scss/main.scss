@@ -6,11 +6,6 @@
     }
 }
 
-@if( $menu_to_hide != '' ) {
-    #{$menu_to_hide} {
-        display: none !important;
-    }
-}
 // Menu hamburger toggle styling.
 @if($menu_trigger_position_type == 'inside-element'){
     .admin-bar #{$menu_trigger_id}{
@@ -131,7 +126,13 @@
 }
 
 /* Hamburger menu styling */
-@media screen and (max-width: $tablet_breakpoint ) {
+@media screen and ( max-width: $tablet_breakpoint ) {
+
+    @if( $menu_to_hide != '' ) {
+        #{$menu_to_hide} {
+            display: none !important;
+        }
+    }
 
     #{$menu_trigger_id} {
         display: block;
