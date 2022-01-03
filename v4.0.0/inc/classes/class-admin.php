@@ -261,24 +261,22 @@ class Admin {
 	public function responsive_menu_shortcode() {
 
 		// Check shortcode option is activated or not.
-		$option_manager = Option_Manager::get_instance();
+		$options        = Option_Manager::get_instance();
 		$menu_ids       = get_all_rmp_menu_ids();
 
-		if ( empty( $menu_ids ) ) {
-			return;
-		}
+		if ( ! empty( $menu_ids ) ) {
+			foreach ( $menu_ids as $menu_id ) {
 
-		foreach ( $menu_ids as $menu_id ) {
+				$menu_show_on = $options->get_option( $menu_id, 'menu_display_on' );
+				if ( ! empty( $menu_show_on ) && 'shortcode' !== $menu_show_on ) {
+					continue;
+				}
 
-			$menu_show_on = $option_manager->get_option( $menu_id, 'menu_display_on' );
-			if ( ! empty( $menu_show_on ) && 'shortcode' !== $menu_show_on ) {
-				continue;
+				ob_start();
+				$menu = new RMP_Menu( $menu_id );
+				$menu->build_menu();
+				return ob_get_clean();
 			}
-
-			ob_start();
-			$menu = new RMP_Menu( $menu_id );
-			$menu->build_menu();
-			return ob_get_clean();
 		}
 	}
 
