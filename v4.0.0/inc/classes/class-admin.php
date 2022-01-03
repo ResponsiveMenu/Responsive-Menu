@@ -277,6 +277,8 @@ class Admin {
 				$menu->build_menu();
 				return ob_get_clean();
 			}
+		} else {
+			return esc_html__( 'Shortcode deactivated', 'responsive-menu' );
 		}
 	}
 
