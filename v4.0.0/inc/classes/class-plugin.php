@@ -46,7 +46,14 @@ class Plugin {
 	protected function setup_hooks() {
 		add_action( 'plugins_loaded', array( $this, 'rmp_load_plugin_text_domain' ) );
 		add_action( 'admin_notices', array( $this, 'rmp_deactivate_paid_version_notice' ) );
-		add_action( 'admin_notices', array( $this, 'rmp_upgrade_pro_admin_notice' ) );
+
+		//Hiding upgrade to pro notice for v3 users
+		global $wpdb;
+		$table_name = $wpdb->prefix . 'responsive_menu';
+		$query = $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $table_name ) );
+		if ( ! $wpdb->get_var( $query ) == $table_name ) {
+			add_action( 'admin_notices', array( $this, 'rmp_upgrade_pro_admin_notice' ) );
+		}
 		add_action( 'plugin_action_links_' . plugin_basename( RMP_PLUGIN_FILE ), array( $this, 'rmp_upgrade_pro_plugin_link' ) );
 		add_action( 'wp_ajax_rmp_upgrade_admin_notice_dismiss', array( $this, 'rmp_upgrade_pro_notice_dismiss' ) );
 		add_action( 'admin_notices', array( $this, 'no_menu_admin_notice' ) );
@@ -215,7 +222,7 @@ class Plugin {
 
 		// Check wp footer option is enabled.
 		$option_manager = Option_Manager::get_instance();
-		if ( 'wp_body_open' == $hook && 'on' == $option_manager->get_global_option( 'rmp_wp_footer_hook' ) ) {
+		if ( 'wp_body_open' === $hook && 'on' === $option_manager->get_global_option( 'rmp_wp_footer_hook' ) ) {
 			return false;
 		}
 

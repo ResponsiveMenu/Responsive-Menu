@@ -70,11 +70,22 @@ if ( ! class_exists( 'RMP_Migration' ) ) :
 		 */
 		public function migrate() {
 
+			$older_options = $this->get_table_options();
+
+			//since 4.1.7 only for v3 user if getting any issue after updating to 4.1.6
+			if ( ! empty( $older_options ) && ! empty( get_option( 'rmp_migrate10111' ) ) && empty( get_option( 'rmp_migrate10112' ) ) ) {
+				$option_manager = Option_Manager::get_instance();
+				$options = $option_manager->get_global_options();
+				$global_options['rmp_wp_footer_hook'] = 'on';
+				$global_options = array_merge( $options, $global_options );
+				update_option( 'rmp_global_setting_options', $global_options );
+			}
+			update_option( 'rmp_migrate10112', true );
+
 			if ( ! empty( get_option( 'rmp_migrate10111' ) ) ) {
 				return;
 			}
 
-			$older_options = $this->get_table_options();
 
 			// Separate the global options and migrate it into new format.
 			$this->migrate_global_settings( $older_options );
@@ -187,6 +198,8 @@ if ( ! class_exists( 'RMP_Migration' ) ) :
 
 			$new_options['tablet_breakpoint'] = $older_options['breakpoint'];
 
+			$new_options['menu_display_on'] = 'on' === $older_options['shortcode'] ? 'shortcode' : 'all-pages';
+
 			$new_options['menu_sub_arrow_border_width'] = 1;
 			if ( ! empty( $older_options['menu_border_width'] ) ) {
 				$new_options['menu_sub_arrow_border_width'] = $older_options['menu_border_width'];
@@ -244,6 +257,7 @@ if ( ! class_exists( 'RMP_Migration' ) ) :
 			$global_options['rmp_scripts_in_footer']        = $older_options['scripts_in_footer'];
 			$global_options['rmp_remove_fontawesome']       = $older_options['remove_fontawesome'];
 			$global_options['menu_adjust_for_wp_admin_bar'] = 'hide';
+			$global_options['rmp_wp_footer_hook']           = 'on';
 
 			$global_options = array_merge( rmp_global_default_setting_options(), $global_options );
 			update_option( 'rmp_global_setting_options', $global_options );

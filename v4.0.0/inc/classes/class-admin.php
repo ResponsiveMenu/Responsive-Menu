@@ -57,6 +57,7 @@ class Admin {
 		add_action( 'wp_ajax_rmp_import_menu', array( $this, 'rmp_import_menu' ) );
 
 		add_shortcode( 'rmp_menu', array( $this, 'register_menu_shortcode' ) );
+		add_shortcode( 'responsive_menu', array( $this, 'responsive_menu_shortcode' ) );
 		add_action( 'init', array( $this, 'rmp_menu_cpt' ), 0 );
 
 		add_filter( 'post_row_actions', array( $this, 'rmp_menu_row_actions' ), 10, 2 );
@@ -215,7 +216,6 @@ class Admin {
 	 * @since  4.0.0
 	 *
 	 * @param  Array  $atts    Attributes List.
-	 * @param  string $content It contain text from shortcode.
 	 *
 	 * @return HTML   $output  Menu contents.
 	 */
@@ -249,6 +249,37 @@ class Admin {
 		$menu->build_menu();
 
 		return ob_get_clean();
+	}
+
+	/**
+	 * This function register the shortcode for responsive_menu.
+	 *
+	 * @since  4.1.7
+	 *
+	 * @return HTML   $output  Menu contents.
+	 */
+	public function responsive_menu_shortcode() {
+
+		// Check shortcode option is activated or not.
+		$options        = Option_Manager::get_instance();
+		$menu_ids       = get_all_rmp_menu_ids();
+
+		if ( ! empty( $menu_ids ) ) {
+			foreach ( $menu_ids as $menu_id ) {
+
+				$menu_show_on = $options->get_option( $menu_id, 'menu_display_on' );
+				if ( ! empty( $menu_show_on ) && 'shortcode' !== $menu_show_on ) {
+					continue;
+				}
+
+				ob_start();
+				$menu = new RMP_Menu( $menu_id );
+				$menu->build_menu();
+				return ob_get_clean();
+			}
+		} else {
+			return esc_html__( 'Shortcode deactivated', 'responsive-menu' );
+		}
 	}
 
 	/**

@@ -3,7 +3,7 @@ Contributors: expresstech, responsivemenu, imvarunkmr, surajkumarsingh, infosate
 Tags: responsive, mega menu, navigation, mobile, hamburger
 Requires at least: 3.6
 Tested up to: 5.8.2
-Stable tag: 4.1.6
+Stable tag: 4.1.7
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -102,6 +102,10 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 7. Main menu
 
 == Changelog ==
+
+= 4.1.7 (4 Jan 2022) =
+* Hotfix: Fixed issues where menu got disappeared after updating to 4.1.6.
+* Hotfix: Fixed issue where users were seeing a shortcode instead of actual menu after updating to 4.1.6
 
 = 4.1.6 (20th Dec 2021) =
 * Enhancement: Refactored code to enqueue JS and CSS files as per coding standards
