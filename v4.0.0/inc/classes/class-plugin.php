@@ -51,7 +51,7 @@ class Plugin {
 		global $wpdb;
 		$table_name = $wpdb->prefix . 'responsive_menu';
 		$query = $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $table_name ) );
-		if ( !$wpdb->get_var( $query ) == $table_name ){
+		if ( ! $wpdb->get_var( $query ) == $table_name ) {
 			add_action( 'admin_notices', array( $this, 'rmp_upgrade_pro_admin_notice' ) );
 		}
 		add_action( 'plugin_action_links_' . plugin_basename( RMP_PLUGIN_FILE ), array( $this, 'rmp_upgrade_pro_plugin_link' ) );
