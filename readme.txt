@@ -103,8 +103,9 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 
 == Changelog ==
 
-= 4.1.7 (31st Dec 2021) =
-* Hotfix: fixed issue of hidding desktop theme menu.
+= 4.1.7 (4 Jan 2022) =
+* Hotfix: Fixed issues where menu got disappeared after updating to 4.1.6.
+* Hotfix: Fixed issue where users were seeing a shortcode instead of actual menu after updating to 4.1.6
 
 = 4.1.6 (20th Dec 2021) =
 * Enhancement: Refactored code to enqueue JS and CSS files as per coding standards
