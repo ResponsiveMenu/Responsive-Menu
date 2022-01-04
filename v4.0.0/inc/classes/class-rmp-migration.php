@@ -70,11 +70,22 @@ if ( ! class_exists( 'RMP_Migration' ) ) :
 		 */
 		public function migrate() {
 
+			$older_options = $this->get_table_options();
+
+			//since 4.1.7 only for v3 user if getting any issue after updating to 4.1.6
+			if ( ! empty( $older_options ) && ! empty( get_option( 'rmp_migrate10111' ) ) && empty( get_option( 'rmp_migrate10112' ) ) ) {
+				$option_manager = Option_Manager::get_instance();
+				$options = $option_manager->get_global_options();
+				$global_options['rmp_wp_footer_hook'] = 'on';
+				$global_options = array_merge( $options, $global_options );
+				update_option( 'rmp_global_setting_options', $global_options );
+			}
+			update_option( 'rmp_migrate10112', true );
+
 			if ( ! empty( get_option( 'rmp_migrate10111' ) ) ) {
 				return;
 			}
 
-			$older_options = $this->get_table_options();
 
 			// Separate the global options and migrate it into new format.
 			$this->migrate_global_settings( $older_options );
