@@ -764,17 +764,3 @@ Requires PHP 5.4  - DO NOT upgrade if you do not have this installed.
 
 = 2.8.8 =
 Requires PHP 5.4  - DO NOT upgrade if you do not have this installed.
-
-🌐Our Plugins
-
-If you like this plugin, consider exploring our other plugins:
-
-⏱️ [Quiz and Survey Master](https://wordpress.org/plugins/quiz-master-next/) - Best WordPress Quiz Plugin to create engaging quizzes, surveys, & exams using WordPress and convert your website into a lead generation machine.
-
-📙 [Projectopia](https://wordpress.org/plugins/projectopia-core/) - Project Management & Invoicing plugin for WordPress. Generate invoices, send quotes, generate leads, manage clients, provide support - all inside your WordPress website.
-
-📅 [Booking Ultra](https://wordpress.org/plugins/booking-ultra-pro/) - Appointment Booking plugin for WordPress - Show a quick form to accept bookings for your services with pre-set booking slots. Ideal for salons, medical professionals, lawyers, consultants, etc.
-
-⚡ [InstaWP](https://instawp.io/) - Launch a quick WordPress site with this sandbox service. Create New WordPress instance within a second.
-
-🔒 [Hide My WP](https://hidemywp.net/) - Hide your WordPress from bots, attackers & spammers. Hides all the known URLs, paths, plugins, themes which can reveal that you are using WP, also comes with an in-built firewall & trust network.
