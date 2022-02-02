@@ -616,16 +616,17 @@ jQuery( document ).ready( function( jQuery ) {
 			},
 			success: function( response ) {
 				jQuery( '#rmp-export-menu-button' ).prop( 'disabled', false );
-				noticeClass = 'notice-error';
 				if ( response.success ) {
-					noticeClass = 'notice-success';
 					let menu_name = jQuery('#rmp_export_menu_list').children(":selected").text().trim().toLocaleLowerCase().split(' ').join('-');
 					download_file( response.data , menu_name + '.json' , 'application/json' );
+				}else{
+					jQuery( '#rmp-global-settings' ).before(
+						'<div class="notice notice-error settings-error is-dismissible"> <p>' + response.data.message + '</p></div>'
+					);
+					setTimeout( function() {
+						jQuery( '#rmp-global-settings' ).parent().find( '.notice' ).remove();
+					}, 3000 );
 				}
-
-				jQuery( '#rmp-global-settings' ).before(
-					'<div class="notice ' + noticeClass + ' settings-error is-dismissible"> <p>' + response.data.message + '</p></div>'
-				);
 			}
 		});
 
