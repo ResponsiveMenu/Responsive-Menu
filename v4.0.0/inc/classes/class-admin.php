@@ -568,7 +568,7 @@ class Admin {
 		}
 
 		if ( ! current_user_can( 'edit_post', $menu_id ) ) {
-			wp_send_json_error( wp_json_encode( array( 'message' => __( 'You can not import menu !', 'responsive-menu' ) ) ) );
+			wp_send_json_error( array( 'message' => __( 'You can not import menu !', 'responsive-menu' ) ) );
 		}
 
 		$file_contents  = isset( $_FILES['file']['tmp_name'] ) ? file_get_contents( wp_unslash( $_FILES['file']['tmp_name'] ) ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
