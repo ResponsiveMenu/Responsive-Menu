@@ -616,10 +616,16 @@ jQuery( document ).ready( function( jQuery ) {
 			},
 			success: function( response ) {
 				jQuery( '#rmp-export-menu-button' ).prop( 'disabled', false );
-				if( response.data ) {
+				noticeClass = 'notice-error';
+				if ( response.success ) {
+					noticeClass = 'notice-success';
 					let menu_name = jQuery('#rmp_export_menu_list').children(":selected").text().trim().toLocaleLowerCase().split(' ').join('-');
 					download_file( response.data , menu_name + '.json' , 'application/json' );
 				}
+
+				jQuery( '#rmp-global-settings' ).before(
+					'<div class="notice ' + noticeClass + ' settings-error is-dismissible"> <p>' + response.data.message + '</p></div>'
+				);
 			}
 		});
 

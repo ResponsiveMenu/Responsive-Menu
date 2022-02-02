@@ -535,7 +535,7 @@ class Admin {
 		}
 
 		if ( ! current_user_can( 'edit_post', $menu_id ) ) {
-			wp_send_json_error( wp_json_encode( array( 'message' => __( 'You can not export menu !', 'responsive-menu' ) ) ) );
+			wp_send_json_error( array( 'message' => __( 'You can not export menu !', 'responsive-menu' ) ) );
 		}
 
 		$option_manager = Option_Manager::get_instance();
