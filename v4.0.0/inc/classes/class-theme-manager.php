@@ -121,6 +121,10 @@ class Theme_Manager {
 	public function rmp_theme_apply() {
 		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
 
+		if ( ! is_admin() ) {
+			wp_send_json_error( array( 'message' => __( 'You can not apply themes !', 'responsive-menu' ) ) );
+		}
+
 		$theme_name = isset( $_POST['theme_name'] ) ? sanitize_text_field( wp_unslash( $_POST['theme_name'] ) ) : '';
 		if ( empty( $theme_name ) ) {
 			wp_send_json_error( array( 'message' => esc_html__( 'Theme Name Missing', 'responsive-menu' ) ) );
@@ -227,6 +231,10 @@ class Theme_Manager {
 	 */
 	public function rmp_theme_delete() {
 		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
+
+		if ( ! is_admin() ) {
+			wp_send_json_error( array( 'message' => __( 'You can not delete themes !', 'responsive-menu' ) ) );
+		}
 
 		$theme_name = isset( $_POST['theme_name'] ) ? sanitize_text_field( wp_unslash( $_POST['theme_name'] ) ) : '';
 		if ( empty( $theme_name ) ) {
@@ -359,7 +367,7 @@ class Theme_Manager {
 
 		// Check user capabilities.
 		if ( ! current_user_can( 'manage_options' ) ) {
-			return;
+			wp_send_json_error( array( 'message' => __( 'You can not upload themes !', 'responsive-menu' ) ) );
 		}
 
 		// Check if files are empty or not zip then return error message.
@@ -475,6 +483,10 @@ class Theme_Manager {
 			wp_send_json_error(
 				array( 'message' => esc_html__( 'Menu ID missing !', 'responsive-menu' ) )
 			);
+		}
+
+		if ( ! current_user_can( 'edit_post', $menu_id ) ) {
+			wp_send_json_error( array( 'message' => __( 'You can not edit menu !', 'responsive-menu' ) ) );
 		}
 
 		$options   = array();
@@ -1078,6 +1090,10 @@ class Theme_Manager {
 
 		// Check nonce to verify the authenticate upload file.
 		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
+
+		if ( ! is_admin() ) {
+			wp_send_json_error( array( 'message' => __( 'You can not upload themes !', 'responsive-menu' ) ) );
+		}
 
 		// Check if files are empty or not zip then return error message.
 		$file_name     = isset( $_FILES['file']['name'] ) ? sanitize_file_name( wp_unslash( $_FILES['file']['name'] ) ) : '';

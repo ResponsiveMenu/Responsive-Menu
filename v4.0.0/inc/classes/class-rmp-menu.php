@@ -165,10 +165,10 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 
 			$menu_trigger_destination = '';
 			if ( ! empty( $this->options['hamburger_position_selector'] ) ) {
-				$menu_trigger_destination = $this->options['hamburger_position_selector'];
+				$menu_trigger_destination = 'data-destination=' . $this->options['hamburger_position_selector'];
 			}
 			?>
-			<button type="button"  aria-controls="rmp-container-<?php echo esc_attr( $this->menu_id ); ?>" aria-label="Menu Trigger" id="rmp_menu_trigger-<?php echo esc_attr( $this->menu_id ); ?>" destination="<?php echo esc_attr( $menu_trigger_destination ); ?>" class="<?php echo esc_attr( $toggle_theme_class ); ?>">
+			<button type="button"  aria-controls="rmp-container-<?php echo esc_attr( $this->menu_id ); ?>" aria-label="Menu Trigger" id="rmp_menu_trigger-<?php echo esc_attr( $this->menu_id ); ?>" <?php echo esc_attr( $menu_trigger_destination ); ?> class="<?php echo esc_attr( $toggle_theme_class ); ?>">
 				<?php
 				$trigger_text_position = '';
 

@@ -54,7 +54,7 @@ jQuery( document ).ready( function( jQuery ) {
 
 			//Append hamburger icon inside an element
 			if ( this.options['button_position_type'] == 'inside-element' ) {
-				var destination = jQuery(this.trigger).attr('destination');
+				var destination = jQuery(this.trigger).attr('data-destination');
 				jQuery(this.trigger).appendTo(jQuery(destination).parent());
 			}
 

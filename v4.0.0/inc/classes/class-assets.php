@@ -50,7 +50,7 @@ class Assets {
 	 */
 	public function rmp_menu_editor_style_inline() {
 		$editor = filter_input( INPUT_GET, 'editor', FILTER_SANITIZE_STRING );
-		if ( ! empty( $editor ) && get_post_type() == 'rmp_menu' && is_admin() ) {
+		if ( ! empty( $editor ) && 'rmp_menu' === get_post_type() && is_admin() ) {
 			$css_data = 'html.wp-toolbar {
 				margin: 0;
 				padding: 0 !important;

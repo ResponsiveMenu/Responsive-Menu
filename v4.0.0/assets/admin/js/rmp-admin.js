@@ -10,36 +10,6 @@
 jQuery( document ).ready( function( jQuery ) {
 
 	/**
-	 * Rollback the plugin version.
-	 *
-	 * @version 4.0.0
-	 *
-	 * @fires Click
-	 */
-	jQuery( '#rmp-rollback-version' ).on( 'click', function( e ) {
-		e.preventDefault();
-
-		const version = jQuery( '#rmp-versions' ).val();
-
-		if ( '3.1.30' === version ) {
-			jQuery.ajax( {
-				url: rmpObject.ajaxURL,
-				data: { action: 'rmp_rollback_version' },
-				type: 'POST',
-				dataType: 'json',
-				error: function( error ) {
-					jQuery( this ).prop( 'disabled', false );
-				},
-				success: function( response ) {
-					if ( response.data.redirect ) {
-						location.href = response.data.redirect;
-					}
-				}
-			} );
-		}
-	} );
-
-	/**
 	 * Iframe loader and contents show/hide.
 	 */
 	jQuery('#rmp-preview-iframe').on('load', function() {
