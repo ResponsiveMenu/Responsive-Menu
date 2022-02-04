@@ -121,7 +121,7 @@ class Theme_Manager {
 	public function rmp_theme_apply() {
 		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
 
-		if ( ! is_admin() ) {
+		if ( ! current_user_can( 'administrator' ) ) {
 			wp_send_json_error( array( 'message' => __( 'You can not apply themes !', 'responsive-menu' ) ) );
 		}
 
@@ -232,7 +232,7 @@ class Theme_Manager {
 	public function rmp_theme_delete() {
 		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
 
-		if ( ! is_admin() ) {
+		if ( ! current_user_can( 'administrator' ) ) {
 			wp_send_json_error( array( 'message' => __( 'You can not delete themes !', 'responsive-menu' ) ) );
 		}
 
@@ -1091,7 +1091,7 @@ class Theme_Manager {
 		// Check nonce to verify the authenticate upload file.
 		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
 
-		if ( ! is_admin() ) {
+		if ( ! current_user_can( 'administrator' ) ) {
 			wp_send_json_error( array( 'message' => __( 'You can not upload themes !', 'responsive-menu' ) ) );
 		}
 

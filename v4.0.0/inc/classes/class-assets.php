@@ -50,7 +50,7 @@ class Assets {
 	 */
 	public function rmp_menu_editor_style_inline() {
 		$editor = filter_input( INPUT_GET, 'editor', FILTER_SANITIZE_STRING );
-		if ( ! empty( $editor ) && 'rmp_menu' === get_post_type() && is_admin() ) {
+		if ( ! empty( $editor ) && 'rmp_menu' === get_post_type() && current_user_can( 'administrator' ) ) {
 			$css_data = 'html.wp-toolbar {
 				margin: 0;
 				padding: 0 !important;
@@ -95,7 +95,7 @@ class Assets {
 			$post_type = sanitize_text_field( wp_unslash( $_GET['post_type'] ) );
 		}
 
-		if ( 'rmp_menu' !== $post_type ) {
+		if ( 'rmp_menu' !== $post_type && current_user_can( 'administrator' ) ) {
 			return;
 		}
 

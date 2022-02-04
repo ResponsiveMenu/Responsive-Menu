@@ -77,7 +77,7 @@ class Admin {
 	 */
 	public function save_menu_global_settings() {
 		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
-		if ( ! is_admin() ) {
+		if ( ! current_user_can( 'administrator' ) ) {
 			wp_send_json_error( __( 'You can\'t edit global settings!', 'responsive-menu' ) );
 		}
 
@@ -113,7 +113,7 @@ class Admin {
 	public function create_new_menu() {
 		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
 
-		if ( ! is_admin() ) {
+		if ( ! current_user_can( 'administrator' ) ) {
 			wp_send_json_error( array( 'message' => __( 'You can not create menu !', 'responsive-menu' ) ) );
 		}
 
