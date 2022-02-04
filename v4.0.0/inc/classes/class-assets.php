@@ -95,7 +95,7 @@ class Assets {
 			$post_type = sanitize_text_field( wp_unslash( $_GET['post_type'] ) );
 		}
 
-		if ( 'rmp_menu' !== $post_type && current_user_can( 'administrator' ) ) {
+		if ( 'rmp_menu' !== $post_type || ! current_user_can( 'administrator' ) ) {
 			return;
 		}
 
