@@ -118,9 +118,9 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 == Changelog ==
 
 = 4.1.8 (8th Feb 2022) =
-* Bug: Fixed security and vulnerability issues.
-* Bug: Fixed w3 validator CSS errors.
-* Bug: Fixed unnecessary HTTP requests to theme config files.
+* Bug: Fixed security vulnerabilities
+* Bug: Fixed w3 validator CSS errors
+* Bug: Fixed unnecessary HTTP requests to theme config files
 
 = 4.1.7 (4 Jan 2022) =
 * Hotfix: Fixed issues where menu got disappeared after updating to 4.1.6.
