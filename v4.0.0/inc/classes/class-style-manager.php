@@ -364,17 +364,17 @@ class Style_Manager {
 				$menu_trigger_height = $options['button_height'] . $options['button_height_unit'];
 			}
 
-			$menu_trigger_background_color = '';
+			$menu_trigger_background_color = 'inherit';
 			if ( ! empty( $options['button_background_colour'] ) ) {
 				$menu_trigger_background_color = $options['button_background_colour'];
 			}
 
-			$menu_trigger_background_color_hover = '';
+			$menu_trigger_background_color_hover = 'inherit';
 			if ( ! empty( $options['button_background_colour_hover'] ) ) {
 				$menu_trigger_background_color_hover = $options['button_background_colour_hover'];
 			}
 
-			$menu_trigger_active_color = '';
+			$menu_trigger_active_color = 'inherit';
 			if ( ! empty( $options['button_background_colour_active'] ) ) {
 				$menu_trigger_active_color = $options['button_background_colour_active'];
 			}
@@ -389,22 +389,22 @@ class Style_Manager {
 				$menu_trigger_transparent_background = $options['button_transparent_background'];
 			}
 
-			$menu_trigger_line_color = '';
+			$menu_trigger_line_color = 'inherit';
 			if ( ! empty( $options['button_line_colour'] ) ) {
 				$menu_trigger_line_color = $options['button_line_colour'];
 			}
 
-			$menu_trigger_line_color_hover = '';
+			$menu_trigger_line_color_hover = 'inherit';
 			if ( ! empty( $options['button_line_colour_hover'] ) ) {
 				$menu_trigger_line_color_hover = $options['button_line_colour_hover'];
 			}
 
-			$menu_trigger_line_active_color = '';
+			$menu_trigger_line_active_color = 'inherit';
 			if ( ! empty( $options['button_line_colour_active'] ) ) {
 				$menu_trigger_line_active_color = $options['button_line_colour_active'];
 			}
 
-			$menu_trigger_title_color = '';
+			$menu_trigger_title_color = 'inherit';
 			if ( ! empty( $options['button_text_colour'] ) ) {
 				$menu_trigger_title_color = $options['button_text_colour'];
 			}
@@ -479,22 +479,22 @@ class Style_Manager {
 				$menu_search_section_padding_bottom = $options['menu_search_section_padding']['bottom'];
 			}
 
-			$menu_search_box_text_color = '';
+			$menu_search_box_text_color = 'inherit';
 			if ( ! empty( $options['menu_search_box_text_colour'] ) ) {
 				$menu_search_box_text_color = $options['menu_search_box_text_colour'];
 			}
 
-			$menu_search_box_background_color = '';
+			$menu_search_box_background_color = 'inherit';
 			if ( ! empty( $options['menu_search_box_background_colour'] ) ) {
 				$menu_search_box_background_color = $options['menu_search_box_background_colour'];
 			}
 
-			$menu_search_box_border_color = '';
+			$menu_search_box_border_color = 'currentColor';
 			if ( ! empty( $options['menu_search_box_border_colour'] ) ) {
 				$menu_search_box_border_color = $options['menu_search_box_border_colour'];
 			}
 
-			$menu_search_box_placeholder_color = '';
+			$menu_search_box_placeholder_color = 'inherit';
 			if ( ! empty( $options['menu_search_box_placeholder_colour'] ) ) {
 				$menu_search_box_placeholder_color = $options['menu_search_box_placeholder_colour'];
 			}
@@ -539,7 +539,7 @@ class Style_Manager {
 				$menu_additional_section_padding_bottom = $options['menu_additional_section_padding']['bottom'];
 			}
 
-			$menu_additional_content_color = '';
+			$menu_additional_content_color = 'inherit';
 			if ( ! empty( $options['menu_additional_content_colour'] ) ) {
 				$menu_additional_content_color = $options['menu_additional_content_colour'];
 			}
@@ -584,12 +584,12 @@ class Style_Manager {
 				$menu_title_section_padding_bottom = $options['menu_title_section_padding']['bottom'];
 			}
 
-			$menu_title_background = '';
+			$menu_title_background = 'inherit';
 			if ( ! empty( $options['menu_title_background_colour'] ) ) {
 				$menu_title_background = $options['menu_title_background_colour'];
 			}
 
-			$menu_title_background_hover = '';
+			$menu_title_background_hover = 'inherit';
 			if ( ! empty( $options['menu_title_background_hover_colour'] ) ) {
 				$menu_title_background_hover = $options['menu_title_background_hover_colour'];
 			}
@@ -604,12 +604,12 @@ class Style_Manager {
 				$menu_title_font_weight = $options['menu_title_font_weight'];
 			}
 
-			$menu_title_font_color = '';
+			$menu_title_font_color = 'inherit';
 			if ( ! empty( $options['menu_title_colour'] ) ) {
 				$menu_title_font_color = $options['menu_title_colour'];
 			}
 
-			$menu_title_font_color_hover = '';
+			$menu_title_font_color_hover = 'inherit';
 			if ( ! empty( $options['menu_title_hover_colour'] ) ) {
 				$menu_title_font_color_hover = $options['menu_title_hover_colour'];
 			}
@@ -784,7 +784,7 @@ class Style_Manager {
 				$menu_item_border_width_unit = $options['menu_border_width_unit'];
 			}
 
-			$menu_item_border_color = '';
+			$menu_item_border_color = 'currentColor';
 			if ( ! empty( $options['menu_item_border_colour'] ) ) {
 				$menu_item_border_color = $options['menu_item_border_colour'];
 			}
@@ -794,7 +794,7 @@ class Style_Manager {
 				$menu_item_border_color_hover = $options['menu_item_border_colour_hover'];
 			}
 
-			$menu_current_item_border_color = '';
+			$menu_current_item_border_color = 'currentColor';
 			if ( ! empty( $options['menu_current_item_border_colour'] ) ) {
 				$menu_current_item_border_color = $options['menu_current_item_border_colour'];
 			}
@@ -824,42 +824,42 @@ class Style_Manager {
 				$menu_item_text_alignment = $options['menu_text_alignment'];
 			}
 
-			$menu_item_text_color = '';
+			$menu_item_text_color = 'inherit';
 			if ( ! empty( $options['menu_link_colour'] ) ) {
 				$menu_item_text_color = $options['menu_link_colour'];
 			}
 
-			$menu_item_text_color_hover = '';
+			$menu_item_text_color_hover = 'inherit';
 			if ( ! empty( $options['menu_link_hover_colour'] ) ) {
 				$menu_item_text_color_hover = $options['menu_link_hover_colour'];
 			}
 
-			$menu_current_item_text_color = '';
+			$menu_current_item_text_color = 'inherit';
 			if ( ! empty( $options['menu_current_link_colour'] ) ) {
 				$menu_current_item_text_color = $options['menu_current_link_colour'];
 			}
 
-			$menu_current_item_text_color_hover = '';
+			$menu_current_item_text_color_hover = 'inherit';
 			if ( ! empty( $options['menu_current_link_hover_colour'] ) ) {
 				$menu_current_item_text_color_hover = $options['menu_current_link_hover_colour'];
 			}
 
-			$menu_item_background_color = '';
+			$menu_item_background_color = 'inherit';
 			if ( ! empty( $options['menu_item_background_colour'] ) ) {
 				$menu_item_background_color = $options['menu_item_background_colour'];
 			}
 
-			$menu_item_background_color_hover = '';
+			$menu_item_background_color_hover = 'inherit';
 			if ( ! empty( $options['menu_item_background_hover_colour'] ) ) {
 				$menu_item_background_color_hover = $options['menu_item_background_hover_colour'];
 			}
 
-			$menu_current_item_background_color = '';
+			$menu_current_item_background_color = 'inherit';
 			if ( ! empty( $options['menu_current_item_background_colour'] ) ) {
 				$menu_current_item_background_color = $options['menu_current_item_background_colour'];
 			}
 
-			$menu_current_item_background_color_hover = '';
+			$menu_current_item_background_color_hover = 'inherit';
 			if ( ! empty( $options['menu_current_item_background_hover_colour'] ) ) {
 				$menu_current_item_background_color_hover = $options['menu_current_item_background_hover_colour'];
 			}
@@ -949,47 +949,47 @@ class Style_Manager {
 				$menu_item_toggle_width_unit = $options['submenu_arrow_width_unit'];
 			}
 
-			$menu_item_toggle_text_color = '';
+			$menu_item_toggle_text_color = 'inherit';
 			if ( ! empty( $options['menu_sub_arrow_shape_colour'] ) ) {
 				$menu_item_toggle_text_color = $options['menu_sub_arrow_shape_colour'];
 			}
 
-			$menu_item_toggle_text_color_hover = '';
+			$menu_item_toggle_text_color_hover = 'inherit';
 			if ( ! empty( $options['menu_sub_arrow_shape_hover_colour'] ) ) {
 				$menu_item_toggle_text_color_hover = $options['menu_sub_arrow_shape_hover_colour'];
 			}
 
-			$menu_current_item_toggle_text_color = '';
+			$menu_current_item_toggle_text_color = 'inherit';
 			if ( ! empty( $options['menu_sub_arrow_shape_colour_active'] ) ) {
 				$menu_current_item_toggle_text_color = $options['menu_sub_arrow_shape_colour_active'];
 			}
 
-			$menu_current_item_toggle_text_color_hover = '';
+			$menu_current_item_toggle_text_color_hover = 'inherit';
 			if ( ! empty( $options['menu_sub_arrow_shape_hover_colour_active'] ) ) {
 				$menu_current_item_toggle_text_color_hover = $options['menu_sub_arrow_shape_hover_colour_active'];
 			}
 
-			$menu_item_toggle_background_color = '';
+			$menu_item_toggle_background_color = 'inherit';
 			if ( ! empty( $options['menu_sub_arrow_background_colour'] ) ) {
 				$menu_item_toggle_background_color = $options['menu_sub_arrow_background_colour'];
 			}
 
-			$menu_item_toggle_background_color_hover = '';
+			$menu_item_toggle_background_color_hover = 'inherit';
 			if ( ! empty( $options['menu_sub_arrow_background_hover_colour'] ) ) {
 				$menu_item_toggle_background_color_hover = $options['menu_sub_arrow_background_hover_colour'];
 			}
 
-			$menu_current_item_toggle_background_color = '';
+			$menu_current_item_toggle_background_color = 'inherit';
 			if ( ! empty( $options['menu_sub_arrow_background_colour_active'] ) ) {
 				$menu_current_item_toggle_background_color = $options['menu_sub_arrow_background_colour_active'];
 			}
 
-			$menu_current_item_toggle_background_color_hover = '';
+			$menu_current_item_toggle_background_color_hover = 'inherit';
 			if ( ! empty( $options['menu_sub_arrow_background_hover_colour_active'] ) ) {
 				$menu_current_item_toggle_background_color_hover = $options['menu_sub_arrow_background_hover_colour_active'];
 			}
 
-			$menu_item_toggle_border_color = '';
+			$menu_item_toggle_border_color = 'currentColor';
 			if ( ! empty( $options['menu_sub_arrow_border_colour'] ) ) {
 				$menu_item_toggle_border_color = $options['menu_sub_arrow_border_colour'];
 			}
@@ -999,7 +999,7 @@ class Style_Manager {
 				$menu_item_toggle_border_color_hover = $options['menu_sub_arrow_border_hover_colour'];
 			}
 
-			$menu_current_item_toggle_border_color = '';
+			$menu_current_item_toggle_border_color = 'currentColor';
 			if ( ! empty( $options['menu_sub_arrow_border_colour_active'] ) ) {
 				$menu_current_item_toggle_border_color = $options['menu_sub_arrow_border_colour_active'];
 			}
@@ -1016,7 +1016,7 @@ class Style_Manager {
 
 			$submenu_item_height_unit = '';
 			if ( ! empty( $options['submenu_links_height_unit'] ) ) {
-				$submenu_item_height = $options['submenu_links_height_unit'];
+				$submenu_item_height_unit = $options['submenu_links_height_unit'];
 			}
 
 			$submenu_item_line_height = '';
@@ -1039,7 +1039,7 @@ class Style_Manager {
 				$submenu_item_border_width_unit = $options['submenu_border_width_unit'];
 			}
 
-			$submenu_item_border_color = '';
+			$submenu_item_border_color = 'currentColor';
 			if ( ! empty( $options['submenu_item_border_colour'] ) ) {
 				$submenu_item_border_color = $options['submenu_item_border_colour'];
 			}
@@ -1049,7 +1049,7 @@ class Style_Manager {
 				$submenu_item_border_color_hover = $options['submenu_item_border_colour_hover'];
 			}
 
-			$submenu_current_item_border_color = '';
+			$submenu_current_item_border_color = 'currentColor';
 			if ( ! empty( $options['submenu_current_item_border_colour'] ) ) {
 				$submenu_current_item_border_color = $options['submenu_current_item_border_colour'];
 			}
@@ -1079,42 +1079,42 @@ class Style_Manager {
 				$submenu_item_text_alignment = $options['submenu_text_alignment'];
 			}
 
-			$submenu_item_text_color = '';
+			$submenu_item_text_color = 'inherit';
 			if ( ! empty( $options['submenu_link_colour'] ) ) {
 				$submenu_item_text_color = $options['submenu_link_colour'];
 			}
 
-			$submenu_item_text_color_hover = '';
+			$submenu_item_text_color_hover = 'inherit';
 			if ( ! empty( $options['submenu_link_hover_colour'] ) ) {
 				$submenu_item_text_color_hover = $options['submenu_link_hover_colour'];
 			}
 
-			$submenu_current_item_text_color = '';
+			$submenu_current_item_text_color = 'inherit';
 			if ( ! empty( $options['submenu_current_link_colour'] ) ) {
 				$submenu_current_item_text_color = $options['submenu_current_link_colour'];
 			}
 
-			$submenu_current_item_text_color_hover = '';
+			$submenu_current_item_text_color_hover = 'inherit';
 			if ( ! empty( $options['submenu_current_link_hover_colour'] ) ) {
 				$submenu_current_item_text_color_hover = $options['submenu_current_link_hover_colour'];
 			}
 
-			$submenu_item_background_color = '';
+			$submenu_item_background_color = 'inherit';
 			if ( ! empty( $options['submenu_item_background_colour'] ) ) {
 				$submenu_item_background_color = $options['submenu_item_background_colour'];
 			}
 
-			$submenu_item_background_color_hover = '';
+			$submenu_item_background_color_hover = 'inherit';
 			if ( ! empty( $options['submenu_item_background_hover_colour'] ) ) {
 				$submenu_item_background_color_hover = $options['submenu_item_background_hover_colour'];
 			}
 
-			$submenu_current_item_background_color = '';
+			$submenu_current_item_background_color = 'inherit';
 			if ( ! empty( $options['submenu_current_item_background_colour'] ) ) {
 				$submenu_current_item_background_color = $options['submenu_current_item_background_colour'];
 			}
 
-			$submenu_current_item_background_color_hover = '';
+			$submenu_current_item_background_color_hover = 'inherit';
 			if ( ! empty( $options['submenu_current_item_background_hover_colour'] ) ) {
 				$submenu_current_item_background_color_hover = $options['submenu_current_item_background_hover_colour'];
 			}
@@ -1164,47 +1164,47 @@ class Style_Manager {
 				$submenu_sub_arrow_border_width_unit = $options['submenu_sub_arrow_border_width_unit'];
 			}
 
-			$submenu_item_toggle_text_color = '';
+			$submenu_item_toggle_text_color = 'inherit';
 			if ( ! empty( $options['submenu_sub_arrow_shape_colour'] ) ) {
 				$submenu_item_toggle_text_color = $options['submenu_sub_arrow_shape_colour'];
 			}
 
-			$submenu_item_toggle_text_color_hover = '';
+			$submenu_item_toggle_text_color_hover = 'inherit';
 			if ( ! empty( $options['submenu_sub_arrow_shape_hover_colour'] ) ) {
 				$submenu_item_toggle_text_color_hover = $options['submenu_sub_arrow_shape_hover_colour'];
 			}
 
-			$submenu_current_item_toggle_text_color = '';
+			$submenu_current_item_toggle_text_color = 'inherit';
 			if ( ! empty( $options['submenu_sub_arrow_shape_colour_active'] ) ) {
 				$submenu_current_item_toggle_text_color = $options['submenu_sub_arrow_shape_colour_active'];
 			}
 
-			$submenu_current_item_toggle_text_color_hover = '';
+			$submenu_current_item_toggle_text_color_hover = 'inherit';
 			if ( ! empty( $options['submenu_sub_arrow_shape_hover_colour_active'] ) ) {
 				$submenu_current_item_toggle_text_color_hover = $options['submenu_sub_arrow_shape_hover_colour_active'];
 			}
 
-			$submenu_item_toggle_background_color = '';
+			$submenu_item_toggle_background_color = 'inherit';
 			if ( ! empty( $options['submenu_sub_arrow_background_colour'] ) ) {
 				$submenu_item_toggle_background_color = $options['submenu_sub_arrow_background_colour'];
 			}
 
-			$submenu_item_toggle_background_color_hover = '';
+			$submenu_item_toggle_background_color_hover = 'inherit';
 			if ( ! empty( $options['submenu_sub_arrow_background_hover_colour'] ) ) {
 				$submenu_item_toggle_background_color_hover = $options['submenu_sub_arrow_background_hover_colour'];
 			}
 
-			$submenu_current_item_toggle_background_color = '';
+			$submenu_current_item_toggle_background_color = 'inherit';
 			if ( ! empty( $options['submenu_sub_arrow_background_colour_active'] ) ) {
 				$submenu_current_item_toggle_background_color = $options['submenu_sub_arrow_background_colour_active'];
 			}
 
-			$submenu_current_item_toggle_background_color_hover = '';
+			$submenu_current_item_toggle_background_color_hover = 'inherit';
 			if ( ! empty( $options['submenu_sub_arrow_background_hover_colour_active'] ) ) {
 				$submenu_current_item_toggle_background_color_hover = $options['submenu_sub_arrow_background_hover_colour_active'];
 			}
 
-			$submenu_item_toggle_border_color = '';
+			$submenu_item_toggle_border_color = 'currentColor';
 			if ( ! empty( $options['submenu_sub_arrow_border_colour'] ) ) {
 				$submenu_item_toggle_border_color = $options['submenu_sub_arrow_border_colour'];
 			}
@@ -1214,7 +1214,7 @@ class Style_Manager {
 				$submenu_item_toggle_border_color_hover = $options['submenu_sub_arrow_border_hover_colour'];
 			}
 
-			$submenu_current_item_toggle_border_color = '';
+			$submenu_current_item_toggle_border_color = 'currentColor';
 			if ( ! empty( $options['submenu_sub_arrow_border_colour_active'] ) ) {
 				$submenu_current_item_toggle_border_color = $options['submenu_sub_arrow_border_colour_active'];
 			}

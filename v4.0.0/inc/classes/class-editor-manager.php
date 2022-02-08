@@ -114,6 +114,10 @@ class Editor_Manager {
 		$item_id = isset( $_POST['item_id'] ) ? sanitize_text_field( wp_unslash( $_POST['item_id'] ) ) : '';
 		$value   = isset( $_POST['value'] ) ? sanitize_text_field( wp_unslash( $_POST['value'] ) ) : '';
 
+		if ( ! current_user_can( 'edit_post', $menu_id ) ) {
+			wp_send_json_error( array( 'message' => __( 'You can not update menu !', 'responsive-menu' ) ) );
+		}
+
 		$options = get_post_meta( $menu_id, 'rmp_menu_meta' );
 
 		if ( ! empty( $options ) ) {
@@ -141,11 +145,16 @@ class Editor_Manager {
 
 		$options   = array();
 		$form_data = isset( $_POST['form'] ) ? rm_sanitize_rec_array( wp_unslash( $_POST['form'] ) ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-		parse_str( $form_data, $options );
+		wp_parse_str( $form_data, $options );
 
 		$menu_id = sanitize_text_field( $options['menu_id'] );
+
 		if ( empty( $menu_id ) ) {
 			wp_send_json_error( array( 'message' => esc_html__( 'Menu ID missing !', 'responsive-menu' ) ) );
+		}
+
+		if ( ! current_user_can( 'edit_post', $menu_id ) ) {
+			wp_send_json_error( array( 'message' => __( 'You can not edit menu !', 'responsive-menu' ) ) );
 		}
 
 		$options = $options['menu'];
