@@ -210,7 +210,9 @@
             padding-right : $menu_section_padding_right;
         }
 
-        background-color: $menu_background_color;
+        @if( $menu_background_color != '' ) {
+            background-color: $menu_background_color;
+        }
 
         .rmp-menu,
         .rmp-submenu {

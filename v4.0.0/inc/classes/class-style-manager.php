@@ -734,7 +734,7 @@ class Style_Manager {
 				$menu_section_padding_bottom = $options['menu_section_padding']['bottom'];
 			}
 
-			$menu_background_color = 'inherit';
+			$menu_background_color = '';
 			if ( ! empty( $options['menu_background_colour'] ) ) {
 				$menu_background_color = $options['menu_background_colour'];
 			}

@@ -571,7 +571,13 @@ class Admin {
 			wp_send_json_error( array( 'message' => __( 'You can not import menu !', 'responsive-menu' ) ) );
 		}
 
-		$file_contents  = isset( $_FILES['file']['tmp_name'] ) ? file_get_contents( wp_unslash( $_FILES['file']['tmp_name'] ) ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		global $wp_filesystem;
+		if ( empty( $wp_filesystem ) ) {
+			require_once ABSPATH . 'wp-admin/includes/file.php';
+		}
+		WP_Filesystem();
+
+		$file_contents  = isset( $_FILES['file']['tmp_name'] ) ? $wp_filesystem->get_contents( wp_unslash( $_FILES['file']['tmp_name'] ) ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$import_options = json_decode( $file_contents, true );
 
 		$option_manager = Option_Manager::get_instance();
