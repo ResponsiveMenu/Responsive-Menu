@@ -428,7 +428,7 @@ class Theme_Manager {
 			$theme_preview_url = $theme_url . '/' . basename( $theme_dir ) . '/preview.png';
 
 			// Theme preview image from plugin bundle.
-			if ( strpos( $theme_dir, 'uploads' ) == false ) {
+			if ( ! strpos( $theme_dir, 'uploads' ) ) {
 				$theme_preview_url = plugin_dir_url( $config_file ) . '/preview.png';
 			}
 
@@ -753,7 +753,7 @@ class Theme_Manager {
 			$theme_preview_url = $theme_url . '/' . basename( $theme_dir ) . '/preview.png';
 
 			// Theme preview image from plugin bundle.
-			if ( strpos( $theme_dir, 'uploads' ) == false ) {
+			if ( ! strpos( $theme_dir, 'uploads' ) ) {
 				$theme_preview_url = plugin_dir_url( $config_file ) . '/preview.png';
 			}
 
