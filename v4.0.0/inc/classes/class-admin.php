@@ -474,7 +474,7 @@ class Admin {
 
 		$labels = array(
 			'name'               => __( 'Responsive Menu', 'responsive-menu' ),
-			'singular_name'      => 'Rmp_Menu',
+			'singular_name'      => __( 'Responsive Menu', 'responsive-menu' ),
 			'menu_name'          => __( 'Responsive Menu', 'responsive-menu' ),
 			'parent_item_colon'  => __( 'Parent Menu', 'responsive-menu' ),
 			'all_items'          => __( 'Menus', 'responsive-menu' ),
