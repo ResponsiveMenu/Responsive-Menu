@@ -256,7 +256,7 @@ if ( ! class_exists( 'RMP_Migration' ) ) :
 			$global_options['rmp_remove_glyphicon']         = $older_options['remove_bootstrap'];
 			$global_options['rmp_scripts_in_footer']        = $older_options['scripts_in_footer'];
 			$global_options['rmp_remove_fontawesome']       = $older_options['remove_fontawesome'];
-			$global_options['menu_adjust_for_wp_admin_bar'] = 'hide';
+			$global_options['menu_adjust_for_wp_admin_bar'] = 'adjust';
 			$global_options['rmp_wp_footer_hook']           = 'on';
 
 			$global_options = array_merge( rmp_global_default_setting_options(), $global_options );

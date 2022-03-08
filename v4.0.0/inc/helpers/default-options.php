@@ -19,7 +19,7 @@ function rmp_global_default_setting_options() {
 		'rmp_custom_css'               => '',
 		'rmp_dark_mode'                => 'off',
 		'rmp_license_key'              => '',
-		'menu_adjust_for_wp_admin_bar' => 'hide',
+		'menu_adjust_for_wp_admin_bar' => 'adjust',
 		'rmp_external_files'           => 'on',
 		'rmp_minify_scripts'           => 'on',
 		'rmp_scripts_in_footer'        => 'on',
