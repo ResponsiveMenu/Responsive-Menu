@@ -3,7 +3,7 @@ Contributors: expresstech, responsivemenu, imvarunkmr, surajkumarsingh, infosate
 Tags: responsive, mega menu, navigation, mobile, hamburger
 Requires at least: 3.6
 Tested up to: 5.9
-Stable tag: 4.1.8
+Stable tag: 4.1.9
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -117,6 +117,9 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 
 == Changelog ==
 
+= 4.1.9 (8th Mar 2022) =
+* Enhancement: Fixed issues with admin bar settings
+
 = 4.1.8 (8th Feb 2022) =
 * Bug: Fixed security vulnerabilities
 * Bug: Fixed w3 validator CSS errors
@@ -133,63 +136,63 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 * Enhancement: Moved inline scripts to wp_enqueue_script and wp_add_inline_script
 
 = 4.1.5 (17th Nov 2021) =
-Enhancement: Refactored code to use wp_enqueue functions while including JS and CSS
-Enhancement: Removed external dependencies (CDN url and third party server scripts)
-Enhancement: Removed legacy code and rollback feature
-Enhancement: Removed encrypted code from third party libraries
-Enhancement: "Sanitized, Escaped, and Validated" all variable, file uploads and data
+* Enhancement: Refactored code to use wp_enqueue functions while including JS and CSS
+* Enhancement: Removed external dependencies (CDN url and third party server scripts)
+* Enhancement: Removed legacy code and rollback feature
+* Enhancement: Removed encrypted code from third party libraries
+* Enhancement: "Sanitized, Escaped, and Validated" all variable, file uploads and data
 
 = 4.1.4 (17th Sep 2021) =
-Bug: Fixed transparent background issue.
-Feature: Added option to search settings in customizer.
-Feature: Added shortcuts to related settings in different sections of customizer.
-Feature: Added custom selector for hamburger icon position.
-Enhancement: Moved "Padding" setting from (Mobile Menu > Container > Menu) to (Menu Styling > Menu Settings)
-Enhancement: Moved "Enable Smooth Scrolling" setting from (Menu Styling > Menu Settings) to (Setting > Advance Setting > Technical)
+* Bug: Fixed transparent background issue.
+* Feature: Added option to search settings in customizer.
+* Feature: Added shortcuts to related settings in different sections of customizer.
+* Feature: Added custom selector for hamburger icon position.
+* Enhancement: Moved "Padding" setting from (Mobile Menu > Container > Menu) to (Menu Styling > Menu Settings)
+* Enhancement: Moved "Enable Smooth Scrolling" setting from (Menu Styling > Menu Settings) to (Setting > Advance Setting > Technical)
 
 = 4.1.3 (25th June 2021) =
-Bug: Fixed Adjust Page option issue
-Bug: Fixed the issue of conflict with WooCommerce plugin
-Bug: Fixed the issue of wrong button text position
-Feature: Added banner for providing plugin feedback
-Enhancement: Renamed `Roadmap` to `What's Next`
+* Bug: Fixed Adjust Page option issue
+* Bug: Fixed the issue of conflict with WooCommerce plugin
+* Bug: Fixed the issue of wrong button text position
+* Feature: Added banner for providing plugin feedback
+* Enhancement: Renamed `Roadmap` to `What's Next`
 
 = 4.1.2 (1st May 2021) =
-Feature: Added dark mode option for menu customizer
-Enhancement: Added new filter rmp_menu_markups
-Enhancement: Added demo links for free themes
-Enhancement: Enabled device visibility options by default
+* Feature: Added dark mode option for menu customizer
+* Enhancement: Added new filter rmp_menu_markups
+* Enhancement: Added demo links for free themes
+* Enhancement: Enabled device visibility options by default
 
 = 4.1.1 (19th April 2021) =
-Bug: Fixed responsive menu elementor widget issue with PHP version 7.2 and older
+* Bug: Fixed responsive menu elementor widget issue with PHP version 7.2 and older
 
 = 4.1.0 (26th February 2021) =
-Feature: Bundled all free themes in plugin
-Feature: Added new option for font weight and font family for menu title
-Feature: Added home button on preview device
-Feature: Added border radius as new option for toggle button
-Feature: Added theme upload feature in wizards
-Feature: To support the advanced menu themes
-Enhancement: Improved push animation to work with only body element
-Enhancement: Added loader to show while uploading and changing theme
-Enhancement: Show message when theme page is empty
-Enhancement: Show spinner while deleting theme
-Enhancement: Redirected user directly to customizer after creating a new menu
-Enhancement: Prevent deleting a theme if being used by active menu
-Enhancement: Added color alpha feature and push animation
-Enhancement: Added custom admin notice to upgrade
-Enhancement: Added admin notice with doc link if no menu created.
-Enhancement: Improved the default theme with new UI
-Enhancement: Improved the wizards UI
-Enhancement: Added hide menu input in new menu wizard
-Enhancement: Improved caching and minimize API requests
-Enhancement: Added support for WordPress core version 5.7
-Bug: Prevent to load the customizer screen in preview section
-Bug: Fixed additional contents to process the shortcode
-Bug: Fixed Menu item height issue with long text
-Bug: Fixed default wp menu items
-Bug: Improved live preview and update required
-Bug: Fixed PHP warning and errors
+* Feature: Bundled all free themes in plugin
+* Feature: Added new option for font weight and font family for menu title
+* Feature: Added home button on preview device
+* Feature: Added border radius as new option for toggle button
+* Feature: Added theme upload feature in wizards
+* Feature: To support the advanced menu themes
+* Enhancement: Improved push animation to work with only body element
+* Enhancement: Added loader to show while uploading and changing theme
+* Enhancement: Show message when theme page is empty
+* Enhancement: Show spinner while deleting theme
+* Enhancement: Redirected user directly to customizer after creating a new menu
+* Enhancement: Prevent deleting a theme if being used by active menu
+* Enhancement: Added color alpha feature and push animation
+* Enhancement: Added custom admin notice to upgrade
+* Enhancement: Added admin notice with doc link if no menu created.
+* Enhancement: Improved the default theme with new UI
+* Enhancement: Improved the wizards UI
+* Enhancement: Added hide menu input in new menu wizard
+* Enhancement: Improved caching and minimize API requests
+* Enhancement: Added support for WordPress core version 5.7
+* Bug: Prevent to load the customizer screen in preview section
+* Bug: Fixed additional contents to process the shortcode
+* Bug: Fixed Menu item height issue with long text
+* Bug: Fixed default wp menu items
+* Bug: Improved live preview and update required
+* Bug: Fixed PHP warning and errors
 
 = 4.0.4 (19th January 2021) =
 * Bug: Fixed security vulnerabilities
