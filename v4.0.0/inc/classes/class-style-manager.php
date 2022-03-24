@@ -1064,6 +1064,11 @@ class Style_Manager {
 				$submenu_item_font_size = $options['submenu_font_size'];
 			}
 
+			$submenu_font_weight = '';
+			if ( ! empty( $options['submenu_font_weight'] ) ) {
+				$submenu_font_weight = $options['submenu_font_weight'];
+			}
+
 			$submenu_item_font_size_unit = '';
 			if ( ! empty( $options['submenu_font_size_unit'] ) ) {
 				$submenu_item_font_size_unit = $options['submenu_font_size_unit'];
@@ -1412,6 +1417,7 @@ class Style_Manager {
 				'submenu_current_item_border_color_hover'  => $submenu_current_item_border_color_hover,
 
 				'submenu_item_font_size'                   => $submenu_item_font_size,
+				'submenu_font_weight'                      => $submenu_font_weight,
 				'submenu_item_font_size_unit'              => $submenu_item_font_size_unit,
 				'submenu_item_font_family'                 => $submenu_item_font_family,
 				'submenu_item_text_alignment'              => $submenu_item_text_alignment,
