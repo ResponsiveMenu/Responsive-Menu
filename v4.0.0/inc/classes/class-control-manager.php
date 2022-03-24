@@ -740,6 +740,12 @@ class Control_Manager {
 			return;
 		}
 
+		global $wp_filesystem;
+		if ( empty( $wp_filesystem ) ) {
+			require_once ABSPATH . 'wp-admin/includes/file.php';
+		}
+		WP_Filesystem();
+
 		$group_classes = '';
 
 		if ( ! empty( $param['group_classes'] ) ) {
@@ -802,9 +808,9 @@ class Control_Manager {
 				<div class="rmp-icon-picker-placeholder">
 					<span>
 						<?php
-						$svg_placeholder = wp_remote_get( RMP_PLUGIN_URL_V4 . '/assets/admin/icons/svg/image-placeholder.svg' );
-						if ( is_array( $svg_placeholder ) && ! is_wp_error( $svg_placeholder ) ) {
-							echo wp_kses( $svg_placeholder['body'], rmp_allow_svg_html_tags() );
+						$svg_placeholder = $wp_filesystem->get_contents( RMP_PLUGIN_PATH_V4 . '/assets/admin/icons/svg/placeholder.svg' );
+						if ( $svg_placeholder ) {
+							echo wp_kses( $svg_placeholder, rmp_allow_svg_html_tags() );
 						}
 						?>
 					</span>
@@ -845,7 +851,11 @@ class Control_Manager {
 		if ( empty( $param ) ) {
 			return;
 		}
-
+		global $wp_filesystem;
+		if ( empty( $wp_filesystem ) ) {
+			require_once ABSPATH . 'wp-admin/includes/file.php';
+		}
+		WP_Filesystem();
 		$group_classes = '';
 
 		if ( ! empty( $param['group_classes'] ) ) {
@@ -899,9 +909,9 @@ class Control_Manager {
 				<div class="rmp-image-picker-placeholder">
 					<span>
 						<?php
-						$svg_placeholder = wp_remote_get( RMP_PLUGIN_URL_V4 . '/assets/admin/icons/svg/image-placeholder.svg' );
-						if ( is_array( $svg_placeholder ) && ! is_wp_error( $svg_placeholder ) ) {
-							echo wp_kses( $svg_placeholder['body'], rmp_allow_svg_html_tags() );
+						$svg_placeholder = $wp_filesystem->get_contents( RMP_PLUGIN_PATH_V4 . '/assets/admin/icons/svg/placeholder.svg' );
+						if ( $svg_placeholder ) {
+							echo wp_kses( $svg_placeholder, rmp_allow_svg_html_tags() );
 						}
 						?>
 					</span>
@@ -1107,31 +1117,36 @@ class Control_Manager {
 	 * @return HTML
 	 */
 	protected function get_device_options() {
+		global $wp_filesystem;
+		if ( empty( $wp_filesystem ) ) {
+			require_once ABSPATH . 'wp-admin/includes/file.php';
+		}
+		WP_Filesystem();
 		?>
 		<div class="rmp-device-switcher-holder">
 			<a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url( $this->pro_plugin_url ); ?>" > PRO </a>
 			<ul class="select rmp-device-switcher" >
 				<li data-device="mobile">
 					<?php
-					$svg_mobile = wp_remote_get( RMP_PLUGIN_URL_V4 . '/assets/admin/icons/svg/mobile.svg' );
-					if ( is_array( $svg_mobile ) && ! is_wp_error( $svg_mobile ) ) {
-						echo wp_kses( $svg_mobile['body'], rmp_allow_svg_html_tags() );
+					$svg_mobile = $wp_filesystem->get_contents( RMP_PLUGIN_PATH_V4 . '/assets/admin/icons/svg/mobile.svg' );
+					if ( $svg_mobile ) {
+						echo wp_kses( $svg_mobile, rmp_allow_svg_html_tags() );
 					}
 					?>
 				</li>
 				<li data-device="tablet">
 					<?php
-					$svg_tablet = wp_remote_get( RMP_PLUGIN_URL_V4 . '/assets/admin/icons/svg/tablet.svg' );
-					if ( is_array( $svg_tablet ) && ! is_wp_error( $svg_tablet ) ) {
-						echo wp_kses( $svg_tablet['body'], rmp_allow_svg_html_tags() );
+					$svg_tablet = $wp_filesystem->get_contents( RMP_PLUGIN_PATH_V4 . '/assets/admin/icons/svg/tablet.svg' );
+					if ( $svg_tablet ) {
+						echo wp_kses( $svg_tablet, rmp_allow_svg_html_tags() );
 					}
 					?>
 				</li>
 				<li data-device="desktop">
 					<?php
-					$svg_desktop = wp_remote_get( RMP_PLUGIN_URL_V4 . '/assets/admin/icons/svg/desktop.svg' );
-					if ( is_array( $svg_desktop ) && ! is_wp_error( $svg_desktop ) ) {
-						echo wp_kses( $svg_desktop['body'], rmp_allow_svg_html_tags() );
+					$svg_desktop = $wp_filesystem->get_contents( RMP_PLUGIN_PATH_V4 . '/assets/admin/icons/svg/desktop.svg' );
+					if ( $svg_desktop ) {
+						echo wp_kses( $svg_desktop, rmp_allow_svg_html_tags() );
 					}
 					?>
 				</li>
