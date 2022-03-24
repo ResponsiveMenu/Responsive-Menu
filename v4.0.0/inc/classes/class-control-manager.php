@@ -808,7 +808,7 @@ class Control_Manager {
 				<div class="rmp-icon-picker-placeholder">
 					<span>
 						<?php
-						$svg_placeholder = $wp_filesystem->get_contents( RMP_PLUGIN_PATH_V4 . '/assets/admin/icons/svg/placeholder.svg' );
+						$svg_placeholder = $wp_filesystem->get_contents( RMP_PLUGIN_PATH_V4 . '/assets/admin/icons/svg/image-placeholder.svg' );
 						if ( $svg_placeholder ) {
 							echo wp_kses( $svg_placeholder, rmp_allow_svg_html_tags() );
 						}
@@ -909,7 +909,7 @@ class Control_Manager {
 				<div class="rmp-image-picker-placeholder">
 					<span>
 						<?php
-						$svg_placeholder = $wp_filesystem->get_contents( RMP_PLUGIN_PATH_V4 . '/assets/admin/icons/svg/placeholder.svg' );
+						$svg_placeholder = $wp_filesystem->get_contents( RMP_PLUGIN_PATH_V4 . '/assets/admin/icons/svg/image-placeholder.svg' );
 						if ( $svg_placeholder ) {
 							echo wp_kses( $svg_placeholder, rmp_allow_svg_html_tags() );
 						}
