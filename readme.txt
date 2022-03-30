@@ -73,9 +73,11 @@ For more reasons to go Pro, please visit [this page](https://responsive.menu#why
 
 [youtube https://www.youtube.com/watch?v=aj6ba0tGKPg]
 
-🌐Our Plugins
+🌐Our themes and plugins
 
-If you like this plugin, consider exploring our other plugins:
+If you like this plugin, consider exploring our other themes and plugins:
+
+🧱 [Gutena](https://wordpress.org/themes/gutena/) - Block Based Theme for WordPress includes over 50 free block patterns with new patterns added every week.
 
 ⏱️ [Quiz and Survey Master](https://wordpress.org/plugins/quiz-master-next/) - Best WordPress Quiz Plugin to create engaging quizzes, surveys, & exams using WordPress and convert your website into a lead generation machine.
 
