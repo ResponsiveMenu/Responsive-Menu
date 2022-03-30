@@ -162,6 +162,12 @@ class UI_Manager {
 			return;
 		}
 
+		global $wp_filesystem;
+		if ( empty( $wp_filesystem ) ) {
+			require_once ABSPATH . 'wp-admin/includes/file.php';
+		}
+		WP_Filesystem();
+
 		$item_class = '';
 		if ( ! empty( $tab_attr['item_class'] ) ) {
 			$item_class = $tab_attr['item_class'];
@@ -187,9 +193,9 @@ class UI_Manager {
 				?>
 				<span class="rmp-tab-item-icon">
 					<?php
-					$svg_icon = wp_remote_get( $tab_attr['item_header']['item_svg_icon'] );
-					if ( is_array( $svg_icon ) && ! is_wp_error( $svg_icon ) ) {
-						echo wp_kses( $svg_icon['body'], rmp_allow_svg_html_tags() );
+					$svg_icon = $wp_filesystem->get_contents( $tab_attr['item_header']['item_svg_icon'] );
+					if ( $svg_icon ) {
+						echo wp_kses( $svg_icon, rmp_allow_svg_html_tags() );
 					}
 					?>
 				</span>

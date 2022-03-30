@@ -105,6 +105,11 @@ class Editor {
 	 * @param HTML.
 	 */
 	public function footer_section() {
+		global $wp_filesystem;
+		if ( empty( $wp_filesystem ) ) {
+			require_once ABSPATH . 'wp-admin/includes/file.php';
+		}
+		WP_Filesystem();
 		?>
 			<div id="rmp-editor-footer" class="rmp-editor-footer">
 
@@ -141,9 +146,9 @@ class Editor {
 
 					<button type="button" id="rmp-preview-mobile" class=" rmp-device-preview rmp-preview-mobile active" aria-pressed="1" data-device="mobile">
 						<?php
-						$svg_mobile = wp_remote_get( RMP_PLUGIN_URL_V4 . '/assets/admin/icons/svg/mobile.svg' );
-						if ( is_array( $svg_mobile ) && ! is_wp_error( $svg_mobile ) ) {
-							echo wp_kses( $svg_mobile['body'], rmp_allow_svg_html_tags() );
+						$svg_mobile = $wp_filesystem->get_contents( RMP_PLUGIN_PATH_V4 . '/assets/admin/icons/svg/mobile.svg' );
+						if ( $svg_mobile ) {
+							echo wp_kses( $svg_mobile, rmp_allow_svg_html_tags() );
 						}
 						?>
 						<span class="screen-reader-text">
@@ -153,9 +158,9 @@ class Editor {
 
 					<button type="button" id="rmp-preview-tablet" class="rmp-preview-tablet rmp-device-preview" aria-pressed="" data-device="tablet">
 						<?php
-						$svg_tablet = wp_remote_get( RMP_PLUGIN_URL_V4 . '/assets/admin/icons/svg/tablet.svg' );
-						if ( is_array( $svg_tablet ) && ! is_wp_error( $svg_tablet ) ) {
-							echo wp_kses( $svg_tablet['body'], rmp_allow_svg_html_tags() );
+						$svg_tablet = $wp_filesystem->get_contents( RMP_PLUGIN_PATH_V4 . '/assets/admin/icons/svg/tablet.svg' );
+						if ( $svg_tablet ) {
+							echo wp_kses( $svg_tablet, rmp_allow_svg_html_tags() );
 						}
 						?>
 						<span class="screen-reader-text">
@@ -165,9 +170,9 @@ class Editor {
 
 					<button type="button" id="rmp-preview-desktop" class="rmp-preview-desktop rmp-device-preview" aria-pressed="" data-device="desktop">
 						<?php
-						$svg_desktop = wp_remote_get( RMP_PLUGIN_URL_V4 . '/assets/admin/icons/svg/desktop.svg' );
-						if ( is_array( $svg_desktop ) && ! is_wp_error( $svg_desktop ) ) {
-							echo wp_kses( $svg_desktop['body'], rmp_allow_svg_html_tags() );
+						$svg_desktop = $wp_filesystem->get_contents( RMP_PLUGIN_PATH_V4 . '/assets/admin/icons/svg/desktop.svg' );
+						if ( $svg_desktop ) {
+							echo wp_kses( $svg_desktop, rmp_allow_svg_html_tags() );
 						}
 						?>
 						<span class="screen-reader-text">
