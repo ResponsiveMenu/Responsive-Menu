@@ -3,7 +3,7 @@ Contributors: expresstech, responsivemenu, imvarunkmr, surajkumarsingh, infosate
 Tags: responsive, mega menu, navigation, mobile, hamburger
 Requires at least: 3.6
 Tested up to: 5.9
-Stable tag: 4.1.9
+Stable tag: 4.1.10
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -116,6 +116,11 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 7. Main menu
 
 == Changelog ==
+
+= 4.1.10 (30th Mar 2022) =
+* Bug: Fixed issue with submenu font-wieght
+* Bug: Fixed issue with svg icons
+* Enhancement: Updated scssphp to latest version (1.10.2)
 
 = 4.1.9 (8th Mar 2022) =
 * Enhancement: Fixed issues with admin bar settings
