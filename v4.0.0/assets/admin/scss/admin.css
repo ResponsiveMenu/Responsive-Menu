@@ -416,6 +416,12 @@ input[type="email"]:focus, input[type="month"]:focus, input[type="number"]:focus
     padding: 0.5rem 2rem;
     width: max-content;
     margin: 0 -1px;
+    font-weight: 400;
+}
+
+.rmp-accordion-container .rmp-tab-items .ui-tabs-tab, .rmp-accordion-container .nav-tab-wrapper .ui-tabs-tab {
+    background: transparent;
+    border: transparent;
 }
 
 .rmp-dialog-overlay .nav-tab-active,
