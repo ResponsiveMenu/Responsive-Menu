@@ -11,7 +11,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Highly customisable Responsive Menu plugin with 150+ options. No coding knowledge needed to design it exactly as you want.
 
 == Description ==
-**Description:**
+
+Try Demo ➡️ [Get a personal sandbox demo with Response Menu](https://instawp.io/plugins/responsive-menu)
 
 Highly customisable Responsive Menu Plugin for WordPress. With over 150 customisable options you get a combination of 22,500 options! No coding experience or knowledge is needed with an easy to use interface you can get it looking exactly as you want with minimal fuss.
 
