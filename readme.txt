@@ -122,7 +122,7 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 
 = 4.1.11 (24th May 2022) =
 * Bug: Fixed issue of conflict with Import Eventbrites Event plugin
-* Enhancement: Deleted scsshp unused files
+* Enhancement: Removed unused resources
 
 = 4.1.10 (30th Mar 2022) =
 * Bug: Fixed issue with submenu font-wieght
