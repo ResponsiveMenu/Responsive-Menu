@@ -120,7 +120,7 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 
 == Changelog ==
 
-= 4.1.11 (14th Mar 2022) =
+= 4.1.11 (24th May 2022) =
 * Bug: Fixed issue of conflict with Import Eventbrites Event plugin
 * Enhancement: Deleted scsshp unused files
 
