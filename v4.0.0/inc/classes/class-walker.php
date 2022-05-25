@@ -122,6 +122,8 @@ class Walker extends \Walker_Nav_Menu {
 			$class_names = '';
 		}
 
+		$class_names = apply_filters( 'rmp_nav_item_class', $class_names, $item );
+
 		// Start menu item and set classes & ID.
 		$output .= sprintf(
 			'<li id="rmp-menu-item-%s" %s role="none">',
