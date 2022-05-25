@@ -121,7 +121,7 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 == Changelog ==
 
 = 4.1.11 (25th May 2022) =
-* Bug: Fixed issue of conflict with Import Eventbrites Event plugin
+* Bug: Fixed conflict issues with Import Eventbrite Events plugin
 * Enhancement: Added rmp_nav_item_class hook to update nav item classes
 * Enhancement: Removed unused resources
 
