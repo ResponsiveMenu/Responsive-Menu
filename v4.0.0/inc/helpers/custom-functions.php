@@ -124,7 +124,6 @@ function rmp_get_all_menus() {
 		'post_status'    => 'publish',
 	);
 
-	$query = get_posts( $args );
 	$all_menus    = get_posts( $args );
 	$menus = array();
 
