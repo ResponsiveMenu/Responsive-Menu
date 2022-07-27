@@ -98,16 +98,14 @@ function get_all_rmp_menu_ids() {
 		'post_status'    => 'publish',
 	);
 
-	$query    = new \WP_Query( $args );
+	$all_menus    = get_posts( $args );
 	$menu_ids = array();
 
-	if ( $query->have_posts() ) {
-		while ( $query->have_posts() ) {
-			$query->the_post();
-			$menu_ids[] = get_the_ID();
+	if ( ! empty( $all_menus ) ) {
+		foreach ( $all_menus as $menu ) {
+			setup_postdata( $menu );
+			$menu_ids[] = $menu->ID;
 		}
-
-		wp_reset_postdata();
 	}
 
 	return $menu_ids;
@@ -126,16 +124,15 @@ function rmp_get_all_menus() {
 		'post_status'    => 'publish',
 	);
 
-	$query = new \WP_Query( $args );
+	$query = get_posts( $args );
+	$all_menus    = get_posts( $args );
 	$menus = array();
 
-	if ( $query->have_posts() ) {
-		while ( $query->have_posts() ) {
-			$query->the_post();
-			$menus[ get_the_ID() ] = get_the_title();
+	if ( ! empty( $all_menus ) ) {
+		foreach ( $all_menus as $menu ) {
+			setup_postdata( $menu );
+			$menus[ $menu->ID ] = $menu->post_title;
 		}
-
-		wp_reset_postdata();
 	}
 
 	return $menus;
