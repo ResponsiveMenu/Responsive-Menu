@@ -107,7 +107,7 @@ class Style_Manager {
 	 */
 	public function save_style_css_on_file() {
 		global $wp_filesystem;
-
+		update_option('rmp_dynamic_file_version', current_time('H.i.s') );
 		if ( empty( $wp_filesystem ) ) {
 			require_once ABSPATH . 'wp-admin/includes/file.php';
 		}
@@ -152,7 +152,7 @@ class Style_Manager {
 			// Ensure we're using the correct protocol.
 			$file_url = str_replace( array( 'http://', 'https://' ), $protocol, $file_url );
 
-			wp_enqueue_style( 'rmp-menu-styles', $file_url, false, substr( md5( filemtime( $file_path ) ), 0, 6 ) );
+			wp_enqueue_style( 'rmp-menu-styles', $file_url, false, get_option('rmp_dynamic_file_version', wp_rand( 100, 1000 ) ) );
 		}
 	}
 
