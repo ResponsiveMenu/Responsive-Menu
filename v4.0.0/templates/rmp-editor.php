@@ -2653,6 +2653,7 @@ WP_Filesystem();
 										'class'         => 'no-updates',
 										'name'          => 'menu[menu_width]',
 										'value'         => rmp_get_value( $options, 'menu_width' ),
+										'multi_device'      => true,
 										'group_classes' => 'full-size',
 										'placeholder'   => esc_html__( 'Enter value', 'responsive-menu' ),
 										'has_unit'      => array(
@@ -2662,6 +2663,7 @@ WP_Filesystem();
 											'default'   => '%',
 											'classes'   => 'is-unit no-updates',
 											'value'     => rmp_get_value( $options, 'menu_width_unit' ),
+											'multi_device' => true,
 										),
 									)
 								);
