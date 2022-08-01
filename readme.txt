@@ -3,7 +3,7 @@ Contributors: expresstech, responsivemenu, imvarunkmr, surajkumarsingh, infosate
 Tags: responsive, mega menu, navigation, mobile, hamburger
 Requires at least: 3.6
 Tested up to: 6.0
-Stable tag: 4.1.11
+Stable tag: 4.1.12
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -119,6 +119,10 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 7. Main menu
 
 == Changelog ==
+
+= 4.1.12 (1st Aug 2022) =
+* Bug: Fixed conflict issues with conflict with Multiple Page Generator Plugin
+* Enhancement: Added timestamps as a version to generated CSS/JSS urls
 
 = 4.1.11 (25th May 2022) =
 * Bug: Fixed conflict issues with Import Eventbrite Events plugin
