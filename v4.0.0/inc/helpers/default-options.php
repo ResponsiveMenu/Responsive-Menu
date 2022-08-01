@@ -1066,5 +1066,5 @@ function rmp_get_default_options() {
 		'enable_touch_gestures'                            => 'off',
 	);
 
-	return $default_options;
+	return apply_filters( 'rmp_get_default_options', $default_options );
 }

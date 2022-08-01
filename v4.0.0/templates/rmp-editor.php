@@ -472,6 +472,7 @@ WP_Filesystem();
 					<div id="tab-general-settings" class="rmp-accordions" aria-label="General Settings">
 						<ul class="rmp-accordion-container">
 							<?php
+								do_action( 'rmp_tab_before_general_settings', $menu_id, $options );
 
 								$ui_manager->start_accordion_item(
 									array(
@@ -567,6 +568,8 @@ WP_Filesystem();
 								);
 
 								$ui_manager->end_accordion_item();
+
+								do_action( 'rmp_tab_after_general_settings', $menu_id, $options );
 								?>
 						</ul>
 					</div>
