@@ -107,7 +107,7 @@ function get_all_rmp_menu_ids() {
 			$menu_ids[] = $menu->ID;
 		}
 	}
-
+	wp_reset_postdata();
 	return $menu_ids;
 }
 
@@ -133,7 +133,7 @@ function rmp_get_all_menus() {
 			$menus[ $menu->ID ] = $menu->post_title;
 		}
 	}
-
+	wp_reset_postdata();
 	return $menus;
 }
 
