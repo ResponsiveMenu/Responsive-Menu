@@ -62,7 +62,7 @@ function rmp_get_list_of_pages() {
 	foreach ( $posts as $post ) {
 		$all_pages[ $post->ID ] = $post->post_title;
 	}
-
+	wp_reset_postdata();
 	return $all_pages;
 }
 
