@@ -12,7 +12,7 @@ Highly customisable Responsive Menu plugin with 150+ options. No coding knowledg
 
 == Description ==
 
-Try Demo ➡️ [Get a personal sandbox demo with Response Menu](https://instawp.io/plugins/responsive-menu)
+Try Demo ➡️ [Get a personal sandbox demo with Response Menu](https://app.instawp.io/dashboard?launch_slug=true&themes=twentytwentyone&plugins=responsive-menu)
 
 Highly customisable Responsive Menu Plugin for WordPress. With over 150 customisable options you get a combination of 22,500 options! No coding experience or knowledge is needed with an easy to use interface you can get it looking exactly as you want with minimal fuss.
 
