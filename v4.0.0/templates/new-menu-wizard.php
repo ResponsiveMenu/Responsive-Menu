@@ -33,15 +33,15 @@ $nav_menus = wp_get_nav_menus();
 		<!-- This is new new wizard header -->
 		<div class="rmp-dialog-header">
 			<div class="title">
-				<?php if( empty( $nav_menus ) ) { ?>
+				<?php if ( empty( $nav_menus ) ) { ?>
 					<img alt="logo" src="<?php echo esc_url( RMP_PLUGIN_URL_V4 . '/assets/images/rmp-warning.png' ); ?>" />
 					<span class="rm-text-primary"> <?php esc_html_e( 'WordPress menu missing', 'responsive-menu' ); ?> </span>
-				<?php }else{ ?>
+				<?php }else { ?>
 					<img alt="logo" width="34" height="34" src="<?php echo esc_url( RMP_PLUGIN_URL_V4 . '/assets/images/rmp-logo.png' ); ?>" />
 					<span> <?php esc_html_e( 'Create New Menu', 'responsive-menu' ); ?> </span>
 				<?php } ?>
 			</div>
-			<?php if ( !empty( $nav_menus ) ): ?>
+			<?php if ( ! empty( $nav_menus ) ) : ?>
 			<nav class="rmp-new-menu-step-conatiner">
 				<ul class="rmp-new-menu-steps">
 					<li class="rmp-new-menu-step current">
@@ -60,7 +60,7 @@ $nav_menus = wp_get_nav_menus();
 		<div class="rmp-dialog-contents" >
 			<div id="select-themes" class="rmp-new-menu-themes rmp-menu-section current">
 				<div id="tabs" class="tabs">
-					<?php if ( !empty( $nav_menus ) ): ?>
+					<?php if ( ! empty( $nav_menus ) ) : ?>
 					<!-- This is theme type list -->
 					<ul class="nav-tab-wrapper">
 						<li><a class="nav-tab rmp-v-divider" href="#tabs-1"><?php esc_html_e( 'Installed Themes', 'responsive-menu' ); ?></a></li>
@@ -101,22 +101,22 @@ $nav_menus = wp_get_nav_menus();
 
 					<!-- This is available theme list. -->
 					<div id="tabs-1" class="rmp-themes">
-						<?php if ( !empty( $nav_menus ) ):
+						<?php if ( ! empty( $nav_menus ) ) :
 							$theme_manager->get_available_themes();
-						else: ?>
+						else : ?>
 							<div class="rmp-admin-warning-notice">
-                                <h2><?php _e( 'Looks like your WordPress website do not have any menus yet!', 'responsive-menu' ); ?></h2>
-                                <p><?php _e( 'Responsive menu plugin requires at least one WordPress menu.', 'responsive-menu' ); ?>
-								<p><?php _e( 'Please create a new WordPress menu by using following button and try again.', 'responsive-menu' ); ?></p>
+                                <h2><?php esc_html_e( 'Looks like your WordPress website do not have any menus yet!', 'responsive-menu' ); ?></h2>
+                                <p><?php esc_html_e( 'Responsive menu plugin requires at least one WordPress menu.', 'responsive-menu' ); ?>
+								<p><?php esc_html_e( 'Please create a new WordPress menu by using following button and try again.', 'responsive-menu' ); ?></p>
 								<div class="rmp-btn-group">
-                                	<a class="rmp-btn-primary" href="<?php echo esc_url( admin_url() . 'nav-menus.php' ); ?>"> <?php _e( 'Create WordPress Menu', 'responsive-menu' ); ?> </a>
-                                	<a class="rmp-btn-secondary" target="_blank" href="<?php echo esc_url( admin_url() . 'nav-menus.php' ); ?>"> <?php _e( 'Read Documention', 'responsive-menu' ); ?> </a>
+                                	<a class="rmp-btn-primary" href="<?php echo esc_url( admin_url() . 'nav-menus.php' ); ?>"> <?php esc_html_e( 'Create WordPress Menu', 'responsive-menu' ); ?> </a>
+                                	<a class="rmp-btn-secondary" target="_blank" href="<?php echo esc_url( admin_url() . 'nav-menus.php' ); ?>"> <?php esc_html_e( 'Read Documention', 'responsive-menu' ); ?> </a>
 								</div>
 							</div>
 						<?php endif; ?>
 					</div>
 
-					<?php if ( !empty( $nav_menus ) ): ?>
+					<?php if ( ! empty( $nav_menus ) ) : ?>
 					<!-- This is saved template themes. -->
 					<div id="tabs-3" class="rmp-themes">
 						<?php $theme_manager->rmp_saves_theme_template_list(); ?>
@@ -279,7 +279,7 @@ $nav_menus = wp_get_nav_menus();
 
 			</div>
 		</div>
-		<?php if ( !empty( $nav_menus ) ): ?>
+		<?php if ( ! empty( $nav_menus ) ) : ?>
 		<!-- This is menu create wizard footer. -->
 		<div class="rmp-dialog-footer">
 			<span class="spinner"></span>
