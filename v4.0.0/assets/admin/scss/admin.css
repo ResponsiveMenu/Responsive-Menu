@@ -2052,7 +2052,7 @@ button.menu-save {
     max-width: 470px;
     margin-left: auto;
     margin-right: auto;
-    top: calc( 50% - 200px);
+    top: 200px;
 }
 
 .rmp-menu-empty h2{
@@ -2077,7 +2077,7 @@ button.menu-save {
 .rmp-menu-empty p{
     font-weight: 500;
     font-size: 14px;
-    line-height: 17px;
+    line-height: 22px;
     color: #7B8795;
 }
 
@@ -2087,7 +2087,7 @@ button.menu-save {
 
 #rmp-new-menu-wizard .rmp-dialog-wrap.rmp-menu-empty .rmp-dialog-contents {
     min-height: auto;
-    padding: 10px 30px 20px;
+    padding: 0 30px;
 }
 
 .rmp-menu-empty .rmp-btn-primary ,
