@@ -23,18 +23,25 @@ if ( ! empty( $global_settings['rmp_dark_mode'] ) ) {
 	$classes = 'rmp-dark-mode';
 }
 
+$nav_menus = wp_get_nav_menus();
 ?>
 <div class="<?php echo esc_attr( $classes ); ?>">
 <section id="rmp-new-menu-wizard" class="rmp-dialog-overlay rmp-new-menu-wizard" style="display:none">
 	<div class="rmp-dialog-backdrop"></div>
-	<div class="rmp-dialog-wrap wp-clearfix">
+	<div class="rmp-dialog-wrap wp-clearfix <?php echo empty($nav_menus) ? 'rmp-menu-empty' : ''; ?>">
 
 		<!-- This is new new wizard header -->
 		<div class="rmp-dialog-header">
 			<div class="title">
-				<img alt="logo" width="34" height="34" src="<?php echo esc_url( RMP_PLUGIN_URL_V4 . '/assets/images/rmp-logo.png' ); ?>" />
-				<span> <?php esc_html_e( 'Create New Menu', 'responsive-menu' ); ?> </span>
+				<?php if ( empty( $nav_menus ) ) { ?>
+					<img alt="logo" src="<?php echo esc_url( RMP_PLUGIN_URL_V4 . '/assets/images/rmp-warning.png' ); ?>" />
+					<span class="rm-text-primary"> <?php esc_html_e( 'WordPress menu missing', 'responsive-menu' ); ?> </span>
+				<?php }else { ?>
+					<img alt="logo" width="34" height="34" src="<?php echo esc_url( RMP_PLUGIN_URL_V4 . '/assets/images/rmp-logo.png' ); ?>" />
+					<span> <?php esc_html_e( 'Create New Menu', 'responsive-menu' ); ?> </span>
+				<?php } ?>
 			</div>
+			<?php if ( ! empty( $nav_menus ) ) : ?>
 			<nav class="rmp-new-menu-step-conatiner">
 				<ul class="rmp-new-menu-steps">
 					<li class="rmp-new-menu-step current">
@@ -45,14 +52,15 @@ if ( ! empty( $global_settings['rmp_dark_mode'] ) ) {
 					</li>
 				</ul>
 			</nav>
+			<?php endif; ?>
 			<button class="close dashicons dashicons-no"></button>
 		</div>
 
 		<!-- This is menu create wizard setting sections. -->
 		<div class="rmp-dialog-contents" >
-
 			<div id="select-themes" class="rmp-new-menu-themes rmp-menu-section current">
 				<div id="tabs" class="tabs">
+					<?php if ( ! empty( $nav_menus ) ) : ?>
 					<!-- This is theme type list -->
 					<ul class="nav-tab-wrapper">
 						<li><a class="nav-tab rmp-v-divider" href="#tabs-1"><?php esc_html_e( 'Installed Themes', 'responsive-menu' ); ?></a></li>
@@ -60,7 +68,6 @@ if ( ! empty( $global_settings['rmp_dark_mode'] ) ) {
 						<li><a class="nav-tab" href="#tabs-3"><?php esc_html_e( 'Saved Templates', 'responsive-menu' ); ?></a></li>
 						<li style="float:right;"><button id="rmp-upload-new-theme" class="button btn-import-theme"><?php esc_html_e( 'Import', 'responsive-menu' ); ?></button></li>
 					</ul>
-
 					<!-- This is menu theme upload section -->
 					<div id="rmp-menu-library-import" class="rmp-theme-upload-container hide" >
 						<p><?php esc_html_e( 'If you have a menu theme in a .zip format, you can upload here.', 'responsive-menu' ); ?></p>
@@ -90,16 +97,31 @@ if ( ! empty( $global_settings['rmp_dark_mode'] ) ) {
 							?>
 						</ul>
 					</div>
+					<?php endif; ?>
 
 					<!-- This is available theme list. -->
 					<div id="tabs-1" class="rmp-themes">
-						<?php $theme_manager->get_available_themes(); ?>
+						<?php if ( ! empty( $nav_menus ) ) :
+							$theme_manager->get_available_themes();
+						else : ?>
+							<div class="rmp-admin-warning-notice">
+                                <h2><?php esc_html_e( 'Looks like your WordPress website do not have any menus yet!', 'responsive-menu' ); ?></h2>
+                                <p><?php esc_html_e( 'Responsive menu plugin requires at least one WordPress menu.', 'responsive-menu' ); ?>
+								<p><?php esc_html_e( 'Please create a new WordPress menu by using following button and try again.', 'responsive-menu' ); ?></p>
+								<div class="rmp-btn-group">
+                                	<a class="rmp-btn-primary" href="<?php echo esc_url( admin_url() . 'nav-menus.php' ); ?>"> <?php esc_html_e( 'Create WordPress Menu', 'responsive-menu' ); ?> </a>
+                                	<a class="rmp-btn-secondary" target="_blank" href="<?php echo esc_url( admin_url() . 'nav-menus.php' ); ?>"> <?php esc_html_e( 'Read Documention', 'responsive-menu' ); ?> </a>
+								</div>
+							</div>
+						<?php endif; ?>
 					</div>
 
+					<?php if ( ! empty( $nav_menus ) ) : ?>
 					<!-- This is saved template themes. -->
 					<div id="tabs-3" class="rmp-themes">
 						<?php $theme_manager->rmp_saves_theme_template_list(); ?>
 					</div>
+					<?php endif; ?>
 				</div>
 			</div>
 
@@ -129,7 +151,6 @@ if ( ! empty( $global_settings['rmp_dark_mode'] ) ) {
 					<div class="input-control">
 						<select name="menu-to-use" id="rmp-menu-to-use">
 							<?php
-							$nav_menus = wp_get_nav_menus();
 							foreach ( $nav_menus as $nav_menu ) {
 								?>
 								<option value="<?php echo esc_attr( $nav_menu->slug ); ?>"><?php echo esc_html( $nav_menu->name ); ?></option>
@@ -258,7 +279,7 @@ if ( ! empty( $global_settings['rmp_dark_mode'] ) ) {
 
 			</div>
 		</div>
-
+		<?php if ( ! empty( $nav_menus ) ) : ?>
 		<!-- This is menu create wizard footer. -->
 		<div class="rmp-dialog-footer">
 			<span class="spinner"></span>
@@ -270,7 +291,7 @@ if ( ! empty( $global_settings['rmp_dark_mode'] ) ) {
 				<?php esc_html_e( 'Create Menu', 'responsive-menu' ); ?>
 			</button>
 		</div>
-
+		<?php endif; ?>
 	</div>
 </section>
 </div>
