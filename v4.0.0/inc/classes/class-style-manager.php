@@ -65,6 +65,7 @@ class Style_Manager {
 		add_action( 'rmp_theme_apply', array( $this, 'save_style_css_on_file' ), 10, 0 );
 		add_action( 'rmp_migrate_menu_style', array( $this, 'save_style_css_on_file' ), 10, 0 );
 		add_action( 'rmp_import_menu', array( $this, 'save_style_css_on_file' ), 10, 0 );
+		add_action('after_setup_theme', array( $this, 'rm_add_classic_menu_support') );
 
 		// Hide adminbar.
 		if ( 'hide' == $this->option_manager->get_global_option( 'menu_adjust_for_wp_admin_bar' ) ) {
@@ -1529,5 +1530,14 @@ class Style_Manager {
 		} catch ( Exception $e ) {
 			return new \WP_Error( 'Warning: Common style scss compile failed <br/> <br />' . $e->getMessage() );
 		}
+	}
+
+	/**
+	 * Adding theme support for menus
+	 *
+	 * @since 4.2.0
+	 */
+	public function rm_add_classic_menu_support() {
+		add_theme_support( 'menus' );
 	}
 }
