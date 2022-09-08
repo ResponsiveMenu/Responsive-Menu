@@ -2048,6 +2048,68 @@ button.menu-save {
     cursor: pointer;
 }
 
+#rmp-new-menu-wizard .rmp-dialog-wrap.wp-clearfix.rmp-menu-empty {
+    max-width: 470px;
+    margin-left: auto;
+    margin-right: auto;
+    top: 200px;
+}
+
+.rmp-menu-empty h2{
+    font-weight: 500;
+    font-size: 19px;
+    line-height: 22px;
+    letter-spacing: 0.05em;
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+.rmp-dark-mode .rmp-menu-empty h2{
+    color: #fff;
+}
+
+.rmp-menu-empty .rmp-btn-group {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.rmp-menu-empty p{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
+    color: #7B8795;
+}
+
+.rmp-dark-mode .rmp-menu-empty p{
+    color: #c8c8c8;
+}
+
+#rmp-new-menu-wizard .rmp-dialog-wrap.rmp-menu-empty .rmp-dialog-contents {
+    min-height: auto;
+    padding: 0 30px;
+}
+
+.rmp-menu-empty .rmp-btn-primary ,
+.rmp-menu-empty .rmp-btn-secondary {
+    background: #62BCF2;
+    border-radius: 5px;
+    border: none;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 16px;
+    padding: 10px 20px;
+    color: #fff;
+    margin-bottom: 15px;
+    margin-right: 15px;
+}
+
+.rmp-menu-empty .rmp-btn-secondary {
+    background: #DBE3EB;
+    color: #121C24;
+    padding: 10px 35px;
+}
+
 #rmp-menu-save-theme-wizard .rmp-dialog-contents {
     display: flex;
     justify-content: center;
@@ -2059,7 +2121,6 @@ button.menu-save {
     width: 90%;
     margin: 5%;
 }
-
 
 .rmp-save-menu-input {
    display: inline-flex;

@@ -3,7 +3,7 @@ Contributors: expresstech, responsivemenu, imvarunkmr, surajkumarsingh, infosate
 Tags: responsive, mega menu, navigation, mobile, hamburger
 Requires at least: 3.6
 Tested up to: 6.0
-Stable tag: 4.1.12
+Stable tag: 4.2.0
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -88,8 +88,6 @@ If you like this plugin, consider exploring our other themes and plugins:
 
 ⚡ [InstaWP](https://instawp.io/) - Launch a quick WordPress site with this sandbox service. Create New WordPress instance within a second.
 
-🔒 [Hide My WP](https://hidemywp.net/) - Hide your WordPress from bots, attackers & spammers. Hides all the known URLs, paths, plugins, themes which can reveal that you are using WP, also comes with an in-built firewall & trust network.
-
 == Installation ==
 
 1. Upload `responsive-menu` to the `/wp-content/plugins/` directory
@@ -120,8 +118,13 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 
 == Changelog ==
 
+= 4.2.0 (8th Sep 2022) =
+* Feature: Added classic menu support for block themes
+* Bug: Fixed conflict issues with Beaver Themer Plugin
+* Enhancement: Added alert popup if WordPress Menus are empty
+
 = 4.1.12 (1st Aug 2022) =
-* Bug: Fixed conflict issues with conflict with Multiple Page Generator Plugin
+* Bug: Fixed conflict issues with Multiple Page Generator Plugin
 * Enhancement: Added timestamps as a version to generated CSS/JSS urls
 
 = 4.1.11 (25th May 2022) =
