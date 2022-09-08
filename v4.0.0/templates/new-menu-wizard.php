@@ -110,7 +110,7 @@ $nav_menus = wp_get_nav_menus();
 								<p><?php esc_html_e( 'Please create a new WordPress menu by using following button and try again.', 'responsive-menu' ); ?></p>
 								<div class="rmp-btn-group">
                                 	<a class="rmp-btn-primary" href="<?php echo esc_url( admin_url() . 'nav-menus.php' ); ?>"> <?php esc_html_e( 'Create WordPress Menu', 'responsive-menu' ); ?> </a>
-                                	<a class="rmp-btn-secondary" target="_blank" href="<?php echo esc_url( admin_url() . 'nav-menus.php' ); ?>"> <?php esc_html_e( 'Read Documention', 'responsive-menu' ); ?> </a>
+                                	<a class="rmp-btn-secondary" rel="noopener" target="_blank" href="<?php echo esc_url( 'https://responsive.menu/knowledgebase/create-a-wordpress-menu/' ); ?>"> <?php esc_html_e( 'Read Documention', 'responsive-menu' ); ?> </a>
 								</div>
 							</div>
 						<?php endif; ?>

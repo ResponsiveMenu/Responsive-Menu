@@ -2064,6 +2064,10 @@ button.menu-save {
     margin-bottom: 10px;
 }
 
+.rmp-dark-mode .rmp-menu-empty h2{
+    color: #fff;
+}
+
 .rmp-menu-empty .rmp-btn-group {
     margin-top: 40px;
     display: flex;
@@ -2075,6 +2079,10 @@ button.menu-save {
     font-size: 14px;
     line-height: 17px;
     color: #7B8795;
+}
+
+.rmp-dark-mode .rmp-menu-empty p{
+    color: #c8c8c8;
 }
 
 #rmp-new-menu-wizard .rmp-dialog-wrap.rmp-menu-empty .rmp-dialog-contents {
@@ -2113,7 +2121,6 @@ button.menu-save {
     width: 90%;
     margin: 5%;
 }
-
 
 .rmp-save-menu-input {
    display: inline-flex;
