@@ -101,7 +101,7 @@ jQuery( document ).ready( function( jQuery ) {
 			 */
 			if ( self.options['menu_close_on_link_click'] == 'on') {
 
-				jQuery( self.linkElement ).on( 'click', function(e) {
+				jQuery(  this.menuWrap +' '+ self.linkElement ).on( 'click', function(e) {
 
 					if( jQuery(window).width() < self.hamburgerBreakpoint ) {
 						e.preventDefault();
@@ -133,7 +133,7 @@ jQuery( document ).ready( function( jQuery ) {
 
 			// Expand Sub items on Parent Item Click.
 			if ( 'on' == self.options['menu_item_click_to_trigger_submenu']  ) {
-				jQuery( '.rmp-menu-item-has-children > ' + self.linkElement ).on( 'click', function(e) {
+				jQuery( this.menuWrap +' .rmp-menu-item-has-children > ' + self.linkElement ).on( 'click', function(e) {
 					if ( jQuery(window).width() < self.hamburgerBreakpoint ) {
 						e.preventDefault();
 						self.triggerSubArrow(
