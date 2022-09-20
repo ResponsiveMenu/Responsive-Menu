@@ -296,6 +296,7 @@
             }
             letter-spacing: ($menu_item_letter_spacing + 'px');
             display: block;
+            box-sizing: border-box;
             width: 100%;
             text-decoration: none;
             position: relative;
