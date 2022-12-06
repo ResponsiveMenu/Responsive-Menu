@@ -184,5 +184,4 @@ function rm_includes_menu_theme_template() {
 
 rm_includes_menu_theme_template();
 
-
-require 'review-banner-class.php';
+require_once 'review-banner-class.php';
