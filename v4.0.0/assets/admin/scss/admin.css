@@ -131,7 +131,7 @@ input[type="email"]:focus, input[type="month"]:focus, input[type="number"]:focus
     width: 8px;
     height: 8px;
     margin: 3px;
-    background-color: #0085ba;
+    background: #0085ba;
     line-height: 1.14285714;
 }
 
@@ -392,8 +392,8 @@ input[type="email"]:focus, input[type="month"]:focus, input[type="number"]:focus
     background: #2d405a;
 }
 
-.rmp-menu-tab-container .nav-tab-wrapper,
-.rmp-accordion-container .nav-tab-wrapper{
+#rmp-editor-wrapper .rmp-menu-tab-container .nav-tab-wrapper,
+#rmp-editor-wrapper .rmp-accordion-container .nav-tab-wrapper{
     padding: 0;
     border-bottom: unset;
     margin: 5% auto;
@@ -401,6 +401,7 @@ input[type="email"]:focus, input[type="month"]:focus, input[type="number"]:focus
     border-radius: 25px;
     width: max-content;
     display: flex;
+    border: none;
 }
 
 
@@ -413,7 +414,7 @@ input[type="email"]:focus, input[type="month"]:focus, input[type="number"]:focus
     background: transparent;
     border-radius: 26px;
     color: #fff;
-    padding: 0.5rem 2rem;
+    padding: 0.5rem 1.7rem;
     width: max-content;
     margin: 0 -1px;
     font-weight: 400;
@@ -677,7 +678,7 @@ margin: 5px 0px 10px;
     margin: 5px auto;
 }
 
-.rmp-editor-header-back{
+#rmp-editor-wrapper .rmp-editor-header-back{
     width: 100%;
     height: 100%;
     vertical-align: bottom;
@@ -739,7 +740,7 @@ margin: 5px 0px 10px;
 }
 
 .rmp-highlight {
-    background-color: #fff34d;
+    background: #fff34d;
     color: #000;
     border-radius: 5px;
     padding:0px 2px;
@@ -1015,7 +1016,7 @@ margin: 5px 0px 10px;
     display: block;
     font-weight: 600;
     cursor: pointer;
-    background-color: #F5F6FA;
+    background: #F5F6FA;
     border-radius: 4px;
     font-family: 'Product Sans';
     font-style: normal;
@@ -1072,7 +1073,7 @@ margin: 5px 0px 10px;
 }
 
 #rmp-editor-form .rmp-sub-accordion-container .rmp-accordion-content{
-    background-color:#fff;
+    background:#fff;
 }
 
 #rmp-editor-form .rmp-accordions{
@@ -1160,6 +1161,7 @@ margin: 5px 0px 10px;
     font-size: 12px;
     line-height: 15px;
     margin: 0;
+    max-width: 100%;
 }
 
 #rmp-editor-form .rmp-input-control-wrapper .button {
@@ -1269,9 +1271,15 @@ margin: 5px 0px 10px;
     right: -15px;
 }
 
-.rmp-accordion-container .rmp-accordion-title .ui-accordion-header-icon{
+#rmp-editor-wrapper .rmp-accordion-container .rmp-accordion-title .ui-accordion-header-icon{
     display: inline-block;
     text-indent: 0;
+    position: initial;
+}
+
+.post-type-rmp_menu .ui-tabs .ui-tabs-nav li.ui-tabs-tab {
+    float: none;
+    position: inherit;
 }
 
 #tab-container .rmp-order-item-title .ui-accordion-header-icon,
@@ -1614,8 +1622,8 @@ margin: 5px 0px 10px;
     cursor: pointer;
 }
 
-.rmp-image-picker .rmp-image-picker-placeholder,
-.rmp-icon-picker .rmp-icon-picker-placeholder {
+.post-type-rmp_menu #rmp-editor-wrapper .rmp-image-picker .rmp-image-picker-placeholder,
+.post-type-rmp_menu #rmp-editor-wrapper .rmp-icon-picker .rmp-icon-picker-placeholder {
     width: 5rem;
     height: 2.5rem;
     padding: 0;
@@ -1730,7 +1738,7 @@ margin: 5px 0px 10px;
     margin: 2% 5%;
     border: solid 1px #eeeeee;
     cursor: auto;
-    background-color: #ffffff !important;
+    background: #ffffff !important;
     padding: 3% 5%;
 }
 
@@ -1987,7 +1995,7 @@ button.menu-save {
     position: absolute;
     bottom: 100%;
     width: -webkit-fill-available;
-    background-color: #56606d;
+    background: #56606d;
     padding: 1rem;
     -webkit-box-shadow: -2px -5px 8px rgba(0, 0, 0, 0.1);
     box-shadow: -2px -5px 8px rgba(0, 0, 0, 0.1);
@@ -2296,7 +2304,8 @@ div.notice-responsive-menu .notice-responsive-menu-action a:hover {
 
 /* Free version related */
 
-.upgrade-tooltip {
+.post-type-rmp_menu .upgrade-tooltip,
+#rmp-editor-wrapper .upgrade-tooltip {
     background: #f80668;
     padding: 4px 0.5rem;
     color: #fff;
@@ -2310,7 +2319,7 @@ div.notice-responsive-menu .notice-responsive-menu-action a:hover {
     line-height: normal;
 }
 
-.rmp-editor-overlay .rmp-input-control .upgrade-tooltip {
+#rmp-editor-wrapper.rmp-editor-overlay .rmp-input-control .upgrade-tooltip {
     position: absolute;
     top: -30px;
     right: 5%;
