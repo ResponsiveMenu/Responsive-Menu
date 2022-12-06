@@ -26,7 +26,7 @@ PHP 5.5+
 **Full Knowledgebase and dedicated support forum:**
 
 [https://responsive.menu/knowledgebase/](https://responsive.menu/knowledgebase/?utm_source=readme&utm_medium=plugin&utm_campaign=reponsivemenu_plugin)
-[https://responsive.menu/support/](https://responsive.menu/forums/forum/pro-support/?utm_source=readme&utm_medium=plugin&utm_campaign=reponsivemenu_plugin)
+[https://responsive.menu/support/](https://responsive.menu/support/?utm_source=readme&utm_medium=plugin&utm_campaign=reponsivemenu_plugin)
 
 **Fully unit tested:**
 
