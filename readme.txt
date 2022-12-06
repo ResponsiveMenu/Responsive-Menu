@@ -1,9 +1,9 @@
 === Responsive Menu - Create Mobile-Friendly Menu ===
-Contributors: expresstech, responsivemenu, imvarunkmr, surajkumarsingh, infosatech
+Contributors: expresstech, responsivemenu, imvarunkmr, moha12351, infosatech
 Tags: responsive, mega menu, navigation, mobile, hamburger
 Requires at least: 3.6
-Tested up to: 6.0
-Stable tag: 4.2.0
+Tested up to: 6.1
+Stable tag: 4.2.1
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -11,8 +11,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Highly customisable Responsive Menu plugin with 150+ options. No coding knowledge needed to design it exactly as you want.
 
 == Description ==
-
-Try Demo ➡️ [Get a personal sandbox demo with Response Menu](https://app.instawp.io/dashboard?launch_slug=true&themes=twentytwentyone&plugins=responsive-menu)
 
 Highly customisable Responsive Menu Plugin for WordPress. With over 150 customisable options you get a combination of 22,500 options! No coding experience or knowledge is needed with an easy to use interface you can get it looking exactly as you want with minimal fuss.
 
@@ -28,7 +26,7 @@ PHP 5.5+
 **Full Knowledgebase and dedicated support forum:**
 
 [https://responsive.menu/knowledgebase/](https://responsive.menu/knowledgebase/?utm_source=readme&utm_medium=plugin&utm_campaign=reponsivemenu_plugin)
-[https://responsive.menu/forums/forum/pro-support/](https://responsive.menu/forums/forum/pro-support/?utm_source=readme&utm_medium=plugin&utm_campaign=reponsivemenu_plugin)
+[https://responsive.menu/support/](https://responsive.menu/support/?utm_source=readme&utm_medium=plugin&utm_campaign=reponsivemenu_plugin)
 
 **Fully unit tested:**
 
@@ -117,6 +115,9 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 7. Main menu
 
 == Changelog ==
+= 4.2.1 (6th Dec 2022) =
+* Bug: Bug: Fixed CSS conflict issues with other plugins
+* Bug: Fixed issue with submenu animation
 
 = 4.2.0 (8th Sep 2022) =
 * Feature: Added classic menu support for block themes

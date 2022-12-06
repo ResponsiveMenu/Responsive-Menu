@@ -15,7 +15,7 @@
 		</span>
 	</div>
 	<div class="rmp-accordion-content tabs rmp-menu-controls">
-			<ul class="nav-tab-wrapper">
+			<ul class="nav-tab-wrapper rmp-tab-items">
 				<li><a class="nav-tab nav-tab-active" href="#additions-contents"><?php esc_html_e( 'Contents', 'responsive-menu' ); ?></a></li>
 				<li><a class="nav-tab" href="#additions-contents-styles"><?php esc_html_e( 'Styles', 'responsive-menu' ); ?></a></li>
 			</ul>
