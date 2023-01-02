@@ -70,7 +70,7 @@ PHP 5.5+
 
 For more reasons to go Pro, please visit [this page](https://responsive.menu#why-go-pro) or check our [roadmap](https://next.expresstech.io/responsive-menu)
 
-[youtube https://www.youtube.com/watch?v=aj6ba0tGKPg]
+[youtube https://www.youtube.com/watch?v=t3jLRvtRiDE&t]
 
 🌐Our themes and plugins
 
@@ -84,7 +84,7 @@ If you like this plugin, consider exploring our other themes and plugins:
 
 📅 [Booking Ultra](https://wordpress.org/plugins/booking-ultra-pro/) - Appointment Booking plugin for WordPress - Show a quick form to accept bookings for your services with pre-set booking slots. Ideal for salons, medical professionals, lawyers, consultants, etc.
 
-⚡ [InstaWP](https://instawp.io/) - Launch a quick WordPress site with this sandbox service. Create New WordPress instance within a second.
+⚡ [InstaWP](https://instawp.com/) - Launch a quick WordPress site with this sandbox service. Create New WordPress instance within a second.
 
 == Installation ==
 
