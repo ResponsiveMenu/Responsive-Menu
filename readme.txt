@@ -70,7 +70,7 @@ PHP 5.5+
 
 For more reasons to go Pro, please visit [this page](https://responsive.menu#why-go-pro) or check our [roadmap](https://next.expresstech.io/responsive-menu)
 
-[youtube https://www.youtube.com/watch?v=aj6ba0tGKPg]
+[youtube https://www.youtube.com/watch?v=t3jLRvtRiDE&t]
 
 🌐Our themes and plugins
 
