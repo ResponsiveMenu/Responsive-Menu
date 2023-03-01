@@ -145,7 +145,7 @@ class Walker extends \Walker_Nav_Menu {
 		foreach ( $atts as $key => $value ) {
 			if ( ! empty( $value ) ) {
 				$value       = ( 'href' === $key ) ? esc_url( $value ) : esc_attr( $value );
-				$attributes .= sprintf( ' %s = "%s" ', $key, $value );
+				$attributes .= sprintf( ' %s="%s" ', $key, $value );
 			}
 		}
 
