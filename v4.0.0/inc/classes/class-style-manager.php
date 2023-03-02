@@ -745,6 +745,11 @@ class Style_Manager {
 				$menu_item_height = $options['menu_links_height'];
 			}
 
+			$menu_container_columns = '';
+			if ( ! empty( $options['menu_container_columns'] ) ) {
+				$menu_container_columns = $options['menu_container_columns'];
+			}
+
 			$menu_item_height_unit = '';
 			if ( ! empty( $options['menu_links_height_unit'] ) ) {
 				$menu_item_height_unit = $options['menu_links_height_unit'];
@@ -1354,6 +1359,7 @@ class Style_Manager {
 				'menu_section_padding_left'                => $menu_section_padding_left,
 
 				'menu_background_color'                    => $menu_background_color,
+				'menu_container_columns'                   => $menu_container_columns,
 				'menu_item_height'                         => $menu_item_height,
 				'menu_item_height_unit'                    => $menu_item_height_unit,
 				'menu_item_line_height'                    => $menu_item_line_height,
