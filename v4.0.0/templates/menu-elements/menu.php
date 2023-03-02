@@ -30,7 +30,7 @@
 					'class'   => 'rmp-menu-container-columns',
 					'name'    => 'menu[menu_container_columns]',
 					'options' => array(
-						''     => '1',
+						''         => '1',
 						'50%'      => '2',
 						'33.3333%' => '3',
 						'25%'      => '4',
