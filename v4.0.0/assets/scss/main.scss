@@ -222,6 +222,16 @@
             padding: 0;
         }
 
+        @if( $menu_container_columns != '' ) {
+            .rmp-menu{
+                display: flex;
+                flex-wrap: wrap;
+                > .rmp-menu-item{
+                    width: $menu_container_columns;
+                }
+            }
+        }
+
         // If legacy setting is on then add these settings.
         @if( $is_legacy == 'on' and $submenu_item_toggle_position == left) {
             .rmp-submenu-depth-1 .rmp-menu-item-link {

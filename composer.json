@@ -1,7 +1,4 @@
 {
-  "require": {
-    "twig/twig": "1.33.0"
-  },
   "autoload": {
     "psr-4": {
       "ResponsiveMenu\\": "app/"
