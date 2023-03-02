@@ -965,6 +965,7 @@ function rmp_get_default_options() {
 		'button_title'                                     => '',
 		'button_title_open'                                => '',
 		'button_title_position'                            => 'left',
+		'menu_container_columns'                           => '1',
 		'button_font'                                      => '',
 		'button_font_size'                                 => '14',
 		'button_font_size_unit'                            => 'px',

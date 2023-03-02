@@ -22,6 +22,23 @@
 					'accordion_id' => 'ui-id-36',
 				)
 			);
-			?>
+			$control_manager->add_select_control(
+				array(
+					'label'   => esc_html__( 'Menu container columns', 'responsive-menu' ),
+					'id'      => 'rmp-menu-container-columns',
+					'class'   => 'no-updates',
+					'class'   => 'rmp-menu-container-columns',
+					'name'    => 'menu[menu_container_columns]',
+					'options' => array(
+						'100%'     => '1',
+						'50%'      => '2',
+						'33.3333%' => '3',
+						'25%'      => '4',
+						'20%'      => '5',
+					),
+					'value'   => rmp_get_value( $options, 'menu_container_columns' ),
+				)
+			);
+		?>
 	</div>
 </li>
