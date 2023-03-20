@@ -52,7 +52,7 @@ class Editor {
 	 * @return void
 	 */
 	public function render_menu_editor_page() {
-		$editor = filter_input( INPUT_GET, 'editor', FILTER_SANITIZE_STRING );
+		$editor = filter_input( INPUT_GET, 'editor', FILTER_SANITIZE_URL );
 		if ( ! empty( $editor ) && 'rmp_menu' === get_post_type() && current_user_can( 'administrator' ) ) {
 			set_current_screen();
 			include RMP_PLUGIN_PATH_V4 . '/templates/rmp-editor.php';
