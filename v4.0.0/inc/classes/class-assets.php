@@ -49,7 +49,7 @@ class Assets {
 	 * @since 4.0.1
 	 */
 	public function rmp_menu_editor_style_inline() {
-		$editor = filter_input( INPUT_GET, 'editor', FILTER_SANITIZE_STRING );
+		$editor = filter_input( INPUT_GET, 'editor', FILTER_SANITIZE_URL );
 		if ( ! empty( $editor ) && 'rmp_menu' === get_post_type() && current_user_can( 'administrator' ) ) {
 			$css_data = 'html.wp-toolbar {
 				margin: 0;
