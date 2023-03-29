@@ -3,7 +3,7 @@ Contributors: expresstech, responsivemenu, imvarunkmr, moha12351, infosatech
 Tags: responsive, mega menu, navigation, mobile, hamburger
 Requires at least: 3.6
 Tested up to: 6.2
-Stable tag: 4.2.2
+Stable tag: 4.2.3
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -115,6 +115,9 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 7. Main menu
 
 == Changelog ==
+= 4.2.3 (29th Mar 2023) =
+* Enhancement: Checked compatibility with WordPress 6.2
+
 = 4.2.2 (2nd Mar 2023) =
 * Feature: The option to set multiple columns in the menu container has been added
 * Bug: Resolved a conflict with a third-party plugin that was caused by extra space in menu attributes
