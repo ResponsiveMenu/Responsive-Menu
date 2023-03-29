@@ -116,6 +116,7 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 
 == Changelog ==
 = 4.2.3 (29th Mar 2023) =
+* Bug: Fixed PHP warnings
 * Enhancement: Checked compatibility with WordPress 6.2
 
 = 4.2.2 (2nd Mar 2023) =
