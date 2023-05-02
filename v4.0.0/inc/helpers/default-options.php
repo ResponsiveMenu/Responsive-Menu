@@ -1020,6 +1020,7 @@ function rmp_get_default_options() {
 		'menu_additional_content_alignment'                => 'center',
 		'menu_additional_content_colour'                   => '#6fda44',
 		'menu_search_box_text'                             => 'Search',
+		'menu_search_box_code'                             => '',
 		'menu_search_section_padding'                      =>
 		array(
 			'top'    => '5%',
