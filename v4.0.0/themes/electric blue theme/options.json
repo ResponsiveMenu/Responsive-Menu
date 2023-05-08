@@ -34,7 +34,7 @@
     "header_bar_position_type":"fixed",
     "header_bar_adjust_page":"off",
     "mobile_breakpoint":"687",
-    "tablet_breakpoint":"8000",
+    "tablet_breakpoint":"1024",
     "transition_speed":"0.5",
     "sub_menu_speed":"0.2",
     "show_menu_on_page_load":"off",
