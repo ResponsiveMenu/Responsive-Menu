@@ -162,7 +162,11 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 
 			$toggle_theme_class = apply_filters( 'rmp_menu_toggle_classes', array( 'rmp_menu_trigger', $trigger_click_animation ), $this->menu_id );
 			$toggle_theme_class = implode( ' ', $toggle_theme_class );
-
+			if ( wp_is_mobile() ) {
+				$toggle_theme_class .= ' rmp-mobile-device-menu';
+			 } else {
+				// Output code for desktop devices
+			 }
 			$menu_trigger_destination = '';
 			if ( ! empty( $this->options['hamburger_position_selector'] ) ) {
 				$menu_trigger_destination = 'data-destination=' . $this->options['hamburger_position_selector'];

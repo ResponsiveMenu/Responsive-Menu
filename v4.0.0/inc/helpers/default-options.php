@@ -786,7 +786,7 @@ function rmp_get_default_options() {
 		'header_bar_scroll_enable'                         => 'off',
 		'header_bar_scroll_background_color'               => '#36bdf6',
 		'mobile_breakpoint'                                => '600',
-		'tablet_breakpoint'                                => '8000',
+		'tablet_breakpoint'                                => '1024',
 		'transition_speed'                                 => '0.5',
 		'sub_menu_speed'                                   => '0.2',
 		'show_menu_on_page_load'                           => 'off',
