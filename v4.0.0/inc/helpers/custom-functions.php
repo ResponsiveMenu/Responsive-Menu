@@ -222,8 +222,7 @@ function rm_sanitize_rec_array( $array, $textarea = false ) {
 }
 
 /**
- * Sanitizes multi-dimentional array
- *
+ * Show warning message for admin menus
  * @since 4.2.3
  */
 function rmp_create_menu_warning() {
