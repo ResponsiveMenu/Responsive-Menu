@@ -220,3 +220,23 @@ function rm_sanitize_rec_array( $array, $textarea = false ) {
 	}
 	return $array;
 }
+
+/**
+ * Show warning message for admin menus
+ * @since 4.2.3
+ */
+function rmp_create_menu_warning() {
+    // Check if the current screen is the menu creation page
+    $screen = get_current_screen();
+    if ( 'nav-menus' === $screen->id && wp_get_nav_menus() && ! get_all_rmp_menu_ids() ) {
+        // Display the admin warning message
+        echo '<div class="notice notice-warning">
+            <p>' . sprintf(
+				esc_html__( "Customize your menu with %1\$s Response menu.%2\$s Do not forget to save your changes! ", "responsive-menu" ),
+				'<a href="'. esc_url( admin_url( 'edit.php?post_type=rmp_menu' ) ) .'">',
+				"</a>"
+			) . '</p>
+        </div>';
+    }
+}
+add_action('admin_notices', 'rmp_create_menu_warning');
