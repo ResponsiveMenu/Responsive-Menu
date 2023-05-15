@@ -240,6 +240,10 @@ function add_rm_customize_button_to_save_menu() {
     // Check if it's the admin menu page
     if ( 'nav-menus.php' === $pagenow ) {
 		$menu_id = isset($_REQUEST['menu']) ? sanitize_text_field( wp_unslash( intval( $_REQUEST['menu'] ) ) ) : absint( get_user_option( 'nav_menu_recently_edited' ) );
+		$nav_menus  = wp_get_nav_menus();
+		if ( ( empty( $menu_id ) || !is_nav_menu( $menu_id ) ) && 0 < count( $nav_menus ) ) {
+			$menu_id = $nav_menus[0]->term_id;
+		}
 		$rmp_customize_menu = admin_url( 'edit.php?post_type=rmp_menu&open=wizard' );
 		if ( $menu_id ) {
 			$menu = wp_get_nav_menu_object($menu_id);
