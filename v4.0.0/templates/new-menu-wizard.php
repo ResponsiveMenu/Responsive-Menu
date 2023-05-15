@@ -153,7 +153,7 @@ $nav_menus = wp_get_nav_menus();
 							<?php
 							foreach ( $nav_menus as $nav_menu ) {
 								?>
-								<option value="<?php echo esc_attr( $nav_menu->slug ); ?>"><?php echo esc_html( $nav_menu->name ); ?></option>
+								<option value="<?php echo esc_attr( $nav_menu->term_id ); ?>"><?php echo esc_html( $nav_menu->name ); ?></option>
 								<?php
 							}
 							?>

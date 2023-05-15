@@ -47,6 +47,8 @@ $theme_manager   = Theme_Manager::get_instance();
 $editor          = Editor::get_instance();
 $menu_id         = get_the_ID();
 $options         = $option_manager->get_options( $menu_id );
+$menu_to_use = $option_manager->get_option( $menu_id, 'menu_to_use' );
+$current_wp_menu = wp_get_nav_menu_object($menu_to_use);
 global $wp_filesystem;
 if ( empty( $wp_filesystem ) ) {
 	require_once ABSPATH . 'wp-admin/includes/file.php';
@@ -502,7 +504,7 @@ WP_Filesystem();
 								$nav_menus    = wp_get_nav_menus();
 								$wp_menu_list = array();
 								foreach ( $nav_menus as $nav_menu ) {
-									$wp_menu_list[ $nav_menu->slug ] = $nav_menu->name;
+									$wp_menu_list[ $nav_menu->term_id ] = $nav_menu->name;
 								}
 								$control_manager->add_select_control(
 									array(
@@ -513,7 +515,7 @@ WP_Filesystem();
 										),
 										'name'     => 'menu[menu_to_use]',
 										'options'  => $wp_menu_list,
-										'value'    => rmp_get_value( $options, 'menu_to_use' ),
+										'value'    => $current_wp_menu->term_id,
 									)
 								);
 								$ui_manager->end_group_controls();
