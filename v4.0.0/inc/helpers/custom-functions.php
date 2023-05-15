@@ -228,14 +228,11 @@ function rm_sanitize_rec_array( $array, $textarea = false ) {
 function add_rm_customize_button_to_save_menu() {
 	global $pagenow;
     if ( 'edit.php' === $pagenow && ! empty( $_REQUEST['post_type'] ) && ! empty( $_REQUEST['open'] ) && 'rmp_menu' === $_REQUEST['post_type'] && 'wizard' === $_REQUEST['open'] ) {
-		?>
-		<script type="text/javascript">
-			jQuery('#rmp-new-menu-wizard').fadeIn();
-			<?php if ( ! empty( $_REQUEST['menu-to-use'] ) ) { ?>
-					jQuery('#rmp-menu-to-use').val('<?php echo esc_attr( sanitize_text_field( wp_unslash( $_REQUEST['menu-to-use'] ) ) ) ?>' );
-			<?php } ?>
-		</script>
-    <?php
+		$inline_script = "jQuery('#rmp-new-menu-wizard').fadeIn();";
+		if ( ! empty( $_REQUEST['menu-to-use'] ) ) {
+			$inline_script .= "jQuery('#rmp-menu-to-use').val('".esc_attr( sanitize_text_field( wp_unslash( $_REQUEST['menu-to-use'] ) ) ) ."' );";
+		}
+		wp_add_inline_script( 'rmp_admin_scripts', $inline_script );
 	}
     // Check if it's the admin menu page
     if ( 'nav-menus.php' === $pagenow ) {
@@ -268,16 +265,12 @@ function add_rm_customize_button_to_save_menu() {
 					$rmp_customize_menu = admin_url( 'post.php?post='.esc_attr( $post_id ).'&action=edit&editor=true' );
 				}
 			}
-}
-        ?>
-		<script type="text/javascript">
-			jQuery(document).ready(function($) {
-				var $customButton = $('<a href="<?php echo esc_url( $rmp_customize_menu ); ?>" style="margin-right:5px;" class="button button-secondary button-large rmp-customize-menu"><?php esc_html_e('Customize Menu', 'responsive-menu'); ?></a>');
-				// Append custom button after the save button
-				$('#save_menu_footer').before($customButton);
-			});
-		</script>
-    <?php
+		}
+		$inline_script = "jQuery(document).ready(function($) {
+			$('#save_menu_footer').before('<a href=\"".esc_url( $rmp_customize_menu )."\" style=\"margin-right:5px;\" class=\"button button-secondary button-large rmp-customize-menu\">". __('Customize Menu', 'responsive-menu') ."</a>');
+		});";
+		// Enqueue the script
+		wp_add_inline_script( 'admin-bar', $inline_script  );
 	}
 }
 add_action('admin_footer', 'add_rm_customize_button_to_save_menu', 999);
