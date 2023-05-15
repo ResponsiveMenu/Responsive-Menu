@@ -238,32 +238,28 @@ function add_rm_customize_button_to_save_menu() {
     if ( 'nav-menus.php' === $pagenow ) {
 		$menu_id = isset($_REQUEST['menu']) ? sanitize_text_field( wp_unslash( intval( $_REQUEST['menu'] ) ) ) : absint( get_user_option( 'nav_menu_recently_edited' ) );
 		$nav_menus  = wp_get_nav_menus();
-		if ( ( empty( $menu_id ) || !is_nav_menu( $menu_id ) ) && 0 < count( $nav_menus ) ) {
+		if ( ( empty( $menu_id ) || ! is_nav_menu( $menu_id ) ) && 0 < count( $nav_menus ) ) {
 			$menu_id = $nav_menus[0]->term_id;
 		}
 		$rmp_customize_menu = admin_url( 'edit.php?post_type=rmp_menu&open=wizard' );
-		if ( $menu_id ) {
-			$menu = wp_get_nav_menu_object($menu_id);
-
-			if ( $menu ) {
-				$rmp_customize_menu = admin_url( 'edit.php?post_type=rmp_menu&open=wizard&menu-to-use='.esc_attr( $menu->slug ) );
-				$query = new WP_Query(array(
-					'post_type'      => 'rmp_menu',
-					'posts_per_page' => 1,
-					'meta_query'     => array(
-						array(
-							'key'     => 'rmp_menu_meta',
-							'value'   => '"menu_to_use";s:'.strlen( $menu->slug ).':"'. esc_sql( $menu->slug ).'";',
-							'compare' => 'LIKE',
-						),
+		if ( ! empty( $menu_id ) && is_nav_menu( $menu_id ) ) {
+			$rmp_customize_menu = admin_url( 'edit.php?post_type=rmp_menu&open=wizard&menu-to-use='.esc_attr( $menu_id ) );
+			$query = new WP_Query(array(
+				'post_type'      => 'rmp_menu',
+				'posts_per_page' => 1,
+				'meta_query'     => array(
+					array(
+						'key'     => 'rmp_menu_meta',
+						'value'   => '"menu_to_use";s:'.strlen( $menu_id ).':"'. esc_sql( $menu_id ).'";',
+						'compare' => 'LIKE',
 					),
-				));
-				if ( $query->have_posts() ) {
-					$query->the_post();
-					$post_id = get_the_ID();
-					wp_reset_postdata();
-					$rmp_customize_menu = admin_url( 'post.php?post='.esc_attr( $post_id ).'&action=edit&editor=true' );
-				}
+				),
+			));
+			if ( $query->have_posts() ) {
+				$query->the_post();
+				$post_id = get_the_ID();
+				wp_reset_postdata();
+				$rmp_customize_menu = admin_url( 'post.php?post='.esc_attr( $post_id ).'&action=edit&editor=true' );
 			}
 		}
 		$inline_script = "jQuery(document).ready(function($) {
