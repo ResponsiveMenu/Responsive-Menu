@@ -268,12 +268,9 @@ function add_rm_customize_button_to_save_menu() {
         ?>
 		<script type="text/javascript">
 			jQuery(document).ready(function($) {
-				var $saveButton = $('#save_menu_footer');
 				var $customButton = $('<a href="<?php echo esc_url( $rmp_customize_menu ); ?>" style="margin-right:5px;" class="button button-secondary button-large rmp-customize-menu"><?php esc_html_e('Customize Menu', 'responsive-menu'); ?></a>');
-				// Remove default click event
-				$saveButton.off('click');
 				// Append custom button after the save button
-				$saveButton.before($customButton);
+				$('#save_menu_footer').before($customButton);
 			});
 		</script>
     <?php
