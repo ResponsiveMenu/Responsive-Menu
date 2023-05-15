@@ -222,21 +222,59 @@ function rm_sanitize_rec_array( $array, $textarea = false ) {
 }
 
 /**
- * Show warning message for admin menus
+ * Add RM customize button for admin menus
  * @since 4.2.3
  */
-function rmp_create_menu_warning() {
-    // Check if the current screen is the menu creation page
-    $screen = get_current_screen();
-    if ( 'nav-menus' === $screen->id && wp_get_nav_menus() && ! get_all_rmp_menu_ids() ) {
-        // Display the admin warning message
-        echo '<div class="notice notice-warning">
-            <p>' . sprintf(
-				esc_html__( "Customize your menu with %1\$s Response menu.%2\$s Do not forget to save your changes! ", "responsive-menu" ),
-				'<a href="'. esc_url( admin_url( 'edit.php?post_type=rmp_menu' ) ) .'">',
-				"</a>"
-			) . '</p>
-        </div>';
-    }
+function add_rm_customize_button_to_save_menu() {
+	global $pagenow;
+    if ( 'edit.php' === $pagenow && ! empty( $_REQUEST['post_type'] ) && ! empty( $_REQUEST['open'] ) && 'rmp_menu' === $_REQUEST['post_type'] && 'wizard' === $_REQUEST['open'] ) {
+		?>
+		<script type="text/javascript">
+			jQuery('#rmp-new-menu-wizard').fadeIn();
+			<?php if ( ! empty( $_REQUEST['menu-to-use'] ) ) { ?>
+					jQuery('#rmp-menu-to-use').val('<?php echo esc_attr( sanitize_text_field( wp_unslash( $_REQUEST['menu-to-use'] ) ) ) ?>' );
+			<?php } ?>
+		</script>
+    <?php
+	}
+    // Check if it's the admin menu page
+    if ( 'nav-menus.php' === $pagenow ) {
+		$menu_id = isset($_REQUEST['menu']) ? sanitize_text_field( wp_unslash( intval( $_REQUEST['menu'] ) ) ) : absint( get_user_option( 'nav_menu_recently_edited' ) );
+		$rmp_customize_menu = admin_url( 'edit.php?post_type=rmp_menu&open=wizard' );
+		if ( $menu_id ) {
+			$menu = wp_get_nav_menu_object($menu_id);
+
+			if ( $menu ) {
+				$rmp_customize_menu = admin_url( 'edit.php?post_type=rmp_menu&open=wizard&menu-to-use='.esc_attr( $menu->slug ) );
+				$query = new WP_Query(array(
+					'post_type'      => 'rmp_menu',
+					'posts_per_page' => 1,
+					'meta_query'     => array(
+						array(
+							'key'     => 'rmp_menu_meta',
+							'value'   => '"menu_to_use";s:'.strlen( $menu->slug ).':"'. esc_sql( $menu->slug ).'";',
+							'compare' => 'LIKE',
+						),
+					),
+				));
+				if ( $query->have_posts() ) {
+					$query->the_post();
+					$post_id = get_the_ID();
+					wp_reset_postdata();
+					$rmp_customize_menu = admin_url( 'post.php?post='.esc_attr( $post_id ).'&action=edit&editor=true' );
+				}
+			}
 }
-add_action('admin_notices', 'rmp_create_menu_warning');
+        ?>
+		<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				var $customButton = $('<a href="<?php echo esc_url( $rmp_customize_menu ); ?>" style="margin-right:5px;" class="button button-secondary button-large rmp-customize-menu"><?php esc_html_e('Customize Menu', 'responsive-menu'); ?></a>');
+				// Append custom button after the save button
+				$('#save_menu_footer').before($customButton);
+			});
+		</script>
+    <?php
+	}
+}
+add_action('admin_footer', 'add_rm_customize_button_to_save_menu', 999);
+
