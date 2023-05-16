@@ -195,7 +195,7 @@ $nav_menus = wp_get_nav_menus();
 					<div class="rmp-input-control-label input-label">
 						<h4 class="input-label-title">
 							<span> <?php esc_html_e( 'Device Visibility', 'responsive-menu' ); ?> </span>
-							<a target="_blank" rel="noopener" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > PRO </a>
+							<a target="_blank" rel="noopener" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > <?php esc_html_e( 'PRO', 'responsive-menu' ); ?> </a>
 						</h4>
 
 						<p class="input-label-description">
