@@ -220,3 +220,54 @@ function rm_sanitize_rec_array( $array, $textarea = false ) {
 	}
 	return $array;
 }
+
+/**
+ * Add RM customize button for admin menus
+ * @since 4.3.0
+ */
+function add_rm_customize_button_to_save_menu() {
+	global $pagenow;
+    if ( 'edit.php' === $pagenow && ! empty( $_REQUEST['post_type'] ) && ! empty( $_REQUEST['open'] ) && 'rmp_menu' === $_REQUEST['post_type'] && 'wizard' === $_REQUEST['open'] ) {
+		$inline_script = "jQuery('#rmp-new-menu-wizard').fadeIn();";
+		if ( ! empty( $_REQUEST['menu-to-use'] ) ) {
+			$inline_script .= "jQuery('#rmp-menu-to-use').val('".esc_attr( sanitize_text_field( wp_unslash( $_REQUEST['menu-to-use'] ) ) ) ."' );";
+		}
+		wp_add_inline_script( 'rmp_admin_scripts', $inline_script );
+	}
+    // Check if it's the admin menu page
+    if ( 'nav-menus.php' === $pagenow ) {
+		$menu_id = isset($_REQUEST['menu']) ? sanitize_text_field( wp_unslash( intval( $_REQUEST['menu'] ) ) ) : absint( get_user_option( 'nav_menu_recently_edited' ) );
+		$nav_menus  = wp_get_nav_menus();
+		if ( ( empty( $menu_id ) || ! is_nav_menu( $menu_id ) ) && 0 < count( $nav_menus ) ) {
+			$menu_id = $nav_menus[0]->term_id;
+		}
+		$rmp_customize_menu = admin_url( 'edit.php?post_type=rmp_menu&open=wizard' );
+		if ( ! empty( $menu_id ) && is_nav_menu( $menu_id ) ) {
+			$rmp_customize_menu = admin_url( 'edit.php?post_type=rmp_menu&open=wizard&menu-to-use='.esc_attr( $menu_id ) );
+			$query = new WP_Query(array(
+				'post_type'      => 'rmp_menu',
+				'posts_per_page' => 1,
+				'meta_query'     => array(
+					array(
+						'key'     => 'rmp_menu_meta',
+						'value'   => '"menu_to_use";s:'.strlen( $menu_id ).':"'. esc_sql( $menu_id ).'";',
+						'compare' => 'LIKE',
+					),
+				),
+			));
+			if ( $query->have_posts() ) {
+				$query->the_post();
+				$post_id = get_the_ID();
+				wp_reset_postdata();
+				$rmp_customize_menu = admin_url( 'post.php?post='.esc_attr( $post_id ).'&action=edit&editor=true' );
+			}
+		}
+		$inline_script = "jQuery(document).ready(function($) {
+			$('#save_menu_footer').before('<a href=\"".esc_url( $rmp_customize_menu )."\" style=\"margin-right:5px;\" class=\"button button-secondary button-large rmp-customize-menu\">". __('Customize Menu', 'responsive-menu') ."</a>');
+		});";
+		// Enqueue the script
+		wp_add_inline_script( 'admin-bar', $inline_script  );
+	}
+}
+add_action('admin_footer', 'add_rm_customize_button_to_save_menu', 999);
+

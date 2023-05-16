@@ -1053,7 +1053,7 @@ class Control_Manager {
 		<div class="rmp-input-control-wrapper full-size">
 				<label class="rmp-input-control-label">
 					<?php esc_html_e( 'Device Visibility', 'responsive-menu' ); ?>
-					<a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url( $this->pro_plugin_url ); ?>" > PRO </a>
+					<a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url( $this->pro_plugin_url ); ?>" > <?php esc_html_e( 'PRO', 'responsive-menu' ); ?> </a>
 				</label>
 				<div class="rmp-input-control">
 					<div class="device-icons-group">
@@ -1124,7 +1124,7 @@ class Control_Manager {
 		WP_Filesystem();
 		?>
 		<div class="rmp-device-switcher-holder">
-			<a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url( $this->pro_plugin_url ); ?>" > PRO </a>
+			<a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url( $this->pro_plugin_url ); ?>" > <?php esc_html_e( 'PRO', 'responsive-menu' ); ?> </a>
 			<ul class="select rmp-device-switcher" >
 				<li data-device="mobile">
 					<?php

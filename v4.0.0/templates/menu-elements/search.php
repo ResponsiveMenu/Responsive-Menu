@@ -27,11 +27,22 @@
 				<label class="rmp-input-control-label">
 					<?php esc_html_e( 'Placeholder Text', 'responsive-menu' ); ?>
 					<span>
-						<a target="_blank" rel="noopener" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > PRO </a>
+						<a target="_blank" rel="noopener" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > <?php esc_html_e( 'PRO', 'responsive-menu' ); ?> </a>
 					</span>
 				</label>
 				<div class="rmp-input-control">
-					<input disabled placeholder="Search" type="text" id="rmp-menu-search-box-text" name="menu[menu_search_box_text]" class="regular-text" value="<?php echo esc_attr( rmp_get_value( $options, 'menu_search_box_text' ) ); ?>"/>
+					<input disabled placeholder="<?php esc_html_e( 'Search', 'responsive-menu' ); ?>" type="text" id="rmp-menu-search-box-text" name="menu[menu_search_box_text]" class="regular-text" value="<?php echo esc_attr( rmp_get_value( $options, 'menu_search_box_text' ) ); ?>"/>
+				</div>
+			</div>
+			<div class="rmp-input-control-wrapper full-size">
+				<label class="rmp-input-control-label">
+					<?php esc_html_e( 'Custome search code', 'responsive-menu' ); ?>
+					<span>
+						<a target="_blank" rel="noopener" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > <?php esc_html_e( 'PRO', 'responsive-menu' ); ?> </a>
+					</span>
+				</label>
+				<div class="rmp-input-control">
+					<textarea disabled placeholder="<?php esc_html_e( 'Add your custome search code..', 'responsive-menu' ); ?>" id="rmp-menu-search-box-code" name="menu[menu_search_box_code]" class="regular-text"><?php echo esc_attr( rmp_get_value( $options, 'menu_search_box_code' ) ); ?></textarea>
 				</div>
 			</div>
 		</div>
