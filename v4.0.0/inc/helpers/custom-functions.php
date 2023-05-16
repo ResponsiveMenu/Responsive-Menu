@@ -223,7 +223,7 @@ function rm_sanitize_rec_array( $array, $textarea = false ) {
 
 /**
  * Add RM customize button for admin menus
- * @since 4.2.3
+ * @since 4.3.0
  */
 function add_rm_customize_button_to_save_menu() {
 	global $pagenow;
