@@ -34,31 +34,31 @@ if ( empty( $cached_data ) ) {
 					<li>
 						<a class="nav-tab" href="#material-icon">
 							<?php esc_html_e( 'Material Icons (mdi)', 'responsive-menu' ); ?>
-							<span class="upgrade-tooltip"> PRO </span>
+							<span class="upgrade-tooltip"> <?php esc_html_e( 'PRO', 'responsive-menu' ); ?> </span>
 						</a>
 					</li>
 					<li>
 						<a class="nav-tab" href="#fas">
 							<?php esc_html_e( 'FontAwesome Solid (fas)', 'responsive-menu' ); ?>
-							<span class="upgrade-tooltip"> PRO </span>
+							<span class="upgrade-tooltip"> <?php esc_html_e( 'PRO', 'responsive-menu' ); ?> </span>
 						</a>
 					</li>
 					<li>
 						<a class="nav-tab" href="#fab">
 							<?php esc_html_e( 'FontAwesome Brand (fab)', 'responsive-menu' ); ?>
-							<span class="upgrade-tooltip"> PRO </span>
+							<span class="upgrade-tooltip"> <?php esc_html_e( 'PRO', 'responsive-menu' ); ?> </span>
 						</a>
 					</li>
 					<li>
 						<a class="nav-tab" href="#far">
 							<?php esc_html_e( 'FontAwesome Regular (far)', 'responsive-menu' ); ?>
-							<span class="upgrade-tooltip"> PRO </span>
+							<span class="upgrade-tooltip"> <?php esc_html_e( 'PRO', 'responsive-menu' ); ?> </span>
 						</a>
 					</li>
 					<li>
 						<a class="nav-tab" href="#glyphicons">
 							<?php esc_html_e( 'GlyphIcon', 'responsive-menu' ); ?>
-							<span class="upgrade-tooltip"> PRO </span>
+							<span class="upgrade-tooltip"> <?php esc_html_e( 'PRO', 'responsive-menu' ); ?> </span>
 						</a>
 					</li>
 				</ul>

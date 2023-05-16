@@ -27,7 +27,7 @@
 				<label class="rmp-input-control-label">
 					<?php esc_html_e( 'Placeholder Text', 'responsive-menu' ); ?>
 					<span>
-						<a target="_blank" rel="noopener" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > PRO </a>
+						<a target="_blank" rel="noopener" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > <?php esc_html_e( 'PRO', 'responsive-menu' ); ?> </a>
 					</span>
 				</label>
 				<div class="rmp-input-control">
@@ -38,7 +38,7 @@
 				<label class="rmp-input-control-label">
 					<?php esc_html_e( 'Custome search code', 'responsive-menu' ); ?>
 					<span>
-						<a target="_blank" rel="noopener" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > PRO </a>
+						<a target="_blank" rel="noopener" class="upgrade-tooltip" href="https://responsive.menu/pricing?utm_source=free-plugin&utm_medium=option&utm_campaign=hide_on_mobile" > <?php esc_html_e( 'PRO', 'responsive-menu' ); ?> </a>
 					</span>
 				</label>
 				<div class="rmp-input-control">

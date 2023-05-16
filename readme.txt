@@ -116,7 +116,6 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 
 == Changelog ==
 = 4.3.0 (16th May 2023) =
-* Feature: Introducing the ability to utilize a custom search form for enhanced user experience
 * Enhancement: The tablet default breakpoints have been adjusted to improve responsiveness
 * Enhancement: Improved UX
 
