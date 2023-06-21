@@ -9,7 +9,7 @@ This file contents common styling of menus.
     transition: all 0.3s;
 
     &.rmp-fade-top,
-    &.rmp-fade-left, 
+    &.rmp-fade-left,
     &.rmp-fade-right,
     &.rmp-fade-bottom {
         display: none;
@@ -78,7 +78,7 @@ This file contents common styling of menus.
         -webkit-transform: translateX(0);
         -moz-transform: translateX(0);
     }
-    
+
 
      /** Scrolling bar in menu setting box **/
      &::-webkit-scrollbar {
@@ -86,7 +86,7 @@ This file contents common styling of menus.
     }
 
     & ::-webkit-scrollbar-track {
-        box-shadow: inset 0 0 5px transparent; 
+        box-shadow: inset 0 0 5px transparent;
     }
 
     & ::-webkit-scrollbar-thumb {
@@ -94,7 +94,7 @@ This file contents common styling of menus.
     }
 
     &  ::-webkit-scrollbar-thumb:hover {
-        background: transparent; 
+        background: transparent;
     }
 
     .rmp-menu-wrap .rmp-menu {

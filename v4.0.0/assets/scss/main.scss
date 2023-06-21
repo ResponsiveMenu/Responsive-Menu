@@ -122,6 +122,15 @@
     &:hover .responsive-menu-pro-inner::after {
         background-color: $menu_trigger_line_color_hover;
     }
+    .responsive-menu-pro-inner::before{
+        top: $menu_trigger_line_margin + $menu_trigger_line_margin_unit;
+    }
+    .responsive-menu-pro-inner::after{
+        bottom: $menu_trigger_line_margin + $menu_trigger_line_margin_unit;
+    }
+    &.is-active .responsive-menu-pro-inner::after {
+        bottom: 0;
+   }
 
 }
 

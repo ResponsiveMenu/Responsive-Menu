@@ -949,7 +949,7 @@ function rmp_get_default_options() {
 		'button_top_unit'                                  => 'px',
 		'button_push_with_animation'                       => 'off',
 		'button_click_animation'                           => 'boring',
-		'button_line_margin'                               => '5',
+		'button_line_margin'                               => '10',
 		'button_line_margin_unit'                          => 'px',
 		'button_line_width'                                => '25',
 		'button_line_width_unit'                           => 'px',
