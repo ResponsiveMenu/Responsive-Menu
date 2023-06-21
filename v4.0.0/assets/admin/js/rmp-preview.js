@@ -257,8 +257,21 @@ window.RMP_Preview = {
 
 				case 'top':
 					value = jQuery(this).val();
-					unit  = jQuery('#rmp-menu-button-top-unit').val();
+					var unit = jQuery(this).next('.is-unit').val();
+					if ( ! unit ) {
+						unit = 'px';
+					}
 					css = outputSelector + '{ top :' + (value + unit) +' !important;}';
+					self.inlineCssInjector(css);
+				break;
+
+				case 'bottom':
+					value = jQuery(this).val();
+					var unit = jQuery(this).next('.is-unit').val();
+					if ( ! unit ) {
+						unit = 'px';
+					}
+					css = outputSelector + '{ bottom :' + (value + unit) +' !important;}';
 					self.inlineCssInjector(css);
 				break;
 
@@ -922,6 +935,18 @@ window.RMP_Preview = {
 		);
 
 		self.onTyping(
+			'#rmp-menu-button-line-margin',
+			'#rmp_menu_trigger-' + self.menuId +' .responsive-menu-pro-inner:after',
+			'bottom'
+		);
+
+		self.onTyping(
+			'#rmp-menu-button-line-margin',
+			'#rmp_menu_trigger-' + self.menuId +' .responsive-menu-pro-inner:before',
+			'top'
+		);
+
+		self.onTyping(
 			'#rmp-menu-button-line-height',
 			'#rmp_menu_trigger-' + self.menuId +' .responsive-menu-pro-inner:after',
 			'height'
@@ -1063,8 +1088,8 @@ window.RMP_Preview = {
 		self.bindColor('#rmp-menu-sub-arrow-background-colour-active', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-subarrow-active', 'background');
 		self.bindColor('#rmp-menu-sub-arrow-background-hover-colour-active', ' #rmp-menu-wrap-' + self.menuId + ' .rmp-menu-top-level-item .rmp-menu-subarrow-active', 'background','hover' );
 
-			//sub menu item links
-			self.onTyping(
+		//sub menu item links
+		self.onTyping(
 			'#rmp-submenu-links-height',
 			'#rmp-menu-wrap-' + self.menuId + ' .rmp-submenu .rmp-menu-item-link',
 			'height'

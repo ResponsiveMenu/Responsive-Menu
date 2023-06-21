@@ -447,7 +447,7 @@ class Style_Manager {
 
 			$menu_trigger_line_margin = '';
 			if ( ! empty( $options['button_line_margin'] ) ) {
-				$menu_trigger_line_margin = $options['button_line_margin'];
+				$menu_trigger_line_margin = get_post_meta( $menu_id, 'rmp_lagecy_menu_line_space', true ) ? $options['button_line_margin'] : 10;
 			}
 
 			$menu_trigger_line_margin_unit = '';
