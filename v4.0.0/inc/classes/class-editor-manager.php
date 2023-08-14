@@ -163,6 +163,7 @@ class Editor_Manager {
 		$options = array_merge( rmp_get_default_options(), $options );
 
 		update_post_meta( $menu_id, 'rmp_menu_meta', $options );
+		update_post_meta( $menu_id, 'rmp_lagecy_menu_line_space', 1 );
 
 		/**
 		 * Fires when saved the options.

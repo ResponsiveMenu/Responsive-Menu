@@ -2,8 +2,8 @@
 Contributors: expresstech, responsivemenu, imvarunkmr, moha12351, infosatech
 Tags: responsive, mega menu, navigation, mobile, hamburger
 Requires at least: 3.6
-Tested up to: 6.2
-Stable tag: 4.3.0
+Tested up to: 6.3
+Stable tag: 4.3.1
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -115,6 +115,10 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 7. Main menu
 
 == Changelog ==
+= 4.3.1 (14th Aug 2023) =
+* Bug Fix: Addressed the problem related to hamburger line height option
+* Enhancement: Anchored tags are now removed if not utilized within the title
+
 = 4.3.0 (16th May 2023) =
 * Enhancement: The tablet default breakpoints have been adjusted to improve responsiveness
 * Enhancement: Improved UX

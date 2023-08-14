@@ -268,17 +268,20 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 			if ( ! empty( $this->options['menu_title_link_location'] ) ) {
 				$link_target = $this->options['menu_title_link_location'];
 			}
-
-			$link_href = '';
-			if ( ! empty( $this->options['menu_title_link'] ) ) {
-				$link_href = $this->options['menu_title_link'];
-			}
 			?>
 			<div id="rmp-menu-title-<?php echo esc_attr( $this->menu_id ); ?>" class="rmp-menu-title">
-				<a href="<?php echo esc_url( $link_href ); ?>" target="<?php echo esc_attr( $link_target ); ?>" id="rmp-menu-title-link">
-				<?php echo wp_kses( $menu_image, wp_kses_allowed_html( 'post' ) ); ?>
-				<span><?php echo esc_html( $menu_title ); ?></span>
-				</a>
+				<?php if ( ! empty( $this->options['menu_title_link'] ) ) { ?>
+					<a href="<?php echo esc_url( $this->options['menu_title_link'] ); ?>" target="<?php echo esc_attr( $link_target ); ?>" class="rmp-menu-title-link" id="rmp-menu-title-link">
+				<?php }else { ?>
+					<span class="rmp-menu-title-link">
+				<?php } ?>
+						<?php echo wp_kses( $menu_image, wp_kses_allowed_html( 'post' ) ); ?>
+						<span><?php echo esc_html( $menu_title ); ?></span>
+				<?php if ( ! empty( $this->options['menu_title_link'] ) ) { ?>
+					</a>
+				<?php }else { ?>
+					</span>
+				<?php } ?>
 			</div>
 			<?php
 		}
