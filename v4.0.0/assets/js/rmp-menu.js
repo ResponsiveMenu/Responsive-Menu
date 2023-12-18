@@ -28,6 +28,7 @@ jQuery( document ).ready( function( jQuery ) {
 			RmpMenu.openContainerClass       = 'rmp-menu-open';
 			RmpMenu.activeSubMenuArrowClass  = 'rmp-menu-subarrow-active';
 			RmpMenu.subMenuClass             = '.rmp-submenu';
+			RmpMenu.activeTopMenuClass  	 = 'rmp-topmenu-active';
 
 			this.options = options;
 			this.menuId  = this.options['menu_id'];
@@ -280,6 +281,7 @@ jQuery( document ).ready( function( jQuery ) {
 				top_siblings.each(function() {
 					jQuery(this).find(self.subMenuArrow).first().html(self.options['inactive_toggle_contents']);
 					jQuery(this).find(self.subMenuArrow).first().removeClass(RmpMenu.activeSubMenuArrowClass);
+					jQuery(this).removeClass(RmpMenu.activeTopMenuClass);
 				});
 
 				// Now Repeat for the current item siblings.
@@ -287,6 +289,7 @@ jQuery( document ).ready( function( jQuery ) {
 				first_siblings.each(function() {
 					jQuery(this).find(self.subMenuArrow).first().html(self.options['inactive_toggle_contents']);
 					jQuery(this).find(self.subMenuArrow).first().removeClass(RmpMenu.activeSubMenuArrowClass);
+					jQuery(this).removeClass(RmpMenu.activeTopMenuClass);
 				});
 			}
 
@@ -297,10 +300,12 @@ jQuery( document ).ready( function( jQuery ) {
 				} ).removeClass('rmp-submenu-open');
 				jQuery( subArrow ).html( self.options['inactive_toggle_contents'] );
 				jQuery( subArrow ).removeClass(RmpMenu.activeSubMenuArrowClass);
+				jQuery( subArrow ).closest( '.rmp-menu-item-has-children' ).removeClass(RmpMenu.activeTopMenuClass);
 			} else {
 				sub_menu.slideDown(self.subMenuTransitionTime, 'linear').addClass( 'rmp-submenu-open' );
 				jQuery( subArrow ).html(self.options['active_toggle_contents'] );
 				jQuery( subArrow ).addClass(RmpMenu.activeSubMenuArrowClass);
+				jQuery( subArrow ).closest( '.rmp-menu-item-has-children' ).addClass(RmpMenu.activeTopMenuClass);
 			}
 
 		}
