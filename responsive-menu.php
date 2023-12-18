@@ -16,7 +16,7 @@ Tags: responsive, menu, responsive menu, mega menu, max mega menu, max menu
  * Constant as plugin version.
  */
 if ( ! defined( 'RMP_PLUGIN_VERSION' ) ) {
-	define( 'RMP_PLUGIN_VERSION', '4.3.0' );
+	define( 'RMP_PLUGIN_VERSION', '4.3.1' );
 }
 
 define( 'RESPONSIVE_MENU_URL', plugin_dir_url( __FILE__ ) );
