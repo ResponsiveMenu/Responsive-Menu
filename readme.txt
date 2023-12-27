@@ -2,7 +2,7 @@
 Contributors: expresstech, responsivemenu, imvarunkmr, moha12351, infosatech
 Tags: responsive, mega menu, navigation, mobile, hamburger
 Requires at least: 3.6
-Tested up to: 6.3
+Tested up to: 6.4
 Stable tag: 4.3.2
 Requires PHP: 5.6
 License: GPLv2 or later
