@@ -116,7 +116,7 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 
 == Changelog ==
 = 4.3.3 (11th March 2024) =
-* Feature: Added option to navigate menus using tab
+* Feature: Added the functionality to navigate menus using the tab key for improved accessibility
 
 = 4.3.2 (27th Dec 2023) =
 * Enhancement: Added class to highlight active parent menus
