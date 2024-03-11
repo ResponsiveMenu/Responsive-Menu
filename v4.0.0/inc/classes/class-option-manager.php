@@ -56,8 +56,8 @@ class Option_Manager {
 	 */
 	public function get_options( $menu_id ) {
 
-		$options            = get_post_meta( $menu_id, 'rmp_menu_meta' );
-		$options            = $options[0];
+		$options            = get_post_meta( $menu_id, 'rmp_menu_meta', true );
+		$options            = is_array( $options ) ? $options : array();
 		$options['menu_id'] = $menu_id;
 		$default_options    = rmp_get_default_options();
 		$options            = array_replace( $default_options, $options );

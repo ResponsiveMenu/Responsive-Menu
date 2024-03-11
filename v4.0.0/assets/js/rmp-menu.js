@@ -143,6 +143,58 @@ jQuery( document ).ready( function( jQuery ) {
 					}
 				});
 			}
+
+			jQuery(document).on('keydown', function (event) {
+				let menuOpen = jQuery('.rmp-container.rmp-menu-open');
+				if (menuOpen.length) {
+					let activeMenu = menuOpen.find('.rmp-selected-menu-item').length ? menuOpen.find('.rmp-selected-menu-item') : menuOpen.find('.rmp-menu-current-item');
+					let parentContainer = jQuery('.rmp-container.rmp-menu-open');
+					let menuItems = menuOpen.find('.rmp-menu-item');
+
+					if (event.keyCode === 9) {
+						menuItems.removeClass('rmp-selected-menu-item');
+						if (activeMenu.length) {
+							if (activeMenu.hasClass('rmp-menu-item-has-children')) {
+								activeMenu.children('.rmp-menu-item-link').first().find('.rmp-menu-subarrow').click();
+								let firstChild = activeMenu.find('.rmp-submenu').children('.rmp-menu-item').first();
+								firstChild.addClass('rmp-selected-menu-item').children('.rmp-menu-item-link').first().focus();
+							} else {
+								let nextMenu = activeMenu.next('.rmp-menu-item');
+								if (nextMenu.length) {
+									nextMenu.addClass('rmp-selected-menu-item').children('.rmp-menu-item-link').first().focus();
+								} else {
+									let parentSubmenu = activeMenu.closest('.rmp-submenu');
+									if (parentSubmenu.length) {
+										let parentMenu = parentSubmenu.closest('.rmp-menu-item');
+										let nextSibling = parentMenu.next('.rmp-menu-item');
+										parentMenu.children('.rmp-menu-item-link').first().find('.rmp-menu-subarrow').click();
+										if (nextSibling.length) {
+											nextSibling.addClass('rmp-selected-menu-item').children('.rmp-menu-item-link').first().focus();
+										} else {
+											let parentSibling = parentMenu.closest('.rmp-submenu').closest('.rmp-menu-item').next('.rmp-menu-item');
+											if (parentSibling.length) {
+												parentSibling.find('.rmp-menu-item-link').addClass('rmp-selected-menu-item').children('.rmp-menu-item-link').first().focus();
+											} else {
+												parentContainer.find('.rmp-menu-item').first().addClass('rmp-selected-menu-item').children('.rmp-menu-item-link').first().focus();
+											}
+										}
+									} else {
+										parentContainer.find('.rmp-menu-item').first().addClass('rmp-selected-menu-item').children('.rmp-menu-item-link').first().focus();
+									}
+								}
+							}
+						} else {
+							menuItems.first().addClass('rmp-selected-menu-item').children('.rmp-menu-item-link').first().focus();
+						}
+						event.preventDefault();
+					}
+
+					if (event.keyCode === 13 && activeMenu.length) {
+						activeMenu.click();
+					}
+				}
+			});
+
 		}
 		/**
 		 * Set push translate for toggle and page wrapper.
