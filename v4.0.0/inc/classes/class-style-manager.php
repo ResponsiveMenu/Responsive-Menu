@@ -257,9 +257,13 @@ class Style_Manager {
 
 		wp_enqueue_script( 'jquery' );
 
+		$rmp_front_js_path = '/assets/js/rmp-menu.js';
+		if ( 'on' === $this->option_manager->get_global_option( 'rmp_minify_scripts' ) ) {
+			$rmp_front_js_path = '/assets/js/rmp-menu.min.js';
+		}
 		wp_register_script(
 			'rmp_menu_scripts',
-			RMP_PLUGIN_URL_V4 . '/assets/js/rmp-menu.js',
+			RMP_PLUGIN_URL_V4 . $rmp_front_js_path,
 			array( 'jquery' ),
 			RMP_PLUGIN_VERSION,
 			$in_footer
