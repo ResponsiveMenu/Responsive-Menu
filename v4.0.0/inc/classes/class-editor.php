@@ -190,7 +190,7 @@ class Editor {
 		 *
 		 * @param string|HTML $html
 		 */
-		echo apply_filters( 'rmp_editor_footer_html', $html );
+		echo apply_filters( 'rmp_editor_footer_html', '' );
 	}
 
 	/**
