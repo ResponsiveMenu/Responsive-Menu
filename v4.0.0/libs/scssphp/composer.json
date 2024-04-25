@@ -1,5 +1,5 @@
 {
     "require": {
-        "scssphp/scssphp": "^1.10.2"
+        "scssphp/scssphp": "^1.12.1"
     }
 }
