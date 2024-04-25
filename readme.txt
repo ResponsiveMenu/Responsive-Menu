@@ -3,7 +3,7 @@ Contributors: expresstech, responsivemenu, imvarunkmr, moha12351, infosatech
 Tags: responsive, mega menu, navigation, mobile, hamburger
 Requires at least: 3.6
 Tested up to: 6.5
-Stable tag: 4.3.4
+Stable tag: 4.3.5
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -115,6 +115,9 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 7. Main menu
 
 == Changelog ==
+= 4.3.5 (25th April 2024) =
+* Enhancement: Update scssphp library to 1.12.1
+
 = 4.3.4 (17th April 2024) =
 * Enhancement: Added option to minimize script file
 
