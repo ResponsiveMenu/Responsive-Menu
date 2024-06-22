@@ -1,0 +1,111 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "rmp/menu",
+	"version": "1.0.0",
+	"title": "Responsive Menu",
+	"category": "widgets",
+	"icon": "menu-alt3",
+	"keywords": [
+		"responsive",
+		"menu",
+		"responsive menu",
+		"mega menu",
+		"max mega menu",
+		"max menu"
+	],
+	"description": "Highly Customisable Responsive Menu Plugin for WordPress",
+	"example": {},
+	"supports": {
+		"html": false,
+		"customClassName": true
+	},
+	"attributes": {
+		"id": {
+			"type": "string"
+		},
+		"menuContainerStyle": {
+			"type": "object",
+			"default": {
+				"color": "#ffffff",
+				"background": "#1d4354",
+				"backgroundImage": "",
+				"backgroundSize": "cover",
+				"backgroundPosition": "",
+				"backgroundRepeat": "no-repeat",
+				"padding": {},
+				"menuWidth": 75,
+				"menuMaximumWidth": 350,
+				"menuMinimumWidth": 320
+			}
+		},
+		"menuAnimation": {
+			"type": "object",
+			"default": {
+				"type": "slide",
+				"direction": "left",
+				"transitionDuration": 0.5
+			}
+		},
+		"menuBehaviour": {
+			"type": "object",
+			"default": {
+				"linkClick": "",
+				"pageScroll": ""
+			}
+		},
+		"breakpoint": {
+			"type": "number",
+			"default": 768
+		},
+		"hamburgerStyle": {
+			"type": "object",
+			"default": {
+				"type": "hamburger",
+				"icon": "wordpress-menu",
+				"activeIcon": "wordpress-close",
+				"iconSize": "30",
+				"image": "",
+				"activeImage": "",
+				"lineSpacing": 10,
+				"lineWidth": 25,
+				"lineHeight": 3,
+				"width": 55,
+				"height": 55,
+				"color": "#ffffff",
+				"hoverColor": "#ffffff",
+				"activeColor": "#ffffff",
+				"background": "#1d4354",
+				"hoverBackground": "#1d4354",
+				"activeBackground": "#6fda44",
+				"borderRadius": {
+					"top": "5px",
+					"right": "5px",
+					"bottom": "5px",
+					"left": "5px"
+				},
+				"side": "right"
+			}
+		},
+		"hamburgerText": {
+			"type": "object",
+			"default": {
+				"text": "",
+				"activeText": "",
+				"position": "left",
+				"fontFamily": "",
+				"size": 14,
+				"lineHeight": 14,
+				"color": "#fff"
+			}
+		},
+		"blockStyles": {
+			"type": "object"
+		}
+	},
+	"textdomain": "responsive-menu",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}

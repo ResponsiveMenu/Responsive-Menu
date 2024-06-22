@@ -1,0 +1,42 @@
+{
+	"name": "rmp-block",
+	"version": "0.1.0",
+	"description": "Highly Customisable Responsive Menu Plugin for WordPress",
+	"author": "ExpressTech",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"scripts": {
+		"build": "wp-scripts build",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"packages-update": "wp-scripts packages-update",
+		"plugin-zip": "wp-scripts plugin-zip",
+		"start": "wp-scripts start"
+	},
+	"prettier": "@wordpress/prettier-config",
+	"stylelint": {
+		"extends": "@wordpress/stylelint-config/scss"
+	},
+	"lint-staged": {
+		"*.js": [
+			"wp-scripts lint-js",
+			"wp-scripts format"
+		],
+		"*.scss": "npx stylelint --fix"
+	},
+	"devDependencies": {
+		"@wordpress/eslint-plugin": "^18.1.0",
+		"@wordpress/prettier-config": "^3.15.0",
+		"@wordpress/scripts": "^27.9.0",
+		"@wordpress/stylelint-config": "^21.41.0"
+	},
+	"dependencies": {
+		"@wordpress/components": "^27.6.0",
+		"@wordpress/element": "^5.35.0",
+		"@wordpress/icons": "^10.0.0",
+		"classnames": "^2.5.1",
+		"html-react-parser": "^5.1.10",
+		"lodash": "^4.17.21"
+	}
+}

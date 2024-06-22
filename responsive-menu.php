@@ -110,6 +110,8 @@ require_once RMP_PLUGIN_PATH_V4 . '/inc/helpers/custom-functions.php';
 require_once RMP_PLUGIN_PATH_V4 . '/inc/helpers/default-options.php';
 require_once RMP_PLUGIN_PATH_V4 . '/libs/scssphp/vendor/autoload.php';
 require_once RMP_PLUGIN_PATH_V4 . '/templates/rmp-roadmap.php';
+require_once 'blocks/block.php';
+
 
 /**
  * To load plugin manifest class.
