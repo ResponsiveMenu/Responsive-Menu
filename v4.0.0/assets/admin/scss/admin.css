@@ -1546,6 +1546,7 @@ margin: 5px 0px 10px;
 }
 
 #rmp-menu-additional-content,
+.rmp-input-control-wrapper textarea,
 #rmp-menu-header-html-content {
     width: 100%;
     padding: 5px;
