@@ -69,7 +69,7 @@ export default function Edit({ clientId, attributes, setAttributes }) {
 		}
 	});
 	const blockProps = useBlockProps({
-		className: `rmp-block-menu-items-${id} wp-block-rmp-menu-items`,
+		className: `wp-block-navigation block-editor-block-content-overlay rmp-block-menu-items-${id} wp-block-rmp-menu-items`,
 	});
 	const getFontFamiliesList = (fontFamilies) => {
 		if (!fontFamilies) {
@@ -138,6 +138,20 @@ export default function Edit({ clientId, attributes, setAttributes }) {
 		triggerIconCopy[type] = value;
 		setAttributes({ triggerIcon: triggerIconCopy });
 	};
+	let triggerIconValue = "";
+	let triggerActiveIconValue = "";
+	if (triggerIcon?.type === 'text') {
+		triggerIconValue = triggerIcon.textShape;
+		triggerActiveIconValue = triggerIcon.activeTextShape;
+	}
+	if (triggerIcon?.type === 'icon') {
+		triggerIconValue = triggerIcon.icon;
+		triggerActiveIconValue = triggerIcon.activeIcon;
+	}
+	if (triggerIcon?.type === 'image') {
+		triggerIconValue = triggerIcon.image;
+		triggerActiveIconValue = triggerIcon.activeImage;
+	}
 	return (
 		<>
 			<InspectorControls>
@@ -669,7 +683,7 @@ export default function Edit({ clientId, attributes, setAttributes }) {
 						{
 							value: submenuStyle.color,
 							onChange: (value) => {
-								updateMenuStyle('color', value);
+								updateSubmenuStyle('color', value);
 							},
 							label: __('Normal', 'responsive-menu'),
 							disableCustomColors: false,
@@ -677,7 +691,7 @@ export default function Edit({ clientId, attributes, setAttributes }) {
 						{
 							value: submenuStyle.hoverColor,
 							onChange: (value) => {
-								updateMenuStyle('hoverColor', value);
+								updateSubmenuStyle('hoverColor', value);
 							},
 							label: __('Hover', 'responsive-menu'),
 							disableCustomColors: false,
@@ -685,7 +699,7 @@ export default function Edit({ clientId, attributes, setAttributes }) {
 						{
 							value: submenuStyle.activeColor,
 							onChange: (value) => {
-								updateMenuStyle('activeColor', value);
+								updateSubmenuStyle('activeColor', value);
 							},
 							label: __('Active', 'responsive-menu'),
 							disableCustomColors: false,
@@ -693,7 +707,7 @@ export default function Edit({ clientId, attributes, setAttributes }) {
 						{
 							value: submenuStyle.activeHoverColor,
 							onChange: (value) => {
-								updateMenuStyle('activeHoverColor', value);
+								updateSubmenuStyle('activeHoverColor', value);
 							},
 							label: __('Active hover', 'responsive-menu'),
 							disableCustomColors: false,
@@ -1068,15 +1082,6 @@ export default function Edit({ clientId, attributes, setAttributes }) {
 							'responsive-menu'
 						)}
 					/>
-					<SelectControl
-						label={__('Side', 'responsive-menu')}
-						value={triggerIcon.position}
-						options={[
-							{ label: 'Left', value: 'left' },
-							{ label: 'Right', value: 'right' },
-						]}
-						onChange={(side) => updateTriggerIcon('position', side)}
-					/>
 				</PanelBody>
 				<PanelColorSettings
 					title={__('Trigger icon', 'gutena-forms')}
@@ -1199,7 +1204,7 @@ export default function Edit({ clientId, attributes, setAttributes }) {
 				</PanelBody>
 			</InspectorControls>
 			{menuStyle && renderCSS}
-			<ul {...blockProps}>
+			<ul {...blockProps} data-submenu-icon={ triggerIconValue } data-submenu-active-icon={ triggerActiveIconValue } data-submenu-icon-type={ triggerIcon?.type }>
 				<InnerBlocks
 					allowedBlocks={[
 						'core/navigation-link',

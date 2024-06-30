@@ -41,3 +41,9 @@
     margin-top: -13px;
     border-radius: 0 0 3px 3px;
 }
+.wp-block-rmp-menu .rmp-block-container{
+    position: absolute;
+}
+.wp-block-rmp-menu .rmp-block-container .wp-block-rmp-menu-items .wp-block-navigation__submenu-container{
+    display: block;
+}

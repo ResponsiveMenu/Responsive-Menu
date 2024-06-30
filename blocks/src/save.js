@@ -6,7 +6,7 @@ import { flattenIconsArray } from './utils/icon-functions';
 import getIcons from './icons';
 export default function save(props) {
 	const { attributes } = props;
-	const { id, hamburgerText, hamburgerStyle } = attributes;
+	const { id, hamburgerText, hamburgerStyle, menuBehaviour, menuAnimation, breakpoint } = attributes;
 	const blockProps = useBlockProps.save({
 		className: `rmp-block-navigator rmp-block-navigator-${id}`,
 	});
@@ -27,51 +27,54 @@ export default function save(props) {
 	return (
 		<nav {...blockProps}>
 			<button
-					type="button"
-					aria-controls={`rmp-block-container-${id}`}
-					aria-label={__('Menu Trigger', 'responsive-menu')}
-					id={`rmp-block-menu-trigger-${id}`}
-					className={`rmp-block-menu-trigger rmp-menu-trigger-boring rmp-mobile-device-menu rmp-block-menu-trigger-position-${hamburgerStyle?.side} rmp-block-text-position-${hamburgerText?.position}`}
-				>
-					<span className="rmp-block-trigger-box">
-						{hamburgerStyle && hamburgerStyle.type === 'icon' && (
-							<>
-								{hamburgerStyle.icon && (
-									<span className="rmp-block-trigger-icon rmp-block-trigger-icon-inactive">
-										{renderSVG(hamburgerStyle.icon, hamburgerStyle?.iconSize)}
-									</span>
-								)}
-								{hamburgerStyle.activeIcon && (
-									<span className="rmp-block-trigger-icon rmp-block-trigger-icon-active">
-										{renderSVG(hamburgerStyle.activeIcon, hamburgerStyle?.iconSize)}
-									</span>
-								)}
-							</>
-						)}
-						{hamburgerStyle && hamburgerStyle.type === 'image' && (
-							<>
-								{hamburgerStyle.icon && (
-									<span className="rmp-block-trigger-icon rmp-block-trigger-icon-inactive">
-										<img
-											src={hamburgerStyle?.image}
-											alt={__('Hamburger Image', 'responsive-menu')}
-										/>
-									</span>
-								)}
-								{hamburgerStyle.activeIcon && (
-									<span className="rmp-block-trigger-icon rmp-block-trigger-icon-active">
-										<img
-											src={hamburgerStyle?.activeImage}
-											alt={__('Hamburger Active Image', 'responsive-menu')}
-										/>
-									</span>
-								)}
-							</>
-						)}
-						{hamburgerStyle && hamburgerStyle.type === 'hamburger' && (
-							<span className="rmp-block-trigger-inner"></span>
-						)}
-					</span>
+				type="button"
+				aria-controls={`rmp-block-container-${id}`}
+				aria-label={__('Menu Trigger', 'responsive-menu')}
+				id={`rmp-block-menu-trigger-${id}`}
+				data-hide-on-click={menuBehaviour.linkClick ? true : false}
+				data-hide-on-scroll={menuBehaviour.pageScroll ? true : false}
+				className={`rmp-block-menu-trigger rmp-menu-trigger-boring rmp-mobile-device-menu rmp-block-menu-trigger-position-${hamburgerStyle?.side} rmp-block-text-position-${hamburgerText?.position}`}
+			>
+				<span className="rmp-block-trigger-box">
+					{hamburgerStyle && hamburgerStyle.type === 'icon' && (
+						<>
+							{hamburgerStyle.icon && (
+								<span className="rmp-block-trigger-icon rmp-block-trigger-icon-inactive">
+									{renderSVG(hamburgerStyle.icon, hamburgerStyle?.iconSize)}
+								</span>
+							)}
+							{hamburgerStyle.activeIcon && (
+								<span className="rmp-block-trigger-icon rmp-block-trigger-icon-active">
+									{renderSVG(hamburgerStyle.activeIcon, hamburgerStyle?.iconSize)}
+								</span>
+							)}
+						</>
+					)}
+					{hamburgerStyle && hamburgerStyle.type === 'image' && (
+						<>
+							{hamburgerStyle.icon && (
+								<span className="rmp-block-trigger-icon rmp-block-trigger-icon-inactive">
+									<img
+										src={hamburgerStyle?.image}
+										alt={__('Hamburger Image', 'responsive-menu')}
+									/>
+								</span>
+							)}
+							{hamburgerStyle.activeIcon && (
+								<span className="rmp-block-trigger-icon rmp-block-trigger-icon-active">
+									<img
+										src={hamburgerStyle?.activeImage}
+										alt={__('Hamburger Active Image', 'responsive-menu')}
+									/>
+								</span>
+							)}
+						</>
+					)}
+					{hamburgerStyle && hamburgerStyle.type === 'hamburger' && (
+						<span className="rmp-block-trigger-inner"></span>
+					)}
+				</span>
+				{hamburgerText.text || hamburgerText.hamburgerText && (
 					<span className="rmp-block-trigger-label">
 						{hamburgerText && hamburgerText.text && (
 							<span className="rmp-block-trigger-label-inactive">
@@ -84,9 +87,10 @@ export default function save(props) {
 							</span>
 						)}
 					</span>
-				</button>
+				)}
+			</button>
 			<div
-				className={`rmp-block-container rmp-block-container-${id}`}
+				className={`rmp-block-container rmp-block-container-${id} rmp-block-container-direction-${menuAnimation?.direction} rmp-block-container-animation-${menuAnimation?.type}`}
 				id={`rmp-block-container-${id}`}
 			>
 				<InnerBlocks.Content />

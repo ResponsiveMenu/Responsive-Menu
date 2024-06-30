@@ -31,8 +31,6 @@ export default function DynamicStyles(attributes) {
     const transformBorder = (data, type, fallback = {}) => {
 		let output = {};
 		merge(output, processBorder(fallback), processBorder(data));
-        console.log(output);
-
 		let newvar = output[type];
 		return `${newvar?.width} ${newvar?.style} ${newvar?.color}`;
 	};
@@ -69,7 +67,7 @@ export default function DynamicStyles(attributes) {
 			'--rmp--menu-container-min-width':
 				menuContainerStyle?.menuMinimumWidth + 'px',
 			'--rmp--menu-container-animation-transition-duration':
-				'transform ' + menuAnimation?.transitionDuration + 's',
+                'transform ' + menuAnimation?.transitionDuration + 's',
 			'--rmp--menu-hamburger-line-spacing':
 				hamburgerStyle?.lineSpacing + 'px',
 			'--rmp--menu-hamburger-line-width':
@@ -142,10 +140,10 @@ export default function DynamicStyles(attributes) {
             '--rmp--menu-subitem-hover-color': submenuStyle?.hoverColor,
             '--rmp--menu-subitem-active-color': submenuStyle?.activeColor,
             '--rmp--menu-subitem-active-hover-color': submenuStyle?.activeHoverColor,
-            '--rmp--menu-subitem-background': submenuStyle?.background,
-            '--rmp--menu-subitem-hover-background': submenuStyle?.backgroundHover,
-            '--rmp--menu-subitem-active-background': submenuStyle?.backgroundActive,
-            '--rmp--menu-subitem-active-hover-background': submenuStyle?.backgroundActiveHover,
+            '--rmp--menu-subitem-background': submenuStyle?.backgroundColor,
+            '--rmp--menu-subitem-hover-background': submenuStyle?.backgroundHoverColor,
+            '--rmp--menu-subitem-active-background': submenuStyle?.backgroundActiveColor,
+            '--rmp--menu-subitem-active-hover-background': submenuStyle?.backgroundActiveHoverColor,
             '--rmp--menu-subitem-border-top': transformBorder(submenuStyle?.border, 'top'),
             '--rmp--menu-subitem-border-right': transformBorder(submenuStyle?.border, 'right'),
             '--rmp--menu-subitem-border-bottom': transformBorder(submenuStyle?.border, 'bottom'),
@@ -166,8 +164,8 @@ export default function DynamicStyles(attributes) {
             '--rmp--menu-subitem-indentation-child2': submenuIndentation?.childLevel2 + '%',
             '--rmp--menu-subitem-indentation-child3': submenuIndentation?.childLevel3 + '%',
             '--rmp--menu-subitem-indentation-child4': submenuIndentation?.childLevel4 + '%',
-            '--rmp--menu-subitem-trigger-icon-width': triggerIcon?.width,
-            '--rmp--menu-subitem-trigger-icon-height': triggerIcon?.height,
+            '--rmp--menu-subitem-trigger-icon-width': triggerIcon?.width + 'px',
+            '--rmp--menu-subitem-trigger-icon-height': triggerIcon?.height + 'px',
             '--rmp--menu-subitem-trigger-icon-color': triggerIcon?.color,
             '--rmp--menu-subitem-trigger-icon-hover-color': triggerIcon?.hoverColor,
             '--rmp--menu-subitem-trigger-icon-active-color': triggerIcon?.activeColor,

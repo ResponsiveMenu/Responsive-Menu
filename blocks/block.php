@@ -35,18 +35,15 @@ if ( ! class_exists( 'RMPBlock' ) ) {
 		 */
 		public function register_block() {
 			if ( ! function_exists( 'register_block_type' ) ) {
-				// Block editor is not available.
 				return;
 			}
 			register_block_type( __DIR__ . '/build', [
 				'render_callback' => [ $this, 'render_block' ],
 			] );
+
 		}
-		/**
-		 * Render Gutena play button block.
-		 */
+
 		public function render_block( $attributes, $content, $block ) {
-			//$css = '';
 			if ( ! empty( $attributes['id'] ) ) {
 				$unique_id = $attributes['id'];
 
@@ -70,6 +67,7 @@ if ( ! class_exists( 'RMPBlock' ) ) {
 
 			return $content;
 		}
+
 		/**
 		 * Generate dynamic styles
 		 *

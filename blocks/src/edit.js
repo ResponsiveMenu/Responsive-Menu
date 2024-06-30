@@ -54,12 +54,13 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		menuAnimation,
 		menuBehaviour,
 		breakpoint,
+		activeMenu,
 		hamburgerStyle,
 		hamburgerText,
 		blockStyles,
 	} = attributes;
 	const blockProps = useBlockProps({
-		className: `wp-block-navigation rmp-block-navigator rmp-block-navigator-${id}`,
+		className: `rmp-block-navigator rmp-block-navigator-${id}`,
 	});
 	const getFontFamiliesList = (fontFamilies) => {
 		if (!fontFamilies) {
@@ -126,7 +127,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		const menuContainerStyleCopy = { ...menuContainerStyle };
 		menuContainerStyleCopy[type] = value;
 		setAttributes({ menuContainerStyle: menuContainerStyleCopy });
-		console.log(value);
 	};
 	const updateMenuAnimation = (type, value) => {
 		const menuAnimationCopy = { ...menuAnimation };
@@ -150,6 +150,9 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	};
 	const updateBreakpoint = (newBreakpoint) => {
 		setAttributes({ breakpoint: Number(newBreakpoint) });
+	};
+	const updateActiveMenu = (newActiveMenu) => {
+		setAttributes({ activeMenu: newActiveMenu });
 	};
 	return (
 		<>
@@ -445,8 +448,8 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						options={[
 							{ label: 'Left', value: 'left' },
 							{ label: 'Right', value: 'right' },
-							{ label: 'Top', value: 'top' },
-							{ label: 'Bottom', value: 'bottom' },
+							...(menuAnimation.type !== 'fade' ? [{ label: 'Top', value: 'top' }] : []),
+							...(menuAnimation.type !== 'fade' ? [{ label: 'Bottom', value: 'bottom' }] : []),
 						]}
 						onChange={(direction) =>
 							updateMenuAnimation('direction', direction)
@@ -502,6 +505,13 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 							'Set the breakpoint below which you want hamburger menu',
 							'responsive-menu'
 						)}
+					/>
+					<ToggleControl
+						label={__('Preview', 'responsive-menu')}
+						onChange={(value) => {
+							updateActiveMenu(value)
+						}}
+						checked={activeMenu}
 					/>
 					<ToggleGroupControl
 						label={__('Type', 'responsive-menu')}
@@ -847,7 +857,9 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					aria-controls={`rmp-block-container-${id}`}
 					aria-label={__('Menu Trigger', 'responsive-menu')}
 					id={`rmp-block-menu-trigger-${id}`}
-					className={`rmp-block-menu-trigger rmp-menu-trigger-boring rmp-mobile-device-menu rmp-block-menu-trigger-position-${hamburgerStyle?.side} rmp-block-text-position-${hamburgerText?.position}`}
+					data-hide-on-click={menuBehaviour.linkClick ? true : false}
+					data-hide-on-scroll={menuBehaviour.pageScroll ? true : false}
+					className={`rmp-block-menu-trigger rmp-menu-trigger-boring rmp-mobile-device-menu rmp-block-menu-trigger-position-${hamburgerStyle?.side} rmp-block-text-position-${hamburgerText?.position} ${activeMenu ? 'rmp-block-active' : ''}`}
 				>
 					<span className="rmp-block-trigger-box">
 						{hamburgerStyle && hamburgerStyle.type === 'icon' && (
@@ -904,7 +916,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					)}
 				</button>
 				<div
-					className={`rmp-block-container rmp-block-container-${id}`}
+					className={`rmp-block-container rmp-block-container-${id} rmp-block-container-direction-${menuAnimation?.direction} rmp-block-container-animation-${menuAnimation?.type} ${activeMenu ? 'rmp-block-active' : ''}`}
 					id={`rmp-block-container-${id}`}
 				>
 					<InnerBlocks

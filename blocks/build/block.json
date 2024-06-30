@@ -33,7 +33,12 @@
         "backgroundSize": "cover",
         "backgroundPosition": "",
         "backgroundRepeat": "no-repeat",
-        "padding": {},
+        "padding": {
+          "top": 0,
+          "right": "10px",
+          "bottom": 0,
+          "left": "10px"
+        },
         "menuWidth": 75,
         "menuMaximumWidth": 350,
         "menuMinimumWidth": 320
@@ -57,6 +62,10 @@
     "breakpoint": {
       "type": "number",
       "default": 768
+    },
+    "activeMenu": {
+      "type": "string",
+      "default": ""
     },
     "hamburgerStyle": {
       "type": "object",
@@ -107,5 +116,5 @@
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
-  "viewScript": "file:./view.js"
+  "script": "file:./view.js"
 }
