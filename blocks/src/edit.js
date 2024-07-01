@@ -474,23 +474,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						)}
 					/>
 				</PanelBody>
-				<PanelBody title={__('Behaviour', 'responsive-menu')}>
-					<p>{__('Hide menu on', 'responsive-menu')}</p>
-					<ToggleControl
-						label={__('Click Link', 'responsive-menu')}
-						checked={menuBehaviour.linkClick}
-						onChange={(value) => {
-							updateMenuBehaviour('linkClick', value);
-						}}
-					/>
-					<ToggleControl
-						label={__('Page Scroll', 'responsive-menu')}
-						checked={menuBehaviour.pageScroll}
-						onChange={(value) => {
-							updateMenuBehaviour('pageScroll', value);
-						}}
-					/>
-				</PanelBody>
 			</InspectorControls>
 			<InspectorControls>
 				<PanelBody title={__('Hamburger', 'responsive-menu')}>
@@ -849,6 +832,30 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						step={1}
 					/>
 				</PanelBody>
+				<PanelBody title={__('Behaviour', 'responsive-menu')}>
+					<p>{__('Hide menu on', 'responsive-menu')}</p>
+					<ToggleControl
+						label={__('Click Link', 'responsive-menu')}
+						checked={menuBehaviour.linkClick}
+						onChange={(value) => {
+							updateMenuBehaviour('linkClick', value);
+						}}
+					/>
+					<ToggleControl
+						label={__('Click Page', 'responsive-menu')}
+						checked={menuBehaviour.pageClick}
+						onChange={(value) => {
+							updateMenuBehaviour('pageClick', value);
+						}}
+					/>
+					<ToggleControl
+						label={__('Page Scroll', 'responsive-menu')}
+						checked={menuBehaviour.pageScroll}
+						onChange={(value) => {
+							updateMenuBehaviour('pageScroll', value);
+						}}
+					/>
+				</PanelBody>
 			</InspectorControls>
 			{hamburgerStyle?.type && renderCSS}
 			<nav {...blockProps}>
@@ -857,7 +864,8 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					aria-controls={`rmp-block-container-${id}`}
 					aria-label={__('Menu Trigger', 'responsive-menu')}
 					id={`rmp-block-menu-trigger-${id}`}
-					data-hide-on-click={menuBehaviour.linkClick ? true : false}
+					data-hide-link-click={menuBehaviour.linkClick ? true : false}
+					data-hide-page-click={menuBehaviour.pageClick ? true : false}
 					data-hide-on-scroll={menuBehaviour.pageScroll ? true : false}
 					className={`rmp-block-menu-trigger rmp-menu-trigger-boring rmp-mobile-device-menu rmp-block-menu-trigger-position-${hamburgerStyle?.side} rmp-block-text-position-${hamburgerText?.position} ${activeMenu ? 'rmp-block-active' : ''}`}
 				>

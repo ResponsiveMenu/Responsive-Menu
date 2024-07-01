@@ -400,11 +400,17 @@
 
             width: ( $menu_item_toggle_width + $menu_item_toggle_width_unit );
             color: $menu_item_toggle_text_color;
+            svg{
+                fill: $menu_item_toggle_text_color;
+            }
             background-color: $menu_item_toggle_background_color;
 
             &:hover {
                 @if ( $menu_item_toggle_text_color_hover != '' ) {
                     color: $menu_item_toggle_text_color_hover;
+                    svg{
+                        fill: $menu_item_toggle_text_color_hover;
+                    }
                 }
                 @if ( $menu_item_toggle_border_color_hover != '' ) {
                     border-color: $menu_item_toggle_border_color_hover;
@@ -427,7 +433,11 @@
             background-size: cover;
             @if ( $menu_current_item_toggle_text_color != '' ) {
                 color: $menu_current_item_toggle_text_color;
+                svg{
+                    fill: $menu_current_item_toggle_text_color;
+                }
             }
+
             @if ( $menu_current_item_toggle_border_color != '' ) {
                 border-color: $menu_current_item_toggle_border_color;
             }
@@ -435,6 +445,9 @@
             &:hover {
                 @if ( $menu_current_item_toggle_text_color_hover != '' ) {
                     color: $menu_current_item_toggle_text_color_hover;
+                    svg{
+                        fill: $menu_current_item_toggle_text_color_hover;
+                    }
                 }
                 @if ( $menu_current_item_toggle_border_color_hover != '' ) {
                     border-color: $menu_current_item_toggle_border_color_hover;

@@ -7833,20 +7833,6 @@ function Edit({
     max: 10,
     step: 0.1,
     help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Control the speed of animation for container entry and exit.', 'responsive-menu')
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Behaviour', 'responsive-menu')
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Hide menu on', 'responsive-menu')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Click Link', 'responsive-menu'),
-    checked: menuBehaviour.linkClick,
-    onChange: value => {
-      updateMenuBehaviour('linkClick', value);
-    }
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Page Scroll', 'responsive-menu'),
-    checked: menuBehaviour.pageScroll,
-    onChange: value => {
-      updateMenuBehaviour('pageScroll', value);
-    }
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Hamburger', 'responsive-menu')
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
@@ -8045,6 +8031,26 @@ function Edit({
     onChange: delay => updateHamburgerText('lineHeight', delay),
     min: 0,
     step: 1
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Behaviour', 'responsive-menu')
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Hide menu on', 'responsive-menu')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Click Link', 'responsive-menu'),
+    checked: menuBehaviour.linkClick,
+    onChange: value => {
+      updateMenuBehaviour('linkClick', value);
+    }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Click Page', 'responsive-menu'),
+    checked: menuBehaviour.pageClick,
+    onChange: value => {
+      updateMenuBehaviour('pageClick', value);
+    }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Page Scroll', 'responsive-menu'),
+    checked: menuBehaviour.pageScroll,
+    onChange: value => {
+      updateMenuBehaviour('pageScroll', value);
+    }
   }))), hamburgerStyle?.type && renderCSS, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("nav", {
     ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
@@ -8052,7 +8058,8 @@ function Edit({
     "aria-controls": `rmp-block-container-${id}`,
     "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Menu Trigger', 'responsive-menu'),
     id: `rmp-block-menu-trigger-${id}`,
-    "data-hide-on-click": menuBehaviour.linkClick ? true : false,
+    "data-hide-link-click": menuBehaviour.linkClick ? true : false,
+    "data-hide-page-click": menuBehaviour.pageClick ? true : false,
     "data-hide-on-scroll": menuBehaviour.pageScroll ? true : false,
     className: `rmp-block-menu-trigger rmp-menu-trigger-boring rmp-mobile-device-menu rmp-block-menu-trigger-position-${hamburgerStyle?.side} rmp-block-text-position-${hamburgerText?.position} ${activeMenu ? 'rmp-block-active' : ''}`
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
@@ -12597,7 +12604,8 @@ function save(props) {
     "aria-controls": `rmp-block-container-${id}`,
     "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Menu Trigger', 'responsive-menu'),
     id: `rmp-block-menu-trigger-${id}`,
-    "data-hide-on-click": menuBehaviour.linkClick ? true : false,
+    "data-hide-link-click": menuBehaviour.linkClick ? true : false,
+    "data-hide-page-click": menuBehaviour.pageClick ? true : false,
     "data-hide-on-scroll": menuBehaviour.pageScroll ? true : false,
     className: `rmp-block-menu-trigger rmp-menu-trigger-boring rmp-mobile-device-menu rmp-block-menu-trigger-position-${hamburgerStyle?.side} rmp-block-text-position-${hamburgerText?.position}`
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
@@ -17501,7 +17509,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"rmp/menu","version":"1.0.0","title":"Responsive Menu","category":"widgets","icon":"menu-alt3","keywords":["responsive","menu","responsive menu","mega menu","max mega menu","max menu"],"description":"Highly Customisable Responsive Menu Plugin for WordPress","example":{},"supports":{"html":false,"customClassName":true},"attributes":{"id":{"type":"string"},"menuContainerStyle":{"type":"object","default":{"color":"#ffffff","background":"#1d4354","backgroundImage":"","backgroundSize":"cover","backgroundPosition":"","backgroundRepeat":"no-repeat","padding":{"top":0,"right":"10px","bottom":0,"left":"10px"},"menuWidth":75,"menuMaximumWidth":350,"menuMinimumWidth":320}},"menuAnimation":{"type":"object","default":{"type":"slide","direction":"left","transitionDuration":0.5}},"menuBehaviour":{"type":"object","default":{"linkClick":"","pageScroll":""}},"breakpoint":{"type":"number","default":768},"activeMenu":{"type":"string","default":""},"hamburgerStyle":{"type":"object","default":{"type":"hamburger","icon":"wordpress-menu","activeIcon":"wordpress-close","iconSize":"30","image":"","activeImage":"","lineSpacing":10,"lineWidth":25,"lineHeight":3,"width":55,"height":55,"color":"#ffffff","hoverColor":"#ffffff","activeColor":"#ffffff","background":"#1d4354","hoverBackground":"#1d4354","activeBackground":"#6fda44","borderRadius":{"top":"5px","right":"5px","bottom":"5px","left":"5px"},"side":"right"}},"hamburgerText":{"type":"object","default":{"text":"","activeText":"","position":"left","fontFamily":"","size":14,"lineHeight":14,"color":"#fff"}},"blockStyles":{"type":"object"}},"textdomain":"responsive-menu","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","script":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"rmp/menu","version":"1.0.0","title":"Responsive Menu","category":"widgets","icon":"menu-alt3","keywords":["responsive","menu","responsive menu","mega menu","max mega menu","max menu"],"description":"Highly Customisable Responsive Menu Plugin for WordPress","example":{},"supports":{"html":false,"customClassName":true},"attributes":{"id":{"type":"string"},"menuContainerStyle":{"type":"object","default":{"color":"#ffffff","background":"#1d4354","backgroundImage":"","backgroundSize":"cover","backgroundPosition":"","backgroundRepeat":"no-repeat","padding":{"top":0,"right":"10px","bottom":0,"left":"10px"},"menuWidth":75,"menuMaximumWidth":350,"menuMinimumWidth":320}},"menuAnimation":{"type":"object","default":{"type":"slide","direction":"left","transitionDuration":0.5}},"menuBehaviour":{"type":"object","default":{"linkClick":"","pageScroll":"","pageClick":""}},"breakpoint":{"type":"number","default":768},"activeMenu":{"type":"string","default":""},"hamburgerStyle":{"type":"object","default":{"type":"hamburger","icon":"wordpress-menu","activeIcon":"wordpress-close","iconSize":"30","image":"","activeImage":"","lineSpacing":10,"lineWidth":25,"lineHeight":3,"width":55,"height":55,"color":"#ffffff","hoverColor":"#ffffff","activeColor":"#ffffff","background":"#1d4354","hoverBackground":"#1d4354","activeBackground":"#6fda44","borderRadius":{"top":"5px","right":"5px","bottom":"5px","left":"5px"},"side":"right"}},"hamburgerText":{"type":"object","default":{"text":"","activeText":"","position":"left","fontFamily":"","size":14,"lineHeight":14,"color":"#fff"}},"blockStyles":{"type":"object"}},"textdomain":"responsive-menu","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","script":"file:./view.js"}');
 
 /***/ })
 

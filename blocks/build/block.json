@@ -56,7 +56,8 @@
       "type": "object",
       "default": {
         "linkClick": "",
-        "pageScroll": ""
+        "pageScroll": "",
+        "pageClick": ""
       }
     },
     "breakpoint": {

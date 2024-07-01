@@ -31,7 +31,8 @@ export default function save(props) {
 				aria-controls={`rmp-block-container-${id}`}
 				aria-label={__('Menu Trigger', 'responsive-menu')}
 				id={`rmp-block-menu-trigger-${id}`}
-				data-hide-on-click={menuBehaviour.linkClick ? true : false}
+				data-hide-link-click={menuBehaviour.linkClick ? true : false}
+				data-hide-page-click={menuBehaviour.pageClick ? true : false}
 				data-hide-on-scroll={menuBehaviour.pageScroll ? true : false}
 				className={`rmp-block-menu-trigger rmp-menu-trigger-boring rmp-mobile-device-menu rmp-block-menu-trigger-position-${hamburgerStyle?.side} rmp-block-text-position-${hamburgerText?.position}`}
 			>

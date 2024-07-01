@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
           controlledElement.classList.toggle('rmp-block-active');
 
           // Hide on click
-          if (trigger.getAttribute('data-hide-on-click') === 'true') {
+          if (trigger.getAttribute('data-hide-link-click') === 'true') {
             const menuItems = controlledElement.querySelectorAll('.wp-block-navigation-item > a');
             menuItems.forEach(menuItem => {
               menuItem.addEventListener('click', () => {
