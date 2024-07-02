@@ -275,9 +275,10 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 				<?php }else { ?>
 					<span class="rmp-menu-title-link">
 				<?php } ?>
-						<?php echo wp_kses( $menu_image, wp_kses_allowed_html( 'post' ) ); ?>
-						<span><?php echo esc_html( $menu_title ); ?></span>
-				<?php if ( ! empty( $this->options['menu_title_link'] ) ) { ?>
+						<?php $title_html = $menu_image;
+						$title_html .= "<span>" . $menu_title . "</span>";
+						echo rm_sanitize_rec_array( $title_html, true );
+				if ( ! empty( $this->options['menu_title_link'] ) ) { ?>
 					</a>
 				<?php }else { ?>
 					</span>

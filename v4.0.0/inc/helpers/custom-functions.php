@@ -210,17 +210,167 @@ function rmp_allow_svg_html_tags() {
  *
  * @since 4.1.6
  */
-function rm_sanitize_rec_array( $array, $textarea = false ) {
+function rm_sanitize_rec_array( $array, $allowhtml = false ) {
 	foreach ( (array) $array as $key => $value ) {
 		if ( is_array( $value ) ) {
-			$array[ $key ] = rm_sanitize_rec_array( $value );
+			$array[ $key ] = rm_sanitize_rec_array( $value, $allowhtml );
 		} else {
-			$array[ $key ] = $textarea ? sanitize_textarea_field( $value ) : sanitize_text_field( $value );
+			$array[ $key ] = $allowhtml ? rm_sanitize_html_tags( wp_specialchars_decode( $value, ENT_QUOTES ) ) : sanitize_text_field( $value );
 		}
 	}
 	return $array;
 }
 
+function rm_sanitize_html_tags( $content ) {
+    // Define allowed HTML tags and attributes
+    $allowed_tags = array(
+        'svg'      => array(
+            'xmlns'   => true,
+            'viewBox' => true,
+            'width'   => true,
+            'height'  => true,
+            'fill'    => true,
+        ),
+        'path'     => array(
+            'd'               => true,
+            'fill'            => true,
+            'stroke'          => true,
+            'stroke-width'    => true,
+            'stroke-linecap'  => true,
+            'stroke-linejoin' => true,
+        ),
+        'div'      => array(
+            'class' => true,
+            'id'    => true,
+        ),
+        'span'     => array(
+            'class' => true,
+            'id'    => true,
+        ),
+		'br',
+		'b',
+		'strong',
+		'img'      => array(
+            'src'    => true,
+            'alt'    => true,
+            'width'  => true,
+            'height' => true,
+            'class'  => true,
+            'id'     => true,
+            'style'  => true,
+        ),
+        'i'        => array(
+            'class' => true,
+            'id'    => true,
+        ),
+		'label'    => array(
+            'id'    => true,
+            'class' => true,
+        ),
+        'a'        => array(
+            'href'   => true,
+            'target' => true,
+            'rel'    => true,
+        ),
+        'h1'       => array(
+            'class' => true,
+            'id'    => true,
+        ),
+        'h2'       => array(
+            'class' => true,
+            'id'    => true,
+        ),
+        'h3'       => array(
+            'class' => true,
+            'id'    => true,
+        ),
+        'h4'       => array(
+            'class' => true,
+            'id'    => true,
+        ),
+        'h5'       => array(
+            'class' => true,
+            'id'    => true,
+        ),
+        'h6'       => array(
+            'class' => true,
+            'id'    => true,
+        ),
+        'p'        => array(
+            'class' => true,
+            'id'    => true,
+        ),
+        'form'     => array(
+            'action' => true,
+            'method' => true,
+            'class'  => true,
+            'id'     => true,
+        ),
+        'input'    => array(
+            'type'        => true,
+            'name'        => true,
+            'value'       => true,
+            'class'       => true,
+            'id'          => true,
+            'placeholder' => true,
+            'checked'     => true,
+            'disabled'    => true,
+            'readonly'    => true,
+            'required'    => true,
+        ),
+        'textarea' => array(
+            'name'        => true,
+            'class'       => true,
+            'id'          => true,
+            'placeholder' => true,
+            'rows'        => true,
+            'cols'        => true,
+            'disabled'    => true,
+            'readonly'    => true,
+            'required'    => true,
+        ),
+        'select'   => array(
+            'name'     => true,
+            'class'    => true,
+            'id'       => true,
+            'disabled' => true,
+            'required' => true,
+        ),
+        'option'   => array(
+            'value'    => true,
+            'selected' => true,
+        ),
+        'button'   => array(
+            'type'     => true,
+            'name'     => true,
+            'value'    => true,
+            'class'    => true,
+            'id'       => true,
+            'disabled' => true,
+        ),
+    );
+
+    // Sanitize content
+    return wp_kses($content, $allowed_tags);
+}
+
+/**
+ * Check admin capabilities.
+ *
+ * @since 4.3.6
+ * @param string $check_permission permission type
+ *
+ * @return boolean current user has permission
+ */
+function rmp_is_admin( $check_permission = 'manage_options' ) {
+	if ( ! function_exists( 'wp_get_current_user' ) && file_exists( ABSPATH . "wp-includes/pluggable.php" ) ) {
+		require_once( ABSPATH . "wp-includes/pluggable.php" );
+	}
+	if ( ! function_exists( 'current_user_can' ) && file_exists( ABSPATH . "wp-includes/capabilities.php" ) ) {
+		require_once( ABSPATH . "wp-includes/capabilities.php" );
+	}
+	return ( function_exists( 'wp_get_current_user' ) && function_exists( 'current_user_can' ) && current_user_can( $check_permission ) );
+}
 /**
  * Add RM customize button for admin menus
  * @since 4.3.0
