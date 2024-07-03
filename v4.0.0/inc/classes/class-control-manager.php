@@ -170,7 +170,7 @@ class Control_Manager {
 	/**
 	 * This function prepare the single text input control.
 	 *
-	 * @version 4.3.6
+	 * @version 4.4.0
 	 * @param array $param  List of attributes for a input control
 	 *
 	 * @return HTML
@@ -236,7 +236,7 @@ class Control_Manager {
 		/**
 		 * Filters the textarea attributes/contents after preparation.
 		 *
-		 * @version 4.3.6
+		 * @version 4.4.0
 		 *
 		 * @param string|HTML $textarea_control_contents The textarea control contents.
 		 * @param array $param List of attributes.
