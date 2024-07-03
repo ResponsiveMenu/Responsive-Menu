@@ -223,132 +223,88 @@ function rm_sanitize_rec_array( $array, $allowhtml = false ) {
 
 function rm_sanitize_html_tags( $content ) {
     // Define allowed HTML tags and attributes
-    $allowed_tags = array(
-        'svg'      => array(
-            'xmlns'   => true,
-            'viewBox' => true,
-            'width'   => true,
-            'height'  => true,
-            'fill'    => true,
-        ),
-        'path'     => array(
-            'd'               => true,
-            'fill'            => true,
-            'stroke'          => true,
-            'stroke-width'    => true,
-            'stroke-linecap'  => true,
-            'stroke-linejoin' => true,
-        ),
-        'div'      => array(
-            'class' => true,
-            'id'    => true,
-        ),
-        'span'     => array(
-            'class' => true,
-            'id'    => true,
-        ),
-		'br',
-		'b',
-		'strong',
+    $common_attrs = array(
+		'class' => true,
+		'id'    => true,
+	);
+	$form_common_attrs = array_merge($common_attrs, array(
+		'name'     => true,
+		'disabled' => true,
+		'required' => true,
+		'readonly' => true,
+	));
+
+	$allowed_tags = array(
+		'svg'      => array(
+			'xmlns'   => true,
+			'viewBox' => true,
+			'width'   => true,
+			'height'  => true,
+			'fill'    => true,
+		),
+		'path'     => array(
+			'd'               => true,
+			'fill'            => true,
+			'stroke'          => true,
+			'stroke-width'    => true,
+			'stroke-linecap'  => true,
+			'stroke-linejoin' => true,
+		),
+		'div'      => $common_attrs,
+		'span'     => $common_attrs,
+		'br'       => true,
+		'b'        => true,
+		'strong'   => true,
 		'img'      => array(
-            'src'    => true,
-            'alt'    => true,
-            'width'  => true,
-            'height' => true,
-            'class'  => true,
-            'id'     => true,
-            'style'  => true,
-        ),
-        'i'        => array(
-            'class' => true,
-            'id'    => true,
-        ),
-		'label'    => array(
-            'id'    => true,
-            'class' => true,
-        ),
-        'a'        => array(
-            'href'   => true,
-            'target' => true,
-            'rel'    => true,
-        ),
-        'h1'       => array(
-            'class' => true,
-            'id'    => true,
-        ),
-        'h2'       => array(
-            'class' => true,
-            'id'    => true,
-        ),
-        'h3'       => array(
-            'class' => true,
-            'id'    => true,
-        ),
-        'h4'       => array(
-            'class' => true,
-            'id'    => true,
-        ),
-        'h5'       => array(
-            'class' => true,
-            'id'    => true,
-        ),
-        'h6'       => array(
-            'class' => true,
-            'id'    => true,
-        ),
-        'p'        => array(
-            'class' => true,
-            'id'    => true,
-        ),
-        'form'     => array(
-            'action' => true,
-            'method' => true,
-            'class'  => true,
-            'id'     => true,
-        ),
-        'input'    => array(
-            'type'        => true,
-            'name'        => true,
-            'value'       => true,
-            'class'       => true,
-            'id'          => true,
-            'placeholder' => true,
-            'checked'     => true,
-            'disabled'    => true,
-            'readonly'    => true,
-            'required'    => true,
-        ),
-        'textarea' => array(
-            'name'        => true,
-            'class'       => true,
-            'id'          => true,
-            'placeholder' => true,
-            'rows'        => true,
-            'cols'        => true,
-            'disabled'    => true,
-            'readonly'    => true,
-            'required'    => true,
-        ),
-        'select'   => array(
-            'name'     => true,
-            'class'    => true,
-            'id'       => true,
-            'disabled' => true,
-            'required' => true,
-        ),
-        'option'   => array(
-            'value'    => true,
-            'selected' => true,
-        ),
-        'button'   => array(
-            'type'     => true,
-            'name'     => true,
-            'value'    => true,
-            'class'    => true,
-            'id'       => true,
-            'disabled' => true,
-        ),
-    );
+			'src'    => true,
+			'alt'    => true,
+			'width'  => true,
+			'height' => true,
+			'class'  => true,
+			'id'     => true,
+			'style'  => true,
+		),
+		'i'        => $common_attrs,
+		'label'    => $common_attrs,
+		'a'        => array(
+			'href'   => true,
+			'target' => true,
+			'rel'    => true,
+		),
+		'h1'       => $common_attrs,
+		'h2'       => $common_attrs,
+		'h3'       => $common_attrs,
+		'h4'       => $common_attrs,
+		'h5'       => $common_attrs,
+		'h6'       => $common_attrs,
+		'p'        => $common_attrs,
+		'form'     => array(
+			'action' => true,
+			'method' => true,
+			'class'  => true,
+			'id'     => true,
+		),
+		'input'    => array_merge($form_common_attrs, array(
+			'type'        => true,
+			'value'       => true,
+			'placeholder' => true,
+			'checked'     => true,
+		)),
+		'textarea' => array_merge($form_common_attrs, array(
+			'placeholder' => true,
+			'rows'        => true,
+			'cols'        => true,
+		)),
+		'select'   => $form_common_attrs,
+		'option'   => array(
+			'value'    => true,
+			'selected' => true,
+		),
+		'button'   => array_merge($form_common_attrs, array(
+			'type'  => true,
+			'value' => true,
+		)),
+	);
 
     // Sanitize content
     return wp_kses($content, $allowed_tags);
