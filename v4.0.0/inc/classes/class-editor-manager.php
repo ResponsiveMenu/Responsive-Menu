@@ -142,9 +142,6 @@ class Editor_Manager {
 	 */
 	public function rmp_save_options() {
 		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
-		if ( ! rmp_is_admin( 'edit_posts' ) ) {
-			wp_send_json_error( __( 'You do not have permission to update menus. Please contact the site administrator.', 'responsive-menu' ) );
-		}
 		$options   = array();
 		$form_data = isset( $_POST['form'] ) ? wp_unslash( $_POST['form'] ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		wp_parse_str( $form_data, $options );

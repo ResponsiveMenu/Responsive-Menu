@@ -353,24 +353,6 @@ function rm_sanitize_html_tags( $content ) {
     // Sanitize content
     return wp_kses($content, $allowed_tags);
 }
-
-/**
- * Check admin capabilities.
- *
- * @since 4.3.6
- * @param string $check_permission permission type
- *
- * @return boolean current user has permission
- */
-function rmp_is_admin( $check_permission = 'manage_options' ) {
-	if ( ! function_exists( 'wp_get_current_user' ) && file_exists( ABSPATH . "wp-includes/pluggable.php" ) ) {
-		require_once( ABSPATH . "wp-includes/pluggable.php" );
-	}
-	if ( ! function_exists( 'current_user_can' ) && file_exists( ABSPATH . "wp-includes/capabilities.php" ) ) {
-		require_once( ABSPATH . "wp-includes/capabilities.php" );
-	}
-	return ( function_exists( 'wp_get_current_user' ) && function_exists( 'current_user_can' ) && current_user_can( $check_permission ) );
-}
 /**
  * Add RM customize button for admin menus
  * @since 4.3.0
