@@ -168,6 +168,83 @@ class Control_Manager {
 	}
 
 	/**
+	 * This function prepare the single text input control.
+	 *
+	 * @version 4.4.0
+	 * @param array $param  List of attributes for a input control
+	 *
+	 * @return HTML
+	 */
+	public function rmp_textarea_control_html( $param ) {
+		if ( empty($param) ) {
+			return;
+		}
+
+		/**
+		 * Filters the textarea input control attributes before creation.
+		 *
+		 * @version 4.0.0
+		 * @param array $param List of attributes.
+		 */
+		$param = apply_filters('rmp_before_add_textarea_input_control', $param);
+
+		$is_disabled = '';
+		$group_classes = ! empty($param['group_classes']) ? $param['group_classes'] : '';
+
+		?>
+		<div class="rmp-input-control-wrapper <?php echo esc_attr($group_classes); ?>">
+			<?php
+			// Check if label exists.
+			if ( ! empty($param['label']) ) {
+				?>
+				<div class="rmp-textarea-control-label">
+					<span><?php echo esc_html($param['label']); ?></span>
+					<span>
+					<?php
+					// Check if tooltip for textarea is added.
+					if ( ! empty($param['tool_tip']) ) {
+						$this->get_tool_tip($param['tool_tip']);
+					}
+					?>
+					</span>
+					<?php
+					// Check feature type.
+					if ( ! empty($param['feature_type']) ) {
+						$is_disabled = 'disabled';
+						?>
+						<a target="_blank" rel="noopener" class="upgrade-tooltip" href="<?php echo esc_url($this->pro_plugin_url); ?>">
+							<?php echo esc_html($param['feature_type']); ?>
+						</a>
+						<?php
+					}
+					?>
+				</div>
+				<?php
+			}
+			?>
+			<div class="rmp-textarea-control">
+				<?php
+				// Placeholder for textarea.
+				$placeholder = ! empty($param['placeholder']) ? $param['placeholder'] : '';
+				$class = ! empty($param['class']) ? $param['class'] : '';
+				?>
+				<textarea id="<?php echo esc_attr($param['id']); ?>" name="<?php echo esc_attr($param['name']); ?>" class="<?php echo esc_attr($class); ?>" placeholder="<?php echo esc_attr($placeholder); ?>" <?php echo $is_disabled ? 'disabled' : ''; ?>><?php echo esc_html($param['value']); ?></textarea>
+			</div>
+		</div>
+		<?php
+
+		/**
+		 * Filters the textarea attributes/contents after preparation.
+		 *
+		 * @version 4.4.0
+		 *
+		 * @param string|HTML $textarea_control_contents The textarea control contents.
+		 * @param array $param List of attributes.
+		 */
+		do_action('rmp_textarea_control_html', $param);
+	}
+
+	/**
 	 * This function prepare the group text input control.
 	 *
 	 * @version 4.0.0

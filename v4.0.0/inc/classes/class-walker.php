@@ -185,7 +185,7 @@ class Walker extends \Walker_Nav_Menu {
 		$item_output  = '';
 		$item_output .= sprintf( '<a %s >', $attributes );
 		$item_output .= $title;
-		$item_output .= $sub_menu_arrow;
+		$item_output .= rm_sanitize_html_tags( $sub_menu_arrow );
 		$item_output .= '</a>';
 
 		// If description is enable then add it below of menu item.

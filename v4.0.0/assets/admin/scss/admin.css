@@ -1546,6 +1546,7 @@ margin: 5px 0px 10px;
 }
 
 #rmp-menu-additional-content,
+.rmp-input-control-wrapper textarea,
 #rmp-menu-header-html-content {
     width: 100%;
     padding: 5px;
@@ -1645,11 +1646,8 @@ margin: 5px 0px 10px;
     display: inline;
 }
 
-.rmp-image-picker[style*="background-image"] > .rmp-image-picker-placeholder {
-    display: none;
-}
-
-.rmp-icon-picker[data-icon="true"] > .rmp-icon-picker-placeholder {
+.post-type-rmp_menu #rmp-editor-wrapper .rmp-image-picker[style*="background-image"] > .rmp-image-picker-placeholder,
+.post-type-rmp_menu #rmp-editor-wrapper .rmp-icon-picker[data-icon="true"] > .rmp-icon-picker-placeholder {
     display: none;
 }
 

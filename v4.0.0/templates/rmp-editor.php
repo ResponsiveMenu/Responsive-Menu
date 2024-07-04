@@ -1505,29 +1505,29 @@ WP_Filesystem();
 											'item_class' => 'title-contents',
 										)
 									);
-									$ui_manager->start_group_controls();
-									$control_manager->add_text_input_control(
+									$control_manager->rmp_textarea_control_html(
 										array(
-											'label' => esc_html__( 'Text Shape', 'responsive-menu' ),
-											'type'  => 'text',
-											'id'    => 'rmp-menu-inactive-arrow-shape',
-											'name'  => 'menu[inactive_arrow_shape]',
-											'value' => rmp_get_value( $options, 'inactive_arrow_shape' ),
-
+											'label'    => esc_html__( 'Text Shape', 'responsive-menu' ),
+											'id'       => 'rmp-menu-inactive-arrow-shape',
+											'name'     => 'menu[inactive_arrow_shape]',
+											'value'    => rmp_get_value( $options, 'inactive_arrow_shape' ),
+											'tool_tip' => array(
+												'text' => esc_html__( 'Use custom icon code or SVG code.', 'responsive-menu' ),
+											),
 										)
 									);
 
-									$control_manager->add_text_input_control(
+									$control_manager->rmp_textarea_control_html(
 										array(
-											'label' => esc_html__( 'Active Text Shape', 'responsive-menu' ),
-											'type'  => 'text',
-											'id'    => 'rmp-menu-active-arrow-shape',
-											'name'  => 'menu[active_arrow_shape]',
-											'value' => rmp_get_value( $options, 'active_arrow_shape' ),
-
+											'label'    => esc_html__( 'Active Text Shape', 'responsive-menu' ),
+											'id'       => 'rmp-menu-active-arrow-shape',
+											'name'     => 'menu[active_arrow_shape]',
+											'value'    => rmp_get_value( $options, 'active_arrow_shape' ),
+											'tool_tip' => array(
+												'text' => esc_html__( 'Use custom icon code or SVG code.', 'responsive-menu' ),
+											),
 										)
 									);
-									$ui_manager->end_group_controls();
 									$ui_manager->end_tab_item();
 
 									$ui_manager->start_tab_item(

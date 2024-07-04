@@ -210,17 +210,105 @@ function rmp_allow_svg_html_tags() {
  *
  * @since 4.1.6
  */
-function rm_sanitize_rec_array( $array, $textarea = false ) {
+function rm_sanitize_rec_array( $array, $allowhtml = false ) {
 	foreach ( (array) $array as $key => $value ) {
 		if ( is_array( $value ) ) {
-			$array[ $key ] = rm_sanitize_rec_array( $value );
+			$array[ $key ] = rm_sanitize_rec_array( $value, $allowhtml );
 		} else {
-			$array[ $key ] = $textarea ? sanitize_textarea_field( $value ) : sanitize_text_field( $value );
+			$array[ $key ] = $allowhtml ? rm_sanitize_html_tags( wp_specialchars_decode( $value, ENT_QUOTES ) ) : sanitize_text_field( $value );
 		}
 	}
 	return $array;
 }
 
+function rm_sanitize_html_tags( $content ) {
+    // Define allowed HTML tags and attributes
+    $common_attrs = array(
+		'class' => true,
+		'id'    => true,
+	);
+	$form_common_attrs = array_merge($common_attrs, array(
+		'name'     => true,
+		'disabled' => true,
+		'required' => true,
+		'readonly' => true,
+	));
+
+	$allowed_tags = array(
+		'svg'      => array(
+			'xmlns'   => true,
+			'viewBox' => true,
+			'width'   => true,
+			'height'  => true,
+			'fill'    => true,
+		),
+		'path'     => array(
+			'd'               => true,
+			'fill'            => true,
+			'stroke'          => true,
+			'stroke-width'    => true,
+			'stroke-linecap'  => true,
+			'stroke-linejoin' => true,
+		),
+		'div'      => $common_attrs,
+		'span'     => $common_attrs,
+		'br'       => true,
+		'b'        => true,
+		'strong'   => true,
+		'img'      => array(
+			'src'    => true,
+			'alt'    => true,
+			'width'  => true,
+			'height' => true,
+			'class'  => true,
+			'id'     => true,
+			'style'  => true,
+		),
+		'i'        => $common_attrs,
+		'label'    => $common_attrs,
+		'a'        => array(
+			'href'   => true,
+			'target' => true,
+			'rel'    => true,
+		),
+		'h1'       => $common_attrs,
+		'h2'       => $common_attrs,
+		'h3'       => $common_attrs,
+		'h4'       => $common_attrs,
+		'h5'       => $common_attrs,
+		'h6'       => $common_attrs,
+		'p'        => $common_attrs,
+		'form'     => array(
+			'action' => true,
+			'method' => true,
+			'class'  => true,
+			'id'     => true,
+		),
+		'input'    => array_merge($form_common_attrs, array(
+			'type'        => true,
+			'value'       => true,
+			'placeholder' => true,
+			'checked'     => true,
+		)),
+		'textarea' => array_merge($form_common_attrs, array(
+			'placeholder' => true,
+			'rows'        => true,
+			'cols'        => true,
+		)),
+		'select'   => $form_common_attrs,
+		'option'   => array(
+			'value'    => true,
+			'selected' => true,
+		),
+		'button'   => array_merge($form_common_attrs, array(
+			'type'  => true,
+			'value' => true,
+		)),
+	);
+
+    // Sanitize content
+    return wp_kses($content, $allowed_tags);
+}
 /**
  * Add RM customize button for admin menus
  * @since 4.3.0
