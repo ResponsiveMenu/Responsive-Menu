@@ -115,7 +115,7 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 7. Main menu
 
 == Changelog ==
-= 4.4.0 (3rd July 2024) =
+= 4.4.0 (4th July 2024) =
 * Feature: Added option to use custom SVG or icon code in menu item
 * Enhancement: Improved security and addressed vulnerabilities
 
