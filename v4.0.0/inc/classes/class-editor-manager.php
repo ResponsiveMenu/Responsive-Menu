@@ -142,16 +142,15 @@ class Editor_Manager {
 	 */
 	public function rmp_save_options() {
 		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
-
 		$options   = array();
-		$form_data = isset( $_POST['form'] ) ? rm_sanitize_rec_array( wp_unslash( $_POST['form'] ) ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$form_data = isset( $_POST['form'] ) ? wp_unslash( $_POST['form'] ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		wp_parse_str( $form_data, $options );
-
-		$menu_id = sanitize_text_field( $options['menu_id'] );
-
-		if ( empty( $menu_id ) ) {
+		$options = rm_sanitize_rec_array( $options, true );
+		if ( empty( $options['menu_id'] ) ) {
 			wp_send_json_error( array( 'message' => esc_html__( 'Menu ID missing !', 'responsive-menu' ) ) );
 		}
+
+		$menu_id = intval( $options['menu_id'] );
 
 		if ( ! current_user_can( 'edit_post', $menu_id ) ) {
 			wp_send_json_error( array( 'message' => __( 'You can not edit menu !', 'responsive-menu' ) ) );
