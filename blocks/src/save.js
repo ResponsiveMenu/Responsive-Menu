@@ -6,7 +6,14 @@ import { flattenIconsArray } from './utils/icon-functions';
 import getIcons from './icons';
 export default function save(props) {
 	const { attributes } = props;
-	const { id, hamburgerText, hamburgerStyle, menuBehaviour, menuAnimation, breakpoint } = attributes;
+	const {
+		id,
+		hamburgerText,
+		hamburgerStyle,
+		menuBehaviour,
+		menuAnimation,
+		breakpoint,
+	} = attributes;
 	const blockProps = useBlockProps.save({
 		className: `rmp-block-navigator rmp-block-navigator-${id}`,
 	});
@@ -24,6 +31,9 @@ export default function save(props) {
 
 		return <Icon icon={renderedIcon} size={size} />;
 	};
+	if( breakpoint < window.innerWidth ){
+		return;
+	}
 	return (
 		<nav {...blockProps}>
 			<button
@@ -41,12 +51,18 @@ export default function save(props) {
 						<>
 							{hamburgerStyle.icon && (
 								<span className="rmp-block-trigger-icon rmp-block-trigger-icon-inactive">
-									{renderSVG(hamburgerStyle.icon, hamburgerStyle?.iconSize)}
+									{renderSVG(
+										hamburgerStyle.icon,
+										hamburgerStyle?.iconSize
+									)}
 								</span>
 							)}
 							{hamburgerStyle.activeIcon && (
 								<span className="rmp-block-trigger-icon rmp-block-trigger-icon-active">
-									{renderSVG(hamburgerStyle.activeIcon, hamburgerStyle?.iconSize)}
+									{renderSVG(
+										hamburgerStyle.activeIcon,
+										hamburgerStyle?.iconSize
+									)}
 								</span>
 							)}
 						</>
@@ -57,7 +73,10 @@ export default function save(props) {
 								<span className="rmp-block-trigger-icon rmp-block-trigger-icon-inactive">
 									<img
 										src={hamburgerStyle?.image}
-										alt={__('Hamburger Image', 'responsive-menu')}
+										alt={__(
+											'Hamburger Image',
+											'responsive-menu'
+										)}
 									/>
 								</span>
 							)}
@@ -65,7 +84,10 @@ export default function save(props) {
 								<span className="rmp-block-trigger-icon rmp-block-trigger-icon-active">
 									<img
 										src={hamburgerStyle?.activeImage}
-										alt={__('Hamburger Active Image', 'responsive-menu')}
+										alt={__(
+											'Hamburger Active Image',
+											'responsive-menu'
+										)}
 									/>
 								</span>
 							)}
@@ -75,20 +97,21 @@ export default function save(props) {
 						<span className="rmp-block-trigger-inner"></span>
 					)}
 				</span>
-				{hamburgerText.text || hamburgerText.hamburgerText && (
-					<span className="rmp-block-trigger-label">
-						{hamburgerText && hamburgerText.text && (
-							<span className="rmp-block-trigger-label-inactive">
-								{hamburgerText?.text}
-							</span>
-						)}
-						{hamburgerText && hamburgerText.activeText && (
-							<span className="rmp-block-trigger-label-active">
-								{hamburgerText?.activeText}
-							</span>
-						)}
-					</span>
-				)}
+				{hamburgerText.text ||
+					(hamburgerText.hamburgerText && (
+						<span className="rmp-block-trigger-label">
+							{hamburgerText && hamburgerText.text && (
+								<span className="rmp-block-trigger-label-inactive">
+									{hamburgerText?.text}
+								</span>
+							)}
+							{hamburgerText && hamburgerText.activeText && (
+								<span className="rmp-block-trigger-label-active">
+									{hamburgerText?.activeText}
+								</span>
+							)}
+						</span>
+					))}
 			</button>
 			<div
 				className={`rmp-block-container rmp-block-container-${id} rmp-block-container-direction-${menuAnimation?.direction} rmp-block-container-animation-${menuAnimation?.type}`}

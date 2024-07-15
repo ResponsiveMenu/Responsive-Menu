@@ -7800,9 +7800,6 @@ function Edit({
       label: 'Slide',
       value: 'slide'
     }, {
-      label: 'Push',
-      value: 'push'
-    }, {
       label: 'Fade',
       value: 'fade'
     }],
@@ -7982,13 +7979,13 @@ function Edit({
     onChange: side => updateHamburgerStyle('side', side)
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Hamburger Text', 'responsive-menu')
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalInputControl, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Text', 'responsive-menu'),
     value: hamburgerText.text,
     onChange: value => {
       updateHamburgerText('text', value);
     }
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalInputControl, {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Active Text', 'responsive-menu'),
     value: hamburgerText.activeText,
     onChange: value => {
@@ -11472,15 +11469,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/align-left.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/align-center.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/align-right.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/align-justify.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/format-capitalize.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/format-lowercase.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/format-uppercase.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/align-left.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/align-center.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/align-right.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/align-justify.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/format-capitalize.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/format-lowercase.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/format-uppercase.js");
 /* harmony import */ var _components_IconControl__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/IconControl */ "./src/components/IconControl.js");
 /* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../styles */ "./src/styles.js");
+/* harmony import */ var _utils_icon_functions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/icon-functions */ "./src/utils/icon-functions.js");
+/* harmony import */ var _utils_parse_icon__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../utils/parse-icon */ "./src/utils/parse-icon.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _icons__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../icons */ "./src/icons/index.js");
+
+
+
+
 
 
 
@@ -11594,8 +11600,24 @@ function Edit({
       triggerIcon: triggerIconCopy
     });
   };
-  let triggerIconValue = "";
-  let triggerActiveIconValue = "";
+  const iconsAll = (0,_utils_icon_functions__WEBPACK_IMPORTED_MODULE_7__.flattenIconsArray)((0,_icons__WEBPACK_IMPORTED_MODULE_10__["default"])());
+  const iconsObj = iconsAll.reduce((acc, value) => {
+    acc[value?.name] = value?.icon;
+    return acc;
+  }, {});
+  const renderSVG = (svg, size) => {
+    let renderedIcon = iconsObj?.[svg];
+    // Icons provided by third-parties are generally strings.
+    if (typeof renderedIcon === 'string') {
+      renderedIcon = (0,_utils_parse_icon__WEBPACK_IMPORTED_MODULE_8__["default"])(renderedIcon);
+    }
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Icon, {
+      icon: renderedIcon,
+      size: size
+    });
+  };
+  let triggerIconValue = '';
+  let triggerActiveIconValue = '';
   if (triggerIcon?.type === 'text') {
     triggerIconValue = triggerIcon.textShape;
     triggerActiveIconValue = triggerIcon.activeTextShape;
@@ -11691,19 +11713,19 @@ function Edit({
     }
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToggleGroupControlOptionIcon, {
     value: "left",
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_7__["default"],
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_11__["default"],
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Left', 'responsive-menu')
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToggleGroupControlOptionIcon, {
     value: "center",
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_8__["default"],
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_12__["default"],
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Center', 'responsive-menu')
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToggleGroupControlOptionIcon, {
     value: "right",
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_9__["default"],
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_13__["default"],
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Right', 'responsive-menu')
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToggleGroupControlOptionIcon, {
     value: "justify",
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_10__["default"],
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_14__["default"],
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Justify', 'responsive-menu')
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToolsPanelItem, {
     hasValue: () => !!menuStyle?.letterSpacing,
@@ -11728,15 +11750,15 @@ function Edit({
     }
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToggleGroupControlOptionIcon, {
     value: "capitalize",
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_11__["default"],
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_15__["default"],
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Capitalize', 'responsive-menu')
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToggleGroupControlOptionIcon, {
     value: "lowercase",
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_12__["default"],
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_16__["default"],
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Lowercase', 'responsive-menu')
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToggleGroupControlOptionIcon, {
     value: "uppercase",
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_13__["default"],
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_17__["default"],
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Uppercase', 'responsive-menu')
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToolsPanelItem, {
     hasValue: () => !!menuStyle?.wordWrap,
@@ -11815,19 +11837,19 @@ function Edit({
     }
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToggleGroupControlOptionIcon, {
     value: "left",
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_7__["default"],
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_11__["default"],
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Left', 'responsive-menu')
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToggleGroupControlOptionIcon, {
     value: "center",
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_8__["default"],
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_12__["default"],
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Center', 'responsive-menu')
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToggleGroupControlOptionIcon, {
     value: "right",
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_9__["default"],
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_13__["default"],
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Right', 'responsive-menu')
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToggleGroupControlOptionIcon, {
     value: "justify",
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_10__["default"],
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_14__["default"],
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Justify', 'responsive-menu')
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToolsPanelItem, {
     hasValue: () => !!submenuStyle?.letterSpacing,
@@ -11852,15 +11874,15 @@ function Edit({
     }
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToggleGroupControlOptionIcon, {
     value: "capitalize",
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_11__["default"],
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_15__["default"],
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Capitalize', 'responsive-menu')
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToggleGroupControlOptionIcon, {
     value: "lowercase",
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_12__["default"],
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_16__["default"],
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Lowercase', 'responsive-menu')
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToggleGroupControlOptionIcon, {
     value: "uppercase",
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_13__["default"],
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_17__["default"],
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Uppercase', 'responsive-menu')
   })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Sub Menu Behaviour', 'responsive-menu')
@@ -12138,13 +12160,13 @@ function Edit({
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToggleGroupControlOption, {
     value: "image",
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Image', 'responsive-menu')
-  })), triggerIcon?.type === 'text' && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalInputControl, {
+  })), triggerIcon?.type === 'text' && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Text shape', 'responsive-menu'),
     value: triggerIcon.textShape,
     onChange: value => {
       updateTriggerIcon('textShape', value);
     }
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalInputControl, {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Active text shape', 'responsive-menu'),
     value: triggerIcon.activeTextShape,
     onChange: value => {
@@ -12211,7 +12233,7 @@ function Edit({
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Height', 'responsive-menu'),
     value: triggerIcon.height,
-    onChange: value => updateTriggerIcon('hieght', value),
+    onChange: value => updateTriggerIcon('height', value),
     min: 0,
     step: 1,
     max: 400,
@@ -12310,14 +12332,23 @@ function Edit({
     },
     value: triggerIcon.borderActiveHover,
     enableAlpha: true
-  }))), menuStyle && renderCSS, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
+  }))), menuStyle && renderCSS, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, triggerIcon && triggerIcon.type === 'icon' && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "rmp-submenu-trigger-icon",
+    style: {
+      display: 'none'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "rmp-inactive-submenu-trigger-icon"
+  }, renderSVG(triggerIconValue)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "rmp-active-submenu-trigger-icon"
+  }, renderSVG(triggerActiveIconValue))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
     ...blockProps,
     "data-submenu-icon": triggerIconValue,
     "data-submenu-active-icon": triggerActiveIconValue,
     "data-submenu-icon-type": triggerIcon?.type
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks, {
     allowedBlocks: ['core/navigation-link', 'core/navigation-submenu', 'core/button', 'core/social-links', 'core/home-link', 'core/loginout']
-  })));
+  }))));
 }
 
 /***/ }),
@@ -12358,7 +12389,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   attributes: {
     id: {
-      type: "string"
+      type: 'string'
     },
     menuStyle: {
       type: 'object',
@@ -12434,10 +12465,10 @@ __webpack_require__.r(__webpack_exports__);
       type: 'object',
       default: {
         side: 'left',
-        childLevel1: 10,
-        childLevel2: 15,
-        childLevel3: 20,
-        childLevel4: 25
+        childLevel1: 5,
+        childLevel2: 5,
+        childLevel3: 5,
+        childLevel4: 5
       }
     },
     triggerIcon: {
@@ -12446,8 +12477,8 @@ __webpack_require__.r(__webpack_exports__);
         type: 'text',
         textShape: '▼',
         activeTextShape: '▲',
-        width: 40,
-        height: 40,
+        width: 45,
+        height: 45,
         color: '#ffffff',
         hoverColor: '#ffffff',
         activeColor: '#ffffff',
@@ -12490,6 +12521,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../styles */ "./src/styles.js");
+/* harmony import */ var _utils_icon_functions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/icon-functions */ "./src/utils/icon-functions.js");
+/* harmony import */ var _utils_parse_icon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/parse-icon */ "./src/utils/parse-icon.js");
+/* harmony import */ var _icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../icons */ "./src/icons/index.js");
+
+
+
 
 
 
@@ -12499,25 +12536,37 @@ function Save({
 }) {
   const {
     id,
-    triggerIcon
+    triggerIcon,
+    submenuBehaviour
   } = attributes;
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
     className: `rmp-block-menu-items-${id} is-responsive wp-block-navigation wp-block-rmp-menu-items`
   });
   const dynamicStyles = (0,_styles__WEBPACK_IMPORTED_MODULE_3__["default"])(attributes);
-  let triggerIconValue = "";
-  let triggerActiveIconValue = "";
+  const iconsAll = (0,_utils_icon_functions__WEBPACK_IMPORTED_MODULE_4__.flattenIconsArray)((0,_icons__WEBPACK_IMPORTED_MODULE_6__["default"])());
+  const iconsObj = iconsAll.reduce((acc, value) => {
+    acc[value?.name] = value?.icon;
+    return acc;
+  }, {});
+  const renderSVG = (svg, size) => {
+    let renderedIcon = iconsObj?.[svg];
+    if (typeof renderedIcon === 'string') {
+      renderedIcon = (0,_utils_parse_icon__WEBPACK_IMPORTED_MODULE_5__["default"])(renderedIcon);
+    }
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Icon, {
+      icon: renderedIcon,
+      size: size
+    });
+  };
+  let triggerIconValue = '';
+  let triggerActiveIconValue = '';
   if (triggerIcon?.type === 'text') {
     triggerIconValue = triggerIcon.textShape;
     triggerActiveIconValue = triggerIcon.activeTextShape;
   }
   if (triggerIcon?.type === 'icon') {
-    triggerIconValue = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Icon, {
-      icon: triggerIcon.icon
-    });
-    triggerActiveIconValue = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Icon, {
-      icon: triggerIcon.activeIcon
-    });
+    triggerIconValue = triggerIcon.icon;
+    triggerActiveIconValue = triggerIcon.activeIcon;
   }
   if (triggerIcon?.type === 'image') {
     triggerIconValue = triggerIcon.image;
@@ -12527,11 +12576,24 @@ function Save({
 				.rmp-block-menu-items-${id} {
 					${Object.entries(dynamicStyles).map(([k, v]) => `${k}:${v}`).join(';')}
 				}
-			`), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
+			`), triggerIcon && triggerIcon.type === 'icon' && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "rmp-submenu-trigger-icon",
+    style: {
+      display: 'none'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "rmp-inactive-submenu-trigger-icon"
+  }, renderSVG(triggerIconValue)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "rmp-active-submenu-trigger-icon"
+  }, renderSVG(triggerActiveIconValue))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
     ...blockProps,
     "data-submenu-icon": triggerIconValue,
     "data-submenu-active-icon": triggerActiveIconValue,
-    "data-submenu-icon-type": triggerIcon?.type
+    "data-submenu-icon-type": triggerIcon?.type,
+    "data-use-accordion": submenuBehaviour.useAccordion ? true : false,
+    "data-auto-expand": submenuBehaviour.autoExpandAllSubmenu ? true : false,
+    "data-auto-expand-current": submenuBehaviour.autoExpandCurrentSubmenu ? true : false,
+    "data-auto-expand-parent": submenuBehaviour.expandSubItemOnParentClick ? true : false
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, null)));
 }
 
@@ -12597,6 +12659,9 @@ function save(props) {
       size: size
     });
   };
+  if (breakpoint < window.innerWidth) {
+    return;
+  }
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("nav", {
     ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
@@ -12677,7 +12742,7 @@ function DynamicStyles(attributes) {
     let output = {};
     (0,lodash__WEBPACK_IMPORTED_MODULE_0__.merge)(output, fallback, data);
     if (typeof data === 'object' && Object.keys(data).length === 2) {
-      return `${output?.x * 100 + "%"} ${output?.y ** 100 + "%"}`;
+      return `${output?.x * 100 + '%'} ${output?.y ** 100 + '%'}`;
     }
     return data;
   };
@@ -12727,14 +12792,14 @@ function DynamicStyles(attributes) {
     '--rmp--menu-hamburger-icon-size': hamburgerStyle?.iconSize + 'px',
     '--rmp--menu-hamburger-text-line-height': hamburgerText?.lineHeight + 'px',
     '--rmp--menu-hamburger-trigger-box-height': `${2 * hamburgerStyle?.lineSpacing + 2 * hamburgerStyle?.lineHeight}px`,
-    '--rmp--menu-item-height': menuStyle?.itemHeight + "px",
-    '--rmp--menu-item-line-height': menuStyle?.lineHeight + "px",
+    '--rmp--menu-item-height': menuStyle?.itemHeight + 'px',
+    '--rmp--menu-item-line-height': menuStyle?.lineHeight + 'px',
     '--rmp--menu-item-padding': transformData(menuStyle?.padding),
     '--rmp--menu-item-font-size': menuStyle?.fontSize,
     '--rmp--menu-item-font-wieght': menuStyle?.fontWieght,
     '--rmp--menu-item-font-family': menuStyle?.fontFamily,
     '--rmp--menu-item-text-align': menuStyle?.textAlign,
-    '--rmp--menu-item-letter-spacing': menuStyle?.letterSpacing,
+    '--rmp--menu-item-letter-spacing': menuStyle?.letterSpacing + 'px',
     '--rmp--menu-item-letter-case': menuStyle?.letterCase,
     '--rmp--menu-item-word-wrap': menuStyle?.wordWrap,
     '--rmp--menu-item-color': menuStyle?.color,
@@ -12761,13 +12826,13 @@ function DynamicStyles(attributes) {
     '--rmp--menu-item-active-hover-border-right': transformBorder(menuStyle?.borderActiveHover, 'right'),
     '--rmp--menu-item-active-hover-border-bottom': transformBorder(menuStyle?.borderActiveHover, 'bottom'),
     '--rmp--menu-item-active-hover-border-left': transformBorder(menuStyle?.borderActiveHover, 'left'),
-    '--rmp--menu-subitem-line-height': submenuStyle?.lineHeight + "px",
+    '--rmp--menu-subitem-line-height': submenuStyle?.lineHeight + 'px',
     '--rmp--menu-subitem-padding': transformData(submenuStyle?.padding),
     '--rmp--menu-subitem-font-size': submenuStyle?.fontSize,
     '--rmp--menu-subitem-font-wieght': submenuStyle?.fontWieght,
     '--rmp--menu-subitem-font-family': submenuStyle?.fontFamily,
     '--rmp--menu-subitem-text-align': submenuStyle?.textAlign,
-    '--rmp--menu-subitem-letter-spacing': submenuStyle?.letterSpacing,
+    '--rmp--menu-subitem-letter-spacing': submenuStyle?.letterSpacing + 'px',
     '--rmp--menu-subitem-letter-case': submenuStyle?.letterCase,
     '--rmp--menu-subitem-word-wrap': submenuStyle?.wordWrap,
     '--rmp--menu-subitem-color': submenuStyle?.color,
@@ -17509,7 +17574,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"rmp/menu","version":"1.0.0","title":"Responsive Menu","category":"widgets","icon":"menu-alt3","keywords":["responsive","menu","responsive menu","mega menu","max mega menu","max menu"],"description":"Highly Customisable Responsive Menu Plugin for WordPress","example":{},"supports":{"html":false,"customClassName":true},"attributes":{"id":{"type":"string"},"menuContainerStyle":{"type":"object","default":{"color":"#ffffff","background":"#1d4354","backgroundImage":"","backgroundSize":"cover","backgroundPosition":"","backgroundRepeat":"no-repeat","padding":{"top":0,"right":"10px","bottom":0,"left":"10px"},"menuWidth":75,"menuMaximumWidth":350,"menuMinimumWidth":320}},"menuAnimation":{"type":"object","default":{"type":"slide","direction":"left","transitionDuration":0.5}},"menuBehaviour":{"type":"object","default":{"linkClick":"","pageScroll":"","pageClick":""}},"breakpoint":{"type":"number","default":768},"activeMenu":{"type":"string","default":""},"hamburgerStyle":{"type":"object","default":{"type":"hamburger","icon":"wordpress-menu","activeIcon":"wordpress-close","iconSize":"30","image":"","activeImage":"","lineSpacing":10,"lineWidth":25,"lineHeight":3,"width":55,"height":55,"color":"#ffffff","hoverColor":"#ffffff","activeColor":"#ffffff","background":"#1d4354","hoverBackground":"#1d4354","activeBackground":"#6fda44","borderRadius":{"top":"5px","right":"5px","bottom":"5px","left":"5px"},"side":"right"}},"hamburgerText":{"type":"object","default":{"text":"","activeText":"","position":"left","fontFamily":"","size":14,"lineHeight":14,"color":"#fff"}},"blockStyles":{"type":"object"}},"textdomain":"responsive-menu","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","script":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"rmp/menu","version":"1.0.0","title":"Responsive Menu","category":"widgets","icon":"menu-alt3","keywords":["responsive","menu","responsive menu","mega menu","max mega menu","max menu"],"description":"Highly Customisable Responsive Menu Plugin for WordPress","example":{},"supports":{"html":false,"customClassName":true},"attributes":{"id":{"type":"string"},"menuContainerStyle":{"type":"object","default":{"color":"#ffffff","background":"#1d4354","backgroundImage":"","backgroundSize":"cover","backgroundPosition":"","backgroundRepeat":"no-repeat","padding":{"top":"10px","right":"10px","bottom":"10px","left":"10px"},"menuWidth":75,"menuMaximumWidth":350,"menuMinimumWidth":320}},"menuAnimation":{"type":"object","default":{"type":"slide","direction":"left","transitionDuration":0.5}},"menuBehaviour":{"type":"object","default":{"linkClick":"","pageScroll":"","pageClick":""}},"breakpoint":{"type":"number","default":768},"activeMenu":{"type":"string","default":""},"hamburgerStyle":{"type":"object","default":{"type":"hamburger","icon":"wordpress-menu","activeIcon":"wordpress-close","iconSize":"30","image":"","activeImage":"","lineSpacing":10,"lineWidth":25,"lineHeight":3,"width":55,"height":55,"color":"#ffffff","hoverColor":"#ffffff","activeColor":"#ffffff","background":"#1d4354","hoverBackground":"#1d4354","activeBackground":"#6fda44","borderRadius":{"top":"5px","right":"5px","bottom":"5px","left":"5px"},"side":"right"}},"hamburgerText":{"type":"object","default":{"text":"","activeText":"","position":"left","fontFamily":"","size":14,"lineHeight":14,"color":"#fff"}},"blockStyles":{"type":"object"}},"textdomain":"responsive-menu","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","script":"file:./view.js"}');
 
 /***/ })
 

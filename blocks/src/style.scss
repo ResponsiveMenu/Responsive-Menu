@@ -5,12 +5,12 @@
     text-decoration: none;
     background: var(--rmp--menu-hamburger-background, #1d4354);
     transition-duration: var( --rmp--menu-container-animation-transition-duration, 0.5s);
-    display: block;
     border: none;
     display: flex;
     cursor: pointer;
     align-items: center;
     justify-content: center;
+    z-index: 9999;
     color: var(--rmp--menu-hamburger-color, #ffffff);
     &.rmp-block-menu-trigger-position-right{
         margin-left: auto;
@@ -174,13 +174,14 @@
             }
         }
         &.rmp-block-container-animation-fade{
-            display: none;
-            left: 0;
             top: 0;
             opacity: 0;
-            transition: opacity var(--rmp--menu-container-animation-transition-delay, 1s) ease-in-out;
+            z-index: -1;
             &.rmp-block-container-direction-right{
                 right: 0;
+            }
+            &.rmp-block-container-direction-left{
+                left: 0;
             }
         }
         height: 100vh;
@@ -204,8 +205,8 @@
                 }
             }
             &.rmp-block-container-animation-fade{
-                display: block;
                 opacity: 1;
+                z-index: 9999;
                 transition: opacity var(--rmp--menu-container-animation-transition-delay, 1s) ease-in-out;
             }
         }
@@ -243,7 +244,9 @@
             white-space: normal;
             .wp-block-navigation-item{
                 cursor: pointer;
-                height: var(--rmp--menu-item-height, auto);
+                display: flex;
+                flex-wrap: wrap;
+                min-height: var(--rmp--menu-item-height, auto);
                 line-height: var(--rmp--menu-item-line-height, 40px);
                 padding: var(--rmp--menu-item-padding, 5px);
                 font-size: var(--rmp--menu-item-font-size, 15px);
@@ -276,6 +279,9 @@
                 }
                 a{
                     color: var(--rmp--menu-item-color, #ffffff);
+                    display: block;
+                    width: 100%;
+                    text-decoration: none;
                 }
                 &.current-menu-item{
                     color: var(--rmp--menu-item-active-color, #ffffff);
@@ -303,6 +309,18 @@
                         }
                     }
                 }
+                .rmp-block-submenu-level-1 > li a{
+                    margin-left: var( --rmp--menu-subitem-indentation-child1 );
+                }
+                .rmp-block-submenu-level-2 > li a{
+                    margin-left: var( --rmp--menu-subitem-indentation-child2 );
+                }
+                .rmp-block-submenu-level-3 > li a{
+                    margin-left: var( --rmp--menu-subitem-indentation-child3 );
+                }
+                .rmp-block-submenu-level-4 > li a{
+                    margin-left: var( --rmp--menu-subitem-indentation-child4 );
+                }
             }
             .rmp-block-menu-subarrow {
                 position: absolute;
@@ -316,6 +334,9 @@
                 height: var( --rmp--menu-subitem-trigger-icon-height, auto);;
                 width:  var( --rmp--menu-subitem-trigger-icon-width, auto);
                 color:  var( --rmp--menu-subitem-trigger-icon-color, 'inherit');
+                svg{
+                    fill: var( --rmp--menu-subitem-trigger-icon-color, 'inherit');
+                }
                 background-color: var( --rmp--menu-subitem-trigger-icon-background, 'inherit');
                 @if "undefined" != var(--rmp--menu-subitem-trigger-border-top){
                     border-top: var(--rmp--menu-subitem-trigger-border-top);
@@ -323,8 +344,14 @@
                     border-bottom: var(--rmp--menu-subitem-trigger-border-bottom);
                     border-left: var(--rmp--menu-subitem-trigger-border-left);
                 }
+                img{
+                    max-width: 100%;
+                }
             }
             &:hover{
+                svg{
+                    fill: var( --rmp--menu-subitem-trigger-icon-hover-color, 'inherit');
+                }
                 color:  var( --rmp--menu-subitem-trigger-icon-hover-color, 'inherit');
                 background-color: var( --rmp--menu-subitem-trigger-icon-hover-background, 'inherit');
                 @if "undefined" != var(--rmp--menu-subitem-trigger-hover-border-top){
@@ -340,11 +367,17 @@
                     opacity: 1;
                     overflow: visible;
                     visibility: visible;
+                    display: inline-flex;
+                    flex: 1 0 0%;
+                    position: static;
+                    height: auto;
                 }
             }
             .wp-block-navigation__submenu-container {
                 width: 100% !important;
                 display: none;
+                border: none;
+                padding: 0;
                 .wp-block-navigation-item{
                     cursor: pointer;
                     width: 100% !important;
@@ -381,6 +414,7 @@
                     }
                     a{
                         color: var(--rmp--menu-subitem-color, #ffffff);
+                        display: block;
                     }
                     &.current-menu-item{
                         color: var(--rmp--menu-subitem-active-color, #ffffff);
@@ -408,6 +442,9 @@
                             }
                         }
                         .rmp-block-menu-subarrow {
+                            svg{
+                                fill: var( --rmp--menu-subitem-trigger-icon-active-color, 'inherit');
+                            }
                             color:  var( --rmp--menu-subitem-trigger-icon-active-color, 'inherit');
                             background-color: var( --rmp--menu-subitem-trigger-icon-active-background, 'inherit');
                             @if "undefined" != var(--rmp--menu-subitem-trigger-active-border-top){
@@ -418,6 +455,9 @@
                             }
                         }
                         &:hover{
+                            svg{
+                                fill: var( --rmp--menu-subitem-trigger-icon-active-hover-color, 'inherit');
+                            }
                             color:  var( --rmp--menu-subitem-trigger-icon-active-hover-color, 'inherit');
                             background-color: var( --rmp--menu-subitem-trigger-icon-active-hover-background, 'inherit');
                             @if "undefined" != var(--rmp--menu-subitem-trigger-active-hover-border-top){

@@ -21,7 +21,7 @@ registerBlockType('rmp/menu-items', {
 	},
 	attributes: {
 		id: {
-			type: "string"
+			type: 'string',
 		},
 		menuStyle: {
 			type: 'object',
@@ -97,10 +97,10 @@ registerBlockType('rmp/menu-items', {
 			type: 'object',
 			default: {
 				side: 'left',
-				childLevel1: 10,
-				childLevel2: 15,
-				childLevel3: 20,
-				childLevel4: 25,
+				childLevel1: 5,
+				childLevel2: 5,
+				childLevel3: 5,
+				childLevel4: 5,
 			},
 		},
 		triggerIcon: {
@@ -109,8 +109,8 @@ registerBlockType('rmp/menu-items', {
 				type: 'text',
 				textShape: '▼',
 				activeTextShape: '▲',
-				width: 40,
-				height: 40,
+				width: 45,
+				height: 45,
 				color: '#ffffff',
 				hoverColor: '#ffffff',
 				activeColor: '#ffffff',
@@ -126,8 +126,8 @@ registerBlockType('rmp/menu-items', {
 			},
 		},
 		blockStyles: {
-			type: 'object'
-		}
+			type: 'object',
+		},
 	},
 	edit: Edit,
 	save: Save,

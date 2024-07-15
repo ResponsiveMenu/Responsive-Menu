@@ -52,6 +52,14 @@
   position: absolute;
 }
 
+.wp-block-rmp-menu .rmp-block-container:not(.rmp-block-active) {
+  display: none;
+}
+
+.block-editor-block-list__layout .rmp-block-navigator {
+  position: static;
+}
+
 .wp-block-rmp-menu .rmp-block-container .wp-block-rmp-menu-items .wp-block-navigation__submenu-container {
   display: block;
 }

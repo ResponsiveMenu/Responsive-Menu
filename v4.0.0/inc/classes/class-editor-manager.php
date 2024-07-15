@@ -145,7 +145,7 @@ class Editor_Manager {
 		$options   = array();
 		$form_data = isset( $_POST['form'] ) ? wp_unslash( $_POST['form'] ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		wp_parse_str( $form_data, $options );
-		$options = rm_sanitize_rec_array( $options, true );
+		$options = rm_sanitize_rec_array( $options, true ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		if ( empty( $options['menu_id'] ) ) {
 			wp_send_json_error( array( 'message' => esc_html__( 'Menu ID missing !', 'responsive-menu' ) ) );
 		}

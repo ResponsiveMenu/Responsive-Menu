@@ -3,22 +3,18 @@ import {
 	useBlockProps,
 	InnerBlocks,
 	InspectorControls,
-	__experimentalBlockVariationPicker,
-	store as blockEditorStore,
 	LineHeightControl,
 	PanelColorSettings,
 	MediaUpload,
 	MediaUploadCheck,
 	FontSizePicker,
 	__experimentalFontFamilyControl as FontFamilyControl,
-	__experimentalColorGradientSettingsDropdown as ColorGradientSettingsDropdown,
-	__experimentalUseMultipleOriginColorsAndGradients as useMultipleOriginColorsAndGradients,
 	useSettings,
 } from '@wordpress/block-editor';
 import {
 	PanelBody,
-	ColorPicker,
 	PanelRow,
+	Icon,
 	TextControl,
 	ToggleControl,
 	RangeControl,
@@ -30,17 +26,14 @@ import {
 	__experimentalToolsPanel as ToolsPanel,
 	__experimentalToolsPanelItem as ToolsPanelItem,
 	__experimentalUnitControl as UnitControl,
-	__experimentalVStack as VStack,
 	__experimentalBorderControl as BorderControl,
 	__experimentalBorderBoxControl as BorderBoxControl,
 	__experimentalToggleGroupControl as ToggleGroupControl,
 	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
 	__experimentalToggleGroupControlOptionIcon as ToggleGroupControlOptionIcon,
-	__experimentalParseQuantityAndUnitFromRawValue as parseQuantityAndUnitFromRawValue,
-	__experimentalInputControl as InputControl,
 	__experimentalBoxControl as BoxControl,
 } from '@wordpress/components';
-import { useEffect, useState, useRef } from '@wordpress/element';
+import { useEffect } from '@wordpress/element';
 import {
 	formatLowercase,
 	formatCapitalize,
@@ -52,6 +45,10 @@ import {
 } from '@wordpress/icons';
 import IconControl from '../components/IconControl';
 import DynamicStyles from '../styles';
+import { flattenIconsArray } from '../utils/icon-functions';
+import parseIcon from '../utils/parse-icon';
+import { isEmpty } from 'lodash';
+import getIcons from '../icons';
 
 export default function Edit({ clientId, attributes, setAttributes }) {
 	const {
@@ -61,7 +58,7 @@ export default function Edit({ clientId, attributes, setAttributes }) {
 		submenuBehaviour,
 		submenuIndentation,
 		triggerIcon,
-		blockStyles
+		blockStyles,
 	} = attributes;
 	useEffect(() => {
 		if (!id) {
@@ -138,8 +135,23 @@ export default function Edit({ clientId, attributes, setAttributes }) {
 		triggerIconCopy[type] = value;
 		setAttributes({ triggerIcon: triggerIconCopy });
 	};
-	let triggerIconValue = "";
-	let triggerActiveIconValue = "";
+	const iconsAll = flattenIconsArray(getIcons());
+	const iconsObj = iconsAll.reduce((acc, value) => {
+		acc[value?.name] = value?.icon;
+		return acc;
+	}, {});
+
+	const renderSVG = (svg, size) => {
+		let renderedIcon = iconsObj?.[svg];
+		// Icons provided by third-parties are generally strings.
+		if (typeof renderedIcon === 'string') {
+			renderedIcon = parseIcon(renderedIcon);
+		}
+
+		return <Icon icon={renderedIcon} size={size} />;
+	};
+	let triggerIconValue = '';
+	let triggerActiveIconValue = '';
 	if (triggerIcon?.type === 'text') {
 		triggerIconValue = triggerIcon.textShape;
 		triggerActiveIconValue = triggerIcon.activeTextShape;
@@ -666,10 +678,7 @@ export default function Edit({ clientId, attributes, setAttributes }) {
 						{
 							value: menuStyle.backgroundActiveHover,
 							onChange: (value) => {
-								updateMenuStyle(
-									'backgroundActiveHover',
-									value
-								);
+								updateMenuStyle('backgroundActiveHover', value);
 							},
 							label: __('Active hover', 'responsive-menu'),
 							disableCustomColors: false,
@@ -911,14 +920,14 @@ export default function Edit({ clientId, attributes, setAttributes }) {
 					</ToggleGroupControl>
 					{triggerIcon?.type === 'text' && (
 						<>
-							<InputControl
+							<TextControl
 								label={__('Text shape', 'responsive-menu')}
 								value={triggerIcon.textShape}
 								onChange={(value) => {
 									updateTriggerIcon('textShape', value);
 								}}
 							/>
-							<InputControl
+							<TextControl
 								label={__(
 									'Active text shape',
 									'responsive-menu'
@@ -1073,7 +1082,7 @@ export default function Edit({ clientId, attributes, setAttributes }) {
 					<RangeControl
 						label={__('Height', 'responsive-menu')}
 						value={triggerIcon.height}
-						onChange={(value) => updateTriggerIcon('hieght', value)}
+						onChange={(value) => updateTriggerIcon('height', value)}
 						min={0}
 						step={1}
 						max={400}
@@ -1204,18 +1213,38 @@ export default function Edit({ clientId, attributes, setAttributes }) {
 				</PanelBody>
 			</InspectorControls>
 			{menuStyle && renderCSS}
-			<ul {...blockProps} data-submenu-icon={ triggerIconValue } data-submenu-active-icon={ triggerActiveIconValue } data-submenu-icon-type={ triggerIcon?.type }>
-				<InnerBlocks
-					allowedBlocks={[
-						'core/navigation-link',
-						'core/navigation-submenu',
-						'core/button',
-						'core/social-links',
-						'core/home-link',
-						'core/loginout',
-					]}
-				/>
-			</ul>
+			<>
+				{triggerIcon && triggerIcon.type === 'icon' && (
+					<div
+						className="rmp-submenu-trigger-icon"
+						style={{ display: 'none' }}
+					>
+						<span className="rmp-inactive-submenu-trigger-icon">
+							{renderSVG(triggerIconValue)}
+						</span>
+						<span className="rmp-active-submenu-trigger-icon">
+							{renderSVG(triggerActiveIconValue)}
+						</span>
+					</div>
+				)}
+				<ul
+					{...blockProps}
+					data-submenu-icon={triggerIconValue}
+					data-submenu-active-icon={triggerActiveIconValue}
+					data-submenu-icon-type={triggerIcon?.type}
+				>
+					<InnerBlocks
+						allowedBlocks={[
+							'core/navigation-link',
+							'core/navigation-submenu',
+							'core/button',
+							'core/social-links',
+							'core/home-link',
+							'core/loginout',
+						]}
+					/>
+				</ul>
+			</>
 		</>
 	);
 }

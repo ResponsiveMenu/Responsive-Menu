@@ -3,44 +3,32 @@ import {
 	useBlockProps,
 	InnerBlocks,
 	InspectorControls,
-	__experimentalBlockVariationPicker,
-	store as blockEditorStore,
-	LineHeightControl,
 	PanelColorSettings,
 	FontSizePicker,
 	MediaUpload,
 	MediaUploadCheck,
 	__experimentalFontFamilyControl as FontFamilyControl,
-	__experimentalBorderControl as BorderControl,
-	__experimentalColorGradientSettingsDropdown as ColorGradientSettingsDropdown,
-	__experimentalUseMultipleOriginColorsAndGradients as useMultipleOriginColorsAndGradients,
-	useSettings,
+	useSettings
 } from '@wordpress/block-editor';
 import {
 	PanelBody,
-	ColorPicker,
 	Icon,
 	PanelRow,
 	TextControl,
 	ToggleControl,
 	RangeControl,
-	RadioControl,
 	SelectControl,
 	ResponsiveWrapper,
 	Button,
 	FocalPointPicker,
-	__experimentalUseCustomUnits as useCustomUnits,
 	__experimentalToolsPanel as ToolsPanel,
 	__experimentalToolsPanelItem as ToolsPanelItem,
 	__experimentalUnitControl as UnitControl,
-	__experimentalVStack as VStack,
 	__experimentalToggleGroupControl as ToggleGroupControl,
 	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
-	__experimentalParseQuantityAndUnitFromRawValue as parseQuantityAndUnitFromRawValue,
-	__experimentalInputControl as InputControl,
 	__experimentalBoxControl as BoxControl,
 } from '@wordpress/components';
-import { useEffect, useState, useRef } from '@wordpress/element';
+import { useEffect } from '@wordpress/element';
 import IconControl from './components/IconControl';
 import parseIcon from './utils/parse-icon';
 import { flattenIconsArray } from './utils/icon-functions';
@@ -437,7 +425,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						value={menuAnimation.type}
 						options={[
 							{ label: 'Slide', value: 'slide' },
-							{ label: 'Push', value: 'push' },
 							{ label: 'Fade', value: 'fade' },
 						]}
 						onChange={(type) => updateMenuAnimation('type', type)}
@@ -765,14 +752,14 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					/>
 				</PanelBody>
 				<PanelBody title={__('Hamburger Text', 'responsive-menu')}>
-					<InputControl
+					<TextControl
 						label={__('Text', 'responsive-menu')}
 						value={hamburgerText.text}
 						onChange={(value) => {
 							updateHamburgerText('text', value);
 						}}
 					/>
-					<InputControl
+					<TextControl
 						label={__('Active Text', 'responsive-menu')}
 						value={hamburgerText.activeText}
 						onChange={(value) => {
