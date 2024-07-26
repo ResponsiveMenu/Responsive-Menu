@@ -211,14 +211,17 @@ function rmp_allow_svg_html_tags() {
  * @since 4.1.6
  */
 function rm_sanitize_rec_array( $array, $allowhtml = false ) {
-	foreach ( (array) $array as $key => $value ) {
-		if ( is_array( $value ) ) {
-			$array[ $key ] = rm_sanitize_rec_array( $value, $allowhtml );
-		} else {
-			$array[ $key ] = $allowhtml ? rm_sanitize_html_tags( wp_specialchars_decode( $value, ENT_QUOTES ) ) : sanitize_text_field( $value );
-		}
-	}
-	return $array;
+    if ( ! is_array( $array ) ) {
+        return $allowhtml ? rm_sanitize_html_tags( wp_specialchars_decode( (string) $array, ENT_QUOTES ) ) : sanitize_text_field( (string) $array );
+    }
+    foreach ( $array as $key => $value ) {
+        if ( is_array( $value ) ) {
+            $array[ $key ] = rm_sanitize_rec_array( $value, $allowhtml );
+        } else {
+            $array[ $key ] = $allowhtml ? rm_sanitize_html_tags( wp_specialchars_decode( (string) $value, ENT_QUOTES ) ) : sanitize_text_field( (string) $value );
+        }
+    }
+    return $array;
 }
 
 function rm_sanitize_html_tags( $content ) {
