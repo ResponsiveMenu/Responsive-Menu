@@ -86,7 +86,7 @@ class Theme_Manager {
 		// These are older version theme which are not compatible with new version.
 		$exclude_theme_ids = array( '47704', '47698', '45318' );
 
-		$endpoint_url      = 'https://responsive.menu/edd-api/v2/products/?category=theme';
+		$endpoint_url      = 'https://responsive.menu/edd-api/v2/products/?category=themes';
 		$rmp_response      = wp_remote_get( $endpoint_url, array( 'sslverify' => false ) );
 		$rmp_response_body = wp_remote_retrieve_body( $rmp_response );
 		$rmp_response_body = json_decode( $rmp_response_body, true );

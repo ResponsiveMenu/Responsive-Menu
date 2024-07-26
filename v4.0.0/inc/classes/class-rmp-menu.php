@@ -277,7 +277,7 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 				<?php } ?>
 						<?php $title_html = $menu_image;
 						$title_html .= "<span>" . $menu_title . "</span>";
-						echo rm_sanitize_rec_array( $title_html, true );
+						echo rm_sanitize_html_tags( $title_html );
 				if ( ! empty( $this->options['menu_title_link'] ) ) { ?>
 					</a>
 				<?php }else { ?>
