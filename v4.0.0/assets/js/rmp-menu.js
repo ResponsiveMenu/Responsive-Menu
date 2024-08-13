@@ -194,7 +194,21 @@ jQuery( document ).ready( function( jQuery ) {
 					}
 				}
 			});
+			// Add rmp-topmenu-active class to current menu item on load
+			this.setActiveMenuItemOnLoad();
 
+		}
+		// Add rmp-topmenu-active class to current menu item on load
+		setActiveMenuItemOnLoad() {
+			const currentURL = window.location.href;
+			const menuItems = jQuery(this.menuWrap).find('a');
+
+			menuItems.each(function() {
+				if (this.href === currentURL) {
+					jQuery(this).closest('.rmp-menu-item-has-children').addClass(RmpMenu.activeTopMenuClass);
+					return false; // Exit the loop once we've found and marked the current item
+				}
+			});
 		}
 		/**
 		 * Set push translate for toggle and page wrapper.
@@ -333,7 +347,6 @@ jQuery( document ).ready( function( jQuery ) {
 				top_siblings.each(function() {
 					jQuery(this).find(self.subMenuArrow).first().html(self.options['inactive_toggle_contents']);
 					jQuery(this).find(self.subMenuArrow).first().removeClass(RmpMenu.activeSubMenuArrowClass);
-					jQuery(this).removeClass(RmpMenu.activeTopMenuClass);
 				});
 
 				// Now Repeat for the current item siblings.
@@ -341,7 +354,6 @@ jQuery( document ).ready( function( jQuery ) {
 				first_siblings.each(function() {
 					jQuery(this).find(self.subMenuArrow).first().html(self.options['inactive_toggle_contents']);
 					jQuery(this).find(self.subMenuArrow).first().removeClass(RmpMenu.activeSubMenuArrowClass);
-					jQuery(this).removeClass(RmpMenu.activeTopMenuClass);
 				});
 			}
 
@@ -352,12 +364,10 @@ jQuery( document ).ready( function( jQuery ) {
 				} ).removeClass('rmp-submenu-open');
 				jQuery( subArrow ).html( self.options['inactive_toggle_contents'] );
 				jQuery( subArrow ).removeClass(RmpMenu.activeSubMenuArrowClass);
-				jQuery( subArrow ).closest( '.rmp-menu-item-has-children' ).removeClass(RmpMenu.activeTopMenuClass);
 			} else {
 				sub_menu.slideDown(self.subMenuTransitionTime, 'linear').addClass( 'rmp-submenu-open' );
 				jQuery( subArrow ).html(self.options['active_toggle_contents'] );
 				jQuery( subArrow ).addClass(RmpMenu.activeSubMenuArrowClass);
-				jQuery( subArrow ).closest( '.rmp-menu-item-has-children' ).addClass(RmpMenu.activeTopMenuClass);
 			}
 
 		}
