@@ -28,7 +28,7 @@ import {
 	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
 	__experimentalBoxControl as BoxControl,
 } from '@wordpress/components';
-import { useEffect } from '@wordpress/element';
+import { useEffect, useRef } from '@wordpress/element';
 import IconControl from './components/IconControl';
 import parseIcon from './utils/parse-icon';
 import { flattenIconsArray } from './utils/icon-functions';
@@ -77,6 +77,10 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			setAttributes({ id: clientId });
 		}
 	});
+	const menuRef = useRef();
+    const rmpToggleMenu = () => {
+        setAttributes({ activeMenu: !activeMenu });
+    };
 	const dynamicStyles = DynamicStyles(attributes);
 	const renderCSS = (
 		<style>
@@ -854,6 +858,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					data-hide-link-click={menuBehaviour.linkClick ? true : false}
 					data-hide-page-click={menuBehaviour.pageClick ? true : false}
 					data-hide-on-scroll={menuBehaviour.pageScroll ? true : false}
+					onClick={rmpToggleMenu}
 					className={`rmp-block-menu-trigger rmp-menu-trigger-boring rmp-mobile-device-menu rmp-block-menu-trigger-position-${hamburgerStyle?.side} rmp-block-text-position-${hamburgerText?.position} ${activeMenu ? 'rmp-block-active' : ''}`}
 				>
 					<span className="rmp-block-trigger-box">
@@ -913,8 +918,17 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 				<div
 					className={`rmp-block-container rmp-block-container-${id} rmp-block-container-direction-${menuAnimation?.direction} rmp-block-container-animation-${menuAnimation?.type} ${activeMenu ? 'rmp-block-active' : ''}`}
 					id={`rmp-block-container-${id}`}
+					ref={menuRef}
 				>
 					<InnerBlocks
+						template={[
+							[ 'core/heading', { level: 3, content: 'Responsive Menu', textAlign: 'center' } ],
+							['core/paragraph', { content: 'Add more content here...', align: 'center' }],
+							['rmp/menu-items', {}, [
+								['core/navigation-link', { label: 'Home', url: '/' }],
+								['core/navigation-link', { label: 'Custom Link', url: 'https://example.com' }]
+							]]
+						]}
 						allowedBlocks={[
 							'rmp/menu-items',
 							'core/heading',
@@ -925,6 +939,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 							'core/paragraph',
 							'core/button',
 						]}
+						templateLock={false}
 					/>
 				</div>
 			</nav>
