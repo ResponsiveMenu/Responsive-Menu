@@ -859,7 +859,6 @@ window.RMP_Preview = {
 		self.bindColor('#rmp-menu-button-line-colour-hover', '#rmp_menu_trigger-' + self.menuId + ':hover .responsive-menu-pro-inner,#rmp_menu_trigger-' + self.menuId +':hover .responsive-menu-pro-inner:after,#rmp_menu_trigger-' + self.menuId +':hover .responsive-menu-pro-inner:before', 'background','' );
 		self.bindColor('#rmp-menu-button-text-colour', '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-label', 'color' );
 		self.onTyping('#rmp-menu-toggle-border-radius','#rmp_menu_trigger-' + self.menuId ,'border-radius' );
-		self.bindColor('#rmp-menu-button-line-colour', '#rmp_menu_trigger-' + self.menuId + ' .responsive-menu-pro-inner', 'color', '' );
 		self.bindColor('#rmp-menu-button-line-colour', '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-box .rmp-trigger-icon-inactive .rmp-font-icon', 'color', '' );
 		self.bindColor('#rmp-menu-button-line-colour-active', '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-box .rmp-trigger-icon-active .rmp-font-icon', 'color','' );
 		self.bindColor('#rmp-menu-button-line-colour-hover', '#rmp_menu_trigger-' + self.menuId + ':hover .rmp-trigger-box .rmp-trigger-icon-inactive .rmp-font-icon', 'color','' );
