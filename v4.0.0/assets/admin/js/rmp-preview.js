@@ -859,6 +859,9 @@ window.RMP_Preview = {
 		self.bindColor('#rmp-menu-button-line-colour-hover', '#rmp_menu_trigger-' + self.menuId + ':hover .responsive-menu-pro-inner,#rmp_menu_trigger-' + self.menuId +':hover .responsive-menu-pro-inner:after,#rmp_menu_trigger-' + self.menuId +':hover .responsive-menu-pro-inner:before', 'background','' );
 		self.bindColor('#rmp-menu-button-text-colour', '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-label', 'color' );
 		self.onTyping('#rmp-menu-toggle-border-radius','#rmp_menu_trigger-' + self.menuId ,'border-radius' );
+		self.bindColor('#rmp-menu-button-line-colour', '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-box .rmp-trigger-icon-inactive .rmp-font-icon', 'color', '' );
+		self.bindColor('#rmp-menu-button-line-colour-active', '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-box .rmp-trigger-icon-active .rmp-font-icon', 'color','' );
+		self.bindColor('#rmp-menu-button-line-colour-hover', '#rmp_menu_trigger-' + self.menuId + ':hover .rmp-trigger-box .rmp-trigger-icon-inactive .rmp-font-icon', 'color','' );
 
 		self.onTyping('.rmp-menu-container-padding','#rmp-container-'+ self.menuId , 'section-padding' );
 		self.onTyping('.rmp-menu-title-section-padding','#rmp-menu-title-'+ self.menuId , 'section-padding' );
@@ -1241,12 +1244,11 @@ window.RMP_Preview = {
 			var outputSelector = '#rmp_menu_trigger-' + self.menuId + ' span.rmp-trigger-icon-inactive';
 			value = jQuery(this).val();
 			var iframe =   jQuery(self.iframe);
-			if ( iframe.contents().find(outputSelector).length ) {
-				iframe.contents().find( outputSelector ).addClass(value);
-			} else {
+			if ( "" != value ) {
 				iframe.contents().find( '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-box img.rmp-trigger-icon' ).hide();
 				iframe.contents().find( '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-box .responsive-menu-pro-inner' ).hide();
-				iframe.contents().find( '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-box' ).append('<span class="rmp-trigger-icon rmp-trigger-icon-inactive ' + value +'"></span>')
+				iframe.contents().find( '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-box .rmp-trigger-icon-inactive' ).remove();
+				iframe.contents().find( '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-box' ).append('<span class="rmp-trigger-icon rmp-trigger-icon-inactive">' + value +'</span>');
 			}
 		});
 
@@ -1254,12 +1256,11 @@ window.RMP_Preview = {
 			var outputSelector = '#rmp_menu_trigger-' + self.menuId + ' span.rmp-trigger-icon-active';
 			value = jQuery(this).val();
 			var iframe =   jQuery(self.iframe);
-			if ( iframe.contents().find(outputSelector).length ) {
-				iframe.contents().find( outputSelector ).addClass(value);
-			} else {
+			if ( "" != value ) {
 				iframe.contents().find( '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-box img.rmp-trigger-icon' ).hide();
 				iframe.contents().find( '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-box .responsive-menu-pro-inner' ).hide();
-				iframe.contents().find( '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-box' ).append('<span class="rmp-trigger-icon rmp-trigger-icon-active ' + value +'"></span>')
+				iframe.contents().find( '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-box .rmp-trigger-icon-active' ).remove();
+				iframe.contents().find( '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-box' ).append('<span class="rmp-trigger-icon rmp-trigger-icon-active">' + value +'</span>');
 			}
 		});
 
