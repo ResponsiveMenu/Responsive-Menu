@@ -1,4 +1,3 @@
-
 /**
  * This is preview scripts file for responsive menu customizer.
  *
@@ -109,27 +108,29 @@ window.RMP_Preview = {
 	active_device: jQuery('#rmp_device_mode'),
 	menuContainer : '#rmp-container-'+ self.menuId,
 
-	onTyping: function( inputSelector, outputSelector, type, meta = '' ) {
+	onTyping: function (inputSelector, outputSelector, type, meta = '') {
 		var self = this;
 		var iframe  = jQuery(self.iframe);
 		jQuery(inputSelector).on( 'keyup change paste', function() {
+			let value = jQuery(this).val();
+			let is_linked = jQuery(this).parents('.rmp-input-group-control').find('.rmp-group-input-linked').hasClass('is-linked');
+			let pos = jQuery(this).attr('data-input');
+			let attr = '';
+			let unit = '';
+			let css = '';
+
 			switch( type ) {
 				case 'border-radius':
-					var value = jQuery(this).val();
 					css = outputSelector + '{ border-radius : '+ ( value ) +'px;}';
 					self.inlineCssInjector(css);
 				break;
 				case 'section-padding':
-					var value = jQuery(this).val();
-					var is_linked = jQuery(this).parents('.rmp-input-group-control').find('.rmp-group-input-linked').hasClass('is-linked');
-					var attr = 'padding';
+					attr = 'padding';
 					if( ! is_linked ) {
-						pos = jQuery(this).attr('data-input');
 						attr = attr + '-' + pos;
 					}
 					css = outputSelector + '{ '+ attr +' : '+ ( value ) +';}';
 					self.inlineCssInjector(css);
-
 				break;
 				case 'trigger-text':
 						if ( iframe.contents().find(outputSelector).length ) {
@@ -159,13 +160,12 @@ window.RMP_Preview = {
 				break;
 
 				case 'font-size':
-					var unit = jQuery(this).next( '.is-unit' ).val();
+					unit = jQuery(this).next( '.is-unit' ).val();
 
 					if ( ! unit.length ) {
 						unit = 'px';
 					}
 
-					var value = jQuery(this).val();
 					css = outputSelector + '{ font-size : '+  ( value + unit ) + ';}';
 
 					if ( jQuery(this).attr( 'multi-device') ) {
@@ -177,7 +177,7 @@ window.RMP_Preview = {
 				break;
 
 				case 'width':
-					var unit = jQuery(this).next('.is-unit').val();
+					unit = jQuery(this).next('.is-unit').val();
 
 					if ( ! unit ) {
 						unit = 'px';
@@ -189,7 +189,7 @@ window.RMP_Preview = {
 				break;
 
 				case 'height':
-					var unit = jQuery(this).next('.is-unit').val();
+					unit = jQuery(this).next('.is-unit').val();
 
 					if ( ! unit.length ) {
 						unit = 'px';
@@ -205,7 +205,7 @@ window.RMP_Preview = {
 
 				break;
 				case 'line-height':
-					var unit = jQuery(this).next('.is-unit').val();
+					unit = jQuery(this).next('.is-unit').val();
 
 					if ( ! unit.length ) {
 						unit = 'px';
@@ -221,7 +221,7 @@ window.RMP_Preview = {
 
 				break;
 				case 'min-width':
-					var unit = jQuery(this).next('.is-unit').val();
+					unit = jQuery(this).next('.is-unit').val();
 
 					if ( ! unit.length ) {
 						unit = 'px';
@@ -233,7 +233,7 @@ window.RMP_Preview = {
 
 				break;
 				case 'max-width':
-					var unit = jQuery(this).next('.is-unit').val();
+					unit = jQuery(this).next('.is-unit').val();
 
 					if ( ! unit.length ) {
 						unit = 'px';
@@ -243,11 +243,9 @@ window.RMP_Preview = {
 				break;
 				case 'trigger-side-position':
 
-					side = jQuery('#rmp-menu-button-left-or-right').val();
+					var side = jQuery('#rmp-menu-button-left-or-right').val();
 
 					unit  = jQuery('#rmp-menu-button-distance-from-side-unit').val();
-
-					value = jQuery('#rmp-menu-button-distance-from-side').val();
 
 					css = outputSelector + '{ '+ side +' :'+ (value + unit) +' !important;}';
 
@@ -256,8 +254,7 @@ window.RMP_Preview = {
 				break;
 
 				case 'top':
-					value = jQuery(this).val();
-					var unit = jQuery(this).next('.is-unit').val();
+					unit = jQuery(this).next('.is-unit').val();
 					if ( ! unit ) {
 						unit = 'px';
 					}
@@ -266,8 +263,7 @@ window.RMP_Preview = {
 				break;
 
 				case 'bottom':
-					value = jQuery(this).val();
-					var unit = jQuery(this).next('.is-unit').val();
+					unit = jQuery(this).next('.is-unit').val();
 					if ( ! unit ) {
 						unit = 'px';
 					}
@@ -276,7 +272,7 @@ window.RMP_Preview = {
 				break;
 
 				case 'border-width':
-					var unit = jQuery(this).next('.is-unit').val();
+					unit = jQuery(this).next('.is-unit').val();
 					if ( ! unit ) {
 						unit = 'px';
 					}
@@ -285,7 +281,7 @@ window.RMP_Preview = {
 				break;
 
 				case 'padding':
-					var unit = jQuery(this).next('.is-unit').val();
+					unit = jQuery(this).next('.is-unit').val();
 					if ( ! unit ) {
 						unit = 'px';
 					}
@@ -324,7 +320,7 @@ window.RMP_Preview = {
 				if ( type == 'img-src') {
 					iframe.contents().find(outputSelector).attr('src', attachment.url );
 				} else if( type == 'background' ) {
-					css = outputSelector + '{ background-image : url('+  attachment.url + ');}';
+					let css = outputSelector + '{ background-image : url('+  attachment.url + ');}';
 					self.inlineCssInjector(css);
 				} else if( type == 'trigger-icon' ) {
 
@@ -470,7 +466,7 @@ window.RMP_Preview = {
 		if ( styleElement.length ) {
 			styleElement.append(css);
 		} else {
-			style = '<style id="rmp-inline-css-'+ self.menuId +'">'+ css + '</style>';
+			let style = '<style id="rmp-inline-css-'+ self.menuId +'">'+ css + '</style>';
 			iframe.contents().find('head').append(style);
 		}
 	},
@@ -478,66 +474,49 @@ window.RMP_Preview = {
 		var self = this;
 		var iframe = jQuery(self.iframe);
 		jQuery(inputSelector).on( 'change', function(e) {
+			let value = jQuery(this).val();
+			let unit = jQuery(this).next('.is-unit').val() || 'px'; // Assign default unit if not specified
+			let css = '';
+			let side = '';
 			switch (attr) {
 				case 'height-unit':
-					value = jQuery(this).prev('input').val();
-					unit = jQuery(this).val();
-
 					css = outputSelector + '{ height : '+  ( value + unit ) + ';}';
 					if ( jQuery(this).attr( 'multi-device') ) {
 						css = self.mediaQuery( css );
 					}
-
 					self.inlineCssInjector(css);
 				break;
 				case 'line-height-unit':
-					value = jQuery(this).prev('input').val();
-					unit = jQuery(this).val();
-
 					css = outputSelector + '{ line-height : '+  ( value+unit ) + ';}';
-
 					if ( jQuery(this).attr( 'multi-device') ) {
 						css = self.mediaQuery( css );
 					}
-
 					self.inlineCssInjector(css);
 				break;
 				case 'width-unit':
-					var value = jQuery(this).prev('input').val();
-					var unit = jQuery(this).val();
 					css = outputSelector + '{ width : '+ ( value + unit) +';}';
 					self.inlineCssInjector(css);
 				break;
 
 				case 'font-size':
-					value = jQuery(this).prev('input').val();
-					unit = jQuery(this).val();
 					css = outputSelector + '{ font-size :' + value + unit + ' !important;}';
-
 					if ( jQuery(this).attr( 'multi-device') ) {
 						css = self.mediaQuery( css );
 					}
-
 					self.inlineCssInjector(css);
 				break;
 				case 'font-family':
-					value = jQuery(this).val();
 					css = outputSelector + '{ font-family :' + value +' !important;}';
-
 					if ( jQuery(this).attr( 'multi-device') ) {
 						css = self.mediaQuery( css );
 					}
-
 					self.inlineCssInjector(css);
 				break;
 				case 'font-weight':
-					value = jQuery(this).val();
 					css = outputSelector + '{ font-weight :' + value +';}';
 					self.inlineCssInjector(css);
 				break;
 				case 'padding-unit':
-					var unit = jQuery(this).val();
-					var value = jQuery(this).prev('input').val();
 					if ( ! unit ) {
 						unit = 'px';
 					}
@@ -549,14 +528,13 @@ window.RMP_Preview = {
 					self.inlineCssInjector(css);
 				break;
 				case 'letter-spacing':
-					value = jQuery(this).val();
 					css = outputSelector + '{ letter-spacing :' + value +'px; }';
 					self.inlineCssInjector(css);
 				break;
 				case 'position-alignment':
 
 					if ( iframe.contents().find( outputSelector ).length ) {
-						position  = jQuery(this).val();
+						let position  = jQuery(this).val();
 						var rmpTriggerBox = iframe.contents().find( '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-box' );
 						iframe.contents().find( '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-box' ).remove();
 						if ( position == 'top' || position == 'left' ) {
@@ -568,9 +546,8 @@ window.RMP_Preview = {
 					}
 				break;
 				case 'trigger-animation':
-					value = jQuery(this).val();
 					var new_class = 'rmp-menu-trigger-' + value;
-					all_class =  iframe.contents().find( outputSelector ).attr('class').split(" ");
+					let all_class =  iframe.contents().find( outputSelector ).attr('class').split(" ");
 					all_class.forEach( function( value ) {
 						if ( value.includes( 'rmp-menu-trigger-' ) ) {
 							iframe.contents().find( outputSelector ).removeClass(value);
@@ -579,34 +556,21 @@ window.RMP_Preview = {
 					});
 				break;
 				case 'top':
-					var unit = jQuery(this).val();
-					value = jQuery(this).prev('input').val();
 					css = outputSelector + '{ top :' + (value + unit) +' !important;}';
 					self.inlineCssInjector(css);
 				break;
 				case 'trigger-side-position':
 					side = jQuery('#rmp-menu-button-left-or-right').val();
-					unit  = jQuery('#rmp-menu-button-distance-from-side-unit').val();
-					value = jQuery('#rmp-menu-button-distance-from-side').val();
 					css = outputSelector + '{ '+ side +' :'+ (value + unit) +' !important;}';
 					self.inlineCssInjector(css);
 				break;
 				case 'trigger-side':
 					side  = jQuery(this).val();
-					value = jQuery('#rmp-menu-button-distance-from-side').val();
-					unit  = jQuery('#rmp-menu-button-distance-from-side-unit').val();
-
-					if( side == 'left' ) {
-						css = outputSelector + '{' + side + ':'+ ( value + unit ) +' !important;right:unset !important}';
-					} else {
-						css = outputSelector + '{' + side + ':'+ ( value + unit ) +' !important;left:unset !important}';
-					}
-
+					css = outputSelector + '{' + side + ':'+ ( value + unit ) +' !important;'+ (side === 'left' ? 'right:unset !important;' : 'left:unset !important;') +'}';
 					self.inlineCssInjector(css);
 
 				break;
 				case 'position':
-					value = jQuery(this).val();
 					css = outputSelector + '{ position :'+ value +' !important;}';
 					self.inlineCssInjector(css);
 				break;
@@ -618,19 +582,18 @@ window.RMP_Preview = {
 					}
 				break;
 				case 'target':
-					var value = jQuery(this).val();
-
-					if( ! value.length ) {
-						value = '_self';
+					let targetValue = jQuery(this).val();
+					if( ! targetValue.length ) {
+						targetValue = '_self';
 					}
 
-					iframe.contents().find(outputSelector).attr('target', value );
+					iframe.contents().find(outputSelector).attr('target', targetValue );
 				break;
 
 				case 'text-align':
-					var value =  jQuery(this).val();
+					let textAlignValue =  jQuery(this).val();
 					iframe.contents().find( outputSelector ).css({
-						'text-align' : value,
+						'text-align' : textAlignValue,
 					} );
 				break;
 			}
@@ -839,8 +802,8 @@ window.RMP_Preview = {
 			'hover'
 		);
 
-		self.bindColor('#rmp-menu-title-colour', '#rmp-menu-title-' + self.menuId + ' > a' , 'color');
-		self.bindColor('#rmp-menu-title-hover-colour', '#rmp-menu-title-' + self.menuId + ' > a' , 'color','hover');
+		self.bindColor('#rmp-menu-title-colour', '#rmp-menu-title-' + self.menuId + ' > span' , 'color');
+		self.bindColor('#rmp-menu-title-hover-colour', '#rmp-menu-title-' + self.menuId + ' > span' , 'color','hover');
 		self.bindColor('#rmp-menu-additional-content-color', '#rmp-container-'+ self.menuId + ' #rmp-menu-additional-content-' + self.menuId  , 'color');
 		self.bindColor('#rmp-menu-search-box-text-colour', '#rmp-container-'+ self.menuId + ' #rmp-search-box-'+ self.menuId + ' .rmp-search-box'  , 'color');
 		self.bindColor('#rmp-menu-search-box-background-colour', '#rmp-search-box-'+ self.menuId + ' .rmp-search-box'  , 'background');
@@ -875,10 +838,9 @@ window.RMP_Preview = {
 		self.onTyping('#rmp-menu-search-box-border-radius','#rmp-search-box-'+ self.menuId + ' .rmp-search-box','border-radius' );
 
 
-		self.onTyping('#rmp-menu-menu-title','#rmp-menu-title-'+ self.menuId +' #rmp-menu-title-link span', 'text' );
+		self.onTyping('#rmp-menu-menu-title','#rmp-menu-title-'+ self.menuId +' .rmp-menu-title-link span', 'text' );
 		self.onTyping('#rmp-menu-additional-content','#rmp-menu-additional-content-'+ self.menuId,'text');
 		self.onTyping('#rmp-menu-search-box-text','#rmp-search-box-'+ self.menuId + ' .rmp-search-box','placeholder');
-		self.onTyping('#rmp-menu-title-link', '#rmp-menu-title-' + self.menuId + ' #rmp-menu-title-link','href');
 		self.onTyping('#rmp-menu-title-image-alt', '#rmp-menu-title-' + self.menuId + ' .rmp-menu-title-image','alt');
 		self.onTyping('#rmp-menu-title-font-size', '#rmp-menu-title-' + self.menuId + ' > a','font-size');
 
@@ -1242,7 +1204,7 @@ window.RMP_Preview = {
 
 		jQuery("#rmp-menu-button-font-icon").focus(function() {
 			var outputSelector = '#rmp_menu_trigger-' + self.menuId + ' span.rmp-trigger-icon-inactive';
-			value = jQuery(this).val();
+			let value = jQuery(this).val();
 			var iframe =   jQuery(self.iframe);
 			if ( "" != value ) {
 				iframe.contents().find( '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-box img.rmp-trigger-icon' ).hide();
@@ -1254,7 +1216,7 @@ window.RMP_Preview = {
 
 		jQuery("#rmp-menu-button-font-icon-when-clicked").focus(function() {
 			var outputSelector = '#rmp_menu_trigger-' + self.menuId + ' span.rmp-trigger-icon-active';
-			value = jQuery(this).val();
+			let value = jQuery(this).val();
 			var iframe =   jQuery(self.iframe);
 			if ( "" != value ) {
 				iframe.contents().find( '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-box img.rmp-trigger-icon' ).hide();

@@ -696,7 +696,7 @@ jQuery( document ).ready( function( jQuery ) {
 			},
 			success: function( response ) {
 				jQuery( '#rmp-import-menu-button' ).prop( 'disabled', false );
-				noticeClass = 'notice-error';
+				let noticeClass = 'notice-error';
 				if ( response.success ) {
 					noticeClass = 'notice-success';
 					jQuery('#rmp_input_import_file').val('');

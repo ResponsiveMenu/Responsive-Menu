@@ -29,7 +29,7 @@
 	triggerBack: function() {
 
 		this.level--;
-		parentId =  jQuery( '#' +  this.tabId ).attr( 'aria-parent' );
+		let parentId =  jQuery( '#' +  this.tabId ).attr( 'aria-parent' );
 		jQuery( '#' + parentId ).show();
 
 		let title = jQuery( '#' + parentId ).attr( 'aria-label' );
@@ -41,7 +41,7 @@
 	updatePanel: function( current ) {
 		this.tabId = current.attr( 'aria-owns' );
 		jQuery( '#' + this.tabId ).show();
-		parentId = current.parent( 'ul' ).parent( 'div' ).attr( 'id' );
+		let parentId = current.parent( 'ul' ).parent( 'div' ).attr( 'id' );
 		jQuery( '#' +  this.tabId ).attr( 'aria-parent', parentId );
 		jQuery( '#' + parentId ).hide();
 	},
@@ -50,7 +50,7 @@
 		var accordionId = current.attr( 'accordion-id' );
 		var subAccordionId = current.attr( 'sub-accordion-id' );
 		var subTabId = current.attr( 'sub-tab-id' );
-		parentId = jQuery(".rmp-accordions:visible").attr('id');
+		let parentId = jQuery(".rmp-accordions:visible").attr('id');
 		jQuery( '#' +  this.tabId ).attr( 'aria-parent', parentId );
 		jQuery( '#' + parentId ).hide();
 		jQuery( '#' + this.tabId ).show();
@@ -97,7 +97,7 @@
 		jQuery( self.editorContainer ).on( 'click', self.tabItem, function( e ) {
 			e.stopPropagation();
 			e.preventDefault();
-			current = jQuery( this );
+			let current = jQuery( this );
 			self.level++;
 			self.updateHeader( current.text() );
 			self.updatePanel( current );
@@ -107,7 +107,7 @@
 		jQuery( self.editorContainer ).on( 'click', self.quickItem, function( e ) {
 			e.stopPropagation();
 			e.preventDefault();
-			current = jQuery( this );
+			let current = jQuery( this );
 			var tabId = current.attr( 'aria-owns' );
 			var title = jQuery('.rmp-tab-item[aria-owns="'+tabId+'"]').find('.rmp-tab-item-title').html();
 			self.level++;
