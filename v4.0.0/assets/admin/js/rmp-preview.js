@@ -802,8 +802,8 @@ window.RMP_Preview = {
 			'hover'
 		);
 
-		self.bindColor('#rmp-menu-title-colour', '#rmp-menu-title-' + self.menuId + ' > a' , 'color');
-		self.bindColor('#rmp-menu-title-hover-colour', '#rmp-menu-title-' + self.menuId + ' > a' , 'color','hover');
+		self.bindColor('#rmp-menu-title-colour', '#rmp-menu-title-' + self.menuId + ' > span' , 'color');
+		self.bindColor('#rmp-menu-title-hover-colour', '#rmp-menu-title-' + self.menuId + ' > span' , 'color','hover');
 		self.bindColor('#rmp-menu-additional-content-color', '#rmp-container-'+ self.menuId + ' #rmp-menu-additional-content-' + self.menuId  , 'color');
 		self.bindColor('#rmp-menu-search-box-text-colour', '#rmp-container-'+ self.menuId + ' #rmp-search-box-'+ self.menuId + ' .rmp-search-box'  , 'color');
 		self.bindColor('#rmp-menu-search-box-background-colour', '#rmp-search-box-'+ self.menuId + ' .rmp-search-box'  , 'background');
