@@ -5,6 +5,7 @@
   "author": "Surajkumar Singh",
   "license": "MIT",
   "private": true,
+  "type": "module",
   "scripts": {
     "clean": "rm -rf build/*",
     "dev": "cross-env NODE_ENV=development webpack --watch --mode development --progress",
