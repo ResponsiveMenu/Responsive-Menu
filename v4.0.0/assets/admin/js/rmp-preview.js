@@ -108,7 +108,7 @@ window.RMP_Preview = {
 	active_device: jQuery('#rmp_device_mode'),
 	menuContainer : '#rmp-container-'+ self.menuId,
 
-	onTyping: function( inputSelector, outputSelector, type, meta = '' ) {
+	onTyping: function (inputSelector, outputSelector, type, meta = '') {
 		var self = this;
 		var iframe  = jQuery(self.iframe);
 		jQuery(inputSelector).on( 'keyup change paste', function() {
@@ -838,10 +838,9 @@ window.RMP_Preview = {
 		self.onTyping('#rmp-menu-search-box-border-radius','#rmp-search-box-'+ self.menuId + ' .rmp-search-box','border-radius' );
 
 
-		self.onTyping('#rmp-menu-menu-title','#rmp-menu-title-'+ self.menuId +' #rmp-menu-title-link span', 'text' );
+		self.onTyping('#rmp-menu-menu-title','#rmp-menu-title-'+ self.menuId +' .rmp-menu-title-link span', 'text' );
 		self.onTyping('#rmp-menu-additional-content','#rmp-menu-additional-content-'+ self.menuId,'text');
 		self.onTyping('#rmp-menu-search-box-text','#rmp-search-box-'+ self.menuId + ' .rmp-search-box','placeholder');
-		self.onTyping('#rmp-menu-title-link', '#rmp-menu-title-' + self.menuId + ' #rmp-menu-title-link','href');
 		self.onTyping('#rmp-menu-title-image-alt', '#rmp-menu-title-' + self.menuId + ' .rmp-menu-title-image','alt');
 		self.onTyping('#rmp-menu-title-font-size', '#rmp-menu-title-' + self.menuId + ' > a','font-size');
 
