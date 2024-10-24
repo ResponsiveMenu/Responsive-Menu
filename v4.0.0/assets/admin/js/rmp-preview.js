@@ -112,12 +112,12 @@ window.RMP_Preview = {
 		var self = this;
 		var iframe  = jQuery(self.iframe);
 		jQuery(inputSelector).on( 'keyup change paste', function() {
-			var value = jQuery(this).val();
-			var is_linked = jQuery(this).parents('.rmp-input-group-control').find('.rmp-group-input-linked').hasClass('is-linked');
-			var pos = jQuery(this).attr('data-input');
-			var attr = '';
-			var unit = '';
-			var css = '';
+			let value = jQuery(this).val();
+			let is_linked = jQuery(this).parents('.rmp-input-group-control').find('.rmp-group-input-linked').hasClass('is-linked');
+			let pos = jQuery(this).attr('data-input');
+			let attr = '';
+			let unit = '';
+			let css = '';
 
 			switch( type ) {
 				case 'border-radius':
@@ -245,7 +245,7 @@ window.RMP_Preview = {
 
 					var side = jQuery('#rmp-menu-button-left-or-right').val();
 
-					var unit  = jQuery('#rmp-menu-button-distance-from-side-unit').val();
+					unit  = jQuery('#rmp-menu-button-distance-from-side-unit').val();
 
 					css = outputSelector + '{ '+ side +' :'+ (value + unit) +' !important;}';
 
@@ -474,10 +474,10 @@ window.RMP_Preview = {
 		var self = this;
 		var iframe = jQuery(self.iframe);
 		jQuery(inputSelector).on( 'change', function(e) {
-			var value = jQuery(this).val();
-			var unit = jQuery(this).next('.is-unit').val() || 'px'; // Assign default unit if not specified
-			var css = '';
-
+			let value = jQuery(this).val();
+			let unit = jQuery(this).next('.is-unit').val() || 'px'; // Assign default unit if not specified
+			let css = '';
+			let side = '';
 			switch (attr) {
 				case 'height-unit':
 					css = outputSelector + '{ height : '+  ( value + unit ) + ';}';
@@ -534,7 +534,7 @@ window.RMP_Preview = {
 				case 'position-alignment':
 
 					if ( iframe.contents().find( outputSelector ).length ) {
-						var position  = jQuery(this).val();
+						let position  = jQuery(this).val();
 						var rmpTriggerBox = iframe.contents().find( '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-box' );
 						iframe.contents().find( '#rmp_menu_trigger-' + self.menuId + ' .rmp-trigger-box' ).remove();
 						if ( position == 'top' || position == 'left' ) {
@@ -547,7 +547,7 @@ window.RMP_Preview = {
 				break;
 				case 'trigger-animation':
 					var new_class = 'rmp-menu-trigger-' + value;
-					var all_class =  iframe.contents().find( outputSelector ).attr('class').split(" ");
+					let all_class =  iframe.contents().find( outputSelector ).attr('class').split(" ");
 					all_class.forEach( function( value ) {
 						if ( value.includes( 'rmp-menu-trigger-' ) ) {
 							iframe.contents().find( outputSelector ).removeClass(value);
@@ -560,12 +560,12 @@ window.RMP_Preview = {
 					self.inlineCssInjector(css);
 				break;
 				case 'trigger-side-position':
-					var side = jQuery('#rmp-menu-button-left-or-right').val();
+					side = jQuery('#rmp-menu-button-left-or-right').val();
 					css = outputSelector + '{ '+ side +' :'+ (value + unit) +' !important;}';
 					self.inlineCssInjector(css);
 				break;
 				case 'trigger-side':
-					var side  = jQuery(this).val();
+					side  = jQuery(this).val();
 					css = outputSelector + '{' + side + ':'+ ( value + unit ) +' !important;'+ (side === 'left' ? 'right:unset !important;' : 'left:unset !important;') +'}';
 					self.inlineCssInjector(css);
 
@@ -582,7 +582,7 @@ window.RMP_Preview = {
 					}
 				break;
 				case 'target':
-					var targetValue = jQuery(this).val();
+					let targetValue = jQuery(this).val();
 					if( ! targetValue.length ) {
 						targetValue = '_self';
 					}
@@ -591,7 +591,7 @@ window.RMP_Preview = {
 				break;
 
 				case 'text-align':
-					var textAlignValue =  jQuery(this).val();
+					let textAlignValue =  jQuery(this).val();
 					iframe.contents().find( outputSelector ).css({
 						'text-align' : textAlignValue,
 					} );

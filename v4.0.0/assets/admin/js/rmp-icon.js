@@ -59,9 +59,9 @@ jQuery(document).ready(function() {
 		getIcon: function() {
 			var self = this;
 			jQuery(document).on('click', this.iconSelect, function() {
-				var icon_class = jQuery(self.iconContainer).find('input:checked').val();
-				var clicker = '#' + jQuery(self.iconSelect).attr('data-click');
-				var icon_wrap = self.getIconElementWrap(icon_class);
+				let icon_class = jQuery(self.iconContainer).find('input:checked').val();
+				let clicker = '#' + jQuery(self.iconSelect).attr('data-click');
+				let icon_wrap = self.getIconElementWrap(icon_class);
 				jQuery(clicker).find('.rmp-font-icon').remove();
 				jQuery(clicker).prev('input.rmp-icon-hidden-input').val(icon_wrap);
 				jQuery(clicker).append(icon_wrap);
@@ -103,7 +103,7 @@ jQuery(document).ready(function() {
 			if (!activeTab.length) {
 				activeTab = jQuery('.rmp-menu-icons-dialog').find('.nav-tab').first();
 			}
-			var icon_container = activeTab.attr('href');
+			let icon_container = activeTab.attr('href');
 			var icon_selector = jQuery(icon_container + ' .font-icon');
 			var is_exist = false;
 			icon_selector.each(function() {
