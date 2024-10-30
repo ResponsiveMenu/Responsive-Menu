@@ -1,5 +1,5 @@
 === Responsive Menu - Create Mobile-Friendly Menu ===
-Contributors: expresstech, responsivemenu, imvarunkmr, moha12351, infosatech
+Contributors: expresstech, responsivemenu, moha12351, infosatech
 Tags: responsive, mega menu, navigation, mobile, hamburger
 Requires at least: 3.6
 Tested up to: 6.6
