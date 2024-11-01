@@ -3,7 +3,7 @@ Contributors: expresstech, responsivemenu, imvarunkmr, moha12351, infosatech
 Tags: responsive, mega menu, navigation, mobile, hamburger
 Requires at least: 3.6
 Tested up to: 6.6
-Stable tag: 4.4.2
+Stable tag: 4.5.0
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -115,6 +115,10 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 7. Main menu
 
 == Changelog ==
+= 4.5.0 (25th October 2024) =
+* Feature: Enable users to customize the colors of hamburger icons
+* Enhancement: Optimize RM editor performance and format JavaScript for better efficiency
+
 = 4.4.2 (13th August 2024) =
 * Bug: Resolved parent menu active class issue
 
