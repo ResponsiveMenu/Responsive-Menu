@@ -100,7 +100,9 @@
    .responsive-menu-pro-inner {
         display: block;
     }
-
+    .rmp-trigger-icon-inactive .rmp-font-icon{
+        color: $menu_trigger_line_color;
+    }
     .responsive-menu-pro-inner,
     .responsive-menu-pro-inner::before,
     .responsive-menu-pro-inner::after {
@@ -110,16 +112,20 @@
         border-radius: 4px;
         position: absolute;
     }
-
+    .rmp-trigger-icon-active .rmp-font-icon{
+        color: $menu_trigger_line_active_color;
+    }
     &.is-active .responsive-menu-pro-inner,
     &.is-active .responsive-menu-pro-inner::before,
     &.is-active .responsive-menu-pro-inner::after {
         background-color: $menu_trigger_line_active_color;
     }
-
-    &:hover .responsive-menu-pro-inner,
-    &:hover .responsive-menu-pro-inner::before,
-    &:hover .responsive-menu-pro-inner::after {
+    &:hover .rmp-trigger-icon-inactive .rmp-font-icon{
+        color: $menu_trigger_line_color_hover;
+    }
+    &:not(.is-active):hover .responsive-menu-pro-inner,
+    &:not(.is-active):hover .responsive-menu-pro-inner::before,
+    &:not(.is-active):hover .responsive-menu-pro-inner::after{
         background-color: $menu_trigger_line_color_hover;
     }
     .responsive-menu-pro-inner::before{

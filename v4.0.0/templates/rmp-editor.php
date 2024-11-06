@@ -2328,7 +2328,7 @@ WP_Filesystem();
 								$ui_manager->start_group_controls();
 								$control_manager->add_color_control(
 									array(
-										'label' => esc_html__( 'Line Color', 'responsive-menu' ),
+										'label' => esc_html__( 'Icon Color', 'responsive-menu' ),
 										'id'    => 'rmp-menu-button-line-colour',
 										'name'  => 'menu[button_line_colour]',
 										'value' => rmp_get_value( $options, 'button_line_colour' ),
@@ -2338,7 +2338,7 @@ WP_Filesystem();
 
 								$control_manager->add_color_control(
 									array(
-										'label' => esc_html__( 'Line Hover', 'responsive-menu' ),
+										'label' => esc_html__( 'Icon Hover', 'responsive-menu' ),
 										'id'    => 'rmp-menu-button-line-colour-hover',
 										'name'  => 'menu[button_line_colour_hover]',
 										'value' => rmp_get_value( $options, 'button_line_colour_hover' ),
@@ -2350,7 +2350,7 @@ WP_Filesystem();
 
 								$control_manager->add_color_control(
 									array(
-										'label' => esc_html__( 'Line Active', 'responsive-menu' ),
+										'label' => esc_html__( 'Icon Active', 'responsive-menu' ),
 										'id'    => 'rmp-menu-button-line-colour-active',
 										'name'  => 'menu[button_line_colour_active]',
 										'value' => rmp_get_value( $options, 'button_line_colour_active' ),
