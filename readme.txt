@@ -115,7 +115,7 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 7. Main menu
 
 == Changelog ==
-= 4.5.0 (1st November 2024) =
+= 4.5.0 (6th November 2024) =
 * Feature: Enable users to customize the colors of hamburger icons
 * Enhancement: Optimize RM editor performance and format JavaScript for better efficiency
 
