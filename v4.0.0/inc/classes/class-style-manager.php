@@ -1497,8 +1497,8 @@ class Style_Manager {
 
 			$scss = new Compiler();
 			$scss->setImportPaths( RMP_PLUGIN_PATH_V4 . '/assets/scss/' );
-			$scss->setVariables( $parse_options );
-			$css = $scss->compile( '@import "main.scss";' );
+			$scss->addVariables( $parse_options );
+			$css = $scss->compileString( '@import "main.scss";' );
 
 			/**
 			 * Apply after parsed the scss to css.
@@ -1533,8 +1533,8 @@ class Style_Manager {
 
 			$scss = new Compiler();
 			$scss->setImportPaths( RMP_PLUGIN_PATH_V4 . '/assets/scss/' );
-			$scss->setVariables( $options );
-			$css = $scss->compile( '@import "common.scss";' );
+			$scss->addVariables( $options );
+			$css = $scss->compileString( '@import "common.scss";' );
 
 			return $css;
 		} catch ( Exception $e ) {
