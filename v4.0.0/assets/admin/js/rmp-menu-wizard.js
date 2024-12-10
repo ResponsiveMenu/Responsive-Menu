@@ -36,21 +36,21 @@ const rmpMenuWizard = {
 	 */
 	setProps() {
 
-		//Assign wizard container element id.
+		// Assign wizard container element id.
 		const menuWizardContainer = jQuery( '#rmp-new-menu-wizard' );
 
-		//Open new create menu wizard on click event.
+		// Open new create menu wizard on click event.
 		jQuery( document ).on( 'click', 'a.page-title-action', function( e ) {
 			e.preventDefault();
 			menuWizardContainer.show();
 		} );
 
-		//Close the new menu wizard.
+		// Close the new menu wizard.
 		jQuery( '#rmp-new-menu-wizard .rmp-dialog-header button.close' ).on( 'click', function() {
 			menuWizardContainer.hide();
 		} );
 
-		//Show/Hide the page selection input control.
+		// Show/Hide the page selection input control.
 		menuWizardContainer.on( 'change', '.rmp-menu-display-option', function( e ) {
 			const optionValue = jQuery( this ).val();
 			if ( 'exclude-pages' === optionValue || 'include-pages' === optionValue ) {
@@ -62,23 +62,23 @@ const rmpMenuWizard = {
 		} );
 
 
-		//Show/Hide change theme wizard in customizer page.
+		// Show/Hide change theme wizard in customizer page.
 		jQuery( '.rmp-theme-change-button' ).on( 'click', function( e ) {
 			menuWizardContainer.toggle();
 		} );
 
-		//Multi step form event for next button.
+		// Multi step form event for next button.
 		jQuery( '#rmp-menu-next-step' ).on( 'click', () =>  {
 			this.nextSection();
 		} );
 
-		//Multi step form event for top item label.
+		// Multi step form event for top item label.
 		jQuery( 'li.rmp-new-menu-step' ).on( 'click', ( e ) => {
 			const index = jQuery( e.currentTarget ).index();
 			this.goToSection( index );
 		} );
 
-		//Call ajax to save the new create menu.
+		// Call ajax to save the new create menu.
 		jQuery( '#rmp-create-new-menu' ).on( 'click', ( e ) => {
 			e.preventDefault();
 
@@ -127,7 +127,7 @@ const rmpMenuWizard = {
 
 		} );
 
-		//Ajax call to upload the theme.
+		// Ajax call to upload the theme.
 		jQuery( '#rmp-theme-upload' ).on( 'click', ( e ) => {
 			e.preventDefault();
 
@@ -156,7 +156,7 @@ const rmpMenuWizard = {
 
 		} );
 
-		//Ajax call to check the recent changes the theme api.
+		// Ajax call to check the recent changes the theme api.
 		jQuery( '.rmp-call-theme-api-button' ).on( 'click', ( e ) => {
 
 			if ( ! jQuery( e.currentTarget ).hasClass( 'rmp-call-theme-api-button' ) ) {

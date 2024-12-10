@@ -1242,6 +1242,7 @@ export default function Edit({ clientId, attributes, setAttributes }) {
 							'core/home-link',
 							'core/loginout',
 						]}
+						renderAppender={InnerBlocks.ButtonBlockAppender}
 					/>
 				</ul>
 			</>
