@@ -355,6 +355,23 @@ function add_rm_customize_button_to_save_menu() {
 		}
 		$inline_script = "jQuery(document).ready(function($) {
 			$('#save_menu_footer').before('<a href=\"".esc_url( $rmp_customize_menu )."\" style=\"margin-right:5px;\" class=\"button button-secondary button-large rmp-customize-menu\">". __('Customize Menu', 'responsive-menu') ."</a>');
+			$(document).on('change', '.edit-menu-item-hide-login-rmp-setting, .edit-menu-item-hide-nonlogin-rmp-setting', function() {
+				var parent = $(this).closest('.menu-item-edit-active');
+				var hideLoginCheckbox = parent.find('.edit-menu-item-hide-login-rmp-setting');
+				var hideNonLoginCheckbox = parent.find('.edit-menu-item-hide-nonlogin-rmp-setting');
+
+				if (hideLoginCheckbox.is(':checked')) {
+					hideNonLoginCheckbox.prop('disabled', true);
+				} else {
+					hideNonLoginCheckbox.prop('disabled', false);
+				}
+
+				if (hideNonLoginCheckbox.is(':checked')) {
+					hideLoginCheckbox.prop('disabled', true);
+				} else {
+					hideLoginCheckbox.prop('disabled', false);
+				}
+			});
 		});";
 		// Enqueue the script
 		wp_add_inline_script( 'admin-bar', $inline_script  );
@@ -362,3 +379,65 @@ function add_rm_customize_button_to_save_menu() {
 }
 add_action('admin_footer', 'add_rm_customize_button_to_save_menu', 999);
 
+/*
+ * Add custom fields to WordPress navigation menu item settings
+ * @since 4.6.0
+ */
+function rm_custom_menu_item_settings( $item_id, $item, $depth, $args ) {
+    $hide_login_rmp_setting = get_post_meta($item_id, '_hide_login_rmp_setting', true);
+    $hide_nonlogin_rmp_setting = get_post_meta($item_id, '_hide_nonlogin_rmp_setting', true);
+
+    ?>
+    <p class="rm-menu-settings-heading description description-wide">
+        <strong><?php esc_html_e('RMP Settings', 'responsive-menu-pro'); ?></strong>
+    </p>
+    <p class="field-hide-login-rmp description description-thin">
+        <label for="edit-menu-item-hide-login-rmp-setting-<?php echo esc_attr($item_id); ?>">
+            <input type="checkbox" class="edit-menu-item-hide-login-rmp-setting" id="edit-menu-item-hide-login-rmp-setting-<?php echo esc_attr($item_id); ?>" name="menu-item-hide-login-rmp-setting[<?php echo esc_attr($item_id); ?>]" <?php checked($hide_login_rmp_setting, 'on'); echo 'on' === $hide_nonlogin_rmp_setting ? 'disabled' : ''; ?> value="on"/>
+            <?php esc_html_e('Hide for logged in users', 'responsive-menu-pro'); ?><br />
+        </label>
+    </p>
+    <p class="field-hide-nonlogin-rmp description description-thin">
+        <label for="edit-menu-item-hide-nonlogin-rmp-setting-<?php echo esc_attr($item_id); ?>">
+            <input type="checkbox" class="edit-menu-item-hide-nonlogin-rmp-setting" id="edit-menu-item-hide-nonlogin-rmp-setting-<?php echo esc_attr($item_id); ?>" name="menu-item-hide-nonlogin-rmp-setting[<?php echo esc_attr($item_id); ?>]" <?php checked($hide_nonlogin_rmp_setting, 'on'); echo 'on' === $hide_login_rmp_setting ? 'disabled' : ''; ?> value="on" />
+            <?php esc_html_e('Hide for non logged in users', 'responsive-menu-pro'); ?><br />
+        </label>
+    </p>
+    <?php
+}
+add_action('wp_nav_menu_item_custom_fields', 'rm_custom_menu_item_settings', 10, 4);
+
+/*
+ * Save custom fields to WordPress navigation menu item settings
+ * @since 4.6.0
+ */
+function rm_save_custom_menu_item_setting( $menu_id, $menu_item_db_id, $menu_item_args ) {
+    $custom_setting = ! empty( $_POST['menu-item-hide-login-rmp-setting'][ $menu_item_db_id ] ) ? 'on' : 'off';
+    update_post_meta($menu_item_db_id, '_hide_login_rmp_setting', $custom_setting);
+    $custom_setting = ! empty( $_POST['menu-item-hide-nonlogin-rmp-setting'][ $menu_item_db_id ] ) ? 'on' : 'off';
+    update_post_meta($menu_item_db_id, '_hide_nonlogin_rmp_setting', $custom_setting);
+}
+add_action('wp_update_nav_menu_item', 'rm_save_custom_menu_item_setting', 10, 3);
+
+/*
+ * Modify menu items based on custom setting
+ * @since 4.6.0
+ */
+function rmp_modify_menu_items( $items, $args ) {
+    foreach ( $items as $key => $item ) {
+        $hide_login_rmp_setting = get_post_meta($item->ID, '_hide_login_rmp_setting', true);
+        $hide_nonlogin_rmp_setting = get_post_meta($item->ID, '_hide_nonlogin_rmp_setting', true);
+        if ( 'on' === $hide_login_rmp_setting && is_user_logged_in() ) {
+            unset($items[ $key ]);
+            continue;
+        }
+        if ( 'on' === $hide_nonlogin_rmp_setting && !is_user_logged_in() ) {
+            unset($items[ $key ]);
+            continue;
+        }
+    }
+
+    return $items;
+}
+add_filter('wp_nav_menu_objects', 'rmp_modify_menu_items', 10, 2);
+ 
