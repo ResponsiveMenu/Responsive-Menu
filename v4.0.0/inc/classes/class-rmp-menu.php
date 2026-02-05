@@ -92,6 +92,8 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 							$this->menu_title();
 						} elseif ( 'search' === $key ) {
 							$this->menu_search_box();
+						} elseif ( 'social-icons' === $key ) {
+							$this->menu_social_icons();
 						} else {
 							$this->menu_additional_content();
 						}
@@ -332,6 +334,84 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 			 * @param int    $menu_id
 			 */
 			echo apply_filters( 'menu_additional_content_html', '', $this->menu_id );
+		}
+
+		/**
+		 * Function to prepare the menu social icons section.
+		 *
+		 * @since 4.6.0
+		 *
+		 * @return void
+		 */
+		public function menu_social_icons() {
+			$social_icons = array();
+
+			if ( ! empty( $this->options['menu_social_icons'] ) && is_array( $this->options['menu_social_icons'] ) ) {
+				$social_icons = $this->options['menu_social_icons'];
+			}
+
+			if ( empty( $social_icons ) ) {
+				return;
+			}
+
+			$layout = ! empty( $this->options['menu_social_icons_layout'] ) ? $this->options['menu_social_icons_layout'] : 'horizontal';
+			$layout = in_array( $layout, array( 'horizontal', 'vertical' ), true ) ? $layout : 'horizontal';
+
+			$alignment = ! empty( $this->options['menu_social_icons_alignment'] ) ? $this->options['menu_social_icons_alignment'] : 'left';
+			$alignment = in_array( $alignment, array( 'left', 'center', 'right' ), true ) ? $alignment : 'left';
+
+			$wrapper_classes = array(
+				'rmp-menu-social-icons',
+				'rmp-social-icons-layout-' . $layout,
+				'rmp-social-icons-align-' . $alignment,
+			);
+			?>
+			<div id="rmp-menu-social-icons-<?php echo esc_attr( $this->menu_id ); ?>" class="<?php echo esc_attr( implode( ' ', $wrapper_classes ) ); ?>">
+				<ul class="rmp-social-icons-list">
+					<?php
+					foreach ( $social_icons as $index => $icon ) {
+						$icon_value = ! empty( $icon['icon'] ) ? wp_specialchars_decode( (string) $icon['icon'], ENT_QUOTES ) : '';
+						$icon_value = trim( $icon_value );
+
+						if ( '' === $icon_value ) {
+							continue;
+						}
+
+						$icon_link        = ! empty( $icon['link'] ) ? esc_url( $icon['link'] ) : '';
+
+						if ( false !== strpos( $icon_value, '<' ) ) {
+							$icon_markup = rm_sanitize_html_tags( $icon_value );
+						} else {
+							$icon_markup = sprintf( '<span class="rmp-font-icon %s"></span>', esc_attr( $icon_value ) );
+						}
+						?>
+						<li class="rmp-social-icon-item rmp-social-icon-item--<?php echo esc_attr( $index ); ?>">
+							<?php if ( ! empty( $icon_link ) ) { ?>
+								<a href="<?php echo $icon_link; ?>" target="_blank" rel="noopener noreferrer" class="rmp-social-icon-link">
+									<span class="rmp-social-icon"><?php echo $icon_markup; ?></span>
+								</a>
+							<?php } else { ?>
+								<span class="rmp-social-icon-link rmp-social-icon-link--no-link">
+									<span class="rmp-social-icon"><?php echo $icon_markup; ?></span>
+								</span>
+							<?php } ?>
+						</li>
+						<?php
+					}
+					?>
+				</ul>
+			</div>
+			<?php
+
+			/**
+			 * Filters the menu social icons markups.
+			 *
+			 * @since 4.6.0
+			 *
+			 * @param string $html
+			 * @param int    $menu_id
+			 */
+			echo apply_filters( 'rmp_menu_social_icons_html', '', $this->menu_id );
 		}
 
 		public function rmp_nav_menu_args( $args = null ) {

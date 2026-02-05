@@ -1,6 +1,6 @@
 .gitignore
 yarn.lock
-webpack.config.js
+webpack.config.cjs
 .vscode/
 .stylelintrc
 postcss.config.js

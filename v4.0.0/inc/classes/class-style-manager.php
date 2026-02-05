@@ -203,6 +203,95 @@ class Style_Manager {
 	}
 
 	/**
+	 * Enqueue icon font styles used by menus.
+	 *
+	 * @param array $menu_options List of menu options.
+	 *
+	 * @return void
+	 */
+	private function enqueue_icon_fonts( $menu_options ) {
+		if ( empty( $menu_options ) || ! is_array( $menu_options ) ) {
+			return;
+		}
+
+		$icons_blob = $this->collect_icon_markup( $menu_options );
+		if ( empty( $icons_blob ) ) {
+			return;
+		}
+
+		if ( 'on' !== $this->option_manager->get_global_option( 'rmp_remove_fontawesome' )
+			&& ( false !== strpos( $icons_blob, 'fa-' ) || false !== strpos( $icons_blob, 'fas' ) || false !== strpos( $icons_blob, 'far' ) || false !== strpos( $icons_blob, 'fab' ) ) ) {
+			wp_enqueue_style(
+				'rmp-fontawesome-icons',
+				'https://use.fontawesome.com/releases/v5.13.0/css/all.css',
+				null,
+				RMP_PLUGIN_VERSION
+			);
+		}
+
+		if ( 'on' !== $this->option_manager->get_global_option( 'rmp_remove_glyphicon' )
+			&& false !== strpos( $icons_blob, 'glyphicon' ) ) {
+			wp_enqueue_style(
+				'rmp-glyphicons',
+				RMP_PLUGIN_URL_V4 . '/assets/admin/scss/glyphicons.css',
+				null,
+				RMP_PLUGIN_VERSION
+			);
+		}
+
+		if ( 'on' !== $this->option_manager->get_global_option( 'rmp_remove_material_icons' )
+			&& ( false !== strpos( $icons_blob, 'material-icons' ) || false !== strpos( $icons_blob, 'mdi' ) ) ) {
+			wp_enqueue_style(
+				'rmp-material-icons',
+				'https://fonts.googleapis.com/icon?family=Material+Icons',
+				null,
+				RMP_PLUGIN_VERSION
+			);
+		}
+	}
+
+	/**
+	 * Collect icon markup from menu options for detection.
+	 *
+	 * @param array $menu_options List of menu options.
+	 *
+	 * @return string
+	 */
+	private function collect_icon_markup( $menu_options ) {
+		$icons = array();
+
+		foreach ( $menu_options as $options ) {
+			if ( empty( $options ) || ! is_array( $options ) ) {
+				continue;
+			}
+
+			foreach ( $options as $key => $value ) {
+				if ( is_string( $value ) && false !== strpos( $key, 'font_icon' ) && '' !== $value ) {
+					$icons[] = $value;
+				}
+			}
+
+			if ( ! empty( $options['menu_social_icons'] ) && is_array( $options['menu_social_icons'] ) ) {
+				foreach ( $options['menu_social_icons'] as $icon ) {
+					if ( ! empty( $icon['icon'] ) ) {
+						$icons[] = $icon['icon'];
+					}
+				}
+			}
+
+			if ( ! empty( $options['menu_font_icons']['icon'] ) && is_array( $options['menu_font_icons']['icon'] ) ) {
+				foreach ( $options['menu_font_icons']['icon'] as $icon_value ) {
+					if ( ! empty( $icon_value ) ) {
+						$icons[] = $icon_value;
+					}
+				}
+			}
+		}
+
+		return implode( ' ', $icons );
+	}
+
+	/**
 	 * Function get the active item toggle icon.
 	 *
 	 * @version 4.0.0
@@ -269,13 +358,15 @@ class Style_Manager {
 			$in_footer
 		);
 
+		$menu_options = $this->get_all_menu_options();
+
 		wp_localize_script(
 			'rmp_menu_scripts',
 			'rmp_menu',
 			array(
 				'ajaxURL'  => admin_url( 'admin-ajax.php' ),
 				'wp_nonce' => wp_create_nonce( 'ajax-nonce' ),
-				'menu'     => $this->get_all_menu_options(),
+				'menu'     => $menu_options,
 			)
 		);
 
@@ -284,6 +375,8 @@ class Style_Manager {
 		if ( 'on' != $this->option_manager->get_global_option( 'rmp_remove_dashicons' ) ) {
 			wp_enqueue_style( 'dashicons' );
 		}
+
+		$this->enqueue_icon_fonts( $menu_options );
 
 		if ( 'on' === $this->option_manager->get_global_option( 'rmp_external_files' ) ) {
 			$this->enqueue_styles_as_file();
@@ -562,6 +655,51 @@ class Style_Manager {
 			$menu_additional_content_font_size_unit = '';
 			if ( ! empty( $options['menu_additional_content_font_size_unit'] ) ) {
 				$menu_additional_content_font_size_unit = $options['menu_additional_content_font_size_unit'];
+			}
+
+			$menu_social_icons_wrap = '';
+			if ( ! empty( $options['menu_id'] ) ) {
+				$menu_social_icons_wrap = '#rmp-menu-social-icons-' . $options['menu_id'];
+			}
+
+			$menu_social_icons_size = '';
+			if ( ! empty( $options['menu_social_icons_size'] ) ) {
+				$menu_social_icons_size = $options['menu_social_icons_size'];
+			}
+
+			$menu_social_icons_size_unit = 'px';
+			if ( ! empty( $options['menu_social_icons_size_unit'] ) ) {
+				$menu_social_icons_size_unit = $options['menu_social_icons_size_unit'];
+			}
+
+			$menu_social_icons_gap = '';
+			if ( ! empty( $options['menu_social_icons_gap'] ) ) {
+				$menu_social_icons_gap = $options['menu_social_icons_gap'];
+			}
+
+			$menu_social_icons_gap_unit = 'px';
+			if ( ! empty( $options['menu_social_icons_gap_unit'] ) ) {
+				$menu_social_icons_gap_unit = $options['menu_social_icons_gap_unit'];
+			}
+
+			$menu_social_icons_section_padding_left = '';
+			if ( ! empty( $options['menu_social_icons_section_padding']['left'] ) ) {
+				$menu_social_icons_section_padding_left = $options['menu_social_icons_section_padding']['left'];
+			}
+
+			$menu_social_icons_section_padding_top = '';
+			if ( ! empty( $options['menu_social_icons_section_padding']['top'] ) ) {
+				$menu_social_icons_section_padding_top = $options['menu_social_icons_section_padding']['top'];
+			}
+
+			$menu_social_icons_section_padding_right = '';
+			if ( ! empty( $options['menu_social_icons_section_padding']['right'] ) ) {
+				$menu_social_icons_section_padding_right = $options['menu_social_icons_section_padding']['right'];
+			}
+
+			$menu_social_icons_section_padding_bottom = '';
+			if ( ! empty( $options['menu_social_icons_section_padding']['bottom'] ) ) {
+				$menu_social_icons_section_padding_bottom = $options['menu_social_icons_section_padding']['bottom'];
 			}
 
 			$menu_title_wrap = '';
@@ -1322,6 +1460,17 @@ class Style_Manager {
 				'menu_additional_section_padding_bottom'   => $menu_additional_section_padding_bottom,
 				'menu_additional_section_padding_right'    => $menu_additional_section_padding_right,
 
+				// Menu social icons options.
+				'menu_social_icons_wrap'                   => $menu_social_icons_wrap,
+				'menu_social_icons_size'                   => $menu_social_icons_size,
+				'menu_social_icons_size_unit'              => $menu_social_icons_size_unit,
+				'menu_social_icons_gap'                    => $menu_social_icons_gap,
+				'menu_social_icons_gap_unit'               => $menu_social_icons_gap_unit,
+				'menu_social_icons_section_padding_left'   => $menu_social_icons_section_padding_left,
+				'menu_social_icons_section_padding_top'    => $menu_social_icons_section_padding_top,
+				'menu_social_icons_section_padding_right'  => $menu_social_icons_section_padding_right,
+				'menu_social_icons_section_padding_bottom' => $menu_social_icons_section_padding_bottom,
+
 				// Menu title options.
 				'menu_title_wrap'                          => $menu_title_wrap,
 				'menu_title_font_weight'                   => $menu_title_font_weight,
@@ -1511,11 +1660,58 @@ class Style_Manager {
 			 * @param array  $options        Menu options array.
 			 */
 			$css = apply_filters( 'rmp_after_parse_scss_to_css', $css, $menu_id, $parse_options, $options );
+			$css .= $this->get_social_icons_color_css( $options );
 
 			return $css;
 		} catch ( Exception $e ) {
 			return new \WP_Error( 'Warning: Menu style scss compile failed <br/> <br />' . $e->getMessage() );
 		}
+	}
+
+	/**
+	 * Build dynamic social icon colors CSS.
+	 *
+	 * @param array $options Menu options array.
+	 *
+	 * @return string
+	 */
+	private function get_social_icons_color_css( $options ) {
+		if ( empty( $options['menu_id'] ) ) {
+			return '';
+		}
+
+		if ( empty( $options['menu_social_icons'] ) || ! is_array( $options['menu_social_icons'] ) ) {
+			return '';
+		}
+
+		$menu_id = $options['menu_id'];
+		$css     = '';
+		$base    = '#rmp-menu-social-icons-' . $menu_id;
+
+		foreach ( $options['menu_social_icons'] as $index => $icon ) {
+			$color = ! empty( $icon['color'] ) ? sanitize_text_field( $icon['color'] ) : '';
+			$hover = ! empty( $icon['hover_color'] ) ? sanitize_text_field( $icon['hover_color'] ) : '';
+
+			if ( '' === $color && '' === $hover ) {
+				continue;
+			}
+
+			$item_selector  = $base . ' .rmp-social-icon-item--' . sanitize_html_class( (string) $index );
+			$link_selector  = $item_selector . ' .rmp-social-icon-link, ' . $item_selector . ' .rmp-social-icon-link--no-link';
+			$hover_selector = $item_selector . ' .rmp-social-icon-link:hover, ' . $item_selector . ' .rmp-social-icon-link--no-link:hover';
+
+			if ( '' !== $color ) {
+				$css .= $link_selector . '{ color:' . $color . '; }';
+				$css .= $item_selector . ' .rmp-social-icon svg{ fill:' . $color . '; }';
+			}
+
+			if ( '' !== $hover ) {
+				$css .= $hover_selector . '{ color:' . $hover . '; }';
+				$css .= $hover_selector . ' svg{ fill:' . $hover . '; }';
+			}
+		}
+
+		return $css;
 	}
 
 	/**

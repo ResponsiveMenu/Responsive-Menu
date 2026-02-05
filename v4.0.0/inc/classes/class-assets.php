@@ -175,6 +175,14 @@ class Assets {
 
 		wp_enqueue_script( 'rmp_admin_scripts' );
 
+		wp_enqueue_script(
+			'rmp_admin_social_icons',
+			RMP_PLUGIN_URL_V4 . '/assets/admin/js/rmp-social-icons.js',
+			array( 'jquery', 'wp-color-picker', 'jquery-ui-sortable', 'rmp_admin_scripts' ),
+			RMP_PLUGIN_VERSION,
+			true
+		);
+
 		/** Enqueue the icons resources */
 
 		wp_enqueue_style( 'dashicons' );

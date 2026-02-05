@@ -175,6 +175,17 @@ window.RMP_Preview = {
 					self.inlineCssInjector(css);
 
 				break;
+				case 'gap':
+					unit = jQuery(this).next( '.is-unit' ).val();
+
+					if ( ! unit.length ) {
+						unit = 'px';
+					}
+
+					css = outputSelector + '{ gap : '+  ( value + unit ) + ';}';
+					self.inlineCssInjector(css);
+
+				break;
 
 				case 'width':
 					unit = jQuery(this).next('.is-unit').val();
@@ -403,6 +414,9 @@ window.RMP_Preview = {
 			if ( val=='title') {
 				list.push( iframeContents.find( self.menuTitle ) );
 				iframeContents.find( self.menuTitle ).remove();
+			} else if( val == 'social icons' ) {
+				list.push( iframeContents.find( self.menuSocialIcons ) );
+				iframeContents.find( self.menuSocialIcons ).remove();
 			} else if( val=='search' ) {
 				list.push( iframeContents.find( self.menuSearch ) );
 				iframeContents.find( self.menuSearch ).remove();
@@ -596,6 +610,30 @@ window.RMP_Preview = {
 						'text-align' : textAlignValue,
 					} );
 				break;
+				case 'social-align':
+					if ( iframe.contents().find( outputSelector ).length ) {
+						let alignValue = jQuery(this).val();
+						let allClasses = iframe.contents().find( outputSelector ).attr('class').split(' ');
+						allClasses.forEach( function( value ) {
+							if ( value.includes( 'rmp-social-icons-align-' ) ) {
+								iframe.contents().find( outputSelector ).removeClass(value);
+							}
+						});
+						iframe.contents().find( outputSelector ).addClass('rmp-social-icons-align-' + alignValue);
+					}
+				break;
+				case 'social-layout':
+					if ( iframe.contents().find( outputSelector ).length ) {
+						let layoutValue = jQuery(this).val();
+						let allLayoutClasses = iframe.contents().find( outputSelector ).attr('class').split(' ');
+						allLayoutClasses.forEach( function( value ) {
+							if ( value.includes( 'rmp-social-icons-layout-' ) ) {
+								iframe.contents().find( outputSelector ).removeClass(value);
+							}
+						});
+						iframe.contents().find( outputSelector ).addClass('rmp-social-icons-layout-' + layoutValue);
+					}
+				break;
 			}
 		});
 	},
@@ -609,6 +647,7 @@ window.RMP_Preview = {
 		self.menuSearch    = '#rmp-search-box-' + self.menuId;
 		self.menuWrap      = '#rmp-menu-wrap-' + self.menuId;
 		self.menuContents  = '#rmp-menu-additional-content-' + self.menuId;
+		self.menuSocialIcons = '#rmp-menu-social-icons-' + self.menuId;
 
 		//Menu container background color.
 		self.bindColor(
@@ -831,6 +870,7 @@ window.RMP_Preview = {
 		self.onTyping('.rmp-menu-section-padding','#rmp-menu-wrap-'+ self.menuId , 'section-padding' );
 		self.onTyping('.rmp-menu-search-section-padding','#rmp-search-box-'+ self.menuId , 'section-padding' );
 		self.onTyping('.rmp-menu-additional-section-padding','#rmp-menu-additional-content-'+ self.menuId , 'section-padding' );
+		self.onTyping('.rmp-menu-social-icons-section-padding','#rmp-menu-social-icons-'+ self.menuId , 'section-padding' );
 
 		// CONTENT BASED ELEMENTS.
 
@@ -850,6 +890,8 @@ window.RMP_Preview = {
 		self.bindImage('#rmp-menu-title-image-selector', '#rmp-menu-title-' + self.menuId + ' .rmp-menu-title-image', 'img-src' );
 
 		self.onTyping('#rmp-menu-additional-content-font-size', '#rmp-menu-additional-content-' + self.menuId ,'font-size' );
+		self.onTyping('#rmp-menu-social-icon-size', '#rmp-menu-social-icons-' + self.menuId + ' .rmp-social-icon .rmp-font-icon','font-size' );
+		self.onTyping('#rmp-menu-social-icons-gap', '#rmp-menu-social-icons-' + self.menuId + ' .rmp-social-icons-list','gap' );
 
 		self.onTyping('#rmp-menu-container-width', '#rmp-container-'+ self.menuId, 'width' );
 		self.onTyping('#rmp-menu-container-min-width', '#rmp-container-'+ self.menuId, 'min-width' );
@@ -937,6 +979,8 @@ window.RMP_Preview = {
 
 		self.changeInput('.rmp-menu-title-alignment', '#rmp-menu-title-' + self.menuId ,'text-align');
 		self.changeInput('.rmp-menu-additional-content-alignment', '#rmp-menu-additional-content-'+ self.menuId,'text-align');
+		self.changeInput('#rmp-menu-social-icons-layout', '#rmp-menu-social-icons-' + self.menuId, 'social-layout');
+		self.changeInput('#rmp-menu-social-icons-alignment', '#rmp-menu-social-icons-' + self.menuId, 'social-align');
 
 		//Top menu item links
 		self.onTyping(
@@ -1229,6 +1273,7 @@ window.RMP_Preview = {
 		// Ordering elements
 		self.toggleElements('#rmp-item-order-title','#rmp-menu-title-' + self.menuId );
 		self.toggleElements('#rmp-item-order-additional-content','#rmp-menu-additional-content-' + self.menuId );
+		self.toggleElements('#rmp-item-order-social-icons','#rmp-menu-social-icons-' + self.menuId );
 		self.toggleElements('#rmp-item-order-search','#rmp-search-box-'+ self.menuId);
 		self.toggleElements('#rmp-item-order-menu','#rmp-menu-wrap-' + self.menuId );
 
@@ -1241,4 +1286,3 @@ window.RMP_Preview = {
 };
 
 RMP_Preview.init();
-
