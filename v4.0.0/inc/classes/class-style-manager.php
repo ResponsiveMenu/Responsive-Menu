@@ -203,54 +203,6 @@ class Style_Manager {
 	}
 
 	/**
-	 * Enqueue icon font styles used by menus.
-	 *
-	 * @param array $menu_options List of menu options.
-	 *
-	 * @return void
-	 */
-	private function enqueue_icon_fonts( $menu_options ) {
-		if ( empty( $menu_options ) || ! is_array( $menu_options ) ) {
-			return;
-		}
-
-		$icons_blob = $this->collect_icon_markup( $menu_options );
-		if ( empty( $icons_blob ) ) {
-			return;
-		}
-
-		if ( 'on' !== $this->option_manager->get_global_option( 'rmp_remove_fontawesome' )
-			&& ( false !== strpos( $icons_blob, 'fa-' ) || false !== strpos( $icons_blob, 'fas' ) || false !== strpos( $icons_blob, 'far' ) || false !== strpos( $icons_blob, 'fab' ) ) ) {
-			wp_enqueue_style(
-				'rmp-fontawesome-icons',
-				'https://use.fontawesome.com/releases/v5.13.0/css/all.css',
-				null,
-				RMP_PLUGIN_VERSION
-			);
-		}
-
-		if ( 'on' !== $this->option_manager->get_global_option( 'rmp_remove_glyphicon' )
-			&& false !== strpos( $icons_blob, 'glyphicon' ) ) {
-			wp_enqueue_style(
-				'rmp-glyphicons',
-				RMP_PLUGIN_URL_V4 . '/assets/admin/scss/glyphicons.css',
-				null,
-				RMP_PLUGIN_VERSION
-			);
-		}
-
-		if ( 'on' !== $this->option_manager->get_global_option( 'rmp_remove_material_icons' )
-			&& ( false !== strpos( $icons_blob, 'material-icons' ) || false !== strpos( $icons_blob, 'mdi' ) ) ) {
-			wp_enqueue_style(
-				'rmp-material-icons',
-				'https://fonts.googleapis.com/icon?family=Material+Icons',
-				null,
-				RMP_PLUGIN_VERSION
-			);
-		}
-	}
-
-	/**
 	 * Collect icon markup from menu options for detection.
 	 *
 	 * @param array $menu_options List of menu options.
@@ -375,8 +327,6 @@ class Style_Manager {
 		if ( 'on' != $this->option_manager->get_global_option( 'rmp_remove_dashicons' ) ) {
 			wp_enqueue_style( 'dashicons' );
 		}
-
-		$this->enqueue_icon_fonts( $menu_options );
 
 		if ( 'on' === $this->option_manager->get_global_option( 'rmp_external_files' ) ) {
 			$this->enqueue_styles_as_file();

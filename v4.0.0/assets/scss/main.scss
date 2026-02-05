@@ -833,7 +833,9 @@
 
         .rmp-social-icon {
             @if( $menu_social_icons_size != '' ) {
-                font-size: ($menu_social_icons_size + $menu_social_icons_size_unit);
+                .rmp-font-icon {
+                    font-size: ($menu_social_icons_size + $menu_social_icons_size_unit);
+                }
             }
             line-height: 1;
             display: inline-flex;

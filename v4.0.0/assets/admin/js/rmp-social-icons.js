@@ -16,7 +16,7 @@ jQuery(document).ready(function ($) {
 		nextIndex = 0;
 	}
 
-	function addUpdateNotification() {
+	function rmpAddUpdateNotification() {
 		if (!$('#rmp-editor-main').find('#rmp-menu-update-notification').length) {
 			$('#rmp-editor-main').prepend(
 				'<div id="rmp-menu-update-notification" class="rmp-order-item rmp-order-item-description">' +
@@ -27,7 +27,7 @@ jQuery(document).ready(function ($) {
 		}
 	}
 
-	function initColorPicker($scope) {
+	function rmpInitColorPicker($scope) {
 		$scope.find('.rmp-color-input').each(function () {
 			const $input = $(this);
 			if ($input.hasClass('wp-color-picker')) {
@@ -39,7 +39,7 @@ jQuery(document).ready(function ($) {
 		});
 	}
 
-	function bindIconPicker($scope) {
+	function rmpBindIconPicker($scope) {
 		$scope.find('.rmp-icon-picker')
 			.off('click.rmpSocialIcons')
 			.on('click.rmpSocialIcons', function (e) {
@@ -64,7 +64,7 @@ jQuery(document).ready(function ($) {
 			});
 	}
 
-	function clearRow($row) {
+	function rmpClearRow($row) {
 		$row.find('input[type="text"]').val('');
 		const $color = $row.find('.rmp-color-input');
 		if ($color.length && $color.hasClass('wp-color-picker')) {
@@ -80,22 +80,22 @@ jQuery(document).ready(function ($) {
 		$picker.find('.rmp-icon-picker-trash').remove();
 	}
 
-	function initRow($row) {
-		initColorPicker($row);
-		bindIconPicker($row);
+	function rmpInitRow($row) {
+		rmpInitColorPicker($row);
+		rmpBindIconPicker($row);
 	}
 
 	let previewRefreshTimer = null;
-	function schedulePreviewRefresh() {
+	function rmpSchedulePreviewRefresh() {
 		if (previewRefreshTimer) {
 			clearTimeout(previewRefreshTimer);
 		}
 		previewRefreshTimer = setTimeout(function () {
-			refreshPreview();
+			rmpRefreshPreview();
 		}, 250);
 	}
 
-	function refreshPreview() {
+	function rmpRefreshPreview() {
 		if (typeof window.RMP_Preview === 'undefined') {
 			return;
 		}
@@ -141,7 +141,7 @@ jQuery(document).ready(function ($) {
 
 	// Init existing rows (color picker only).
 	$repeater.find('.rmp-social-icon-item').each(function () {
-		initColorPicker($(this));
+		rmpInitColorPicker($(this));
 	});
 
 	// Add new row.
@@ -155,9 +155,9 @@ jQuery(document).ready(function ($) {
 		$repeater.data('nextIndex', nextIndex);
 		const $row = $(rowHtml);
 		$repeater.find('.rmp-social-icons-items').append($row);
-		initRow($row);
-		addUpdateNotification();
-		schedulePreviewRefresh();
+		rmpInitRow($row);
+		rmpAddUpdateNotification();
+		rmpSchedulePreviewRefresh();
 	});
 
 	// Remove row.
@@ -166,28 +166,28 @@ jQuery(document).ready(function ($) {
 		const $row = $(this).closest('.rmp-social-icon-item');
 		const $items = $repeater.find('.rmp-social-icon-item');
 		if ($items.length <= 1) {
-			clearRow($row);
+			rmpClearRow($row);
 		} else {
 			$row.remove();
 		}
-		addUpdateNotification();
-		schedulePreviewRefresh();
+		rmpAddUpdateNotification();
+		rmpSchedulePreviewRefresh();
 	});
 
 	// Live preview updates for icon fields.
 	$(document).on('click', '#rmp-icon-dialog-select', function () {
 		const clickerId = $(this).attr('data-click');
 		if (clickerId && clickerId.indexOf('rmp-social-icon-picker-') === 0) {
-			schedulePreviewRefresh();
+			rmpSchedulePreviewRefresh();
 		}
 	});
 
 	$(document).on('change', '.rmp-social-icons-repeater .rmp-color-input', function () {
-		schedulePreviewRefresh();
+		rmpSchedulePreviewRefresh();
 	});
 
 	$(document).on('keyup change paste', '.rmp-social-icons-repeater input[type="text"]', function () {
-		schedulePreviewRefresh();
+		rmpSchedulePreviewRefresh();
 	});
 
 	// Extend preview behavior for social icons.
