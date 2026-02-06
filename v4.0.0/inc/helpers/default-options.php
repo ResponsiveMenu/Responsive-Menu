@@ -1021,10 +1021,10 @@ function rmp_get_default_options() {
 		'menu_additional_content_alignment'                => 'center',
 		'menu_additional_content_colour'                   => '#6fda44',
 		'menu_social_icons'                                => array(),
-		'menu_social_icons_size'                           => '18',
+		'menu_social_icons_size'                           => '24',
 		'menu_social_icons_size_unit'                      => 'px',
 		'menu_social_icons_layout'                         => 'horizontal',
-		'menu_social_icons_alignment'                      => 'left',
+		'menu_social_icons_alignment'                      => 'center',
 		'menu_social_icons_gap'                            => '10',
 		'menu_social_icons_gap_unit'                       => 'px',
 		'menu_social_icons_section_padding'                =>
