@@ -126,9 +126,7 @@ jQuery(document).ready(function ($) {
 		if (!hasIcons) {
 			if ($contents.find(selector).length) {
 				$contents.find(selector).remove();
-				if (globalThis.RMP_Preview.orderMenuElements && globalThis.RMP_Preview.orderMenuElements.call) {
-					globalThis.RMP_Preview.orderMenuElements();
-				}
+				globalThis.RMP_Preview.orderMenuElements?.();
 			}
 			return;
 		}
@@ -157,9 +155,7 @@ jQuery(document).ready(function ($) {
 				} else {
 					$contents.find('#rmp-container-' + menuId).append(response.data.markup);
 				}
-				if (globalThis.RMP_Preview.orderMenuElements) {
-					globalThis.RMP_Preview.orderMenuElements();
-				}
+				globalThis.RMP_Preview.orderMenuElements?.();
 			}
 		});
 	}

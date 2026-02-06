@@ -843,7 +843,6 @@ jQuery( document ).ready( function( jQuery ) {
 			jQuery(this).attr('data-index', index);
 			jQuery(this).find('input, button').each(function() {
 				const name = jQuery(this).attr('name');
-				const id = jQuery(this).attr('id');
 				if (name) {
 					jQuery(this).attr('name', name.replace(/\[\d+\]/, '[' + index + ']'));
 				}

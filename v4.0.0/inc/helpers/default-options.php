@@ -981,7 +981,7 @@ function rmp_get_default_options() {
 			'additional content' => 'on',
 			'menu'               => 'on',
 			'search'             => 'on',
-			'social-icons'       => 'off',
+			'social-icons'       => '',
 		),
 		'menu_title'                                       => 'Responsive Menu',
 		'menu_title_link'                                  => '',
