@@ -2503,8 +2503,7 @@ div.notice-responsive-menu .notice-responsive-menu-action a:hover {
 }
 
 .rmp-social-icon-item {
-    background: #2b2b2b;
-    border: 1px solid #3a3a3a;
+    border: 1px solid #5f5f5f1f;
     border-radius: 8px;
     padding: 12px;
     margin-bottom: 12px;
@@ -2539,6 +2538,7 @@ div.notice-responsive-menu .notice-responsive-menu-action a:hover {
     color: #fff;
 }
 .wp-core-ui .rmp-social-icon-remove {
+    background: transparent;
     border: 1px solid transparent;
     border-radius: 1px;
     cursor: pointer;
