@@ -203,47 +203,6 @@ class Style_Manager {
 	}
 
 	/**
-	 * Collect icon markup from menu options for detection.
-	 *
-	 * @param array $menu_options List of menu options.
-	 *
-	 * @return string
-	 */
-	private function collect_icon_markup( $menu_options ) {
-		$icons = array();
-
-		foreach ( $menu_options as $options ) {
-			if ( empty( $options ) || ! is_array( $options ) ) {
-				continue;
-			}
-
-			foreach ( $options as $key => $value ) {
-				if ( is_string( $value ) && false !== strpos( $key, 'font_icon' ) && '' !== $value ) {
-					$icons[] = $value;
-				}
-			}
-
-			if ( ! empty( $options['menu_social_icons'] ) && is_array( $options['menu_social_icons'] ) ) {
-				foreach ( $options['menu_social_icons'] as $icon ) {
-					if ( ! empty( $icon['icon'] ) ) {
-						$icons[] = $icon['icon'];
-					}
-				}
-			}
-
-			if ( ! empty( $options['menu_font_icons']['icon'] ) && is_array( $options['menu_font_icons']['icon'] ) ) {
-				foreach ( $options['menu_font_icons']['icon'] as $icon_value ) {
-					if ( ! empty( $icon_value ) ) {
-						$icons[] = $icon_value;
-					}
-				}
-			}
-		}
-
-		return implode( ' ', $icons );
-	}
-
-	/**
 	 * Function get the active item toggle icon.
 	 *
 	 * @version 4.0.0

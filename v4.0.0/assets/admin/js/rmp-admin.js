@@ -847,9 +847,6 @@ jQuery( document ).ready( function( jQuery ) {
 				if (name) {
 					jQuery(this).attr('name', name.replace(/\[\d+\]/, '[' + index + ']'));
 				}
-				if (id && id.indexOf('social-icon') !== -1) {
-					// Keep unique IDs but update array indices in names only
-				}
 			});
 		});
 		

@@ -4,6 +4,23 @@
  * @since 4.6.0
  */
 
+
+function rmpClearRow($row) {
+	$row.find('input[type="text"]').val('');
+	const $color = $row.find('.rmp-color-input');
+	if ($color.length && $color.hasClass('wp-color-picker')) {
+		$color.wpColorPicker('color', '');
+	} else {
+		$color.val('');
+	}
+
+	const $picker = $row.find('.rmp-icon-picker');
+	$picker.siblings('input.rmp-icon-hidden-input').val('');
+	$picker.find('.rmp-font-icon').remove();
+	$picker.removeAttr('data-icon');
+	$picker.find('.rmp-icon-picker-trash').remove();
+}
+
 jQuery(document).ready(function ($) {
 	const $repeater = $('#rmp-social-icons-repeater');
 	if (!$repeater.length) {
@@ -11,8 +28,8 @@ jQuery(document).ready(function ($) {
 	}
 
 	const templateHtml = $('#rmp-social-icon-template').html() || '';
-	let nextIndex = parseInt($repeater.data('nextIndex'), 10);
-	if (isNaN(nextIndex)) {
+	let nextIndex = Number.parseInt($repeater.data('nextIndex'), 10);
+	if (Number.isNaN(nextIndex)) {
 		nextIndex = 0;
 	}
 
@@ -76,22 +93,6 @@ jQuery(document).ready(function ($) {
 		return hasIcons;
 	}
 
-	function rmpClearRow($row) {
-		$row.find('input[type="text"]').val('');
-		const $color = $row.find('.rmp-color-input');
-		if ($color.length && $color.hasClass('wp-color-picker')) {
-			$color.wpColorPicker('color', '');
-		} else {
-			$color.val('');
-		}
-
-		const $picker = $row.find('.rmp-icon-picker');
-		$picker.siblings('input.rmp-icon-hidden-input').val('');
-		$picker.find('.rmp-font-icon').remove();
-		$picker.removeAttr('data-icon');
-		$picker.find('.rmp-icon-picker-trash').remove();
-	}
-
 	function rmpInitRow($row) {
 		rmpInitColorPicker($row);
 		rmpBindIconPicker($row);
@@ -108,7 +109,7 @@ jQuery(document).ready(function ($) {
 	}
 
 	function rmpRefreshPreview() {
-		if (typeof window.RMP_Preview === 'undefined') {
+		if (globalThis.RMP_Preview === undefined) {
 			return;
 		}
 
@@ -117,7 +118,7 @@ jQuery(document).ready(function ($) {
 			return;
 		}
 
-		const iframe = jQuery(window.RMP_Preview.iframe);
+		const iframe = jQuery(globalThis.RMP_Preview.iframe);
 		const $contents = iframe.contents();
 		const selector = '#rmp-menu-social-icons-' + menuId;
 		const hasIcons = rmpHasIcons();
@@ -125,8 +126,8 @@ jQuery(document).ready(function ($) {
 		if (!hasIcons) {
 			if ($contents.find(selector).length) {
 				$contents.find(selector).remove();
-				if (typeof window.RMP_Preview.orderMenuElements === 'function') {
-					window.RMP_Preview.orderMenuElements();
+				if (globalThis.RMP_Preview.orderMenuElements && globalThis.RMP_Preview.orderMenuElements.call) {
+					globalThis.RMP_Preview.orderMenuElements();
 				}
 			}
 			return;
@@ -148,7 +149,7 @@ jQuery(document).ready(function ($) {
 			type: 'POST',
 			dataType: 'json',
 			success: function (response) {
-				if (!response || !response.data || !response.data.markup) {
+				if (!response?.data?.markup) {
 					return;
 				}
 				if ($contents.find(selector).length) {
@@ -156,8 +157,8 @@ jQuery(document).ready(function ($) {
 				} else {
 					$contents.find('#rmp-container-' + menuId).append(response.data.markup);
 				}
-				if (typeof window.RMP_Preview.orderMenuElements === 'function') {
-					window.RMP_Preview.orderMenuElements();
+				if (globalThis.RMP_Preview.orderMenuElements) {
+					globalThis.RMP_Preview.orderMenuElements();
 				}
 			}
 		});
@@ -174,7 +175,7 @@ jQuery(document).ready(function ($) {
 		if (!templateHtml) {
 			return;
 		}
-		const rowHtml = templateHtml.replace(/__INDEX__/g, nextIndex);
+		const rowHtml = templateHtml.replaceAll(/__INDEX__/g, nextIndex);
 		nextIndex += 1;
 		$repeater.data('nextIndex', nextIndex);
 		const $row = $(rowHtml);
@@ -201,7 +202,7 @@ jQuery(document).ready(function ($) {
 	// Live preview updates for icon fields.
 	$(document).on('click', '#rmp-icon-dialog-select', function () {
 		const clickerId = $(this).attr('data-click');
-		if (clickerId && clickerId.indexOf('rmp-social-icon-picker-') === 0) {
+		if (clickerId?.startsWith('rmp-social-icon-picker-')) {
 			rmpSchedulePreviewRefresh();
 		}
 	});
@@ -215,37 +216,38 @@ jQuery(document).ready(function ($) {
 	});
 
 	// Extend preview behavior for social icons.
-	if (typeof window.RMP_Preview !== 'undefined') {
-		window.RMP_Preview.menuSocialIcons = '#rmp-menu-social-icons-' + window.RMP_Preview.menuId;
-		window.RMP_Preview.toggleElements('#rmp-item-order-social-icons', window.RMP_Preview.menuSocialIcons);
+	if (globalThis.RMP_Preview !== undefined) {
+		const preview = globalThis.RMP_Preview;
+		preview.menuSocialIcons = '#rmp-menu-social-icons-' + preview.menuId;
+		preview.toggleElements('#rmp-item-order-social-icons', preview.menuSocialIcons);
 
-		window.RMP_Preview.orderMenuElements = function () {
-			var list = [];
-			var self = this;
-			var iframeContents = jQuery(self.iframe).contents();
+		preview.orderMenuElements = function () {
+			const previewRef = globalThis.RMP_Preview;
+			const iframeContents = jQuery(previewRef.iframe).contents();
+			const list = [];
 			jQuery('#tab-container .item-title').each(function () {
-				var val = jQuery(this).text().toLocaleLowerCase().trim();
+				const val = jQuery(this).text().toLocaleLowerCase().trim();
 
 				if (val === 'title') {
-					list.push(iframeContents.find(self.menuTitle));
-					iframeContents.find(self.menuTitle).remove();
+					list.push(iframeContents.find(previewRef.menuTitle));
+					iframeContents.find(previewRef.menuTitle).remove();
 				} else if (val === 'search') {
-					list.push(iframeContents.find(self.menuSearch));
-					iframeContents.find(self.menuSearch).remove();
+					list.push(iframeContents.find(previewRef.menuSearch));
+					iframeContents.find(previewRef.menuSearch).remove();
 				} else if (val === 'menu') {
-					list.push(iframeContents.find(self.menuWrap));
-					iframeContents.find(self.menuWrap).remove();
+					list.push(iframeContents.find(previewRef.menuWrap));
+					iframeContents.find(previewRef.menuWrap).remove();
 				} else if (val === 'social icons') {
-					list.push(iframeContents.find(self.menuSocialIcons));
-					iframeContents.find(self.menuSocialIcons).remove();
+					list.push(iframeContents.find(previewRef.menuSocialIcons));
+					iframeContents.find(previewRef.menuSocialIcons).remove();
 				} else {
-					list.push(iframeContents.find(self.menuContents));
-					iframeContents.find(self.menuContents).remove();
+					list.push(iframeContents.find(previewRef.menuContents));
+					iframeContents.find(previewRef.menuContents).remove();
 				}
 			});
 
 			list.forEach(function (menuElement) {
-				iframeContents.find(self.menuContainer).append(menuElement);
+				iframeContents.find(previewRef.menuContainer).append(menuElement);
 			});
 		};
 	}
