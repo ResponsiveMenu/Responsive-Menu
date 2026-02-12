@@ -3,7 +3,7 @@ Contributors: expresstech, responsivemenu, moha12351, infosatech
 Tags: responsive, mega menu, navigation, mobile, hamburger
 Requires at least: 3.6
 Tested up to: 6.8
-Stable tag: 4.6.0
+Stable tag: 4.7.0
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -115,6 +115,9 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 7. Main menu
 
 == Changelog ==
+= 4.7.0 (12th February 2026) =
+* Feature: Added support for placing action/social icons inside the menu container (e.g., call, email, facebook, social links)
+
 = 4.6.0 (23rd July 2025) =
 * Feature: Added option to hide menu items for logged in and non logged in users
 

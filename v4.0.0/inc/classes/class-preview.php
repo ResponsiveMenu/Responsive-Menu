@@ -62,6 +62,8 @@ class Preview {
 			$html = $menu->menu_search_box();
 		} elseif ( 'title' === $menu_element ) {
 			$html = $menu->menu_title();
+		} elseif ( 'social-icons' === $menu_element ) {
+			$html = $menu->menu_social_icons();
 		} else {
 			$html = $menu->menu_additional_content();
 		}

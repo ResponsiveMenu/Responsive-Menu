@@ -769,4 +769,87 @@ jQuery( document ).ready( function( jQuery ) {
 		});
 	});
 
+	/**
+	 * Social Icons Repeater - Add new icon
+	 */
+	jQuery(document).on('click', '.rmp-add-social-icon', function(e) {
+		e.preventDefault();
+		
+		const container = jQuery('.rmp-social-icons-repeater');
+		const currentItems = container.find('.rmp-social-icon-item');
+		const newIndex = currentItems.length;
+		const newId = 'social-icon-' + Date.now();
+		
+		const newItem = jQuery('<div class="rmp-social-icon-item" data-index="' + newIndex + '">' +
+			'<div class="rmp-social-icon-handle"><span class="dashicons dashicons-menu"></span></div>' +
+			'<div class="rmp-social-icon-fields">' +
+				'<div class="rmp-input-control-group">' +
+					'<div class="rmp-input-control-wrapper">' +
+						'<label class="rmp-input-control-label">Icon</label>' +
+						'<div class="rmp-input-control rmp-icon-picker-wrap">' +
+							'<input type="text" class="rmp-icon-selected" name="menu[menu_social_icons][' + newIndex + '][icon]" id="rmp-social-icon-picker-' + newId + '" value="" readonly />' +
+							'<button type="button" class="button rmp-icon-picker" id="rmp-social-icon-picker-button-' + newId + '">' +
+								'<span class="dashicons dashicons-plus"></span> Choose Icon' +
+							'</button>' +
+							'<button type="button" class="button rmp-icon-remover" id="rmp-social-icon-remover-' + newId + '" style="display:none;">' +
+								'<span class="dashicons dashicons-no"></span>' +
+							'</button>' +
+						'</div>' +
+					'</div>' +
+					'<div class="rmp-input-control-wrapper">' +
+						'<label class="rmp-input-control-label">Link URL</label>' +
+						'<div class="rmp-input-control">' +
+							'<input type="text" name="menu[menu_social_icons][' + newIndex + '][link]" id="rmp-social-icon-link-' + newId + '" value="" placeholder="https://example.com" />' +
+						'</div>' +
+					'</div>' +
+					'<div class="rmp-input-control-wrapper">' +
+						'<label class="rmp-input-control-label">Color</label>' +
+						'<div class="rmp-input-control">' +
+							'<input type="text" class="rmp-color-input" name="menu[menu_social_icons][' + newIndex + '][color]" id="rmp-social-icon-color-' + newId + '" value="#ffffff" />' +
+						'</div>' +
+					'</div>' +
+				'</div>' +
+				'<input type="hidden" name="menu[menu_social_icons][' + newIndex + '][id]" value="' + newId + '" />' +
+				'<button type="button" class="button rmp-remove-social-icon">' +
+					'<span class="dashicons dashicons-trash"></span> Remove' +
+				'</button>' +
+			'</div>' +
+		'</div>');
+		
+		container.append(newItem);
+		
+		// Initialize color picker for new item
+		newItem.find('.rmp-color-input').wpColorPicker();
+		
+		// Reinitialize icon picker
+		if (typeof RMP_Icon !== 'undefined' && RMP_Icon.init) {
+			RMP_Icon.init('.rmp-icon-picker');
+		}
+		
+		addUpdateNotification();
+	});
+
+	/**
+	 * Social Icons Repeater - Remove icon
+	 */
+	jQuery(document).on('click', '.rmp-remove-social-icon', function(e) {
+		e.preventDefault();
+		
+		const item = jQuery(this).closest('.rmp-social-icon-item');
+		item.remove();
+		
+		// Reindex remaining items
+		jQuery('.rmp-social-icon-item').each(function(index) {
+			jQuery(this).attr('data-index', index);
+			jQuery(this).find('input, button').each(function() {
+				const name = jQuery(this).attr('name');
+				if (name) {
+					jQuery(this).attr('name', name.replace(/\[\d+\]/, '[' + index + ']'));
+				}
+			});
+		});
+		
+		addUpdateNotification();
+	});
+
 } );

@@ -735,4 +735,117 @@
         }
 
     }
+
+    /** Menu Social Icons Style */
+    #{$menu_social_icons_wrap} {
+
+        @if( $menu_social_icons_section_padding_top != '' ) {
+            padding-top : $menu_social_icons_section_padding_top;
+        }
+
+        @if( $menu_social_icons_section_padding_left != '' ) {
+            padding-left : $menu_social_icons_section_padding_left;
+        }
+
+        @if( $menu_social_icons_section_padding_right != '' ) {
+            padding-right : $menu_social_icons_section_padding_right;
+        }
+
+        @if( $menu_social_icons_section_padding_bottom != '' ) {
+            padding-bottom : $menu_social_icons_section_padding_bottom;
+        }
+
+        .rmp-social-icons-list {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            @if( $menu_social_icons_gap != '' ) {
+                gap: ($menu_social_icons_gap + $menu_social_icons_gap_unit);
+            }
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        &.rmp-social-icons-layout-vertical {
+            .rmp-social-icons-list {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        &.rmp-social-icons-layout-horizontal.rmp-social-icons-align-left {
+            .rmp-social-icons-list {
+                justify-content: flex-start;
+            }
+        }
+
+        &.rmp-social-icons-layout-horizontal.rmp-social-icons-align-center {
+            .rmp-social-icons-list {
+                justify-content: center;
+            }
+        }
+
+        &.rmp-social-icons-layout-horizontal.rmp-social-icons-align-right {
+            .rmp-social-icons-list {
+                justify-content: flex-end;
+            }
+        }
+
+        &.rmp-social-icons-layout-vertical.rmp-social-icons-align-left {
+            .rmp-social-icons-list {
+                align-items: flex-start;
+            }
+        }
+
+        &.rmp-social-icons-layout-vertical.rmp-social-icons-align-center {
+            .rmp-social-icons-list {
+                align-items: center;
+            }
+        }
+
+        &.rmp-social-icons-layout-vertical.rmp-social-icons-align-right {
+            .rmp-social-icons-list {
+                align-items: flex-end;
+            }
+        }
+
+        .rmp-social-icon-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: inherit;
+
+            &:hover {
+                color: inherit;
+            }
+        }
+
+        .rmp-social-icon-link--no-link {
+            cursor: default;
+            color: inherit;
+
+            &:hover {
+                color: inherit;
+            }
+        }
+
+        .rmp-social-icon {
+            @if( $menu_social_icons_size != '' ) {
+                .rmp-font-icon {
+                    font-size: ($menu_social_icons_size + $menu_social_icons_size_unit);
+                }
+            }
+            line-height: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            svg {
+                fill: currentColor;
+            }
+        }
+
+    }
 }

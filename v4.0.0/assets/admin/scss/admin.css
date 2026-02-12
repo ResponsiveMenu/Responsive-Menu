@@ -2491,3 +2491,55 @@ div.notice-responsive-menu .notice-responsive-menu-action a:hover {
     top: -32px;
     left: 50%;
 }
+/* Social Icons repeater */
+.rmp-social-icons-repeater {
+    margin-top: 10px;
+}
+
+.rmp-social-icons-items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.rmp-social-icon-item {
+    border: 1px solid #5f5f5f1f;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+}
+
+.rmp-social-icon-item-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+
+.rmp-social-icon-item-label {
+    font-weight: 600;
+    flex: 1;
+}
+
+.rmp-social-icon-item-fields .rmp-input-control-wrapper {
+    margin-bottom: 12px;
+}
+
+.rmp-social-icon-item-fields .rmp-input-control-wrapper:last-child {
+    margin-bottom: 0;
+}
+
+.rmp-social-icons-add {
+    margin-top: 8px;
+}
+.wp-core-ui .rmp-social-icons-add {
+    color: #fff;
+}
+.wp-core-ui .rmp-social-icon-remove {
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 1px;
+    cursor: pointer;
+}

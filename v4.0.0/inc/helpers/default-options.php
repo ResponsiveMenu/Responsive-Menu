@@ -981,6 +981,7 @@ function rmp_get_default_options() {
 			'additional content' => 'on',
 			'menu'               => 'on',
 			'search'             => 'on',
+			'social-icons'       => '',
 		),
 		'menu_title'                                       => 'Responsive Menu',
 		'menu_title_link'                                  => '',
@@ -1019,6 +1020,20 @@ function rmp_get_default_options() {
 		'menu_additional_content_font_size_unit'           => 'px',
 		'menu_additional_content_alignment'                => 'center',
 		'menu_additional_content_colour'                   => '#6fda44',
+		'menu_social_icons'                                => array(),
+		'menu_social_icons_size'                           => '24',
+		'menu_social_icons_size_unit'                      => 'px',
+		'menu_social_icons_layout'                         => 'horizontal',
+		'menu_social_icons_alignment'                      => 'center',
+		'menu_social_icons_gap'                            => '10',
+		'menu_social_icons_gap_unit'                       => 'px',
+		'menu_social_icons_section_padding'                =>
+		array(
+			'top'    => '0%',
+			'right'  => '0%',
+			'bottom' => '0%',
+			'left'   => '0%',
+		),
 		'menu_search_box_text'                             => 'Search',
 		'menu_search_box_code'                             => '',
 		'menu_search_section_padding'                      =>
