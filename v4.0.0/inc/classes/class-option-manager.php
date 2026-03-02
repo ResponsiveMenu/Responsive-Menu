@@ -63,7 +63,8 @@ class Option_Manager {
 		$options            = array_replace( $default_options, $options );
 		if ( ! empty( $default_options['items_order'] ) ) {
 			$existing_items_order = ! empty( $options['items_order'] ) && is_array( $options['items_order'] ) ? $options['items_order'] : array();
-			$options['items_order'] = array_replace( $default_options['items_order'], $existing_items_order );
+			$missing_items_order  = array_diff_key( $default_options['items_order'], $existing_items_order );
+			$options['items_order'] = $existing_items_order + $missing_items_order;
 		}
 		return $options;
 	}
