@@ -269,13 +269,15 @@ class Style_Manager {
 			$in_footer
 		);
 
+		$menu_options = $this->get_all_menu_options();
+
 		wp_localize_script(
 			'rmp_menu_scripts',
 			'rmp_menu',
 			array(
 				'ajaxURL'  => admin_url( 'admin-ajax.php' ),
 				'wp_nonce' => wp_create_nonce( 'ajax-nonce' ),
-				'menu'     => $this->get_all_menu_options(),
+				'menu'     => $menu_options,
 			)
 		);
 
@@ -562,6 +564,51 @@ class Style_Manager {
 			$menu_additional_content_font_size_unit = '';
 			if ( ! empty( $options['menu_additional_content_font_size_unit'] ) ) {
 				$menu_additional_content_font_size_unit = $options['menu_additional_content_font_size_unit'];
+			}
+
+			$menu_social_icons_wrap = '';
+			if ( ! empty( $options['menu_id'] ) ) {
+				$menu_social_icons_wrap = '#rmp-menu-social-icons-' . $options['menu_id'];
+			}
+
+			$menu_social_icons_size = '';
+			if ( ! empty( $options['menu_social_icons_size'] ) ) {
+				$menu_social_icons_size = $options['menu_social_icons_size'];
+			}
+
+			$menu_social_icons_size_unit = 'px';
+			if ( ! empty( $options['menu_social_icons_size_unit'] ) ) {
+				$menu_social_icons_size_unit = $options['menu_social_icons_size_unit'];
+			}
+
+			$menu_social_icons_gap = '';
+			if ( ! empty( $options['menu_social_icons_gap'] ) ) {
+				$menu_social_icons_gap = $options['menu_social_icons_gap'];
+			}
+
+			$menu_social_icons_gap_unit = 'px';
+			if ( ! empty( $options['menu_social_icons_gap_unit'] ) ) {
+				$menu_social_icons_gap_unit = $options['menu_social_icons_gap_unit'];
+			}
+
+			$menu_social_icons_section_padding_left = '';
+			if ( ! empty( $options['menu_social_icons_section_padding']['left'] ) ) {
+				$menu_social_icons_section_padding_left = $options['menu_social_icons_section_padding']['left'];
+			}
+
+			$menu_social_icons_section_padding_top = '';
+			if ( ! empty( $options['menu_social_icons_section_padding']['top'] ) ) {
+				$menu_social_icons_section_padding_top = $options['menu_social_icons_section_padding']['top'];
+			}
+
+			$menu_social_icons_section_padding_right = '';
+			if ( ! empty( $options['menu_social_icons_section_padding']['right'] ) ) {
+				$menu_social_icons_section_padding_right = $options['menu_social_icons_section_padding']['right'];
+			}
+
+			$menu_social_icons_section_padding_bottom = '';
+			if ( ! empty( $options['menu_social_icons_section_padding']['bottom'] ) ) {
+				$menu_social_icons_section_padding_bottom = $options['menu_social_icons_section_padding']['bottom'];
 			}
 
 			$menu_title_wrap = '';
@@ -1322,6 +1369,17 @@ class Style_Manager {
 				'menu_additional_section_padding_bottom'   => $menu_additional_section_padding_bottom,
 				'menu_additional_section_padding_right'    => $menu_additional_section_padding_right,
 
+				// Menu social icons options.
+				'menu_social_icons_wrap'                   => $menu_social_icons_wrap,
+				'menu_social_icons_size'                   => $menu_social_icons_size,
+				'menu_social_icons_size_unit'              => $menu_social_icons_size_unit,
+				'menu_social_icons_gap'                    => $menu_social_icons_gap,
+				'menu_social_icons_gap_unit'               => $menu_social_icons_gap_unit,
+				'menu_social_icons_section_padding_left'   => $menu_social_icons_section_padding_left,
+				'menu_social_icons_section_padding_top'    => $menu_social_icons_section_padding_top,
+				'menu_social_icons_section_padding_right'  => $menu_social_icons_section_padding_right,
+				'menu_social_icons_section_padding_bottom' => $menu_social_icons_section_padding_bottom,
+
 				// Menu title options.
 				'menu_title_wrap'                          => $menu_title_wrap,
 				'menu_title_font_weight'                   => $menu_title_font_weight,
@@ -1511,11 +1569,58 @@ class Style_Manager {
 			 * @param array  $options        Menu options array.
 			 */
 			$css = apply_filters( 'rmp_after_parse_scss_to_css', $css, $menu_id, $parse_options, $options );
+			$css .= $this->get_social_icons_color_css( $options );
 
 			return $css;
 		} catch ( Exception $e ) {
 			return new \WP_Error( 'Warning: Menu style scss compile failed <br/> <br />' . $e->getMessage() );
 		}
+	}
+
+	/**
+	 * Build dynamic social icon colors CSS.
+	 *
+	 * @param array $options Menu options array.
+	 *
+	 * @return string
+	 */
+	private function get_social_icons_color_css( $options ) {
+		if ( empty( $options['menu_id'] ) ) {
+			return '';
+		}
+
+		if ( empty( $options['menu_social_icons'] ) || ! is_array( $options['menu_social_icons'] ) ) {
+			return '';
+		}
+
+		$menu_id = $options['menu_id'];
+		$css     = '';
+		$base    = '#rmp-menu-social-icons-' . $menu_id;
+
+		foreach ( $options['menu_social_icons'] as $index => $icon ) {
+			$color = ! empty( $icon['color'] ) ? sanitize_text_field( $icon['color'] ) : '';
+			$hover = ! empty( $icon['hover_color'] ) ? sanitize_text_field( $icon['hover_color'] ) : '';
+
+			if ( '' === $color && '' === $hover ) {
+				continue;
+			}
+
+			$item_selector  = $base . ' .rmp-social-icon-item--' . sanitize_html_class( (string) $index );
+			$link_selector  = $item_selector . ' .rmp-social-icon-link, ' . $item_selector . ' .rmp-social-icon-link--no-link';
+			$hover_selector = $item_selector . ' .rmp-social-icon-link:hover, ' . $item_selector . ' .rmp-social-icon-link--no-link:hover';
+
+			if ( '' !== $color ) {
+				$css .= $link_selector . '{ color:' . $color . '; }';
+				$css .= $item_selector . ' .rmp-social-icon svg{ fill:' . $color . '; }';
+			}
+
+			if ( '' !== $hover ) {
+				$css .= $hover_selector . '{ color:' . $hover . '; }';
+				$css .= $hover_selector . ' svg{ fill:' . $hover . '; }';
+			}
+		}
+
+		return $css;
 	}
 
 	/**

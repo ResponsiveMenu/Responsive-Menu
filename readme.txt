@@ -2,8 +2,8 @@
 Contributors: expresstech, responsivemenu, imvarunkmr, moha12351, infosatech
 Tags: responsive, mega menu, navigation, mobile, hamburger
 Requires at least: 3.6
-Tested up to: 6.7
-Stable tag: 4.5.0
+Tested up to: 6.9
+Stable tag: 4.7.1
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -115,6 +115,18 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 7. Main menu
 
 == Changelog ==
+= 4.7.1 (2nd March 2026) =
+* Bug: Resolved the menu item ordering issue
+
+= 4.7.0 (12th February 2026) =
+* Feature: Added support for placing action/social icons inside the menu container (e.g., call, email, facebook, social links)
+
+= 4.6.0 (23rd July 2025) =
+* Feature: Added option to hide menu items for logged in and non logged in users
+
+= 4.5.1 (21st April 2025) =
+* Bug: Fixed PHP error with SCSS library
+
 = 4.5.0 (6th November 2024) =
 * Feature: Enable users to customize the colors of hamburger icons
 * Enhancement: Optimize RM editor performance and format JavaScript for better efficiency

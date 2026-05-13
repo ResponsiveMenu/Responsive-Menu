@@ -2630,6 +2630,8 @@ WP_Filesystem();
 										include_once RMP_PLUGIN_PATH_V4 . '/templates/menu-elements/menu.php';
 									} elseif ( 'title' === $key ) {
 										include_once RMP_PLUGIN_PATH_V4 . '/templates/menu-elements/title.php';
+									} elseif ( 'social-icons' === $key ) {
+										include_once RMP_PLUGIN_PATH_V4 . '/templates/menu-elements/social-icons.php';
 									} elseif ( 'search' === $key ) {
 										include_once RMP_PLUGIN_PATH_V4 . '/templates/menu-elements/search.php';
 									} else {

@@ -5,8 +5,7 @@ const DEV = 'production' !== process.env.NODE_ENV;
 */
 const path                    = require( 'path' );
 const MiniCssExtractPlugin    = require( 'mini-css-extract-plugin' );
-const OptimizeCssAssetsPlugin = require( 'optimize-css-assets-webpack-plugin' );
-const cssnano                 = require( 'cssnano' );
+const CssMinimizerPlugin      = require( 'css-minimizer-webpack-plugin' );
 const CleanWebpackPlugin      = require( 'clean-webpack-plugin' );
 const TerserPlugin            = require( 'terser-webpack-plugin' );
 const StyleLintPlugin         = require( 'stylelint-webpack-plugin' );
@@ -70,10 +69,7 @@ const rules = [
 ];
 
 const optimization = [
-	new OptimizeCssAssetsPlugin( {
-		cssProcessor: cssnano
-	} ),
-
+	new CssMinimizerPlugin(),
 	new TerserPlugin()
 ];
 
