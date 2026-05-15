@@ -1,9 +1,43 @@
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
+import { addFilter } from '@wordpress/hooks';
 import Edit from './edit';
 import Save from './save';
 
+const allowInMenuItems = (settings, name) => {
+	const allowedBlocks = [
+		'core/navigation-link',
+		'core/navigation-submenu',
+		'core/button',
+		'core/home-link',
+		'core/social-links',
+		'core/loginout',
+	];
+
+	if (allowedBlocks.includes(name)) {
+		let newParent = ['rmp/menu-items'];
+		if (settings.parent) {
+			newParent = settings.parent.includes('rmp/menu-items')
+				? settings.parent
+				: [...settings.parent, 'rmp/menu-items'];
+		}
+		return {
+			...settings,
+			parent: newParent,
+		};
+	}
+
+	return settings;
+};
+
+addFilter(
+	'blocks.registerBlockType',
+	'rmp/allow-in-menu-items',
+	allowInMenuItems
+);
+
 registerBlockType('rmp/menu-items', {
+	apiVersion: 3,
 	title: __('Menu items', 'responeive-menu'),
 	description: __('Menu items', 'responeive-menu'),
 	icon: 'editor-ul',
@@ -127,6 +161,22 @@ registerBlockType('rmp/menu-items', {
 		},
 		blockStyles: {
 			type: 'object',
+		},
+		desktopMenuStyle: {
+			type: 'object',
+			default: {
+				color: '',
+				hoverColor: '',
+				activeColor: '',
+				background: '',
+				backgroundHover: '',
+				backgroundActive: '',
+				submenuColor: '',
+				submenuHoverColor: '',
+				submenuBackground: '',
+				submenuBackgroundHover: '',
+				dropdownAlign: 'left',
+			},
 		},
 	},
 	edit: Edit,

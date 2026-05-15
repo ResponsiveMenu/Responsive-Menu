@@ -13,6 +13,7 @@ export default function DynamicStyles(attributes) {
 		submenuStyle,
 		submenuIndentation,
 		triggerIcon,
+		desktopMenuStyle,
 	} = attributes;
 
 	const transformData = (data, fallback = {}) => {
@@ -347,6 +348,18 @@ export default function DynamicStyles(attributes) {
 				transformBorder(triggerIcon?.borderActiveHover, 'bottom'),
 			'--rmp--menu-subitem-trigger-active-hover-border-left':
 				transformBorder(triggerIcon?.borderActiveHover, 'left'),
+			'--rmp--desktop-menu-color': desktopMenuStyle?.color,
+			'--rmp--desktop-menu-hover-color': desktopMenuStyle?.hoverColor,
+			'--rmp--desktop-menu-active-color': desktopMenuStyle?.activeColor,
+			'--rmp--desktop-menu-background': desktopMenuStyle?.background,
+			'--rmp--desktop-menu-hover-background': desktopMenuStyle?.backgroundHover,
+			'--rmp--desktop-menu-active-background': desktopMenuStyle?.backgroundActive,
+			'--rmp--desktop-submenu-color': desktopMenuStyle?.submenuColor,
+			'--rmp--desktop-submenu-hover-color': desktopMenuStyle?.submenuHoverColor,
+			'--rmp--desktop-submenu-background': desktopMenuStyle?.submenuBackground,
+			'--rmp--desktop-submenu-hover-background': desktopMenuStyle?.submenuBackgroundHover,
+			'--rmp--desktop-submenu-alignment': desktopMenuStyle?.dropdownAlign === 'right' ? 'auto' : '0',
+			'--rmp--desktop-submenu-right': desktopMenuStyle?.dropdownAlign === 'right' ? '0' : 'auto',
 		},
 		(value) =>
 			typeof value !== 'undefined' &&

@@ -31,11 +31,8 @@ export default function save(props) {
 
 		return <Icon icon={renderedIcon} size={size} />;
 	};
-	if( breakpoint < window.innerWidth ){
-		return;
-	}
 	return (
-		<nav {...blockProps}>
+		<nav {...blockProps} data-breakpoint={breakpoint}>
 			<button
 				type="button"
 				aria-controls={`rmp-block-container-${id}`}
@@ -97,21 +94,20 @@ export default function save(props) {
 						<span className="rmp-block-trigger-inner"></span>
 					)}
 				</span>
-				{hamburgerText.text ||
-					(hamburgerText.hamburgerText && (
-						<span className="rmp-block-trigger-label">
-							{hamburgerText && hamburgerText.text && (
-								<span className="rmp-block-trigger-label-inactive">
-									{hamburgerText?.text}
-								</span>
-							)}
-							{hamburgerText && hamburgerText.activeText && (
-								<span className="rmp-block-trigger-label-active">
-									{hamburgerText?.activeText}
-								</span>
-							)}
-						</span>
-					))}
+				{hamburgerText && (hamburgerText.text || hamburgerText.activeText) && (
+					<span className="rmp-block-trigger-label">
+						{hamburgerText && hamburgerText.text && (
+							<span className="rmp-block-trigger-label-inactive">
+								{hamburgerText?.text}
+							</span>
+						)}
+						{hamburgerText && hamburgerText.activeText && (
+							<span className="rmp-block-trigger-label-active">
+								{hamburgerText?.activeText}
+							</span>
+						)}
+					</span>
+				)}
 			</button>
 			<div
 				className={`rmp-block-container rmp-block-container-${id} rmp-block-container-direction-${menuAnimation?.direction} rmp-block-container-animation-${menuAnimation?.type}`}

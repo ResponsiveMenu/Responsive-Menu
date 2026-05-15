@@ -59,12 +59,13 @@ export default function Edit({ clientId, attributes, setAttributes }) {
 		submenuIndentation,
 		triggerIcon,
 		blockStyles,
+		desktopMenuStyle,
 	} = attributes;
 	useEffect(() => {
 		if (!id) {
 			setAttributes({ id: clientId });
 		}
-	});
+	}, []);
 	const blockProps = useBlockProps({
 		className: `wp-block-navigation block-editor-block-content-overlay rmp-block-menu-items-${id} wp-block-rmp-menu-items`,
 	});
@@ -135,6 +136,11 @@ export default function Edit({ clientId, attributes, setAttributes }) {
 		triggerIconCopy[type] = value;
 		setAttributes({ triggerIcon: triggerIconCopy });
 	};
+	const updateDesktopMenuStyle = (type, value) => {
+		const desktopMenuStyleCopy = { ...(desktopMenuStyle || {}) };
+		desktopMenuStyleCopy[type] = value;
+		setAttributes({ desktopMenuStyle: desktopMenuStyleCopy });
+	};
 	const iconsAll = flattenIconsArray(getIcons());
 	const iconsObj = iconsAll.reduce((acc, value) => {
 		acc[value?.name] = value?.icon;
@@ -179,7 +185,7 @@ export default function Edit({ clientId, attributes, setAttributes }) {
 					/>
 					<BoxControl
 						label={__('Menu Item Padding', 'responsive-menu')}
-						values={submenuStyle.padding}
+						values={menuStyle.padding}
 						onChange={(value) => updateMenuStyle('padding', value)}
 						min={0}
 						max={300}
@@ -280,7 +286,7 @@ export default function Edit({ clientId, attributes, setAttributes }) {
 						hasValue={() => !!menuStyle?.textAlign}
 						label={__('Text Align', 'responsive-menu')}
 						onDeselect={() =>
-							updateMenuStyle('fontWieght', undefined)
+							updateMenuStyle('textAlign', undefined)
 						}
 					>
 						<ToggleGroupControl
@@ -475,7 +481,7 @@ export default function Edit({ clientId, attributes, setAttributes }) {
 						hasValue={() => !!submenuStyle?.textAlign}
 						label={__('Text Align', 'responsive-menu')}
 						onDeselect={() =>
-							updateSubmenuStyle('fontWieght', undefined)
+							updateSubmenuStyle('textAlign', undefined)
 						}
 					>
 						<ToggleGroupControl
@@ -1209,6 +1215,79 @@ export default function Edit({ clientId, attributes, setAttributes }) {
 						}}
 						value={triggerIcon.borderActiveHover}
 						enableAlpha={true}
+					/>
+				</PanelBody>
+				<PanelColorSettings
+					title={__('Desktop Menu Item Colors', 'responsive-menu')}
+					colorSettings={[
+						{
+							value: desktopMenuStyle?.color,
+							onChange: (value) => updateDesktopMenuStyle('color', value),
+							label: __('Text Color', 'responsive-menu'),
+						},
+						{
+							value: desktopMenuStyle?.hoverColor,
+							onChange: (value) => updateDesktopMenuStyle('hoverColor', value),
+							label: __('Text Hover', 'responsive-menu'),
+						},
+						{
+							value: desktopMenuStyle?.activeColor,
+							onChange: (value) => updateDesktopMenuStyle('activeColor', value),
+							label: __('Text Active', 'responsive-menu'),
+						},
+						{
+							value: desktopMenuStyle?.background,
+							onChange: (value) => updateDesktopMenuStyle('background', value),
+							label: __('Background', 'responsive-menu'),
+						},
+						{
+							value: desktopMenuStyle?.backgroundHover,
+							onChange: (value) => updateDesktopMenuStyle('backgroundHover', value),
+							label: __('Background Hover', 'responsive-menu'),
+						},
+						{
+							value: desktopMenuStyle?.backgroundActive,
+							onChange: (value) => updateDesktopMenuStyle('backgroundActive', value),
+							label: __('Background Active', 'responsive-menu'),
+						},
+					]}
+					enableAlpha={true}
+				/>
+				<PanelColorSettings
+					title={__('Desktop Submenu Colors', 'responsive-menu')}
+					colorSettings={[
+						{
+							value: desktopMenuStyle?.submenuColor,
+							onChange: (value) => updateDesktopMenuStyle('submenuColor', value),
+							label: __('Text Color', 'responsive-menu'),
+						},
+						{
+							value: desktopMenuStyle?.submenuHoverColor,
+							onChange: (value) => updateDesktopMenuStyle('submenuHoverColor', value),
+							label: __('Text Hover', 'responsive-menu'),
+						},
+						{
+							value: desktopMenuStyle?.submenuBackground,
+							onChange: (value) => updateDesktopMenuStyle('submenuBackground', value),
+							label: __('Background', 'responsive-menu'),
+						},
+						{
+							value: desktopMenuStyle?.submenuBackgroundHover,
+							onChange: (value) => updateDesktopMenuStyle('submenuBackgroundHover', value),
+							label: __('Background Hover', 'responsive-menu'),
+						},
+					]}
+					enableAlpha={true}
+				/>
+				<PanelBody title={__('Desktop Submenu Settings', 'responsive-menu')}>
+					<SelectControl
+						label={__('Dropdown Alignment', 'responsive-menu')}
+						value={desktopMenuStyle?.dropdownAlign || 'left'}
+						options={[
+							{ label: __('Left', 'responsive-menu'), value: 'left' },
+							{ label: __('Right', 'responsive-menu'), value: 'right' },
+						]}
+						onChange={(value) => updateDesktopMenuStyle('dropdownAlign', value)}
 					/>
 				</PanelBody>
 			</InspectorControls>

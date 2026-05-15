@@ -1,6 +1,5 @@
 import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 import { Icon } from '@wordpress/components';
-import DynamicStyles from '../styles';
 import { flattenIconsArray } from '../utils/icon-functions';
 import parseIcon from '../utils/parse-icon';
 import getIcons from '../icons';
@@ -10,7 +9,7 @@ export default function Save({ attributes }) {
 	const blockProps = useBlockProps.save({
 		className: `rmp-block-menu-items-${id} is-responsive wp-block-navigation wp-block-rmp-menu-items`,
 	});
-	const dynamicStyles = DynamicStyles(attributes);
+
 	const iconsAll = flattenIconsArray(getIcons());
 	const iconsObj = iconsAll.reduce((acc, value) => {
 		acc[value?.name] = value?.icon;
@@ -41,15 +40,6 @@ export default function Save({ attributes }) {
 	}
 	return (
 		<>
-			<style>
-				{`
-				.rmp-block-menu-items-${id} {
-					${Object.entries(dynamicStyles)
-						.map(([k, v]) => `${k}:${v}`)
-						.join(';')}
-				}
-			`}
-			</style>
 			{triggerIcon && triggerIcon.type === 'icon' && (
 				<div
 					className="rmp-submenu-trigger-icon"

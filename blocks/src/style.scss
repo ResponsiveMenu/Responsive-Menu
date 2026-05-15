@@ -4,7 +4,7 @@
     border-radius: var(--rmp--menu-hamburger-border-radius, 5px);
     text-decoration: none;
     background: var(--rmp--menu-hamburger-background, #1d4354);
-    transition-duration: var( --rmp--menu-container-animation-transition-duration, 0.5s);
+    transition-duration: var(--rmp--menu-container-animation-transition-duration, 0.5s);
     border: none;
     display: flex;
     cursor: pointer;
@@ -13,80 +13,101 @@
     z-index: 99999;
     position: relative;
     color: var(--rmp--menu-hamburger-color, #ffffff);
-    &.rmp-block-menu-trigger-position-right{
+
+    &.rmp-block-menu-trigger-position-right {
         margin-left: auto;
     }
-    &.rmp-block-menu-trigger-position-left{
+
+    &.rmp-block-menu-trigger-position-left {
         margin-right: auto;
     }
+
     &.rmp-block-text-position-right {
         flex-direction: row;
     }
+
     &.rmp-block-text-position-left {
         flex-direction: row-reverse;
     }
+
     &.rmp-block-text-position-top {
         flex-direction: column-reverse;
     }
+
     &.rmp-block-text-position-bottom {
         flex-direction: column;
     }
-    &.rmp-block-active{
+
+    &.rmp-block-active {
         background: var(--rmp--menu-hamburger-active-background, #1d4354);
         color: var(--rmp--menu-hamburger-active-color, #ffffff);
+
         .rmp-block-trigger-box {
+
             .rmp-block-trigger-inner,
             .rmp-block-trigger-inner::before,
             .rmp-block-trigger-inner::after {
                 background: var(--rmp--menu-hamburger-active-color, #ffffff);
             }
-            svg{
+
+            svg {
                 fill: var(--rmp--menu-hamburger-active-color, #ffffff);
             }
         }
+
         .rmp-block-trigger-label-inactive,
-        .rmp-block-trigger-icon-inactive{
+        .rmp-block-trigger-icon-inactive {
             display: none;
         }
+
         .rmp-block-trigger-label-active,
-        .rmp-block-trigger-icon-active{
+        .rmp-block-trigger-icon-active {
             display: block;
         }
-        .rmp-block-trigger-box{
-            .rmp-block-trigger-inner{
+
+        .rmp-block-trigger-box {
+            .rmp-block-trigger-inner {
                 transform: rotate(45deg);
-                &:after{
+
+                &:after {
                     bottom: 0;
                     transform: rotate(-90deg);
                 }
-                &:before{
+
+                &:before {
                     opacity: 0;
                 }
             }
         }
     }
-    &:hover{
+
+    &:hover {
         background: var(--rmp--menu-hamburger-hover-background, #1d4354);
         color: var(--rmp--menu-hamburger-hover-color, #ffffff);
+
         .rmp-block-trigger-box {
+
             .rmp-block-trigger-inner,
             .rmp-block-trigger-inner::before,
             .rmp-block-trigger-inner::after {
                 background: var(--rmp--menu-hamburger-hover-color, #ffffff);
             }
-            svg{
+
+            svg {
                 fill: var(--rmp--menu-hamburger-hover-color, #ffffff);
             }
         }
     }
+
     .rmp-block-trigger-box {
         width: var(--rmp--menu-hamburger-line-width, 25px);
         display: inline-block;
         position: relative;
         vertical-align: super;
-        height: var( --rmp--menu-hamburger-trigger-box-height, 25px) ;
+        height: var(--rmp--menu-hamburger-trigger-box-height, 25px);
         display: flex;
         align-items: center;
+
         .rmp-block-trigger-inner {
             display: block;
         }
@@ -100,19 +121,24 @@
             border-radius: 4px;
             position: absolute;
         }
+
         .rmp-block-trigger-inner,
         .rmp-block-trigger-inner::after {
-            transition-duration: var( --rmp--menu-container-animation-transition-duration, 0.5s);
+            transition-duration: var(--rmp--menu-container-animation-transition-duration, 0.5s);
         }
-        svg{
+
+        svg {
             fill: var(--rmp--menu-hamburger-color, #ffffff);
         }
-        .rmp-block-trigger-icon{
+
+        .rmp-block-trigger-icon {
             width: var(--rmp--menu-hamburger-icon-size, 30px);
-            img{
+
+            img {
                 max-width: 100%;
             }
         }
+
         .rmp-block-trigger-inner::before,
         .rmp-block-trigger-inner::after {
             content: "";
@@ -127,14 +153,16 @@
             bottom: var(--rmp--menu-hamburger-line-spacing, 10px);
         }
     }
-    .rmp-block-trigger-label{
-        font-family: var( --rmp--menu-hamburger-text-font, inherit);
-        font-size: var( --rmp--menu-hamburger-text-size, 14px );
-        line-height: var( --rmp--menu-hamburger-text-line-height, 14px );
+
+    .rmp-block-trigger-label {
+        font-family: var(--rmp--menu-hamburger-text-font, inherit);
+        font-size: var(--rmp--menu-hamburger-text-size, 14px);
+        line-height: var(--rmp--menu-hamburger-text-line-height, 14px);
         padding-left: 5px;
     }
+
     .rmp-block-trigger-icon-active,
-    .rmp-block-trigger-label-active{
+    .rmp-block-trigger-label-active {
         display: none;
     }
 }
@@ -143,78 +171,94 @@
     .rmp-block-container {
         position: fixed;
         margin: 0;
-        transition: var(--rmp--menu-container-animation-transition-delay, 1s);
+        transition: var(--rmp--menu-container-animation-transition-duration, transform 0.5s);
         overflow: auto;
         display: block;
         width: var(--rmp--menu-container-width, 100%);
         max-width: var(--rmp--menu-container-max-width, 350px);
         min-width: var(--rmp--menu-container-min-width, 320px);
         background-color: var(--rmp--menu-container-background-color, transparent);
-        @if var( --rmp--menu-container-background-image ){
-            background-image: var( --rmp--menu-container-background-image );
+
+        @if var(--rmp--menu-container-background-image) {
+            background-image: var(--rmp--menu-container-background-image);
             background-size: var(--rmp--menu-container-background-size, cover);
             background-position: var(--rmp--menu-container-background-position, center);
             background-repeat: var(--rmp--menu-container-background-repeat, no-repeat);
         }
-        &.rmp-block-container-animation-slide{
-            &.rmp-block-container-direction-left{
+
+        &.rmp-block-container-animation-slide {
+            &.rmp-block-container-direction-left {
                 left: -100%;
                 top: 0;
             }
-            &.rmp-block-container-direction-right{
+
+            &.rmp-block-container-direction-right {
                 right: -100%;
                 top: 0;
             }
-            &.rmp-block-container-direction-top{
+
+            &.rmp-block-container-direction-top {
                 top: -150%;
                 left: 0;
             }
-            &.rmp-block-container-direction-bottom{
+
+            &.rmp-block-container-direction-bottom {
                 bottom: -150%;
                 left: 0;
             }
         }
-        &.rmp-block-container-animation-fade{
+
+        &.rmp-block-container-animation-fade {
             top: 0;
             opacity: 0;
             z-index: -1;
-            &.rmp-block-container-direction-right{
+
+            &.rmp-block-container-direction-right {
                 right: 0;
             }
-            &.rmp-block-container-direction-left{
+
+            &.rmp-block-container-direction-left {
                 left: 0;
             }
         }
+
         height: 100vh;
         visibility: visible;
         z-index: 30;
         color: var(--rmp--menu-container-text-color, inherit);
         padding: var(--rmp--menu-container-padding, 0);
-        &.rmp-block-active{
-            &.rmp-block-container-animation-slide{
-                &.rmp-block-container-direction-left{
+
+        &.rmp-block-active {
+            &.rmp-block-container-animation-slide {
+                &.rmp-block-container-direction-left {
                     left: 0;
                 }
-                &.rmp-block-container-direction-right{
+
+                &.rmp-block-container-direction-right {
                     right: 0;
                 }
-                &.rmp-block-container-direction-top{
+
+                &.rmp-block-container-direction-top {
                     top: 0;
                 }
-                &.rmp-block-container-direction-bottom{
+
+                &.rmp-block-container-direction-bottom {
                     bottom: 0;
                 }
             }
-            &.rmp-block-container-animation-fade{
+
+            &.rmp-block-container-animation-fade {
                 opacity: 1;
                 z-index: 9999;
                 transition: opacity var(--rmp--menu-container-animation-transition-delay, 1s) ease-in-out;
             }
         }
+
         .wp-block-image.aligncenter {
             margin-left: auto;
             margin-right: auto;
         }
+
         .wp-block-rmp-menu-items {
             list-style: none;
             transition: none;
@@ -243,10 +287,13 @@
             width: auto;
             word-wrap: break-word;
             white-space: normal;
-            .wp-block-navigation-item{
+
+            .wp-block-navigation-item {
                 cursor: pointer;
                 display: flex;
                 flex-wrap: wrap;
+                align-items: center;
+                position: relative;
                 min-height: var(--rmp--menu-item-height, auto);
                 line-height: var(--rmp--menu-item-line-height, 40px);
                 padding: var(--rmp--menu-item-padding, 5px);
@@ -259,130 +306,172 @@
                 text-decoration: none;
                 color: var(--rmp--menu-item-color, #ffffff);
                 background: var(--rmp--menu-item-background, transparent);
-                @if "undefined" != var(--rmp--menu-item-border-top){
+
+                @if "undefined" !=var(--rmp--menu-item-border-top) {
                     border-top: var(--rmp--menu-item-border-top);
                     border-right: var(--rmp--menu-item-border-right);
                     border-bottom: var(--rmp--menu-item-border-bottom);
                     border-left: var(--rmp--menu-item-border-left);
                 }
-                &:hover{
+
+                &:hover {
                     color: var(--rmp--menu-item-hover-color, #ffffff);
                     background: var(--rmp--menu-item-hover-background, transparent);
-                    @if "undefined" != var(--rmp--menu-item-hover-border-top){
+
+                    @if "undefined" !=var(--rmp--menu-item-hover-border-top) {
                         border-top: var(--rmp--menu-item-hover-border-top);
                         border-right: var(--rmp--menu-item-hover-border-right);
                         border-bottom: var(--rmp--menu-item-hover-border-bottom);
                         border-left: var(--rmp--menu-item-hover-border-left);
                     }
-                    a{
+
+                    a {
                         color: var(--rmp--menu-item-hover-color, #ffffff);
                     }
                 }
-                a{
+
+                a {
                     color: var(--rmp--menu-item-color, #ffffff);
                     display: block;
-                    width: 100%;
+                    flex: 1 1 auto;
+                    min-width: 0;
                     text-decoration: none;
+                    padding-right: var(--rmp--menu-subitem-trigger-icon-width, 45px);
                 }
-                &.current-menu-item{
+
+                &.current-menu-item {
                     color: var(--rmp--menu-item-active-color, #ffffff);
                     background: var(--rmp--menu-item-active-background, transparent);
-                    @if "undefined" != var(--rmp--menu-item-active-border-top){
+
+                    @if "undefined" !=var(--rmp--menu-item-active-border-top) {
                         border-top: var(--rmp--menu-item-active-border-top);
                         border-right: var(--rmp--menu-item-active-border-right);
                         border-bottom: var(--rmp--menu-item-active-border-bottom);
                         border-left: var(--rmp--menu-item-active-border-left);
                     }
-                    a{
+
+                    a {
                         color: var(--rmp--menu-item-active-color, #ffffff);
                     }
-                    &:hover{
+
+                    &:hover {
                         color: var(--rmp--menu-item-active-hover-color, #ffffff);
                         background: var(--rmp--menu-item-active-hover-background, transparent);
-                        @if var(--rmp--menu-item-active-hover-border-top){
+
+                        @if var(--rmp--menu-item-active-hover-border-top) {
                             border-top: var(--rmp--menu-item-active-hover-border-top);
                             border-right: var(--rmp--menu-item-active-hover-border-right);
                             border-bottom: var(--rmp--menu-item-active-hover-border-bottom);
                             border-left: var(--rmp--menu-item-active-hover-border-left);
                         }
-                        a{
+
+                        a {
                             color: var(--rmp--menu-item-active-hover-color, #ffffff);
                         }
                     }
                 }
-                .rmp-block-submenu-level-1 > li a{
-                    margin-left: var( --rmp--menu-subitem-indentation-child1 );
+
+                .rmp-block-submenu-level-1>li a {
+                    margin-left: var(--rmp--menu-subitem-indentation-child1);
                 }
-                .rmp-block-submenu-level-2 > li a{
-                    margin-left: var( --rmp--menu-subitem-indentation-child2 );
+
+                .rmp-block-submenu-level-2>li a {
+                    margin-left: var(--rmp--menu-subitem-indentation-child2);
                 }
-                .rmp-block-submenu-level-3 > li a{
-                    margin-left: var( --rmp--menu-subitem-indentation-child3 );
+
+                .rmp-block-submenu-level-3>li a {
+                    margin-left: var(--rmp--menu-subitem-indentation-child3);
                 }
-                .rmp-block-submenu-level-4 > li a{
-                    margin-left: var( --rmp--menu-subitem-indentation-child4 );
+
+                .rmp-block-submenu-level-4>li a {
+                    margin-left: var(--rmp--menu-subitem-indentation-child4);
                 }
             }
+
             .rmp-block-menu-subarrow {
                 position: absolute;
                 top: 0;
                 bottom: 0;
+                right: 0;
                 text-align: center;
                 overflow: hidden;
                 background-size: cover;
-                overflow: hidden;
-                right: 0;
-                height: var( --rmp--menu-subitem-trigger-icon-height, auto);;
-                width:  var( --rmp--menu-subitem-trigger-icon-width, auto);
-                color:  var( --rmp--menu-subitem-trigger-icon-color, 'inherit');
-                svg{
-                    fill: var( --rmp--menu-subitem-trigger-icon-color, 'inherit');
-                }
-                background-color: var( --rmp--menu-subitem-trigger-icon-background, 'inherit');
-                @if "undefined" != var(--rmp--menu-subitem-trigger-border-top){
+                height: var(--rmp--menu-subitem-trigger-icon-height, 100%);
+                width: var(--rmp--menu-subitem-trigger-icon-width, 45px);
+                color: var(--rmp--menu-subitem-trigger-icon-color, inherit);
+                background-color: var(--rmp--menu-subitem-trigger-icon-background, transparent);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                /* Reset button styles */
+                border: none;
+                padding: 0;
+                margin: 0;
+                font: inherit;
+                z-index: 1;
+
+                @if "undefined" !=var(--rmp--menu-subitem-trigger-border-top) {
                     border-top: var(--rmp--menu-subitem-trigger-border-top);
                     border-right: var(--rmp--menu-subitem-trigger-border-right);
                     border-bottom: var(--rmp--menu-subitem-trigger-border-bottom);
                     border-left: var(--rmp--menu-subitem-trigger-border-left);
                 }
-                img{
+
+                img {
                     max-width: 100%;
                 }
             }
-            &:hover{
-                svg{
-                    fill: var( --rmp--menu-subitem-trigger-icon-hover-color, 'inherit');
+
+            &:hover {
+                svg {
+                    fill: var(--rmp--menu-subitem-trigger-icon-hover-color, 'inherit');
                 }
-                color:  var( --rmp--menu-subitem-trigger-icon-hover-color, 'inherit');
-                background-color: var( --rmp--menu-subitem-trigger-icon-hover-background, 'inherit');
-                @if "undefined" != var(--rmp--menu-subitem-trigger-hover-border-top){
+
+                .block-editor-button-block-appender {
+                    svg {
+                        fill: #000;
+                    }
+                }
+
+                color: var(--rmp--menu-subitem-trigger-icon-hover-color, 'inherit');
+                background-color: var(--rmp--menu-subitem-trigger-icon-hover-background, 'inherit');
+
+                @if "undefined" !=var(--rmp--menu-subitem-trigger-hover-border-top) {
                     border-top: var(--rmp--menu-subitem-trigger-hover-border-top);
                     border-right: var(--rmp--menu-subitem-trigger-hover-border-right);
                     border-bottom: var(--rmp--menu-subitem-trigger-hover-border-bottom);
                     border-left: var(--rmp--menu-subitem-trigger-hover-border-left);
                 }
             }
+
             .rmp-block-active-submenu {
                 >.wp-block-navigation__submenu-container {
-                    display: block;
+                    display: flex;
+                    flex-direction: column;
                     opacity: 1;
                     overflow: visible;
                     visibility: visible;
-                    display: inline-flex;
                     flex: 1 0 0%;
                     position: static;
                     height: auto;
+                    width: 100% !important;
                 }
             }
+
             .wp-block-navigation__submenu-container {
                 width: 100% !important;
                 display: none;
                 border: none;
                 padding: 0;
-                .wp-block-navigation-item{
+
+                .wp-block-navigation-item {
                     cursor: pointer;
                     width: 100% !important;
                     box-sizing: border-box;
+                    display: flex;
+                    align-items: center;
+                    position: relative;
                     line-height: var(--rmp--menu-subitem-line-height, auto);
                     padding: var(--rmp--menu-subitem-padding, 5px);
                     font-size: var(--rmp--menu-subitem-font-size, 15px);
@@ -394,80 +483,298 @@
                     text-decoration: none;
                     color: var(--rmp--menu-subitem-color, #ffffff);
                     background: var(--rmp--menu-subitem-background, transparent);
-                    @if "undefined" != var(--rmp--menu-subitem-border-top){
+
+                    @if "undefined" !=var(--rmp--menu-subitem-border-top) {
                         border-top: var(--rmp--menu-subitem-border-top);
                         border-right: var(--rmp--menu-subitem-border-right);
                         border-bottom: var(--rmp--menu-subitem-border-bottom);
                         border-left: var(--rmp--menu-subitem-border-left);
                     }
-                    &:hover{
+
+                    &:hover {
                         color: var(--rmp--menu-subitem-hover-color, #ffffff);
                         background: var(--rmp--menu-subitem-hover-background, transparent);
-                        @if "undefined" != var(--rmp--menu-subitem-hover-border-top){
+
+                        @if "undefined" !=var(--rmp--menu-subitem-hover-border-top) {
                             border-top: var(--rmp--menu-subitem-hover-border-top);
                             border-right: var(--rmp--menu-subitem-hover-border-right);
                             border-bottom: var(--rmp--menu-subitem-hover-border-bottom);
                             border-left: var(--rmp--menu-subitem-hover-border-left);
                         }
-                        a{
+
+                        a {
                             color: var(--rmp--menu-subitem-hover-color, #ffffff);
                         }
                     }
-                    a{
+
+                    a {
                         color: var(--rmp--menu-subitem-color, #ffffff);
                         display: block;
+                        flex: 1 1 auto;
+                        min-width: 0;
+                        text-decoration: none;
+                        padding-right: var(--rmp--menu-subitem-trigger-icon-width, 45px);
                     }
-                    &.current-menu-item{
+
+                    &.current-menu-item {
                         color: var(--rmp--menu-subitem-active-color, #ffffff);
                         background: var(--rmp--menu-subitem-active-background, transparent);
-                        @if "undefined" != var(--rmp--menu-subitem-active-border-top){
+
+                        @if "undefined" !=var(--rmp--menu-subitem-active-border-top) {
                             border-top: var(--rmp--menu-subitem-active-border-top);
                             border-right: var(--rmp--menu-subitem-active-border-right);
                             border-bottom: var(--rmp--menu-subitem-active-border-bottom);
                             border-left: var(--rmp--menu-subitem-active-border-left);
                         }
-                        a{
+
+                        a {
                             color: var(--rmp--menu-subitem-active-color, #ffffff);
                         }
-                        &:hover{
+
+                        &:hover {
                             color: var(--rmp--menu-subitem-active-hover-color, #ffffff);
                             background: var(--rmp--menu-subitem-active-hover-background, transparent);
-                            @if var(--rmp--menu-subitem-active-hover-border-top){
+
+                            @if var(--rmp--menu-subitem-active-hover-border-top) {
                                 border-top: var(--rmp--menu-subitem-active-hover-border-top);
                                 border-right: var(--rmp--menu-subitem-active-hover-border-right);
                                 border-bottom: var(--rmp--menu-subitem-active-hover-border-bottom);
                                 border-left: var(--rmp--menu-subitem-active-hover-border-left);
                             }
-                            a{
+
+                            a {
                                 color: var(--rmp--menu-subitem-active-hover-color, #ffffff);
                             }
                         }
+
                         .rmp-block-menu-subarrow {
-                            svg{
-                                fill: var( --rmp--menu-subitem-trigger-icon-active-color, 'inherit');
+                            svg {
+                                fill: var(--rmp--menu-subitem-trigger-icon-active-color, 'inherit');
                             }
-                            color:  var( --rmp--menu-subitem-trigger-icon-active-color, 'inherit');
-                            background-color: var( --rmp--menu-subitem-trigger-icon-active-background, 'inherit');
-                            @if "undefined" != var(--rmp--menu-subitem-trigger-active-border-top){
+
+                            color: var(--rmp--menu-subitem-trigger-icon-active-color, 'inherit');
+                            background-color: var(--rmp--menu-subitem-trigger-icon-active-background, 'inherit');
+
+                            @if "undefined" !=var(--rmp--menu-subitem-trigger-active-border-top) {
                                 border-top: var(--rmp--menu-subitem-trigger-active-border-top);
                                 border-right: var(--rmp--menu-subitem-trigger-active-border-right);
                                 border-bottom: var(--rmp--menu-subitem-trigger-active-border-bottom);
                                 border-left: var(--rmp--menu-subitem-trigger-active-border-left);
                             }
                         }
-                        &:hover{
-                            svg{
-                                fill: var( --rmp--menu-subitem-trigger-icon-active-hover-color, 'inherit');
+
+                        &:hover {
+                            svg {
+                                fill: var(--rmp--menu-subitem-trigger-icon-active-hover-color, 'inherit');
                             }
-                            color:  var( --rmp--menu-subitem-trigger-icon-active-hover-color, 'inherit');
-                            background-color: var( --rmp--menu-subitem-trigger-icon-active-hover-background, 'inherit');
-                            @if "undefined" != var(--rmp--menu-subitem-trigger-active-hover-border-top){
+
+                            color: var(--rmp--menu-subitem-trigger-icon-active-hover-color, 'inherit');
+                            background-color: var(--rmp--menu-subitem-trigger-icon-active-hover-background, 'inherit');
+
+                            @if "undefined" !=var(--rmp--menu-subitem-trigger-active-hover-border-top) {
                                 border-top: var(--rmp--menu-subitem-trigger-active-hover-border-top);
                                 border-right: var(--rmp--menu-subitem-trigger-active-hover-border-right);
                                 border-bottom: var(--rmp--menu-subitem-trigger-active-hover-border-bottom);
                                 border-left: var(--rmp--menu-subitem-trigger-active-hover-border-left);
                             }
                         }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// ─── Desktop Mode ────────────────────────────────────────────────────────────
+// Applied via JS when viewport width >= user's configured breakpoint.
+.rmp-desktop-mode {
+    // Hide the hamburger trigger
+    .rmp-block-menu-trigger {
+        display: none !important;
+    }
+
+    // Menu container: switch from fixed overlay to inline static bar
+    .rmp-block-container {
+        position: static !important;
+        height: auto !important;
+        width: auto !important;
+        max-width: none !important;
+        min-width: 0 !important;
+        overflow: visible !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        z-index: auto !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+        display: flex !important;
+        align-items: center !important;
+        background: transparent !important;
+        padding: 0 !important;
+        transition: none !important;
+
+        // ── Horizontal menu list ──────────────────────────────────────────
+        .wp-block-rmp-menu-items {
+            display: flex !important;
+            flex-direction: row !important;
+            flex-wrap: nowrap !important;
+            align-items: stretch !important;
+            list-style: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            gap: 0;
+
+            // ── Top-level items: sit side-by-side ─────────────────────────
+            > .wp-block-navigation-item {
+                flex: 0 0 auto !important;
+                position: relative !important;
+                min-height: auto !important;
+                display: flex !important;
+                flex-wrap: nowrap !important;
+                align-items: center !important;
+                color: var(--rmp--desktop-menu-color, var(--rmp--menu-item-color, #ffffff)) !important;
+                background: var(--rmp--desktop-menu-background, var(--rmp--menu-item-background, transparent)) !important;
+
+                &:hover {
+                    color: var(--rmp--desktop-menu-hover-color, var(--rmp--menu-item-hover-color, #ffffff)) !important;
+                    background: var(--rmp--desktop-menu-hover-background, var(--rmp--menu-item-hover-background, transparent)) !important;
+                    > a, > .rmp-block-menu-subarrow {
+                        color: var(--rmp--desktop-menu-hover-color, var(--rmp--menu-item-hover-color, #ffffff)) !important;
+                    }
+                }
+                &.current-menu-item {
+                    color: var(--rmp--desktop-menu-active-color, var(--rmp--menu-item-active-color, #ffffff)) !important;
+                    background: var(--rmp--desktop-menu-active-background, var(--rmp--menu-item-active-background, transparent)) !important;
+                    > a, > .rmp-block-menu-subarrow {
+                        color: var(--rmp--desktop-menu-active-color, var(--rmp--menu-item-active-color, #ffffff)) !important;
+                    }
+                }
+
+                // Top-level anchor
+                > a {
+                    padding: 8px 12px !important;
+                    white-space: nowrap !important;
+                    flex: 1 1 auto !important;
+                    min-width: 0 !important;
+                    padding-right: 4px !important;
+                    color: inherit !important;
+                    text-decoration: none !important;
+                }
+
+                // Top-level subarrow
+                > .rmp-block-menu-subarrow {
+                    position: static !important;
+                    height: auto !important;
+                    width: auto !important;
+                    padding: 0 8px !important;
+                    background: transparent !important;
+                    border: none !important;
+                    color: inherit !important;
+                    display: flex !important;
+                    align-items: center !important;
+                    cursor: pointer !important;
+                    flex: 0 0 auto !important;
+                }
+
+                // ── First-level dropdown panel (drops below) ─────────────
+                > .wp-block-navigation__submenu-container {
+                    display: none;
+                    position: absolute !important;
+                    top: 100% !important;
+                    left: var(--rmp--desktop-submenu-alignment, 0) !important;
+                    right: var(--rmp--desktop-submenu-right, auto) !important;
+                    min-width: 200px !important;
+                    z-index: 9999 !important;
+                    // No background on the container — items carry their own
+                    background: transparent !important;
+                    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18) !important;
+                    padding: 0 !important;
+                    border-radius: 4px !important;
+                    width: auto !important;
+                    flex-direction: column !important;
+                    overflow: hidden !important; // clip item backgrounds to border-radius
+                }
+
+                // Show first-level dropdown
+                &.rmp-block-active-submenu > .wp-block-navigation__submenu-container {
+                    display: flex !important;
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    height: auto !important;
+                }
+            }
+
+            // ── Universal rules for ALL items inside ANY dropdown ─────────
+            .wp-block-navigation__submenu-container {
+                .wp-block-navigation-item {
+                    width: 100% !important;
+                    position: relative !important;
+                    display: flex !important;
+                    flex-wrap: nowrap !important;
+                    align-items: center !important;
+                    // Background on each item, not the container
+                    color: var(--rmp--desktop-submenu-color, var(--rmp--menu-subitem-color, #ffffff)) !important;
+                    background: var(--rmp--desktop-submenu-background, var(--rmp--menu-container-background-color, #1d4354)) !important;
+
+                    &:hover {
+                        color: var(--rmp--desktop-submenu-hover-color, var(--rmp--menu-subitem-hover-color, #ffffff)) !important;
+                        background: var(--rmp--desktop-submenu-hover-background, var(--rmp--menu-subitem-hover-background, transparent)) !important;
+                        > a, > .rmp-block-menu-subarrow {
+                            color: var(--rmp--desktop-submenu-hover-color, var(--rmp--menu-subitem-hover-color, #ffffff)) !important;
+                        }
+                    }
+
+                    // Anchors inside dropdowns
+                    > a {
+                        padding: 8px 16px !important;
+                        display: block !important;
+                        flex: 1 1 auto !important;
+                        min-width: 0 !important;
+                        color: inherit !important;
+                        text-decoration: none !important;
+                        white-space: nowrap !important;
+                    }
+
+                    // Subarrow inside dropdowns — inline beside anchor
+                    > .rmp-block-menu-subarrow {
+                        position: static !important;
+                        height: auto !important;
+                        width: auto !important;
+                        padding: 4px 10px !important;
+                        background: transparent !important;
+                        border: none !important;
+                        color: inherit !important;
+                        display: flex !important;
+                        align-items: center !important;
+                        cursor: pointer !important;
+                        flex: 0 0 auto !important;
+                    }
+
+                    // Nested dropdown panels (level 2+): fly right
+                    > .wp-block-navigation__submenu-container {
+                        display: none;
+                        position: absolute !important;
+                        top: 0 !important;
+                        left: 100% !important;
+                        min-width: 200px !important;
+                        z-index: 10000 !important;
+                        // No background on container — items carry their own
+                        background: transparent !important;
+                        box-shadow: 4px 8px 24px rgba(0, 0, 0, 0.18) !important;
+                        padding: 0 !important;
+                        border-radius: 4px !important;
+                        width: auto !important;
+                        flex-direction: column !important;
+                        overflow: hidden !important;
+                    }
+
+                    // Show nested dropdown when active
+                    &.rmp-block-active-submenu > .wp-block-navigation__submenu-container {
+                        display: flex !important;
+                        opacity: 1 !important;
+                        visibility: visible !important;
+                        height: auto !important;
                     }
                 }
             }

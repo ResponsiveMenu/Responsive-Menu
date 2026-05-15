@@ -76,7 +76,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		if (!id) {
 			setAttributes({ id: clientId });
 		}
-	});
+	}, []);
 	const menuRef = useRef();
     const rmpToggleMenu = () => {
         setAttributes({ activeMenu: !activeMenu });
