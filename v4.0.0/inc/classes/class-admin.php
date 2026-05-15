@@ -580,6 +580,14 @@ class Admin {
 		$file_contents  = isset( $_FILES['file']['tmp_name'] ) ? $wp_filesystem->get_contents( wp_unslash( $_FILES['file']['tmp_name'] ) ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$import_options = json_decode( $file_contents, true );
 
+		if ( ! is_array( $import_options ) ) {
+			wp_send_json_error( array( 'message' => __( 'Invalid import file format!', 'responsive-menu' ) ) );
+		}
+
+		// Sanitize all imported options — treat imported JSON as untrusted input.
+		// Use the same sanitization as the normal save path (rm_sanitize_rec_array with HTML allowed).
+		$import_options = rm_sanitize_rec_array( $import_options, true );
+
 		$option_manager = Option_Manager::get_instance();
 		$exist_option   = $option_manager->get_options( $menu_id );
 
