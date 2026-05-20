@@ -316,8 +316,10 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 
 			if ( ! empty( $this->options['menu_additional_content'] ) ) {
 
-				// Remove script tags if found in menu contents.
-				$content = preg_replace( '#<script(.*?)>(.*?)</script>#', '', $this->options['menu_additional_content'] );
+				// Sanitize HTML content using wp_kses with a strict allowlist.
+				// This replaces the previous script-tag-only regex strip, which was
+				// bypassable via event-handler attributes (e.g. onerror, onload).
+				$content = rm_sanitize_html_tags( $this->options['menu_additional_content'] );
 			}
 			?>
 			<div id="rmp-menu-additional-content-<?php echo esc_attr( $this->menu_id ); ?>" class="rmp-menu-additional-content">
