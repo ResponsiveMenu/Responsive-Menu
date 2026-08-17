@@ -3,7 +3,7 @@ Contributors: expresstech, responsivemenu, imvarunkmr, moha12351, infosatech
 Tags: responsive, mega menu, navigation, mobile, hamburger
 Requires at least: 3.6
 Tested up to: 7.0
-Stable tag: 4.7.2
+Stable tag: 4.7.3
 Requires PHP: 7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -115,6 +115,11 @@ To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.
 7. Main menu
 
 == Changelog ==
+= 4.7.3 (17th August 2026) =
+* Security: Prevented menu theme ZIPs from placing executable files in public uploads
+* Enhancement: Added pre-extraction validation and plugin-level permissions for theme uploads
+* Enhancement: Resolved PHP 8+ deprecation warnings and theme upload rejection messages
+
 = 4.7.2 (20th May 2026) =
 * Patch: Resolved a cross-site scripting (XSS) vulnerability in additional content HTML
 
