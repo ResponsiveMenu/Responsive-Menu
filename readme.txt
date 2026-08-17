@@ -1,6 +1,6 @@
 === Responsive Menu - Create Mobile-Friendly Menu ===
-Contributors: expresstech, responsivemenu, imvarunkmr, moha12351, infosatech
-Tags: responsive, mega menu, navigation, mobile, hamburger
+Contributors: expresstech, responsivemenu, moha12351, infosatech
+Tags: mobile menu, hamburger, responsive, navigation, mega menu
 Requires at least: 3.6
 Tested up to: 7.0
 Stable tag: 4.7.3
@@ -8,25 +8,34 @@ Requires PHP: 7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Highly customisable Responsive Menu plugin with 150+ options. No coding knowledge needed to design it exactly as you want.
+Mobile menu & hamburger menu builder for WordPress. Create a responsive, customisable menu with 150+ options — no coding needed.
 
 == Description ==
 
-Highly customisable Responsive Menu Plugin for WordPress. With over 150 customisable options you get a combination of 22,500 options! No coding experience or knowledge is needed with an easy to use interface you can get it looking exactly as you want with minimal fuss.
+**Responsive Menu is a free WordPress mobile menu & hamburger menu plugin** — trusted by **70,000+ websites** and rated **4.5★ from 570+ reviews**. Turn any WordPress menu into a fast, fully responsive mobile menu with a hamburger toggle, an off-canvas slide-in panel, and 150+ customisation options — no coding needed.
+
+Whether you want a simple hamburger menu on mobile, a slide-out off-canvas navigation, or a fully styled responsive menu across every device, Responsive Menu lets you design it exactly how you want from one easy interface — no CSS required.
 
 **See it in action:**
 
 [https://responsive.menu](https://responsive.menu/?utm_source=readme&utm_medium=plugin&utm_campaign=reponsivemenu_plugin)
 [https://demo.responsive.menu](https://demo.responsive.menu/?utm_source=readme&utm_medium=plugin&utm_campaign=reponsivemenu_plugin)
 
-**Requirements:**
+= Why choose Responsive Menu =
 
-PHP 5.5+
+* **A mobile menu done right** — a clean hamburger menu and off-canvas navigation that look great on every phone, tablet, and desktop.
+* **150+ options, zero code** — colours, fonts, animations, position, and breakpoints; design it pixel-perfect without touching CSS.
+* **Works with your existing menu** — point it at any WordPress menu; no rebuild required.
+* **Animations & custom triggers** — slide, push, or fade; open from any side; add your own buttons and triggers.
+* **Search, logos & sub-menus** — integrated search, logo upload, and multi-level sub-menu depth.
+* **Translation & RTL ready** — WPML / Polylang and full right-to-left support.
 
-**Full Knowledgebase and dedicated support forum:**
+= Popular ways to use Responsive Menu =
 
-[https://responsive.menu/knowledgebase/](https://responsive.menu/knowledgebase/?utm_source=readme&utm_medium=plugin&utm_campaign=reponsivemenu_plugin)
-[https://responsive.menu/support/](https://responsive.menu/support/?utm_source=readme&utm_medium=plugin&utm_campaign=reponsivemenu_plugin)
+* **Mobile hamburger menu** — add a tap-friendly hamburger menu to any theme.
+* **Off-canvas side menu** — slide navigation in from the left, right, top, or bottom.
+* **Responsive menu for any theme** — replace a theme menu that isn't mobile-friendly.
+* **Sticky mobile header** — keep the menu button fixed as visitors scroll.
 
 **Fully unit tested:**
 
@@ -70,7 +79,7 @@ PHP 5.5+
 
 For more reasons to go Pro, please visit [this page](https://responsive.menu#why-go-pro) or check our [roadmap](https://next.expresstech.io/responsive-menu)
 
-[youtube https://www.youtube.com/watch?v=aj6ba0tGKPg]
+[youtube https://www.youtube.com/watch?v=t3jLRvtRiDE&t]
 
 🌐Our themes and plugins
 
@@ -84,7 +93,7 @@ If you like this plugin, consider exploring our other themes and plugins:
 
 📅 [Booking Ultra](https://wordpress.org/plugins/booking-ultra-pro/) - Appointment Booking plugin for WordPress - Show a quick form to accept bookings for your services with pre-set booking slots. Ideal for salons, medical professionals, lawyers, consultants, etc.
 
-⚡ [InstaWP](https://instawp.io/) - Launch a quick WordPress site with this sandbox service. Create New WordPress instance within a second.
+⚡ [InstaWP](https://instawp.com/) - Launch a quick WordPress site with this sandbox service. Create New WordPress instance within a second.
 
 == Installation ==
 
@@ -102,17 +111,33 @@ Alternatively:
 
 == Frequently Asked Questions ==
 
-To view our FAQ, please go to [https://responsive.menu/faq/](https://responsive.menu/faq/?utm_source=readme&utm_medium=plugin&utm_campaign=reponsivemenu_plugin).
+= Is Responsive Menu free? =
+Yes. The core mobile menu and hamburger menu plugin is 100% free. Advanced styling and features are available in Responsive Menu Pro.
+
+= Does it create a mobile hamburger menu? =
+Yes. Responsive Menu turns any WordPress menu into a responsive hamburger menu with an off-canvas slide-in panel, shown below whatever screen size you choose.
+
+= Will it work with my theme's existing menu? =
+Yes. Point Responsive Menu at any WordPress menu — there's no need to rebuild your navigation.
+
+= Can I choose which side the menu slides in from? =
+Yes. Open the off-canvas menu from the left, right, top, or bottom, with your choice of slide or push animation.
+
+= Does it support translations and RTL? =
+Yes. WPML and Polylang are supported, along with full right-to-left (RTL) layouts.
+
+= Where can I get support? =
+Free support is on the [WordPress.org support forum](https://wordpress.org/support/plugin/responsive-menu/). See our full FAQ and knowledge base at [responsive.menu/faq](https://responsive.menu/faq/?utm_source=readme&utm_medium=plugin&utm_campaign=reponsivemenu_plugin).
 
 == Screenshots ==
 
-1. Dashboard
-2. Select theme
-3. Menu setting
-4. Mobile view setting
-5. Desktop view setting
-6. Toggle button
-7. Main menu
+1. Responsive Menu dashboard — build your mobile menu in one place
+2. Start from a ready-made menu theme
+3. Menu settings — colours, fonts, animations, and 150+ options
+4. Mobile view — preview your hamburger menu on phones and tablets
+5. Desktop view — control when and how the menu appears on larger screens
+6. Customise the hamburger toggle button
+7. Your responsive menu live on the front end
 
 == Changelog ==
 = 4.7.3 (17th August 2026) =
