@@ -150,6 +150,9 @@ function responsive_menu_plugin_activation() {
 		set_transient( 'og-admin-notice-activation-pro', true, 5 );
 	}
 
+	// Keep the plugin's uploads directory from serving anything executable.
+	\RMP\Features\Inc\Theme_Manager::get_instance()->protect_upload_dir();
+
 	flush_rewrite_rules();
 }
 
