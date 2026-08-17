@@ -372,13 +372,46 @@ jQuery( document ).ready( function( jQuery ) {
 	 *
 	 * @version 4.0.0
 	 */
+	const rmpThemeUploadFailed = 'The theme could not be uploaded.';
+
 	jQuery( '#rmp-menu-library-import-form' ).dropzone( {
 		clickable: true,
 		acceptedFiles: '.zip',
 		uploadMultiple: false,
+
+		/**
+		 * A refused upload still answers HTTP 200, carrying success: false,
+		 * so Dropzone treats it as a completed request. The payload decides
+		 * the outcome here, not the status code — otherwise the page just
+		 * reloads and the reason is never shown.
+		 */
 		success: function ( file, response ) {
+			if ( response && false === response.success ) {
+				this.removeFile( file );
+				jQuery( '.rmp-page-loader' ).hide();
+				alert( ( response.data && response.data.message ) ? response.data.message : rmpThemeUploadFailed );
+				return;
+			}
+
 			location.reload();
 		},
+
+		/**
+		 * Fires when the request itself fails, or when Dropzone rejects the
+		 * file before sending it.
+		 */
+		error: function ( file, errorMessage ) {
+			let message = errorMessage;
+
+			if ( errorMessage && 'object' === typeof errorMessage ) {
+				message = ( errorMessage.data && errorMessage.data.message ) ? errorMessage.data.message : '';
+			}
+
+			this.removeFile( file );
+			jQuery( '.rmp-page-loader' ).hide();
+			alert( message ? message : rmpThemeUploadFailed );
+		},
+
 		totaluploadprogress: function() {
 			jQuery('.rmp-page-loader').css( 'display','flex' );
 		}
