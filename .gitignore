@@ -1,4 +1,6 @@
 .DS_Store
 .vscode
 phpcs.xml
-/blocks
+# The block source and its build output ship with the plugin; only the
+# dependency tree is local.
+/blocks/node_modules

@@ -1,33 +1,45 @@
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 import { addFilter } from '@wordpress/hooks';
+
+import { MENU_ITEMS_ATTRIBUTES } from './attributes';
+import { MENU_ITEM_BLOCKS } from './constants';
 import Edit from './edit';
 import Save from './save';
+import deprecated from './deprecated';
 
+/**
+ * Let the core navigation blocks be inserted into our list.
+ *
+ * `parent` is a RESTRICTION, not a permission: a block that declares one can be
+ * inserted ONLY inside those parents. So this may only ever extend a list that
+ * already exists — giving `parent` to a block that had none (core/social-links,
+ * core/loginout, core/page-list) would remove it from the inserter everywhere
+ * else on the site the moment the plugin is activated.
+ *
+ * Unrestricted blocks need nothing here: the container's own `allowedBlocks`
+ * is what admits them to the list.
+ *
+ * @param {Object} settings Block settings.
+ * @param {string} name     Block name.
+ * @return {Object} Filtered settings.
+ */
 const allowInMenuItems = (settings, name) => {
-	const allowedBlocks = [
-		'core/navigation-link',
-		'core/navigation-submenu',
-		'core/button',
-		'core/home-link',
-		'core/social-links',
-		'core/loginout',
-	];
-
-	if (allowedBlocks.includes(name)) {
-		let newParent = ['rmp/menu-items'];
-		if (settings.parent) {
-			newParent = settings.parent.includes('rmp/menu-items')
-				? settings.parent
-				: [...settings.parent, 'rmp/menu-items'];
-		}
-		return {
-			...settings,
-			parent: newParent,
-		};
+	if (!MENU_ITEM_BLOCKS.includes(name)) {
+		return settings;
 	}
 
-	return settings;
+	const parent = settings.parent;
+
+	if (!Array.isArray(parent) || 0 === parent.length) {
+		return settings;
+	}
+
+	if (parent.includes('rmp/menu-items')) {
+		return settings;
+	}
+
+	return { ...settings, parent: [...parent, 'rmp/menu-items'] };
 };
 
 addFilter(
@@ -38,147 +50,34 @@ addFilter(
 
 registerBlockType('rmp/menu-items', {
 	apiVersion: 3,
-	title: __('Menu items', 'responeive-menu'),
-	description: __('Menu items', 'responeive-menu'),
+	title: __('Menu items', 'responsive-menu'),
+	description: __(
+		'The list of links inside a Responsive Menu.',
+		'responsive-menu'
+	),
 	icon: 'editor-ul',
 	parent: ['rmp/menu'],
+	usesContext: [
+		'rmp/breakpoint',
+		'rmp/tabletBreakpoint',
+		'rmp/mobileBreakpoint',
+	],
 	supports: {
 		html: false,
+		customClassName: true,
+		reusable: false,
+		// Kept from the first version: removing a support drops the attributes
+		// it owns, which would strip these styles from every existing menu.
 		background: {
 			backgroundImage: true,
 			backgroundSize: true,
 		},
-		customClassName: true,
 		spacing: {
 			padding: true,
 		},
 	},
-	attributes: {
-		id: {
-			type: 'string',
-		},
-		menuStyle: {
-			type: 'object',
-			default: {
-				itemHeight: 40,
-				lineHeight: 40,
-				padding: {
-					top: '5px',
-					right: '5px',
-					bottom: '5px',
-					left: '5px',
-				},
-				fontSize: '15px',
-				fontWieght: 300,
-				fontFamily: '',
-				textAlign: 'left',
-				letterSpacing: '',
-				letterCase: '',
-				wordWrap: '',
-				color: '#ffffff',
-				hoverColor: '#ffffff',
-				activeColor: '#ffffff',
-				activeHoverColor: '#ffffff',
-				background: '',
-				backgroundHover: '',
-				backgroundActive: '#6fda44',
-				backgroundActiveHover: '',
-				border: {},
-				borderHover: {},
-				borderActive: {},
-				borderActiveHover: {},
-			},
-		},
-		submenuStyle: {
-			type: 'object',
-			default: {
-				lineHeight: 40,
-				padding: {
-					top: '5px',
-					right: '5px',
-					bottom: '5px',
-					left: '5px',
-				},
-				fontSize: '15px',
-				fontWieght: 300,
-				fontFamily: '',
-				textAlign: 'left',
-				letterSpacing: '',
-				color: '#ffffff',
-				hoverColor: '#ffffff',
-				activeColor: '#ffffff',
-				activeHoverColor: '#ffffff',
-				backgroundColor: '#6fda44',
-				backgroundHoverColor: '#6fda44',
-				backgroundActiveColor: '#6fda44',
-				backgroundActiveHoverColor: '#6fda44',
-				border: {},
-				borderHover: {},
-				borderActive: {},
-				borderActiveHover: {},
-			},
-		},
-		submenuBehaviour: {
-			type: 'object',
-			default: {
-				useAccordion: '',
-				autoExpandAllSubmenu: '',
-				autoExpandCurrentSubmenu: '',
-				expandSubItemOnParentClick: '',
-			},
-		},
-		submenuIndentation: {
-			type: 'object',
-			default: {
-				side: 'left',
-				childLevel1: 5,
-				childLevel2: 5,
-				childLevel3: 5,
-				childLevel4: 5,
-			},
-		},
-		triggerIcon: {
-			type: 'object',
-			default: {
-				type: 'text',
-				textShape: '▼',
-				activeTextShape: '▲',
-				width: 45,
-				height: 45,
-				color: '#ffffff',
-				hoverColor: '#ffffff',
-				activeColor: '#ffffff',
-				activeHoverColor: '#ffffff',
-				backgroundColor: '',
-				backgroundHoverColor: '',
-				backgroundActiveColor: '',
-				backgroundActiveHoverColor: '',
-				border: {},
-				borderHover: {},
-				borderActive: {},
-				borderActiveHover: {},
-			},
-		},
-		blockStyles: {
-			type: 'object',
-		},
-		desktopMenuStyle: {
-			type: 'object',
-			default: {
-				color: '',
-				hoverColor: '',
-				activeColor: '',
-				background: '',
-				backgroundHover: '',
-				backgroundActive: '',
-				submenuColor: '',
-				submenuHoverColor: '',
-				submenuBackground: '',
-				submenuBackgroundHover: '',
-				dropdownAlign: 'left',
-			},
-		},
-	},
+	attributes: MENU_ITEMS_ATTRIBUTES,
 	edit: Edit,
 	save: Save,
+	deprecated,
 });

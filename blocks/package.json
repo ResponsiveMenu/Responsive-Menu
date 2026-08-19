@@ -12,7 +12,9 @@
 		"lint:js": "wp-scripts lint-js",
 		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts plugin-zip",
-		"start": "wp-scripts start"
+		"start": "wp-scripts start",
+		"test:unit": "wp-scripts test-unit-js",
+		"test": "wp-scripts test-unit-js"
 	},
 	"prettier": "@wordpress/prettier-config",
 	"stylelint": {
