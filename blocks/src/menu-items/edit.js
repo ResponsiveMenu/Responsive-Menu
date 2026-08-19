@@ -1,1330 +1,951 @@
+/**
+ * Editor UI for the menu list.
+ *
+ * Mirrors `rmp/menu`: every visual control writes to the device selected in the
+ * block toolbar, and the canvas renders with that device's resolved styles so
+ * the preview matches the frontend rather than approximating it.
+ */
+
 import { __ } from '@wordpress/i18n';
 import {
 	useBlockProps,
 	InnerBlocks,
 	InspectorControls,
-	LineHeightControl,
-	PanelColorSettings,
+	BlockControls,
+	FontSizePicker,
 	MediaUpload,
 	MediaUploadCheck,
-	FontSizePicker,
 	__experimentalFontFamilyControl as FontFamilyControl,
 	useSettings,
 } from '@wordpress/block-editor';
 import {
 	PanelBody,
-	PanelRow,
-	Icon,
-	TextControl,
-	ToggleControl,
-	RangeControl,
-	RadioControl,
 	Button,
 	ResponsiveWrapper,
 	SelectControl,
-	__experimentalUseCustomUnits as useCustomUnits,
-	__experimentalToolsPanel as ToolsPanel,
-	__experimentalToolsPanelItem as ToolsPanelItem,
-	__experimentalUnitControl as UnitControl,
-	__experimentalBorderControl as BorderControl,
-	__experimentalBorderBoxControl as BorderBoxControl,
-	__experimentalToggleGroupControl as ToggleGroupControl,
-	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
-	__experimentalToggleGroupControlOptionIcon as ToggleGroupControlOptionIcon,
-	__experimentalBoxControl as BoxControl,
+	ToggleControl,
 } from '@wordpress/components';
-import { useEffect } from '@wordpress/element';
+import { useEffect, useMemo } from '@wordpress/element';
 import {
 	formatLowercase,
 	formatCapitalize,
 	formatUppercase,
-	alignCenter,
 	alignLeft,
+	alignCenter,
 	alignRight,
 	alignJustify,
 } from '@wordpress/icons';
-import IconControl from '../components/IconControl';
-import DynamicStyles from '../styles';
-import { flattenIconsArray } from '../utils/icon-functions';
-import parseIcon from '../utils/parse-icon';
-import { isEmpty } from 'lodash';
-import getIcons from '../icons';
 
-export default function Edit({ clientId, attributes, setAttributes }) {
-	const {
-		id,
-		menuStyle,
-		submenuStyle,
-		submenuBehaviour,
-		submenuIndentation,
-		triggerIcon,
-		blockStyles,
-		desktopMenuStyle,
-	} = attributes;
+import IconControl from '../components/IconControl';
+import DeviceSwitcher, { DeviceNotice } from '../components/DeviceSwitcher';
+import {
+	ResponsiveRange,
+	ResponsiveSelect,
+	ResponsiveText,
+	ResponsiveBox,
+	ResponsiveToggleGroup,
+	ResponsiveColors,
+	ResponsiveBorderBox,
+	ControlRow,
+} from '../components/ResponsiveControls';
+import { usePreviewDevice } from '../utils/device-store';
+import {
+	createResponsiveHelpers,
+	buildResetDevice,
+	countOverrides,
+	normaliseBreakpoints,
+	DEVICE_PREVIEW_WIDTH,
+} from '../utils/responsive';
+import DynamicStyles, { buildResponsiveStyles } from '../styles';
+import { resolveTriggerIcons, ArrowIconTemplate } from './arrow-icons';
+import { MENU_ITEM_BLOCKS } from './constants';
+
+const TEXT_ALIGN_OPTIONS = [
+	{ value: 'left', label: __('Left', 'responsive-menu'), icon: alignLeft },
+	{ value: 'center', label: __('Center', 'responsive-menu'), icon: alignCenter },
+	{ value: 'right', label: __('Right', 'responsive-menu'), icon: alignRight },
+	{ value: 'justify', label: __('Justify', 'responsive-menu'), icon: alignJustify },
+];
+
+const LETTER_CASE_OPTIONS = [
+	{ value: 'none', label: __('None', 'responsive-menu'), icon: formatCapitalize },
+	{ value: 'uppercase', label: __('Uppercase', 'responsive-menu'), icon: formatUppercase },
+	{ value: 'lowercase', label: __('Lowercase', 'responsive-menu'), icon: formatLowercase },
+	{ value: 'capitalize', label: __('Capitalize', 'responsive-menu'), icon: formatCapitalize },
+];
+
+const FONT_WEIGHT_OPTIONS = [
+	'100',
+	'200',
+	'300',
+	'400',
+	'500',
+	'600',
+	'700',
+	'800',
+	'900',
+].map((weight) => ({ value: weight, label: weight }));
+
+/**
+ * @param {Array|Object} fontFamilies theme.json font families.
+ * @return {Array} Flat list of font families.
+ */
+function flattenFontFamilies(fontFamilies) {
+	if (!fontFamilies) {
+		return [];
+	}
+	if (Array.isArray(fontFamilies)) {
+		return fontFamilies;
+	}
+	const { theme = [], custom = [] } = fontFamilies;
+	return [...theme, ...custom];
+}
+
+export default function Edit({
+	clientId,
+	attributes,
+	setAttributes,
+	context = {},
+}) {
+	const { id, submenuBehaviour = {}, blockStyles } = attributes;
+
+	const [device, setDevice] = usePreviewDevice();
+	const [fontFamilies] = useSettings('typography.fontFamilies');
+	const fontFamiliesList = flattenFontFamilies(fontFamilies);
+
+	const helpers = createResponsiveHelpers(attributes, setAttributes, device);
+	const menuStyle = helpers.get('menuStyle');
+	const submenuStyle = helpers.get('submenuStyle');
+	const submenuIndentation = helpers.get('submenuIndentation');
+	const triggerIcon = helpers.get('triggerIcon');
+	const desktopMenuStyle = helpers.get('desktopMenuStyle');
+
+	const breakpoints = normaliseBreakpoints({
+		breakpoint: context['rmp/breakpoint'],
+		tabletBreakpoint: context['rmp/tabletBreakpoint'],
+		mobileBreakpoint: context['rmp/mobileBreakpoint'],
+	});
+
 	useEffect(() => {
 		if (!id) {
 			setAttributes({ id: clientId });
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
-	const blockProps = useBlockProps({
-		className: `wp-block-navigation block-editor-block-content-overlay rmp-block-menu-items-${id} wp-block-rmp-menu-items`,
-	});
-	const getFontFamiliesList = (fontFamilies) => {
-		if (!fontFamilies) {
-			return {};
-		}
 
-		if (!Array.isArray(fontFamilies)) {
-			const { theme, custom } = fontFamilies;
-			fontFamilies = theme !== undefined ? theme : [];
-			if (custom !== undefined) {
-				fontFamilies = [...fontFamilies, ...custom];
-			}
-		}
-
-		if (!fontFamilies || 0 === fontFamilies.length) {
-			return [];
-		}
-
-		return fontFamilies;
-	};
-	const [fontFamilies] = useSettings('typography.fontFamilies');
-	const fontFamiliesList = getFontFamiliesList(fontFamilies);
-	const hasfontFamilies = 0 < fontFamiliesList.length;
-	const dynamicStyles = DynamicStyles(attributes);
-	const renderCSS = (
-		<style>
-			{`
-				.rmp-block-menu-items-${id} {
-					${Object.entries(dynamicStyles)
-						.map(([k, v]) => `${k}:${v}`)
-						.join(';')}
-				}
-			`}
-		</style>
+	const responsiveStyles = useMemo(
+		() => buildResponsiveStyles(attributes),
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		[
+			attributes.menuStyle,
+			attributes.submenuStyle,
+			attributes.submenuIndentation,
+			attributes.triggerIcon,
+			attributes.desktopMenuStyle,
+			attributes.responsive,
+		]
 	);
-	const customStyles = JSON.stringify(dynamicStyles);
+
+	const serialisedStyles = JSON.stringify(responsiveStyles);
+
 	useEffect(() => {
-		if (customStyles !== JSON.stringify(blockStyles)) {
-			setAttributes({
-				blockStyles: dynamicStyles,
-			});
+		if (serialisedStyles !== JSON.stringify(blockStyles)) {
+			setAttributes({ blockStyles: responsiveStyles });
 		}
-	}, [customStyles]);
-	const updateMenuStyle = (type, value) => {
-		const menuStyleCopy = { ...menuStyle };
-		menuStyleCopy[type] = value;
-		setAttributes({ menuStyle: menuStyleCopy });
-	};
-	const updateSubmenuStyle = (type, value) => {
-		const submenuStyleCopy = { ...submenuStyle };
-		submenuStyleCopy[type] = value;
-		setAttributes({ submenuStyle: submenuStyleCopy });
-	};
-	const updateSubMenuBehaviour = (type, value) => {
-		const submenuBehaviourCopy = { ...submenuBehaviour };
-		submenuBehaviourCopy[type] = value;
-		setAttributes({ submenuBehaviour: submenuBehaviourCopy });
-	};
-	const updateSubmenuIndentation = (type, value) => {
-		const submenuIndentationCopy = { ...submenuIndentation };
-		submenuIndentationCopy[type] = value;
-		setAttributes({ submenuIndentation: submenuIndentationCopy });
-	};
-	const updateTriggerIcon = (type, value) => {
-		const triggerIconCopy = { ...triggerIcon };
-		triggerIconCopy[type] = value;
-		setAttributes({ triggerIcon: triggerIconCopy });
-	};
-	const updateDesktopMenuStyle = (type, value) => {
-		const desktopMenuStyleCopy = { ...(desktopMenuStyle || {}) };
-		desktopMenuStyleCopy[type] = value;
-		setAttributes({ desktopMenuStyle: desktopMenuStyleCopy });
-	};
-	const iconsAll = flattenIconsArray(getIcons());
-	const iconsObj = iconsAll.reduce((acc, value) => {
-		acc[value?.name] = value?.icon;
-		return acc;
-	}, {});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [serialisedStyles]);
 
-	const renderSVG = (svg, size) => {
-		let renderedIcon = iconsObj?.[svg];
-		// Icons provided by third-parties are generally strings.
-		if (typeof renderedIcon === 'string') {
-			renderedIcon = parseIcon(renderedIcon);
-		}
+	const previewVars = useMemo(
+		() => DynamicStyles(attributes, device),
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		[serialisedStyles, device]
+	);
 
-		return <Icon icon={renderedIcon} size={size} />;
-	};
-	let triggerIconValue = '';
-	let triggerActiveIconValue = '';
-	if (triggerIcon?.type === 'text') {
-		triggerIconValue = triggerIcon.textShape;
-		triggerActiveIconValue = triggerIcon.activeTextShape;
-	}
-	if (triggerIcon?.type === 'icon') {
-		triggerIconValue = triggerIcon.icon;
-		triggerActiveIconValue = triggerIcon.activeIcon;
-	}
-	if (triggerIcon?.type === 'image') {
-		triggerIconValue = triggerIcon.image;
-		triggerActiveIconValue = triggerIcon.activeImage;
-	}
+	const previewWidth = DEVICE_PREVIEW_WIDTH[device];
+	const isDesktopPreview =
+		(previewWidth ?? Number.MAX_SAFE_INTEGER) >= breakpoints.breakpoint;
+
+	const blockProps = useBlockProps({
+		className: [
+			'wp-block-navigation',
+			'wp-block-rmp-menu-items',
+			'block-editor-block-content-overlay',
+			`rmp-block-menu-items-${id}`,
+			`rmp-submenu-arrow-${triggerIcon.position || 'right'}`,
+			`rmp-submenu-indent-${submenuIndentation.side || 'left'}`,
+			`rmp-desktop-submenu-${desktopMenuStyle.submenuAnimation || 'fade'}`,
+			isDesktopPreview ? 'rmp-editor-desktop-items' : '',
+		]
+			.filter(Boolean)
+			.join(' '),
+		style: previewVars,
+	});
+
+	const { inactive, active } = resolveTriggerIcons(triggerIcon);
+
+	const updateBehaviour = (key, value) =>
+		setAttributes({
+			submenuBehaviour: { ...submenuBehaviour, [key]: value },
+		});
+
+	const overrideCount = countOverrides(attributes, device);
+	const deviceNotice = (
+		<DeviceNotice
+			device={device}
+			count={overrideCount}
+			onReset={() => setAttributes(buildResetDevice(attributes, device))}
+		/>
+	);
+
 	return (
 		<>
+			<BlockControls>
+				<DeviceSwitcher
+					device={device}
+					onChange={setDevice}
+					attributes={attributes}
+				/>
+			</BlockControls>
+
 			<InspectorControls>
-				<PanelBody title={__('Item Styling', 'responsive-menu')}>
-					<RangeControl
-						label={__('Item Height', 'responsive-menu')}
-						value={menuStyle.itemHeight}
+				{deviceNotice}
+
+				<PanelBody title={__('Menu items', 'responsive-menu')}>
+					<ResponsiveRange
+						helpers={helpers}
+						group="menuStyle"
+						name="itemHeight"
+						label={__('Minimum height', 'responsive-menu')}
+						min={0}
+						max={200}
+						step={1}
+					/>
+					<ResponsiveRange
+						helpers={helpers}
+						group="menuStyle"
+						name="lineHeight"
+						label={__('Line height', 'responsive-menu')}
+						min={0}
+						max={200}
+						step={1}
+					/>
+					<ResponsiveBox
+						helpers={helpers}
+						group="menuStyle"
+						name="padding"
+						label={__('Padding', 'responsive-menu')}
+					/>
+				</PanelBody>
+
+				<TypographyPanel
+					title={__('Menu typography', 'responsive-menu')}
+					helpers={helpers}
+					group="menuStyle"
+					values={menuStyle}
+					fontFamiliesList={fontFamiliesList}
+				/>
+
+				<PanelBody
+					title={__('Sub-menu items', 'responsive-menu')}
+					initialOpen={false}
+				>
+					<ResponsiveRange
+						helpers={helpers}
+						group="submenuStyle"
+						name="lineHeight"
+						label={__('Line height', 'responsive-menu')}
+						min={0}
+						max={200}
+						step={1}
+					/>
+					<ResponsiveBox
+						helpers={helpers}
+						group="submenuStyle"
+						name="padding"
+						label={__('Padding', 'responsive-menu')}
+					/>
+				</PanelBody>
+
+				<TypographyPanel
+					title={__('Sub-menu typography', 'responsive-menu')}
+					helpers={helpers}
+					group="submenuStyle"
+					values={submenuStyle}
+					fontFamiliesList={fontFamiliesList}
+				/>
+
+				<PanelBody
+					title={__('Sub-menu behaviour', 'responsive-menu')}
+					initialOpen={false}
+				>
+					<ToggleControl
+						__nextHasNoMarginBottom
+						label={__('Accordion', 'responsive-menu')}
+						help={__(
+							'Opening one sub-menu closes its siblings.',
+							'responsive-menu'
+						)}
+						checked={!!submenuBehaviour.useAccordion}
 						onChange={(value) =>
-							updateMenuStyle('itemHeight', value)
+							updateBehaviour('useAccordion', value)
 						}
-						min={0}
-						step={1}
-					/>
-					<BoxControl
-						label={__('Menu Item Padding', 'responsive-menu')}
-						values={menuStyle.padding}
-						onChange={(value) => updateMenuStyle('padding', value)}
-						min={0}
-						max={300}
-						step={1}
-						units={['px']}
-					/>
-				</PanelBody>
-				<ToolsPanel
-					label={__('Menu typography', 'responsive-menu')}
-					resetAll={() =>
-						setAttributes({
-							menuStyle: {
-								...menuStyle,
-								fontSize: '15px',
-								lineHeight: undefined,
-								fontWieght: undefined,
-								fontFamily: undefined,
-								letterSpacing: undefined,
-								letterCase: undefined,
-								textAlign: 'left',
-								wordWrap: undefined,
-							},
-						})
-					}
-				>
-					<ToolsPanelItem
-						hasValue={() => !!menuStyle?.fontFamily}
-						label={__('Font Family', 'responsive-menu')}
-						onDeselect={() =>
-							updateMenuStyle('fontFamily', undefined)
-						}
-					>
-						{hasfontFamilies && (
-							<FontFamilyControl
-								fontFamilies={fontFamiliesList}
-								value={menuStyle?.fontFamily}
-								onChange={(fontFamily) =>
-									updateMenuStyle('fontFamily', fontFamily)
-								}
-								size="__unstable-large"
-								__nextHasNoMarginBottom
-							/>
-						)}
-					</ToolsPanelItem>
-
-					<ToolsPanelItem
-						hasValue={() => !!menuStyle?.fontSize}
-						label={__('Font size', 'responsive-menu')}
-						onDeselect={() => updateMenuStyle('fontSize', '15px')}
-					>
-						<FontSizePicker
-							onChange={(fontSize) =>
-								updateMenuStyle('fontSize', fontSize)
-							}
-							value={menuStyle?.fontSize}
-							withReset={false}
-							__nextHasNoMarginBottom
-						/>
-					</ToolsPanelItem>
-
-					<ToolsPanelItem
-						className="single-column"
-						hasValue={() => !!menuStyle?.lineHeight}
-						label={__('Line height', 'responsive-menu')}
-						onDeselect={() =>
-							updateMenuStyle('lineHeight', undefined)
-						}
-					>
-						<LineHeightControl
-							__unstableInputWidth="100%"
-							__nextHasNoMarginBottom={true}
-							value={menuStyle?.lineHeight}
-							onChange={(lineHeight) =>
-								updateMenuStyle('lineHeight', lineHeight)
-							}
-						/>
-					</ToolsPanelItem>
-
-					<ToolsPanelItem
-						hasValue={() => !!menuStyle?.fontWieght}
-						label={__('Font weight', 'responsive-menu')}
-						onDeselect={() =>
-							updateMenuStyle('fontWieght', undefined)
-						}
-					>
-						<RangeControl
-							label={__('Font weight', 'responsive-menu')}
-							value={menuStyle?.fontWieght}
-							onChange={(fontWieght) =>
-								updateMenuStyle('fontWieght', fontWieght)
-							}
-							min={100}
-							max={900}
-							step={100}
-						/>
-					</ToolsPanelItem>
-					<ToolsPanelItem
-						hasValue={() => !!menuStyle?.textAlign}
-						label={__('Text Align', 'responsive-menu')}
-						onDeselect={() =>
-							updateMenuStyle('textAlign', undefined)
-						}
-					>
-						<ToggleGroupControl
-							label={__('Text Align', 'responsive-menu')}
-							value={menuStyle?.textAlign}
-							onChange={(textAlign) => {
-								updateMenuStyle('textAlign', textAlign);
-							}}
-						>
-							<ToggleGroupControlOptionIcon
-								value="left"
-								icon={alignLeft}
-								label={__('Left', 'responsive-menu')}
-							/>
-							<ToggleGroupControlOptionIcon
-								value="center"
-								icon={alignCenter}
-								label={__('Center', 'responsive-menu')}
-							/>
-							<ToggleGroupControlOptionIcon
-								value="right"
-								icon={alignRight}
-								label={__('Right', 'responsive-menu')}
-							/>
-							<ToggleGroupControlOptionIcon
-								value="justify"
-								icon={alignJustify}
-								label={__('Justify', 'responsive-menu')}
-							/>
-						</ToggleGroupControl>
-					</ToolsPanelItem>
-					<ToolsPanelItem
-						hasValue={() => !!menuStyle?.letterSpacing}
-						label={__('Letter spacing', 'responsive-menu')}
-						onDeselect={() =>
-							updateMenuStyle('letterSpacing', undefined)
-						}
-					>
-						<RangeControl
-							label={__('Letter spacing', 'responsive-menu')}
-							value={menuStyle?.letterSpacing}
-							onChange={(letterSpacing) =>
-								updateMenuStyle('letterSpacing', letterSpacing)
-							}
-							min={0}
-							max={200}
-							step={1}
-						/>
-					</ToolsPanelItem>
-					<ToolsPanelItem
-						hasValue={() => !!menuStyle?.letterCase}
-						label={__('Letter case', 'responsive-menu')}
-						onDeselect={() =>
-							updateMenuStyle('letterCase', undefined)
-						}
-					>
-						<ToggleGroupControl
-							label={__('Letter case', 'responsive-menu')}
-							value={menuStyle?.letterCase}
-							onChange={(letterCase) => {
-								updateMenuStyle('letterCase', letterCase);
-							}}
-						>
-							<ToggleGroupControlOptionIcon
-								value="capitalize"
-								icon={formatCapitalize}
-								label={__('Capitalize', 'responsive-menu')}
-							/>
-							<ToggleGroupControlOptionIcon
-								value="lowercase"
-								icon={formatLowercase}
-								label={__('Lowercase', 'responsive-menu')}
-							/>
-							<ToggleGroupControlOptionIcon
-								value="uppercase"
-								icon={formatUppercase}
-								label={__('Uppercase', 'responsive-menu')}
-							/>
-						</ToggleGroupControl>
-					</ToolsPanelItem>
-					<ToolsPanelItem
-						hasValue={() => !!menuStyle?.wordWrap}
-						label={__('Word wrap', 'responsive-menu')}
-						onDeselect={() =>
-							updateMenuStyle('wordWrap', undefined)
-						}
-					>
-						<ToggleControl
-							label={__('Word wrap', 'responsive-menu')}
-							checked={menuStyle?.wordWrap}
-							onChange={(wordWrap) => {
-								updateMenuStyle('wordWrap', wordWrap);
-							}}
-							help={__(
-								'Allow the menu items to wrap around to the next line.',
-								'responsive-menu'
-							)}
-						/>
-					</ToolsPanelItem>
-				</ToolsPanel>
-				<ToolsPanel
-					label={__('Submenu typography', 'responsive-menu')}
-					resetAll={() =>
-						setAttributes({
-							submenuStyle: {
-								...submenuStyle,
-								fontSize: '15px',
-								lineHeight: undefined,
-								fontWieght: undefined,
-								fontFamily: undefined,
-								letterSpacing: undefined,
-								letterCase: undefined,
-								textAlign: 'left',
-							},
-						})
-					}
-				>
-					<ToolsPanelItem
-						hasValue={() => !!submenuStyle?.fontFamily}
-						label={__('Font Family', 'responsive-menu')}
-						onDeselect={() =>
-							updateSubmenuStyle('fontFamily', undefined)
-						}
-					>
-						{hasfontFamilies && (
-							<FontFamilyControl
-								fontFamilies={fontFamiliesList}
-								value={submenuStyle?.fontFamily}
-								onChange={(fontFamily) =>
-									updateSubmenuStyle('fontFamily', fontFamily)
-								}
-								size="__unstable-large"
-								__nextHasNoMarginBottom
-							/>
-						)}
-					</ToolsPanelItem>
-
-					<ToolsPanelItem
-						hasValue={() => !!submenuStyle?.fontSize}
-						label={__('Font size', 'responsive-menu')}
-						onDeselect={() =>
-							updateSubmenuStyle('fontSize', '15px')
-						}
-					>
-						<FontSizePicker
-							onChange={(fontSize) =>
-								updateSubmenuStyle('fontSize', fontSize)
-							}
-							value={submenuStyle?.fontSize}
-							withReset={false}
-							__nextHasNoMarginBottom
-						/>
-					</ToolsPanelItem>
-
-					<ToolsPanelItem
-						className="single-column"
-						hasValue={() => !!submenuStyle?.lineHeight}
-						label={__('Line height', 'responsive-menu')}
-						onDeselect={() =>
-							updateSubmenuStyle('lineHeight', undefined)
-						}
-					>
-						<LineHeightControl
-							__unstableInputWidth="100%"
-							__nextHasNoMarginBottom={true}
-							value={submenuStyle?.lineHeight}
-							onChange={(lineHeight) =>
-								updateSubmenuStyle('lineHeight', lineHeight)
-							}
-						/>
-					</ToolsPanelItem>
-
-					<ToolsPanelItem
-						hasValue={() => !!submenuStyle?.fontWieght}
-						label={__('Font weight', 'responsive-menu')}
-						onDeselect={() =>
-							updateSubmenuStyle('fontWieght', undefined)
-						}
-					>
-						<RangeControl
-							label={__('Font weight', 'responsive-menu')}
-							value={submenuStyle?.fontWieght}
-							onChange={(fontWieght) =>
-								updateSubmenuStyle('fontWieght', fontWieght)
-							}
-							min={100}
-							max={900}
-							step={100}
-						/>
-					</ToolsPanelItem>
-					<ToolsPanelItem
-						hasValue={() => !!submenuStyle?.textAlign}
-						label={__('Text Align', 'responsive-menu')}
-						onDeselect={() =>
-							updateSubmenuStyle('textAlign', undefined)
-						}
-					>
-						<ToggleGroupControl
-							label={__('Text Align', 'responsive-menu')}
-							value={submenuStyle?.textAlign}
-							onChange={(textAlign) => {
-								updateSubmenuStyle('textAlign', textAlign);
-							}}
-						>
-							<ToggleGroupControlOptionIcon
-								value="left"
-								icon={alignLeft}
-								label={__('Left', 'responsive-menu')}
-							/>
-							<ToggleGroupControlOptionIcon
-								value="center"
-								icon={alignCenter}
-								label={__('Center', 'responsive-menu')}
-							/>
-							<ToggleGroupControlOptionIcon
-								value="right"
-								icon={alignRight}
-								label={__('Right', 'responsive-menu')}
-							/>
-							<ToggleGroupControlOptionIcon
-								value="justify"
-								icon={alignJustify}
-								label={__('Justify', 'responsive-menu')}
-							/>
-						</ToggleGroupControl>
-					</ToolsPanelItem>
-					<ToolsPanelItem
-						hasValue={() => !!submenuStyle?.letterSpacing}
-						label={__('Letter spacing', 'responsive-menu')}
-						onDeselect={() =>
-							updateSubmenuStyle('letterSpacing', undefined)
-						}
-					>
-						<RangeControl
-							label={__('Letter spacing', 'responsive-menu')}
-							value={submenuStyle?.letterSpacing}
-							onChange={(letterSpacing) =>
-								updateSubmenuStyle(
-									'letterSpacing',
-									letterSpacing
-								)
-							}
-							min={0}
-							max={200}
-							step={1}
-						/>
-					</ToolsPanelItem>
-					<ToolsPanelItem
-						hasValue={() => !!submenuStyle?.letterCase}
-						label={__('Letter case', 'responsive-menu')}
-						onDeselect={() =>
-							updateSubmenuStyle('letterCase', undefined)
-						}
-					>
-						<ToggleGroupControl
-							label={__('Letter case', 'responsive-menu')}
-							value={submenuStyle?.letterCase}
-							onChange={(letterCase) => {
-								updateSubmenuStyle('letterCase', letterCase);
-							}}
-						>
-							<ToggleGroupControlOptionIcon
-								value="capitalize"
-								icon={formatCapitalize}
-								label={__('Capitalize', 'responsive-menu')}
-							/>
-							<ToggleGroupControlOptionIcon
-								value="lowercase"
-								icon={formatLowercase}
-								label={__('Lowercase', 'responsive-menu')}
-							/>
-							<ToggleGroupControlOptionIcon
-								value="uppercase"
-								icon={formatUppercase}
-								label={__('Uppercase', 'responsive-menu')}
-							/>
-						</ToggleGroupControl>
-					</ToolsPanelItem>
-				</ToolsPanel>
-				<PanelBody title={__('Sub Menu Behaviour', 'responsive-menu')}>
-					<ToggleControl
-						label={__('Use Accordion', 'responsive-menu')}
-						checked={submenuBehaviour.useAccordion}
-						onChange={(value) => {
-							updateSubMenuBehaviour('useAccordion', value);
-						}}
 					/>
 					<ToggleControl
+						__nextHasNoMarginBottom
+						label={__('Expand all sub-menus', 'responsive-menu')}
+						checked={!!submenuBehaviour.autoExpandAllSubmenu}
+						onChange={(value) =>
+							updateBehaviour('autoExpandAllSubmenu', value)
+						}
+					/>
+					<ToggleControl
+						__nextHasNoMarginBottom
 						label={__(
-							'Auto Expand All Sub Menus',
+							'Expand the current sub-menu',
 							'responsive-menu'
 						)}
-						checked={submenuBehaviour.autoExpandAllSubmenu}
-						onChange={(value) => {
-							updateSubMenuBehaviour(
-								'autoExpandAllSubmenu',
-								value
-							);
-						}}
+						checked={!!submenuBehaviour.autoExpandCurrentSubmenu}
+						onChange={(value) =>
+							updateBehaviour('autoExpandCurrentSubmenu', value)
+						}
 					/>
 					<ToggleControl
+						__nextHasNoMarginBottom
 						label={__(
-							'Auto Expand Current Sub Menus',
+							'Expand child sub-menus with their parent',
 							'responsive-menu'
 						)}
-						checked={submenuBehaviour.autoExpandCurrentSubmenu}
-						onChange={(value) => {
-							updateSubMenuBehaviour(
-								'autoExpandCurrentSubmenu',
-								value
-							);
-						}}
+						checked={!!submenuBehaviour.expandSubItemOnParentClick}
+						onChange={(value) =>
+							updateBehaviour('expandSubItemOnParentClick', value)
+						}
 					/>
 					<ToggleControl
+						__nextHasNoMarginBottom
 						label={__(
-							'Expand Sub items on Parent Item Click',
+							'Clicking the item opens its sub-menu',
 							'responsive-menu'
 						)}
-						checked={submenuBehaviour.expandSubItemOnParentClick}
-						onChange={(value) => {
-							updateSubMenuBehaviour(
-								'expandSubItemOnParentClick',
-								value
-							);
-						}}
+						help={__(
+							'The first click opens the sub-menu instead of following the link.',
+							'responsive-menu'
+						)}
+						checked={!!submenuBehaviour.itemClickOpens}
+						onChange={(value) =>
+							updateBehaviour('itemClickOpens', value)
+						}
 					/>
-				</PanelBody>
-			</InspectorControls>
-			<InspectorControls group="styles">
-				<PanelColorSettings
-					title={__('Menu text', 'gutena-forms')}
-					colorSettings={[
-						{
-							value: menuStyle.color,
-							onChange: (value) => {
-								updateMenuStyle('color', value);
-							},
-							label: __('Normal', 'responsive-menu'),
-							disableCustomColors: false,
-						},
-						{
-							value: menuStyle.hoverColor,
-							onChange: (value) => {
-								updateMenuStyle('hoverColor', value);
-							},
-							label: __('Hover', 'responsive-menu'),
-							disableCustomColors: false,
-						},
-						{
-							value: menuStyle.activeColor,
-							onChange: (value) => {
-								updateMenuStyle('activeColor', value);
-							},
-							label: __('Active', 'responsive-menu'),
-							disableCustomColors: false,
-						},
-						{
-							value: menuStyle.activeHoverColor,
-							onChange: (value) => {
-								updateMenuStyle('activeHoverColor', value);
-							},
-							label: __('Active hover', 'responsive-menu'),
-							disableCustomColors: false,
-						},
-					]}
-					enableAlpha={true}
-				/>
-				<PanelColorSettings
-					title={__('Menu background', 'gutena-forms')}
-					colorSettings={[
-						{
-							value: menuStyle.background,
-							onChange: (value) => {
-								updateMenuStyle('background', value);
-							},
-							label: __('Normal', 'responsive-menu'),
-							disableCustomColors: false,
-						},
-						{
-							value: menuStyle.backgroundHover,
-							onChange: (value) => {
-								updateMenuStyle('backgroundHover', value);
-							},
-							label: __('Hover', 'responsive-menu'),
-							disableCustomColors: false,
-						},
-						{
-							value: menuStyle.backgroundActive,
-							onChange: (value) => {
-								updateMenuStyle('backgroundActive', value);
-							},
-							label: __('Active', 'responsive-menu'),
-							disableCustomColors: false,
-						},
-						{
-							value: menuStyle.backgroundActiveHover,
-							onChange: (value) => {
-								updateMenuStyle('backgroundActiveHover', value);
-							},
-							label: __('Active hover', 'responsive-menu'),
-							disableCustomColors: false,
-						},
-					]}
-					enableAlpha={true}
-				/>
-				<PanelColorSettings
-					title={__('Submenu text', 'gutena-forms')}
-					colorSettings={[
-						{
-							value: submenuStyle.color,
-							onChange: (value) => {
-								updateSubmenuStyle('color', value);
-							},
-							label: __('Normal', 'responsive-menu'),
-							disableCustomColors: false,
-						},
-						{
-							value: submenuStyle.hoverColor,
-							onChange: (value) => {
-								updateSubmenuStyle('hoverColor', value);
-							},
-							label: __('Hover', 'responsive-menu'),
-							disableCustomColors: false,
-						},
-						{
-							value: submenuStyle.activeColor,
-							onChange: (value) => {
-								updateSubmenuStyle('activeColor', value);
-							},
-							label: __('Active', 'responsive-menu'),
-							disableCustomColors: false,
-						},
-						{
-							value: submenuStyle.activeHoverColor,
-							onChange: (value) => {
-								updateSubmenuStyle('activeHoverColor', value);
-							},
-							label: __('Active hover', 'responsive-menu'),
-							disableCustomColors: false,
-						},
-					]}
-					enableAlpha={true}
-				/>
-				<PanelColorSettings
-					title={__('Submenu background', 'gutena-forms')}
-					colorSettings={[
-						{
-							value: submenuStyle.backgroundColor,
-							onChange: (value) => {
-								updateSubmenuStyle('backgroundColor', value);
-							},
-							label: __('Normal', 'responsive-menu'),
-							disableCustomColors: false,
-						},
-						{
-							value: submenuStyle.backgroundHoverColor,
-							onChange: (value) => {
-								updateSubmenuStyle(
-									'backgroundHoverColor',
-									value
-								);
-							},
-							label: __('Hover', 'responsive-menu'),
-							disableCustomColors: false,
-						},
-						{
-							value: submenuStyle.backgroundActiveColor,
-							onChange: (value) => {
-								updateSubmenuStyle(
-									'backgroundActiveColor',
-									value
-								);
-							},
-							label: __('Active', 'responsive-menu'),
-							disableCustomColors: false,
-						},
-						{
-							value: submenuStyle.backgroundActiveHoverColor,
-							onChange: (value) => {
-								updateSubmenuStyle(
-									'backgroundActiveHoverColor',
-									value
-								);
-							},
-							label: __('Active hover', 'responsive-menu'),
-							disableCustomColors: false,
-						},
-					]}
-					enableAlpha={true}
-				/>
-				<PanelBody title={__('Menu Border', 'responsive-menu')}>
-					<BorderBoxControl
-						label={__('Normal')}
-						onChange={(value) => {
-							updateMenuStyle('border', value);
-						}}
-						value={menuStyle.border}
-						enableAlpha={true}
-					/>
-					<BorderBoxControl
-						label={__('Hover')}
-						onChange={(value) => {
-							updateMenuStyle('borderHover', value);
-						}}
-						value={menuStyle.borderHover}
-						enableAlpha={true}
-					/>
-					<BorderBoxControl
-						label={__('Active')}
-						onChange={(value) => {
-							updateMenuStyle('borderActive', value);
-						}}
-						value={menuStyle.borderActive}
-						enableAlpha={true}
-					/>
-					<BorderBoxControl
-						label={__('Active hover')}
-						onChange={(value) => {
-							updateMenuStyle('borderActiveHover', value);
-						}}
-						value={menuStyle.borderActiveHover}
-						enableAlpha={true}
-					/>
-				</PanelBody>
-				<PanelBody title={__('Submenu Border', 'responsive-menu')}>
-					<BorderBoxControl
-						label={__('Normal')}
-						onChange={(value) => {
-							updateSubmenuStyle('border', value);
-						}}
-						value={submenuStyle.border}
-						enableAlpha={true}
-					/>
-					<BorderBoxControl
-						label={__('Hover')}
-						onChange={(value) => {
-							updateSubmenuStyle('borderHover', value);
-						}}
-						value={submenuStyle.borderHover}
-						enableAlpha={true}
-					/>
-					<BorderBoxControl
-						label={__('Active')}
-						onChange={(value) => {
-							updateSubmenuStyle('borderActive', value);
-						}}
-						value={submenuStyle.borderActive}
-						enableAlpha={true}
-					/>
-					<BorderBoxControl
-						label={__('Active hover')}
-						onChange={(value) => {
-							updateSubmenuStyle('borderActiveHover', value);
-						}}
-						value={submenuStyle.borderActiveHover}
-						enableAlpha={true}
-					/>
-				</PanelBody>
-				<PanelBody title={__('Submenu indentation', 'responsive-menu')}>
 					<SelectControl
-						label={__('Side', 'responsive-menu')}
-						value={submenuIndentation.side}
+						__nextHasNoMarginBottom
+						label={__('Desktop dropdowns open on', 'responsive-menu')}
+						value={submenuBehaviour.desktopTrigger || 'click'}
 						options={[
-							{ label: 'Left', value: 'left' },
-							{ label: 'Right', value: 'right' },
+							{ value: 'click', label: __('Click', 'responsive-menu') },
+							{ value: 'hover', label: __('Hover', 'responsive-menu') },
 						]}
-						onChange={(side) =>
-							updateSubmenuIndentation('side', side)
+						onChange={(value) =>
+							updateBehaviour('desktopTrigger', value)
 						}
 						help={__(
-							'You can set which side of the menu items the padding should be on.',
+							'Hover only applies on devices that actually have a pointer.',
 							'responsive-menu'
 						)}
 					/>
-					<RangeControl
-						label={__('Child level 1', 'responsive-menu')}
-						value={submenuIndentation.childLevel1}
-						onChange={(value) =>
-							updateSubmenuIndentation('childLevel1', value)
-						}
-						min={0}
-						step={1}
-						max={100}
-					/>
-					<RangeControl
-						label={__('Child level 2', 'responsive-menu')}
-						value={submenuIndentation.childLevel2}
-						onChange={(value) =>
-							updateSubmenuIndentation('childLevel2', value)
-						}
-						min={0}
-						step={1}
-						max={100}
-					/>
-					<RangeControl
-						label={__('Child level 3', 'responsive-menu')}
-						value={submenuIndentation.childLevel3}
-						onChange={(value) =>
-							updateSubmenuIndentation('childLevel3', value)
-						}
-						min={0}
-						step={1}
-						max={100}
-					/>
-					<RangeControl
-						label={__('Child level 4', 'responsive-menu')}
-						value={submenuIndentation.childLevel4}
-						onChange={(value) =>
-							updateSubmenuIndentation('childLevel4', value)
-						}
-						min={0}
-						step={1}
-						max={100}
-					/>
 				</PanelBody>
-				<PanelBody title={__('Trigger icon', 'responsive-menu')}>
-					<ToggleGroupControl
+
+				<PanelBody
+					title={__('Sub-menu indentation', 'responsive-menu')}
+					initialOpen={false}
+				>
+					<ResponsiveToggleGroup
+						helpers={helpers}
+						group="submenuIndentation"
+						name="side"
+						label={__('Indent from', 'responsive-menu')}
+						options={[
+							{ value: 'left', label: __('Left', 'responsive-menu') },
+							{ value: 'right', label: __('Right', 'responsive-menu') },
+						]}
+					/>
+					{[1, 2, 3, 4].map((level) => (
+						<ResponsiveRange
+							key={level}
+							helpers={helpers}
+							group="submenuIndentation"
+							name={`childLevel${level}`}
+							/* translators: %d: sub-menu depth. */
+							label={`${__('Level', 'responsive-menu')} ${level} (%)`}
+							min={0}
+							max={50}
+							step={1}
+						/>
+					))}
+				</PanelBody>
+
+				<PanelBody
+					title={__('Sub-menu arrow', 'responsive-menu')}
+					initialOpen={false}
+				>
+					<ResponsiveToggleGroup
+						helpers={helpers}
+						group="triggerIcon"
+						name="type"
 						label={__('Type', 'responsive-menu')}
-						value={triggerIcon.type}
-						isBlock
-						onChange={(value) => {
-							updateTriggerIcon('type', value);
-						}}
-					>
-						<ToggleGroupControlOption
-							value="text"
-							label={__('Text', 'responsive-menu')}
-						/>
-						<ToggleGroupControlOption
-							value="icon"
-							label={__('Icon', 'responsive-menu')}
-						/>
-						<ToggleGroupControlOption
-							value="image"
-							label={__('Image', 'responsive-menu')}
-						/>
-					</ToggleGroupControl>
-					{triggerIcon?.type === 'text' && (
+						options={[
+							{ value: 'text', label: __('Text', 'responsive-menu') },
+							{ value: 'icon', label: __('Icon', 'responsive-menu') },
+							{ value: 'image', label: __('Image', 'responsive-menu') },
+						]}
+					/>
+					{'text' === triggerIcon.type && (
 						<>
-							<TextControl
-								label={__('Text shape', 'responsive-menu')}
-								value={triggerIcon.textShape}
-								onChange={(value) => {
-									updateTriggerIcon('textShape', value);
-								}}
+							<ResponsiveText
+								helpers={helpers}
+								group="triggerIcon"
+								name="textShape"
+								label={__('Closed', 'responsive-menu')}
 							/>
-							<TextControl
-								label={__(
-									'Active text shape',
-									'responsive-menu'
-								)}
-								value={triggerIcon.activeTextShape}
-								onChange={(value) => {
-									updateTriggerIcon('activeTextShape', value);
-								}}
+							<ResponsiveText
+								helpers={helpers}
+								group="triggerIcon"
+								name="activeTextShape"
+								label={__('Open', 'responsive-menu')}
 							/>
 						</>
 					)}
-					{triggerIcon?.type === 'icon' && (
+					{'icon' === triggerIcon.type && (
 						<>
 							<IconControl
-								label={__('Normal', 'responsive-menu')}
-								activeIcon={triggerIcon?.icon}
-								value={triggerIcon?.icon}
+								label={__('Closed', 'responsive-menu')}
+								value={triggerIcon.icon}
 								onChange={(value) =>
-									updateTriggerIcon('icon', value?.iconName)
+									helpers.update(
+										'triggerIcon',
+										'icon',
+										value?.iconName
+									)
 								}
-								onClear={() => updateTriggerIcon('icon', '')}
-								withPanel={false}
-								initialOpen={true}
+								onClear={() =>
+									helpers.update('triggerIcon', 'icon', '')
+								}
 							/>
 							<IconControl
-								label={__('Active', 'responsive-menu')}
-								activeIcon={triggerIcon?.activeIcon}
-								value={triggerIcon?.activeIcon}
+								label={__('Open', 'responsive-menu')}
+								value={triggerIcon.activeIcon}
 								onChange={(value) =>
-									updateTriggerIcon(
+									helpers.update(
+										'triggerIcon',
 										'activeIcon',
 										value?.iconName
 									)
 								}
 								onClear={() =>
-									updateTriggerIcon('activeIcon', '')
+									helpers.update(
+										'triggerIcon',
+										'activeIcon',
+										''
+									)
 								}
-								withPanel={false}
-								initialOpen={true}
 							/>
 						</>
 					)}
-					{triggerIcon?.type === 'image' && (
+					{'image' === triggerIcon.type && (
 						<>
-							<MediaUploadCheck>
-								<p>{__('Normal', 'responsive-menu')}</p>
-								<MediaUpload
-									label={__('Normal', 'responsive-menu')}
-									onSelect={(media) =>
-										updateTriggerIcon('image', media.url)
-									}
-									allowedTypes={['image']}
-									mode="browse"
-									render={({ open }) => (
-										<Button
-											className={`rmp-select-image-component-btn ${triggerIcon?.image ? 'rmp-select-image-component-img' : ''}`}
-											onClick={open}
-										>
-											{triggerIcon?.image ? (
-												<ResponsiveWrapper>
-													<img
-														src={triggerIcon.image}
-														alt={__(
-															'Hamburger Image',
-															'responsive-menu'
-														)}
-													/>
-												</ResponsiveWrapper>
-											) : (
-												__(
-													'Choose an image',
-													'responsive-menu'
-												)
-											)}
-										</Button>
-									)}
-								/>
-								{triggerIcon?.image && (
-									<Button
-										className="rmp-select-image-component-btn button-danger rmp-remove-image-component-btn"
-										onClick={() =>
-											updateTriggerIcon('image', '')
-										}
-									>
-										{__('Remove', 'responsive-menu')}
-									</Button>
-								)}
-							</MediaUploadCheck>
-							<p>{__('Active', 'responsive-menu')}</p>
-							<MediaUploadCheck>
-								<MediaUpload
-									label={__('Active', 'responsive-menu')}
-									onSelect={(media) =>
-										updateTriggerIcon(
-											'activeImage',
-											media.url
-										)
-									}
-									allowedTypes={['image']}
-									mode="browse"
-									render={({ open }) => (
-										<Button
-											className={`rmp-select-image-component-btn ${triggerIcon?.activeImage ? 'rmp-select-image-component-img' : ''}`}
-											onClick={open}
-										>
-											{triggerIcon?.activeImage ? (
-												<ResponsiveWrapper>
-													<img
-														src={
-															triggerIcon.activeImage
-														}
-														alt={__(
-															'Hamburger Active Image',
-															'responsive-menu'
-														)}
-													/>
-												</ResponsiveWrapper>
-											) : (
-												__(
-													'Choose an image',
-													'responsive-menu'
-												)
-											)}
-										</Button>
-									)}
-								/>
-								{triggerIcon?.activeImage && (
-									<Button
-										className="rmp-select-image-component-btn button-danger rmp-remove-image-component-btn"
-										onClick={() =>
-											updateTriggerIcon('activeImage', '')
-										}
-									>
-										{__('Remove', 'responsive-menu')}
-									</Button>
-								)}
-							</MediaUploadCheck>
+							<ImageField
+								label={__('Closed', 'responsive-menu')}
+								value={triggerIcon.image}
+								onSelect={(url) =>
+									helpers.update('triggerIcon', 'image', url)
+								}
+								onClear={() =>
+									helpers.update('triggerIcon', 'image', '')
+								}
+							/>
+							<ImageField
+								label={__('Open', 'responsive-menu')}
+								value={triggerIcon.activeImage}
+								onSelect={(url) =>
+									helpers.update(
+										'triggerIcon',
+										'activeImage',
+										url
+									)
+								}
+								onClear={() =>
+									helpers.update(
+										'triggerIcon',
+										'activeImage',
+										''
+									)
+								}
+							/>
 						</>
 					)}
-					<RangeControl
-						label={__('Width', 'responsive-menu')}
-						value={triggerIcon.width}
-						onChange={(value) => updateTriggerIcon('width', value)}
-						min={0}
-						step={1}
-						max={400}
-						help={__(
-							'Set the width of the menu trigger items and their units.',
-							'responsive-menu'
-						)}
-					/>
-					<RangeControl
-						label={__('Height', 'responsive-menu')}
-						value={triggerIcon.height}
-						onChange={(value) => updateTriggerIcon('height', value)}
-						min={0}
-						step={1}
-						max={400}
-						help={__(
-							'Set the height of the menu trigger items and their units.',
-							'responsive-menu'
-						)}
-					/>
-				</PanelBody>
-				<PanelColorSettings
-					title={__('Trigger icon', 'gutena-forms')}
-					colorSettings={[
-						{
-							value: triggerIcon.color,
-							onChange: (value) => {
-								updateTriggerIcon('color', value);
-							},
-							label: __('Normal', 'responsive-menu'),
-							disableCustomColors: false,
-						},
-						{
-							value: triggerIcon.hoverColor,
-							onChange: (value) => {
-								updateTriggerIcon('hoverColor', value);
-							},
-							label: __('Hover', 'responsive-menu'),
-							disableCustomColors: false,
-						},
-						{
-							value: triggerIcon.activeColor,
-							onChange: (value) => {
-								updateTriggerIcon('activeColor', value);
-							},
-							label: __('Active', 'responsive-menu'),
-							disableCustomColors: false,
-						},
-						{
-							value: triggerIcon.activeHoverColor,
-							onChange: (value) => {
-								updateTriggerIcon('activeHoverColor', value);
-							},
-							label: __('Active hover', 'responsive-menu'),
-							disableCustomColors: false,
-						},
-					]}
-					enableAlpha={true}
-				/>
-				<PanelColorSettings
-					title={__('Trigger icon background', 'gutena-forms')}
-					colorSettings={[
-						{
-							value: triggerIcon.backgroundColor,
-							onChange: (value) => {
-								updateTriggerIcon('backgroundColor', value);
-							},
-							label: __('Normal', 'responsive-menu'),
-							disableCustomColors: false,
-						},
-						{
-							value: triggerIcon.backgroundHoverColor,
-							onChange: (value) => {
-								updateTriggerIcon(
-									'backgroundHoverColor',
-									value
-								);
-							},
-							label: __('Hover', 'responsive-menu'),
-							disableCustomColors: false,
-						},
-						{
-							value: triggerIcon.backgroundActiveColor,
-							onChange: (value) => {
-								updateTriggerIcon(
-									'backgroundActiveColor',
-									value
-								);
-							},
-							label: __('Active', 'responsive-menu'),
-							disableCustomColors: false,
-						},
-						{
-							value: triggerIcon.backgroundActiveHoverColor,
-							onChange: (value) => {
-								updateTriggerIcon(
-									'backgroundActiveHoverColor',
-									value
-								);
-							},
-							label: __('Active hover', 'responsive-menu'),
-							disableCustomColors: false,
-						},
-					]}
-					enableAlpha={true}
-				/>
-				<PanelBody title={__('Trigger icon border', 'responsive-menu')}>
-					<BorderBoxControl
-						label={__('Normal')}
-						onChange={(value) => {
-							updateTriggerIcon('border', value);
-						}}
-						value={triggerIcon.border}
-						enableAlpha={true}
-					/>
-					<BorderBoxControl
-						label={__('Hover')}
-						onChange={(value) => {
-							updateTriggerIcon('borderHover', value);
-						}}
-						value={triggerIcon.borderHover}
-						enableAlpha={true}
-					/>
-					<BorderBoxControl
-						label={__('Active')}
-						onChange={(value) => {
-							updateTriggerIcon('borderActive', value);
-						}}
-						value={triggerIcon.borderActive}
-						enableAlpha={true}
-					/>
-					<BorderBoxControl
-						label={__('Active hover')}
-						onChange={(value) => {
-							updateTriggerIcon('borderActiveHover', value);
-						}}
-						value={triggerIcon.borderActiveHover}
-						enableAlpha={true}
-					/>
-				</PanelBody>
-				<PanelColorSettings
-					title={__('Desktop Menu Item Colors', 'responsive-menu')}
-					colorSettings={[
-						{
-							value: desktopMenuStyle?.color,
-							onChange: (value) => updateDesktopMenuStyle('color', value),
-							label: __('Text Color', 'responsive-menu'),
-						},
-						{
-							value: desktopMenuStyle?.hoverColor,
-							onChange: (value) => updateDesktopMenuStyle('hoverColor', value),
-							label: __('Text Hover', 'responsive-menu'),
-						},
-						{
-							value: desktopMenuStyle?.activeColor,
-							onChange: (value) => updateDesktopMenuStyle('activeColor', value),
-							label: __('Text Active', 'responsive-menu'),
-						},
-						{
-							value: desktopMenuStyle?.background,
-							onChange: (value) => updateDesktopMenuStyle('background', value),
-							label: __('Background', 'responsive-menu'),
-						},
-						{
-							value: desktopMenuStyle?.backgroundHover,
-							onChange: (value) => updateDesktopMenuStyle('backgroundHover', value),
-							label: __('Background Hover', 'responsive-menu'),
-						},
-						{
-							value: desktopMenuStyle?.backgroundActive,
-							onChange: (value) => updateDesktopMenuStyle('backgroundActive', value),
-							label: __('Background Active', 'responsive-menu'),
-						},
-					]}
-					enableAlpha={true}
-				/>
-				<PanelColorSettings
-					title={__('Desktop Submenu Colors', 'responsive-menu')}
-					colorSettings={[
-						{
-							value: desktopMenuStyle?.submenuColor,
-							onChange: (value) => updateDesktopMenuStyle('submenuColor', value),
-							label: __('Text Color', 'responsive-menu'),
-						},
-						{
-							value: desktopMenuStyle?.submenuHoverColor,
-							onChange: (value) => updateDesktopMenuStyle('submenuHoverColor', value),
-							label: __('Text Hover', 'responsive-menu'),
-						},
-						{
-							value: desktopMenuStyle?.submenuBackground,
-							onChange: (value) => updateDesktopMenuStyle('submenuBackground', value),
-							label: __('Background', 'responsive-menu'),
-						},
-						{
-							value: desktopMenuStyle?.submenuBackgroundHover,
-							onChange: (value) => updateDesktopMenuStyle('submenuBackgroundHover', value),
-							label: __('Background Hover', 'responsive-menu'),
-						},
-					]}
-					enableAlpha={true}
-				/>
-				<PanelBody title={__('Desktop Submenu Settings', 'responsive-menu')}>
-					<SelectControl
-						label={__('Dropdown Alignment', 'responsive-menu')}
-						value={desktopMenuStyle?.dropdownAlign || 'left'}
+					<ResponsiveToggleGroup
+						helpers={helpers}
+						group="triggerIcon"
+						name="position"
+						label={__('Position', 'responsive-menu')}
 						options={[
-							{ label: __('Left', 'responsive-menu'), value: 'left' },
-							{ label: __('Right', 'responsive-menu'), value: 'right' },
+							{ value: 'left', label: __('Left', 'responsive-menu') },
+							{ value: 'right', label: __('Right', 'responsive-menu') },
 						]}
-						onChange={(value) => updateDesktopMenuStyle('dropdownAlign', value)}
+					/>
+					<ResponsiveRange
+						helpers={helpers}
+						group="triggerIcon"
+						name="width"
+						label={__('Width', 'responsive-menu')}
+						min={0}
+						max={200}
+						step={1}
+					/>
+					<ResponsiveRange
+						helpers={helpers}
+						group="triggerIcon"
+						name="height"
+						label={__('Height', 'responsive-menu')}
+						min={0}
+						max={200}
+						step={1}
 					/>
 				</PanelBody>
 			</InspectorControls>
-			{menuStyle && renderCSS}
-			<>
-				{triggerIcon && triggerIcon.type === 'icon' && (
-					<div
-						className="rmp-submenu-trigger-icon"
-						style={{ display: 'none' }}
-					>
-						<span className="rmp-inactive-submenu-trigger-icon">
-							{renderSVG(triggerIconValue)}
-						</span>
-						<span className="rmp-active-submenu-trigger-icon">
-							{renderSVG(triggerActiveIconValue)}
-						</span>
-					</div>
-				)}
-				<ul
-					{...blockProps}
-					data-submenu-icon={triggerIconValue}
-					data-submenu-active-icon={triggerActiveIconValue}
-					data-submenu-icon-type={triggerIcon?.type}
+
+			<InspectorControls group="styles">
+				{deviceNotice}
+
+				<ResponsiveColors
+					helpers={helpers}
+					group="menuStyle"
+					title={__('Menu text', 'responsive-menu')}
+					colors={[
+						{ name: 'color', label: __('Normal', 'responsive-menu') },
+						{ name: 'hoverColor', label: __('Hover', 'responsive-menu') },
+						{ name: 'activeColor', label: __('Current', 'responsive-menu') },
+						{
+							name: 'activeHoverColor',
+							label: __('Current hover', 'responsive-menu'),
+						},
+					]}
+				/>
+				<ResponsiveColors
+					helpers={helpers}
+					group="menuStyle"
+					title={__('Menu background', 'responsive-menu')}
+					colors={[
+						{ name: 'background', label: __('Normal', 'responsive-menu') },
+						{
+							name: 'backgroundHover',
+							label: __('Hover', 'responsive-menu'),
+						},
+						{
+							name: 'backgroundActive',
+							label: __('Current', 'responsive-menu'),
+						},
+						{
+							name: 'backgroundActiveHover',
+							label: __('Current hover', 'responsive-menu'),
+						},
+					]}
+				/>
+				<BorderPanel
+					title={__('Menu borders', 'responsive-menu')}
+					helpers={helpers}
+					group="menuStyle"
+				/>
+
+				<ResponsiveColors
+					helpers={helpers}
+					group="submenuStyle"
+					title={__('Sub-menu text', 'responsive-menu')}
+					colors={[
+						{ name: 'color', label: __('Normal', 'responsive-menu') },
+						{ name: 'hoverColor', label: __('Hover', 'responsive-menu') },
+						{ name: 'activeColor', label: __('Current', 'responsive-menu') },
+						{
+							name: 'activeHoverColor',
+							label: __('Current hover', 'responsive-menu'),
+						},
+					]}
+				/>
+				<ResponsiveColors
+					helpers={helpers}
+					group="submenuStyle"
+					title={__('Sub-menu background', 'responsive-menu')}
+					colors={[
+						{
+							name: 'backgroundColor',
+							label: __('Normal', 'responsive-menu'),
+						},
+						{
+							name: 'backgroundHoverColor',
+							label: __('Hover', 'responsive-menu'),
+						},
+						{
+							name: 'backgroundActiveColor',
+							label: __('Current', 'responsive-menu'),
+						},
+						{
+							name: 'backgroundActiveHoverColor',
+							label: __('Current hover', 'responsive-menu'),
+						},
+					]}
+				/>
+				<BorderPanel
+					title={__('Sub-menu borders', 'responsive-menu')}
+					helpers={helpers}
+					group="submenuStyle"
+				/>
+
+				<ResponsiveColors
+					helpers={helpers}
+					group="triggerIcon"
+					title={__('Arrow colour', 'responsive-menu')}
+					colors={[
+						{ name: 'color', label: __('Normal', 'responsive-menu') },
+						{ name: 'hoverColor', label: __('Hover', 'responsive-menu') },
+						{ name: 'activeColor', label: __('Open', 'responsive-menu') },
+						{
+							name: 'activeHoverColor',
+							label: __('Open hover', 'responsive-menu'),
+						},
+					]}
+				/>
+				<ResponsiveColors
+					helpers={helpers}
+					group="triggerIcon"
+					title={__('Arrow background', 'responsive-menu')}
+					colors={[
+						{
+							name: 'backgroundColor',
+							label: __('Normal', 'responsive-menu'),
+						},
+						{
+							name: 'backgroundHoverColor',
+							label: __('Hover', 'responsive-menu'),
+						},
+						{
+							name: 'backgroundActiveColor',
+							label: __('Open', 'responsive-menu'),
+						},
+						{
+							name: 'backgroundActiveHoverColor',
+							label: __('Open hover', 'responsive-menu'),
+						},
+					]}
+				/>
+				<BorderPanel
+					title={__('Arrow borders', 'responsive-menu')}
+					helpers={helpers}
+					group="triggerIcon"
+				/>
+
+				<ResponsiveColors
+					helpers={helpers}
+					group="desktopMenuStyle"
+					title={__('Desktop bar', 'responsive-menu')}
+					colors={[
+						{ name: 'color', label: __('Text', 'responsive-menu') },
+						{ name: 'hoverColor', label: __('Text hover', 'responsive-menu') },
+						{
+							name: 'activeColor',
+							label: __('Text current', 'responsive-menu'),
+						},
+						{
+							name: 'background',
+							label: __('Background', 'responsive-menu'),
+						},
+						{
+							name: 'backgroundHover',
+							label: __('Background hover', 'responsive-menu'),
+						},
+						{
+							name: 'backgroundActive',
+							label: __('Background current', 'responsive-menu'),
+						},
+					]}
+				/>
+				<ResponsiveColors
+					helpers={helpers}
+					group="desktopMenuStyle"
+					title={__('Desktop dropdown', 'responsive-menu')}
+					colors={[
+						{ name: 'submenuColor', label: __('Text', 'responsive-menu') },
+						{
+							name: 'submenuHoverColor',
+							label: __('Text hover', 'responsive-menu'),
+						},
+						{
+							name: 'submenuBackground',
+							label: __('Background', 'responsive-menu'),
+						},
+						{
+							name: 'submenuBackgroundHover',
+							label: __('Background hover', 'responsive-menu'),
+						},
+					]}
+				/>
+				<PanelBody
+					title={__('Desktop layout', 'responsive-menu')}
+					initialOpen={false}
 				>
-					<InnerBlocks
-						allowedBlocks={[
-							'core/navigation-link',
-							'core/navigation-submenu',
-							'core/button',
-							'core/social-links',
-							'core/home-link',
-							'core/loginout',
-						]}
-						renderAppender={InnerBlocks.ButtonBlockAppender}
+					<ResponsiveBox
+						helpers={helpers}
+						group="desktopMenuStyle"
+						name="itemPadding"
+						label={__('Item padding', 'responsive-menu')}
 					/>
-				</ul>
-			</>
+					<ResponsiveRange
+						helpers={helpers}
+						group="desktopMenuStyle"
+						name="gap"
+						label={__('Gap between items', 'responsive-menu')}
+						min={0}
+						max={100}
+						step={1}
+					/>
+					<ResponsiveSelect
+						helpers={helpers}
+						group="desktopMenuStyle"
+						name="justify"
+						label={__('Alignment', 'responsive-menu')}
+						options={[
+							{ value: 'flex-start', label: __('Left', 'responsive-menu') },
+							{ value: 'center', label: __('Center', 'responsive-menu') },
+							{ value: 'flex-end', label: __('Right', 'responsive-menu') },
+							{
+								value: 'space-between',
+								label: __('Space between', 'responsive-menu'),
+							},
+						]}
+					/>
+					<ResponsiveSelect
+						helpers={helpers}
+						group="desktopMenuStyle"
+						name="dropdownAlign"
+						label={__('Dropdown alignment', 'responsive-menu')}
+						options={[
+							{ value: 'left', label: __('Left', 'responsive-menu') },
+							{ value: 'right', label: __('Right', 'responsive-menu') },
+						]}
+					/>
+					<ResponsiveRange
+						helpers={helpers}
+						group="desktopMenuStyle"
+						name="submenuMinWidth"
+						label={__('Dropdown minimum width', 'responsive-menu')}
+						min={100}
+						max={800}
+						step={10}
+					/>
+					<ResponsiveSelect
+						helpers={helpers}
+						group="desktopMenuStyle"
+						name="submenuAnimation"
+						label={__('Dropdown animation', 'responsive-menu')}
+						options={[
+							{ value: 'none', label: __('None', 'responsive-menu') },
+							{ value: 'fade', label: __('Fade', 'responsive-menu') },
+							{ value: 'slide', label: __('Slide', 'responsive-menu') },
+						]}
+					/>
+					<ResponsiveRange
+						helpers={helpers}
+						group="desktopMenuStyle"
+						name="submenuAnimationSpeed"
+						label={__('Dropdown animation speed (ms)', 'responsive-menu')}
+						min={0}
+						max={1000}
+						step={10}
+					/>
+				</PanelBody>
+			</InspectorControls>
+
+			<ArrowIconTemplate
+				triggerIcon={triggerIcon}
+				inactive={inactive}
+				active={active}
+			/>
+			<ul
+				{...blockProps}
+				data-submenu-icon={inactive}
+				data-submenu-active-icon={active}
+				data-submenu-icon-type={triggerIcon.type}
+			>
+				<InnerBlocks
+					allowedBlocks={MENU_ITEM_BLOCKS}
+					renderAppender={InnerBlocks.ButtonBlockAppender}
+				/>
+			</ul>
 		</>
+	);
+}
+
+/**
+ * The typography controls shared by the menu and sub-menu panels.
+ *
+ * @param {Object} props
+ * @param {string} props.title            Panel title.
+ * @param {Object} props.helpers          Responsive helper bundle.
+ * @param {string} props.group            Attribute group.
+ * @param {Object} props.values           Resolved group values.
+ * @param {Array}  props.fontFamiliesList Theme font families.
+ * @return {Element} Panel.
+ */
+function TypographyPanel({ title, helpers, group, values, fontFamiliesList }) {
+	return (
+		<PanelBody title={title} initialOpen={false}>
+			{fontFamiliesList.length > 0 && (
+				<FontFamilyControl
+					fontFamilies={fontFamiliesList}
+					value={values.fontFamily}
+					onChange={(value) =>
+						helpers.update(group, 'fontFamily', value)
+					}
+					size="__unstable-large"
+					__nextHasNoMarginBottom
+				/>
+			)}
+			<ControlRow label={__('Size', 'responsive-menu')}>
+				<FontSizePicker
+					value={values.fontSize}
+					fallbackFontSize={15}
+					onChange={(value) =>
+						helpers.update(group, 'fontSize', value)
+					}
+					__nextHasNoMarginBottom
+				/>
+			</ControlRow>
+			<ResponsiveSelect
+				helpers={helpers}
+				group={group}
+				name="fontWieght"
+				label={__('Weight', 'responsive-menu')}
+				options={[
+					{ value: '', label: __('Default', 'responsive-menu') },
+					...FONT_WEIGHT_OPTIONS,
+				]}
+			/>
+			<ResponsiveToggleGroup
+				helpers={helpers}
+				group={group}
+				name="textAlign"
+				label={__('Alignment', 'responsive-menu')}
+				options={TEXT_ALIGN_OPTIONS}
+			/>
+			<ResponsiveToggleGroup
+				helpers={helpers}
+				group={group}
+				name="letterCase"
+				label={__('Letter case', 'responsive-menu')}
+				options={LETTER_CASE_OPTIONS}
+			/>
+			<ResponsiveRange
+				helpers={helpers}
+				group={group}
+				name="letterSpacing"
+				label={__('Letter spacing', 'responsive-menu')}
+				min={0}
+				max={20}
+				step={0.5}
+			/>
+			<ResponsiveSelect
+				helpers={helpers}
+				group={group}
+				name="wordWrap"
+				label={__('Word wrap', 'responsive-menu')}
+				options={[
+					{ value: '', label: __('Default', 'responsive-menu') },
+					{ value: 'normal', label: __('Normal', 'responsive-menu') },
+					{
+						value: 'break-word',
+						label: __('Break long words', 'responsive-menu'),
+					},
+				]}
+			/>
+		</PanelBody>
+	);
+}
+
+/**
+ * The four border states of one attribute group.
+ *
+ * @param {Object} props
+ * @param {string} props.title   Panel title.
+ * @param {Object} props.helpers Responsive helper bundle.
+ * @param {string} props.group   Attribute group.
+ * @return {Element} Panel.
+ */
+function BorderPanel({ title, helpers, group }) {
+	const states = [
+		{ name: 'border', label: __('Normal', 'responsive-menu') },
+		{ name: 'borderHover', label: __('Hover', 'responsive-menu') },
+		{ name: 'borderActive', label: __('Current', 'responsive-menu') },
+		{
+			name: 'borderActiveHover',
+			label: __('Current hover', 'responsive-menu'),
+		},
+	];
+
+	return (
+		<PanelBody title={title} initialOpen={false}>
+			{states.map((state) => (
+				<ResponsiveBorderBox
+					key={state.name}
+					helpers={helpers}
+					group={group}
+					name={state.name}
+					label={state.label}
+				/>
+			))}
+		</PanelBody>
+	);
+}
+
+/**
+ * Media-library image picker with a clear button.
+ *
+ * @param {Object}   props
+ * @param {string}   props.label    Field label.
+ * @param {string}   props.value    Current image URL.
+ * @param {Function} props.onSelect Called with the chosen URL.
+ * @param {Function} props.onClear  Called to clear the field.
+ * @return {Element} Image picker.
+ */
+function ImageField({ label, value, onSelect, onClear }) {
+	return (
+		<MediaUploadCheck>
+			<ControlRow label={label}>
+				<MediaUpload
+					title={label}
+					onSelect={(media) => onSelect(media.url)}
+					allowedTypes={['image']}
+					mode="browse"
+					render={({ open }) => (
+						<Button
+							className={`rmp-select-image-component-btn ${value ? 'rmp-select-image-component-img' : ''}`}
+							onClick={open}
+						>
+							{value ? (
+								<ResponsiveWrapper>
+									<img src={value} alt="" />
+								</ResponsiveWrapper>
+							) : (
+								__('Choose an image', 'responsive-menu')
+							)}
+						</Button>
+					)}
+				/>
+				{value && (
+					<Button
+						className="rmp-select-image-component-btn button-danger rmp-remove-image-component-btn"
+						onClick={onClear}
+					>
+						{__('Remove', 'responsive-menu')}
+					</Button>
+				)}
+			</ControlRow>
+		</MediaUploadCheck>
 	);
 }

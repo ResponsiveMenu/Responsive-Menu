@@ -1,5 +1,7 @@
-.responsive-menu-icon-picker{
+// ─── Icon picker ─────────────────────────────────────────────────────────────
+.responsive-menu-icon-picker {
     position: relative;
+
     .icon-picker__current {
         background-color: #f0f0f0;
         display: flex;
@@ -12,10 +14,12 @@
         align-items: center;
         position: relative;
     }
+
     span.icon-picker__elm svg {
         width: 60px;
         height: 60px;
     }
+
     span.icon-picker__del {
         position: absolute;
         right: 10px;
@@ -24,34 +28,126 @@
         cursor: pointer;
     }
 }
+
+// ─── Media fields ────────────────────────────────────────────────────────────
 .rmp-select-image-component-btn {
     box-shadow: inset 0 0 0 1px #ddd;
     width: 100%;
     margin-bottom: 10px;
     text-align: center;
     display: block;
+    height: auto;
 }
+
 .rmp-select-image-component-img {
     overflow: hidden;
     padding: 0;
     height: 100px;
     text-align: center;
 }
+
 .rmp-remove-image-component-btn {
     margin-top: -13px;
     border-radius: 0 0 3px 3px;
 }
-.wp-block-rmp-menu .rmp-block-container {
-    position: absolute;
+
+// ─── Responsive inspector affordances ────────────────────────────────────────
+// A control that carries a device override gets a rail and a reset button, so
+// "is this value inherited or set here?" is answerable at a glance.
+.rmp-device-notice {
+    padding: 16px;
+    border-bottom: 1px solid #e0e0e0;
+    background: #f6f7f7;
+
+    p {
+        margin: 0 0 8px;
+        font-size: 12px;
+        line-height: 1.5;
+        color: #1e1e1e;
+    }
 }
 
-.wp-block-rmp-menu .rmp-block-container:not(.rmp-block-active) {
-    display: none;
+.rmp-responsive-field {
+    position: relative;
+
+    &.is-overridden {
+        padding-left: 10px;
+        margin-left: -10px;
+        border-left: 3px solid var(--wp-admin-theme-color, #3858e9);
+    }
+
+    .rmp-reset-override {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
 }
 
-.block-editor-block-list__layout .rmp-block-navigator{
+.rmp-panel-hint {
+    margin: 0 0 8px;
+    font-size: 12px;
+    color: #757575;
+}
+
+// ─── Canvas preview ──────────────────────────────────────────────────────────
+// The frame narrows the canvas to the selected device so the menu is laid out
+// at a width that actually matches that device, rather than being described as
+// "mobile" while occupying a 1400px editor.
+.rmp-block-preview-frame {
+    width: 100%;
+
+    &.is-tablet,
+    &.is-mobile {
+        margin-inline: auto;
+        outline: 1px dashed #c3c4c7;
+        outline-offset: 8px;
+    }
+}
+
+// The editor has to keep the panel reachable even when the menu is "closed",
+// otherwise the inner blocks cannot be edited at all. `rmp-editor-static` is
+// that editing view: real styles, but laid out in flow instead of off-canvas.
+.wp-block-rmp-menu .rmp-block-navigator.rmp-editor-static {
+    .rmp-block-container {
+        position: static;
+        // The "no animation" variant is display:none while closed; in the
+        // editing view the panel must stay reachable whatever the animation is.
+        display: block;
+        height: auto;
+        max-width: none;
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+        z-index: auto;
+        left: auto;
+        right: auto;
+        top: auto;
+        bottom: auto;
+        transition: none;
+    }
+}
+
+// In the editor the trigger is a preview control, not a live button — the
+// pointer cue would otherwise suggest it navigates.
+.block-editor-block-list__layout .rmp-block-navigator {
     position: static;
+
+    .rmp-block-menu-trigger {
+        cursor: pointer;
+    }
 }
-.wp-block-rmp-menu .rmp-block-container .wp-block-rmp-menu-items .wp-block-navigation__submenu-container{
-    display: block;
+
+// Sub-menus have no runtime in the editor, so show them expanded rather than
+// leaving the user with links they cannot see or select.
+.wp-block-rmp-menu .rmp-block-container .wp-block-rmp-menu-items {
+    .wp-block-navigation__submenu-container {
+        display: block;
+    }
+}
+
+.rmp-editor-desktop-items {
+    .wp-block-navigation__submenu-container {
+        position: static !important;
+        box-shadow: none !important;
+    }
 }

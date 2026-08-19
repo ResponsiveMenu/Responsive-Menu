@@ -4,7 +4,7 @@
     border-radius: var(--rmp--menu-hamburger-border-radius, 5px);
     text-decoration: none;
     background: var(--rmp--menu-hamburger-background, #1d4354);
-    transition-duration: var(--rmp--menu-container-animation-transition-duration, 0.5s);
+    transition-duration: var(--rmp--menu-container-animation-duration, 0.5s);
     border: none;
     display: flex;
     cursor: pointer;
@@ -124,7 +124,7 @@
 
         .rmp-block-trigger-inner,
         .rmp-block-trigger-inner::after {
-            transition-duration: var(--rmp--menu-container-animation-transition-duration, 0.5s);
+            transition-duration: var(--rmp--menu-container-animation-duration, 0.5s);
         }
 
         svg {
@@ -158,7 +158,16 @@
         font-family: var(--rmp--menu-hamburger-text-font, inherit);
         font-size: var(--rmp--menu-hamburger-text-size, 14px);
         line-height: var(--rmp--menu-hamburger-text-line-height, 14px);
-        padding-left: 5px;
+        color: var(--rmp--menu-hamburger-text-color, inherit);
+        padding-inline-start: var(--rmp--menu-hamburger-text-gap, 5px);
+    }
+
+    // The label sits before the box in these two arrangements, so the gap has
+    // to swap sides with it.
+    &.rmp-block-text-position-left .rmp-block-trigger-label,
+    &.rmp-block-text-position-top .rmp-block-trigger-label {
+        padding-inline-start: 0;
+        padding-inline-end: var(--rmp--menu-hamburger-text-gap, 5px);
     }
 
     .rmp-block-trigger-icon-active,
@@ -171,7 +180,17 @@
     .rmp-block-container {
         position: fixed;
         margin: 0;
-        transition: var(--rmp--menu-container-animation-transition-duration, transform 0.5s);
+        // Visibility is switched with a delay equal to the animation, so a
+        // closing panel finishes moving before it leaves the tab order — and a
+        // closed panel is never a set of invisible, focusable links.
+        transition:
+            transform var(--rmp--menu-container-animation-duration, 0.5s) ease,
+            left var(--rmp--menu-container-animation-duration, 0.5s) ease,
+            right var(--rmp--menu-container-animation-duration, 0.5s) ease,
+            top var(--rmp--menu-container-animation-duration, 0.5s) ease,
+            bottom var(--rmp--menu-container-animation-duration, 0.5s) ease,
+            opacity var(--rmp--menu-container-animation-duration, 0.5s) ease,
+            visibility 0s linear var(--rmp--menu-container-animation-duration, 0.5s);
         overflow: auto;
         display: block;
         width: var(--rmp--menu-container-width, 100%);
@@ -179,12 +198,10 @@
         min-width: var(--rmp--menu-container-min-width, 320px);
         background-color: var(--rmp--menu-container-background-color, transparent);
 
-        @if var(--rmp--menu-container-background-image) {
-            background-image: var(--rmp--menu-container-background-image);
-            background-size: var(--rmp--menu-container-background-size, cover);
-            background-position: var(--rmp--menu-container-background-position, center);
-            background-repeat: var(--rmp--menu-container-background-repeat, no-repeat);
-        }
+        background-image: var(--rmp--menu-container-background-image);
+        background-size: var(--rmp--menu-container-background-size, cover);
+        background-position: var(--rmp--menu-container-background-position, center);
+        background-repeat: var(--rmp--menu-container-background-repeat, no-repeat);
 
         &.rmp-block-container-animation-slide {
             &.rmp-block-container-direction-left {
@@ -222,13 +239,30 @@
             }
         }
 
-        height: 100vh;
-        visibility: visible;
+        // No animation: the panel simply is not there until it is opened.
+        &.rmp-block-container-animation-none {
+            top: 0;
+            display: none;
+            transition: none;
+
+            &.rmp-block-container-direction-right { right: 0; }
+            &.rmp-block-container-direction-left { left: 0; }
+
+            &.rmp-block-active {
+                display: block;
+            }
+        }
+
+        height: var(--rmp--menu-container-height, 100vh);
+        visibility: hidden;
         z-index: 30;
         color: var(--rmp--menu-container-text-color, inherit);
         padding: var(--rmp--menu-container-padding, 0);
 
         &.rmp-block-active {
+            visibility: visible;
+            transition-delay: 0s;
+
             &.rmp-block-container-animation-slide {
                 &.rmp-block-container-direction-left {
                     left: 0;
@@ -250,7 +284,6 @@
             &.rmp-block-container-animation-fade {
                 opacity: 1;
                 z-index: 9999;
-                transition: opacity var(--rmp--menu-container-animation-transition-delay, 1s) ease-in-out;
             }
         }
 
@@ -261,6 +294,7 @@
 
         .wp-block-rmp-menu-items {
             list-style: none;
+            columns: var(--rmp--menu-container-columns, 1);
             transition: none;
             border-radius: 0;
             box-shadow: none;
@@ -307,23 +341,19 @@
                 color: var(--rmp--menu-item-color, #ffffff);
                 background: var(--rmp--menu-item-background, transparent);
 
-                @if "undefined" !=var(--rmp--menu-item-border-top) {
-                    border-top: var(--rmp--menu-item-border-top);
-                    border-right: var(--rmp--menu-item-border-right);
-                    border-bottom: var(--rmp--menu-item-border-bottom);
-                    border-left: var(--rmp--menu-item-border-left);
-                }
+                border-top: var(--rmp--menu-item-border-top);
+                border-right: var(--rmp--menu-item-border-right);
+                border-bottom: var(--rmp--menu-item-border-bottom);
+                border-left: var(--rmp--menu-item-border-left);
 
                 &:hover {
                     color: var(--rmp--menu-item-hover-color, #ffffff);
                     background: var(--rmp--menu-item-hover-background, transparent);
 
-                    @if "undefined" !=var(--rmp--menu-item-hover-border-top) {
-                        border-top: var(--rmp--menu-item-hover-border-top);
-                        border-right: var(--rmp--menu-item-hover-border-right);
-                        border-bottom: var(--rmp--menu-item-hover-border-bottom);
-                        border-left: var(--rmp--menu-item-hover-border-left);
-                    }
+                    border-top: var(--rmp--menu-item-hover-border-top);
+                    border-right: var(--rmp--menu-item-hover-border-right);
+                    border-bottom: var(--rmp--menu-item-hover-border-bottom);
+                    border-left: var(--rmp--menu-item-hover-border-left);
 
                     a {
                         color: var(--rmp--menu-item-hover-color, #ffffff);
@@ -343,12 +373,10 @@
                     color: var(--rmp--menu-item-active-color, #ffffff);
                     background: var(--rmp--menu-item-active-background, transparent);
 
-                    @if "undefined" !=var(--rmp--menu-item-active-border-top) {
-                        border-top: var(--rmp--menu-item-active-border-top);
-                        border-right: var(--rmp--menu-item-active-border-right);
-                        border-bottom: var(--rmp--menu-item-active-border-bottom);
-                        border-left: var(--rmp--menu-item-active-border-left);
-                    }
+                    border-top: var(--rmp--menu-item-active-border-top);
+                    border-right: var(--rmp--menu-item-active-border-right);
+                    border-bottom: var(--rmp--menu-item-active-border-bottom);
+                    border-left: var(--rmp--menu-item-active-border-left);
 
                     a {
                         color: var(--rmp--menu-item-active-color, #ffffff);
@@ -358,12 +386,10 @@
                         color: var(--rmp--menu-item-active-hover-color, #ffffff);
                         background: var(--rmp--menu-item-active-hover-background, transparent);
 
-                        @if var(--rmp--menu-item-active-hover-border-top) {
-                            border-top: var(--rmp--menu-item-active-hover-border-top);
-                            border-right: var(--rmp--menu-item-active-hover-border-right);
-                            border-bottom: var(--rmp--menu-item-active-hover-border-bottom);
-                            border-left: var(--rmp--menu-item-active-hover-border-left);
-                        }
+                        border-top: var(--rmp--menu-item-active-hover-border-top);
+                        border-right: var(--rmp--menu-item-active-hover-border-right);
+                        border-bottom: var(--rmp--menu-item-active-hover-border-bottom);
+                        border-left: var(--rmp--menu-item-active-hover-border-left);
 
                         a {
                             color: var(--rmp--menu-item-active-hover-color, #ffffff);
@@ -411,12 +437,10 @@
                 font: inherit;
                 z-index: 1;
 
-                @if "undefined" !=var(--rmp--menu-subitem-trigger-border-top) {
-                    border-top: var(--rmp--menu-subitem-trigger-border-top);
-                    border-right: var(--rmp--menu-subitem-trigger-border-right);
-                    border-bottom: var(--rmp--menu-subitem-trigger-border-bottom);
-                    border-left: var(--rmp--menu-subitem-trigger-border-left);
-                }
+                border-top: var(--rmp--menu-subitem-trigger-border-top);
+                border-right: var(--rmp--menu-subitem-trigger-border-right);
+                border-bottom: var(--rmp--menu-subitem-trigger-border-bottom);
+                border-left: var(--rmp--menu-subitem-trigger-border-left);
 
                 img {
                     max-width: 100%;
@@ -437,12 +461,10 @@
                 color: var(--rmp--menu-subitem-trigger-icon-hover-color, 'inherit');
                 background-color: var(--rmp--menu-subitem-trigger-icon-hover-background, 'inherit');
 
-                @if "undefined" !=var(--rmp--menu-subitem-trigger-hover-border-top) {
-                    border-top: var(--rmp--menu-subitem-trigger-hover-border-top);
-                    border-right: var(--rmp--menu-subitem-trigger-hover-border-right);
-                    border-bottom: var(--rmp--menu-subitem-trigger-hover-border-bottom);
-                    border-left: var(--rmp--menu-subitem-trigger-hover-border-left);
-                }
+                border-top: var(--rmp--menu-subitem-trigger-hover-border-top);
+                border-right: var(--rmp--menu-subitem-trigger-hover-border-right);
+                border-bottom: var(--rmp--menu-subitem-trigger-hover-border-bottom);
+                border-left: var(--rmp--menu-subitem-trigger-hover-border-left);
             }
 
             .rmp-block-active-submenu {
@@ -484,23 +506,19 @@
                     color: var(--rmp--menu-subitem-color, #ffffff);
                     background: var(--rmp--menu-subitem-background, transparent);
 
-                    @if "undefined" !=var(--rmp--menu-subitem-border-top) {
-                        border-top: var(--rmp--menu-subitem-border-top);
-                        border-right: var(--rmp--menu-subitem-border-right);
-                        border-bottom: var(--rmp--menu-subitem-border-bottom);
-                        border-left: var(--rmp--menu-subitem-border-left);
-                    }
+                    border-top: var(--rmp--menu-subitem-border-top);
+                    border-right: var(--rmp--menu-subitem-border-right);
+                    border-bottom: var(--rmp--menu-subitem-border-bottom);
+                    border-left: var(--rmp--menu-subitem-border-left);
 
                     &:hover {
                         color: var(--rmp--menu-subitem-hover-color, #ffffff);
                         background: var(--rmp--menu-subitem-hover-background, transparent);
 
-                        @if "undefined" !=var(--rmp--menu-subitem-hover-border-top) {
-                            border-top: var(--rmp--menu-subitem-hover-border-top);
-                            border-right: var(--rmp--menu-subitem-hover-border-right);
-                            border-bottom: var(--rmp--menu-subitem-hover-border-bottom);
-                            border-left: var(--rmp--menu-subitem-hover-border-left);
-                        }
+                        border-top: var(--rmp--menu-subitem-hover-border-top);
+                        border-right: var(--rmp--menu-subitem-hover-border-right);
+                        border-bottom: var(--rmp--menu-subitem-hover-border-bottom);
+                        border-left: var(--rmp--menu-subitem-hover-border-left);
 
                         a {
                             color: var(--rmp--menu-subitem-hover-color, #ffffff);
@@ -520,12 +538,10 @@
                         color: var(--rmp--menu-subitem-active-color, #ffffff);
                         background: var(--rmp--menu-subitem-active-background, transparent);
 
-                        @if "undefined" !=var(--rmp--menu-subitem-active-border-top) {
-                            border-top: var(--rmp--menu-subitem-active-border-top);
-                            border-right: var(--rmp--menu-subitem-active-border-right);
-                            border-bottom: var(--rmp--menu-subitem-active-border-bottom);
-                            border-left: var(--rmp--menu-subitem-active-border-left);
-                        }
+                        border-top: var(--rmp--menu-subitem-active-border-top);
+                        border-right: var(--rmp--menu-subitem-active-border-right);
+                        border-bottom: var(--rmp--menu-subitem-active-border-bottom);
+                        border-left: var(--rmp--menu-subitem-active-border-left);
 
                         a {
                             color: var(--rmp--menu-subitem-active-color, #ffffff);
@@ -535,12 +551,10 @@
                             color: var(--rmp--menu-subitem-active-hover-color, #ffffff);
                             background: var(--rmp--menu-subitem-active-hover-background, transparent);
 
-                            @if var(--rmp--menu-subitem-active-hover-border-top) {
-                                border-top: var(--rmp--menu-subitem-active-hover-border-top);
-                                border-right: var(--rmp--menu-subitem-active-hover-border-right);
-                                border-bottom: var(--rmp--menu-subitem-active-hover-border-bottom);
-                                border-left: var(--rmp--menu-subitem-active-hover-border-left);
-                            }
+                            border-top: var(--rmp--menu-subitem-active-hover-border-top);
+                            border-right: var(--rmp--menu-subitem-active-hover-border-right);
+                            border-bottom: var(--rmp--menu-subitem-active-hover-border-bottom);
+                            border-left: var(--rmp--menu-subitem-active-hover-border-left);
 
                             a {
                                 color: var(--rmp--menu-subitem-active-hover-color, #ffffff);
@@ -555,12 +569,10 @@
                             color: var(--rmp--menu-subitem-trigger-icon-active-color, 'inherit');
                             background-color: var(--rmp--menu-subitem-trigger-icon-active-background, 'inherit');
 
-                            @if "undefined" !=var(--rmp--menu-subitem-trigger-active-border-top) {
-                                border-top: var(--rmp--menu-subitem-trigger-active-border-top);
-                                border-right: var(--rmp--menu-subitem-trigger-active-border-right);
-                                border-bottom: var(--rmp--menu-subitem-trigger-active-border-bottom);
-                                border-left: var(--rmp--menu-subitem-trigger-active-border-left);
-                            }
+                            border-top: var(--rmp--menu-subitem-trigger-active-border-top);
+                            border-right: var(--rmp--menu-subitem-trigger-active-border-right);
+                            border-bottom: var(--rmp--menu-subitem-trigger-active-border-bottom);
+                            border-left: var(--rmp--menu-subitem-trigger-active-border-left);
                         }
 
                         &:hover {
@@ -571,12 +583,10 @@
                             color: var(--rmp--menu-subitem-trigger-icon-active-hover-color, 'inherit');
                             background-color: var(--rmp--menu-subitem-trigger-icon-active-hover-background, 'inherit');
 
-                            @if "undefined" !=var(--rmp--menu-subitem-trigger-active-hover-border-top) {
-                                border-top: var(--rmp--menu-subitem-trigger-active-hover-border-top);
-                                border-right: var(--rmp--menu-subitem-trigger-active-hover-border-right);
-                                border-bottom: var(--rmp--menu-subitem-trigger-active-hover-border-bottom);
-                                border-left: var(--rmp--menu-subitem-trigger-active-hover-border-left);
-                            }
+                            border-top: var(--rmp--menu-subitem-trigger-active-hover-border-top);
+                            border-right: var(--rmp--menu-subitem-trigger-active-hover-border-right);
+                            border-bottom: var(--rmp--menu-subitem-trigger-active-hover-border-bottom);
+                            border-left: var(--rmp--menu-subitem-trigger-active-hover-border-left);
                         }
                     }
                 }
@@ -620,10 +630,12 @@
             flex-direction: row !important;
             flex-wrap: nowrap !important;
             align-items: stretch !important;
+            justify-content: var(--rmp--desktop-menu-justify, flex-start) !important;
             list-style: none !important;
+            columns: initial !important;
             margin: 0 !important;
             padding: 0 !important;
-            gap: 0;
+            gap: var(--rmp--desktop-menu-gap, 0px);
 
             // ── Top-level items: sit side-by-side ─────────────────────────
             > .wp-block-navigation-item {
@@ -653,11 +665,10 @@
 
                 // Top-level anchor
                 > a {
-                    padding: 8px 12px !important;
+                    padding: var(--rmp--desktop-menu-item-padding, 8px 12px) !important;
                     white-space: nowrap !important;
                     flex: 1 1 auto !important;
                     min-width: 0 !important;
-                    padding-right: 4px !important;
                     color: inherit !important;
                     text-decoration: none !important;
                 }
@@ -684,7 +695,7 @@
                     top: 100% !important;
                     left: var(--rmp--desktop-submenu-alignment, 0) !important;
                     right: var(--rmp--desktop-submenu-right, auto) !important;
-                    min-width: 200px !important;
+                    min-width: var(--rmp--desktop-submenu-min-width, 200px) !important;
                     z-index: 9999 !important;
                     // No background on the container — items carry their own
                     background: transparent !important;
@@ -757,7 +768,7 @@
                         position: absolute !important;
                         top: 0 !important;
                         left: 100% !important;
-                        min-width: 200px !important;
+                        min-width: var(--rmp--desktop-submenu-min-width, 200px) !important;
                         z-index: 10000 !important;
                         // No background on container — items carry their own
                         background: transparent !important;
@@ -779,5 +790,150 @@
                 }
             }
         }
+    }
+}
+// ─── Overlay ─────────────────────────────────────────────────────────────────
+// Dims the page behind an open menu. Only printed when the setting is on, and
+// only interactive while the menu is open so it never blocks clicks otherwise.
+.rmp-block-navigator {
+    .rmp-block-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 29;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        background: var(--rmp--menu-overlay-background, rgba(0, 0, 0, 0.5));
+        transition: opacity var(--rmp--menu-container-animation-duration, 0.5s) ease;
+
+        &.rmp-block-active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+    }
+
+    &.rmp-desktop-mode .rmp-block-overlay {
+        display: none;
+    }
+}
+
+// ─── Trigger placement ───────────────────────────────────────────────────────
+// "In flow" is the default and needs no rules. The other two pin the trigger to
+// a corner, which is what the classic menu's "position type" offered.
+.rmp-block-navigator.rmp-block-trigger-position-fixed,
+.rmp-block-navigator.rmp-block-trigger-position-absolute {
+    > .rmp-block-menu-trigger {
+        top: var(--rmp--menu-hamburger-offset-top, 0px);
+        z-index: var(--rmp--menu-hamburger-z-index, 99999);
+
+        &.rmp-block-menu-trigger-position-left {
+            left: var(--rmp--menu-hamburger-offset-side, 0px);
+            right: auto;
+            margin-right: 0;
+        }
+
+        &.rmp-block-menu-trigger-position-right {
+            right: var(--rmp--menu-hamburger-offset-side, 0px);
+            left: auto;
+            margin-left: 0;
+        }
+    }
+}
+
+.rmp-block-navigator.rmp-block-trigger-position-fixed > .rmp-block-menu-trigger {
+    position: fixed;
+}
+
+.rmp-block-navigator.rmp-block-trigger-position-absolute > .rmp-block-menu-trigger {
+    position: absolute;
+}
+
+// ─── Page scroll lock ────────────────────────────────────────────────────────
+body.rmp-block-menu-open {
+    overflow: hidden;
+    touch-action: none;
+}
+
+// ─── Sub-menu arrow on the leading edge ──────────────────────────────────────
+.wp-block-rmp-menu-items.rmp-submenu-arrow-left {
+    .rmp-block-menu-subarrow {
+        right: auto;
+        left: 0;
+    }
+
+    .wp-block-navigation-item > a {
+        padding-right: 0;
+        padding-left: var(--rmp--menu-subitem-trigger-icon-width, 45px);
+    }
+}
+
+// ─── Sub-menu indentation from the trailing edge ─────────────────────────────
+.wp-block-rmp-menu-items.rmp-submenu-indent-right {
+    .rmp-block-submenu-level-1 > li a { margin-left: 0; margin-right: var(--rmp--menu-subitem-indentation-child1); }
+    .rmp-block-submenu-level-2 > li a { margin-left: 0; margin-right: var(--rmp--menu-subitem-indentation-child2); }
+    .rmp-block-submenu-level-3 > li a { margin-left: 0; margin-right: var(--rmp--menu-subitem-indentation-child3); }
+    .rmp-block-submenu-level-4 > li a { margin-left: 0; margin-right: var(--rmp--menu-subitem-indentation-child4); }
+}
+
+// ─── Desktop dropdown animation ──────────────────────────────────────────────
+// The panel is display:none when closed, so the animation runs on open only —
+// which is the honest trade for keeping closed dropdowns out of the a11y tree.
+.rmp-desktop-mode .wp-block-rmp-menu-items {
+    .rmp-block-active-submenu > .wp-block-navigation__submenu-container {
+        animation-duration: var(--rmp--desktop-submenu-animation-duration, 200ms);
+        animation-timing-function: ease-out;
+        animation-fill-mode: both;
+    }
+
+    &.rmp-desktop-submenu-fade
+        .rmp-block-active-submenu
+        > .wp-block-navigation__submenu-container {
+        animation-name: rmp-block-submenu-fade;
+    }
+
+    &.rmp-desktop-submenu-slide
+        .rmp-block-active-submenu
+        > .wp-block-navigation__submenu-container {
+        animation-name: rmp-block-submenu-slide;
+    }
+}
+
+@keyframes rmp-block-submenu-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes rmp-block-submenu-slide {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+// ─── Reduced motion ──────────────────────────────────────────────────────────
+@media (prefers-reduced-motion: reduce) {
+    .rmp-block-navigator {
+        .rmp-block-container,
+        .rmp-block-overlay,
+        .rmp-block-menu-trigger,
+        .rmp-block-menu-trigger .rmp-block-trigger-inner,
+        .rmp-block-menu-trigger .rmp-block-trigger-inner::after {
+            transition-duration: 0.01ms !important;
+        }
+
+        .wp-block-navigation__submenu-container {
+            animation: none !important;
+        }
+    }
+}
+
+// ─── Focus visibility ────────────────────────────────────────────────────────
+// The menu paints its own backgrounds, so the browser default outline is often
+// invisible against them; a two-tone outline reads on any colour.
+.rmp-block-navigator {
+    .rmp-block-menu-trigger:focus-visible,
+    .rmp-block-menu-subarrow:focus-visible,
+    .wp-block-navigation-item > a:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
     }
 }
