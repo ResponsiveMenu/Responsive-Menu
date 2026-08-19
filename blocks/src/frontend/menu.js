@@ -322,7 +322,12 @@ export default class ResponsiveMenu {
 		this.container.classList.remove(ACTIVE);
 		this.trigger.setAttribute('aria-expanded', 'false');
 		this.overlay?.classList.remove(ACTIVE);
-		document.body.classList.remove(BODY_LOCK);
+
+		// A page can hold more than one menu; only the last one to close may
+		// give page scrolling back.
+		if (!document.querySelector(`.rmp-block-navigator.${ACTIVE}`)) {
+			document.body.classList.remove(BODY_LOCK);
+		}
 
 		if (!this.isDesktop) {
 			this.container.setAttribute('aria-hidden', 'true');
