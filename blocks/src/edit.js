@@ -53,11 +53,14 @@ import {
 	ControlRow,
 } from './components/ResponsiveControls';
 import { usePreviewDevice } from './utils/device-store';
+import useBlockId from './utils/use-block-id';
 import {
 	createResponsiveHelpers,
+	createSharedHelpers,
 	buildResetDevice,
 	countOverrides,
 	normaliseBreakpoints,
+	isDesktopAt,
 	DEVICE_PREVIEW_WIDTH,
 } from './utils/responsive';
 import DynamicStyles, { buildResponsiveStyles } from './styles';
@@ -128,12 +131,18 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const fontFamiliesList = flattenFontFamilies(fontFamilies);
 
 	const helpers = createResponsiveHelpers(attributes, setAttributes, device);
-	const hamburgerStyle = helpers.get('hamburgerStyle');
-	const hamburgerText = helpers.get('hamburgerText');
 	const menuContainerStyle = helpers.get('menuContainerStyle');
-	const menuAnimation = helpers.get('menuAnimation');
-	const overlay = helpers.get('overlay');
-	const triggerPosition = helpers.get('triggerPosition');
+
+	// Settings that change the saved markup or a class name have exactly one
+	// saved value, so they are edited through the shared layer whatever device
+	// is selected. Routing them through the per-device helpers would show the
+	// change on the canvas and silently drop it on save.
+	const shared = createSharedHelpers(attributes, setAttributes);
+	const hamburgerStyle = shared.get('hamburgerStyle');
+	const hamburgerText = shared.get('hamburgerText');
+	const menuAnimation = shared.get('menuAnimation');
+	const overlay = shared.get('overlay');
+	const triggerPosition = shared.get('triggerPosition');
 
 	const breakpoints = normaliseBreakpoints({
 		breakpoint,
@@ -143,12 +152,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 	// A menu needs a stable id to key its generated CSS on. clientId is stable
 	// for the life of the block, and is what the saved class name uses.
-	useEffect(() => {
-		if (!id) {
-			setAttributes({ id: clientId });
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	useBlockId(id, clientId, setAttributes);
 
 	// The saved style payload: desktop values plus tablet/mobile diffs. PHP
 	// turns this back into one rule and two media queries at render time.
@@ -184,8 +188,10 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	);
 
 	const previewWidth = DEVICE_PREVIEW_WIDTH[device];
-	const isDesktopPreview =
-		(previewWidth ?? Number.MAX_SAFE_INTEGER) >= breakpoints.breakpoint;
+	const isDesktopPreview = isDesktopAt(
+		previewWidth ?? Number.MAX_SAFE_INTEGER,
+		breakpoints.breakpoint
+	);
 
 	const blockProps = useBlockProps({
 		className: [
@@ -289,7 +295,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					initialOpen={false}
 				>
 					<ResponsiveToggleGroup
-						helpers={helpers}
+						helpers={shared}
 						group="hamburgerStyle"
 						name="type"
 						label={__('Type', 'responsive-menu')}
@@ -338,28 +344,28 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 								label={__('Closed', 'responsive-menu')}
 								value={hamburgerStyle.icon}
 								onChange={(value) =>
-									helpers.update(
+									shared.update(
 										'hamburgerStyle',
 										'icon',
 										value?.iconName
 									)
 								}
 								onClear={() =>
-									helpers.update('hamburgerStyle', 'icon', '')
+									shared.update('hamburgerStyle', 'icon', '')
 								}
 							/>
 							<IconControl
 								label={__('Open', 'responsive-menu')}
 								value={hamburgerStyle.activeIcon}
 								onChange={(value) =>
-									helpers.update(
+									shared.update(
 										'hamburgerStyle',
 										'activeIcon',
 										value?.iconName
 									)
 								}
 								onClear={() =>
-									helpers.update(
+									shared.update(
 										'hamburgerStyle',
 										'activeIcon',
 										''
@@ -384,24 +390,24 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 								label={__('Closed', 'responsive-menu')}
 								value={hamburgerStyle.image}
 								onSelect={(url) =>
-									helpers.update('hamburgerStyle', 'image', url)
+									shared.update('hamburgerStyle', 'image', url)
 								}
 								onClear={() =>
-									helpers.update('hamburgerStyle', 'image', '')
+									shared.update('hamburgerStyle', 'image', '')
 								}
 							/>
 							<ImageField
 								label={__('Open', 'responsive-menu')}
 								value={hamburgerStyle.activeImage}
 								onSelect={(url) =>
-									helpers.update(
+									shared.update(
 										'hamburgerStyle',
 										'activeImage',
 										url
 									)
 								}
 								onClear={() =>
-									helpers.update(
+									shared.update(
 										'hamburgerStyle',
 										'activeImage',
 										''
@@ -446,7 +452,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						units={[{ value: 'px', label: 'px' }, { value: '%', label: '%' }]}
 					/>
 					<ResponsiveToggleGroup
-						helpers={helpers}
+						helpers={shared}
 						group="hamburgerStyle"
 						name="side"
 						label={__('Align', 'responsive-menu')}
@@ -456,7 +462,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						]}
 					/>
 					<ResponsiveSelect
-						helpers={helpers}
+						helpers={shared}
 						group="triggerPosition"
 						name="type"
 						label={__('Position', 'responsive-menu')}
@@ -499,19 +505,19 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					initialOpen={false}
 				>
 					<ResponsiveText
-						helpers={helpers}
+						helpers={shared}
 						group="hamburgerText"
 						name="text"
 						label={__('Closed label', 'responsive-menu')}
 					/>
 					<ResponsiveText
-						helpers={helpers}
+						helpers={shared}
 						group="hamburgerText"
 						name="activeText"
 						label={__('Open label', 'responsive-menu')}
 					/>
 					<ResponsiveToggleGroup
-						helpers={helpers}
+						helpers={shared}
 						group="hamburgerText"
 						name="position"
 						label={__('Position', 'responsive-menu')}
@@ -631,7 +637,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					initialOpen={false}
 				>
 					<ResponsiveToggle
-						helpers={helpers}
+						helpers={shared}
 						group="overlay"
 						name="enabled"
 						label={__('Dim the page behind the menu', 'responsive-menu')}
@@ -860,7 +866,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					initialOpen={false}
 				>
 					<ResponsiveSelect
-						helpers={helpers}
+						helpers={shared}
 						group="menuAnimation"
 						name="type"
 						label={__('Type', 'responsive-menu')}
@@ -871,7 +877,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						]}
 					/>
 					<ResponsiveSelect
-						helpers={helpers}
+						helpers={shared}
 						group="menuAnimation"
 						name="direction"
 						label={__('Opens from', 'responsive-menu')}

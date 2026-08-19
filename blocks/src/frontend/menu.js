@@ -371,8 +371,15 @@ export default class ResponsiveMenu {
 		if (query.addEventListener) {
 			this.on(query, 'change', listener);
 		} else {
-			// Safari < 14.
+			// Safari < 14. Recorded the same way so `destroy()` detaches it and
+			// the query stops holding on to a removed menu.
 			query.addListener(listener);
+			this.listeners.push([
+				{ removeEventListener: () => query.removeListener(listener) },
+				'change',
+				listener,
+				undefined,
+			]);
 		}
 	}
 

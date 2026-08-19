@@ -131,7 +131,17 @@ if ( ! class_exists( 'RMPBlock' ) ) {
 		}
 
 		/**
-		 * Let the core blocks we support declare `rmp/menu-items` as a parent.
+		 * Let the core navigation blocks be inserted into our list.
+		 *
+		 * `parent` is a RESTRICTION, not a permission: a block that declares one
+		 * can be inserted ONLY inside those parents. So this may only ever
+		 * extend a list that already exists — giving `parent` to a block that
+		 * had none (core/social-links, core/loginout, core/page-list) would
+		 * remove it from the inserter everywhere else on the site as soon as the
+		 * plugin is activated.
+		 *
+		 * Unrestricted blocks need nothing here: the container's own
+		 * `allowedBlocks` is what admits them to the list.
 		 *
 		 * @param array  $args       Block type registration arguments.
 		 * @param string $block_type Block name.
@@ -142,12 +152,12 @@ if ( ! class_exists( 'RMPBlock' ) ) {
 				return $args;
 			}
 
-			if ( isset( $args['parent'] ) && is_array( $args['parent'] ) ) {
-				if ( ! in_array( 'rmp/menu-items', $args['parent'], true ) ) {
-					$args['parent'][] = 'rmp/menu-items';
-				}
-			} else {
-				$args['parent'] = array( 'rmp/menu-items' );
+			if ( empty( $args['parent'] ) || ! is_array( $args['parent'] ) ) {
+				return $args;
+			}
+
+			if ( ! in_array( 'rmp/menu-items', $args['parent'], true ) ) {
+				$args['parent'][] = 'rmp/menu-items';
 			}
 
 			return $args;
@@ -224,19 +234,37 @@ if ( ! class_exists( 'RMPBlock' ) ) {
 		 * @return array `[ desktop, tablet, mobile ]` in px.
 		 */
 		private function resolve_breakpoints( $attributes ) {
-			$desktop = isset( $attributes['breakpoint'] ) ? absint( $attributes['breakpoint'] ) : 0;
-			$tablet  = isset( $attributes['tabletBreakpoint'] ) ? absint( $attributes['tabletBreakpoint'] ) : 0;
-			$mobile  = isset( $attributes['mobileBreakpoint'] ) ? absint( $attributes['mobileBreakpoint'] ) : 0;
-
-			$desktop = $desktop ? $desktop : self::DEFAULT_BREAKPOINT;
-			$tablet  = $tablet ? $tablet : self::DEFAULT_TABLET_BREAKPOINT;
-			$mobile  = $mobile ? $mobile : self::DEFAULT_MOBILE_BREAKPOINT;
+			$desktop = $this->breakpoint_value( $attributes, 'breakpoint', self::DEFAULT_BREAKPOINT );
+			$tablet  = max( 1, $this->breakpoint_value( $attributes, 'tabletBreakpoint', self::DEFAULT_TABLET_BREAKPOINT ) );
+			$mobile  = max( 1, $this->breakpoint_value( $attributes, 'mobileBreakpoint', self::DEFAULT_MOBILE_BREAKPOINT ) );
 
 			return array(
 				'desktop' => $desktop,
 				'tablet'  => $tablet,
 				'mobile'  => min( $mobile, $tablet - 1 ),
 			);
+		}
+
+		/**
+		 * Read one breakpoint.
+		 *
+		 * A saved 0 means "never switch to the inline desktop bar" and has to
+		 * survive: treating it as unset and defaulting to 768 makes the frontend
+		 * (which reads 0 as never) and the generated CSS disagree, and the CSS
+		 * wins with `!important` — the menu ends up permanently open and
+		 * unopenable above 768px.
+		 *
+		 * @param array  $attributes Attributes (or context values) to read.
+		 * @param string $key        Attribute name.
+		 * @param int    $fallback   Value to use when the key is absent.
+		 * @return int Breakpoint in px.
+		 */
+		private function breakpoint_value( $attributes, $key, $fallback ) {
+			if ( ! isset( $attributes[ $key ] ) || ! is_numeric( $attributes[ $key ] ) ) {
+				return $fallback;
+			}
+
+			return absint( $attributes[ $key ] );
 		}
 
 		/**

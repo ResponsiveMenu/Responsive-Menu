@@ -74,17 +74,19 @@ export default class SubmenuController {
 				null;
 		}
 
+		// For the icon type the value is only a presence flag — the SVG comes
+		// from the cloned node. With no node there is nothing to draw, and a
+		// non-empty value here would be printed as literal text instead.
+		const describe = (value, node) => {
+			if ('icon' !== type) {
+				return { type, value, node };
+			}
+			return { type, value: node ? 'icon' : '', node };
+		};
+
 		return {
-			inactive: {
-				type,
-				value: 'icon' === type ? inactiveValue || 'icon' : inactiveValue,
-				node: inactiveNode,
-			},
-			active: {
-				type,
-				value: 'icon' === type ? activeValue || 'icon' : activeValue,
-				node: activeNode,
-			},
+			inactive: describe(inactiveValue, inactiveNode),
+			active: describe(activeValue, activeNode),
 		};
 	}
 
@@ -158,7 +160,7 @@ export default class SubmenuController {
 			submenu.insertBefore(arrow, container);
 		}
 
-		arrow.addEventListener('click', (event) => {
+		this.on(arrow, 'click', (event) => {
 			event.preventDefault();
 			event.stopPropagation();
 			this.toggle(submenu);
@@ -166,39 +168,51 @@ export default class SubmenuController {
 
 		// Opening from the item itself, when the menu is configured that way.
 		if (this.settings.itemClickOpens && anchor) {
-			anchor.addEventListener('click', (event) => {
+			this.on(anchor, 'click', (event) => {
 				if (this.isOpen(submenu)) {
 					return;
 				}
 				event.preventDefault();
-				this.toggle(submenu);
+				// Without this the click reaches the menu's close-on-link
+				// handler and shuts the whole panel the moment the sub-menu
+				// opens.
+				event.stopPropagation();
+				this.open(submenu);
 			});
 		}
 
 		// Desktop hover dropdowns, with keyboard parity via focus/blur.
-		submenu.addEventListener('pointerenter', () => {
+		this.on(submenu, 'pointerenter', () => {
 			if (this.isHoverMode()) {
 				this.open(submenu);
 			}
 		});
-		submenu.addEventListener('pointerleave', () => {
+		this.on(submenu, 'pointerleave', () => {
 			if (this.isHoverMode()) {
 				this.close(submenu);
 			}
 		});
-		submenu.addEventListener('focusin', () => {
+		this.on(submenu, 'focusin', () => {
 			if (this.isHoverMode()) {
 				this.open(submenu);
 			}
 		});
-		submenu.addEventListener('focusout', (event) => {
-			if (
-				this.isHoverMode() &&
-				!submenu.contains(event.relatedTarget)
-			) {
+		this.on(submenu, 'focusout', (event) => {
+			if (this.isHoverMode() && !submenu.contains(event.relatedTarget)) {
 				this.close(submenu);
 			}
 		});
+	}
+
+	/**
+	 * Register a listener on the owning menu, so `destroy()` detaches it.
+	 *
+	 * @param {EventTarget} target  Event target.
+	 * @param {string}      type    Event name.
+	 * @param {Function}    handler Handler.
+	 */
+	on(target, type, handler) {
+		this.menu.on(target, type, handler);
 	}
 
 	/**

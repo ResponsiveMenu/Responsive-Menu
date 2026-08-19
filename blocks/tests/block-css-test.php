@@ -174,6 +174,16 @@ check(
 );
 check( 'defaults are used when nothing is set', $call( 'resolve_breakpoints', array() ), $breakpoints );
 
+// 0 is a real setting — "never show the inline desktop bar" — and must not be
+// read as "unset". Defaulting it to 768 makes the generated CSS force the menu
+// open above 768px while the runtime keeps it off-canvas.
+check(
+	'an explicit breakpoint of 0 survives',
+	$call( 'resolve_breakpoints', array( 'breakpoint' => 0 ) )['desktop'],
+	0
+);
+check( 'and emits no desktop fallback query', $call( 'desktop_fallback_css', 'abc', 0 ), '' );
+
 // ── Render callbacks ────────────────────────────────────────────────────────
 check(
 	'the menu render callback returns its content untouched',
@@ -206,10 +216,14 @@ check( 'a block with no id passes its content through', $rmp->render_block( arra
 check( 'a block with no id emits no CSS', count( $GLOBALS['enqueued'] ), $before );
 
 // ── Allowing core blocks as menu items ──────────────────────────────────────
-check( 'a supported core block gains the parent', $rmp->allow_core_blocks_in_menu_items( array(), 'core/navigation-link' ), array( 'parent' => array( 'rmp/menu-items' ) ) );
-check( 'an existing parent list is appended to', $rmp->allow_core_blocks_in_menu_items( array( 'parent' => array( 'core/navigation' ) ), 'core/navigation-link' ), array( 'parent' => array( 'core/navigation', 'rmp/menu-items' ) ) );
+check( 'a block already restricted to a parent gains ours', $rmp->allow_core_blocks_in_menu_items( array( 'parent' => array( 'core/navigation' ) ), 'core/navigation-link' ), array( 'parent' => array( 'core/navigation', 'rmp/menu-items' ) ) );
 check( 'the filter is idempotent', $rmp->allow_core_blocks_in_menu_items( array( 'parent' => array( 'rmp/menu-items' ) ), 'core/navigation-link' ), array( 'parent' => array( 'rmp/menu-items' ) ) );
 check( 'every other block is left alone', $rmp->allow_core_blocks_in_menu_items( array(), 'core/paragraph' ), array() );
+
+// `parent` is a restriction: introducing one on a block that had none would
+// remove it from the inserter everywhere else on the site.
+check( 'an unrestricted block is never given a parent', $rmp->allow_core_blocks_in_menu_items( array(), 'core/social-links' ), array() );
+check( 'nor is one with an empty parent list', $rmp->allow_core_blocks_in_menu_items( array( 'parent' => array() ), 'core/loginout' ), array( 'parent' => array() ) );
 
 echo $failures ? "\n$failures failure(s)\n" : "\nall passed\n";
 exit( $failures ? 1 : 0 );

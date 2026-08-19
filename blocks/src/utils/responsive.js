@@ -102,7 +102,14 @@ export function isOverridden(attributes, device, group, key) {
 		return true;
 	}
 
-	return undefined !== getOverrides(attributes, device, group)[key];
+	// Presence, not value: clearing a colour stores `undefined`, and that is a
+	// deliberate "no colour on this device" the user must be able to reset.
+	// Testing the value instead would hide the reset button while
+	// `countOverrides` still counted the key.
+	return Object.prototype.hasOwnProperty.call(
+		getOverrides(attributes, device, group),
+		key
+	);
 }
 
 /**
@@ -136,6 +143,46 @@ export function buildUpdate(attributes, device, group, key, value) {
 				[group]: {
 					...(deviceLayer[group] || {}),
 					[key]: value,
+				},
+			},
+		},
+	};
+}
+
+/**
+ * Build the payload that writes several keys of one group at once.
+ *
+ * Sequential `update` calls would each build from the same, now-stale
+ * attributes, and `setAttributes` merges only at the top level — so the last
+ * write would replace the group and every earlier key would be lost.
+ *
+ * @param {Object} attributes Block attributes.
+ * @param {string} device     desktop | tablet | mobile.
+ * @param {string} group      Attribute name.
+ * @param {Object} values     Keys to write.
+ * @return {Object} Payload for `setAttributes`.
+ */
+export function buildUpdateMany(attributes, device, group, values) {
+	if ('desktop' === device) {
+		return {
+			[group]: {
+				...(attributes?.[group] || {}),
+				...values,
+			},
+		};
+	}
+
+	const responsive = attributes?.responsive || {};
+	const deviceLayer = responsive[device] || {};
+
+	return {
+		responsive: {
+			...responsive,
+			[device]: {
+				...deviceLayer,
+				[group]: {
+					...(deviceLayer[group] || {}),
+					...values,
 				},
 			},
 		},
@@ -232,13 +279,8 @@ export function createResponsiveHelpers(attributes, setAttributes, device) {
 		get: (group) => resolveGroup(attributes, device, group),
 		update: (group, key, value) =>
 			setAttributes(buildUpdate(attributes, device, group, key, value)),
-		updateMany: (group, values) => {
-			Object.entries(values).forEach(([key, value]) =>
-				setAttributes(
-					buildUpdate(attributes, device, group, key, value)
-				)
-			);
-		},
+		updateMany: (group, values) =>
+			setAttributes(buildUpdateMany(attributes, device, group, values)),
 		reset: (group, key, fallback) =>
 			setAttributes(
 				buildReset(attributes, device, group, key, fallback)
@@ -246,6 +288,19 @@ export function createResponsiveHelpers(attributes, setAttributes, device) {
 		isOverridden: (group, key) =>
 			isOverridden(attributes, device, group, key),
 	};
+}
+
+/**
+ * Parse a breakpoint, keeping an explicit 0 and defaulting only when the value
+ * is genuinely absent or unparseable.
+ *
+ * @param {*}      value    Raw value.
+ * @param {number} fallback Default when absent.
+ * @return {number} Breakpoint in px.
+ */
+function toPx(value, fallback) {
+	const parsed = parseInt(value, 10);
+	return Number.isFinite(parsed) ? parsed : fallback;
 }
 
 /**
@@ -262,18 +317,45 @@ export function normaliseBreakpoints({
 	tabletBreakpoint,
 	mobileBreakpoint,
 }) {
-	const desktopAt = Math.max(1, parseInt(breakpoint, 10) || 768);
-	const tabletAt = Math.max(1, parseInt(tabletBreakpoint, 10) || 1024);
-	const mobileAt = Math.max(
-		1,
-		Math.min(parseInt(mobileBreakpoint, 10) || 767, tabletAt - 1)
-	);
+	// 0 is a real setting — "never switch to the inline desktop bar" — so it
+	// must survive rather than being read as "unset" and defaulted.
+	const desktopAt = Math.max(0, toPx(breakpoint, 768));
+	const tabletAt = Math.max(1, toPx(tabletBreakpoint, 1024));
+	const mobileAt = Math.max(1, Math.min(toPx(mobileBreakpoint, 767), tabletAt - 1));
 
 	return {
 		breakpoint: desktopAt,
 		tabletBreakpoint: tabletAt,
 		mobileBreakpoint: mobileAt,
 	};
+}
+
+/**
+ * Helpers for settings that cannot vary by device.
+ *
+ * Anything that changes the saved markup or a class name — the trigger type,
+ * its icon, the label text, the animation — has only one saved value, so the
+ * inspector must write it to the shared layer whichever device is selected.
+ * Routing it through the responsive helpers instead would show the change in
+ * the editor and silently drop it on save.
+ *
+ * @param {Object}   attributes    Block attributes.
+ * @param {Function} setAttributes Block setter.
+ * @return {Object} Helper bundle pinned to the shared layer.
+ */
+export function createSharedHelpers(attributes, setAttributes) {
+	return createResponsiveHelpers(attributes, setAttributes, 'desktop');
+}
+
+/**
+ * Whether the inline desktop bar applies at a given width.
+ *
+ * @param {number} width      Viewport width in px.
+ * @param {number} breakpoint Desktop breakpoint; 0 means never.
+ * @return {boolean} True when the desktop layout applies.
+ */
+export function isDesktopAt(width, breakpoint) {
+	return breakpoint > 0 && width >= breakpoint;
 }
 
 /**

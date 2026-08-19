@@ -330,6 +330,41 @@ describe('sub-menus', () => {
 		expect(arrow.textContent).toBe('<img src=x onerror=alert(1)>');
 	});
 
+	it('never prints the icon sentinel when an icon arrow has no template', () => {
+		// Icon arrows clone a hidden SVG the block prints. With no template the
+		// arrow must stay empty rather than fall through to rendering the
+		// internal marker as text.
+		const root = renderMenu({
+			list: {
+				'data-submenu-icon-type': 'icon',
+				'data-submenu-icon': 'wordpress-chevron',
+			},
+		});
+		// eslint-disable-next-line no-new
+		new ResponsiveMenu(root);
+
+		expect(arrowOf(submenuItems()[0]).textContent).toBe('');
+	});
+
+	it('opening a sub-menu from its item does not close the whole menu', () => {
+		const root = renderMenu({
+			nav: { 'data-close-on-link': 'true' },
+			list: { 'data-item-click-opens': 'true' },
+		});
+		// eslint-disable-next-line no-new
+		new ResponsiveMenu(root);
+
+		trigger().click();
+		const submenu = submenuItems()[0];
+		submenu.querySelector(':scope > a').click();
+
+		expect(submenu.classList.contains('rmp-block-active-submenu')).toBe(
+			true
+		);
+		// The click must not reach the close-on-link handler.
+		expect(trigger().getAttribute('aria-expanded')).toBe('true');
+	});
+
 	it('toggles a sub-menu and swaps the arrow', () => {
 		const root = renderMenu();
 		// eslint-disable-next-line no-new

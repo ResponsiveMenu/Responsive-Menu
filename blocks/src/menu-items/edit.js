@@ -49,11 +49,14 @@ import {
 	ControlRow,
 } from '../components/ResponsiveControls';
 import { usePreviewDevice } from '../utils/device-store';
+import useBlockId from '../utils/use-block-id';
 import {
 	createResponsiveHelpers,
+	createSharedHelpers,
 	buildResetDevice,
 	countOverrides,
 	normaliseBreakpoints,
+	isDesktopAt,
 	DEVICE_PREVIEW_WIDTH,
 } from '../utils/responsive';
 import DynamicStyles, { buildResponsiveStyles } from '../styles';
@@ -116,9 +119,15 @@ export default function Edit({
 	const helpers = createResponsiveHelpers(attributes, setAttributes, device);
 	const menuStyle = helpers.get('menuStyle');
 	const submenuStyle = helpers.get('submenuStyle');
-	const submenuIndentation = helpers.get('submenuIndentation');
-	const triggerIcon = helpers.get('triggerIcon');
 	const desktopMenuStyle = helpers.get('desktopMenuStyle');
+
+	// The arrow, the indentation side and the dropdown animation reach the
+	// saved markup as class names, so they hold one value for every device —
+	// see the note on createSharedHelpers in utils/responsive.js.
+	const shared = createSharedHelpers(attributes, setAttributes);
+	const submenuIndentation = shared.get('submenuIndentation');
+	const triggerIcon = shared.get('triggerIcon');
+	const sharedDesktop = shared.get('desktopMenuStyle');
 
 	const breakpoints = normaliseBreakpoints({
 		breakpoint: context['rmp/breakpoint'],
@@ -126,12 +135,7 @@ export default function Edit({
 		mobileBreakpoint: context['rmp/mobileBreakpoint'],
 	});
 
-	useEffect(() => {
-		if (!id) {
-			setAttributes({ id: clientId });
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	useBlockId(id, clientId, setAttributes);
 
 	const responsiveStyles = useMemo(
 		() => buildResponsiveStyles(attributes),
@@ -162,8 +166,10 @@ export default function Edit({
 	);
 
 	const previewWidth = DEVICE_PREVIEW_WIDTH[device];
-	const isDesktopPreview =
-		(previewWidth ?? Number.MAX_SAFE_INTEGER) >= breakpoints.breakpoint;
+	const isDesktopPreview = isDesktopAt(
+		previewWidth ?? Number.MAX_SAFE_INTEGER,
+		breakpoints.breakpoint
+	);
 
 	const blockProps = useBlockProps({
 		className: [
@@ -173,7 +179,7 @@ export default function Edit({
 			`rmp-block-menu-items-${id}`,
 			`rmp-submenu-arrow-${triggerIcon.position || 'right'}`,
 			`rmp-submenu-indent-${submenuIndentation.side || 'left'}`,
-			`rmp-desktop-submenu-${desktopMenuStyle.submenuAnimation || 'fade'}`,
+			`rmp-desktop-submenu-${sharedDesktop.submenuAnimation || 'fade'}`,
 			isDesktopPreview ? 'rmp-editor-desktop-items' : '',
 		]
 			.filter(Boolean)
@@ -358,7 +364,7 @@ export default function Edit({
 					initialOpen={false}
 				>
 					<ResponsiveToggleGroup
-						helpers={helpers}
+						helpers={shared}
 						group="submenuIndentation"
 						name="side"
 						label={__('Indent from', 'responsive-menu')}
@@ -387,7 +393,7 @@ export default function Edit({
 					initialOpen={false}
 				>
 					<ResponsiveToggleGroup
-						helpers={helpers}
+						helpers={shared}
 						group="triggerIcon"
 						name="type"
 						label={__('Type', 'responsive-menu')}
@@ -400,13 +406,13 @@ export default function Edit({
 					{'text' === triggerIcon.type && (
 						<>
 							<ResponsiveText
-								helpers={helpers}
+								helpers={shared}
 								group="triggerIcon"
 								name="textShape"
 								label={__('Closed', 'responsive-menu')}
 							/>
 							<ResponsiveText
-								helpers={helpers}
+								helpers={shared}
 								group="triggerIcon"
 								name="activeTextShape"
 								label={__('Open', 'responsive-menu')}
@@ -419,28 +425,28 @@ export default function Edit({
 								label={__('Closed', 'responsive-menu')}
 								value={triggerIcon.icon}
 								onChange={(value) =>
-									helpers.update(
+									shared.update(
 										'triggerIcon',
 										'icon',
 										value?.iconName
 									)
 								}
 								onClear={() =>
-									helpers.update('triggerIcon', 'icon', '')
+									shared.update('triggerIcon', 'icon', '')
 								}
 							/>
 							<IconControl
 								label={__('Open', 'responsive-menu')}
 								value={triggerIcon.activeIcon}
 								onChange={(value) =>
-									helpers.update(
+									shared.update(
 										'triggerIcon',
 										'activeIcon',
 										value?.iconName
 									)
 								}
 								onClear={() =>
-									helpers.update(
+									shared.update(
 										'triggerIcon',
 										'activeIcon',
 										''
@@ -455,24 +461,24 @@ export default function Edit({
 								label={__('Closed', 'responsive-menu')}
 								value={triggerIcon.image}
 								onSelect={(url) =>
-									helpers.update('triggerIcon', 'image', url)
+									shared.update('triggerIcon', 'image', url)
 								}
 								onClear={() =>
-									helpers.update('triggerIcon', 'image', '')
+									shared.update('triggerIcon', 'image', '')
 								}
 							/>
 							<ImageField
 								label={__('Open', 'responsive-menu')}
 								value={triggerIcon.activeImage}
 								onSelect={(url) =>
-									helpers.update(
+									shared.update(
 										'triggerIcon',
 										'activeImage',
 										url
 									)
 								}
 								onClear={() =>
-									helpers.update(
+									shared.update(
 										'triggerIcon',
 										'activeImage',
 										''
@@ -482,7 +488,7 @@ export default function Edit({
 						</>
 					)}
 					<ResponsiveToggleGroup
-						helpers={helpers}
+						helpers={shared}
 						group="triggerIcon"
 						name="position"
 						label={__('Position', 'responsive-menu')}
@@ -740,7 +746,7 @@ export default function Edit({
 						step={10}
 					/>
 					<ResponsiveSelect
-						helpers={helpers}
+						helpers={shared}
 						group="desktopMenuStyle"
 						name="submenuAnimation"
 						label={__('Dropdown animation', 'responsive-menu')}

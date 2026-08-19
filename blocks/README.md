@@ -51,6 +51,14 @@ like desktop until something is explicitly overridden. In the inspector an
 overridden control gets a coloured rail and a reset button — that reset is the
 only way back to inheriting once a value has been touched.
 
+**Only settings that end up as a custom property can vary by device.** Anything
+that changes the saved markup or a class name — the trigger type, its icon or
+image, the labels, the animation, the sub-menu arrow, the indentation side — has
+a single saved value, so the inspector writes it through `createSharedHelpers`
+whatever device is selected. Showing those per-device would mean the editor
+rendering a change that `save` then drops on the floor. If you add a control,
+decide which of the two it is before wiring it up.
+
 **3. The three tiers become one rule and two media queries.** The editor saves
 `blockStyles` as `{ base, tablet, mobile }`, where the two narrower tiers carry
 only the properties that changed. `blocks/block.php` re-emits them as:
@@ -74,7 +82,10 @@ non-URL `url()`. `tests/block-css-test.php` pins all of that down.
 Three, and they mean different things:
 
 - **Collapse to hamburger below** — the layout switch. Above it the menu is an
-  inline bar; below it, an off-canvas panel behind the hamburger.
+  inline bar; below it, an off-canvas panel behind the hamburger. **0 means
+  never**: the menu stays off-canvas at every width. That value has to survive
+  as 0 rather than be read as "unset" — defaulting it would make the generated
+  CSS force the menu open at widths where the runtime keeps it closed.
 - **Tablet styles below** / **Mobile styles below** — the styling tiers above.
   Mobile is clamped below tablet at render time.
 
@@ -122,6 +133,14 @@ trigger; `SubmenuController` owns one menu list. Points worth knowing:
 Menus fire `rmp-menu-open` / `rmp-menu-close` on the `nav`, and
 `window.rmpBlockMenu.get(navElement)` returns the instance, so themes can drive
 a menu without reaching into the DOM.
+
+## Extending the list of menu items
+
+`MENU_ITEM_BLOCKS` (`src/menu-items/constants.js`, mirrored in `block.php`) is
+what the container admits through `allowedBlocks`. The `blocks.registerBlockType`
+filter beside it only ever *extends* a `parent` list a block already has —
+`parent` is a restriction, so giving one to a block that had none would remove
+that block from the inserter everywhere else on the site.
 
 ## Deprecations
 

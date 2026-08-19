@@ -6,11 +6,13 @@ import {
 	resolveGroup,
 	isOverridden,
 	buildUpdate,
+	buildUpdateMany,
 	buildReset,
 	buildResetDevice,
 	countOverrides,
 	normaliseBreakpoints,
 	deviceForWidth,
+	isDesktopAt,
 } from './responsive';
 
 const attributes = {
@@ -59,6 +61,17 @@ describe('isOverridden', () => {
 		);
 	});
 
+	it('counts a key stored as undefined — clearing a colour is an override', () => {
+		const cleared = {
+			menuStyle: { color: '#fff' },
+			responsive: { tablet: { menuStyle: { color: undefined } } },
+		};
+
+		expect(isOverridden(cleared, 'tablet', 'menuStyle', 'color')).toBe(true);
+		expect(countOverrides(cleared, 'tablet')).toBe(1);
+		expect(resolveGroup(cleared, 'tablet', 'menuStyle').color).toBeUndefined();
+	});
+
 	it('is true only for keys the device sets itself', () => {
 		expect(isOverridden(attributes, 'tablet', 'menuStyle', 'fontSize')).toBe(
 			true
@@ -94,6 +107,34 @@ describe('buildUpdate', () => {
 		// The desktop value is untouched.
 		expect(update.menuStyle).toBeUndefined();
 		expect(attributes.menuStyle.color).toBe('#fff');
+	});
+});
+
+describe('buildUpdateMany', () => {
+	it('writes every key in one payload', () => {
+		const update = buildUpdateMany(attributes, 'desktop', 'menuStyle', {
+			color: '#000',
+			fontSize: '12px',
+		});
+
+		expect(update.menuStyle).toEqual({
+			color: '#000',
+			fontSize: '12px',
+			textAlign: 'left',
+		});
+	});
+
+	it('writes every key on a non-desktop device too', () => {
+		const update = buildUpdateMany(attributes, 'tablet', 'menuStyle', {
+			color: '#000',
+			textAlign: 'center',
+		});
+
+		expect(update.responsive.tablet.menuStyle).toEqual({
+			fontSize: '14px',
+			color: '#000',
+			textAlign: 'center',
+		});
 	});
 });
 
@@ -142,6 +183,10 @@ describe('normaliseBreakpoints', () => {
 		});
 	});
 
+	it('keeps an explicit 0, which means "never switch to desktop"', () => {
+		expect(normaliseBreakpoints({ breakpoint: 0 }).breakpoint).toBe(0);
+	});
+
 	it('keeps the mobile query narrower than the tablet one', () => {
 		expect(
 			normaliseBreakpoints({
@@ -168,5 +213,18 @@ describe('deviceForWidth', () => {
 		[1025, 'desktop'],
 	])('maps %ipx to %s', (width, expected) => {
 		expect(deviceForWidth(width, breakpoints)).toBe(expected);
+	});
+});
+
+describe('isDesktopAt', () => {
+	it('is true at or above the breakpoint', () => {
+		expect(isDesktopAt(768, 768)).toBe(true);
+		expect(isDesktopAt(1200, 768)).toBe(true);
+		expect(isDesktopAt(767, 768)).toBe(false);
+	});
+
+	it('is never true when the breakpoint is 0', () => {
+		// 0 means the menu stays off-canvas at every width.
+		expect(isDesktopAt(4000, 0)).toBe(false);
 	});
 });

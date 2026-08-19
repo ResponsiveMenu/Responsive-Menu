@@ -70,11 +70,16 @@ export function DeviceNotice({ device, count, onReset }) {
 	return (
 		<div className="rmp-device-notice">
 			<p>
-				{/* translators: %s: device name. */}
 				{__('Editing', 'responsive-menu')}{' '}
 				<strong>{DEVICE_LABELS[device]}</strong>.{' '}
 				{__(
 					'Values you change here apply to this device and narrower; anything untouched is inherited.',
+					'responsive-menu'
+				)}
+			</p>
+			<p>
+				{__(
+					'Settings that change the menu itself rather than its styling — the trigger type, its icon or image, the labels, the animation and the sub-menu arrow — have a single value and apply to every device.',
 					'responsive-menu'
 				)}
 			</p>

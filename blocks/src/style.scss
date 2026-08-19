@@ -319,7 +319,7 @@
             top: auto;
             visibility: inherit;
             width: auto;
-            word-wrap: break-word;
+            word-wrap: var(--rmp--menu-item-word-wrap, break-word);
             white-space: normal;
 
             .wp-block-navigation-item {
@@ -505,6 +505,7 @@
                     text-decoration: none;
                     color: var(--rmp--menu-subitem-color, #ffffff);
                     background: var(--rmp--menu-subitem-background, transparent);
+                    word-wrap: var(--rmp--menu-subitem-word-wrap, break-word);
 
                     border-top: var(--rmp--menu-subitem-border-top);
                     border-right: var(--rmp--menu-subitem-border-right);
