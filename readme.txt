@@ -140,7 +140,7 @@ Free support is on the [WordPress.org support forum](https://wordpress.org/suppo
 7. Your responsive menu live on the front end
 
 == Changelog ==
-= 4.7.3 (17th August 2026) =
+= 4.7.3 (20th August 2026) =
 * Security: Prevented menu theme ZIPs from placing executable files in public uploads
 * Enhancement: Added pre-extraction validation and plugin-level permissions for theme uploads
 * Enhancement: Resolved PHP 8+ deprecation warnings and theme upload rejection messages
