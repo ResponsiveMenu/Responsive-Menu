@@ -2,9 +2,9 @@
 Contributors: expresstech, responsivemenu, moha12351, infosatech
 Tags: mobile menu, hamburger, responsive, navigation, mega menu
 Requires at least: 3.6
-Tested up to: 7.0.2
-Stable tag: 4.7.2
-Requires PHP: 5.6
+Tested up to: 7.0
+Stable tag: 4.7.3
+Requires PHP: 7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -140,6 +140,11 @@ Free support is on the [WordPress.org support forum](https://wordpress.org/suppo
 7. Your responsive menu live on the front end
 
 == Changelog ==
+= 4.7.3 (20th August 2026) =
+* Security: Prevented menu theme ZIPs from placing executable files in public uploads
+* Enhancement: Added pre-extraction validation and plugin-level permissions for theme uploads
+* Enhancement: Resolved PHP 8+ deprecation warnings and theme upload rejection messages
+
 = 4.7.2 (20th May 2026) =
 * Patch: Resolved a cross-site scripting (XSS) vulnerability in additional content HTML
 

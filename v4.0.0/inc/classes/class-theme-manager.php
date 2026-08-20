@@ -43,6 +43,85 @@ class Theme_Manager {
 	public $theme_preview_img = RMP_PLUGIN_URL_V4 . '/assets/images/default-theme-preview.png';
 
 	/**
+	 * Capability required to upload a menu theme.
+	 *
+	 * A menu theme ships a PHP index file which the plugin loads with
+	 * require_once on every request, so uploading one is equivalent to
+	 * installing a plugin and must require the same capability. On multisite
+	 * `install_plugins` belongs to Super Admins only, which closes the
+	 * privilege boundary a site Administrator could otherwise cross.
+	 *
+	 * @since 4.7.3
+	 *
+	 * @var string
+	 */
+	const THEME_UPLOAD_CAPABILITY = 'install_plugins';
+
+	/**
+	 * File extensions permitted inside an uploaded theme archive.
+	 *
+	 * PHP is on the list because the theme format requires it — see
+	 * self::THEME_UPLOAD_CAPABILITY for the control that actually gates the
+	 * upload. The list exists to keep files that could re-configure the web
+	 * server (.htaccess, web.config, php.ini, .user.ini) out of the uploads
+	 * directory, since those would undo the guards written by
+	 * self::protect_upload_dir().
+	 *
+	 * @since 4.7.3
+	 *
+	 * @var array
+	 */
+	const ALLOWED_THEME_FILE_EXTENSIONS = array(
+		'php',
+		'json',
+		'css',
+		'scss',
+		'sass',
+		'less',
+		'js',
+		'map',
+		'png',
+		'jpg',
+		'jpeg',
+		'gif',
+		'svg',
+		'webp',
+		'ico',
+		'bmp',
+		'woff',
+		'woff2',
+		'ttf',
+		'otf',
+		'eot',
+		'txt',
+		'md',
+		'html',
+		'htm',
+		'xml',
+		'po',
+		'mo',
+		'pot',
+	);
+
+	/**
+	 * Archive entries that are ignored rather than rejected.
+	 *
+	 * Zips built on macOS and Windows carry this housekeeping alongside the
+	 * theme files. Rejecting an otherwise valid theme because of them would
+	 * be a needless failure.
+	 *
+	 * @since 4.7.3
+	 *
+	 * @var array
+	 */
+	const IGNORED_THEME_FILES = array(
+		'.ds_store',
+		'thumbs.db',
+		'.gitkeep',
+		'.gitignore',
+	);
+
+	/**
 	 * Construct method.
 	 */
 	protected function __construct() {
@@ -63,6 +142,29 @@ class Theme_Manager {
 		add_action( 'wp_ajax_rmp_theme_delete', array( $this, 'rmp_theme_delete' ) );
 		add_action( 'wp_ajax_rmp_theme_apply', array( $this, 'rmp_theme_apply' ) );
 		add_action( 'wp_ajax_rmp_call_theme_api', array( $this, 'update_theme_api_cache' ) );
+		add_action( 'admin_init', array( $this, 'maybe_protect_upload_dir' ) );
+	}
+
+	/**
+	 * Writes the uploads-directory guards once per plugin version.
+	 *
+	 * The activation hook does not run when a plugin is updated, so installs
+	 * that already hold uploaded themes would never receive the guards
+	 * otherwise.
+	 *
+	 * @since 4.7.3
+	 *
+	 * @return void
+	 */
+	public function maybe_protect_upload_dir() {
+
+		if ( RMP_PLUGIN_VERSION === get_option( 'rmp_upload_dir_protected' ) ) {
+			return;
+		}
+
+		if ( $this->protect_upload_dir() ) {
+			update_option( 'rmp_upload_dir_protected', RMP_PLUGIN_VERSION );
+		}
 	}
 
 
@@ -356,10 +458,302 @@ class Theme_Manager {
 	}
 
 	/**
+	 * Returns the directory uploaded menu themes are extracted into.
+	 *
+	 * @since 4.7.3
+	 *
+	 * @return string Trailing-slashed absolute path.
+	 */
+	public function get_theme_upload_dir() {
+		return trailingslashit( wp_upload_dir()['basedir'] ) . 'rmp-menu/themes/';
+	}
+
+	/**
+	 * Writes the hardening guards into the plugin's uploads directory.
+	 *
+	 * Menu themes legitimately contain a PHP file, and that file is meant to
+	 * be loaded by the plugin — never requested over HTTP. This drops an
+	 * .htaccess that refuses to serve or execute scripts under
+	 * uploads/rmp-menu/, plus a silent index.php so the directory cannot be
+	 * browsed. Stylesheets and theme images keep working because only script
+	 * types are denied, not the whole directory.
+	 *
+	 * Both files are written only when missing, so a host that has customised
+	 * them is left alone.
+	 *
+	 * Note: .htaccess is honoured by Apache and LiteSpeed only. nginx has no
+	 * per-directory config, so those installs need the equivalent `location`
+	 * rule in the server configuration — see readme.txt.
+	 *
+	 * @since 4.7.3
+	 *
+	 * @return bool True when both guards are in place.
+	 */
+	public function protect_upload_dir() {
+
+		global $wp_filesystem;
+
+		if ( empty( $wp_filesystem ) ) {
+			require_once ABSPATH . 'wp-admin/includes/file.php';
+		}
+
+		WP_Filesystem();
+
+		if ( empty( $wp_filesystem ) ) {
+			return false;
+		}
+
+		$base_dir = trailingslashit( wp_upload_dir()['basedir'] ) . 'rmp-menu/';
+
+		if ( ! $wp_filesystem->is_dir( $base_dir ) && ! wp_mkdir_p( $base_dir ) ) {
+			return false;
+		}
+
+		$htaccess = $base_dir . '.htaccess';
+
+		if ( ! $wp_filesystem->exists( $htaccess ) ) {
+			$rules = "# Responsive Menu: never serve or execute scripts from this directory.\n"
+				. "<IfModule mod_php.c>\n\tphp_flag engine off\n</IfModule>\n"
+				. "<IfModule mod_php7.c>\n\tphp_flag engine off\n</IfModule>\n"
+				. "<IfModule mod_php8.c>\n\tphp_flag engine off\n</IfModule>\n"
+				. "<FilesMatch \"\\.(?i:php|php[0-9]|phps|phtml|pht|phar|inc|hphp|cgi|pl|py|sh)$\">\n"
+				. "\t<IfModule mod_authz_core.c>\n\t\tRequire all denied\n\t</IfModule>\n"
+				. "\t<IfModule !mod_authz_core.c>\n\t\tOrder allow,deny\n\t\tDeny from all\n\t</IfModule>\n"
+				. "</FilesMatch>\n";
+
+			$wp_filesystem->put_contents( $htaccess, $rules, FS_CHMOD_FILE );
+		}
+
+		$index = $base_dir . 'index.php';
+
+		if ( ! $wp_filesystem->exists( $index ) ) {
+			$wp_filesystem->put_contents( $index, "<?php\n// Silence is golden.\n", FS_CHMOD_FILE );
+		}
+
+		return $wp_filesystem->exists( $htaccess ) && $wp_filesystem->exists( $index );
+	}
+
+	/**
+	 * Returns the list of entry names held in a zip archive.
+	 *
+	 * Opening the archive is also how the upload is confirmed to be a real
+	 * zip: anything that is not one fails to open here, which is a stronger
+	 * check than trusting the uploaded file name.
+	 *
+	 * Mirrors the readers unzip_file() itself uses, so an archive that lists
+	 * here is one that will extract.
+	 *
+	 * @since 4.7.3
+	 *
+	 * @param string $file Absolute path to the archive.
+	 *
+	 * @return array|\WP_Error Entry names, or WP_Error when the file is not a readable zip.
+	 */
+	protected function get_archive_file_list( $file ) {
+
+		$error = new \WP_Error(
+			'rmp_invalid_archive',
+			esc_html__( 'This file could not be read as a zip archive.', 'responsive-menu' )
+		);
+
+		$entries = array();
+
+		if ( class_exists( 'ZipArchive' ) ) {
+			$zip = new \ZipArchive();
+
+			if ( true !== $zip->open( $file ) ) {
+				return $error;
+			}
+
+			for ( $index = 0; $index < $zip->numFiles; $index++ ) {
+				$entry = $zip->statIndex( $index );
+
+				if ( false !== $entry ) {
+					$entries[] = $entry['name'];
+				}
+			}
+
+			$zip->close();
+
+			return $entries;
+		}
+
+		require_once ABSPATH . 'wp-admin/includes/class-pclzip.php';
+
+		$archive  = new \PclZip( $file );
+		$contents = $archive->listContent();
+
+		if ( ! is_array( $contents ) ) {
+			return $error;
+		}
+
+		foreach ( $contents as $entry ) {
+			$entries[] = $entry['filename'];
+		}
+
+		return $entries;
+	}
+
+	/**
+	 * Returns the archive entries that a theme is not allowed to contain.
+	 *
+	 * @since 4.7.3
+	 *
+	 * @param array $entries Entry names from the archive.
+	 *
+	 * @return array Offending entry names.
+	 */
+	protected function get_disallowed_theme_files( $entries ) {
+
+		$disallowed = array();
+
+		foreach ( $entries as $entry ) {
+
+			// Directories carry no payload of their own.
+			if ( '/' === substr( $entry, -1 ) ) {
+				continue;
+			}
+
+			// Editor and OS metadata that is harmless but common in theme zips.
+			if ( 0 === strpos( $entry, '__MACOSX/' ) ) {
+				continue;
+			}
+
+			$basename = basename( $entry );
+
+			if ( in_array( strtolower( $basename ), self::IGNORED_THEME_FILES, true ) ) {
+				continue;
+			}
+
+			/*
+			 * unzip_file() drops traversing entries itself, but a theme has no
+			 * reason to carry one, so treat it as a rejected upload rather than
+			 * a silently skipped file.
+			 */
+			if ( 0 !== validate_file( $entry ) || '/' === substr( $entry, 0, 1 ) ) {
+				$disallowed[] = $entry;
+				continue;
+			}
+
+			$extension = strtolower( pathinfo( $basename, PATHINFO_EXTENSION ) );
+
+			// Files with no extension cannot be handed to an interpreter.
+			if ( '' === $extension ) {
+				continue;
+			}
+
+			if ( ! in_array( $extension, self::ALLOWED_THEME_FILE_EXTENSIONS, true ) ) {
+				$disallowed[] = $entry;
+			}
+		}
+
+		return $disallowed;
+	}
+
+	/**
+	 * Validates and extracts an uploaded menu theme archive.
+	 *
+	 * Shared by the settings-page upload and the setup-wizard upload so both
+	 * entry points enforce the same rules.
+	 *
+	 * @since 4.7.3
+	 *
+	 * @return true|\WP_Error True on success, WP_Error describing the refusal otherwise.
+	 */
+	protected function process_theme_upload() {
+
+		if ( ! current_user_can( self::THEME_UPLOAD_CAPABILITY ) ) {
+			return new \WP_Error(
+				'rmp_theme_upload_forbidden',
+				esc_html__( 'You can not upload themes !', 'responsive-menu' )
+			);
+		}
+
+		$tmp_name = isset( $_FILES['file']['tmp_name'] ) ? sanitize_text_field( wp_unslash( $_FILES['file']['tmp_name'] ) ) : '';
+
+		if ( empty( $tmp_name ) || ! is_uploaded_file( $tmp_name ) ) {
+			return new \WP_Error(
+				'rmp_theme_upload_missing',
+				esc_html__( 'Please add zip file !', 'responsive-menu' )
+			);
+		}
+
+		// Reject on the file name first — a cheap check before reading the file.
+		$file_name = isset( $_FILES['file']['name'] ) ? sanitize_file_name( wp_unslash( $_FILES['file']['name'] ) ) : '';
+		$file_type = wp_check_filetype( $file_name, array( 'zip' => 'application/zip' ) );
+
+		if ( 'zip' !== $file_type['ext'] ) {
+			return new \WP_Error(
+				'rmp_theme_upload_not_zip',
+				esc_html__( 'Please add zip file !', 'responsive-menu' )
+			);
+		}
+
+		// Reading the archive proves the contents are a zip, not just the name.
+		$entries = $this->get_archive_file_list( $tmp_name );
+
+		if ( is_wp_error( $entries ) ) {
+			return $entries;
+		}
+
+		$disallowed = $this->get_disallowed_theme_files( $entries );
+
+		if ( ! empty( $disallowed ) ) {
+			return new \WP_Error(
+				'rmp_theme_upload_disallowed_file',
+				sprintf(
+					/* translators: %s: comma separated list of file names. */
+					esc_html__( 'This theme was not installed because it contains files that are not allowed: %s', 'responsive-menu' ),
+					esc_html( implode( ', ', array_slice( $disallowed, 0, 5 ) ) )
+				)
+			);
+		}
+
+		if ( ! $this->archive_has_theme_config( $entries ) ) {
+			return new \WP_Error(
+				'rmp_theme_upload_not_a_theme',
+				esc_html__( 'This zip does not look like a menu theme — no config.json was found inside it.', 'responsive-menu' )
+			);
+		}
+
+		// Make sure the guards exist before anything is written next to them.
+		$this->protect_upload_dir();
+
+		$unzipped = unzip_file( $tmp_name, $this->get_theme_upload_dir() );
+
+		if ( is_wp_error( $unzipped ) ) {
+			return $unzipped;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Checks that an archive carries a theme manifest.
+	 *
+	 * @since 4.7.3
+	 *
+	 * @param array $entries Entry names from the archive.
+	 *
+	 * @return bool
+	 */
+	protected function archive_has_theme_config( $entries ) {
+
+		foreach ( $entries as $entry ) {
+			if ( 'config.json' === basename( $entry ) ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
 	 * Funtion to upload the menu theme zip file.
 	 *
 	 * @since 4.0.0
 	 * @since 4.0.4 Added nonce and user capabilities check.
+	 * @since 4.7.3 Validates the archive contents and requires `install_plugins`.
 	 *
 	 * @since array $status
 	 */
@@ -368,35 +762,19 @@ class Theme_Manager {
 		// Check nonce to verify the authenticate upload file.
 		check_ajax_referer( 'rmp_nonce', 'rmp_theme_upload_nonce' );
 
-		// Check user capabilities.
-		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array( 'message' => __( 'You can not upload themes !', 'responsive-menu' ) ) );
-		}
-
-		// Check if files are empty or not zip then return error message.
-		$file_name     = isset( $_FILES['file']['name'] ) ? sanitize_file_name( wp_unslash( $_FILES['file']['name'] ) ) : '';
-		$validate_file = wp_check_filetype( $file_name );
-		if ( empty( $_FILES['file']['tmp_name'] ) || ! isset( $validate_file['type'] ) || 'application/zip' !== $validate_file['type'] ) {
-			wp_send_json_error(
-				array( 'message' => esc_html__( 'Please add zip file !', 'responsive-menu' ) )
-			);
-		}
-
 		status_header( 200 );
 
-		WP_Filesystem();
-		$upload_dir = wp_upload_dir()['basedir'] . '/rmp-menu/themes/';
-		$unzip_file = unzip_file( wp_unslash( $_FILES['file']['tmp_name'] ), $upload_dir ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$uploaded = $this->process_theme_upload();
 
-		if ( is_wp_error( $unzip_file ) ) {
+		if ( is_wp_error( $uploaded ) ) {
 			wp_send_json_error(
-				array( 'message' => $unzip_file->get_error_message() )
-			);
-		} else {
-			wp_send_json_success(
-				array( 'message' => esc_html__( 'Theme Imported Successfully.', 'responsive-menu' ) )
+				array( 'message' => $uploaded->get_error_message() )
 			);
 		}
+
+		wp_send_json_success(
+			array( 'message' => esc_html__( 'Theme Imported Successfully.', 'responsive-menu' ) )
+		);
 	}
 
 	/**
@@ -803,7 +1181,12 @@ class Theme_Manager {
 	/**
 	 * Returns the theme index file path.
 	 *
+	 * The index is read from a theme's own config.json, which for an uploaded
+	 * theme is attacker-supplied, and the caller require_once's whatever comes
+	 * back. It is therefore reduced to a file name inside the theme directory.
+	 *
 	 * @since 4.1.0
+	 * @since 4.7.3 Constrained the configured index to a PHP file in the theme directory.
 	 *
 	 * @return string;
 	 */
@@ -829,9 +1212,19 @@ class Theme_Manager {
 
 			if ( file_exists( $config_file ) ) {
 				$config = json_decode( $wp_filesystem->get_contents( $config_file ), true );
-				if ( $config['name'] == $theme_name && ! empty( $config['index'] ) ) {
-					return $theme_dir . '/' . $config['index'];
+
+				if ( empty( $config['name'] ) || empty( $config['index'] ) || $config['name'] !== $theme_name ) {
+					continue;
 				}
+
+				// Never let the manifest point outside its own directory.
+				$index_file = basename( $config['index'] );
+
+				if ( 'php' !== strtolower( pathinfo( $index_file, PATHINFO_EXTENSION ) ) ) {
+					continue;
+				}
+
+				return $theme_dir . '/' . $index_file;
 			}
 		}
 
@@ -1099,6 +1492,7 @@ class Theme_Manager {
 	 * Function to upload the theme by ajax.
 	 *
 	 * @since 4.1.0
+	 * @since 4.7.3 Validates the archive contents and requires `install_plugins`.
 	 *
 	 * @return json
 	 */
@@ -1107,28 +1501,14 @@ class Theme_Manager {
 		// Check nonce to verify the authenticate upload file.
 		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
 
-		if ( ! current_user_can( 'administrator' ) ) {
-			wp_send_json_error( array( 'message' => __( 'You can not upload themes !', 'responsive-menu' ) ) );
-		}
-
-		// Check if files are empty or not zip then return error message.
-		$file_name     = isset( $_FILES['file']['name'] ) ? sanitize_file_name( wp_unslash( $_FILES['file']['name'] ) ) : '';
-		$validate_file = wp_check_filetype( $file_name );
-		if ( empty( $_FILES['file']['tmp_name'] ) || ! isset( $validate_file['type'] ) || 'application/zip' !== $validate_file['type'] ) {
-			wp_send_json_error(
-				array( 'message' => esc_html__( 'Please add zip file !', 'responsive-menu' ) )
-			);
-		}
-
 		// Upload the file in upload directory.
 		status_header( 200 );
-		WP_Filesystem();
-		$upload_dir = wp_upload_dir()['basedir'] . '/rmp-menu/themes/';
-		$unzip_file = unzip_file( wp_unslash( $_FILES['file']['tmp_name'] ), $upload_dir ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
-		if ( is_wp_error( $unzip_file ) ) {
+		$uploaded = $this->process_theme_upload();
+
+		if ( is_wp_error( $uploaded ) ) {
 			wp_send_json_error(
-				array( 'message' => $unzip_file->get_error_message() )
+				array( 'message' => $uploaded->get_error_message() )
 			);
 		}
 

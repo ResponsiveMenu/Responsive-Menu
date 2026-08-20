@@ -4,7 +4,7 @@
 Plugin Name: Responsive Menu
 Plugin URI: https://expresstech.io
 Description: Highly Customisable Responsive Menu Plugin for WordPress
-Version: 4.7.2
+Version: 4.7.3
 Author: ExpressTech
 Text Domain: responsive-menu
 Author URI: https://responsive.menu
@@ -16,14 +16,23 @@ Tags: responsive, menu, responsive menu, mega menu, max mega menu, max menu
  * Constant as plugin version.
  */
 if ( ! defined( 'RMP_PLUGIN_VERSION' ) ) {
-	define( 'RMP_PLUGIN_VERSION', '4.7.2' );
+	define( 'RMP_PLUGIN_VERSION', '4.7.3' );
 }
 
 define( 'RESPONSIVE_MENU_URL', plugin_dir_url( __FILE__ ) );
 
+/**
+ * Minimum PHP version. The bundled scssphp library uses nullable type
+ * declarations (`?Type $arg = null`), which are a parse error before PHP 7.1.
+ * Keep this in sync with `Requires PHP` in readme.txt.
+ */
+if ( ! defined( 'RMP_MINIMUM_PHP_VERSION' ) ) {
+	define( 'RMP_MINIMUM_PHP_VERSION', '7.1' );
+}
+
 add_action( 'admin_init', 'check_responsive_menu_php_version' );
 function check_responsive_menu_php_version() {
-	if ( version_compare( PHP_VERSION, '5.4', '<' ) ) :
+	if ( version_compare( PHP_VERSION, RMP_MINIMUM_PHP_VERSION, '<' ) ) :
 		add_action( 'admin_notices', 'responsive_menu_deactivation_text' );
 		deactivate_plugins( plugin_basename( __FILE__ ) );
 	endif;
@@ -31,14 +40,15 @@ function check_responsive_menu_php_version() {
 
 function responsive_menu_deactivation_text() {
 	echo '<div class="' . esc_attr( 'error' ) . '"><p>' . sprintf(
-		'Responsive Menu requires PHP 5.4 or higher to function and has therefore been automatically disabled.
-        You are still on %s.%sPlease speak to your web host about upgrading your PHP version.',
+		'Responsive Menu requires PHP %1$s or higher to function and has therefore been automatically disabled.
+        You are still on %2$s.%3$sPlease speak to your web host about upgrading your PHP version.',
+		esc_html( RMP_MINIMUM_PHP_VERSION ),
 		PHP_VERSION,
 		'<br /><br />'
 	) . '</p></div>';
 }
 
-if ( version_compare( PHP_VERSION, '5.4', '<' ) ) {
+if ( version_compare( PHP_VERSION, RMP_MINIMUM_PHP_VERSION, '<' ) ) {
 	return;
 }
 
@@ -139,6 +149,9 @@ function responsive_menu_plugin_activation() {
 		deactivate_plugins( $plugin );
 		set_transient( 'og-admin-notice-activation-pro', true, 5 );
 	}
+
+	// Keep the plugin's uploads directory from serving anything executable.
+	\RMP\Features\Inc\Theme_Manager::get_instance()->protect_upload_dir();
 
 	flush_rewrite_rules();
 }
