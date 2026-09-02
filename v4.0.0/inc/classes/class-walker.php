@@ -55,6 +55,44 @@ class Walker extends \Walker_Nav_Menu {
 	}
 
 	/**
+	 * Drop the "has children" class from items whose children are not in the list.
+	 *
+	 * WordPress stamps `menu-item-has-children` on before `wp_nav_menu_objects` runs, so
+	 * anything that removes items on that filter - the plugin's own logged-in/logged-out
+	 * visibility settings among them - can leave a parent claiming children it no longer
+	 * has. The walker would then emit a submenu toggle whose aria-controls points at a
+	 * <ul> that is never rendered: a control that announces a collapsed submenu, resolves
+	 * to nothing, and does nothing when activated.
+	 *
+	 * @since 4.8.0
+	 * @access public
+	 *
+	 * @param array $elements  Menu item objects.
+	 * @param int   $max_depth Maximum depth to walk.
+	 * @param mixed ...$args   Arguments passed through to the parent walker.
+	 * @return string
+	 */
+	public function walk( $elements, $max_depth, ...$args ) {
+		$has_children = array();
+
+		foreach ( (array) $elements as $element ) {
+			if ( ! empty( $element->menu_item_parent ) ) {
+				$has_children[ intval( $element->menu_item_parent ) ] = true;
+			}
+		}
+
+		foreach ( (array) $elements as $element ) {
+			if ( empty( $element->classes ) || ! empty( $has_children[ intval( $element->ID ) ] ) ) {
+				continue;
+			}
+
+			$element->classes = array_diff( (array) $element->classes, array( 'menu-item-has-children' ) );
+		}
+
+		return parent::walk( $elements, $max_depth, ...$args );
+	}
+
+	/**
 	 * Function to create element for menu items.
 	 *
 	 * @access public

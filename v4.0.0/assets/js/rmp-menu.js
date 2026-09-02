@@ -199,7 +199,16 @@ jQuery( document ).ready( function( jQuery ) {
 		 * @return {boolean}
 		 */
 		isOffCanvas() {
-			return jQuery( window ).width() < this.hamburgerBreakpoint;
+			// Ask the same question the stylesheet asks. `@media (max-width: N)` is
+			// inclusive and measures the viewport including the scrollbar, while
+			// jQuery's width() is exclusive of both - so at exactly the breakpoint, and
+			// across the scrollbar's width, the two disagreed and the panel was visible
+			// while its keyboard handling was switched off.
+			if ( window.matchMedia ) {
+				return window.matchMedia( '(max-width: ' + parseInt( this.hamburgerBreakpoint, 10 ) + 'px)' ).matches;
+			}
+
+			return jQuery( window ).width() <= this.hamburgerBreakpoint;
 		}
 
 		/**
@@ -226,7 +235,10 @@ jQuery( document ).ready( function( jQuery ) {
 		handleTab( event ) {
 			const cycle = this.focusCycle();
 
-			if ( ! cycle.length ) {
+			// With a single focusable element it is both the first and the last, so both
+			// wrap branches would fire and Tab would never leave it. An empty panel has
+			// nothing to contain, so leave the tab order alone in both cases.
+			if ( cycle.length < 2 ) {
 				return;
 			}
 

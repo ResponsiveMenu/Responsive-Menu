@@ -1,11 +1,23 @@
 /** This file is major component of this plugin so please don't try to edit here. */
 
+// Visible focus indicator (WCAG 2.4.7 / 1.4.11). Drawn inside the box because the open
+// panel scrolls with overflow:auto and would clip an outset ring, and in the element's own
+// text colour so it contrasts with whatever palette the menu is configured with.
+//
+// These rules live here rather than in common.scss because the per-menu selectors are
+// id-scoped; a rule in common.scss loses to them on specificity and never applies.
+@mixin rmp-focus-ring {
+    outline: 3px solid currentColor;
+    outline-offset: -3px;
+}
+
+
 @if( $page_wrapper != '' ) {
     #{$page_wrapper} {
         transition: transform $animation_speed;
     }
 
-    /* Respect a request for reduced motion (WCAG 2.3.3). */
+    // Respect a request for reduced motion (WCAG 2.3.3).
     @media ( prefers-reduced-motion: reduce ) {
         #{$page_wrapper} {
             transition-duration: 0.01ms !important;
@@ -57,6 +69,10 @@
     }
 
     transition: transform $animation_speed, background-color $color_transition_speed;
+
+    &:focus-visible {
+        @include rmp-focus-ring;
+    }
 
    .rmp-trigger-box {
         width: $menu_trigger_line_width + $menu_trigger_line_width_unit;
@@ -358,10 +374,18 @@
                 background-color: $menu_item_background_color_hover;
             }
 
-            &:focus {
+            // Keep the reset for pointer focus only. Suppressing the ring on :focus
+            // outright left keyboard users with no visible focus indicator at all
+            // (WCAG 2.4.7), and this rule is id-scoped so nothing less specific could
+            // put one back.
+            &:focus:not(:focus-visible) {
                 outline: none;
                 border-color:unset;
                 box-shadow:unset;
+            }
+
+            &:focus-visible {
+                @include rmp-focus-ring;
             }
 
             .rmp-font-icon {
@@ -395,9 +419,13 @@
             // below it, so its height is pinned rather than stretched to the whole <li>.
             @if ( $menu_item_toggle_height != '' ) {
                 bottom: auto;
+                // The default arrow is a bare text glyph, so the line-height has to be set
+                // on the button itself - `.rmp-menu-subarrow *` only reaches element children.
+                line-height: ( $menu_item_toggle_height + $menu_item_toggle_height_unit );
             } @else if ( $menu_item_height != '' ) {
                 bottom: auto;
                 height: ( $menu_item_height + $menu_item_height_unit );
+                line-height: ( $menu_item_height + $menu_item_height_unit );
             } @else {
                 bottom: auto;
                 height: auto;
@@ -441,6 +469,10 @@
                     border-color: $menu_item_toggle_border_color_hover;
                 }
                 background-color: $menu_item_toggle_background_color_hover;
+            }
+
+            &:focus-visible {
+                @include rmp-focus-ring;
             }
 
             .rmp-font-icon {
@@ -642,6 +674,8 @@
                 background-color: $menu_search_box_background_color;
                 @if( $menu_search_box_border_color != '' ) {
                     outline:2px solid $menu_search_box_border_color;
+                } @else {
+                    @include rmp-focus-ring;
                 }
                 color: $menu_search_box_text_color;
             }

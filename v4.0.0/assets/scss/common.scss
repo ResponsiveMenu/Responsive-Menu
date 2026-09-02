@@ -248,42 +248,23 @@ button.rmp-menu-subarrow {
     padding: 0;
     border: 0;
     background: none;
-    font: inherit;
+    font-family: inherit;
+    font-size: inherit;
     color: inherit;
-    line-height: inherit;
     cursor: pointer;
 }
 
 /**
- * Visible focus indicator (WCAG 2.4.7 / 1.4.11).
- *
- * `currentColor` is the menu item's own text colour, so the ring contrasts with whatever
- * background the menu is configured with. The outline is drawn inside the box because the
- * open panel scrolls with overflow:auto, which would clip an outset ring.
+ * Visible focus indicator (WCAG 2.4.7 / 1.4.11) for the parts of the panel that have no
+ * per-menu styling of their own. The menu links, submenu toggles, search box and hamburger
+ * are all styled by id-scoped rules in main.scss, so their focus rings have to be emitted
+ * there to out-specify them - putting them here would look right and do nothing.
  */
-.rmp-container .rmp-menu-item-link:focus-visible,
-.rmp-container .rmp-menu-subarrow:focus-visible,
 .rmp-container .rmp-menu-title a:focus-visible,
 .rmp-container .rmp-menu-social-icon:focus-visible,
-.rmp-container .rmp-search-box:focus-visible,
-.rmp-container .rmp-menu-additional-content a:focus-visible,
-button.rmp_menu_trigger:focus-visible {
+.rmp-container .rmp-menu-additional-content a:focus-visible {
     outline: 3px solid currentColor;
     outline-offset: -3px;
-}
-
-/* Browsers without :focus-visible fall back to showing the ring on every focus. */
-@supports not selector(:focus-visible) {
-    .rmp-container .rmp-menu-item-link:focus,
-    .rmp-container .rmp-menu-subarrow:focus,
-    .rmp-container .rmp-menu-title a:focus,
-    .rmp-container .rmp-menu-social-icon:focus,
-    .rmp-container .rmp-search-box:focus,
-    .rmp-container .rmp-menu-additional-content a:focus,
-    button.rmp_menu_trigger:focus {
-        outline: 3px solid currentColor;
-        outline-offset: -3px;
-    }
 }
 
 /* The panel itself is focused when it opens; that move should not draw a ring. */
