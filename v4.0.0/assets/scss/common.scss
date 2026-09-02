@@ -230,3 +230,61 @@ button.rmp_menu_trigger {
     }
 }
 
+
+
+/**
+ * Submenu toggle.
+ *
+ * It is a real <button> so that it can be reached and operated from the keyboard, which
+ * means stripping the user-agent button styling back to what the generated per-menu
+ * stylesheet expects. Those per-menu rules are id-scoped, so they still win on colour,
+ * border and size - only the browser defaults are reset here.
+ */
+button.rmp-menu-subarrow {
+    -webkit-appearance: none;
+    appearance: none;
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+
+/**
+ * Visible focus indicator (WCAG 2.4.7 / 1.4.11) for the parts of the panel that have no
+ * per-menu styling of their own. The menu links, submenu toggles, search box and hamburger
+ * are all styled by id-scoped rules in main.scss, so their focus rings have to be emitted
+ * there to out-specify them - putting them here would look right and do nothing.
+ */
+.rmp-container .rmp-menu-title a:focus-visible,
+.rmp-container .rmp-menu-social-icon:focus-visible,
+.rmp-container .rmp-menu-additional-content a:focus-visible {
+    outline: 3px solid currentColor;
+    outline-offset: -3px;
+}
+
+/* The panel itself is focused when it opens; that move should not draw a ring. */
+.rmp-container:focus {
+    outline: none;
+}
+
+/**
+ * Respect a request for reduced motion (WCAG 2.3.3). The JavaScript zeroes the jQuery
+ * animation durations; this covers the CSS transitions on the panel, the page wrapper and
+ * the hamburger icon.
+ */
+@media ( prefers-reduced-motion: reduce ) {
+    .rmp-container,
+    .rmp-container *,
+    button.rmp_menu_trigger,
+    button.rmp_menu_trigger * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+}

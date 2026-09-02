@@ -128,6 +128,9 @@ class Style_Manager {
 		if ( ! $wp_filesystem->put_contents( $dir . 'rmp-menu.css', $css, 0644 ) ) {
 			return new \WP_Error( 'Notice: Unable to write css in file.' );
 		}
+
+		// Record which build wrote this file so that a plugin update invalidates it.
+		update_option( 'rmp_generated_css_version', RMP_PLUGIN_VERSION );
 	}
 
 	/**
@@ -140,8 +143,13 @@ class Style_Manager {
 
 		$file_path = trailingslashit( $upload_dir['basedir'] ) . 'rmp-menu/css/' . $filename;
 
-		// If file is not exist then create it.
-		if ( ! file_exists( $file_path ) ) {
+		/*
+		 * Regenerate when the file is missing, and also when it was written by a different
+		 * build. It is otherwise only rewritten when a menu is saved, so a release that
+		 * changes the markup or the stylesheet would leave every site serving CSS that no
+		 * longer matches its own HTML until an admin happened to re-save a menu.
+		 */
+		if ( ! file_exists( $file_path ) || RMP_PLUGIN_VERSION !== get_option( 'rmp_generated_css_version' ) ) {
 			$this->save_style_css_on_file();
 		}
 

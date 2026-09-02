@@ -82,7 +82,7 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 
 			$this->menu_trigger()
 			?>
-			<div id="rmp-container-<?php echo esc_attr( $this->menu_id ); ?>" class="rmp-container <?php echo esc_attr( $menu_container_classes ); ?>">
+			<div id="rmp-container-<?php echo esc_attr( $this->menu_id ); ?>" class="rmp-container <?php echo esc_attr( $menu_container_classes ); ?>" tabindex="-1">
 				<?php
 				foreach ( $menu_items as $key => $value ) {
 					if ( ! empty( $value ) && 'on' === $value ) {
@@ -171,15 +171,35 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 			if ( ! empty( $this->options['hamburger_position_selector'] ) ) {
 				$menu_trigger_destination = 'data-destination=' . $this->options['hamburger_position_selector'];
 			}
+
+			$trigger_text_position = '';
+
+			if ( ! empty( $this->options['button_title_position'] ) ) {
+				$trigger_text_position = $this->options['button_title_position'];
+			}
+
+			/*
+			 * Only label the button when it has no visible text of its own. An aria-label
+			 * overrides the visible label, and a mismatch between the two fails WCAG 2.5.3
+			 * (Label in Name) and breaks voice control.
+			 */
+			$trigger_has_visible_label = ! empty( $this->options['button_title'] )
+				&& in_array( $trigger_text_position, array( 'left', 'right', 'top', 'bottom' ), true );
+
+			$trigger_aria_label = $trigger_has_visible_label ? '' : __( 'Menu', 'responsive-menu' );
+
+			/**
+			 * Filters the accessible name of the menu trigger button.
+			 *
+			 * @since 4.8.0
+			 *
+			 * @param string $trigger_aria_label Accessible name, or '' to let the visible text name the button.
+			 * @param int    $menu_id            Menu id.
+			 */
+			$trigger_aria_label = apply_filters( 'rmp_menu_trigger_aria_label', $trigger_aria_label, $this->menu_id );
 			?>
-			<button type="button"  aria-controls="rmp-container-<?php echo esc_attr( $this->menu_id ); ?>" aria-label="Menu Trigger" id="rmp_menu_trigger-<?php echo esc_attr( $this->menu_id ); ?>" <?php echo esc_attr( $menu_trigger_destination ); ?> class="<?php echo esc_attr( $toggle_theme_class ); ?>">
+			<button type="button" aria-controls="rmp-container-<?php echo esc_attr( $this->menu_id ); ?>" aria-expanded="false" <?php if ( ! empty( $trigger_aria_label ) ) : ?>aria-label="<?php echo esc_attr( $trigger_aria_label ); ?>" <?php endif; ?>id="rmp_menu_trigger-<?php echo esc_attr( $this->menu_id ); ?>" <?php echo esc_attr( $menu_trigger_destination ); ?> class="<?php echo esc_attr( $toggle_theme_class ); ?>">
 				<?php
-				$trigger_text_position = '';
-
-				if ( ! empty( $this->options['button_title_position'] ) ) {
-					$trigger_text_position = $this->options['button_title_position'];
-				}
-
 				if ( ( 'left' === $trigger_text_position || 'top' === $trigger_text_position ) && ! empty( $this->options['button_title'] ) ) {
 					// Menu trigger text.
 					?>
@@ -437,11 +457,15 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 				$menu_label = $menu;
 			}
 
+			/*
+			 * No role="menubar" here: that is the ARIA application-menu pattern, which
+			 * implies arrow-key roving-tabindex semantics this menu does not implement and
+			 * which degrades screen-reader output for ordinary site navigation. The list
+			 * stays a plain list; the <nav> container below carries the landmark label.
+			 */
 			$item_wrap_attrs = array(
-				'id'         => '%1$s',
-				'class'      => '%2$s',
-				'role'       => 'menubar',
-				'aria-label' => $menu_label,
+				'id'    => '%1$s',
+				'class' => '%2$s',
 			);
 
 			$wrap_attributes = apply_filters( 'rmp_wrap_attributes', $item_wrap_attrs, $this->menu_id, $menu_location );
@@ -459,21 +483,22 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 			}
 
 			$param = array(
-				'container'       => 'div',
-				'container_id'    => 'rmp-menu-wrap-' . $this->menu_id,
-				'container_class' => 'rmp-menu-wrap',
-				'menu_id'         => 'rmp-menu-' . $this->menu_id,
-				'menu_class'      => 'rmp-menu',
-				'menu'            => $wp_menu_obj,
-				'depth'           => $menu_depth,
-				'fallback_cb'     => 'wp_page_menu',
-				'before'          => '',
-				'after'           => '',
-				'link_before'     => '',
-				'link_after'      => '',
-				'theme_location'  => '',
-				'walker'          => $walker,
-				'items_wrap'      => '<ul' . $attributes . '>%3$s</ul>',
+				'container'            => 'nav',
+				'container_id'         => 'rmp-menu-wrap-' . $this->menu_id,
+				'container_class'      => 'rmp-menu-wrap',
+				'container_aria_label' => $menu_label,
+				'menu_id'              => 'rmp-menu-' . $this->menu_id,
+				'menu_class'           => 'rmp-menu',
+				'menu'                 => $wp_menu_obj,
+				'depth'                => $menu_depth,
+				'fallback_cb'          => 'wp_page_menu',
+				'before'               => '',
+				'after'                => '',
+				'link_before'          => '',
+				'link_after'           => '',
+				'theme_location'       => '',
+				'walker'               => $walker,
+				'items_wrap'           => '<ul' . $attributes . '>%3$s</ul>',
 			);
 
 			$param = apply_filters( 'rmp_nav_menu_args', $param, $wp_menu_obj->term_id, $menu_location );
