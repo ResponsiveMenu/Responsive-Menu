@@ -4,6 +4,13 @@
     #{$page_wrapper} {
         transition: transform $animation_speed;
     }
+
+    /* Respect a request for reduced motion (WCAG 2.3.3). */
+    @media ( prefers-reduced-motion: reduce ) {
+        #{$page_wrapper} {
+            transition-duration: 0.01ms !important;
+        }
+    }
 }
 
 // Menu hamburger toggle styling.
@@ -284,6 +291,9 @@
             width: 100%;
             list-style: none;
             margin:0;
+            // Positions .rmp-menu-subarrow, which now sits beside the link rather than
+            // inside it (a <button> nested in an <a> is invalid and unreachable by keyboard).
+            position: relative;
         }
 
         .rmp-menu-item-link {
@@ -381,11 +391,20 @@
         .rmp-menu-subarrow {
             position: absolute;
             top: 0;
-            bottom: 0;
+            // The toggle spans the item link's row, never the submenu that may be open
+            // below it, so its height is pinned rather than stretched to the whole <li>.
+            @if ( $menu_item_toggle_height != '' ) {
+                bottom: auto;
+            } @else if ( $menu_item_height != '' ) {
+                bottom: auto;
+                height: ( $menu_item_height + $menu_item_height_unit );
+            } @else {
+                bottom: auto;
+                height: auto;
+            }
             text-align: center;
             overflow: hidden;
             background-size: cover;
-            overflow: hidden;
             @if ( $menu_item_toggle_position == 'left' ) {
                 left: 0;
                 border-right-style:solid;

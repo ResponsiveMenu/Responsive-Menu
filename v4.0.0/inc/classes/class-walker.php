@@ -126,7 +126,7 @@ class Walker extends \Walker_Nav_Menu {
 
 		// Start menu item and set classes & ID.
 		$output .= sprintf(
-			'<li id="rmp-menu-item-%s" %s role="none">',
+			'<li id="rmp-menu-item-%s" %s>',
 			esc_attr( $item->ID ),
 			$class_names
 		);
@@ -138,7 +138,6 @@ class Walker extends \Walker_Nav_Menu {
 		$atts['rel']    = ! empty( $item->xfn ) ? $item->xfn : '';
 		$atts['href']   = ! empty( $item->url ) ? $item->url : '';
 		$atts['class']  = 'rmp-menu-item-link';
-		$atts['role']   = 'menuitem';
 		$atts           = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args, $depth );
 
 		$attributes = '';
@@ -152,41 +151,63 @@ class Walker extends \Walker_Nav_Menu {
 		$title = apply_filters( 'the_title', $item->title, $item->ID );
 		$title = apply_filters( 'rmp_menu_item_title', $title, $item, $args, $depth );
 
-		// Activate the required menu item by default.
+		/*
+		 * Build the submenu toggle. It is a real <button> that sits beside the link rather
+		 * than a <div> inside it: a control nested in an anchor is neither valid HTML nor
+		 * reachable by keyboard, so the submenu could only ever be opened with a mouse.
+		 */
 		$sub_menu_arrow = '';
-		if ( in_array( 'rmp-menu-item-has-children', $rmp_menu_classes, true ) ) {
-			$inactive_arrow = sprintf(
-				'<div class="rmp-menu-subarrow">%s</div>',
-				$this->get_inactive_arrow()
-			);
+		$has_children   = in_array( 'rmp-menu-item-has-children', $rmp_menu_classes, true );
 
-			$active_arrow = sprintf(
-				'<div class="rmp-menu-subarrow rmp-menu-subarrow-active">%s</div>',
-				$this->get_active_arrow()
-			);
-
-			if ( 'on' === $this->options['auto_expand_all_submenus'] ) {
-				$sub_menu_arrow = $active_arrow;
-			} elseif (
-				'on' === $this->options['auto_expand_current_submenus'] &&
-				( in_array( 'rmp-menu-item-current-parent', $rmp_menu_classes, true ) ||
-				in_array( 'rmp-menu-item-current-ancestor', $rmp_menu_classes, true ) ) ) {
-				$sub_menu_arrow = $active_arrow;
-			} else {
-				$sub_menu_arrow = $inactive_arrow;
-			}
+		/* No toggle if we are at the final depth level - there is nothing left to reveal. */
+		if ( intval( $depth ) + 1 === intval( $this->options['menu_depth'] ) ) {
+			$has_children = false;
 		}
 
-		/* Clear Arrow if we are at the final depth level */
-		if ( intval( $depth ) + 1 === intval( $this->options['menu_depth'] ) ) {
-			$sub_menu_arrow = '';
+		if ( $has_children ) {
+			$is_expanded = ( 'on' === $this->options['auto_expand_all_submenus'] )
+				|| (
+					'on' === $this->options['auto_expand_current_submenus'] &&
+					(
+						in_array( 'rmp-menu-item-current-parent', $rmp_menu_classes, true ) ||
+						in_array( 'rmp-menu-item-current-ancestor', $rmp_menu_classes, true )
+					)
+				);
+
+			$arrow_classes = 'rmp-menu-subarrow';
+			if ( $is_expanded ) {
+				$arrow_classes .= ' rmp-menu-subarrow-active';
+			}
+
+			/* translators: %s: Title of the menu item the submenu belongs to. */
+			$toggle_label = sprintf( __( 'Toggle submenu of %s', 'responsive-menu' ), wp_strip_all_tags( $title ) );
+
+			/**
+			 * Filters the accessible name of a submenu toggle button.
+			 *
+			 * @since 4.8.0
+			 *
+			 * @param string $toggle_label Accessible name announced by screen readers.
+			 * @param object $item         Menu item object.
+			 * @param int    $depth        Depth of the menu item.
+			 */
+			$toggle_label = apply_filters( 'rmp_submenu_toggle_label', $toggle_label, $item, $depth );
+
+			$sub_menu_arrow = sprintf(
+				'<button type="button" class="%1$s" aria-expanded="%2$s" aria-controls="rmp-submenu-%3$s" aria-label="%4$s">%5$s</button>',
+				esc_attr( $arrow_classes ),
+				$is_expanded ? 'true' : 'false',
+				esc_attr( $item->ID ),
+				esc_attr( $toggle_label ),
+				rm_sanitize_html_tags( $is_expanded ? $this->get_active_arrow() : $this->get_inactive_arrow() )
+			);
 		}
 
 		$item_output  = '';
 		$item_output .= sprintf( '<a %s >', $attributes );
 		$item_output .= $title;
-		$item_output .= rm_sanitize_html_tags( $sub_menu_arrow );
 		$item_output .= '</a>';
+		$item_output .= $sub_menu_arrow;
 
 		// If description is enable then add it below of menu item.
 		if ( ! empty( $item->description ) && 'on' === $this->options['submenu_descriptions_on'] ) {
@@ -215,11 +236,14 @@ class Walker extends \Walker_Nav_Menu {
 	 */
 	public function start_lvl( &$output, $depth = 0, $args = array() ) {
 
-		// Add sub-menu item wrap.
+		/*
+		 * Add sub-menu item wrap. The id is what the parent item's toggle button points at
+		 * with aria-controls, and role="menu" is deliberately absent: this is site
+		 * navigation, not an application menu with roving-tabindex semantics.
+		 */
 		$output .= sprintf(
-			'<ul aria-label="%s"
-            role="menu" data-depth="%s"
-            class="rmp-submenu rmp-submenu-depth-%s">',
+			'<ul id="rmp-submenu-%1$s" aria-label="%2$s" data-depth="%3$s" class="rmp-submenu rmp-submenu-depth-%4$s">',
+			esc_attr( $this->current_item->ID ),
 			esc_attr( $this->current_item->title ),
 			( $depth + 2 ),
 			( $depth + 1 ) . $this->get_submenu_class_open_or_not()

@@ -49,6 +49,17 @@ jQuery( document ).ready( function( jQuery ) {
 			this.hamburgerBreakpoint   =  this.options['tablet_breakpoint'];
 			this.subMenuTransitionTime =  this.options['sub_menu_speed'] * 1000;
 
+			// The element focus returns to when the panel closes. `this.trigger` may become
+			// a list of selectors once a custom click trigger is configured.
+			this.primaryTrigger = '#rmp_menu_trigger-' + this.menuId;
+
+			// Honour the visitor's motion preference: animating a menu they asked to keep
+			// still is a WCAG 2.3.3 failure, so collapse every duration to zero instead.
+			if ( window.matchMedia && window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches ) {
+				this.animationSpeed        = 0;
+				this.subMenuTransitionTime = 0;
+			}
+
 			if ( this.options['button_click_trigger'].length > 0 ) {
 				this.trigger = this.trigger +' , '+ this.options['button_click_trigger'];
 			}
@@ -77,7 +88,8 @@ jQuery( document ).ready( function( jQuery ) {
 				self.triggerMenu();
 			} );
 
-			// Show/Hide sub menu item when click on item toggle.
+			// Show/Hide sub menu item when the item toggle is activated. The toggle is a
+			// <button>, so Enter and Space reach this handler through a native click.
 			jQuery( self.menuWrap ).find( self.subMenuArrow ).on( 'click', function( e ) {
 				e.preventDefault();
 				e.stopPropagation();
@@ -118,7 +130,7 @@ jQuery( document ).ready( function( jQuery ) {
 						let _target = ( typeof jQuery(this).attr('target') ) == 'undefined' ? '_self' : jQuery(this).attr('target');
 
 						if( self.isOpen ) {
-							if( jQuery(e.target).closest(this.subMenuArrow).length) {
+							if( jQuery(e.target).closest(self.subMenuArrow).length) {
 								return;
 							}
 							if( typeof _href != 'undefined' ) {
@@ -138,66 +150,190 @@ jQuery( document ).ready( function( jQuery ) {
 					if ( jQuery(window).width() < self.hamburgerBreakpoint ) {
 						e.preventDefault();
 						self.triggerSubArrow(
-							jQuery(this).children( '.rmp-menu-subarrow' ).first()
+							jQuery(this).siblings( '.rmp-menu-subarrow' ).first()
 						);
 					}
 				});
 			}
 
-			jQuery(document).on('keydown', function (event) {
-				let menuOpen = jQuery('.rmp-container.rmp-menu-open');
-				if (menuOpen.length) {
-					let activeMenu = menuOpen.find('.rmp-selected-menu-item').length ? menuOpen.find('.rmp-selected-menu-item') : menuOpen.find('.rmp-menu-current-item');
-					let parentContainer = jQuery('.rmp-container.rmp-menu-open');
-					let menuItems = menuOpen.find('.rmp-menu-item');
-
-					if (event.keyCode === 9) {
-						menuItems.removeClass('rmp-selected-menu-item');
-						if (activeMenu.length) {
-							if (activeMenu.hasClass('rmp-menu-item-has-children')) {
-								activeMenu.children('.rmp-menu-item-link').first().find('.rmp-menu-subarrow').click();
-								let firstChild = activeMenu.find('.rmp-submenu').children('.rmp-menu-item').first();
-								firstChild.addClass('rmp-selected-menu-item').children('.rmp-menu-item-link').first().focus();
-							} else {
-								let nextMenu = activeMenu.next('.rmp-menu-item');
-								if (nextMenu.length) {
-									nextMenu.addClass('rmp-selected-menu-item').children('.rmp-menu-item-link').first().focus();
-								} else {
-									let parentSubmenu = activeMenu.closest('.rmp-submenu');
-									if (parentSubmenu.length) {
-										let parentMenu = parentSubmenu.closest('.rmp-menu-item');
-										let nextSibling = parentMenu.next('.rmp-menu-item');
-										parentMenu.children('.rmp-menu-item-link').first().find('.rmp-menu-subarrow').click();
-										if (nextSibling.length) {
-											nextSibling.addClass('rmp-selected-menu-item').children('.rmp-menu-item-link').first().focus();
-										} else {
-											let parentSibling = parentMenu.closest('.rmp-submenu').closest('.rmp-menu-item').next('.rmp-menu-item');
-											if (parentSibling.length) {
-												parentSibling.find('.rmp-menu-item-link').addClass('rmp-selected-menu-item').children('.rmp-menu-item-link').first().focus();
-											} else {
-												parentContainer.find('.rmp-menu-item').first().addClass('rmp-selected-menu-item').children('.rmp-menu-item-link').first().focus();
-											}
-										}
-									} else {
-										parentContainer.find('.rmp-menu-item').first().addClass('rmp-selected-menu-item').children('.rmp-menu-item-link').first().focus();
-									}
-								}
-							}
-						} else {
-							menuItems.first().addClass('rmp-selected-menu-item').children('.rmp-menu-item-link').first().focus();
-						}
-						event.preventDefault();
-					}
-
-					if (event.keyCode === 13 && activeMenu.length) {
-						activeMenu.click();
-					}
+			/*
+			 * Keyboard support for the off-canvas panel.
+			 *
+			 * The previous implementation swallowed every Tab press on the whole document
+			 * while a menu was open and drove focus with its own bookkeeping. That is a
+			 * keyboard trap (WCAG 2.1.2): once inside the menu there was no way back out to
+			 * the page, and Shift+Tab moved forwards like Tab. Tab order is now left to the
+			 * browser; we only close the loop at the two ends of the panel, and only when
+			 * focus is genuinely inside it.
+			 */
+			jQuery( document ).on( 'keydown.rmp-' + this.menuId, function ( event ) {
+				if ( ! self.isOpen || ! self.isOffCanvas() ) {
+					return;
 				}
-			});
+
+				if ( 'Escape' === event.key || 'Esc' === event.key || 27 === event.keyCode ) {
+					self.handleEscape( event );
+					return;
+				}
+
+				if ( 'Tab' === event.key || 9 === event.keyCode ) {
+					self.handleTab( event );
+				}
+			} );
+
+			// Keep the closed panel out of the tab order and the accessibility tree, and
+			// re-evaluate when the viewport crosses the hamburger breakpoint.
+			this.syncHiddenState();
+			jQuery( window ).on( 'resize.rmp-' + this.menuId, function () {
+				self.syncHiddenState();
+			} );
+
 			// Add rmp-topmenu-active class to current menu item on load
 			this.setActiveMenuItemOnLoad();
 
 		}
+		/**
+		 * True while the container behaves as an overlay panel, i.e. below the hamburger
+		 * breakpoint. Above it the container is display:none and needs no special handling.
+		 *
+		 * @return {boolean}
+		 */
+		isOffCanvas() {
+			return jQuery( window ).width() < this.hamburgerBreakpoint;
+		}
+
+		/**
+		 * The elements Tab cycles through while the panel is open: the trigger that opened
+		 * it, followed by everything focusable and visible inside the panel.
+		 *
+		 * @return {Array} Ordered list of DOM elements.
+		 */
+		focusCycle() {
+			const focusableSelector = 'a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+			return jQuery( this.primaryTrigger )
+				.add( jQuery( this.container ).find( focusableSelector ) )
+				.filter( ':visible' )
+				.toArray();
+		}
+
+		/**
+		 * Close the tab loop at the ends of the panel. Anything in between - and anything
+		 * outside the menu entirely - keeps the browser's own tab order.
+		 *
+		 * @param {Event} event Keydown event.
+		 */
+		handleTab( event ) {
+			const cycle = this.focusCycle();
+
+			if ( ! cycle.length ) {
+				return;
+			}
+
+			const active    = document.activeElement;
+			const container = jQuery( this.container ).get( 0 );
+
+			// Focus sits on the panel itself right after opening; it is not tabbable, so
+			// wrap it manually rather than letting Shift+Tab escape behind the panel.
+			if ( event.shiftKey && active === container ) {
+				event.preventDefault();
+				cycle[ cycle.length - 1 ].focus();
+				return;
+			}
+
+			const index = cycle.indexOf( active );
+
+			if ( -1 === index ) {
+				return;
+			}
+
+			if ( ! event.shiftKey && index === cycle.length - 1 ) {
+				event.preventDefault();
+				cycle[0].focus();
+			} else if ( event.shiftKey && 0 === index ) {
+				event.preventDefault();
+				cycle[ cycle.length - 1 ].focus();
+			}
+		}
+
+		/**
+		 * Escape collapses the innermost open submenu the visitor is standing in, and
+		 * closes the whole panel when there is none.
+		 *
+		 * @param {Event} event Keydown event.
+		 */
+		handleEscape( event ) {
+			const openSubmenu = jQuery( document.activeElement ).closest( '.rmp-submenu.rmp-submenu-open' );
+
+			if ( openSubmenu.length ) {
+				const parentArrow = openSubmenu.siblings( this.subMenuArrow ).first();
+
+				if ( parentArrow.length ) {
+					event.preventDefault();
+					this.triggerSubArrow( parentArrow );
+					parentArrow.trigger( 'focus' );
+					return;
+				}
+			}
+
+			event.preventDefault();
+			this.closeMenu();
+		}
+
+		/**
+		 * Hide the panel from assistive technology and from the tab order whenever it is
+		 * closed but still laid out - a slid-out panel is merely translated off screen, so
+		 * without this its links stay tabbable and a keyboard user tabs into nothing.
+		 */
+		syncHiddenState() {
+			const container = jQuery( this.container ).get( 0 );
+
+			if ( ! container ) {
+				return;
+			}
+
+			if ( this.isOpen || ! this.isOffCanvas() ) {
+				container.removeAttribute( 'aria-hidden' );
+				container.removeAttribute( 'inert' );
+				return;
+			}
+
+			container.setAttribute( 'aria-hidden', 'true' );
+			container.setAttribute( 'inert', '' );
+		}
+
+		/**
+		 * Move focus into the panel so the next Tab continues from the menu rather than
+		 * from wherever the visitor was on the page.
+		 */
+		focusPanel() {
+			const container = jQuery( this.container ).get( 0 );
+
+			if ( ! container ) {
+				return;
+			}
+
+			// The fade animation shows the container as it starts, so a task-queue turn is
+			// enough to make sure the element is focusable by the time we ask.
+			window.setTimeout( function () {
+				container.focus( { preventScroll: true } );
+			}, 0 );
+		}
+
+		/**
+		 * Return focus to the trigger, but only if it currently sits inside the panel we
+		 * are about to hide - closing by a click elsewhere must not steal focus.
+		 */
+		restoreFocus() {
+			const container = jQuery( this.container ).get( 0 );
+
+			if ( ! container || ! container.contains( document.activeElement ) ) {
+				return;
+			}
+
+			jQuery( this.primaryTrigger ).trigger( 'focus' );
+		}
+
 		// Add rmp-topmenu-active class to current menu item on load
 		setActiveMenuItemOnLoad() {
 			const currentURL = window.location.href;
@@ -287,7 +423,6 @@ jQuery( document ).ready( function( jQuery ) {
 		 * @since 4.0.0
 		 */
 		openMenu() {
-			var self = this;
 			jQuery(this.trigger).addClass(RmpMenu.activeToggleClass);
 			jQuery(this.container).addClass(RmpMenu.openContainerClass);
 
@@ -300,6 +435,10 @@ jQuery( document ).ready( function( jQuery ) {
 			}
 
 			this.isOpen = true;
+
+			jQuery( this.trigger ).attr( 'aria-expanded', 'true' );
+			this.syncHiddenState();
+			this.focusPanel();
 		}
 
 		/**
@@ -308,6 +447,10 @@ jQuery( document ).ready( function( jQuery ) {
 		 * @since 4.0.0
 		 */
 		closeMenu() {
+			// Hand focus back before hiding: leaving the focused element inside an
+			// aria-hidden/inert subtree is itself an accessibility failure.
+			this.restoreFocus();
+
 			jQuery(this.trigger).removeClass(RmpMenu.activeToggleClass);
 			jQuery(this.container).removeClass(RmpMenu.openContainerClass);
 
@@ -318,6 +461,9 @@ jQuery( document ).ready( function( jQuery ) {
 			}
 
 			this.isOpen = false;
+
+			jQuery( this.trigger ).attr( 'aria-expanded', 'false' );
+			this.syncHiddenState();
 		}
 
 		/**
@@ -330,9 +476,31 @@ jQuery( document ).ready( function( jQuery ) {
 			this.isOpen ? this.closeMenu() : this.openMenu();
 		}
 
+		/**
+		 * Put one submenu toggle into a given state: glyph, active class and - the part
+		 * assistive technology actually reads - aria-expanded.
+		 *
+		 * @param {Object}  arrow    Toggle button (element or jQuery object).
+		 * @param {boolean} expanded Whether the submenu it controls is now open.
+		 */
+		setArrowState( arrow, expanded ) {
+			const $arrow = jQuery( arrow );
+
+			if ( ! $arrow.length ) {
+				return;
+			}
+
+			$arrow.html( expanded ? this.options['active_toggle_contents'] : this.options['inactive_toggle_contents'] );
+			$arrow.toggleClass( RmpMenu.activeSubMenuArrowClass, !! expanded );
+			$arrow.attr( 'aria-expanded', expanded ? 'true' : 'false' );
+		}
+
 		triggerSubArrow( subArrow ) {
 			var self = this;
-			var sub_menu = jQuery( subArrow ).parent().siblings( RmpMenu.subMenuClass );
+
+			// The toggle is a sibling of the item link inside the <li>, so the submenu it
+			// controls is a sibling of the toggle itself.
+			var sub_menu = jQuery( subArrow ).siblings( RmpMenu.subMenuClass );
 
 			//Accordion animation.
 			if ( self.options['accordion_animation'] == 'on' ) {
@@ -345,15 +513,13 @@ jQuery( document ).ready( function( jQuery ) {
 
 				// Set each parent arrow to inactive.
 				top_siblings.each(function() {
-					jQuery(this).find(self.subMenuArrow).first().html(self.options['inactive_toggle_contents']);
-					jQuery(this).find(self.subMenuArrow).first().removeClass(RmpMenu.activeSubMenuArrowClass);
+					self.setArrowState( jQuery(this).find(self.subMenuArrow).first(), false );
 				});
 
 				// Now Repeat for the current item siblings.
 				first_siblings.children('.rmp-submenu').slideUp(self.subMenuTransitionTime, 'linear').removeClass('rmp-submenu-open');
 				first_siblings.each(function() {
-					jQuery(this).find(self.subMenuArrow).first().html(self.options['inactive_toggle_contents']);
-					jQuery(this).find(self.subMenuArrow).first().removeClass(RmpMenu.activeSubMenuArrowClass);
+					self.setArrowState( jQuery(this).find(self.subMenuArrow).first(), false );
 				});
 			}
 
@@ -362,12 +528,10 @@ jQuery( document ).ready( function( jQuery ) {
 				sub_menu.slideUp(self.subMenuTransitionTime, 'linear',function() {
 					jQuery(this).css( 'display', '' );
 				} ).removeClass('rmp-submenu-open');
-				jQuery( subArrow ).html( self.options['inactive_toggle_contents'] );
-				jQuery( subArrow ).removeClass(RmpMenu.activeSubMenuArrowClass);
+				self.setArrowState( subArrow, false );
 			} else {
 				sub_menu.slideDown(self.subMenuTransitionTime, 'linear').addClass( 'rmp-submenu-open' );
-				jQuery( subArrow ).html(self.options['active_toggle_contents'] );
-				jQuery( subArrow ).addClass(RmpMenu.activeSubMenuArrowClass);
+				self.setArrowState( subArrow, true );
 			}
 
 		}
