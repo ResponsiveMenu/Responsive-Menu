@@ -292,7 +292,11 @@ jQuery( document ).ready( function( jQuery ) {
 				return;
 			}
 
-			if ( this.isOpen || ! this.isOffCanvas() ) {
+			// Derive "open" from the DOM as well as our own flag, so a panel opened by
+			// third-party code that just adds the open class is not left inert.
+			const isOpen = this.isOpen || jQuery( this.container ).hasClass( RmpMenu.openContainerClass );
+
+			if ( isOpen || ! this.isOffCanvas() ) {
 				container.removeAttribute( 'aria-hidden' );
 				container.removeAttribute( 'inert' );
 				return;
