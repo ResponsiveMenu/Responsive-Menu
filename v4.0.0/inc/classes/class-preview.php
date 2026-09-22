@@ -45,6 +45,25 @@ class Preview {
 	}
 
 	/**
+	 * Menu elements the live preview can render, mapped to the RMP_Menu
+	 * method that renders each one.
+	 *
+	 * The keys match the `data-toggle` values on the item-order checkboxes in
+	 * templates/menu-elements/.
+	 *
+	 * @since 4.7.4
+	 *
+	 * @var array
+	 */
+	const PREVIEW_ELEMENTS = array(
+		'menu'                => 'menu',
+		'search'              => 'menu_search_box',
+		'title'               => 'menu_title',
+		'social-icons'        => 'menu_social_icons',
+		'additional-content'  => 'menu_additional_content',
+	);
+
+	/**
 	 * This function get the content of menu item for live preview element.
 	 *
 	 * @return HTML
@@ -52,21 +71,34 @@ class Preview {
 	public function enable_menu_item() {
 		check_ajax_referer( 'rmp_nonce', 'ajax_nonce' );
 
-		$menu_id      = isset( $_POST['menu_id'] ) ? intval( wp_unslash( $_POST['menu_id'] ) ) : '';
-		$menu_element = isset( $_POST['menu_element'] ) ? intval( wp_unslash( $_POST['menu_element'] ) ) : '';
-		$menu         = new RMP_Menu( $menu_id );
+		$menu_id = isset( $_POST['menu_id'] ) ? absint( wp_unslash( $_POST['menu_id'] ) ) : 0;
 
-		if ( 'menu' === $menu_element ) {
-			$html = $menu->menu();
-		} elseif ( 'search' === $menu_element ) {
-			$html = $menu->menu_search_box();
-		} elseif ( 'title' === $menu_element ) {
-			$html = $menu->menu_title();
-		} elseif ( 'social-icons' === $menu_element ) {
-			$html = $menu->menu_social_icons();
-		} else {
-			$html = $menu->menu_additional_content();
+		if ( empty( $menu_id ) ) {
+			wp_send_json_error( array( 'message' => esc_html__( 'Menu ID missing !', 'responsive-menu' ) ) );
 		}
+
+		/**
+		 * The element name is a slug, not a number — intval() collapsed every
+		 * value except 'menu' to 0, so no branch below ever matched and the
+		 * preview always rendered the additional-content element.
+		 */
+		$menu_element = isset( $_POST['menu_element'] ) ? sanitize_key( wp_unslash( $_POST['menu_element'] ) ) : '';
+
+		if ( ! isset( self::PREVIEW_ELEMENTS[ $menu_element ] ) ) {
+			wp_send_json_error( array( 'message' => esc_html__( 'Unknown menu element !', 'responsive-menu' ) ) );
+		}
+
+		$menu   = new RMP_Menu( $menu_id );
+		$method = self::PREVIEW_ELEMENTS[ $menu_element ];
+
+		/**
+		 * Every render method echoes its markup and returns nothing, so the
+		 * output has to be captured — otherwise it is emitted before the JSON
+		 * body and the response is not parseable.
+		 */
+		ob_start();
+		$menu->$method();
+		$html = ob_get_clean();
 
 		wp_send_json_success( array( 'markup' => $html ) );
 	}
