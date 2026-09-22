@@ -391,6 +391,18 @@ function rm_custom_menu_item_settings( $item_id, $item, $depth, $args ) {
     <p class="rm-menu-settings-heading description description-wide">
         <strong><?php esc_html_e('RMP Settings', 'responsive-menu'); ?></strong>
     </p>
+    <?php
+    /**
+     * Marks this item's settings as present in the submission.
+     *
+     * wp_update_nav_menu_item() also fires from the Customizer, WP-CLI and
+     * menu importers, none of which post these fields — and an unchecked
+     * checkbox posts nothing either, so "field absent" cannot distinguish
+     * "turned off" from "not our form". Without this marker a Customizer
+     * rename silently reset every setting below.
+     */
+    ?>
+    <input type="hidden" name="rmp-item-settings[<?php echo esc_attr($item_id); ?>]" value="1" />
     <p class="field-hide-login-rmp description description-thin">
         <label for="edit-menu-item-hide-login-rmp-setting-<?php echo esc_attr($item_id); ?>">
             <input type="checkbox" class="edit-menu-item-hide-login-rmp-setting" id="edit-menu-item-hide-login-rmp-setting-<?php echo esc_attr($item_id); ?>" name="menu-item-hide-login-rmp-setting[<?php echo esc_attr($item_id); ?>]" <?php checked($hide_login_rmp_setting, 'on'); echo 'on' === $hide_nonlogin_rmp_setting ? 'disabled' : ''; ?> value="on"/>
@@ -504,6 +516,11 @@ function rm_get_menu_item_roles( $item_id ) {
  * @since 4.6.0
  */
 function rm_save_custom_menu_item_setting( $menu_id, $menu_item_db_id, $menu_item_args ) {
+    // Only act when our own fields were submitted — see the marker in rm_custom_menu_item_settings().
+    if ( empty( $_POST['rmp-item-settings'][ $menu_item_db_id ] ) ) {
+        return;
+    }
+
     $custom_setting = ! empty( $_POST['menu-item-hide-login-rmp-setting'][ $menu_item_db_id ] ) ? 'on' : 'off';
     update_post_meta($menu_item_db_id, '_hide_login_rmp_setting', $custom_setting);
     $custom_setting = ! empty( $_POST['menu-item-hide-nonlogin-rmp-setting'][ $menu_item_db_id ] ) ? 'on' : 'off';
@@ -540,6 +557,9 @@ function rm_save_menu_item_roles( $menu_item_db_id ) {
     if ( ! is_array( $submitted ) ) {
         $submitted = array();
     }
+
+    // is_scalar() because rmp-roles[12][][]=x would otherwise reach strtolower( array ).
+    $submitted = array_filter( $submitted, 'is_scalar' );
 
     $allowed = array_keys( rm_get_selectable_roles() );
     $roles   = array_values( array_intersect( array_map( 'sanitize_key', $submitted ), $allowed ) );
