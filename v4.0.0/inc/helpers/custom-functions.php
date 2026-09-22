@@ -227,8 +227,17 @@ function rm_sanitize_rec_array( $array, $allowhtml = false ) {
 function rm_sanitize_html_tags( $content ) {
     // Define allowed HTML tags and attributes
     $common_attrs = array(
-		'class' => true,
-		'id'    => true,
+		'class'           => true,
+		'id'              => true,
+		// Keep accessibility attributes: icon markup supplied by the user is decorative
+		// and needs aria-hidden to survive sanitising, or screen readers announce the glyph.
+		'role'            => true,
+		'title'           => true,
+		'aria-hidden'     => true,
+		'aria-label'      => true,
+		'aria-labelledby' => true,
+		'aria-expanded'   => true,
+		'aria-controls'   => true,
 	);
 	$form_common_attrs = array_merge($common_attrs, array(
 		'name'     => true,
@@ -238,13 +247,13 @@ function rm_sanitize_html_tags( $content ) {
 	));
 
 	$allowed_tags = array(
-		'svg'      => array(
+		'svg'      => array_merge($common_attrs, array(
 			'xmlns'   => true,
 			'viewBox' => true,
 			'width'   => true,
 			'height'  => true,
 			'fill'    => true,
-		),
+		)),
 		'path'     => array(
 			'd'               => true,
 			'fill'            => true,
@@ -269,11 +278,11 @@ function rm_sanitize_html_tags( $content ) {
 		),
 		'i'        => $common_attrs,
 		'label'    => $common_attrs,
-		'a'        => array(
+		'a'        => array_merge($common_attrs, array(
 			'href'   => true,
 			'target' => true,
 			'rel'    => true,
-		),
+		)),
 		'h1'       => $common_attrs,
 		'h2'       => $common_attrs,
 		'h3'       => $common_attrs,
