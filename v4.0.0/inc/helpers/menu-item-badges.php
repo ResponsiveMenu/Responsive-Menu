@@ -25,7 +25,12 @@ const RMP_BADGE_SOURCE_META = '_rmp_badge_source';
 const RMP_BADGE_VALUE_META  = '_rmp_badge_value';
 
 /**
- * Badge sources available on the menu item screen.
+ * Every badge source the plugin knows about.
+ *
+ * This is the list a submitted source is validated against, so it stays
+ * complete whether or not each source's dependency is currently active —
+ * deactivating WooCommerce must not silently wipe a cart badge the next time
+ * somebody saves the menu.
  *
  * @since 4.7.4
  *
@@ -40,12 +45,8 @@ function rmp_badge_sources() {
 		'custom'        => __( 'Custom (shortcode)', 'responsive-menu' ),
 	);
 
-	if ( ! class_exists( 'WooCommerce' ) ) {
-		unset( $sources['wc_cart_count'] );
-	}
-
 	/**
-	 * Filters the badge sources offered on the menu item screen.
+	 * Filters the badge sources the plugin recognises.
 	 *
 	 * Add a key here and return its value from the
 	 * `rmp_menu_item_badge_value` filter to register a new source.
@@ -55,6 +56,30 @@ function rmp_badge_sources() {
 	 * @param array $sources Source key => label.
 	 */
 	return apply_filters( 'rmp_menu_item_badge_sources', $sources );
+}
+
+/**
+ * Badge sources offered in the dropdown for one menu item.
+ *
+ * A source whose dependency is inactive is hidden, unless the item is
+ * already set to it — otherwise editing the item would quietly change its
+ * badge.
+ *
+ * @since 4.7.4
+ *
+ * @param string $current The item's stored source.
+ *
+ * @return array Source key => human readable label.
+ */
+function rmp_badge_sources_for_item( $current = '' ) {
+
+	$sources = rmp_badge_sources();
+
+	if ( ! class_exists( 'WooCommerce' ) && 'wc_cart_count' !== $current ) {
+		unset( $sources['wc_cart_count'] );
+	}
+
+	return $sources;
 }
 
 /**
@@ -71,7 +96,7 @@ function rmp_menu_item_badge_fields( $item_id ) {
 	$item_id = absint( $item_id );
 	$source  = (string) get_post_meta( $item_id, RMP_BADGE_SOURCE_META, true );
 	$value   = (string) get_post_meta( $item_id, RMP_BADGE_VALUE_META, true );
-	$sources = rmp_badge_sources();
+	$sources = rmp_badge_sources_for_item( $source );
 
 	if ( ! isset( $sources[ $source ] ) ) {
 		$source = '';
