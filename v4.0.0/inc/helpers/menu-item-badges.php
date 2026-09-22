@@ -158,13 +158,24 @@ function rmp_save_menu_item_badge( $menu_id, $menu_item_db_id ) {
 	$menu_item_db_id = absint( $menu_item_db_id );
 
 	// phpcs:disable WordPress.Security.NonceVerification.Missing -- verified by the Menus screen before this action runs.
-	$source = isset( $_POST['rmp-badge-source'][ $menu_item_db_id ] )
-		? sanitize_key( wp_unslash( $_POST['rmp-badge-source'][ $menu_item_db_id ] ) )
-		: '';
 
-	$value = isset( $_POST['rmp-badge-value'][ $menu_item_db_id ] )
-		? sanitize_text_field( wp_unslash( $_POST['rmp-badge-value'][ $menu_item_db_id ] ) )
-		: '';
+	/**
+	 * wp_update_nav_menu_item() also fires from the Customizer, WP-CLI and
+	 * menu importers, none of which post our fields. Treating a missing
+	 * field as "no badge" would delete the item's configuration every time
+	 * somebody renamed it in the Customizer, so only act when our own form
+	 * was submitted. The select always posts a value when it was rendered,
+	 * which makes its presence the reliable marker.
+	 */
+	if ( ! isset( $_POST['rmp-badge-source'][ $menu_item_db_id ] ) ) {
+		return;
+	}
+
+	$raw_source = $_POST['rmp-badge-source'][ $menu_item_db_id ];
+	$source     = is_scalar( $raw_source ) ? sanitize_key( wp_unslash( $raw_source ) ) : '';
+
+	$raw_value = isset( $_POST['rmp-badge-value'][ $menu_item_db_id ] ) ? $_POST['rmp-badge-value'][ $menu_item_db_id ] : '';
+	$value     = is_scalar( $raw_value ) ? sanitize_text_field( wp_unslash( $raw_value ) ) : '';
 	// phpcs:enable WordPress.Security.NonceVerification.Missing
 
 	if ( ! array_key_exists( $source, rmp_badge_sources() ) ) {
@@ -248,6 +259,14 @@ function rmp_get_menu_item_badge_value( $item ) {
 /**
  * Current WooCommerce cart item count.
  *
+ * ⚠ This is a per-visitor value rendered into the menu markup server-side,
+ * which is the reason WooCommerce hydrates its own mini-cart over AJAX
+ * (`wc-cart-fragments`). Behind a full-page cache — WP Rocket, LiteSpeed,
+ * Varnish, Cloudflare APO — the first visitor's count is served to everyone
+ * until the page is regenerated. A site using this source must exclude the
+ * affected pages from its page cache, or hook `rmp_menu_item_badge_html` to
+ * emit a placeholder it hydrates from the cart fragments itself.
+ *
  * @since 4.7.4
  *
  * @return string Item count, or an empty string when the cart is unavailable.
@@ -266,6 +285,50 @@ function rmp_get_woocommerce_cart_count() {
 
 	return (string) $woocommerce->cart->get_cart_contents_count();
 }
+
+/**
+ * Enqueue the badge styles.
+ *
+ * Deliberately its own tiny stylesheet rather than a block in common.scss:
+ * the compiled common stylesheet can be written to a file in the uploads
+ * directory and is only regenerated when a menu or theme is saved, so an
+ * existing install that upgraded would serve stale CSS and render badges as
+ * unstyled inline text until somebody happened to re-save a menu. Carrying
+ * the rules here keeps them in step with the plugin version.
+ *
+ * @since 4.7.4
+ *
+ * @return void
+ */
+function rmp_enqueue_menu_item_badge_styles() {
+
+	$handle = 'rmp-menu-item-badges';
+
+	wp_register_style( $handle, false, array(), RMP_PLUGIN_VERSION );
+	wp_enqueue_style( $handle );
+
+	$css = '.rmp-menu-item-badge{display:inline-block;min-width:18px;margin-left:6px;padding:0 6px;'
+		. 'border-radius:9px;background-color:#f80668;color:#fff;font-size:11px;font-weight:600;'
+		. 'line-height:18px;text-align:center;vertical-align:middle;white-space:nowrap;}';
+
+	/**
+	 * Filters the badge stylesheet.
+	 *
+	 * Return an empty string to style badges entirely from the theme.
+	 *
+	 * @since 4.7.4
+	 *
+	 * @param string $css Badge CSS.
+	 */
+	$css = apply_filters( 'rmp_menu_item_badge_css', $css );
+
+	if ( '' === $css ) {
+		return;
+	}
+
+	wp_add_inline_style( $handle, $css );
+}
+add_action( 'wp_enqueue_scripts', 'rmp_enqueue_menu_item_badge_styles' );
 
 /**
  * Append the badge markup to a menu item title.
