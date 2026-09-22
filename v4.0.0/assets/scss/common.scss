@@ -230,3 +230,20 @@ button.rmp_menu_trigger {
     }
 }
 
+
+/*  Menu item badges (cart / notification / custom counters) */
+.rmp-menu-item-badge {
+    display: inline-block;
+    min-width: 18px;
+    margin-left: 6px;
+    padding: 0 6px;
+    border-radius: 9px;
+    background-color: #f80668;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 18px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
