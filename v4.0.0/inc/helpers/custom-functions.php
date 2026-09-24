@@ -456,7 +456,17 @@ function rm_menu_item_role_field( $item_id ) {
         <label for="rmp-roles-<?php echo esc_attr( $item_id ); ?>">
             <?php esc_html_e( 'Show only to these roles', 'responsive-menu' ); ?>
         </label>
-        <span class="rmp-roles-list" id="rmp-roles-<?php echo esc_attr( $item_id ); ?>" style="display:block;max-height:120px;overflow:auto;margin:4px 0;">
+        <?php
+        /*
+         * A stock WordPress site has five roles, which came to about 110px and fitted
+         * inside the old 120px cap - so the box showed no scrollbar and read as the
+         * complete list. The SIXTH role, i.e. the first one an admin adds themselves,
+         * was silently clipped, and the obvious conclusion was that the plugin had not
+         * picked it up. Give it room for a realistic number of roles and a border, so
+         * that when it does scroll it looks like something that scrolls.
+         */
+        ?>
+        <span class="rmp-roles-list" id="rmp-roles-<?php echo esc_attr( $item_id ); ?>" style="display:block;max-height:220px;overflow-y:auto;margin:4px 0;padding:6px 8px;border:1px solid #dcdcde;background:#fff;">
             <?php foreach ( $roles as $role => $label ) : ?>
                 <label class="rmp-role-option">
                     <input
