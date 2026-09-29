@@ -150,7 +150,7 @@ jQuery( document ).ready( function( jQuery ) {
 					if ( jQuery(window).width() < self.hamburgerBreakpoint ) {
 						e.preventDefault();
 						self.triggerSubArrow(
-							jQuery(this).siblings( '.rmp-menu-subarrow' ).first()
+							self.arrowForLink( this )
 						);
 					}
 				});
@@ -278,7 +278,7 @@ jQuery( document ).ready( function( jQuery ) {
 			const openSubmenu = jQuery( document.activeElement ).closest( '.rmp-submenu.rmp-submenu-open' );
 
 			if ( openSubmenu.length ) {
-				const parentArrow = openSubmenu.siblings( this.subMenuArrow ).first();
+				const parentArrow = this.arrowForSubmenu( openSubmenu );
 
 				if ( parentArrow.length ) {
 					event.preventDefault();
@@ -511,12 +511,77 @@ jQuery( document ).ready( function( jQuery ) {
 			$arrow.attr( 'aria-expanded', expanded ? 'true' : 'false' );
 		}
 
+		/*
+		 * Where the submenu toggle lives.
+		 *
+		 * Current markup puts the toggle BESIDE the item link. The 4.7.3 markup put it
+		 * INSIDE the link. Both have to be understood, not just the new one: a page
+		 * served from a full-page cache (Cloudflare APO, host caches, WP Super Cache)
+		 * keeps the old HTML until it is purged, while the browser loads this script -
+		 * the file on disk changed under the same URL. Looking only in the new place
+		 * left every submenu on such a page dead, and with "parent link opens submenu"
+		 * on, the parent link neither opened anything nor navigated.
+		 *
+		 * Every lookup between a toggle and its submenu goes through these three.
+		 */
+
+		/**
+		 * The submenu a toggle controls.
+		 *
+		 * @param {Object} arrow Toggle (element or jQuery object).
+		 * @return {Object} jQuery object, possibly empty.
+		 */
+		submenuFor( arrow ) {
+			const $arrow = jQuery( arrow );
+			let submenu  = $arrow.siblings( RmpMenu.subMenuClass );
+
+			if ( ! submenu.length ) {
+				submenu = $arrow.parent( this.linkElement ).siblings( RmpMenu.subMenuClass );
+			}
+
+			return submenu;
+		}
+
+		/**
+		 * The toggle belonging to an item link.
+		 *
+		 * @param {Object} link Item link (element or jQuery object).
+		 * @return {Object} jQuery object, possibly empty.
+		 */
+		arrowForLink( link ) {
+			const $link = jQuery( link );
+			let arrow   = $link.siblings( this.subMenuArrow );
+
+			if ( ! arrow.length ) {
+				arrow = $link.children( this.subMenuArrow );
+			}
+
+			return arrow.first();
+		}
+
+		/**
+		 * The toggle that controls a given submenu.
+		 *
+		 * @param {Object} submenu Submenu (element or jQuery object).
+		 * @return {Object} jQuery object, possibly empty.
+		 */
+		arrowForSubmenu( submenu ) {
+			const $submenu = jQuery( submenu );
+			let arrow      = $submenu.siblings( this.subMenuArrow );
+
+			if ( ! arrow.length ) {
+				arrow = $submenu.siblings( this.linkElement ).children( this.subMenuArrow );
+			}
+
+			return arrow.first();
+		}
+
 		triggerSubArrow( subArrow ) {
 			var self = this;
 
 			// The toggle is a sibling of the item link inside the <li>, so the submenu it
 			// controls is a sibling of the toggle itself.
-			var sub_menu = jQuery( subArrow ).siblings( RmpMenu.subMenuClass );
+			var sub_menu = this.submenuFor( subArrow );
 
 			//Accordion animation.
 			if ( self.options['accordion_animation'] == 'on' ) {
