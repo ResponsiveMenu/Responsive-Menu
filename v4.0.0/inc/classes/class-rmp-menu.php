@@ -191,7 +191,7 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 			/**
 			 * Filters the accessible name of the menu trigger button.
 			 *
-			 * @since 4.8.0
+			 * @since 4.7.4
 			 *
 			 * @param string $trigger_aria_label Accessible name, or '' to let the visible text name the button.
 			 * @param int    $menu_id            Menu id.

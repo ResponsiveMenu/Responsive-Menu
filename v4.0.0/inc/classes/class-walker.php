@@ -64,7 +64,7 @@ class Walker extends \Walker_Nav_Menu {
 	 * <ul> that is never rendered: a control that announces a collapsed submenu, resolves
 	 * to nothing, and does nothing when activated.
 	 *
-	 * @since 4.8.0
+	 * @since 4.7.4
 	 * @access public
 	 *
 	 * @param array $elements  Menu item objects.
@@ -223,7 +223,7 @@ class Walker extends \Walker_Nav_Menu {
 			/**
 			 * Filters the accessible name of a submenu toggle button.
 			 *
-			 * @since 4.8.0
+			 * @since 4.7.4
 			 *
 			 * @param string $toggle_label Accessible name announced by screen readers.
 			 * @param object $item         Menu item object.
