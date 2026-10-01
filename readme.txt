@@ -2,8 +2,8 @@
 Contributors: expresstech, responsivemenu, moha12351, infosatech
 Tags: mobile menu, hamburger, responsive, navigation, mega menu
 Requires at least: 3.6
-Tested up to: 7.0
-Stable tag: 4.7.3
+Tested up to: 7.1
+Stable tag: 4.7.4
 Requires PHP: 7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -140,6 +140,15 @@ Free support is on the [WordPress.org support forum](https://wordpress.org/suppo
 7. Your responsive menu live on the front end
 
 == Changelog ==
+= 4.7.4 (1st October 2026) =
+* Feature: Added an option to display menu items only to selected user roles.
+* Enhancement: Improved keyboard and screen reader accessibility.
+* Bug: Fixed an issue where sub-items of a hidden menu item appeared in its place instead of remaining hidden.
+* Bug: Fixed an issue where editing a menu in the Customizer reset per-item visibility settings.
+* Bug: Fixed a PHP 8 fatal error that occurred when saving a menu theme.
+* Bug: Fixed the live preview showing the wrong element for the title, search and social icons.
+* Bug: Fixed admin notices not appearing on Responsive Menu screens.
+
 = 4.7.3 (20th August 2026) =
 * Security: Prevented menu theme ZIPs from placing executable files in public uploads
 * Enhancement: Added pre-extraction validation and plugin-level permissions for theme uploads
@@ -874,6 +883,9 @@ Free support is on the [WordPress.org support forum](https://wordpress.org/suppo
 * Initial Version Released.
 
 == Upgrade Notice ==
+
+= 4.7.4 =
+Menu markup changed for accessibility: the submenu toggle is now a button beside the link, and the menu is wrapped in a nav element. Custom CSS targeting `.rmp-menu-item-link .rmp-menu-subarrow` should target `.rmp-menu-subarrow`. Sub-items of a hidden menu item are now hidden too.
 
 = 2.8.9 =
 Requires PHP 5.4  - DO NOT upgrade if you do not have this installed.

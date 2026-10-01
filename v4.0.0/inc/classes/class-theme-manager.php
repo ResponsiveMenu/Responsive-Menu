@@ -880,8 +880,14 @@ class Theme_Manager {
 		$options = $options['menu'];
 
 		$rmp_themes = get_option( self::$theme_option );
+
+		/**
+		 * Reset to an empty array when the stored option is missing or corrupt.
+		 * Without this, a scalar option value makes the write below a fatal
+		 * error on PHP 8: "Cannot use a scalar value as an array".
+		 */
 		if ( empty( $rmp_themes ) || ! is_array( $rmp_themes ) ) {
-			$rmp_theme = array();
+			$rmp_themes = array();
 		}
 
 		$rmp_themes[ $theme_name ] = $options;

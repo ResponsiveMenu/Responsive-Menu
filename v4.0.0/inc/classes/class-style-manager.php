@@ -108,7 +108,6 @@ class Style_Manager {
 	 */
 	public function save_style_css_on_file() {
 		global $wp_filesystem;
-		update_option('rmp_dynamic_file_version', current_time('H.i.s') );
 		if ( empty( $wp_filesystem ) ) {
 			require_once ABSPATH . 'wp-admin/includes/file.php';
 		}
@@ -126,8 +125,27 @@ class Style_Manager {
 		$css = $this->get_menus_scss_to_css();
 
 		if ( ! $wp_filesystem->put_contents( $dir . 'rmp-menu.css', $css, 0644 ) ) {
+			/*
+			 * Hold the front end off before it tries again. The enqueue path rebuilds
+			 * whenever the stored build does not match, so a write that keeps failing -
+			 * uploads owned by another user after a migration, a read-only filesystem -
+			 * would otherwise recompile every menu's stylesheet on every page load.
+			 */
+			set_transient( 'rmp_css_write_failed', RMP_PLUGIN_VERSION, HOUR_IN_SECONDS );
 			return new \WP_Error( 'Notice: Unable to write css in file.' );
 		}
+
+		delete_transient( 'rmp_css_write_failed' );
+
+		/*
+		 * Bust browser caches only now that the file really has changed. This used to
+		 * run before the write, so a failing write moved the stylesheet URL on every
+		 * attempt and browsers kept re-downloading a file that had not changed.
+		 */
+		update_option( 'rmp_dynamic_file_version', current_time( 'H.i.s' ) );
+
+		// Record which build wrote this file so that a plugin update invalidates it.
+		update_option( 'rmp_generated_css_version', RMP_PLUGIN_VERSION );
 	}
 
 	/**
@@ -140,8 +158,17 @@ class Style_Manager {
 
 		$file_path = trailingslashit( $upload_dir['basedir'] ) . 'rmp-menu/css/' . $filename;
 
-		// If file is not exist then create it.
-		if ( ! file_exists( $file_path ) ) {
+		/*
+		 * Regenerate when the file is missing, and also when it was written by a different
+		 * build. It is otherwise only rewritten when a menu is saved, so a release that
+		 * changes the markup or the stylesheet would leave every site serving CSS that no
+		 * longer matches its own HTML until an admin happened to re-save a menu.
+		 */
+		$needs_build = ! file_exists( $file_path ) || RMP_PLUGIN_VERSION !== get_option( 'rmp_generated_css_version' );
+
+		// A recent write failed: serve what is on disk rather than recompiling every menu on
+		// every request. An admin saving a menu still retries straight away.
+		if ( $needs_build && ! get_transient( 'rmp_css_write_failed' ) ) {
 			$this->save_style_css_on_file();
 		}
 

@@ -78,7 +78,11 @@ class Plugin {
 		// Check post type.
 		$post_type = get_post_type();
 		if ( empty( $post_type ) && ! empty( $_GET['post_type'] ) ) {
-			$post_type = intval( $_GET['post_type'] );
+			// A post type is a slug, not a number: intval() made this always 0.
+			// is_scalar() because ?post_type[]=x would otherwise reach strtolower( array ).
+			$post_type = is_scalar( $_GET['post_type'] ) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				? sanitize_key( wp_unslash( $_GET['post_type'] ) ) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				: '';
 		}
 
 		if ( 'rmp_menu' !== $post_type || ! empty( $_GET['page'] ) ) {
@@ -135,7 +139,11 @@ class Plugin {
 	public function rmp_upgrade_pro_admin_notice() {
 		$post_type = get_post_type();
 		if ( empty( $post_type ) && ! empty( $_GET['post_type'] ) ) {
-			$post_type = intval( $_GET['post_type'] );
+			// A post type is a slug, not a number: intval() made this always 0.
+			// is_scalar() because ?post_type[]=x would otherwise reach strtolower( array ).
+			$post_type = is_scalar( $_GET['post_type'] ) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				? sanitize_key( wp_unslash( $_GET['post_type'] ) ) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				: '';
 		}
 
 		if ( 'rmp_menu' !== $post_type ) {
