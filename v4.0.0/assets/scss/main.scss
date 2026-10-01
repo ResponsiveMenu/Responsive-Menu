@@ -430,6 +430,15 @@
                 bottom: auto;
                 height: auto;
             }
+            // The toggle used to live inside .rmp-menu-item-link and inherited its type
+            // from it. As a sibling of the link it would take the theme's type instead,
+            // resizing the default arrow glyph, so the item's own type is restated here.
+            @if( $menu_item_font_size != '' ) {
+                font-size: ( $menu_item_font_size + $menu_item_font_size_unit );
+            }
+            @if( $menu_item_font_family != '' ) {
+                font-family: $menu_item_font_family;
+            }
             text-align: center;
             overflow: hidden;
             background-size: cover;
@@ -570,6 +579,17 @@
                         }
                         background-color: $submenu_current_item_background_color_hover;
                     }
+                }
+            }
+
+            // Same restatement one level down: a toggle inside a submenu has to match
+            // the SUBMENU item type, not the top-level type the rule above gives it.
+            .rmp-menu-subarrow {
+                @if( $submenu_item_font_size != '' ) {
+                    font-size: ( $submenu_item_font_size + $submenu_item_font_size_unit );
+                }
+                @if( $submenu_item_font_family != '' ) {
+                    font-family: $submenu_item_font_family;
                 }
             }
 

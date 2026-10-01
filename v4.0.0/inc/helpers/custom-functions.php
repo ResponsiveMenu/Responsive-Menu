@@ -448,14 +448,29 @@ function rm_menu_item_role_field( $item_id ) {
     $selected = rm_get_menu_item_roles( $item_id );
     $roles    = rm_get_selectable_roles();
 
+    /*
+     * A role the item is restricted to but which is no longer registered - a
+     * membership plugin deactivated, a role renamed, or this list narrowed by the
+     * rmp_menu_item_selectable_roles filter - still has to be rendered, and checked.
+     *
+     * An unchecked checkbox posts nothing, so a role with no checkbox posts nothing
+     * either, and the save path below cannot tell that from "the admin cleared it".
+     * It would delete the restriction on the next Save Menu and the item would
+     * silently become visible to everyone. A visibility condition must fail closed.
+     */
+    foreach ( $selected as $stored_role ) {
+        if ( ! isset( $roles[ $stored_role ] ) ) {
+            /* translators: %s: role slug that is no longer registered on this site. */
+            $roles[ $stored_role ] = sprintf( __( '%s (role not currently available)', 'responsive-menu' ), $stored_role );
+        }
+    }
+
     if ( empty( $roles ) ) {
         return;
     }
     ?>
-    <p class="field-rmp-roles description description-wide">
-        <label for="rmp-roles-<?php echo esc_attr( $item_id ); ?>">
-            <?php esc_html_e( 'Show only to these roles', 'responsive-menu' ); ?>
-        </label>
+    <fieldset class="field-rmp-roles description description-wide">
+        <legend><?php esc_html_e( 'Show only to these roles', 'responsive-menu' ); ?></legend>
         <?php
         /*
          * A stock WordPress site has five roles, which came to about 110px and fitted
@@ -466,7 +481,7 @@ function rm_menu_item_role_field( $item_id ) {
          * that when it does scroll it looks like something that scrolls.
          */
         ?>
-        <span class="rmp-roles-list" id="rmp-roles-<?php echo esc_attr( $item_id ); ?>" style="display:block;max-height:220px;overflow-y:auto;margin:4px 0;padding:6px 8px;border:1px solid #dcdcde;background:#fff;">
+        <span class="rmp-roles-list" style="display:block;max-height:220px;overflow-y:auto;margin:4px 0;padding:6px 8px;border:1px solid #dcdcde;background:#fff;">
             <?php foreach ( $roles as $role => $label ) : ?>
                 <label class="rmp-role-option">
                     <input
@@ -479,9 +494,9 @@ function rm_menu_item_role_field( $item_id ) {
             <?php endforeach; ?>
         </span>
         <span class="description">
-            <?php esc_html_e( 'Leave every role unchecked to show the item to everyone. A hidden item hides its sub-items too.', 'responsive-menu' ); ?>
+            <?php esc_html_e( 'Leave every role unchecked to show the item to everyone. A hidden item hides its sub-items too. This hides the link; it does not restrict access to the page, which is still reachable by its URL.', 'responsive-menu' ); ?>
         </span>
-    </p>
+    </fieldset>
     <?php
 }
 
@@ -580,7 +595,16 @@ function rm_save_menu_item_roles( $menu_item_db_id ) {
     // is_scalar() because rmp-roles[12][][]=x would otherwise reach strtolower( array ).
     $submitted = array_filter( $submitted, 'is_scalar' );
 
-    $allowed = array_keys( rm_get_selectable_roles() );
+    /*
+     * Validate against the registered roles PLUS whatever this item already stores,
+     * so this path can only ever reject a newly submitted value - never silently
+     * drop a restriction that is already in place. Pairs with the field above,
+     * which renders a stored-but-unregistered role so it round-trips.
+     */
+    $allowed = array_unique( array_merge(
+        array_keys( rm_get_selectable_roles() ),
+        rm_get_menu_item_roles( $menu_item_db_id )
+    ) );
     $roles   = array_values( array_intersect( array_map( 'sanitize_key', $submitted ), $allowed ) );
 
     if ( empty( $roles ) ) {
