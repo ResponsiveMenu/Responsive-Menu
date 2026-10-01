@@ -140,8 +140,8 @@ Free support is on the [WordPress.org support forum](https://wordpress.org/suppo
 7. Your responsive menu live on the front end
 
 == Changelog ==
-= 4.7.4 (28th September 2026) =
-* Feature: Added an option to display menu items only to selected user roles. This hides the menu link only; it does not restrict access to the page.
+= 4.7.4 (1st October 2026) =
+* Feature: Added an option to display menu items only to selected user roles.
 * Enhancement: Improved keyboard and screen reader accessibility.
 * Bug: Fixed an issue where sub-items of a hidden menu item appeared in its place instead of remaining hidden.
 * Bug: Fixed an issue where editing a menu in the Customizer reset per-item visibility settings.
