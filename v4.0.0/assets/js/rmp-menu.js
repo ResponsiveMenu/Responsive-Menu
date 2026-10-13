@@ -91,10 +91,18 @@ jQuery( document ).ready( function( jQuery ) {
 				return;
 			}
 
-			const selector = 'a[href^="#"][class*="skip"], a[href^="#"][id*="skip"]';
-			const skipLink = Array.prototype.find.call( document.querySelectorAll( selector ), function ( link ) {
-				return ! link.closest( '.rmp-container, main, [role="main"], footer, [role="contentinfo"]' );
-			} );
+			// Known skip-link conventions only (core's block-theme link, _s/classic themes)
+			// - a looser "any class containing skip" match picked
+			// up hero and popup links and tore them out of their layout.
+			const selector = 'a.skip-link, a#wp-skip-link, a#skip-link, a.skip-to-content, a.skip-to-content-link';
+			const isSkipLink = function ( link ) {
+				const href = link.getAttribute( 'href' ) || '';
+
+				return href.length > 1 && '#' === href.charAt( 0 )
+					&& !! document.getElementById( decodeURIComponent( href.slice( 1 ) ) )
+					&& ! link.closest( '.rmp-container, main, [role="main"], aside, footer, [role="contentinfo"], dialog, [role="dialog"]' );
+			};
+			const skipLink = Array.prototype.find.call( document.querySelectorAll( selector ), isSkipLink );
 
 			// Nothing to do when the theme has no skip link or it already comes first.
 			if ( ! skipLink || ! ( trigger.compareDocumentPosition( skipLink ) & Node.DOCUMENT_POSITION_FOLLOWING ) ) {
@@ -106,7 +114,7 @@ jQuery( document ).ready( function( jQuery ) {
 			const group = [ skipLink ];
 			let next    = skipLink.nextElementSibling;
 
-			while ( next && next.matches( selector ) ) {
+			while ( next && next.matches( selector ) && isSkipLink( next ) ) {
 				group.push( next );
 				next = next.nextElementSibling;
 			}
@@ -221,15 +229,6 @@ jQuery( document ).ready( function( jQuery ) {
 
 				if ( 'Tab' === event.key || 9 === event.keyCode ) {
 					self.handleTab( event );
-				}
-			} );
-
-			// While the page behind the open panel is inert (see isolatePage), a click on
-			// it reaches nothing. Treat it as a click outside the menu and close, rather
-			// than leaving a page that silently ignores the visitor.
-			jQuery( document ).on( 'click.rmp-isolated-' + this.menuId, function ( e ) {
-				if ( self.isolated && self.isOpen && ! jQuery( e.target ).closest( self.container + ', ' + self.trigger ).length ) {
-					self.closeMenu();
 				}
 			} );
 
@@ -362,7 +361,7 @@ jQuery( document ).ready( function( jQuery ) {
 
 			// Only an open overlay isolates the page. Crossing the breakpoint while open
 			// turns the panel back into ordinary (or hidden) content, so release it.
-			if ( isOpen && this.isOffCanvas() ) {
+			if ( isOpen && this.isOffCanvas() && this.isolatesPage() ) {
 				this.isolatePage();
 			} else {
 				this.releasePage();
@@ -408,6 +407,18 @@ jQuery( document ).ready( function( jQuery ) {
 		}
 
 		/**
+		 * Whether an open panel makes the rest of the page inert. Only when the page is
+		 * not meant to be used while the menu is open: with "close menu on body click"
+		 * on, a click on the page already just closes the menu. With that setting off
+		 * the page beside the panel stays clickable, as it always has, so it is left alone.
+		 *
+		 * @return {boolean}
+		 */
+		isolatesPage() {
+			return 'on' === this.options['menu_close_on_body_click'];
+		}
+
+		/**
 		 * While the panel is open as an overlay, make the rest of the page inert so a
 		 * screen reader's virtual cursor cannot wander behind it (keyboard focus is
 		 * already contained by handleTab). This is what aria-modal does for a dialog,
@@ -438,7 +449,7 @@ jQuery( document ).ready( function( jQuery ) {
 
 			ancestors.forEach( ( parent ) => {
 				Array.prototype.forEach.call( parent.children, ( child ) => {
-					if ( ancestors.has( child ) || keep.indexOf( child ) !== -1 || child.hasAttribute( 'inert' ) || /^(SCRIPT|STYLE|LINK|META|NOSCRIPT|TEMPLATE)$/.test( child.tagName ) ) {
+					if ( ancestors.has( child ) || keep.indexOf( child ) !== -1 || child.hasAttribute( 'inert' ) || child.matches( '.rmp-container, .rmp_menu_trigger, .rmp-page-overlay' ) || /^(SCRIPT|STYLE|LINK|META|NOSCRIPT|TEMPLATE)$/.test( child.tagName ) ) {
 						return;
 					}
 
