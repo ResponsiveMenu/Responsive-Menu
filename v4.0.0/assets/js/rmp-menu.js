@@ -70,7 +70,50 @@ jQuery( document ).ready( function( jQuery ) {
 				jQuery(this.trigger).appendTo(jQuery(destination).parent());
 			}
 
+			this.placeSkipLinkFirst();
+
 			this.init();
+		}
+
+		/**
+		 * Keep the theme's "Skip to content" link the first stop in the tab order.
+		 *
+		 * The toggle is printed on wp_body_open, which runs before a classic theme prints
+		 * its skip link and before a block theme's script inserts one, so without this
+		 * the toggle is tab stop #1 and the skip link only comes after it. Moving the
+		 * skip link (not the toggle) keeps the toggle's fixed positioning and styling
+		 * untouched; skip links are styled by class, so they look the same anywhere.
+		 */
+		placeSkipLinkFirst() {
+			const trigger = jQuery( this.primaryTrigger ).get( 0 );
+
+			if ( ! trigger || ! trigger.parentNode ) {
+				return;
+			}
+
+			const selector = 'a[href^="#"][class*="skip"], a[href^="#"][id*="skip"]';
+			const skipLink = Array.prototype.find.call( document.querySelectorAll( selector ), function ( link ) {
+				return ! link.closest( '.rmp-container, main, [role="main"], footer, [role="contentinfo"]' );
+			} );
+
+			// Nothing to do when the theme has no skip link or it already comes first.
+			if ( ! skipLink || ! ( trigger.compareDocumentPosition( skipLink ) & Node.DOCUMENT_POSITION_FOLLOWING ) ) {
+				return;
+			}
+
+			// Themes with "skip to content" and "skip to footer" print them together;
+			// move the whole group so it stays in order.
+			const group = [ skipLink ];
+			let next    = skipLink.nextElementSibling;
+
+			while ( next && next.matches( selector ) ) {
+				group.push( next );
+				next = next.nextElementSibling;
+			}
+
+			group.forEach( function ( link ) {
+				trigger.parentNode.insertBefore( link, trigger );
+			} );
 		}
 
 		/**
@@ -181,6 +224,15 @@ jQuery( document ).ready( function( jQuery ) {
 				}
 			} );
 
+			// While the page behind the open panel is inert (see isolatePage), a click on
+			// it reaches nothing. Treat it as a click outside the menu and close, rather
+			// than leaving a page that silently ignores the visitor.
+			jQuery( document ).on( 'click.rmp-isolated-' + this.menuId, function ( e ) {
+				if ( self.isolated && self.isOpen && ! jQuery( e.target ).closest( self.container + ', ' + self.trigger ).length ) {
+					self.closeMenu();
+				}
+			} );
+
 			// Keep the closed panel out of the tab order and the accessibility tree, and
 			// re-evaluate when the viewport crosses the hamburger breakpoint.
 			this.syncHiddenState();
@@ -245,8 +297,8 @@ jQuery( document ).ready( function( jQuery ) {
 			const active    = document.activeElement;
 			const container = jQuery( this.container ).get( 0 );
 
-			// Focus sits on the panel itself right after opening; it is not tabbable, so
-			// wrap it manually rather than letting Shift+Tab escape behind the panel.
+			// Focus sits on the panel itself when it has nothing else to focus; it is not
+			// tabbable, so wrap it manually rather than letting Shift+Tab escape behind it.
 			if ( event.shiftKey && active === container ) {
 				event.preventDefault();
 				cycle[ cycle.length - 1 ].focus();
@@ -308,6 +360,14 @@ jQuery( document ).ready( function( jQuery ) {
 			// third-party code that just adds the open class is not left inert.
 			const isOpen = this.isOpen || jQuery( this.container ).hasClass( RmpMenu.openContainerClass );
 
+			// Only an open overlay isolates the page. Crossing the breakpoint while open
+			// turns the panel back into ordinary (or hidden) content, so release it.
+			if ( isOpen && this.isOffCanvas() ) {
+				this.isolatePage();
+			} else {
+				this.releasePage();
+			}
+
 			if ( isOpen || ! this.isOffCanvas() ) {
 				container.removeAttribute( 'aria-hidden' );
 				container.removeAttribute( 'inert' );
@@ -321,8 +381,14 @@ jQuery( document ).ready( function( jQuery ) {
 		/**
 		 * Move focus into the panel so the next Tab continues from the menu rather than
 		 * from wherever the visitor was on the page.
+		 *
+		 * Focus lands on the first link or button in the panel, which shows a focus ring,
+		 * rather than on the container, which does not. A text field is skipped: focusing
+		 * one opens the on-screen keyboard over the menu the visitor just opened. The
+		 * container stays the fallback for a panel with nothing else to focus.
 		 */
 		focusPanel() {
+			const self      = this;
 			const container = jQuery( this.container ).get( 0 );
 
 			if ( ! container ) {
@@ -332,8 +398,69 @@ jQuery( document ).ready( function( jQuery ) {
 			// The fade animation shows the container as it starts, so a task-queue turn is
 			// enough to make sure the element is focusable by the time we ask.
 			window.setTimeout( function () {
-				container.focus( { preventScroll: true } );
+				const textEntry = 'input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]), textarea, select';
+				const target    = self.focusCycle().filter( function ( element ) {
+					return container.contains( element ) && ! jQuery( element ).is( textEntry );
+				} )[0] || container;
+
+				target.focus( { preventScroll: true } );
 			}, 0 );
+		}
+
+		/**
+		 * While the panel is open as an overlay, make the rest of the page inert so a
+		 * screen reader's virtual cursor cannot wander behind it (keyboard focus is
+		 * already contained by handleTab). This is what aria-modal does for a dialog,
+		 * but the toggle that closes this menu lives outside the panel, and aria-modal
+		 * would hide it too. So everything except the panel, the toggle(s) and their
+		 * ancestors gets `inert`, and exactly those elements are released on close.
+		 */
+		isolatePage() {
+			if ( this.isolated ) {
+				return;
+			}
+
+			const keep = jQuery( this.container ).add( this.trigger ).toArray();
+
+			if ( ! keep.length ) {
+				return;
+			}
+
+			const ancestors = new Set();
+
+			keep.forEach( function ( element ) {
+				for ( let node = element.parentElement; node && node !== document.documentElement; node = node.parentElement ) {
+					ancestors.add( node );
+				}
+			} );
+
+			this.isolated = [];
+
+			ancestors.forEach( ( parent ) => {
+				Array.prototype.forEach.call( parent.children, ( child ) => {
+					if ( ancestors.has( child ) || keep.indexOf( child ) !== -1 || child.hasAttribute( 'inert' ) || /^(SCRIPT|STYLE|LINK|META|NOSCRIPT|TEMPLATE)$/.test( child.tagName ) ) {
+						return;
+					}
+
+					child.setAttribute( 'inert', '' );
+					this.isolated.push( child );
+				} );
+			} );
+		}
+
+		/**
+		 * Undo isolatePage(), touching only the elements it made inert.
+		 */
+		releasePage() {
+			if ( ! this.isolated ) {
+				return;
+			}
+
+			this.isolated.forEach( function ( element ) {
+				element.removeAttribute( 'inert' );
+			} );
+
+			this.isolated = null;
 		}
 
 		/**
