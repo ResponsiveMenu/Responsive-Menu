@@ -1585,17 +1585,19 @@ class Style_Manager {
 			 * The "Hide Theme Menu" values are CSS selectors, not SCSS values. Passed in raw,
 			 * scssphp parses them as an expression and truncates anything that starts with a
 			 * tag (`nav.main-navigation` compiles to `nav`). Hand them over as strings, scoped
-			 * so they can never match the plugin's own markup.
+			 * so they can never match the plugin's own markup. $parse_options keeps the plain
+			 * strings for the filters.
 			 */
+			$scss_variables = $parse_options;
 			foreach ( array( 'menu_to_hide' ) as $selector_key ) {
-				if ( isset( $parse_options[ $selector_key ] ) && is_string( $parse_options[ $selector_key ] ) ) {
-					$parse_options[ $selector_key ] = ValueConverter::fromPhp( $this->exclude_plugin_markup( $parse_options[ $selector_key ] ) );
+				if ( isset( $scss_variables[ $selector_key ] ) && is_string( $scss_variables[ $selector_key ] ) ) {
+					$scss_variables[ $selector_key ] = ValueConverter::fromPhp( $this->exclude_plugin_markup( $scss_variables[ $selector_key ] ) );
 				}
 			}
 
 			$scss = new Compiler();
 			$scss->setImportPaths( RMP_PLUGIN_PATH_V4 . '/assets/scss/' );
-			$scss->addVariables( $parse_options );
+			$scss->addVariables( $scss_variables );
 			$css = $scss->compile( '@import "main.scss";' );
 
 			/**
@@ -1666,22 +1668,21 @@ class Style_Manager {
 	/**
 	 * Scope a user-supplied "Hide Theme Menu" selector so it can't hide the plugin's own menu.
 	 *
-	 * Each selector in the comma-separated list gets :not() exclusions for the menu container,
-	 * the menu wrapper (also used when the menu is attached to a theme location), the trigger
-	 * button and everything inside them. So `nav`, `nav ul` or `header nav` keep hiding the
-	 * theme menu but no longer match `<nav class="rmp-menu-wrap">`.
+	 * Each selector in the comma-separated list gets a zero-specificity :not(:where()) exclusion
+	 * for the menu container, the menu wrapper (also used when the menu is attached to a theme
+	 * location), the trigger button and everything inside them. So `nav`, `nav ul` or
+	 * `header nav` keep hiding the theme menu but no longer match `<nav class="rmp-menu-wrap">`.
+	 * Selectors scssphp can't compile are dropped, so one bad value can't break the stylesheet.
 	 *
 	 * @param string $selectors Selector list from the menu settings.
 	 *
 	 * @return string
 	 */
 	private function exclude_plugin_markup( $selectors ) {
-		$exclusions = '';
-		foreach ( array( '.rmp-container', '.rmp-menu-wrap', '.rmp_menu_trigger' ) as $own ) {
-			$exclusions .= ':not(' . $own . '):not(' . $own . ' *)';
-		}
+		$exclusion = ':not(:where(.rmp-container, .rmp-container *, .rmp-menu-wrap, .rmp-menu-wrap *, .rmp_menu_trigger, .rmp_menu_trigger *))';
+		$selectors = preg_replace( '#/\*.*?\*/#s', '', $selectors );
 
-		// Split on top-level commas only, so `:is(a, b)` and `[title="a,b"]` stay intact.
+		// Split on top-level commas only, so `:is(a, b)`, `[title="a,b"]` and `.a\,b` stay intact.
 		$parts = array();
 		$part  = '';
 		$depth = 0;
@@ -1689,6 +1690,10 @@ class Style_Manager {
 		$len   = strlen( $selectors );
 		for ( $i = 0; $i < $len; $i++ ) {
 			$char = $selectors[ $i ];
+			if ( '\\' === $char && $i + 1 < $len ) {
+				$part .= $char . $selectors[ ++$i ];
+				continue;
+			}
 			if ( '' !== $quote ) {
 				if ( $char === $quote ) {
 					$quote = '';
@@ -1710,16 +1715,23 @@ class Style_Manager {
 
 		$scoped = array();
 		foreach ( $parts as $part ) {
-			$part = trim( $part );
-			if ( '' === $part ) {
+			$part = trim( $part, " \t\n\r;{}" );
+			if ( '' === $part || '&' === $part[0] ) {
 				continue;
 			}
 			// Nothing can follow a pseudo-element, and hiding one can't hide our menu anyway.
-			if ( preg_match( '/::|:(before|after|first-line|first-letter)\b/i', $part ) ) {
-				$scoped[] = $part;
+			$unquoted = preg_replace( '/"[^"]*"|\'[^\']*\'/', '', $part );
+			if ( ! preg_match( '/::|:(before|after|first-line|first-letter)\b/i', $unquoted ) ) {
+				$part .= $exclusion;
+			}
+			try {
+				$check = new Compiler();
+				$check->addVariables( array( 'selector' => ValueConverter::fromPhp( $part ) ) );
+				$check->compileString( '#{$selector} { display: none; }' );
+			} catch ( \Exception $e ) {
 				continue;
 			}
-			$scoped[] = $part . $exclusions;
+			$scoped[] = $part;
 		}
 
 		return implode( ', ', $scoped );
