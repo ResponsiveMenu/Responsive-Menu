@@ -705,4 +705,149 @@ function rmp_modify_menu_items( $items, $args ) {
     return $items;
 }
 add_filter('wp_nav_menu_objects', 'rmp_modify_menu_items', 10, 2);
- 
+
+/**
+ * Menu settings that hold visitor-facing text, keyed to the label shown in
+ * WPML > String Translation.
+ *
+ * @since 4.7.5
+ *
+ * @return array
+ */
+function rmp_translatable_option_keys() {
+    return array(
+        'button_title'            => 'Button title',
+        'button_title_open'       => 'Button title (open)',
+        'menu_title'              => 'Menu title',
+        'menu_additional_content' => 'Additional content',
+    );
+}
+
+/**
+ * String Translation name of one menu text, e.g. menu_12_button_title.
+ *
+ * @since 4.7.5
+ *
+ * @param int    $menu_id Menu id.
+ * @param string $key     Option key.
+ *
+ * @return string
+ */
+function rmp_translation_string_name( $menu_id, $key ) {
+    return 'menu_' . absint( $menu_id ) . '_' . $key;
+}
+
+/**
+ * Register a menu's texts with WPML String Translation (or any plugin that
+ * implements the wpml_register_single_string action, e.g. Polylang).
+ *
+ * Without this the texts are printed as saved and every language shows the
+ * default-language text. The action is a no-op when no such plugin is active.
+ *
+ * @since 4.7.5
+ *
+ * @param int $menu_id Menu id.
+ *
+ * @return void
+ */
+function rmp_register_menu_strings( $menu_id ) {
+    if ( ! has_action( 'wpml_register_single_string' ) ) {
+        return;
+    }
+
+    $options = RMP\Features\Inc\Option_Manager::get_instance()->get_options( $menu_id );
+
+    foreach ( rmp_translatable_option_keys() as $key => $label ) {
+        if ( ! isset( $options[ $key ] ) || ! is_string( $options[ $key ] ) || '' === $options[ $key ] ) {
+            continue;
+        }
+
+        do_action(
+            'wpml_register_single_string',
+            'Responsive Menu',
+            rmp_translation_string_name( $menu_id, $key ),
+            $options[ $key ]
+        );
+    }
+}
+
+/**
+ * Re-register a menu's texts whenever its settings are written. Hooking the
+ * meta write covers every save path: the editor, theme apply, import and
+ * migration.
+ *
+ * @since 4.7.5
+ *
+ * @param int    $meta_id  Meta id.
+ * @param int    $post_id  Menu id.
+ * @param string $meta_key Meta key.
+ *
+ * @return void
+ */
+function rmp_register_strings_on_save( $meta_id, $post_id, $meta_key ) {
+    if ( 'rmp_menu_meta' !== $meta_key ) {
+        return;
+    }
+
+    if ( ! has_action( 'wpml_register_single_string' ) ) {
+        // Saved while String Translation is off: re-run the backfill once it is back on.
+        delete_option( 'rmp_strings_registered' );
+        return;
+    }
+
+    rmp_register_menu_strings( $post_id );
+}
+add_action( 'added_post_meta', 'rmp_register_strings_on_save', 10, 3 );
+add_action( 'updated_post_meta', 'rmp_register_strings_on_save', 10, 3 );
+
+/**
+ * Register the texts of menus saved before 4.7.5, or before String
+ * Translation was active, so site owners don't have to re-save each menu.
+ * Runs once per site while a string-translation plugin is active.
+ *
+ * @since 4.7.5
+ *
+ * @return void
+ */
+function rmp_register_existing_menu_strings() {
+    if ( ! has_action( 'wpml_register_single_string' ) || get_option( 'rmp_strings_registered' ) ) {
+        return;
+    }
+
+    foreach ( get_all_rmp_menu_ids() as $menu_id ) {
+        rmp_register_menu_strings( $menu_id );
+    }
+
+    update_option( 'rmp_strings_registered', 1 );
+}
+add_action( 'admin_init', 'rmp_register_existing_menu_strings' );
+
+/**
+ * Swap a menu's texts for their translation in the current language.
+ *
+ * The wpml_translate_single_string filter returns the original text when no
+ * translation exists or no string-translation plugin is active.
+ *
+ * @since 4.7.5
+ *
+ * @param array $options Menu options.
+ * @param int   $menu_id Menu id.
+ *
+ * @return array
+ */
+function rmp_translate_menu_options( $options, $menu_id ) {
+    foreach ( rmp_translatable_option_keys() as $key => $label ) {
+        if ( ! isset( $options[ $key ] ) || ! is_string( $options[ $key ] ) || '' === $options[ $key ] ) {
+            continue;
+        }
+
+        $options[ $key ] = apply_filters(
+            'wpml_translate_single_string',
+            $options[ $key ],
+            'Responsive Menu',
+            rmp_translation_string_name( $menu_id, $key )
+        );
+    }
+
+    return $options;
+}
