@@ -304,8 +304,8 @@ class Theme_Manager {
 				array(
 					'message' => sprintf(
 						'%s required Responsive Menu %s version or higher. Please update the plugin with the latest version.',
-						$theme_name,
-						$min_version
+						esc_html( $theme_name ),
+						esc_html( $min_version )
 					),
 				)
 			);
@@ -321,7 +321,13 @@ class Theme_Manager {
 		 */
 		$options = apply_filters( 'get_available_theme_settings', $options, $theme_name );
 
-		return $options;
+		// A theme's options.json comes from an uploaded zip, so treat it as untrusted input and
+		// sanitize it the same way as the normal save path (rm_sanitize_rec_array with HTML allowed).
+		if ( ! is_array( $options ) ) {
+			return array();
+		}
+
+		return rm_sanitize_rec_array( $options, true );
 	}
 
 	/**
