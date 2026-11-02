@@ -221,8 +221,9 @@ class Style_Manager {
 
 		foreach ( $menu_ids as $menu_id ) {
 			$options                             = $this->option_manager->get_options( $menu_id );
-			$options['active_toggle_contents']   = $this->get_active_toggle_contents( $options );
-			$options['inactive_toggle_contents'] = $this->get_inactive_toggle_contents( $options );
+			// These are injected with jQuery .html() on the frontend, so sanitize them here like the walker does.
+			$options['active_toggle_contents']   = rm_sanitize_html_tags( $this->get_active_toggle_contents( $options ) );
+			$options['inactive_toggle_contents'] = rm_sanitize_html_tags( $this->get_inactive_toggle_contents( $options ) );
 
 			$menu_options[] = $options;
 		}
