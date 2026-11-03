@@ -3,7 +3,7 @@ Contributors: expresstech, responsivemenu, moha12351, infosatech
 Tags: mobile menu, hamburger, responsive, navigation, mega menu
 Requires at least: 3.6
 Tested up to: 7.1
-Stable tag: 4.7.4
+Stable tag: 4.7.5
 Requires PHP: 7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -140,6 +140,11 @@ Free support is on the [WordPress.org support forum](https://wordpress.org/suppo
 7. Your responsive menu live on the front end
 
 == Changelog ==
+= 4.7.5 (3rd November 2026) =
+* Security: Patched a stored XSS vulnerability in uploaded menu themes.
+* Bug: Fixed "Hide Theme Menu" accidentally hiding Responsive Menu when using broad selectors like `nav`
+* Enhancement: Added WPML String Translation support for menu titles, button titles, and additional content
+
 = 4.7.4 (1st October 2026) =
 * Feature: Added an option to display menu items only to selected user roles.
 * Enhancement: Improved keyboard and screen reader accessibility.

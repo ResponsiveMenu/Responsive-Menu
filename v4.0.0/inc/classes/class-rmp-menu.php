@@ -54,7 +54,7 @@ if ( ! class_exists( 'RMP_Menu' ) ) :
 		 */
 		public function __construct( $menu_id ) {
 			$option_manager = Option_Manager::get_instance();
-			$this->options  = $option_manager->get_options( $menu_id );
+			$this->options  = rmp_translate_menu_options( $option_manager->get_options( $menu_id ), $menu_id );
 
 			$this->menu_id = $menu_id;
 		}
