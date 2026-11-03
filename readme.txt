@@ -2,7 +2,7 @@
 Contributors: expresstech, responsivemenu, moha12351, infosatech
 Tags: mobile menu, hamburger menu, off canvas menu, accessibility, responsive menu
 Requires at least: 3.6
-Tested up to: 7.1.3
+Tested up to: 7.1
 Stable tag: 4.7.4
 Requires PHP: 7.1
 License: GPLv2 or later
