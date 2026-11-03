@@ -141,9 +141,9 @@ Free support is on the [WordPress.org support forum](https://wordpress.org/suppo
 
 == Changelog ==
 = 4.7.5 (3rd November 2026) =
-* Security: Fixed a stored XSS issue where an uploaded menu theme could inject unsafe markup into the frontend.
-* Bug: Fixed the "Hide Theme Menu" option hiding Responsive Menu's own menu when a selector such as `nav` was used, leaving the menu panel empty.
-* Bug: Fixed menu title, button title and additional content not being translatable with WPML String Translation.
+* Security: Patched a stored XSS vulnerability in uploaded menu themes.
+* Bug: Fixed "Hide Theme Menu" accidentally hiding Responsive Menu when using broad selectors like `nav`
+* Enhancement: Added WPML String Translation support for menu titles, button titles, and additional content
 
 = 4.7.4 (1st October 2026) =
 * Feature: Added an option to display menu items only to selected user roles.
